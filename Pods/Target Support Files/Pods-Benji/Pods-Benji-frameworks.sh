@@ -143,18 +143,14 @@ strip_invalid_archs() {
 
 
 if [[ "$CONFIGURATION" == "Debug" ]]; then
-  install_framework "${BUILT_PRODUCTS_DIR}/Bolts/Bolts.framework"
   install_framework "${BUILT_PRODUCTS_DIR}/GestureRecognizerClosures/GestureRecognizerClosures.framework"
-  install_framework "${BUILT_PRODUCTS_DIR}/Parse/Parse.framework"
   install_framework "${BUILT_PRODUCTS_DIR}/PureLayout/PureLayout.framework"
   install_framework "${PODS_ROOT}/TwilioAccessManager/TwilioAccessManager.framework"
   install_framework "${PODS_ROOT}/TwilioChatClient/TwilioChatClient.framework"
   install_dsym "${PODS_ROOT}/TwilioChatClient/TwilioChatClient.framework.dSYM"
 fi
 if [[ "$CONFIGURATION" == "Release" ]]; then
-  install_framework "${BUILT_PRODUCTS_DIR}/Bolts/Bolts.framework"
   install_framework "${BUILT_PRODUCTS_DIR}/GestureRecognizerClosures/GestureRecognizerClosures.framework"
-  install_framework "${BUILT_PRODUCTS_DIR}/Parse/Parse.framework"
   install_framework "${BUILT_PRODUCTS_DIR}/PureLayout/PureLayout.framework"
   install_framework "${PODS_ROOT}/TwilioAccessManager/TwilioAccessManager.framework"
   install_framework "${PODS_ROOT}/TwilioChatClient/TwilioChatClient.framework"
