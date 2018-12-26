@@ -8,13 +8,26 @@
 
 import UIKit
 
-class ViewController: UIViewController {
+class ViewController: UIViewController, Dismissable {
 
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        // Do any additional setup after loading the view, typically from a nib.
+    var didDismiss: (() -> Void)?
+
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+
+        once(caller: self, token: String(describing: self)) {
+            self.viewIsReadyForLayout()
+        }
     }
 
+    func viewIsReadyForLayout() {}
 
+    override func viewDidDisappear(_ animated: Bool) {
+        super.viewDidDisappear(animated)
+
+        if self.isBeingClosed {
+            self.didDismiss?()
+        }
+    }
 }
 

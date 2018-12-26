@@ -13,6 +13,9 @@
 		D61EC0C521D3071400204BEE /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D61EC0C321D3071400204BEE /* Main.storyboard */; };
 		D61EC0C721D3071500204BEE /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D61EC0C621D3071500204BEE /* Assets.xcassets */; };
 		D61EC0CA21D3071500204BEE /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D61EC0C821D3071500204BEE /* LaunchScreen.storyboard */; };
+		D61EC0D921D30C8E00204BEE /* DispatchQue+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = D61EC0D821D30C8E00204BEE /* DispatchQue+Extensions.swift */; };
+		D61EC0DB21D30CB300204BEE /* Dismissable.swift in Sources */ = {isa = PBXBuildFile; fileRef = D61EC0DA21D30CB300204BEE /* Dismissable.swift */; };
+		D61EC0DE21D30DAC00204BEE /* Array+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = D61EC0DD21D30DAC00204BEE /* Array+Extensions.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -26,6 +29,10 @@
 		D61EC0C621D3071500204BEE /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		D61EC0C921D3071500204BEE /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		D61EC0CB21D3071500204BEE /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		D61EC0D821D30C8E00204BEE /* DispatchQue+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "DispatchQue+Extensions.swift"; sourceTree = "<group>"; };
+		D61EC0DA21D30CB300204BEE /* Dismissable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Dismissable.swift; sourceTree = "<group>"; };
+		D61EC0DC21D30CF700204BEE /* Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Bridging-Header.h"; sourceTree = "<group>"; };
+		D61EC0DD21D30DAC00204BEE /* Array+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Array+Extensions.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -86,6 +93,7 @@
 				D61EC0D121D30B5700204BEE /* UI */,
 				D61EC0C621D3071500204BEE /* Assets.xcassets */,
 				D61EC0CB21D3071500204BEE /* Info.plist */,
+				D61EC0DC21D30CF700204BEE /* Bridging-Header.h */,
 			);
 			path = Source;
 			sourceTree = "<group>";
@@ -126,6 +134,7 @@
 		D61EC0D521D30BF900204BEE /* Protocols */ = {
 			isa = PBXGroup;
 			children = (
+				D61EC0DA21D30CB300204BEE /* Dismissable.swift */,
 			);
 			path = Protocols;
 			sourceTree = "<group>";
@@ -140,6 +149,8 @@
 		D61EC0D721D30C1400204BEE /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
+				D61EC0D821D30C8E00204BEE /* DispatchQue+Extensions.swift */,
+				D61EC0DD21D30DAC00204BEE /* Array+Extensions.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -237,8 +248,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D61EC0DB21D30CB300204BEE /* Dismissable.swift in Sources */,
+				D61EC0DE21D30DAC00204BEE /* Array+Extensions.swift in Sources */,
 				D61EC0C221D3071400204BEE /* ViewController.swift in Sources */,
 				D61EC0C021D3071400204BEE /* AppDelegate.swift in Sources */,
+				D61EC0D921D30C8E00204BEE /* DispatchQue+Extensions.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -394,6 +408,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.Benji.Benji;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "/Users/benjamindodgson 1/Desktop/Benji/Source/Bridging-Header.h";
 				SWIFT_VERSION = 4.2;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -413,6 +428,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.Benji.Benji;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "/Users/benjamindodgson 1/Desktop/Benji/Source/Bridging-Header.h";
 				SWIFT_VERSION = 4.2;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
