@@ -78,6 +78,10 @@
 		D61EC0BE21D3071400204BEE /* Source */ = {
 			isa = PBXGroup;
 			children = (
+				D61EC0D721D30C1400204BEE /* Extensions */,
+				D61EC0D621D30C0500204BEE /* API */,
+				D61EC0D521D30BF900204BEE /* Protocols */,
+				D61EC0D421D30BF100204BEE /* Models */,
 				D61EC0D321D30BBF00204BEE /* App */,
 				D61EC0D121D30B5700204BEE /* UI */,
 				D61EC0C621D3071500204BEE /* Assets.xcassets */,
@@ -110,6 +114,34 @@
 				D61EC0BF21D3071400204BEE /* AppDelegate.swift */,
 			);
 			path = App;
+			sourceTree = "<group>";
+		};
+		D61EC0D421D30BF100204BEE /* Models */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		D61EC0D521D30BF900204BEE /* Protocols */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Protocols;
+			sourceTree = "<group>";
+		};
+		D61EC0D621D30C0500204BEE /* API */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = API;
+			sourceTree = "<group>";
+		};
+		D61EC0D721D30C1400204BEE /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Extensions;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
