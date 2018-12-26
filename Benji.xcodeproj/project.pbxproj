@@ -38,7 +38,7 @@
 		D61EC0B321D3071400204BEE = {
 			isa = PBXGroup;
 			children = (
-				D61EC0BE21D3071400204BEE /* Benji */,
+				D61EC0BE21D3071400204BEE /* Source */,
 				D61EC0BD21D3071400204BEE /* Products */,
 			);
 			sourceTree = "<group>";
@@ -51,7 +51,7 @@
 			name = Products;
 			sourceTree = "<group>";
 		};
-		D61EC0BE21D3071400204BEE /* Benji */ = {
+		D61EC0BE21D3071400204BEE /* Source */ = {
 			isa = PBXGroup;
 			children = (
 				D61EC0BF21D3071400204BEE /* AppDelegate.swift */,
@@ -61,7 +61,7 @@
 				D61EC0C821D3071500204BEE /* LaunchScreen.storyboard */,
 				D61EC0CB21D3071500204BEE /* Info.plist */,
 			);
-			path = Benji;
+			path = Source;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -284,7 +284,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 7KLRW8RU62;
-				INFOPLIST_FILE = Benji/Info.plist;
+				INFOPLIST_FILE = Source/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -302,7 +302,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 7KLRW8RU62;
-				INFOPLIST_FILE = Benji/Info.plist;
+				INFOPLIST_FILE = Source/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
