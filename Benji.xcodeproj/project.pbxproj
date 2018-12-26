@@ -111,15 +111,15 @@
 		D61EC0BE21D3071400204BEE /* Source */ = {
 			isa = PBXGroup;
 			children = (
-				D61EC0FA21D3180200204BEE /* Resources */,
-				D61EC0D721D30C1400204BEE /* Extensions */,
 				D61EC0D621D30C0500204BEE /* API */,
-				D61EC0D521D30BF900204BEE /* Protocols */,
-				D61EC0D421D30BF100204BEE /* Models */,
 				D61EC0D321D30BBF00204BEE /* App */,
+				D61EC0D721D30C1400204BEE /* Extensions */,
+				D61EC0D421D30BF100204BEE /* Models */,
+				D61EC0D521D30BF900204BEE /* Protocols */,
+				D61EC0FA21D3180200204BEE /* Resources */,
 				D61EC0D121D30B5700204BEE /* UI */,
-				D61EC0CB21D3071500204BEE /* Info.plist */,
 				D61EC0DC21D30CF700204BEE /* Bridging-Header.h */,
+				D61EC0CB21D3071500204BEE /* Info.plist */,
 			);
 			path = Source;
 			sourceTree = "<group>";
