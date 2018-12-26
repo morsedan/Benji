@@ -1,28 +1,38 @@
 PODS:
+  - Bolts/Tasks (1.9.0)
   - GestureRecognizerClosures (4.1.0)
+  - Parse (1.17.2):
+    - Parse/Core (= 1.17.2)
+  - Parse/Core (1.17.2):
+    - Bolts/Tasks (~> 1.9)
   - PureLayout (3.1.4)
   - TwilioAccessManager (1.1.2)
   - TwilioChatClient (2.4.2)
 
 DEPENDENCIES:
   - GestureRecognizerClosures
+  - Parse
   - PureLayout
   - TwilioAccessManager
   - TwilioChatClient
 
 SPEC REPOS:
   https://github.com/cocoapods/specs.git:
+    - Bolts
     - GestureRecognizerClosures
+    - Parse
     - PureLayout
     - TwilioAccessManager
     - TwilioChatClient
 
 SPEC CHECKSUMS:
+  Bolts: ac6567323eac61e203f6a9763667d0f711be34c8
   GestureRecognizerClosures: e6d9bcec709119720729ac7badd60dc868f1037a
+  Parse: 3b31a3dd1777b07ee7f0caee32fafbff544483a5
   PureLayout: f08c01b8dec00bb14a1fefa3de4c7d9c265df85e
   TwilioAccessManager: f3b0d9edd2eb5a044e50ff78057ab13611a0baa1
   TwilioChatClient: a6a7117d79294471b4dde1efed23a580153025ae
 
-PODFILE CHECKSUM: 19ed5f95aab4de2cb2121f1c3e39ecbb38e3626f
+PODFILE CHECKSUM: ff89a884136c0315b8163463f69e053743fffb5e
 
 COCOAPODS: 1.5.3
