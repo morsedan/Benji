@@ -7,6 +7,8 @@ target 'Benji' do
   pod 'Parse'
   pod 'TwilioChatClient'
   pod 'TwilioAccessManager'
+  pod 'GestureRecognizerClosures'
+  pod 'PureLayout'
   # Pods for Benji
 
 end

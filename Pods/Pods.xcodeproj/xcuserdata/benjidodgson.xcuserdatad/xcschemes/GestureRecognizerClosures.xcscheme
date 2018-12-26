@@ -14,10 +14,10 @@
             buildForArchiving = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "81F2D1A9DAA3E34C5A7F9E752CC77684"
-               BlueprintName = "Pods-Benji"
+               BlueprintIdentifier = "4639FF81D97257EA7EAE0BD36A9BE62F"
+               BlueprintName = "GestureRecognizerClosures"
                ReferencedContainer = "container:Pods.xcodeproj"
-               BuildableName = "Pods-Benji.framework">
+               BuildableName = "GestureRecognizerClosures.framework">
             </BuildableReference>
          </BuildActionEntry>
       </BuildActionEntries>

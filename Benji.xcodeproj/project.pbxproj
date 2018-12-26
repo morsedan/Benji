@@ -183,7 +183,9 @@
 			inputPaths = (
 				"${SRCROOT}/Pods/Target Support Files/Pods-Benji/Pods-Benji-frameworks.sh",
 				"${BUILT_PRODUCTS_DIR}/Bolts/Bolts.framework",
+				"${BUILT_PRODUCTS_DIR}/GestureRecognizerClosures/GestureRecognizerClosures.framework",
 				"${BUILT_PRODUCTS_DIR}/Parse/Parse.framework",
+				"${BUILT_PRODUCTS_DIR}/PureLayout/PureLayout.framework",
 				"${PODS_ROOT}/TwilioAccessManager/TwilioAccessManager.framework",
 				"${PODS_ROOT}/TwilioChatClient/TwilioChatClient.framework",
 				"${PODS_ROOT}/TwilioChatClient/TwilioChatClient.framework.dSYM",
@@ -191,7 +193,9 @@
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Bolts.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GestureRecognizerClosures.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Parse.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/PureLayout.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/TwilioAccessManager.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/TwilioChatClient.framework",
 				"${DWARF_DSYM_FOLDER_PATH}/TwilioChatClient.framework.dSYM",
