@@ -4,19 +4,27 @@ PODS:
     - Parse/Core (= 1.17.2)
   - Parse/Core (1.17.2):
     - Bolts/Tasks (~> 1.9)
+  - TwilioAccessManager (1.1.2)
+  - TwilioChatClient (2.4.2)
 
 DEPENDENCIES:
   - Parse
+  - TwilioAccessManager
+  - TwilioChatClient
 
 SPEC REPOS:
   https://github.com/cocoapods/specs.git:
     - Bolts
     - Parse
+    - TwilioAccessManager
+    - TwilioChatClient
 
 SPEC CHECKSUMS:
   Bolts: ac6567323eac61e203f6a9763667d0f711be34c8
   Parse: 3b31a3dd1777b07ee7f0caee32fafbff544483a5
+  TwilioAccessManager: f3b0d9edd2eb5a044e50ff78057ab13611a0baa1
+  TwilioChatClient: a6a7117d79294471b4dde1efed23a580153025ae
 
-PODFILE CHECKSUM: 0f43dd908898786365e14fe9bd0e6bf0f436a6ab
+PODFILE CHECKSUM: 717f08d5634c42803e475a1239bddc357e8ca4db
 
 COCOAPODS: 1.5.3
