@@ -78,14 +78,30 @@
 		D61EC0BE21D3071400204BEE /* Source */ = {
 			isa = PBXGroup;
 			children = (
+				D61EC0D121D30B5700204BEE /* UI */,
 				D61EC0BF21D3071400204BEE /* AppDelegate.swift */,
-				D61EC0C121D3071400204BEE /* ViewController.swift */,
 				D61EC0C321D3071400204BEE /* Main.storyboard */,
 				D61EC0C621D3071500204BEE /* Assets.xcassets */,
 				D61EC0C821D3071500204BEE /* LaunchScreen.storyboard */,
 				D61EC0CB21D3071500204BEE /* Info.plist */,
 			);
 			path = Source;
+			sourceTree = "<group>";
+		};
+		D61EC0D121D30B5700204BEE /* UI */ = {
+			isa = PBXGroup;
+			children = (
+				D61EC0D221D30B8800204BEE /* Base Classes */,
+			);
+			path = UI;
+			sourceTree = "<group>";
+		};
+		D61EC0D221D30B8800204BEE /* Base Classes */ = {
+			isa = PBXGroup;
+			children = (
+				D61EC0C121D3071400204BEE /* ViewController.swift */,
+			);
+			path = "Base Classes";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -99,7 +115,6 @@
 				D61EC0B821D3071400204BEE /* Sources */,
 				D61EC0B921D3071400204BEE /* Frameworks */,
 				D61EC0BA21D3071400204BEE /* Resources */,
-				922BBCA52E39263021525692 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -173,36 +188,6 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
-			showEnvVarsInLog = 0;
-		};
-		922BBCA52E39263021525692 /* [CP] Embed Pods Frameworks */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-				"${SRCROOT}/Pods/Target Support Files/Pods-Benji/Pods-Benji-frameworks.sh",
-				"${BUILT_PRODUCTS_DIR}/Bolts/Bolts.framework",
-				"${BUILT_PRODUCTS_DIR}/GestureRecognizerClosures/GestureRecognizerClosures.framework",
-				"${BUILT_PRODUCTS_DIR}/Parse/Parse.framework",
-				"${BUILT_PRODUCTS_DIR}/PureLayout/PureLayout.framework",
-				"${PODS_ROOT}/TwilioAccessManager/TwilioAccessManager.framework",
-				"${PODS_ROOT}/TwilioChatClient/TwilioChatClient.framework",
-				"${PODS_ROOT}/TwilioChatClient/TwilioChatClient.framework.dSYM",
-			);
-			name = "[CP] Embed Pods Frameworks";
-			outputPaths = (
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Bolts.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GestureRecognizerClosures.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Parse.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/PureLayout.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/TwilioAccessManager.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/TwilioChatClient.framework",
-				"${DWARF_DSYM_FOLDER_PATH}/TwilioChatClient.framework.dSYM",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Benji/Pods-Benji-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */
