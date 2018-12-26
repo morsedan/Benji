@@ -263,5 +263,9 @@ extension UIView {
         self.setNeedsLayout()
         self.layoutIfNeeded()
     }
+
+    func set(backgroundColor: Color) {
+        self.backgroundColor = backgroundColor.color
+    }
 }
 
