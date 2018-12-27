@@ -18,29 +18,109 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="d4V-G4-mA0" customClass="View" customModule="Benji" customModuleProvider="target">
-                                <rect key="frame" x="67" y="54" width="240" height="128"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="d4V-G4-mA0" customClass="View" customModule="Benji" customModuleProvider="target">
+                                <rect key="frame" x="67.5" y="133" width="240" height="128"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dCP-CH-rXO" customClass="Label" customModule="Benji" customModuleProvider="target">
+                                        <rect key="frame" x="10" y="10" width="220" height="108"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                </subviews>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="240" id="0fx-fG-noS"/>
+                                    <constraint firstItem="dCP-CH-rXO" firstAttribute="top" secondItem="d4V-G4-mA0" secondAttribute="top" constant="10" id="K8E-bI-A0e"/>
+                                    <constraint firstAttribute="bottom" secondItem="dCP-CH-rXO" secondAttribute="bottom" constant="10" id="Vpi-tM-mt7"/>
+                                    <constraint firstItem="dCP-CH-rXO" firstAttribute="leading" secondItem="d4V-G4-mA0" secondAttribute="leading" constant="10" id="Y1D-Ds-Jxk"/>
+                                    <constraint firstAttribute="height" constant="128" id="aC6-ly-PHs"/>
+                                    <constraint firstAttribute="trailing" secondItem="dCP-CH-rXO" secondAttribute="trailing" constant="10" id="hDE-A0-aKv"/>
+                                </constraints>
                             </view>
-                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="ErV-gA-FHm" customClass="View" customModule="Benji" customModuleProvider="target">
-                                <rect key="frame" x="67" y="226" width="240" height="128"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ErV-gA-FHm" customClass="View" customModule="Benji" customModuleProvider="target">
+                                <rect key="frame" x="67.5" y="269.5" width="240" height="128"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="PH6-Ar-Yex" customClass="Label" customModule="Benji" customModuleProvider="target">
+                                        <rect key="frame" x="10" y="10" width="220" height="108"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                </subviews>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstItem="PH6-Ar-Yex" firstAttribute="top" secondItem="ErV-gA-FHm" secondAttribute="top" constant="10" id="QN0-DU-rAX"/>
+                                    <constraint firstAttribute="bottom" secondItem="PH6-Ar-Yex" secondAttribute="bottom" constant="10" id="UZu-Sf-IL6"/>
+                                    <constraint firstItem="PH6-Ar-Yex" firstAttribute="leading" secondItem="ErV-gA-FHm" secondAttribute="leading" constant="10" id="a3f-19-d1z"/>
+                                    <constraint firstAttribute="width" constant="240" id="bXn-9h-kmS"/>
+                                    <constraint firstAttribute="trailing" secondItem="PH6-Ar-Yex" secondAttribute="trailing" constant="10" id="n27-sX-YO5"/>
+                                    <constraint firstAttribute="height" constant="128" id="qP6-sw-u33"/>
+                                </constraints>
                             </view>
-                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="HUd-Nr-X0t" customClass="View" customModule="Benji" customModuleProvider="target">
-                                <rect key="frame" x="67" y="391" width="240" height="128"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="HUd-Nr-X0t" customClass="View" customModule="Benji" customModuleProvider="target">
+                                <rect key="frame" x="67.5" y="405" width="240" height="128"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="U4A-Gc-ziI" customClass="Label" customModule="Benji" customModuleProvider="target">
+                                        <rect key="frame" x="10" y="10" width="220" height="108"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                </subviews>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="128" id="1VK-Da-DbW"/>
+                                    <constraint firstItem="U4A-Gc-ziI" firstAttribute="top" secondItem="HUd-Nr-X0t" secondAttribute="top" constant="10" id="GTR-in-xRS"/>
+                                    <constraint firstAttribute="trailing" secondItem="U4A-Gc-ziI" secondAttribute="trailing" constant="10" id="ZzA-hg-8ha"/>
+                                    <constraint firstAttribute="width" constant="240" id="j4h-Wg-DaL"/>
+                                    <constraint firstItem="U4A-Gc-ziI" firstAttribute="leading" secondItem="HUd-Nr-X0t" secondAttribute="leading" constant="10" id="kFu-J4-KoG"/>
+                                    <constraint firstAttribute="bottom" secondItem="U4A-Gc-ziI" secondAttribute="bottom" constant="10" id="xvk-8v-he2"/>
+                                </constraints>
+                            </view>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="mqA-Mg-xko" customClass="View" customModule="Benji" customModuleProvider="target">
+                                <rect key="frame" x="67.5" y="539" width="240" height="128"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mab-Nk-yGN" customClass="Label" customModule="Benji" customModuleProvider="target">
+                                        <rect key="frame" x="10" y="10" width="220" height="108"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                </subviews>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstItem="mab-Nk-yGN" firstAttribute="leading" secondItem="mqA-Mg-xko" secondAttribute="leading" constant="10" id="4Vx-FZ-sSA"/>
+                                    <constraint firstAttribute="width" constant="240" id="6FL-Zf-03U"/>
+                                    <constraint firstAttribute="height" constant="128" id="O4z-oZ-Qe2"/>
+                                    <constraint firstItem="mab-Nk-yGN" firstAttribute="top" secondItem="mqA-Mg-xko" secondAttribute="top" constant="10" id="SkI-0a-LUc"/>
+                                    <constraint firstAttribute="bottom" secondItem="mab-Nk-yGN" secondAttribute="bottom" constant="10" id="u1k-Bu-W2z"/>
+                                    <constraint firstAttribute="trailing" secondItem="mab-Nk-yGN" secondAttribute="trailing" constant="10" id="zMV-bQ-KC6"/>
+                                </constraints>
                             </view>
                         </subviews>
                         <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="HUd-Nr-X0t" firstAttribute="top" secondItem="ErV-gA-FHm" secondAttribute="bottom" constant="7.5" id="2Ae-th-UDw"/>
+                            <constraint firstItem="HUd-Nr-X0t" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="5CW-Nl-fJj"/>
+                            <constraint firstItem="ErV-gA-FHm" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="5kg-eN-rx9"/>
+                            <constraint firstItem="mqA-Mg-xko" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="Qlg-gm-Lph"/>
+                            <constraint firstItem="mqA-Mg-xko" firstAttribute="top" secondItem="HUd-Nr-X0t" secondAttribute="bottom" constant="6" id="dym-WP-V3T"/>
+                            <constraint firstItem="ErV-gA-FHm" firstAttribute="top" secondItem="d4V-G4-mA0" secondAttribute="bottom" constant="8.5" id="lNB-3S-l9W"/>
+                            <constraint firstItem="d4V-G4-mA0" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="lp0-ax-S5m"/>
+                            <constraint firstItem="ErV-gA-FHm" firstAttribute="centerY" secondItem="8bC-Xf-vdC" secondAttribute="centerY" id="sKG-bR-sJd"/>
+                        </constraints>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
                     <connections>
+                        <outlet property="lable1" destination="dCP-CH-rXO" id="Dbc-0D-LyR"/>
+                        <outlet property="lable2" destination="PH6-Ar-Yex" id="9UB-0M-css"/>
+                        <outlet property="lable3" destination="U4A-Gc-ziI" id="kwr-dc-Cde"/>
+                        <outlet property="lable4" destination="mab-Nk-yGN" id="VMA-gd-sab"/>
                         <outlet property="view1" destination="d4V-G4-mA0" id="eZy-F8-6cX"/>
                         <outlet property="view2" destination="ErV-gA-FHm" id="8nK-4n-xnL"/>
                         <outlet property="view3" destination="HUd-Nr-X0t" id="Sbu-vn-yj7"/>
+                        <outlet property="view4" destination="mqA-Mg-xko" id="x4G-iw-5t7"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>

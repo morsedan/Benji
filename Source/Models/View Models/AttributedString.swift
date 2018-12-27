@@ -22,7 +22,7 @@ struct AttributedString {
         return self.style.attributes
     }
 
-    init(_ localized: Localized?,
+    init(_ localized: Localized,
          font: Font = .regular,
          size: CGFloat,
          color: Color,
@@ -32,11 +32,11 @@ struct AttributedString {
                                 size: size,
                                 color: color,
                                 kern: kern)
-        self.init(localized ?? LocalString.empty, style: style)
+        self.init(localized, style: style)
     }
 
-    init(_ localized: Localized?, style: StringStyle) {
-        self.localizedString = localized ?? LocalString.empty
+    init(_ localized: Localized, style: StringStyle) {
+        self.localizedString = localized
         self.style = style
     }
 

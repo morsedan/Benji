@@ -17,6 +17,7 @@ enum Color: String, CaseIterable {
     case white
     case clear
     case halfWhite
+    case darkGray
 
     var color: UIColor {
         switch self {
@@ -34,6 +35,8 @@ enum Color: String, CaseIterable {
             return #colorLiteral(red: 0, green: 0, blue: 0, alpha: 0.5)
         case .black:
             return #colorLiteral(red: 0, green: 0, blue: 0, alpha: 1)
+        case .darkGray:
+            return #colorLiteral(red: 0.2588235294, green: 0.2588235294, blue: 0.2588235294, alpha: 1)
         }
     }
 }
