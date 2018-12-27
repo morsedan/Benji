@@ -128,10 +128,10 @@
             </objects>
             <point key="canvasLocation" x="1076" y="133.5832083958021"/>
         </scene>
-        <!--Navigation Controller-->
+        <!--Center Navigation Controller-->
         <scene sceneID="dt7-ec-BhW">
             <objects>
-                <navigationController automaticallyAdjustsScrollViewInsets="NO" navigationBarHidden="YES" id="WRV-L5-dO5" sceneMemberID="viewController">
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" navigationBarHidden="YES" id="WRV-L5-dO5" customClass="CenterNavigationController" customModule="Benji" customModuleProvider="target" sceneMemberID="viewController">
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="eN8-Mc-eLU">
                         <autoresizingMask key="autoresizingMask"/>
