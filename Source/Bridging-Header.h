@@ -10,4 +10,5 @@
 #define Bridging_Header_h
 
 #import <UIKit/UIKit.h>
+#import "IGListDiff.h"
 #endif /* Bridging_Header_h */
