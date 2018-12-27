@@ -29,5 +29,9 @@ class ViewController: UIViewController, Dismissable {
             self.didDismiss?()
         }
     }
+
+    override var preferredStatusBarStyle: UIStatusBarStyle {
+        return .lightContent
+    }
 }
 
