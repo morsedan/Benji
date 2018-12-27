@@ -31,7 +31,7 @@ class CenterViewController: FullScreenViewController {
         self.view3.set(backgroundColor: .red)
         self.view4.set(backgroundColor: .green)
 
-        let style = StringStyle(font: .medium, size: 20, color: .white, kern: 2)
+        let style = StringStyle(font: .demiBold, size: 20, color: .white, kern: 2)
         let string = AttributedString("Some default text that will show in the view 😀", style: style)
 
         self.lable1.set(attributed: string)

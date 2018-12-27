@@ -48,6 +48,11 @@ extension String {
 
         return ranges
     }
+
+    func substring(with nsrange: NSRange) -> Substring? {
+        guard let range = Range(nsrange, in: self) else { return nil }
+        return self[range]
+    }
 }
 
 extension Range where Bound == String.Index {
