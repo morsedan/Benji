@@ -21,11 +21,11 @@ enum Color: String, CaseIterable {
     var color: UIColor {
         switch self {
         case .blue:
-            return #colorLiteral(red: 0.3843137255, green: 0, blue: 0.9176470588, alpha: 1)
+            return #colorLiteral(red: 0.1607843137, green: 0.4745098039, blue: 1, alpha: 1)
         case .red:
-            return #colorLiteral(red: 0.8666666667, green: 0.1725490196, blue: 0, alpha: 1)
+            return #colorLiteral(red: 1, green: 0.09019607843, blue: 0.2666666667, alpha: 1)
         case .green:
-            return #colorLiteral(red: 0, green: 0.7843137255, blue: 0.3254901961, alpha: 1)
+            return #colorLiteral(red: 0, green: 0.9019607843, blue: 0.462745098, alpha: 1)
         case .white:
             return #colorLiteral(red: 1, green: 1, blue: 1, alpha: 1)
         case .clear:
