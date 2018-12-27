@@ -29,6 +29,9 @@
 		D61EC0F721D316F100204BEE /* Color.swift in Sources */ = {isa = PBXBuildFile; fileRef = D61EC0F621D316F100204BEE /* Color.swift */; };
 		D61EC0F921D317AB00204BEE /* Theme.swift in Sources */ = {isa = PBXBuildFile; fileRef = D61EC0F821D317AB00204BEE /* Theme.swift */; };
 		D61EC0FC21D437C100204BEE /* Pods_Benji.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D61EC0FB21D437C100204BEE /* Pods_Benji.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
+		D6D145F421D5493000CD8CE4 /* CenterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6D145F321D5493000CD8CE4 /* CenterViewController.swift */; };
+		D6D145F921D54A0700CD8CE4 /* RightViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6D145F821D54A0700CD8CE4 /* RightViewController.swift */; };
+		D6D145FB21D54A2500CD8CE4 /* LeftViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6D145FA21D54A2500CD8CE4 /* LeftViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -60,6 +63,9 @@
 		D61EC0F621D316F100204BEE /* Color.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Color.swift; sourceTree = "<group>"; };
 		D61EC0F821D317AB00204BEE /* Theme.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Theme.swift; sourceTree = "<group>"; };
 		D61EC0FB21D437C100204BEE /* Pods_Benji.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = Pods_Benji.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		D6D145F321D5493000CD8CE4 /* CenterViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CenterViewController.swift; sourceTree = "<group>"; };
+		D6D145F821D54A0700CD8CE4 /* RightViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RightViewController.swift; sourceTree = "<group>"; };
+		D6D145FA21D54A2500CD8CE4 /* LeftViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LeftViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -129,6 +135,8 @@
 		D61EC0D121D30B5700204BEE /* UI */ = {
 			isa = PBXGroup;
 			children = (
+				D6D145F221D5490500CD8CE4 /* Modals */,
+				D6D145F121D548F600CD8CE4 /* Screens */,
 				D61EC0C821D3071500204BEE /* LaunchScreen.storyboard */,
 				D61EC0C321D3071400204BEE /* Main.storyboard */,
 				D61EC0D221D30B8800204BEE /* Base Classes */,
@@ -210,6 +218,47 @@
 				D61EC0C621D3071500204BEE /* Assets.xcassets */,
 			);
 			path = Resources;
+			sourceTree = "<group>";
+		};
+		D6D145F121D548F600CD8CE4 /* Screens */ = {
+			isa = PBXGroup;
+			children = (
+				D6D145F721D549B600CD8CE4 /* Right */,
+				D6D145F621D549AC00CD8CE4 /* Left */,
+				D6D145F521D549A300CD8CE4 /* Center */,
+			);
+			path = Screens;
+			sourceTree = "<group>";
+		};
+		D6D145F221D5490500CD8CE4 /* Modals */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Modals;
+			sourceTree = "<group>";
+		};
+		D6D145F521D549A300CD8CE4 /* Center */ = {
+			isa = PBXGroup;
+			children = (
+				D6D145F321D5493000CD8CE4 /* CenterViewController.swift */,
+			);
+			path = Center;
+			sourceTree = "<group>";
+		};
+		D6D145F621D549AC00CD8CE4 /* Left */ = {
+			isa = PBXGroup;
+			children = (
+				D6D145FA21D54A2500CD8CE4 /* LeftViewController.swift */,
+			);
+			path = Left;
+			sourceTree = "<group>";
+		};
+		D6D145F721D549B600CD8CE4 /* Right */ = {
+			isa = PBXGroup;
+			children = (
+				D6D145F821D54A0700CD8CE4 /* RightViewController.swift */,
+			);
+			path = Right;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -348,10 +397,13 @@
 				D61EC0C221D3071400204BEE /* ViewController.swift in Sources */,
 				D61EC0EC21D312B600204BEE /* UIView+Extensions.swift in Sources */,
 				D61EC0C021D3071400204BEE /* AppDelegate.swift in Sources */,
+				D6D145FB21D54A2500CD8CE4 /* LeftViewController.swift in Sources */,
 				D61EC0E621D30EB300204BEE /* View.swift in Sources */,
 				D61EC0EE21D313BA00204BEE /* UIScreen+Extensions.swift in Sources */,
 				D61EC0D921D30C8E00204BEE /* DispatchQue+Extensions.swift in Sources */,
 				D61EC0F321D3146600204BEE /* UINib+Extensions.swift in Sources */,
+				D6D145F421D5493000CD8CE4 /* CenterViewController.swift in Sources */,
+				D6D145F921D54A0700CD8CE4 /* RightViewController.swift in Sources */,
 				D61EC0E221D30E6000204BEE /* Label.swift in Sources */,
 				D61EC0E021D30E3F00204BEE /* FullScreenViewController.swift in Sources */,
 			);
