@@ -9,6 +9,5 @@ target 'Benji' do
   pod 'TwilioAccessManager'
   pod 'GestureRecognizerClosures'
   pod 'PureLayout'
-  # Pods for Benji
-
+  pod 'SideMenu'
 end
