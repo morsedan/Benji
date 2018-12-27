@@ -32,6 +32,14 @@
 		D6D145F421D5493000CD8CE4 /* CenterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6D145F321D5493000CD8CE4 /* CenterViewController.swift */; };
 		D6D145F921D54A0700CD8CE4 /* RightViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6D145F821D54A0700CD8CE4 /* RightViewController.swift */; };
 		D6D145FB21D54A2500CD8CE4 /* LeftViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6D145FA21D54A2500CD8CE4 /* LeftViewController.swift */; };
+		D6D145FD21D550E400CD8CE4 /* AttributedString.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6D145FC21D550E400CD8CE4 /* AttributedString.swift */; };
+		D6D145FF21D5510400CD8CE4 /* StringStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6D145FE21D5510400CD8CE4 /* StringStyle.swift */; };
+		D6D1460121D5514300CD8CE4 /* Localized.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6D1460021D5514300CD8CE4 /* Localized.swift */; };
+		D6D1460321D551B100CD8CE4 /* StringLibrary.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6D1460221D551B100CD8CE4 /* StringLibrary.swift */; };
+		D6D1460521D5524C00CD8CE4 /* StringCasing.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6D1460421D5524C00CD8CE4 /* StringCasing.swift */; };
+		D6D1460721D552B100CD8CE4 /* Character+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6D1460621D552B100CD8CE4 /* Character+Extensions.swift */; };
+		D6D1460921D5531D00CD8CE4 /* LocalString.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6D1460821D5531D00CD8CE4 /* LocalString.swift */; };
+		D6D1460B21D5547000CD8CE4 /* Font.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6D1460A21D5547000CD8CE4 /* Font.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -66,6 +74,14 @@
 		D6D145F321D5493000CD8CE4 /* CenterViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CenterViewController.swift; sourceTree = "<group>"; };
 		D6D145F821D54A0700CD8CE4 /* RightViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RightViewController.swift; sourceTree = "<group>"; };
 		D6D145FA21D54A2500CD8CE4 /* LeftViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LeftViewController.swift; sourceTree = "<group>"; };
+		D6D145FC21D550E400CD8CE4 /* AttributedString.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AttributedString.swift; sourceTree = "<group>"; };
+		D6D145FE21D5510400CD8CE4 /* StringStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StringStyle.swift; sourceTree = "<group>"; };
+		D6D1460021D5514300CD8CE4 /* Localized.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Localized.swift; sourceTree = "<group>"; };
+		D6D1460221D551B100CD8CE4 /* StringLibrary.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StringLibrary.swift; sourceTree = "<group>"; };
+		D6D1460421D5524C00CD8CE4 /* StringCasing.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StringCasing.swift; sourceTree = "<group>"; };
+		D6D1460621D552B100CD8CE4 /* Character+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Character+Extensions.swift"; sourceTree = "<group>"; };
+		D6D1460821D5531D00CD8CE4 /* LocalString.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocalString.swift; sourceTree = "<group>"; };
+		D6D1460A21D5547000CD8CE4 /* Font.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Font.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -176,6 +192,7 @@
 			isa = PBXGroup;
 			children = (
 				D61EC0DA21D30CB300204BEE /* Dismissable.swift */,
+				D6D1460021D5514300CD8CE4 /* Localized.swift */,
 			);
 			path = Protocols;
 			sourceTree = "<group>";
@@ -198,6 +215,7 @@
 				D61EC0ED21D313BA00204BEE /* UIScreen+Extensions.swift */,
 				D61EC0F221D3146600204BEE /* UINib+Extensions.swift */,
 				D61EC0F421D3151400204BEE /* NSAttributedString+Extensions.swift */,
+				D6D1460621D552B100CD8CE4 /* Character+Extensions.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -207,6 +225,12 @@
 			children = (
 				D61EC0F021D313F500204BEE /* ScreenSize.swift */,
 				D61EC0F621D316F100204BEE /* Color.swift */,
+				D6D145FC21D550E400CD8CE4 /* AttributedString.swift */,
+				D6D145FE21D5510400CD8CE4 /* StringStyle.swift */,
+				D6D1460221D551B100CD8CE4 /* StringLibrary.swift */,
+				D6D1460421D5524C00CD8CE4 /* StringCasing.swift */,
+				D6D1460821D5531D00CD8CE4 /* LocalString.swift */,
+				D6D1460A21D5547000CD8CE4 /* Font.swift */,
 			);
 			path = "View Models";
 			sourceTree = "<group>";
@@ -386,10 +410,14 @@
 			buildActionMask = 2147483647;
 			files = (
 				D61EC0DB21D30CB300204BEE /* Dismissable.swift in Sources */,
+				D6D1460121D5514300CD8CE4 /* Localized.swift in Sources */,
 				D61EC0F521D3151400204BEE /* NSAttributedString+Extensions.swift in Sources */,
+				D6D1460721D552B100CD8CE4 /* Character+Extensions.swift in Sources */,
 				D61EC0EA21D3111600204BEE /* String+Extensions.swift in Sources */,
 				D61EC0E421D30E9100204BEE /* TextView.swift in Sources */,
 				D61EC0F721D316F100204BEE /* Color.swift in Sources */,
+				D6D145FF21D5510400CD8CE4 /* StringStyle.swift in Sources */,
+				D6D1460B21D5547000CD8CE4 /* Font.swift in Sources */,
 				D61EC0DE21D30DAC00204BEE /* Array+Extensions.swift in Sources */,
 				D61EC0F121D313F500204BEE /* ScreenSize.swift in Sources */,
 				D61EC0E821D3107A00204BEE /* Date+Extensions.swift in Sources */,
@@ -397,7 +425,11 @@
 				D61EC0C221D3071400204BEE /* ViewController.swift in Sources */,
 				D61EC0EC21D312B600204BEE /* UIView+Extensions.swift in Sources */,
 				D61EC0C021D3071400204BEE /* AppDelegate.swift in Sources */,
+				D6D145FD21D550E400CD8CE4 /* AttributedString.swift in Sources */,
+				D6D1460521D5524C00CD8CE4 /* StringCasing.swift in Sources */,
 				D6D145FB21D54A2500CD8CE4 /* LeftViewController.swift in Sources */,
+				D6D1460921D5531D00CD8CE4 /* LocalString.swift in Sources */,
+				D6D1460321D551B100CD8CE4 /* StringLibrary.swift in Sources */,
 				D61EC0E621D30EB300204BEE /* View.swift in Sources */,
 				D61EC0EE21D313BA00204BEE /* UIScreen+Extensions.swift in Sources */,
 				D61EC0D921D30C8E00204BEE /* DispatchQue+Extensions.swift in Sources */,
