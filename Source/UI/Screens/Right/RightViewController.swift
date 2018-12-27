@@ -9,5 +9,10 @@
 import Foundation
 
 class RightViewController: FullScreenViewController {
-    
+
+    override func viewIsReadyForLayout() {
+        super.viewIsReadyForLayout()
+
+        self.view.set(backgroundColor: .green)
+    }
 }
