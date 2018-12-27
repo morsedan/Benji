@@ -135,11 +135,10 @@
 		D61EC0D121D30B5700204BEE /* UI */ = {
 			isa = PBXGroup;
 			children = (
+				D61EC0D221D30B8800204BEE /* Base Classes */,
 				D6D145F221D5490500CD8CE4 /* Modals */,
 				D6D145F121D548F600CD8CE4 /* Screens */,
 				D61EC0C821D3071500204BEE /* LaunchScreen.storyboard */,
-				D61EC0C321D3071400204BEE /* Main.storyboard */,
-				D61EC0D221D30B8800204BEE /* Base Classes */,
 			);
 			path = UI;
 			sourceTree = "<group>";
@@ -240,6 +239,7 @@
 		D6D145F521D549A300CD8CE4 /* Center */ = {
 			isa = PBXGroup;
 			children = (
+				D61EC0C321D3071400204BEE /* Main.storyboard */,
 				D6D145F321D5493000CD8CE4 /* CenterViewController.swift */,
 			);
 			path = Center;
