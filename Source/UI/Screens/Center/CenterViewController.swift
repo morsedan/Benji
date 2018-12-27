@@ -50,8 +50,6 @@ class CenterViewController: FullScreenViewController {
         self.lable2.set(attributed: string)
         self.lable3.set(attributed: string)
         self.lable4.set(attributed: string)
-
-        self.view.set(backgroundColor: .darkGray)
     }
 
     private func setupSideMenu() {
