@@ -67,6 +67,7 @@
 		D6D1502521D6007800CD8CE4 /* Message.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6D1502421D6007800CD8CE4 /* Message.swift */; };
 		D6D1502721D6027D00CD8CE4 /* Channel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6D1502621D6027D00CD8CE4 /* Channel.swift */; };
 		D6D1502921D6085200CD8CE4 /* ResourceObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6D1502821D6085200CD8CE4 /* ResourceObject.swift */; };
+		D6D1502B21D69C3300CD8CE4 /* NSObject+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6D1502A21D69C3300CD8CE4 /* NSObject+Extensions.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -154,6 +155,7 @@
 		D6D1502421D6007800CD8CE4 /* Message.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Message.swift; sourceTree = "<group>"; };
 		D6D1502621D6027D00CD8CE4 /* Channel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Channel.swift; sourceTree = "<group>"; };
 		D6D1502821D6085200CD8CE4 /* ResourceObject.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResourceObject.swift; sourceTree = "<group>"; };
+		D6D1502A21D69C3300CD8CE4 /* NSObject+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NSObject+Extensions.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -302,6 +304,7 @@
 				D6D1460C21D5693100CD8CE4 /* NSMutableAttributedString+Extensions.swift */,
 				D6D1460621D552B100CD8CE4 /* Character+Extensions.swift */,
 				D6D1501721D5F40F00CD8CE4 /* UICollectionView+Extensions.swift */,
+				D6D1502A21D69C3300CD8CE4 /* NSObject+Extensions.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -612,6 +615,7 @@
 				D6D1460921D5531D00CD8CE4 /* LocalString.swift in Sources */,
 				D6D1501E21D5FA0300CD8CE4 /* DisplayableCellItem.swift in Sources */,
 				D6D1500E21D5E89B00CD8CE4 /* CollectionViewManagerDelegate.swift in Sources */,
+				D6D1502B21D69C3300CD8CE4 /* NSObject+Extensions.swift in Sources */,
 				D6D1460321D551B100CD8CE4 /* StringLibrary.swift in Sources */,
 				D6D1501021D5E9A800CD8CE4 /* TextDisplayable.swift in Sources */,
 				D61EC0E621D30EB300204BEE /* View.swift in Sources */,
