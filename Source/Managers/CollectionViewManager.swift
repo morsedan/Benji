@@ -19,7 +19,7 @@ class CollectionViewManager<ItemType: DisplayableCellItem & Diffable, CellType: 
     // Used to animate changes to the collection view
     private var previousItems: [ItemType]?
 
-    init(withCollectionView collectionView: UICollectionView,
+    init(with collectionView: UICollectionView,
          items: [ItemType]) {
 
         self.items.value = items

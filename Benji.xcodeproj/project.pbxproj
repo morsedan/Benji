@@ -68,6 +68,9 @@
 		D6D1502721D6027D00CD8CE4 /* Channel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6D1502621D6027D00CD8CE4 /* Channel.swift */; };
 		D6D1502921D6085200CD8CE4 /* ResourceObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6D1502821D6085200CD8CE4 /* ResourceObject.swift */; };
 		D6D1502B21D69C3300CD8CE4 /* NSObject+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6D1502A21D69C3300CD8CE4 /* NSObject+Extensions.swift */; };
+		D6D1502D21D6A08300CD8CE4 /* ChannelCollectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6D1502C21D6A08300CD8CE4 /* ChannelCollectionView.swift */; };
+		D6D1502F21D6A0AC00CD8CE4 /* ChannelCollectionViewFlowLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6D1502E21D6A0AC00CD8CE4 /* ChannelCollectionViewFlowLayout.swift */; };
+		D6D1503121D6A2B900CD8CE4 /* UITableView+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6D1503021D6A2B900CD8CE4 /* UITableView+Extensions.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -156,6 +159,9 @@
 		D6D1502621D6027D00CD8CE4 /* Channel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Channel.swift; sourceTree = "<group>"; };
 		D6D1502821D6085200CD8CE4 /* ResourceObject.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResourceObject.swift; sourceTree = "<group>"; };
 		D6D1502A21D69C3300CD8CE4 /* NSObject+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NSObject+Extensions.swift"; sourceTree = "<group>"; };
+		D6D1502C21D6A08300CD8CE4 /* ChannelCollectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChannelCollectionView.swift; sourceTree = "<group>"; };
+		D6D1502E21D6A0AC00CD8CE4 /* ChannelCollectionViewFlowLayout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChannelCollectionViewFlowLayout.swift; sourceTree = "<group>"; };
+		D6D1503021D6A2B900CD8CE4 /* UITableView+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UITableView+Extensions.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -305,6 +311,7 @@
 				D6D1460621D552B100CD8CE4 /* Character+Extensions.swift */,
 				D6D1501721D5F40F00CD8CE4 /* UICollectionView+Extensions.swift */,
 				D6D1502A21D69C3300CD8CE4 /* NSObject+Extensions.swift */,
+				D6D1503021D6A2B900CD8CE4 /* UITableView+Extensions.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -432,6 +439,8 @@
 				D6D1500621D5E73D00CD8CE4 /* ChannelViewController.swift */,
 				D6D1500821D5E77900CD8CE4 /* ChannelCollectionViewManager.swift */,
 				D6D1501B21D5F8AD00CD8CE4 /* ChannelCell.swift */,
+				D6D1502C21D6A08300CD8CE4 /* ChannelCollectionView.swift */,
+				D6D1502E21D6A0AC00CD8CE4 /* ChannelCollectionViewFlowLayout.swift */,
 			);
 			path = Channel;
 			sourceTree = "<group>";
@@ -590,6 +599,7 @@
 				D6D1501621D5F08700CD8CE4 /* DisplyableCell.swift in Sources */,
 				D6D1501C21D5F8AD00CD8CE4 /* ChannelCell.swift in Sources */,
 				D6D1460121D5514300CD8CE4 /* Localized.swift in Sources */,
+				D6D1502F21D6A0AC00CD8CE4 /* ChannelCollectionViewFlowLayout.swift in Sources */,
 				D61EC0F521D3151400204BEE /* NSAttributedString+Extensions.swift in Sources */,
 				D6D1460721D552B100CD8CE4 /* Character+Extensions.swift in Sources */,
 				D61EC0EA21D3111600204BEE /* String+Extensions.swift in Sources */,
@@ -597,6 +607,7 @@
 				D61EC0E421D30E9100204BEE /* TextView.swift in Sources */,
 				D6D1502521D6007800CD8CE4 /* Message.swift in Sources */,
 				D61EC0F721D316F100204BEE /* Color.swift in Sources */,
+				D6D1503121D6A2B900CD8CE4 /* UITableView+Extensions.swift in Sources */,
 				D6D1502921D6085200CD8CE4 /* ResourceObject.swift in Sources */,
 				D6D145FF21D5510400CD8CE4 /* StringStyle.swift in Sources */,
 				D6D1501821D5F40F00CD8CE4 /* UICollectionView+Extensions.swift in Sources */,
@@ -637,6 +648,7 @@
 				D6D14FF921D5893700CD8CE4 /* NSString+IGListDiffable.m in Sources */,
 				D61EC0E221D30E6000204BEE /* Label.swift in Sources */,
 				D61EC0E021D30E3F00204BEE /* FullScreenViewController.swift in Sources */,
+				D6D1502D21D6A08300CD8CE4 /* ChannelCollectionView.swift in Sources */,
 				D6D14FFC21D5893700CD8CE4 /* IGListBatchUpdateData.mm in Sources */,
 				D6D1500721D5E73D00CD8CE4 /* ChannelViewController.swift in Sources */,
 				D6D14FFD21D5893700CD8CE4 /* IGListIndexPathResult.m in Sources */,

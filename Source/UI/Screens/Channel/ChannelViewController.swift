@@ -10,5 +10,15 @@ import Foundation
 
 class ChannelViewController: FullScreenViewController {
 
-    
+    lazy var collectionView: ChannelCollectionView = {
+        return ChannelCollectionView()
+    }()
+
+    lazy var manager: ChannelCollectionViewManager = {
+        return ChannelCollectionViewManager(with: self.collectionView, items: [])
+    }()
+
+    override func viewDidLoad() {
+        super.viewDidLoad()
+    }
 }
