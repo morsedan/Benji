@@ -9,12 +9,5 @@
 import Foundation
 
 protocol TextDisplayable {
-    var title: Localized { get }
-    var subtitle: Localized { get }
-}
-
-extension TextDisplayable {
-    var displaySubtitle: Localized {
-        return LocalString.empty
-    }
+    var text: Localized { get }
 }

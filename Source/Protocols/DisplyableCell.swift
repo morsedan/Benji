@@ -11,9 +11,10 @@ import GestureRecognizerClosures
 
 protocol DisplayableCell: Diffable {
     static var reuseID: String { get }
-    var contentViewColor: Color { get }
-    var didSelect: (IndexPath) -> Void { get set }
-    mutating func configure(with item: DisplayableItem, indexPath: IndexPath)
+    var item: DisplayableCellItem? { get set }
+    var didSelect: ((IndexPath) -> Void)? { get set }
+    mutating func configure(with item: DisplayableCellItem, indexPath: IndexPath)
+    func cellIsReadyForLayout()
 }
 
 extension DisplayableCell where Self: UICollectionViewCell {
@@ -22,13 +23,20 @@ extension DisplayableCell where Self: UICollectionViewCell {
         return String(describing: self)
     }
 
-    mutating func configure(with item: DisplayableItem,
+    func diffIdentifier() -> NSObjectProtocol {
+        guard let item = self.item else { return String() as NSObjectProtocol }
+        return item.diffIdentifier()
+    }
+
+    mutating func configure(with item: DisplayableCellItem,
                             indexPath: IndexPath) {
 
-        self.contentView.set(backgroundColor: self.contentViewColor)
+        self.item = item
+        self.contentView.set(backgroundColor: item.backgroundColor)
         self.contentView.onTap { [unowned self] (tap) in
-            self.didSelect(indexPath)
+            self.didSelect?(indexPath)
         }
+        self.cellIsReadyForLayout()
     }
 }
 
@@ -38,12 +46,19 @@ extension DisplayableCell where Self: UITableViewCell {
         return String(describing: self)
     }
 
-    mutating func configure(with item: DisplayableItem,
+    func diffIdentifier() -> NSObjectProtocol {
+        guard let item = self.item else { return String() as NSObjectProtocol }
+        return item.diffIdentifier()
+    }
+
+    mutating func configure(with item: DisplayableCellItem,
                             indexPath: IndexPath) {
 
-        self.contentView.set(backgroundColor: self.contentViewColor)
+        self.item = item
+        self.contentView.set(backgroundColor: item.backgroundColor)
         self.contentView.onTap { [unowned self] (tap) in
-            self.didSelect(indexPath)
+            self.didSelect?(indexPath)
         }
+        self.cellIsReadyForLayout()
     }
 }

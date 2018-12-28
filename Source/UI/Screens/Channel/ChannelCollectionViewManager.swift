@@ -8,6 +8,6 @@
 
 import Foundation
 
-class ChannelCollectionViewManager: NSObject {
+class ChannelCollectionViewManager: CollectionViewManager<Message, ChannelCell> {
 
 }
