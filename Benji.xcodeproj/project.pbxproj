@@ -52,6 +52,13 @@
 		D6D14FFB21D5893700CD8CE4 /* DiffableBox.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6D14D8721D5893400CD8CE4 /* DiffableBox.swift */; };
 		D6D14FFC21D5893700CD8CE4 /* IGListBatchUpdateData.mm in Sources */ = {isa = PBXBuildFile; fileRef = D6D14D8821D5893400CD8CE4 /* IGListBatchUpdateData.mm */; };
 		D6D14FFD21D5893700CD8CE4 /* IGListIndexPathResult.m in Sources */ = {isa = PBXBuildFile; fileRef = D6D14D8D21D5893500CD8CE4 /* IGListIndexPathResult.m */; };
+		D6D1500721D5E73D00CD8CE4 /* ChannelViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6D1500621D5E73D00CD8CE4 /* ChannelViewController.swift */; };
+		D6D1500921D5E77900CD8CE4 /* ChannelCollectionViewManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6D1500821D5E77900CD8CE4 /* ChannelCollectionViewManager.swift */; };
+		D6D1500C21D5E7C200CD8CE4 /* CollectionViewManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6D1500B21D5E7C200CD8CE4 /* CollectionViewManager.swift */; };
+		D6D1500E21D5E89B00CD8CE4 /* CollectionViewManagerDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6D1500D21D5E89B00CD8CE4 /* CollectionViewManagerDelegate.swift */; };
+		D6D1501021D5E9A800CD8CE4 /* TextDisplayable.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6D1500F21D5E9A800CD8CE4 /* TextDisplayable.swift */; };
+		D6D1501221D5EA0400CD8CE4 /* ImageDisplayable.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6D1501121D5EA0400CD8CE4 /* ImageDisplayable.swift */; };
+		D6D1501421D5EA2500CD8CE4 /* DisplyableItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6D1501321D5EA2500CD8CE4 /* DisplyableItem.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -124,6 +131,13 @@
 		D6D1500121D589A300CD8CE4 /* IGListMoveIndexPathInternal.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IGListMoveIndexPathInternal.h; sourceTree = "<group>"; };
 		D6D1500221D589A300CD8CE4 /* IGListMoveIndexInternal.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IGListMoveIndexInternal.h; sourceTree = "<group>"; };
 		D6D1500321D589A300CD8CE4 /* IGListIndexPathResultInternal.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IGListIndexPathResultInternal.h; sourceTree = "<group>"; };
+		D6D1500621D5E73D00CD8CE4 /* ChannelViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChannelViewController.swift; sourceTree = "<group>"; };
+		D6D1500821D5E77900CD8CE4 /* ChannelCollectionViewManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChannelCollectionViewManager.swift; sourceTree = "<group>"; };
+		D6D1500B21D5E7C200CD8CE4 /* CollectionViewManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollectionViewManager.swift; sourceTree = "<group>"; };
+		D6D1500D21D5E89B00CD8CE4 /* CollectionViewManagerDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollectionViewManagerDelegate.swift; sourceTree = "<group>"; };
+		D6D1500F21D5E9A800CD8CE4 /* TextDisplayable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextDisplayable.swift; sourceTree = "<group>"; };
+		D6D1501121D5EA0400CD8CE4 /* ImageDisplayable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageDisplayable.swift; sourceTree = "<group>"; };
+		D6D1501321D5EA2500CD8CE4 /* DisplyableItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DisplyableItem.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -181,6 +195,7 @@
 				D61EC0D621D30C0500204BEE /* API */,
 				D61EC0D321D30BBF00204BEE /* App */,
 				D61EC0D721D30C1400204BEE /* Extensions */,
+				D6D1500A21D5E79B00CD8CE4 /* Managers */,
 				D61EC0D421D30BF100204BEE /* Models */,
 				D61EC0D521D30BF900204BEE /* Protocols */,
 				D61EC0FA21D3180200204BEE /* Resources */,
@@ -237,6 +252,10 @@
 			children = (
 				D61EC0DA21D30CB300204BEE /* Dismissable.swift */,
 				D6D1460021D5514300CD8CE4 /* Localized.swift */,
+				D6D1500D21D5E89B00CD8CE4 /* CollectionViewManagerDelegate.swift */,
+				D6D1500F21D5E9A800CD8CE4 /* TextDisplayable.swift */,
+				D6D1501121D5EA0400CD8CE4 /* ImageDisplayable.swift */,
+				D6D1501321D5EA2500CD8CE4 /* DisplyableItem.swift */,
 			);
 			path = Protocols;
 			sourceTree = "<group>";
@@ -291,6 +310,7 @@
 		D6D145F121D548F600CD8CE4 /* Screens */ = {
 			isa = PBXGroup;
 			children = (
+				D6D1500521D5E71E00CD8CE4 /* Channel */,
 				D6D145F721D549B600CD8CE4 /* Right */,
 				D6D145F621D549AC00CD8CE4 /* Left */,
 				D6D145F521D549A300CD8CE4 /* Center */,
@@ -379,6 +399,23 @@
 				D6D14D8221D5893300CD8CE4 /* NSString+IGListDiffable.m */,
 			);
 			path = IGListDiff;
+			sourceTree = "<group>";
+		};
+		D6D1500521D5E71E00CD8CE4 /* Channel */ = {
+			isa = PBXGroup;
+			children = (
+				D6D1500621D5E73D00CD8CE4 /* ChannelViewController.swift */,
+				D6D1500821D5E77900CD8CE4 /* ChannelCollectionViewManager.swift */,
+			);
+			path = Channel;
+			sourceTree = "<group>";
+		};
+		D6D1500A21D5E79B00CD8CE4 /* Managers */ = {
+			isa = PBXGroup;
+			children = (
+				D6D1500B21D5E7C200CD8CE4 /* CollectionViewManager.swift */,
+			);
+			path = Managers;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -533,20 +570,27 @@
 				D6D14D8F21D5893600CD8CE4 /* NSNumber+IGListDiffable.m in Sources */,
 				D6D1460521D5524C00CD8CE4 /* StringCasing.swift in Sources */,
 				D6D145FB21D54A2500CD8CE4 /* LeftViewController.swift in Sources */,
+				D6D1501221D5EA0400CD8CE4 /* ImageDisplayable.swift in Sources */,
 				D6D1460921D5531D00CD8CE4 /* LocalString.swift in Sources */,
+				D6D1500E21D5E89B00CD8CE4 /* CollectionViewManagerDelegate.swift in Sources */,
 				D6D1460321D551B100CD8CE4 /* StringLibrary.swift in Sources */,
+				D6D1501021D5E9A800CD8CE4 /* TextDisplayable.swift in Sources */,
 				D61EC0E621D30EB300204BEE /* View.swift in Sources */,
 				D61EC0EE21D313BA00204BEE /* UIScreen+Extensions.swift in Sources */,
 				D61EC0D921D30C8E00204BEE /* DispatchQue+Extensions.swift in Sources */,
 				D6D1460D21D5693100CD8CE4 /* NSMutableAttributedString+Extensions.swift in Sources */,
+				D6D1500C21D5E7C200CD8CE4 /* CollectionViewManager.swift in Sources */,
 				D6D14FFA21D5893700CD8CE4 /* IGListDiff.mm in Sources */,
 				D61EC0F321D3146600204BEE /* UINib+Extensions.swift in Sources */,
 				D6D145F421D5493000CD8CE4 /* CenterViewController.swift in Sources */,
+				D6D1501421D5EA2500CD8CE4 /* DisplyableItem.swift in Sources */,
 				D6D145F921D54A0700CD8CE4 /* RightViewController.swift in Sources */,
+				D6D1500921D5E77900CD8CE4 /* ChannelCollectionViewManager.swift in Sources */,
 				D6D14FF921D5893700CD8CE4 /* NSString+IGListDiffable.m in Sources */,
 				D61EC0E221D30E6000204BEE /* Label.swift in Sources */,
 				D61EC0E021D30E3F00204BEE /* FullScreenViewController.swift in Sources */,
 				D6D14FFC21D5893700CD8CE4 /* IGListBatchUpdateData.mm in Sources */,
+				D6D1500721D5E73D00CD8CE4 /* ChannelViewController.swift in Sources */,
 				D6D14FFD21D5893700CD8CE4 /* IGListIndexPathResult.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
