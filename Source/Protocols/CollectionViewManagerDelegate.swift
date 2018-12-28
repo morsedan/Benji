@@ -11,7 +11,7 @@ import Foundation
 protocol CollectionViewManagerDelegate: class {
     associatedtype ItemType
 
-    func collectionViewManager(didSelect item: ItemType?, atIndexPath indexPath: IndexPath)
+    func collectionViewManager(didSelect item: ItemType?, at indexPath: IndexPath)
 }
 
 class AnyCollectionViewManagerDelegate<Item>: CollectionViewManagerDelegate {
@@ -20,10 +20,10 @@ class AnyCollectionViewManagerDelegate<Item>: CollectionViewManagerDelegate {
 
     required init<U: CollectionViewManagerDelegate>(_ collectionViewManagerDelegate: U)
         where U.ItemType == Item {
-            self.didSelect = collectionViewManagerDelegate.collectionViewManager(didSelect:atIndexPath:)
+            self.didSelect = collectionViewManagerDelegate.collectionViewManager(didSelect:at:)
     }
 
-    func collectionViewManager(didSelect item: Item?, atIndexPath indexPath: IndexPath) {
+    func collectionViewManager(didSelect item: Item?, at indexPath: IndexPath) {
         self.didSelect(item, indexPath)
     }
 }

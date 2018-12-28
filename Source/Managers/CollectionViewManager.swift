@@ -7,32 +7,35 @@
 //
 
 import Foundation
+import ReactiveSwift
 
 class CollectionViewManager<ItemType: DisplayableCellItem & Diffable, CellType: DisplayableCell & UICollectionViewCell>: NSObject, UICollectionViewDataSource {
 
     var collectionView: UICollectionView
     weak var delegate: AnyCollectionViewManagerDelegate<ItemType>?
-    var cellModels: [ItemType] {
-        didSet {
-            self.collectionView.reload(previousItems: oldValue,
-                                       newItems: self.cellModels,
-                                       equalityOption: IGListDiffOption.equality)
-        }
-    }
+
+    let items = MutableProperty<[ItemType]>([])
+    // A deep copied array representing the last state of the items.
+    // Used to animate changes to the collection view
+    private var previousItems: [ItemType]?
 
     init(withCollectionView collectionView: UICollectionView,
-         models: [ItemType]) {
+         items: [ItemType]) {
 
-        self.cellModels = models
+        self.items.value = items
         collectionView.register(CellType.self, forCellWithReuseIdentifier: CellType.reuseID)
         self.collectionView = collectionView
 
         super.init()
+
+        self.items.producer.on { [unowned self] (items) in
+            self.updateCollectionView(items: items)
+        }.start()
     }
 
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        collectionView.backgroundView?.isHidden = self.cellModels.count > 0
-        return self.cellModels.count
+        collectionView.backgroundView?.isHidden = self.items.value.count > 0
+        return self.items.value.count
     }
 
     func collectionView(_ collectionView: UICollectionView,
@@ -42,16 +45,33 @@ class CollectionViewManager<ItemType: DisplayableCellItem & Diffable, CellType: 
             withReuseIdentifier: CellType.reuseID,
             for: indexPath) as! CellType
 
-        let item = self.cellModels[indexPath.row]
-        cell.configure(with: item,
-                       indexPath: indexPath)
+        if let item = self.items.value[safe: indexPath.row] {
+            cell.configure(with: item,
+                           indexPath: indexPath)
+        }
 
         cell.didSelect = { [weak self] indexPath in
-            guard let `self` = self else { return }
-            let item = self.cellModels[indexPath.row]
-            self.delegate?.collectionViewManager(didSelect: item, atIndexPath: indexPath)
+            guard let `self` = self, let item = self.items.value[safe: indexPath.row] else { return }
+            self.delegate?.collectionViewManager(didSelect: item, at: indexPath)
         }
 
         return cell
+    }
+
+    private func updateCollectionView(items: [ItemType]) {
+
+        if self.previousItems == nil {
+            self.previousItems = items
+        }
+
+        self.reloadCollectionView(previousItems: self.previousItems ?? [], newItems: items)
+
+        self.previousItems = items
+    }
+
+    func reloadCollectionView(previousItems: [ItemType], newItems: [ItemType]) {
+        self.collectionView.reload(previousItems: previousItems,
+                                   newItems: newItems,
+                                   equalityOption: IGListDiffOption.equality)
     }
 }
