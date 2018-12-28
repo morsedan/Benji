@@ -8,8 +8,7 @@
 
 import Foundation
 
-class ItemCollectionViewManager<ItemType: DisplayableItem, CellType: DisplayableCell & UICollectionViewCell>: NSObject, UICollectionViewDataSource,
-UICollectionViewDelegateFlowLayout, UIGestureRecognizerDelegate {
+class CollectionViewManager<ItemType: DisplayableItem, CellType: DisplayableCell & UICollectionViewCell>: NSObject, UICollectionViewDataSource {
 
     var collectionView: UICollectionView?
     weak var delegate: AnyCollectionViewManagerDelegate<ItemType>?
@@ -43,8 +42,7 @@ UICollectionViewDelegateFlowLayout, UIGestureRecognizerDelegate {
 
         let item = self.cellModels[indexPath.row]
         cell.configure(with: item,
-                       indexPath: indexPath,
-                       backgroundColor: CellType.backgroundColor)
+                       indexPath: indexPath)
 
         cell.didSelect = { [weak self] indexPath in
             guard let `self` = self else { return }
@@ -54,24 +52,4 @@ UICollectionViewDelegateFlowLayout, UIGestureRecognizerDelegate {
 
         return cell
     }
-
-    func collectionView(_ collectionView: UICollectionView,
-                        layout collectionViewLayout: UICollectionViewLayout,
-                        sizeForItemAt indexPath: IndexPath) -> CGSize {
-
-        return CGSize(width: (collectionView.width-40)*0.333, height: (collectionView.height-80)*0.333)
-    }
-
-    func collectionView(_ collectionView: UICollectionView,
-                        layout collectionViewLayout: UICollectionViewLayout,
-                        insetForSectionAt section: Int) -> UIEdgeInsets {
-
-        return UIEdgeInsets.init(top: 20, left: 20, bottom: 0, right: 20)
-    }
 }
-
-//extension ItemCollectionViewManager: NewItemSelectionDelegate {
-//
-//    func newItemCell(_ cell: NewItemSelectionCell, didSelect indexPath: IndexPath) {
-//    }
-//}
