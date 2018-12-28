@@ -8,28 +8,6 @@
 
 import Foundation
 
-protocol DisplayableCell {
-    static var reuseID: String { get }
-    var contentViewColor: Color { get }
-    var didSelect: (IndexPath) -> Void { get set }
-    var indexPath: IndexPath { get set }
-    mutating func configure(with item: DisplayableItem, indexPath: IndexPath)
-}
-
-extension DisplayableCell where Self: UICollectionViewCell {
-
-    static var reuseID: String {
-        return String(describing: self)
-    }
-
-    mutating func configure(with item: DisplayableItem,
-                   indexPath: IndexPath) {
-
-        self.contentView.set(backgroundColor: self.contentViewColor)
-        self.indexPath = indexPath
-    }
-}
-
 class ItemCollectionViewManager<ItemType: DisplayableItem, CellType: DisplayableCell & UICollectionViewCell>: NSObject, UICollectionViewDataSource,
 UICollectionViewDelegateFlowLayout, UIGestureRecognizerDelegate {
 

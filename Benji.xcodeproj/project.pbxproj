@@ -59,6 +59,7 @@
 		D6D1501021D5E9A800CD8CE4 /* TextDisplayable.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6D1500F21D5E9A800CD8CE4 /* TextDisplayable.swift */; };
 		D6D1501221D5EA0400CD8CE4 /* ImageDisplayable.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6D1501121D5EA0400CD8CE4 /* ImageDisplayable.swift */; };
 		D6D1501421D5EA2500CD8CE4 /* DisplyableItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6D1501321D5EA2500CD8CE4 /* DisplyableItem.swift */; };
+		D6D1501621D5F08700CD8CE4 /* DisplyableCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6D1501521D5F08700CD8CE4 /* DisplyableCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -138,6 +139,7 @@
 		D6D1500F21D5E9A800CD8CE4 /* TextDisplayable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextDisplayable.swift; sourceTree = "<group>"; };
 		D6D1501121D5EA0400CD8CE4 /* ImageDisplayable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageDisplayable.swift; sourceTree = "<group>"; };
 		D6D1501321D5EA2500CD8CE4 /* DisplyableItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DisplyableItem.swift; sourceTree = "<group>"; };
+		D6D1501521D5F08700CD8CE4 /* DisplyableCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DisplyableCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -256,6 +258,7 @@
 				D6D1500F21D5E9A800CD8CE4 /* TextDisplayable.swift */,
 				D6D1501121D5EA0400CD8CE4 /* ImageDisplayable.swift */,
 				D6D1501321D5EA2500CD8CE4 /* DisplyableItem.swift */,
+				D6D1501521D5F08700CD8CE4 /* DisplyableCell.swift */,
 			);
 			path = Protocols;
 			sourceTree = "<group>";
@@ -548,6 +551,7 @@
 				D6D14FF821D5893700CD8CE4 /* IGListMoveIndexPath.m in Sources */,
 				D6D14D9121D5893600CD8CE4 /* IGListIndexSetResult.m in Sources */,
 				D6D14FFB21D5893700CD8CE4 /* DiffableBox.swift in Sources */,
+				D6D1501621D5F08700CD8CE4 /* DisplyableCell.swift in Sources */,
 				D6D1460121D5514300CD8CE4 /* Localized.swift in Sources */,
 				D61EC0F521D3151400204BEE /* NSAttributedString+Extensions.swift in Sources */,
 				D6D1460721D552B100CD8CE4 /* Character+Extensions.swift in Sources */,
