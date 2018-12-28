@@ -10,4 +10,5 @@ target 'Benji' do
   pod 'GestureRecognizerClosures'
   pod 'PureLayout'
   pod 'SideMenu'
+  pod 'ReactiveSwift'
 end
