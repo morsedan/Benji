@@ -61,6 +61,7 @@
 		D6D1501421D5EA2500CD8CE4 /* DisplyableItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6D1501321D5EA2500CD8CE4 /* DisplyableItem.swift */; };
 		D6D1501621D5F08700CD8CE4 /* DisplyableCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6D1501521D5F08700CD8CE4 /* DisplyableCell.swift */; };
 		D6D1501821D5F40F00CD8CE4 /* UICollectionView+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6D1501721D5F40F00CD8CE4 /* UICollectionView+Extensions.swift */; };
+		D6D1501A21D5F5D100CD8CE4 /* CollectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6D1501921D5F5D100CD8CE4 /* CollectionView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -142,6 +143,7 @@
 		D6D1501321D5EA2500CD8CE4 /* DisplyableItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DisplyableItem.swift; sourceTree = "<group>"; };
 		D6D1501521D5F08700CD8CE4 /* DisplyableCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DisplyableCell.swift; sourceTree = "<group>"; };
 		D6D1501721D5F40F00CD8CE4 /* UICollectionView+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UICollectionView+Extensions.swift"; sourceTree = "<group>"; };
+		D6D1501921D5F5D100CD8CE4 /* CollectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollectionView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -230,6 +232,7 @@
 				D61EC0E121D30E6000204BEE /* Label.swift */,
 				D61EC0E321D30E9100204BEE /* TextView.swift */,
 				D61EC0E521D30EB300204BEE /* View.swift */,
+				D6D1501921D5F5D100CD8CE4 /* CollectionView.swift */,
 			);
 			path = "Base Classes";
 			sourceTree = "<group>";
@@ -559,6 +562,7 @@
 				D61EC0F521D3151400204BEE /* NSAttributedString+Extensions.swift in Sources */,
 				D6D1460721D552B100CD8CE4 /* Character+Extensions.swift in Sources */,
 				D61EC0EA21D3111600204BEE /* String+Extensions.swift in Sources */,
+				D6D1501A21D5F5D100CD8CE4 /* CollectionView.swift in Sources */,
 				D61EC0E421D30E9100204BEE /* TextView.swift in Sources */,
 				D61EC0F721D316F100204BEE /* Color.swift in Sources */,
 				D6D145FF21D5510400CD8CE4 /* StringStyle.swift in Sources */,

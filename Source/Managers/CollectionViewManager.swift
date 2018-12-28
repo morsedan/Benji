@@ -10,11 +10,13 @@ import Foundation
 
 class CollectionViewManager<ItemType: DisplayableItem, CellType: DisplayableCell & UICollectionViewCell>: NSObject, UICollectionViewDataSource {
 
-    var collectionView: UICollectionView?
+    var collectionView: UICollectionView
     weak var delegate: AnyCollectionViewManagerDelegate<ItemType>?
     var cellModels: [ItemType] {
         didSet {
-            self.collectionView?.reloadData()
+            self.collectionView.reload(previousItems: oldValue,
+                                       newItems: self.cellModels,
+                                       equalityOption: IGListDiffOption.equality)
         }
     }
 

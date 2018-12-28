@@ -1,5 +1,5 @@
 //
-//  DisplyableItem.swift
+//  CollectionView.swift
 //  Benji
 //
 //  Created by Benji Dodgson on 12/27/18.
@@ -8,5 +8,6 @@
 
 import Foundation
 
-protocol DisplayableItem: TextDisplayable, ImageDisplayable, ListDiffable {}
-
+class CollectionView: UICollectionView {
+    
+}

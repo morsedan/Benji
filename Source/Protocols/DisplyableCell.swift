@@ -9,7 +9,7 @@
 import Foundation
 import GestureRecognizerClosures
 
-protocol DisplayableCell {
+protocol DisplayableCell: Diffable {
     static var reuseID: String { get }
     var contentViewColor: Color { get }
     var didSelect: (IndexPath) -> Void { get set }
