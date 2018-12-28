@@ -9,7 +9,7 @@
 import Foundation
 import ReactiveSwift
 
-class CollectionViewManager<ItemType: DisplayableCellItem & Diffable, CellType: DisplayableCell & UICollectionViewCell>: NSObject, UICollectionViewDataSource {
+class CollectionViewManager<ItemType: DisplayableCellItem & Diffable, CellType: DisplayableCell & UICollectionViewCell>: NSObject, UICollectionViewDataSource, UICollectionViewDelegate {
 
     var collectionView: UICollectionView
     weak var delegate: AnyCollectionViewManagerDelegate<ItemType>?
@@ -69,7 +69,7 @@ class CollectionViewManager<ItemType: DisplayableCellItem & Diffable, CellType: 
         self.previousItems = items
     }
 
-    func reloadCollectionView(previousItems: [ItemType], newItems: [ItemType]) {
+    private func reloadCollectionView(previousItems: [ItemType], newItems: [ItemType]) {
         self.collectionView.reload(previousItems: previousItems,
                                    newItems: newItems,
                                    equalityOption: IGListDiffOption.equality)
