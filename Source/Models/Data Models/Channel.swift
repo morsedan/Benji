@@ -1,5 +1,5 @@
 //
-//  Message.swift
+//  Channel.swift
 //  Benji
 //
 //  Created by Benji Dodgson on 12/27/18.
@@ -8,7 +8,7 @@
 
 import Foundation
 
-class Message: DisplayableCellItem, ResourceObject {
+class Channel: DisplayableCellItem, ResourceObject {
 
     var photoUrl: URL? {
         return nil

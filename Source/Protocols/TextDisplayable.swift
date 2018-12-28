@@ -9,5 +9,5 @@
 import Foundation
 
 protocol TextDisplayable {
-    var text: Localized { get }
+    var text: Localized { get set }
 }

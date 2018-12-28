@@ -8,6 +8,6 @@
 
 import Foundation
 
-protocol DisplayableCellItem: DisplayableItem, ListDiffable {
-    var backgroundColor: Color { get }
+protocol DisplayableCellItem: DisplayableItem {
+    var backgroundColor: Color { get set }
 }

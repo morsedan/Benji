@@ -8,7 +8,7 @@
 
 import Foundation
 
-class CollectionViewManager<ItemType: DisplayableCellItem, CellType: DisplayableCell & UICollectionViewCell>: NSObject, UICollectionViewDataSource {
+class CollectionViewManager<ItemType: DisplayableCellItem & Diffable, CellType: DisplayableCell & UICollectionViewCell>: NSObject, UICollectionViewDataSource {
 
     var collectionView: UICollectionView
     weak var delegate: AnyCollectionViewManagerDelegate<ItemType>?

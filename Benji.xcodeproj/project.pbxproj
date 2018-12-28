@@ -65,6 +65,8 @@
 		D6D1501C21D5F8AD00CD8CE4 /* ChannelCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6D1501B21D5F8AD00CD8CE4 /* ChannelCell.swift */; };
 		D6D1501E21D5FA0300CD8CE4 /* DisplayableCellItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6D1501D21D5FA0300CD8CE4 /* DisplayableCellItem.swift */; };
 		D6D1502521D6007800CD8CE4 /* Message.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6D1502421D6007800CD8CE4 /* Message.swift */; };
+		D6D1502721D6027D00CD8CE4 /* Channel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6D1502621D6027D00CD8CE4 /* Channel.swift */; };
+		D6D1502921D6085200CD8CE4 /* ResourceObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6D1502821D6085200CD8CE4 /* ResourceObject.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -150,6 +152,8 @@
 		D6D1501B21D5F8AD00CD8CE4 /* ChannelCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChannelCell.swift; sourceTree = "<group>"; };
 		D6D1501D21D5FA0300CD8CE4 /* DisplayableCellItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DisplayableCellItem.swift; sourceTree = "<group>"; };
 		D6D1502421D6007800CD8CE4 /* Message.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Message.swift; sourceTree = "<group>"; };
+		D6D1502621D6027D00CD8CE4 /* Channel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Channel.swift; sourceTree = "<group>"; };
+		D6D1502821D6085200CD8CE4 /* ResourceObject.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResourceObject.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -272,6 +276,7 @@
 				D6D1501321D5EA2500CD8CE4 /* DisplyableItem.swift */,
 				D6D1501D21D5FA0300CD8CE4 /* DisplayableCellItem.swift */,
 				D6D1501521D5F08700CD8CE4 /* DisplyableCell.swift */,
+				D6D1502821D6085200CD8CE4 /* ResourceObject.swift */,
 			);
 			path = Protocols;
 			sourceTree = "<group>";
@@ -440,6 +445,7 @@
 			isa = PBXGroup;
 			children = (
 				D6D1502421D6007800CD8CE4 /* Message.swift */,
+				D6D1502621D6027D00CD8CE4 /* Channel.swift */,
 			);
 			path = "Data Models";
 			sourceTree = "<group>";
@@ -584,6 +590,7 @@
 				D61EC0E421D30E9100204BEE /* TextView.swift in Sources */,
 				D6D1502521D6007800CD8CE4 /* Message.swift in Sources */,
 				D61EC0F721D316F100204BEE /* Color.swift in Sources */,
+				D6D1502921D6085200CD8CE4 /* ResourceObject.swift in Sources */,
 				D6D145FF21D5510400CD8CE4 /* StringStyle.swift in Sources */,
 				D6D1501821D5F40F00CD8CE4 /* UICollectionView+Extensions.swift in Sources */,
 				D6D1460B21D5547000CD8CE4 /* Font.swift in Sources */,
@@ -616,6 +623,7 @@
 				D61EC0F321D3146600204BEE /* UINib+Extensions.swift in Sources */,
 				D6D145F421D5493000CD8CE4 /* CenterViewController.swift in Sources */,
 				D6D1501421D5EA2500CD8CE4 /* DisplyableItem.swift in Sources */,
+				D6D1502721D6027D00CD8CE4 /* Channel.swift in Sources */,
 				D6D145F921D54A0700CD8CE4 /* RightViewController.swift in Sources */,
 				D6D1500921D5E77900CD8CE4 /* ChannelCollectionViewManager.swift in Sources */,
 				D6D14FF921D5893700CD8CE4 /* NSString+IGListDiffable.m in Sources */,

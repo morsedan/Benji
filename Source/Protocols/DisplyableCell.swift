@@ -9,7 +9,7 @@
 import Foundation
 import GestureRecognizerClosures
 
-protocol DisplayableCell: Diffable {
+protocol DisplayableCell {
     static var reuseID: String { get }
     var item: DisplayableCellItem? { get set }
     var didSelect: ((IndexPath) -> Void)? { get set }
@@ -21,11 +21,6 @@ extension DisplayableCell where Self: UICollectionViewCell {
 
     static var reuseID: String {
         return String(describing: self)
-    }
-
-    func diffIdentifier() -> NSObjectProtocol {
-        guard let item = self.item else { return String() as NSObjectProtocol }
-        return item.diffIdentifier()
     }
 
     mutating func configure(with item: DisplayableCellItem,
@@ -44,11 +39,6 @@ extension DisplayableCell where Self: UITableViewCell {
 
     static var reuseID: String {
         return String(describing: self)
-    }
-
-    func diffIdentifier() -> NSObjectProtocol {
-        guard let item = self.item else { return String() as NSObjectProtocol }
-        return item.diffIdentifier()
     }
 
     mutating func configure(with item: DisplayableCellItem,
