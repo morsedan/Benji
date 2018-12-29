@@ -10,6 +10,27 @@ import Foundation
 
 class TextView: UITextView {
 
+    override init(frame: CGRect, textContainer: NSTextContainer?) {
+        super.init(frame: frame, textContainer: textContainer)
+        self.initialize()
+    }
+
+    convenience init() {
+        self.init(frame: CGRect.zero, textContainer: nil)
+    }
+
+    required init?(coder aDecoder: NSCoder) {
+        super.init(frame: .zero, textContainer: nil)
+        self.initialize()
+    }
+
+    private func initialize() {
+        self.isEditable = false
+        self.isScrollEnabled = false
+        self.isSelectable = true
+        self.set(backgroundColor: .clear)
+    }
+
     func set(attributed: AttributedString,
              alignment: NSTextAlignment = .left,
              lineCount: Int = 0,

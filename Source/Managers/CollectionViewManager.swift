@@ -9,7 +9,7 @@
 import Foundation
 import ReactiveSwift
 
-class CollectionViewManager<ItemType: DisplayableCellItem & Diffable, CellType: DisplayableCell & UICollectionViewCell>: NSObject, UICollectionViewDataSource, UICollectionViewDelegate {
+class CollectionViewManager<ItemType: DisplayableCellItem & Diffable, CellType: DisplayableCell & UICollectionViewCell>: NSObject, UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout {
 
     var collectionView: UICollectionView
     weak var delegate: AnyCollectionViewManagerDelegate<ItemType>?

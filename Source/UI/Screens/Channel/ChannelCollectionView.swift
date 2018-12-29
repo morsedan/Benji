@@ -12,6 +12,7 @@ class ChannelCollectionView: CollectionView {
 
     init() {
         let flowLayout = BouncyLayout(style: .regular)
+        flowLayout.scrollDirection = UICollectionView.ScrollDirection.vertical
         super.init(frame: .zero, collectionViewLayout: flowLayout)
     }
     

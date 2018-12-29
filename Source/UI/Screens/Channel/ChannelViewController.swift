@@ -51,5 +51,13 @@ class ChannelViewController: FullScreenViewController {
 
         self.collectionView.dataSource = self.manager
         self.collectionView.delegate = self.manager
+
+        self.view.addSubview(self.collectionView)
+    }
+
+    override func viewIsReadyForLayout() {
+        super.viewIsReadyForLayout()
+
+        self.collectionView.frame = self.view.bounds
     }
 }
