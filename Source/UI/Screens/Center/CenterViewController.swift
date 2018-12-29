@@ -8,6 +8,7 @@
 
 import Foundation
 import SideMenu
+import PureLayout
 
 class CenterViewController: FullScreenViewController {
 
@@ -19,37 +20,21 @@ class CenterViewController: FullScreenViewController {
         return RightViewController()
     }()
 
-    @IBOutlet weak var view1: View!
-    @IBOutlet weak var view2: View!
-    @IBOutlet weak var view3: View!
-    @IBOutlet weak var view4: View!
-
-    @IBOutlet weak var lable1: Label!
-    @IBOutlet weak var lable2: Label!
-    @IBOutlet weak var lable3: Label!
-    @IBOutlet weak var lable4: Label!
+    lazy var channelVC: ChannelViewController = {
+        return ChannelViewController()
+    }()
 
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        self.addChild(viewController: self.channelVC, toView: self.view)
+        self.channelVC.view.autoPinEdgesToSuperviewEdges()
         self.setupSideMenu()
     }
 
     override func viewIsReadyForLayout() {
         super.viewIsReadyForLayout()
 
-        self.view1.set(backgroundColor: .blue)
-        self.view2.set(backgroundColor: .darkGray)
-        self.view3.set(backgroundColor: .red)
-        self.view4.set(backgroundColor: .green)
-
-        let style = StringStyle(font: .demiBold, size: 20, color: .white, kern: 2)
-        let string = AttributedString("Some default text that will show in the view 😀", style: style)
-
-        self.lable1.set(attributed: string)
-        self.lable2.set(attributed: string)
-        self.lable3.set(attributed: string)
-        self.lable4.set(attributed: string)
     }
 
     private func setupSideMenu() {

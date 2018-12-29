@@ -24,27 +24,27 @@ class ChannelViewController: FullScreenViewController {
         super.viewDidLoad()
 
         let item1 = Message(id: "1",
-                            text: "",
+                            text: "Hey wanna grab coffee?",
                             backgroundColor: .darkGray)
 
         let item2 = Message(id: "2",
-                            text: "",
+                            text: "Sure! Where would you like to meet up?",
                             backgroundColor: .blue)
 
         let item3 = Message(id: "3",
-                            text: "",
+                            text: "I actually know of a really good place in Freemont. Milstead! Have you been?",
                             backgroundColor: .blue)
 
         let item4 = Message(id: "4",
-                            text: "",
+                            text: "No I haven't but I have always wanted to try it!",
                             backgroundColor: .darkGray)
 
         let item5 = Message(id: "5",
-                            text: "",
+                            text: "Friday morning at 10am?",
                             backgroundColor: .darkGray)
 
         let item6 = Message(id: "6",
-                            text: "",
+                            text: "Sounds great! See you then.",
                             backgroundColor: .blue)
 
         self.items.append(contentsOf: [item1, item2, item3, item4, item5, item6])
