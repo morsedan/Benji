@@ -27,7 +27,6 @@ extension DisplayableCell where Self: UICollectionViewCell {
                             indexPath: IndexPath) {
 
         self.item = item
-        self.contentView.set(backgroundColor: item.backgroundColor)
         self.contentView.onTap { [unowned self] (tap) in
             self.didSelect?(indexPath)
         }
@@ -45,7 +44,6 @@ extension DisplayableCell where Self: UITableViewCell {
                             indexPath: IndexPath) {
 
         self.item = item
-        self.contentView.set(backgroundColor: item.backgroundColor)
         self.contentView.onTap { [unowned self] (tap) in
             self.didSelect?(indexPath)
         }

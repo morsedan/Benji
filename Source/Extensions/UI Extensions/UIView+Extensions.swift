@@ -192,6 +192,11 @@ extension UIView {
         self.layer.cornerRadius = self.halfWidth
     }
 
+    func roundCorners() {
+        self.layer.masksToBounds = true
+        self.layer.cornerRadius = Theme.cornerRadius
+    }
+
     func scrollToVisible() {
         var superview = self.superview
         while superview != nil {

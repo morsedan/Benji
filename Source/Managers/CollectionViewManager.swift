@@ -74,4 +74,8 @@ class CollectionViewManager<ItemType: DisplayableCellItem & Diffable, CellType: 
                                    newItems: newItems,
                                    equalityOption: IGListDiffOption.equality)
     }
+
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+        return .zero 
+    }
 }

@@ -74,6 +74,7 @@
 		D6D1503321D7E5F800CD8CE4 /* UIDynamicAnimator+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6D1503221D7E5F800CD8CE4 /* UIDynamicAnimator+Extensions.swift */; };
 		D6D1503521D7E62800CD8CE4 /* CGPoint+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6D1503421D7E62800CD8CE4 /* CGPoint+Extensions.swift */; };
 		D6D1503721D7E74500CD8CE4 /* UIViewController+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6D1503621D7E74500CD8CE4 /* UIViewController+Extensions.swift */; };
+		D6D1503921D7F46F00CD8CE4 /* UITextView+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6D1503821D7F46F00CD8CE4 /* UITextView+Extensions.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -168,6 +169,7 @@
 		D6D1503221D7E5F800CD8CE4 /* UIDynamicAnimator+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIDynamicAnimator+Extensions.swift"; sourceTree = "<group>"; };
 		D6D1503421D7E62800CD8CE4 /* CGPoint+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CGPoint+Extensions.swift"; sourceTree = "<group>"; };
 		D6D1503621D7E74500CD8CE4 /* UIViewController+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+Extensions.swift"; sourceTree = "<group>"; };
+		D6D1503821D7F46F00CD8CE4 /* UITextView+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UITextView+Extensions.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -305,22 +307,16 @@
 		D61EC0D721D30C1400204BEE /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
+				D6D1503A21D7F47600CD8CE4 /* UI Extensions */,
 				D61EC0D821D30C8E00204BEE /* DispatchQue+Extensions.swift */,
 				D61EC0DD21D30DAC00204BEE /* Array+Extensions.swift */,
 				D61EC0E721D3107A00204BEE /* Date+Extensions.swift */,
 				D61EC0E921D3111600204BEE /* String+Extensions.swift */,
-				D61EC0EB21D312B600204BEE /* UIView+Extensions.swift */,
-				D61EC0ED21D313BA00204BEE /* UIScreen+Extensions.swift */,
-				D61EC0F221D3146600204BEE /* UINib+Extensions.swift */,
 				D61EC0F421D3151400204BEE /* NSAttributedString+Extensions.swift */,
 				D6D1460C21D5693100CD8CE4 /* NSMutableAttributedString+Extensions.swift */,
 				D6D1460621D552B100CD8CE4 /* Character+Extensions.swift */,
-				D6D1501721D5F40F00CD8CE4 /* UICollectionView+Extensions.swift */,
 				D6D1502A21D69C3300CD8CE4 /* NSObject+Extensions.swift */,
-				D6D1503021D6A2B900CD8CE4 /* UITableView+Extensions.swift */,
-				D6D1503221D7E5F800CD8CE4 /* UIDynamicAnimator+Extensions.swift */,
 				D6D1503421D7E62800CD8CE4 /* CGPoint+Extensions.swift */,
-				D6D1503621D7E74500CD8CE4 /* UIViewController+Extensions.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -469,6 +465,21 @@
 				D6D1502621D6027D00CD8CE4 /* Channel.swift */,
 			);
 			path = "Data Models";
+			sourceTree = "<group>";
+		};
+		D6D1503A21D7F47600CD8CE4 /* UI Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				D61EC0EB21D312B600204BEE /* UIView+Extensions.swift */,
+				D6D1503821D7F46F00CD8CE4 /* UITextView+Extensions.swift */,
+				D61EC0F221D3146600204BEE /* UINib+Extensions.swift */,
+				D6D1501721D5F40F00CD8CE4 /* UICollectionView+Extensions.swift */,
+				D6D1503021D6A2B900CD8CE4 /* UITableView+Extensions.swift */,
+				D6D1503221D7E5F800CD8CE4 /* UIDynamicAnimator+Extensions.swift */,
+				D6D1503621D7E74500CD8CE4 /* UIViewController+Extensions.swift */,
+				D61EC0ED21D313BA00204BEE /* UIScreen+Extensions.swift */,
+			);
+			path = "UI Extensions";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -648,6 +659,7 @@
 				D61EC0E621D30EB300204BEE /* View.swift in Sources */,
 				D61EC0EE21D313BA00204BEE /* UIScreen+Extensions.swift in Sources */,
 				D61EC0D921D30C8E00204BEE /* DispatchQue+Extensions.swift in Sources */,
+				D6D1503921D7F46F00CD8CE4 /* UITextView+Extensions.swift in Sources */,
 				D6D1460D21D5693100CD8CE4 /* NSMutableAttributedString+Extensions.swift in Sources */,
 				D6D1500C21D5E7C200CD8CE4 /* CollectionViewManager.swift in Sources */,
 				D6D14FFA21D5893700CD8CE4 /* IGListDiff.mm in Sources */,

@@ -11,7 +11,9 @@ import Foundation
 class ChannelViewController: FullScreenViewController {
 
     lazy var collectionView: ChannelCollectionView = {
-        return ChannelCollectionView()
+        let flowLayout = ChannelCollectionViewFlowLayout()
+        flowLayout.scrollDirection = .vertical
+        return ChannelCollectionView(flowLayout: flowLayout)
     }()
 
     lazy var manager: ChannelCollectionViewManager = {

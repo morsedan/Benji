@@ -13,7 +13,6 @@ class ChannelCell: UICollectionViewCell, DisplayableCell {
     var item: DisplayableCellItem?
 
     static let offset: CGFloat = 10
-    static let font: Font = .regular
 
     let textView = TextView()
 
@@ -28,22 +27,30 @@ class ChannelCell: UICollectionViewCell, DisplayableCell {
                                                 color: .white,
                                                 kern: 0)
 
-        let alignment: NSTextAlignment = item.backgroundColor == .darkGray ? .left : .right
-        
         self.textView.set(attributed: attributedString,
-                          alignment: alignment,
+                          alignment: .left,
                           lineCount: 0,
                           lineBreakMode: .byWordWrapping,
                           stringCasing: .unchanged,
                           isEditable: false,
                           linkColor: .white)
+
+        self.textView.set(backgroundColor: item.backgroundColor)
     }
 
     override func layoutSubviews() {
         super.layoutSubviews()
 
-        self.textView.width = self.contentView.width - ChannelCell.offset
-        self.textView.height = self.contentView.height - ChannelCell.offset
-        self.textView.centerOnXAndY()
+        guard let item = self.item else { return }
+
+        let size = self.textView.getSize(withWidth: self.contentView.width * 0.9)
+        self.textView.size = size
+        if item.backgroundColor == .darkGray {
+            self.textView.left = ChannelCell.offset
+        } else {
+            self.textView.right = self.contentView.width - ChannelCell.offset
+        }
+        self.textView.centerOnY()
+        self.textView.roundCorners()
     }
 }

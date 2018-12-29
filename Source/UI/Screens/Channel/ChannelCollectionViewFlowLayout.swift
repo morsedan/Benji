@@ -57,7 +57,7 @@ class BouncyLayout: UICollectionViewFlowLayout {
 
     override func prepare() {
         super.prepare()
-        guard let view = collectionView, let attributes = super.layoutAttributesForElements(in: view.bounds.insetBy(dx: -200, dy: -200))?.compactMap({ collectionView in collectionView.copy() as? UICollectionViewLayoutAttributes }) else { return }
+        guard let view = self.collectionView, let attributes = super.layoutAttributesForElements(in: view.bounds.insetBy(dx: -200, dy: -200))?.compactMap({ collectionView in collectionView.copy() as? UICollectionViewLayoutAttributes }) else { return }
 
         self.oldBehaviors(for: attributes).forEach { behavior in
             self.animator.removeBehavior(behavior)
