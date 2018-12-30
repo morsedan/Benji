@@ -9,5 +9,16 @@
 import Foundation
 
 class View: UIView {
-    
+
+    init() {
+        super.init(frame: .zero)
+        self.initializeViews()
+    }
+
+    required init?(coder aDecoder: NSCoder) {
+        super.init(coder: aDecoder)
+        self.initializeViews()
+    }
+
+    func initializeViews() {}
 }

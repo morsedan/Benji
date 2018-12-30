@@ -24,7 +24,7 @@ class TextView: UITextView {
         self.initialize()
     }
 
-    private func initialize() {
+    func initialize() {
         self.isEditable = false
         self.isScrollEnabled = false
         self.isSelectable = true

@@ -20,6 +20,8 @@ class ChannelViewController: FullScreenViewController {
         return ChannelCollectionViewManager(with: self.collectionView, items: self.items)
     }()
 
+    let messageInputView = MessageInputView()
+
     var items: [Message] = []
 
     override func viewDidLoad() {
@@ -55,11 +57,16 @@ class ChannelViewController: FullScreenViewController {
         self.collectionView.delegate = self.manager
 
         self.view.addSubview(self.collectionView)
+        self.view.addSubview(self.messageInputView)
     }
 
     override func viewIsReadyForLayout() {
         super.viewIsReadyForLayout()
 
         self.collectionView.frame = self.view.bounds
+        
+        self.messageInputView.size = CGSize(width: 300, height: 50)
+        self.messageInputView.bottom = self.view.height - 40
+        self.messageInputView.centerOnX()
     }
 }

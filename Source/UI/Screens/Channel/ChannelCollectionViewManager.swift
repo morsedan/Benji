@@ -51,7 +51,7 @@ class ChannelCollectionViewManager: CollectionViewManager<Message, ChannelCell> 
     private func getSize(for item: Message, collectionView: UICollectionView) -> CGSize {
         let textView = TextView()
         let attributedString = AttributedString(item.text,
-                                                font: .regular,
+                                                font: .medium,
                                                 size: 18,
                                                 color: .white,
                                                 kern: 0)

@@ -22,10 +22,10 @@ class ChannelCell: UICollectionViewCell, DisplayableCell {
 
         self.contentView.addSubview(self.bubbleView)
         self.contentView.addSubview(self.textView)
-        let textColor: Color = item.isSender ? .white : .black
+        let textColor: Color = item.isSender ? .lightGray : .darkGray
 
         let attributedString = AttributedString(item.text,
-                                                font: .regular,
+                                                font: .medium,
                                                 size: 18,
                                                 color: textColor,
                                                 kern: 0)

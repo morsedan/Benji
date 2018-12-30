@@ -75,6 +75,7 @@
 		D6D1503521D7E62800CD8CE4 /* CGPoint+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6D1503421D7E62800CD8CE4 /* CGPoint+Extensions.swift */; };
 		D6D1503721D7E74500CD8CE4 /* UIViewController+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6D1503621D7E74500CD8CE4 /* UIViewController+Extensions.swift */; };
 		D6D1503921D7F46F00CD8CE4 /* UITextView+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6D1503821D7F46F00CD8CE4 /* UITextView+Extensions.swift */; };
+		D6D1503C21D859A700CD8CE4 /* MessageInputView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6D1503B21D859A700CD8CE4 /* MessageInputView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -170,6 +171,7 @@
 		D6D1503421D7E62800CD8CE4 /* CGPoint+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CGPoint+Extensions.swift"; sourceTree = "<group>"; };
 		D6D1503621D7E74500CD8CE4 /* UIViewController+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+Extensions.swift"; sourceTree = "<group>"; };
 		D6D1503821D7F46F00CD8CE4 /* UITextView+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UITextView+Extensions.swift"; sourceTree = "<group>"; };
+		D6D1503B21D859A700CD8CE4 /* MessageInputView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageInputView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -446,6 +448,7 @@
 				D6D1501B21D5F8AD00CD8CE4 /* ChannelCell.swift */,
 				D6D1502C21D6A08300CD8CE4 /* ChannelCollectionView.swift */,
 				D6D1502E21D6A0AC00CD8CE4 /* ChannelCollectionViewFlowLayout.swift */,
+				D6D1503B21D859A700CD8CE4 /* MessageInputView.swift */,
 			);
 			path = Channel;
 			sourceTree = "<group>";
@@ -658,6 +661,7 @@
 				D6D1501021D5E9A800CD8CE4 /* TextDisplayable.swift in Sources */,
 				D61EC0E621D30EB300204BEE /* View.swift in Sources */,
 				D61EC0EE21D313BA00204BEE /* UIScreen+Extensions.swift in Sources */,
+				D6D1503C21D859A700CD8CE4 /* MessageInputView.swift in Sources */,
 				D61EC0D921D30C8E00204BEE /* DispatchQue+Extensions.swift in Sources */,
 				D6D1503921D7F46F00CD8CE4 /* UITextView+Extensions.swift in Sources */,
 				D6D1460D21D5693100CD8CE4 /* NSMutableAttributedString+Extensions.swift in Sources */,
