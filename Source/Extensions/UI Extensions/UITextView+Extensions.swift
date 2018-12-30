@@ -11,7 +11,7 @@ import Foundation
 extension UITextView {
     func getSize(withWidth width: CGFloat) -> CGSize {
         guard let t = self.text, let attText = self.attributedText else { return CGSize.zero }
-
+        
         let attributes = attText.attributes(at: 0,
                                             longestEffectiveRange: nil,
                                             in: NSRange(location: 0, length: attText.length))
@@ -22,7 +22,6 @@ extension UITextView {
                                           options: .usesLineFragmentOrigin,
                                           attributes: attributes,
                                           context: nil).size
-
         return size
     }
 }

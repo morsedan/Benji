@@ -25,9 +25,11 @@ class ChannelViewController: FullScreenViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        self.view.set(backgroundColor: .darkGray)
+
         let item1 = Message(id: "1",
                             text: "Hey wanna grab coffee?",
-                            backgroundColor: .darkGray)
+                            backgroundColor: .lightGray)
 
         let item2 = Message(id: "2",
                             text: "Sure! Where would you like to meet up?",
@@ -39,11 +41,11 @@ class ChannelViewController: FullScreenViewController {
 
         let item4 = Message(id: "4",
                             text: "No I haven't but I have always wanted to try it!",
-                            backgroundColor: .darkGray)
+                            backgroundColor: .lightGray)
 
         let item5 = Message(id: "5",
                             text: "Friday morning at 10am?",
-                            backgroundColor: .darkGray)
+                            backgroundColor: .lightGray)
 
         let item6 = Message(id: "6",
                             text: "Sounds great! See you then.",

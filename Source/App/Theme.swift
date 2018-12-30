@@ -11,7 +11,7 @@ import Foundation
 struct Theme {
 
     static let animationDuration: TimeInterval = 0.25
-    static let cornerRadius: CGFloat = 10
+    static let cornerRadius: CGFloat = 12
 
     private init() {}
 }

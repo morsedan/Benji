@@ -10,14 +10,49 @@ import Foundation
 
 class ChannelCollectionViewManager: CollectionViewManager<Message, ChannelCell> {
 
+    override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        var cell: ChannelCell = collectionView.dequeueReusableCell(
+            withReuseIdentifier: ChannelCell.reuseID,
+            for: indexPath) as! ChannelCell
+
+        if let item = self.items.value[safe: indexPath.row] {
+            cell.configure(with: item,
+                           indexPath: indexPath)
+
+            let estimatedSize = self.getSize(for: item, collectionView: collectionView)
+
+            var textViewXOffset: CGFloat = 10
+            var bubbleXOffset: CGFloat = 0
+            if item.isSender {
+                textViewXOffset = collectionView.width - estimatedSize.width - 10
+                bubbleXOffset = collectionView.width - estimatedSize.width - 20
+            }
+            cell.textView.frame = CGRect(x: textViewXOffset, y: 5, width: estimatedSize.width, height: estimatedSize.height)
+            cell.bubbleView.frame = CGRect(x: bubbleXOffset, y: 0, width: estimatedSize.width + 20, height: estimatedSize.height + 10)
+        }
+
+        cell.didSelect = { [weak self] indexPath in
+            guard let `self` = self, let item = self.items.value[safe: indexPath.row] else { return }
+            self.delegate?.collectionViewManager(didSelect: item, at: indexPath)
+        }
+
+        return cell
+    }
+
     override func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
 
         guard let item = self.items.value[safe: indexPath.row] else { return .zero }
 
+        let estimatedSize = self.getSize(for: item, collectionView: collectionView)
+        let size = CGSize(width: collectionView.width, height: estimatedSize.height + 10)
+        return size 
+    }
+
+    private func getSize(for item: Message, collectionView: UICollectionView) -> CGSize {
         let textView = TextView()
         let attributedString = AttributedString(item.text,
                                                 font: .regular,
-                                                size: 20,
+                                                size: 18,
                                                 color: .white,
                                                 kern: 0)
 
@@ -31,9 +66,7 @@ class ChannelCollectionViewManager: CollectionViewManager<Message, ChannelCell> 
                      isEditable: false,
                      linkColor: .white)
 
-        let textViewSize = textView.getSize(withWidth: collectionView.width * 0.9)
-        let size = CGSize(width: collectionView.width, height: textViewSize.height + (ChannelCell.offset * 2))
-        return size 
+        let maxWidth = collectionView.width * 0.8
+        return textView.getSize(withWidth: maxWidth)
     }
-
 }

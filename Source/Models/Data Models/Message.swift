@@ -30,4 +30,8 @@ class Message: DisplayableCellItem, ResourceObject {
         self.text = text
         self.backgroundColor = backgroundColor
     }
+
+    var isSender: Bool {
+        return self.backgroundColor == .blue
+    }
 }

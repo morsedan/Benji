@@ -15,16 +15,19 @@ class ChannelCell: UICollectionViewCell, DisplayableCell {
     static let offset: CGFloat = 10
 
     let textView = TextView()
+    let bubbleView = View()
 
     func cellIsReadyForLayout() {
-        guard let item = self.item else { return }
+        guard let item = self.item as? Message else { return }
 
+        self.contentView.addSubview(self.bubbleView)
         self.contentView.addSubview(self.textView)
+        let textColor: Color = item.isSender ? .white : .black
 
         let attributedString = AttributedString(item.text,
                                                 font: .regular,
-                                                size: 20,
-                                                color: .white,
+                                                size: 18,
+                                                color: textColor,
                                                 kern: 0)
 
         self.textView.set(attributed: attributedString,
@@ -33,24 +36,9 @@ class ChannelCell: UICollectionViewCell, DisplayableCell {
                           lineBreakMode: .byWordWrapping,
                           stringCasing: .unchanged,
                           isEditable: false,
-                          linkColor: .white)
+                          linkColor: textColor)
 
-        self.textView.set(backgroundColor: item.backgroundColor)
-    }
-
-    override func layoutSubviews() {
-        super.layoutSubviews()
-
-        guard let item = self.item else { return }
-
-        let size = self.textView.getSize(withWidth: self.contentView.width * 0.9)
-        self.textView.size = size
-        if item.backgroundColor == .darkGray {
-            self.textView.left = ChannelCell.offset
-        } else {
-            self.textView.right = self.contentView.width - ChannelCell.offset
-        }
-        self.textView.centerOnY()
-        self.textView.roundCorners()
+        self.bubbleView.set(backgroundColor: item.backgroundColor)
+        self.bubbleView.roundCorners()
     }
 }
