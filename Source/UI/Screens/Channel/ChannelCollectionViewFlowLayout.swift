@@ -78,7 +78,7 @@ class BouncyLayout: UICollectionViewFlowLayout {
     }
 
     private func newBehaviors(for attributes: [UICollectionViewLayoutAttributes]) -> [UIAttachmentBehavior] {
-        let indexPaths = animator.behaviors.compactMap { behavior in
+        let indexPaths = self.animator.behaviors.compactMap { behavior in
             ((behavior as? UIAttachmentBehavior)?.items.first as? UICollectionViewLayoutAttributes)?.indexPath
         }
 
@@ -96,7 +96,7 @@ class BouncyLayout: UICollectionViewFlowLayout {
     }
 
     open override func shouldInvalidateLayout(forBoundsChange newBounds: CGRect) -> Bool {
-        guard let view = collectionView else { return false }
+        guard let view = self.collectionView else { return false }
 
         self.animator.behaviors.forEach { behavior in
             guard let behavior = behavior as? UIAttachmentBehavior, let item = behavior.items.first else { return }
@@ -104,7 +104,7 @@ class BouncyLayout: UICollectionViewFlowLayout {
             self.update(behavior: behavior, and: item, in: view, for: newBounds)
             self.animator.updateItem(usingCurrentState: item)
         }
-        return view.bounds.width != newBounds.width
+        return !newBounds.size.equalTo(view.bounds.size)
     }
 
     private func update(behavior: UIAttachmentBehavior, and item: UIDynamicItem, in view: UICollectionView, for bounds: CGRect) {
