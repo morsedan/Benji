@@ -11,7 +11,7 @@ import Foundation
 class ChannelViewController: FullScreenViewController {
 
     lazy var collectionView: ChannelCollectionView = {
-        let flowLayout = ChannelCollectionViewFlowLayout()
+        let flowLayout = BouncyLayout(style: .subtle)
         flowLayout.scrollDirection = .vertical
         return ChannelCollectionView(flowLayout: flowLayout)
     }()
@@ -24,8 +24,6 @@ class ChannelViewController: FullScreenViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        self.view.set(backgroundColor: .darkGray)
 
         let item1 = Message(id: "1",
                             text: "Hey wanna grab coffee?",
@@ -51,7 +49,7 @@ class ChannelViewController: FullScreenViewController {
                             text: "Sounds great! See you then.",
                             backgroundColor: .blue)
 
-        self.items.append(contentsOf: [item1, item2, item3, item4, item5, item6])
+        self.items.append(contentsOf: [item1, item2, item3, item4, item5, item6, item1, item2, item3, item4, item5, item6, item1, item2, item3, item4, item5, item6, item1, item2, item3, item4, item5, item6])
 
         self.collectionView.dataSource = self.manager
         self.collectionView.delegate = self.manager

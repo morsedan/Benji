@@ -21,11 +21,11 @@ class ChannelCollectionViewManager: CollectionViewManager<Message, ChannelCell> 
 
             let estimatedSize = self.getSize(for: item, collectionView: collectionView)
 
-            var textViewXOffset: CGFloat = 10
-            var bubbleXOffset: CGFloat = 0
+            var textViewXOffset: CGFloat = 20
+            var bubbleXOffset: CGFloat = 10
             if item.isSender {
-                textViewXOffset = collectionView.width - estimatedSize.width - 10
-                bubbleXOffset = collectionView.width - estimatedSize.width - 20
+                textViewXOffset = collectionView.width - estimatedSize.width - 20
+                bubbleXOffset = collectionView.width - estimatedSize.width - 30
             }
             cell.textView.frame = CGRect(x: textViewXOffset, y: 5, width: estimatedSize.width, height: estimatedSize.height)
             cell.bubbleView.frame = CGRect(x: bubbleXOffset, y: 0, width: estimatedSize.width + 20, height: estimatedSize.height + 10)
@@ -66,7 +66,7 @@ class ChannelCollectionViewManager: CollectionViewManager<Message, ChannelCell> 
                      isEditable: false,
                      linkColor: .white)
 
-        let maxWidth = collectionView.width * 0.8
+        let maxWidth = (collectionView.width - 20) * 0.8
         return textView.getSize(withWidth: maxWidth)
     }
 }

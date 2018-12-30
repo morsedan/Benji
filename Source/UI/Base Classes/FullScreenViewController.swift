@@ -10,5 +10,9 @@ import Foundation
 
 class FullScreenViewController: ViewController {
 
-    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+
+        self.view.set(backgroundColor: .darkGray)
+    }
 }
