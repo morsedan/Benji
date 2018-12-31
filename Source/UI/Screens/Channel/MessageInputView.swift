@@ -8,34 +8,42 @@
 
 import Foundation
 
-class MessageInputView: View {
+class MessageInputView: View, UITextViewDelegate {
 
     let textView = MessageInputTextView()
-    let effectView = UIVisualEffectView(effect: UIBlurEffect(style: .light))
+    let effectView = UIVisualEffectView(effect: UIBlurEffect(style: .dark))
 
     override func initializeViews() {
         super.initializeViews()
-        self.set(backgroundColor: .halfWhite)
+        self.set(backgroundColor: .darkGray)
 
-        self.addSubview(self.effectView)
-        self.effectView.autoPinEdgesToSuperviewEdges()
+//        self.addSubview(self.effectView)
+//        self.effectView.autoPinEdgesToSuperviewEdges()
 
         self.addSubview(self.textView)
-        self.textView.autoPinEdgesToSuperviewEdges()
 
-        self.textView.localizedText = "Type something..."
+        //self.textView.localizedText = "Message @Natalie"
+        self.textView.delegate = self
+        self.textView.height = 50
+
     }
 
     override func layoutSubviews() {
         super.layoutSubviews()
 
-        self.layer.masksToBounds = true
-        self.layer.cornerRadius = self.halfHeight
+        self.addShadow(withOffset: -10)
 
-        self.effectView.layer.masksToBounds = true
-        self.effectView.layer.cornerRadius = self.halfHeight
+        self.textView.width = self.width - 50
+        self.textView.top = 10
+        self.textView.left = 40
 
-        self.addShadow(withOffset: 5)
+        self.textView.roundCorners()
+        self.textView.layer.borderColor = Color.blue.color.cgColor
+        self.textView.layer.borderWidth = 2
+    }
+
+    func textViewShouldBeginEditing(_ textView: UITextView) -> Bool {
+        return true 
     }
 }
 
@@ -47,16 +55,28 @@ class MessageInputTextView: TextView {
 
             let attributedString = AttributedString(text,
                                                     font: .regular,
-                                                    size: 18,
-                                                    color: .white,
+                                                    size: 16,
+                                                    color: .lightGray,
                                                     kern: 0)
             self.set(attributed: attributedString)
         }
     }
 
+    init() {
+        super.init(frame: .zero, textContainer: nil)
+        self.initialize()
+    }
+
+    required init?(coder aDecoder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+
     override func initialize() {
-        super.initialize()
 
-
+        self.isEditable = true
+        self.isUserInteractionEnabled = true
+        self.keyboardAppearance = .dark
+        self.isSelectable = true
+        self.set(backgroundColor: .clear)
     }
 }

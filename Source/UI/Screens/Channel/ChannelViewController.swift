@@ -24,6 +24,13 @@ class ChannelViewController: FullScreenViewController {
 
     var items: [Message] = []
 
+    let showAnimator = UIViewPropertyAnimator(duration: 0.1,
+                                              curve: .linear,
+                                              animations: nil)
+    let dismissAnimator = UIViewPropertyAnimator(duration: Theme.animationDuration,
+                                                 curve: .easeIn,
+                                                 animations: nil)
+
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -58,6 +65,16 @@ class ChannelViewController: FullScreenViewController {
 
         self.view.addSubview(self.collectionView)
         self.view.addSubview(self.messageInputView)
+
+        NotificationCenter.default.addObserver(self,
+                                               selector: #selector(keyboardWillShow(notification:)),
+                                               name: UIResponder.keyboardWillShowNotification,
+                                               object: nil)
+
+        NotificationCenter.default.addObserver(self,
+                                               selector: #selector(keyboardWillHide(notification:)),
+                                               name: UIResponder.keyboardWillHideNotification,
+                                               object: nil)
     }
 
     override func viewIsReadyForLayout() {
@@ -65,8 +82,33 @@ class ChannelViewController: FullScreenViewController {
 
         self.collectionView.frame = self.view.bounds
         
-        self.messageInputView.size = CGSize(width: 300, height: 50)
-        self.messageInputView.bottom = self.view.height - 40
+        self.messageInputView.size = CGSize(width: self.view.width, height: 70)
+        self.messageInputView.bottom = self.view.height
         self.messageInputView.centerOnX()
+    }
+
+    @objc private func keyboardWillShow(notification: Notification) {
+
+        let userInfo: NSDictionary = notification.userInfo! as NSDictionary
+        let keyboardFrame: NSValue = userInfo.value(forKey: UIResponder.keyboardFrameEndUserInfoKey) as! NSValue
+        let keyboardRectangle = keyboardFrame.cgRectValue
+        let keyboardHeight = keyboardRectangle.height
+
+        self.showAnimator.addAnimations {
+            self.messageInputView.bottom = self.view.height - keyboardHeight
+            //self.messageInputView.textView.set(backgroundColor: .blueGray)
+        }
+
+        self.showAnimator.stopAnimation(true)
+        self.showAnimator.startAnimation()
+    }
+
+    @objc private func keyboardWillHide(notification: Notification) {
+
+        self.dismissAnimator.addAnimations {
+            self.messageInputView.bottom = self.view.height
+        }
+        self.dismissAnimator.stopAnimation(true)
+        self.dismissAnimator.startAnimation()
     }
 }
