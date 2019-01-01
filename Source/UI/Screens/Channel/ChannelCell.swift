@@ -38,6 +38,10 @@ class ChannelCell: UICollectionViewCell, DisplayableCell {
                           isEditable: false,
                           linkColor: textColor)
 
+        self.textView.isEditable = false
+        self.textView.isScrollEnabled = false
+        self.textView.isSelectable = true
+
         self.bubbleView.set(backgroundColor: item.backgroundColor)
         self.bubbleView.roundCorners()
     }

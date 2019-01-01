@@ -29,9 +29,6 @@ class TextView: UITextView {
     }
 
     func initialize() {
-        self.isEditable = false
-        self.isScrollEnabled = false
-        self.isSelectable = true
         self.set(backgroundColor: .clear)
 
         NotificationCenter.default.addObserver(self, selector: #selector(textDidChange), name: UITextView.textDidChangeNotification, object: self)

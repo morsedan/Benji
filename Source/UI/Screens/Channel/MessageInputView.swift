@@ -10,9 +10,10 @@ import Foundation
 
 class MessageInputView: View, UITextViewDelegate {
 
-    let textField = MessageInputTextField()
+    let textView = GrowingTextView()
     let darkEffectView = UIVisualEffectView(effect: UIBlurEffect(style: .dark))
     let lightEffectView = UIVisualEffectView(effect: UIBlurEffect(style: .light))
+    var oldTextViewHeight: CGFloat = 34
 
     override func initializeViews() {
         super.initializeViews()
@@ -21,11 +22,14 @@ class MessageInputView: View, UITextViewDelegate {
         self.darkEffectView.autoPinEdgesToSuperviewEdges()
 
         self.addSubview(self.lightEffectView)
-        self.addSubview(self.textField)
+        self.addSubview(self.textView)
 
-        self.textField.messagePlaceholder = "Message @Natalie"
-        self.textField.delegate = self
-        self.textField.height = 50
+        let styleAttributes = StringStyle(font: .ultraLight, size: 18, color: .lightGray, kern: 0).attributes
+        let string = NSAttributedString(string: "Message @Natalie", attributes: styleAttributes)
+        self.textView.attributedPlaceholder = string
+        self.textView.growingDelegate = self
+        self.textView.height = 34
+        self.lightEffectView.height = 34
     }
 
     override func layoutSubviews() {
@@ -33,56 +37,27 @@ class MessageInputView: View, UITextViewDelegate {
 
         self.addShadow(withOffset: -10)
 
-        self.lightEffectView.height = 34
         self.lightEffectView.width = self.width * 0.9
         self.lightEffectView.top = 10
         self.lightEffectView.centerOnX()
         self.lightEffectView.roundCorners()
 
-        self.textField.frame = self.lightEffectView.frame
+        self.textView.frame = self.lightEffectView.frame
         self.darkEffectView.round(corners: [.topLeft, .topRight], size: CGSize(width: 10, height: 10))
     }
 }
 
-extension MessageInputView: UITextFieldDelegate {
+extension MessageInputView: GrowingTextViewDelegate {
+    func textViewDidChangeHeight(_ textView: GrowingTextView, height: CGFloat) {
+        //Update the height
 
-}
-
-class MessageInputTextField: TextField {
-
-    var messagePlaceholder: String? {
-        get {
-            return super.placeholder
+        UIView.animate(withDuration: Theme.animationDuration) {
+            self.lightEffectView.height = height
+            self.height = height + 36
+            self.y = self.y + (self.oldTextViewHeight - height)
+            self.layoutNow()
+            self.oldTextViewHeight = height
         }
-        set {
-            guard let text = newValue else { return }
-
-            let attributed = AttributedString(text,
-                                              font: .ultraLight,
-                                              size: 18,
-                                              color: .darkGray)
-
-            self.setPlaceholder(attributed: attributed)
-        }
-    }
-
-    override func initialize() {
-        self.set(backgroundColor: .clear)
-
-        let paddingView = View()
-        paddingView.frame = CGRect(x: 0, y: 0, width: 15, height: self.height)
-        paddingView.set(backgroundColor: .clear)
-
-        self.leftView = paddingView
-        self.leftViewMode = .always
-
-        self.keyboardAppearance = .dark
-        self.keyboardType = .twitter
-
-        self.tintColor = Color.blue.color
-
-        let style = StringStyle(font: .regular, size: 18, color: .lightGray)
-        self.setDefaultAttributes(style: style)
     }
 }
 
@@ -100,7 +75,7 @@ class GrowingTextView: TextView {
     private var heightConstraint: NSLayoutConstraint?
 
     // Maximum length of text. 0 means no limit.
-    var maxLength: Int = 0
+    var maxLength: Int = 250
 
     // Trim white space and newline characters when end editing. Default is true
     var trimWhiteSpaceWhenEndEditing: Bool = true
@@ -118,12 +93,6 @@ class GrowingTextView: TextView {
         }
     }
 
-    var placeholder: String? {
-        didSet {
-            self.setNeedsDisplay()
-        }
-    }
-
     var attributedPlaceholder: NSAttributedString? {
         didSet {
             self.setNeedsDisplay()
@@ -132,7 +101,7 @@ class GrowingTextView: TextView {
 
     weak var growingDelegate: GrowingTextViewDelegate?
 
-    private var shouldScrollAfterHeightChanged = false
+    private var shouldScrollAfterHeightChanged = true
     // Calculate and adjust textview's height
     private var oldText: String = ""
     private var oldSize: CGSize = .zero
@@ -140,13 +109,24 @@ class GrowingTextView: TextView {
     // Initialize
     override func initialize() {
         super.initialize()
-
+        let typingStyle = StringStyle(font: .regular, size: 18, color: .lightGray, kern: 0)
+        self.typingAttributes = typingStyle.attributes
         self.contentMode = .redraw
+
+        self.keyboardAppearance = .dark
+        self.keyboardType = .twitter
+
+        self.tintColor = Color.blue.color
         self.associateConstraints()
+        self.maxHeight = 200
+        self.minHeight = 34
+
+        self.textContainerInset.left = 5
+        self.textContainerInset.right = 5
     }
 
     override var intrinsicContentSize: CGSize {
-        return CGSize(width: UIView.noIntrinsicMetric, height: 30)
+        return CGSize(width: UIView.noIntrinsicMetric, height: 34)
     }
 
     private func associateConstraints() {
@@ -173,7 +153,7 @@ class GrowingTextView: TextView {
         self.oldText = self.text
         self.oldSize = self.size
 
-        let size = sizeThatFits(CGSize(width: bounds.size.width, height: CGFloat.greatestFiniteMagnitude))
+        let size = self.sizeThatFits(CGSize(width: bounds.size.width, height: CGFloat.greatestFiniteMagnitude))
         var height = size.height
 
         // Constrain minimum height
@@ -194,8 +174,8 @@ class GrowingTextView: TextView {
             self.heightConstraint!.constant = height
             self.growingDelegate?.textViewDidChangeHeight(self, height: height)
         } else if self.shouldScrollAfterHeightChanged {
-            shouldScrollAfterHeightChanged = false
-            scrollToCorrectPosition()
+            self.shouldScrollAfterHeightChanged = false
+            self.scrollToCorrectPosition()
         }
     }
 
@@ -221,19 +201,6 @@ class GrowingTextView: TextView {
             if let attributedPlaceholder = self.attributedPlaceholder {
                 // Prefer to use attributedPlaceholder
                 attributedPlaceholder.draw(in: placeholderRect)
-            } else if let placeholder = self.placeholder {
-                // Otherwise user placeholder and inherit `text` attributes
-                let paragraphStyle = NSMutableParagraphStyle()
-                paragraphStyle.alignment = textAlignment
-                var attributes: [NSAttributedString.Key: Any] = [
-                    //.foregroundColor: placeholderColor,
-                    .paragraphStyle: paragraphStyle
-                ]
-                if let font = font {
-                    attributes[.font] = font
-                }
-
-                placeholder.draw(in: placeholderRect, withAttributes: attributes)
             }
         }
     }
