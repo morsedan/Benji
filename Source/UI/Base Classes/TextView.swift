@@ -24,11 +24,18 @@ class TextView: UITextView {
         self.initialize()
     }
 
+    deinit {
+        NotificationCenter.default.removeObserver(self)
+    }
+
     func initialize() {
         self.isEditable = false
         self.isScrollEnabled = false
         self.isSelectable = true
         self.set(backgroundColor: .clear)
+
+        NotificationCenter.default.addObserver(self, selector: #selector(textDidChange), name: UITextView.textDidChangeNotification, object: self)
+        NotificationCenter.default.addObserver(self, selector: #selector(textDidEndEditing), name: UITextView.textDidEndEditingNotification, object: self)
     }
 
     func set(attributed: AttributedString,
@@ -61,4 +68,7 @@ class TextView: UITextView {
         self.textContainerInset = .zero
         self.textContainer.lineFragmentPadding = 0
     }
+
+    @objc func textDidEndEditing(notification: Notification) {}
+    @objc func textDidChange(notification: Notification) {}
 }
