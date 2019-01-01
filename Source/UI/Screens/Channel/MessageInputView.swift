@@ -40,6 +40,7 @@ class MessageInputView: View, UITextViewDelegate {
         self.lightEffectView.roundCorners()
 
         self.textField.frame = self.lightEffectView.frame
+        self.darkEffectView.round(corners: [.topLeft, .topRight], size: CGSize(width: 10, height: 10))
     }
 }
 
@@ -57,23 +58,11 @@ class MessageInputTextField: TextField {
             guard let text = newValue else { return }
 
             let attributed = AttributedString(text,
-                                              size: 20,
+                                              font: .ultraLight,
+                                              size: 18,
                                               color: .darkGray)
+
             self.setPlaceholder(attributed: attributed)
-        }
-    }
-
-    var messageText: String? {
-        get {
-            return super.text
-        }
-        set {
-            guard let text = newValue else { return }
-
-            let attributed = AttributedString(text,
-                                              size: 20,
-                                              color: .darkGray)
-            self.set(attributed: attributed)
         }
     }
 
@@ -88,5 +77,11 @@ class MessageInputTextField: TextField {
         self.leftViewMode = .always
 
         self.keyboardAppearance = .dark
+        self.keyboardType = .twitter
+
+        self.tintColor = Color.blue.color
+
+        let style = StringStyle(font: .regular, size: 18, color: .lightGray)
+        self.setDefaultAttributes(style: style)
     }
 }

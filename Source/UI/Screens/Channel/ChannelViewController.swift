@@ -39,19 +39,19 @@ class ChannelViewController: FullScreenViewController {
                             backgroundColor: .lightGray)
 
         let item2 = Message(id: "2",
-                            text: "Sure! Where would you like to meet up?",
+                            text: "Sure! Where would you like to meet up 👦?",
                             backgroundColor: .blue)
 
         let item3 = Message(id: "3",
-                            text: "I actually know of a really good place in Freemont. Milstead! Have you been?",
+                            text: "I actually know of a really good place in Freemont ☕️. Milstead! Have you been?",
                             backgroundColor: .blue)
 
         let item4 = Message(id: "4",
-                            text: "No I haven't but I have always wanted to try it!",
+                            text: "No I haven't but I have always wanted to try it😜!",
                             backgroundColor: .lightGray)
 
         let item5 = Message(id: "5",
-                            text: "Friday morning at 10am?",
+                            text: "Friday morning at 10am 🌈?",
                             backgroundColor: .lightGray)
 
         let item6 = Message(id: "6",

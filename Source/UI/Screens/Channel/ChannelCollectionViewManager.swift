@@ -45,7 +45,6 @@ class ChannelCollectionViewManager: CollectionViewManager<Message, ChannelCell> 
 
         let estimatedSize = self.getSize(for: item, collectionView: collectionView)
         let size = CGSize(width: collectionView.width, height: estimatedSize.height + 10)
-        print(size.height)
         return size 
     }
 
