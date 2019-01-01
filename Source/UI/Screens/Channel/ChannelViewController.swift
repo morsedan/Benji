@@ -96,7 +96,6 @@ class ChannelViewController: FullScreenViewController {
 
         self.showAnimator.addAnimations {
             self.messageInputView.bottom = self.view.height - keyboardHeight
-            //self.messageInputView.textView.set(backgroundColor: .blueGray)
         }
 
         self.showAnimator.stopAnimation(true)

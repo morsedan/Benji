@@ -20,5 +20,7 @@ class View: UIView {
         self.initializeViews()
     }
 
-    func initializeViews() {}
+    func initializeViews() {
+        self.layoutNow()
+    }
 }

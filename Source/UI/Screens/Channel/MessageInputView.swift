@@ -10,22 +10,22 @@ import Foundation
 
 class MessageInputView: View, UITextViewDelegate {
 
-    let textView = MessageInputTextView()
-    let effectView = UIVisualEffectView(effect: UIBlurEffect(style: .dark))
+    let textField = MessageInputTextField()
+    let darkEffectView = UIVisualEffectView(effect: UIBlurEffect(style: .dark))
+    let lightEffectView = UIVisualEffectView(effect: UIBlurEffect(style: .light))
 
     override func initializeViews() {
         super.initializeViews()
-        self.set(backgroundColor: .darkGray)
 
-//        self.addSubview(self.effectView)
-//        self.effectView.autoPinEdgesToSuperviewEdges()
+        self.addSubview(self.darkEffectView)
+        self.darkEffectView.autoPinEdgesToSuperviewEdges()
 
-        self.addSubview(self.textView)
+        self.addSubview(self.lightEffectView)
+        self.addSubview(self.textField)
 
-        //self.textView.localizedText = "Message @Natalie"
-        self.textView.delegate = self
-        self.textView.height = 50
-
+        self.textField.messagePlaceholder = "Message @Natalie"
+        self.textField.delegate = self
+        self.textField.height = 50
     }
 
     override func layoutSubviews() {
@@ -33,50 +33,60 @@ class MessageInputView: View, UITextViewDelegate {
 
         self.addShadow(withOffset: -10)
 
-        self.textView.width = self.width - 50
-        self.textView.top = 10
-        self.textView.left = 40
+        self.lightEffectView.height = 34
+        self.lightEffectView.width = self.width * 0.9
+        self.lightEffectView.top = 10
+        self.lightEffectView.centerOnX()
+        self.lightEffectView.roundCorners()
 
-        self.textView.roundCorners()
-        self.textView.layer.borderColor = Color.blue.color.cgColor
-        self.textView.layer.borderWidth = 2
-    }
-
-    func textViewShouldBeginEditing(_ textView: UITextView) -> Bool {
-        return true 
+        self.textField.frame = self.lightEffectView.frame
     }
 }
 
-class MessageInputTextView: TextView {
+extension MessageInputView: UITextFieldDelegate {
 
-    var localizedText: Localized? {
-        willSet {
+}
+
+class MessageInputTextField: TextField {
+
+    var messagePlaceholder: String? {
+        get {
+            return super.placeholder
+        }
+        set {
             guard let text = newValue else { return }
 
-            let attributedString = AttributedString(text,
-                                                    font: .regular,
-                                                    size: 16,
-                                                    color: .lightGray,
-                                                    kern: 0)
-            self.set(attributed: attributedString)
+            let attributed = AttributedString(text,
+                                              size: 20,
+                                              color: .darkGray)
+            self.setPlaceholder(attributed: attributed)
         }
     }
 
-    init() {
-        super.init(frame: .zero, textContainer: nil)
-        self.initialize()
-    }
+    var messageText: String? {
+        get {
+            return super.text
+        }
+        set {
+            guard let text = newValue else { return }
 
-    required init?(coder aDecoder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
+            let attributed = AttributedString(text,
+                                              size: 20,
+                                              color: .darkGray)
+            self.set(attributed: attributed)
+        }
     }
 
     override func initialize() {
-
-        self.isEditable = true
-        self.isUserInteractionEnabled = true
-        self.keyboardAppearance = .dark
-        self.isSelectable = true
         self.set(backgroundColor: .clear)
+
+        let paddingView = View()
+        paddingView.frame = CGRect(x: 0, y: 0, width: 15, height: self.height)
+        paddingView.set(backgroundColor: .clear)
+
+        self.leftView = paddingView
+        self.leftViewMode = .always
+
+        self.keyboardAppearance = .dark
     }
 }

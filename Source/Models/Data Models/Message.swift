@@ -19,11 +19,11 @@ class Message: DisplayableCellItem, ResourceObject {
     }
 
     var id: String
-    var text: Localized
+    var text: String
     var backgroundColor: Color
 
     init(id: String,
-         text: Localized,
+         text: String,
          backgroundColor: Color) {
 
         self.id = id

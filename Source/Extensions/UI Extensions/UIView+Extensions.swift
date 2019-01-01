@@ -197,6 +197,16 @@ extension UIView {
         self.layer.cornerRadius = Theme.cornerRadius
     }
 
+    func round(corners: UIRectCorner, size: CGSize) {
+        let maskPath1 = UIBezierPath(roundedRect: self.bounds,
+                                     byRoundingCorners: corners,
+                                     cornerRadii: size)
+        let maskLayer1 = CAShapeLayer()
+        maskLayer1.frame = self.bounds
+        maskLayer1.path = maskPath1.cgPath
+        self.layer.mask = maskLayer1
+    }
+
     func scrollToVisible() {
         var superview = self.superview
         while superview != nil {

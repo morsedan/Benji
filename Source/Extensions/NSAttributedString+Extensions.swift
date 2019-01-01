@@ -50,5 +50,20 @@ extension NSAttributedString {
 
         return boundingBox.width.rounded(FloatingPointRoundingRule.up)
     }
+
+    func getSize(withWidth width: CGFloat) -> CGSize {
+
+        let attributes = self.attributes(at: 0,
+                                         longestEffectiveRange: nil,
+                                         in: NSRange(location: 0, length: self.length))
+        
+        let maxSize = CGSize(width: width, height: CGFloat.infinity)
+
+        let size: CGSize = self.string.boundingRect(with: maxSize,
+                                                    options: .usesLineFragmentOrigin,
+                                                    attributes: attributes,
+                                                    context: nil).size
+        return size
+    }
 }
 
