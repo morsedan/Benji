@@ -28,7 +28,7 @@ class MessageInputView: View, UITextViewDelegate {
         let string = NSAttributedString(string: "Message @Natalie", attributes: styleAttributes)
         self.textView.attributedPlaceholder = string
         self.textView.growingDelegate = self
-        self.textView.height = 34
+        self.textView.minHeight = 34
         self.lightEffectView.height = 34
     }
 
@@ -53,7 +53,7 @@ extension MessageInputView: GrowingTextViewDelegate {
 
         UIView.animate(withDuration: Theme.animationDuration) {
             self.lightEffectView.height = height
-            self.height = height + 36
+            self.height = height + 34
             self.y = self.y + (self.oldTextViewHeight - height)
             self.layoutNow()
             self.oldTextViewHeight = height
@@ -72,7 +72,9 @@ class GrowingTextView: TextView {
             self.setNeedsDisplay()
         }
     }
-    private var heightConstraint: NSLayoutConstraint?
+
+    var currentHeight: CGFloat = 0
+    //var heightConstraint: NSLayoutConstraint?
 
     // Maximum length of text. 0 means no limit.
     var maxLength: Int = 250
@@ -81,13 +83,13 @@ class GrowingTextView: TextView {
     var trimWhiteSpaceWhenEndEditing: Bool = true
 
     // Customization
-    var minHeight: CGFloat = 0 {
+    var minHeight: CGFloat = 34 {
         didSet {
             self.resetLayout()
         }
     }
 
-    var maxHeight: CGFloat = 0 {
+    var maxHeight: CGFloat = 200 {
         didSet {
             self.resetLayout()
         }
@@ -117,9 +119,6 @@ class GrowingTextView: TextView {
         self.keyboardType = .twitter
 
         self.tintColor = Color.blue.color
-        self.associateConstraints()
-        self.maxHeight = 200
-        self.minHeight = 34
 
         self.textContainerInset.left = 5
         self.textContainerInset.right = 5
@@ -127,18 +126,6 @@ class GrowingTextView: TextView {
 
     override var intrinsicContentSize: CGSize {
         return CGSize(width: UIView.noIntrinsicMetric, height: 34)
-    }
-
-    private func associateConstraints() {
-        // iterate through all text view's constraints and identify
-        // height,from: https://github.com/legranddamien/MBAutoGrowingTextView
-        for constraint in self.constraints {
-            if (constraint.firstAttribute == .height) {
-                if (constraint.relation == .equal) {
-                    self.heightConstraint = constraint;
-                }
-            }
-        }
     }
 
     private func resetLayout() {
@@ -162,16 +149,10 @@ class GrowingTextView: TextView {
         // Constrain maximum height
         height = self.maxHeight > 0 ? min(height, self.maxHeight) : height
 
-        // Add height constraint if it is not found
-        if self.heightConstraint == nil {
-            self.heightConstraint = NSLayoutConstraint(item: self, attribute: .height, relatedBy: .equal, toItem: nil, attribute: .notAnAttribute, multiplier: 1.0, constant: height)
-            addConstraint(self.heightConstraint!)
-        }
-
-        // Update height constraint if needed
-        if height != self.heightConstraint!.constant {
+        // Update height if needed
+        if height != self.currentHeight {
             self.shouldScrollAfterHeightChanged = true
-            self.heightConstraint!.constant = height
+            self.currentHeight = height
             self.growingDelegate?.textViewDidChangeHeight(self, height: height)
         } else if self.shouldScrollAfterHeightChanged {
             self.shouldScrollAfterHeightChanged = false

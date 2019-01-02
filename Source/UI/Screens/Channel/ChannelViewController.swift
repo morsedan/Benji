@@ -82,7 +82,7 @@ class ChannelViewController: FullScreenViewController {
 
         self.collectionView.frame = self.view.bounds
         
-        self.messageInputView.size = CGSize(width: self.view.width, height: 70)
+        self.messageInputView.size = CGSize(width: self.view.width, height: 76)
         self.messageInputView.bottom = self.view.height
         self.messageInputView.centerOnX()
     }
