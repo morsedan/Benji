@@ -49,24 +49,13 @@ class ChannelCollectionViewManager: CollectionViewManager<Message, ChannelCell> 
     }
 
     private func getSize(for item: Message, collectionView: UICollectionView) -> CGSize {
-        let textView = TextView()
         let attributedString = AttributedString(item.text,
                                                 font: .medium,
                                                 size: 18,
                                                 color: .white,
                                                 kern: 0)
 
-        let alignment: NSTextAlignment = item.backgroundColor == .darkGray ? .left : .right
-
-        textView.set(attributed: attributedString,
-                     alignment: alignment,
-                     lineCount: 0,
-                     lineBreakMode: .byWordWrapping,
-                     stringCasing: .unchanged,
-                     isEditable: false,
-                     linkColor: .white)
-
         let maxWidth = (collectionView.width - 20) * 0.8
-        return textView.getSize(withWidth: maxWidth)
+        return attributedString.string.getSize(withWidth: maxWidth)
     }
 }

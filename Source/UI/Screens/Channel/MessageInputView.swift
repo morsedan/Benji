@@ -35,8 +35,6 @@ class MessageInputView: View, UITextViewDelegate {
     override func layoutSubviews() {
         super.layoutSubviews()
 
-        self.addShadow(withOffset: -10)
-
         self.lightEffectView.width = self.width * 0.9
         self.lightEffectView.top = 10
         self.lightEffectView.centerOnX()
@@ -49,11 +47,9 @@ class MessageInputView: View, UITextViewDelegate {
 
 extension MessageInputView: GrowingTextViewDelegate {
     func textViewDidChangeHeight(_ textView: GrowingTextView, height: CGFloat) {
-        //Update the height
-
         UIView.animate(withDuration: Theme.animationDuration) {
             self.lightEffectView.height = height
-            self.height = height + 34
+            self.height = height + 42
             self.y = self.y + (self.oldTextViewHeight - height)
             self.layoutNow()
             self.oldTextViewHeight = height
@@ -74,7 +70,6 @@ class GrowingTextView: TextView {
     }
 
     var currentHeight: CGFloat = 0
-    //var heightConstraint: NSLayoutConstraint?
 
     // Maximum length of text. 0 means no limit.
     var maxLength: Int = 250
