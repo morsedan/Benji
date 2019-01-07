@@ -9,11 +9,15 @@
 import Foundation
 import ReactiveSwift
 
+enum CollectionViewLayoutState {
+    case bouncy
+    case overlaped
+}
+
 class ChannelViewController: FullScreenViewController {
 
     lazy var collectionView: ChannelCollectionView = {
-        let flowLayout = BouncyLayout(style: .subtle)
-        flowLayout.scrollDirection = .vertical
+        let flowLayout = BouncyCollectionViewLayout()
         let collectionView = ChannelCollectionView(flowLayout: flowLayout)
         return collectionView
     }()
@@ -105,7 +109,7 @@ class ChannelViewController: FullScreenViewController {
         self.showAnimator.addAnimations {
             self.messageInputView.bottom = self.view.height - keyboardHeight
             self.collectionView.collectionViewLayout.invalidateLayout()
-            self.collectionView.setCollectionViewLayout(CollectionViewOverlappingLayout(), animated: true, completion: { (completed) in
+            self.collectionView.setCollectionViewLayout(OverlapCollectionViewLayout(), animated: true, completion: { (completed) in
                 if completed {
 
                 }
@@ -121,7 +125,7 @@ class ChannelViewController: FullScreenViewController {
         self.dismissAnimator.addAnimations {
             self.messageInputView.bottom = self.view.height
             self.collectionView.collectionViewLayout.invalidateLayout()
-            self.collectionView.setCollectionViewLayout(BouncyLayout(), animated: true, completion: { (completed) in
+            self.collectionView.setCollectionViewLayout(BouncyCollectionViewLayout(), animated: true, completion: { (completed) in
                 if completed {
 
                 }
