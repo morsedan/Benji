@@ -7,13 +7,15 @@
 //
 
 import Foundation
+import ReactiveSwift
 
 class ChannelViewController: FullScreenViewController {
 
     lazy var collectionView: ChannelCollectionView = {
         let flowLayout = BouncyLayout(style: .subtle)
         flowLayout.scrollDirection = .vertical
-        return ChannelCollectionView(flowLayout: flowLayout)
+        let collectionView = ChannelCollectionView(flowLayout: flowLayout)
+        return collectionView
     }()
 
     lazy var manager: ChannelCollectionViewManager = {
@@ -75,6 +77,12 @@ class ChannelViewController: FullScreenViewController {
                                                selector: #selector(keyboardWillHide(notification:)),
                                                name: UIResponder.keyboardWillHideNotification,
                                                object: nil)
+
+        self.collectionView.onDoubleTap { [unowned self] (doubleTap) in
+            if self.messageInputView.textView.isFirstResponder {
+                self.messageInputView.textView.resignFirstResponder()
+            }
+        }
     }
 
     override func viewIsReadyForLayout() {
@@ -96,6 +104,12 @@ class ChannelViewController: FullScreenViewController {
 
         self.showAnimator.addAnimations {
             self.messageInputView.bottom = self.view.height - keyboardHeight
+            self.collectionView.collectionViewLayout.invalidateLayout()
+            self.collectionView.setCollectionViewLayout(CollectionViewOverlappingLayout(), animated: true, completion: { (completed) in
+                if completed {
+
+                }
+            })
         }
 
         self.showAnimator.stopAnimation(true)
@@ -106,6 +120,12 @@ class ChannelViewController: FullScreenViewController {
 
         self.dismissAnimator.addAnimations {
             self.messageInputView.bottom = self.view.height
+            self.collectionView.collectionViewLayout.invalidateLayout()
+            self.collectionView.setCollectionViewLayout(BouncyLayout(), animated: true, completion: { (completed) in
+                if completed {
+
+                }
+            })
         }
         self.dismissAnimator.stopAnimation(true)
         self.dismissAnimator.startAnimation()

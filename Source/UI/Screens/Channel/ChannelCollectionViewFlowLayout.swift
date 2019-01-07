@@ -7,9 +7,201 @@
 //
 
 import Foundation
+import ReactiveSwift
 
-class ChannelCollectionViewFlowLayout: UICollectionViewFlowLayout {
-    
+enum FlowLayoutState {
+    case vertical
+    case overlaped
+}
+
+class CollectionViewOverlappingLayout: UICollectionViewFlowLayout {
+
+    var overlap: CGFloat = 30
+
+    override init() {
+        super.init()
+        self.scrollDirection = .horizontal
+        self.minimumInteritemSpacing = 0
+    }
+
+    required init?(coder aDecoder: NSCoder) {
+        super.init(coder: aDecoder)
+        self.scrollDirection = .horizontal
+        self.minimumInteritemSpacing = 0
+    }
+
+    override var collectionViewContentSize: CGSize{
+        let xSize = CGFloat(self.collectionView!.numberOfItems(inSection: 0)) * self.itemSize.width
+        let ySize = CGFloat(self.collectionView!.numberOfSections) * self.itemSize.height
+
+        var contentSize = CGSize(width: xSize, height: ySize)
+
+        if self.collectionView!.bounds.size.width > contentSize.width {
+            contentSize.width = self.collectionView!.bounds.size.width
+        }
+
+        if self.collectionView!.bounds.size.height > contentSize.height {
+            contentSize.height = self.collectionView!.bounds.size.height
+        }
+
+        return contentSize
+    }
+
+    override func layoutAttributesForElements(in rect: CGRect) -> [UICollectionViewLayoutAttributes]? {
+
+        let attributesArray = super.layoutAttributesForElements(in: rect)
+        let numberOfItems = self.collectionView!.numberOfItems(inSection: 0)
+
+        for attributes in attributesArray! {
+            var xPosition = attributes.center.x
+            let yPosition = attributes.center.y
+
+            if attributes.indexPath.row == 0 {
+                attributes.zIndex = Int(INT_MAX) // Put the first cell on top of the stack
+            } else {
+                xPosition -= self.overlap * CGFloat(attributes.indexPath.row)
+                attributes.zIndex = numberOfItems - attributes.indexPath.row //Other cells below the first one
+            }
+
+            attributes.center = CGPoint(x: xPosition, y: yPosition)
+        }
+
+        return attributesArray
+    }
+
+    override func layoutAttributesForItem(at indexPath: IndexPath) -> UICollectionViewLayoutAttributes? {
+        return UICollectionViewLayoutAttributes(forCellWith: indexPath)
+    }
+}
+
+class OverlapCollectionViewLayout: UICollectionViewLayout {
+
+    var preferredSize = CGSize(width: 200, height: 200)
+
+    private let centerDiff: CGFloat = 40
+    private var numberOfItems = 0
+
+    private var updateItems = [UICollectionViewUpdateItem]()
+
+    override func prepare() {
+        super.prepare()
+        numberOfItems = collectionView?.numberOfItems(inSection: 0) ?? 0
+    }
+
+    override func prepare(forCollectionViewUpdates updateItems: [UICollectionViewUpdateItem]) {
+        super.prepare(forCollectionViewUpdates: updateItems)
+        self.updateItems = updateItems
+    }
+
+    override func shouldInvalidateLayout(forBoundsChange newBounds: CGRect) -> Bool {
+        return true
+    }
+
+    override var collectionViewContentSize: CGSize {
+        if let collectionView = collectionView {
+            let width = max(collectionView.bounds.width + 1, preferredSize.width + CGFloat((numberOfItems - 1)) * centerDiff)
+            let height = collectionView.bounds.height - 1
+
+            return CGSize(width: width, height: height)
+        }
+        return .zero
+    }
+
+    override func layoutAttributesForElements(in rect: CGRect) -> [UICollectionViewLayoutAttributes]? {
+        var allAttributes = [UICollectionViewLayoutAttributes]()
+        for index in 0 ..< numberOfItems {
+            let indexPath = NSIndexPath(item: index, section: 0)
+            allAttributes.append(layoutAttributesForItem(at: indexPath as IndexPath)!)
+        }
+        return allAttributes
+    }
+
+    override func layoutAttributesForItem(at indexPath: IndexPath) -> UICollectionViewLayoutAttributes? {
+        let attributes = UICollectionViewLayoutAttributes(forCellWith: indexPath as IndexPath)
+
+        attributes.size = preferredSize
+        let centerX = preferredSize.width / 2.0 + CGFloat(indexPath.item) * centerDiff
+        let centerY = collectionView!.bounds.height / 2.0
+        attributes.center = CGPoint(x: centerX, y: centerY)
+        attributes.zIndex = indexPath.item
+
+        return attributes
+    }
+
+    override func initialLayoutAttributesForAppearingItem(at itemIndexPath: IndexPath) -> UICollectionViewLayoutAttributes? {
+        let attributes = layoutAttributesForItem(at: itemIndexPath as IndexPath)
+
+        for updateItem in updateItems {
+            switch updateItem.updateAction {
+            case .insert:
+                if updateItem.indexPathAfterUpdate == itemIndexPath {
+                    let translation = collectionView!.bounds.height
+                    attributes?.transform = CGAffineTransform(translationX: 0, y: translation)
+                    break
+                }
+            default:
+                break
+            }
+        }
+
+        return attributes
+    }
+
+    override func finalLayoutAttributesForDisappearingItem(at itemIndexPath: IndexPath) -> UICollectionViewLayoutAttributes? {
+        for updateItem in updateItems {
+            switch updateItem.updateAction {
+            case .delete:
+                if updateItem.indexPathBeforeUpdate == itemIndexPath {
+                    let attributes = layoutAttributesForItem(at: itemIndexPath)
+                    let translation = collectionView!.bounds.height
+                    attributes?.transform = CGAffineTransform(translationX: 0, y: translation)
+                    return attributes
+                }
+            case .move:
+                if updateItem.indexPathBeforeUpdate == itemIndexPath {
+                    return layoutAttributesForItem(at: updateItem.indexPathAfterUpdate!)
+                }
+            default:
+                break
+            }
+        }
+        let finalIndex = finalIndexForIndexPath(indexPath: itemIndexPath as NSIndexPath)
+        let shiftedIndexPath = NSIndexPath(item: finalIndex, section: itemIndexPath.section)
+
+        return layoutAttributesForItem(at: shiftedIndexPath as IndexPath)
+    }
+
+
+    override func finalizeCollectionViewUpdates() {
+        super.finalizeCollectionViewUpdates()
+        updateItems.removeAll(keepingCapacity: true)
+    }
+
+    private func finalIndexForIndexPath(indexPath: NSIndexPath) -> Int {
+        var newIndex = indexPath.item
+        for updateItem in updateItems {
+            switch updateItem.updateAction {
+            case .insert:
+                if updateItem.indexPathAfterUpdate!.item <= newIndex {
+                    newIndex += 1
+                }
+            case .delete:
+                if updateItem.indexPathBeforeUpdate!.item < newIndex {
+                    newIndex -= 1
+                }
+            case .move:
+                if updateItem.indexPathBeforeUpdate!.item < newIndex {
+                    newIndex -= 1
+                }
+                if updateItem.indexPathAfterUpdate!.item <= newIndex {
+                    newIndex += 1
+                }
+            default:
+                break
+            }
+        }
+        return newIndex
+    }
 }
 
 class BouncyLayout: UICollectionViewFlowLayout {
@@ -51,6 +243,7 @@ class BouncyLayout: UICollectionViewFlowLayout {
 
         self.damping = damping
         self.frequency = frequency
+        self.invalidateLayout()
     }
 
     private lazy var animator: UIDynamicAnimator = UIDynamicAnimator(collectionViewLayout: self)
@@ -87,15 +280,15 @@ class BouncyLayout: UICollectionViewFlowLayout {
         }
     }
 
-    open override func layoutAttributesForElements(in rect: CGRect) -> [UICollectionViewLayoutAttributes]? {
+    override func layoutAttributesForElements(in rect: CGRect) -> [UICollectionViewLayoutAttributes]? {
         return self.animator.items(in: rect) as? [UICollectionViewLayoutAttributes]
     }
 
-    open override func layoutAttributesForItem(at indexPath: IndexPath) -> UICollectionViewLayoutAttributes? {
+    override func layoutAttributesForItem(at indexPath: IndexPath) -> UICollectionViewLayoutAttributes? {
         return self.animator.layoutAttributesForCell(at: indexPath) ?? super.layoutAttributesForItem(at: indexPath)
     }
 
-    open override func shouldInvalidateLayout(forBoundsChange newBounds: CGRect) -> Bool {
+    override func shouldInvalidateLayout(forBoundsChange newBounds: CGRect) -> Bool {
         guard let view = self.collectionView else { return false }
 
         self.animator.behaviors.forEach { behavior in
