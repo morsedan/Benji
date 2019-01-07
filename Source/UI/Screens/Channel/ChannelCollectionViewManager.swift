@@ -40,7 +40,6 @@ class ChannelCollectionViewManager: CollectionViewManager<Message, ChannelCell> 
     }
 
     override func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-
         guard let item = self.items.value[safe: indexPath.row] else { return .zero }
 
         let estimatedSize = self.getSize(for: item, collectionView: collectionView)

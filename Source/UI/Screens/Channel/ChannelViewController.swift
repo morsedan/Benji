@@ -108,8 +108,12 @@ class ChannelViewController: FullScreenViewController {
 
         self.showAnimator.addAnimations {
             self.messageInputView.bottom = self.view.height - keyboardHeight
+            self.collectionView.height = self.view.height - keyboardHeight
             self.collectionView.collectionViewLayout.invalidateLayout()
-            self.collectionView.setCollectionViewLayout(OverlapCollectionViewLayout(), animated: true, completion: { (completed) in
+            let cellHeight = self.view.height - self.messageInputView.height - keyboardHeight
+            let cellSize = CGSize(width: self.collectionView.width, height: cellHeight)
+            let layout = OverlapCollectionViewLayout(preferredSize: cellSize)
+            self.collectionView.setCollectionViewLayout(layout, animated: true, completion: { (completed) in
                 if completed {
 
                 }
@@ -124,6 +128,7 @@ class ChannelViewController: FullScreenViewController {
 
         self.dismissAnimator.addAnimations {
             self.messageInputView.bottom = self.view.height
+            self.collectionView.height = self.view.height
             self.collectionView.collectionViewLayout.invalidateLayout()
             self.collectionView.setCollectionViewLayout(BouncyCollectionViewLayout(), animated: true, completion: { (completed) in
                 if completed {
