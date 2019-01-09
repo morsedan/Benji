@@ -17,7 +17,8 @@ enum CollectionViewLayoutState {
 class ChannelViewController: FullScreenViewController {
 
     lazy var collectionView: ChannelCollectionView = {
-        let flowLayout = BouncyCollectionViewLayout()
+        let flowLayout = UICollectionViewFlowLayout()
+        flowLayout.scrollDirection = .vertical 
         let collectionView = ChannelCollectionView(flowLayout: flowLayout)
         return collectionView
     }()
@@ -99,6 +100,12 @@ class ChannelViewController: FullScreenViewController {
         self.messageInputView.centerOnX()
     }
 
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+
+        self.collectionView.scrollToBottom()
+    }
+
     @objc private func keyboardWillShow(notification: Notification) {
 
         let userInfo: NSDictionary = notification.userInfo! as NSDictionary
@@ -110,14 +117,12 @@ class ChannelViewController: FullScreenViewController {
             self.messageInputView.bottom = self.view.height - keyboardHeight
             self.collectionView.height = self.view.height - keyboardHeight
             self.collectionView.collectionViewLayout.invalidateLayout()
-            let cellHeight = self.view.height - self.messageInputView.height - keyboardHeight
-            let cellSize = CGSize(width: self.collectionView.width, height: cellHeight)
-            let layout = OverlapCollectionViewLayout(preferredSize: cellSize)
-            self.collectionView.setCollectionViewLayout(layout, animated: true, completion: { (completed) in
-                if completed {
+        }
 
-                }
-            })
+        self.showAnimator.addCompletion { (position) in
+            if position == .end {
+                self.collectionView.scrollToBottom()
+            }
         }
 
         self.showAnimator.stopAnimation(true)
@@ -129,13 +134,15 @@ class ChannelViewController: FullScreenViewController {
         self.dismissAnimator.addAnimations {
             self.messageInputView.bottom = self.view.height
             self.collectionView.height = self.view.height
-            self.collectionView.collectionViewLayout.invalidateLayout()
-            self.collectionView.setCollectionViewLayout(BouncyCollectionViewLayout(), animated: true, completion: { (completed) in
-                if completed {
-
-                }
-            })
         }
+
+
+        self.dismissAnimator.addCompletion { (position) in
+            if position == .end {
+                self.collectionView.scrollToBottom()
+            }
+        }
+
         self.dismissAnimator.stopAnimation(true)
         self.dismissAnimator.startAnimation()
     }
