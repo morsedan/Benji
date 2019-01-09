@@ -18,7 +18,8 @@ class ChannelViewController: FullScreenViewController {
 
     lazy var collectionView: ChannelCollectionView = {
         let flowLayout = UICollectionViewFlowLayout()
-        flowLayout.scrollDirection = .vertical 
+        flowLayout.scrollDirection = .vertical
+        flowLayout.sectionInset = UIEdgeInsets(top: 0, left: 0, bottom: 90, right: 0)
         let collectionView = ChannelCollectionView(flowLayout: flowLayout)
         return collectionView
     }()
