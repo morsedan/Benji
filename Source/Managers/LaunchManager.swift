@@ -32,6 +32,7 @@ class LaunchManager {
 
         TokenUtils.retrieveToken(url: urlString) { (token, identity, error) in
             if let token = token {
+                //Setup Access manager with token
                 // Set up Twilio Chat client
                 ChannelManager.shared.initialize(token: token, completion: { (client, error) in
                     //Do something now that its done.
@@ -39,10 +40,8 @@ class LaunchManager {
             } else {
                 print("Error retrieving token: \(error.debugDescription)")
             }
-
         }
     }
-
 
     func logout() {
         if let client = ChannelManager.shared.client  {
