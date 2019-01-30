@@ -31,6 +31,9 @@
 		D61EC0FC21D437C100204BEE /* Pods_Benji.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D61EC0FB21D437C100204BEE /* Pods_Benji.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
 		D635551B21E5B3D400530602 /* UIScrollView+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = D635551A21E5B3D400530602 /* UIScrollView+Extensions.swift */; };
 		D635551D21E5BA0800530602 /* ChannelFooterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D635551C21E5BA0800530602 /* ChannelFooterView.swift */; };
+		D6AF02FD220153F5002D5C75 /* LaunchManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6AF02FC220153F5002D5C75 /* LaunchManager.swift */; };
+		D6AF02FF220154CD002D5C75 /* ChatAccessManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6AF02FE220154CD002D5C75 /* ChatAccessManager.swift */; };
+		D6AF0301220154E3002D5C75 /* ChannelManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6AF0300220154E3002D5C75 /* ChannelManager.swift */; };
 		D6D145F421D5493000CD8CE4 /* CenterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6D145F321D5493000CD8CE4 /* CenterViewController.swift */; };
 		D6D145F921D54A0700CD8CE4 /* RightViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6D145F821D54A0700CD8CE4 /* RightViewController.swift */; };
 		D6D145FB21D54A2500CD8CE4 /* LeftViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6D145FA21D54A2500CD8CE4 /* LeftViewController.swift */; };
@@ -113,6 +116,9 @@
 		D61EC0FB21D437C100204BEE /* Pods_Benji.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = Pods_Benji.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		D635551A21E5B3D400530602 /* UIScrollView+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIScrollView+Extensions.swift"; sourceTree = "<group>"; };
 		D635551C21E5BA0800530602 /* ChannelFooterView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChannelFooterView.swift; sourceTree = "<group>"; };
+		D6AF02FC220153F5002D5C75 /* LaunchManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LaunchManager.swift; sourceTree = "<group>"; };
+		D6AF02FE220154CD002D5C75 /* ChatAccessManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatAccessManager.swift; sourceTree = "<group>"; };
+		D6AF0300220154E3002D5C75 /* ChannelManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChannelManager.swift; sourceTree = "<group>"; };
 		D6D145F321D5493000CD8CE4 /* CenterViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CenterViewController.swift; sourceTree = "<group>"; };
 		D6D145F821D54A0700CD8CE4 /* RightViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RightViewController.swift; sourceTree = "<group>"; };
 		D6D145FA21D54A2500CD8CE4 /* LeftViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LeftViewController.swift; sourceTree = "<group>"; };
@@ -467,6 +473,9 @@
 			isa = PBXGroup;
 			children = (
 				D6D1500B21D5E7C200CD8CE4 /* CollectionViewManager.swift */,
+				D6AF02FC220153F5002D5C75 /* LaunchManager.swift */,
+				D6AF02FE220154CD002D5C75 /* ChatAccessManager.swift */,
+				D6AF0300220154E3002D5C75 /* ChannelManager.swift */,
 			);
 			path = Managers;
 			sourceTree = "<group>";
@@ -643,6 +652,7 @@
 				D6D1501A21D5F5D100CD8CE4 /* CollectionView.swift in Sources */,
 				D61EC0E421D30E9100204BEE /* TextView.swift in Sources */,
 				D6D1502521D6007800CD8CE4 /* Message.swift in Sources */,
+				D6AF02FD220153F5002D5C75 /* LaunchManager.swift in Sources */,
 				D61EC0F721D316F100204BEE /* Color.swift in Sources */,
 				D6D1503121D6A2B900CD8CE4 /* UITableView+Extensions.swift in Sources */,
 				D6D1502921D6085200CD8CE4 /* ResourceObject.swift in Sources */,
@@ -661,12 +671,14 @@
 				D61EC0EC21D312B600204BEE /* UIView+Extensions.swift in Sources */,
 				D6D1504021DAFB8300CD8CE4 /* UITextField+Extensions.swift in Sources */,
 				D6D1503721D7E74500CD8CE4 /* UIViewController+Extensions.swift in Sources */,
+				D6AF0301220154E3002D5C75 /* ChannelManager.swift in Sources */,
 				D61EC0C021D3071400204BEE /* AppDelegate.swift in Sources */,
 				D6D145FD21D550E400CD8CE4 /* AttributedString.swift in Sources */,
 				D6D14D8F21D5893600CD8CE4 /* NSNumber+IGListDiffable.m in Sources */,
 				D6D1460521D5524C00CD8CE4 /* StringCasing.swift in Sources */,
 				D6D145FB21D54A2500CD8CE4 /* LeftViewController.swift in Sources */,
 				D6D1501221D5EA0400CD8CE4 /* ImageDisplayable.swift in Sources */,
+				D6AF02FF220154CD002D5C75 /* ChatAccessManager.swift in Sources */,
 				D6D1460921D5531D00CD8CE4 /* LocalString.swift in Sources */,
 				D6D1501E21D5FA0300CD8CE4 /* DisplayableCellItem.swift in Sources */,
 				D6D1500E21D5E89B00CD8CE4 /* CollectionViewManagerDelegate.swift in Sources */,
