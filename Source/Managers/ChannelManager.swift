@@ -27,7 +27,7 @@ typealias CompletionHandler = (_ success: Bool, _ error: Error?) -> Void
 class ChannelManager: NSObject {
 
     static let shared = ChannelManager()
-    private var client: TwilioChatClient?
+    var client: TwilioChatClient?
     weak var delegate: ChannelManagerDelegate?
 
     var isSynced: Bool {
@@ -39,18 +39,19 @@ class ChannelManager: NSObject {
         return false
     }
 
-    func initialize(token: String, myCompletion: @escaping ClientCompletion) {
+    func initialize(token: String, completion: @escaping ClientCompletion) {
         TwilioChatClient.chatClient(withToken: token, properties: nil, delegate: self, completion: { [weak self] (result, client) in
             guard let `self` = self else { return }
             if client != nil {
                 self.client = client
-                myCompletion(self.client, nil)
+                completion(self.client, nil)
             }
         })
     }
 
     func update(token: String, completion: @escaping CompletionHandler) {
-        self.client?.updateToken(token, completion: { (result) in
+        guard let client = self.client else { return }
+        client.updateToken(token, completion: { (result) in
             completion(true, nil)
         })
     }
