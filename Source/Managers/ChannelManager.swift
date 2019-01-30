@@ -108,27 +108,12 @@ class ChannelManager: NSObject {
     }
 
     func sendMessage(channel: TCHChannel, body: String, attributes: Dictionary<String, Any>) {
+        if let messages = channel.messages {
+            let messageOptions = TCHMessageOptions().withBody(body)
+            messages.sendMessage(with: messageOptions, completion: { (result, message) in
 
-//        if let messages = channel.messages {
-//
-//            let message = messages//createMessage(withBody: body)
-//            message?.setAttributes(attributes, completion: { (result) in
-//
-//                if let _ = result?.isSuccessful() {
-//                    messages.send(message) { result in
-//
-//                        if let _ = result?.isSuccessful() {
-//                            print("Message sent.")
-//                        } else {
-//                            print("Message NOT sent.")
-//                        }
-//                    }
-//                } else {
-//
-//                    print("Message Attributes could not be set")
-//                }
-//            })
-//        }
+            })
+        }
     }
 
     func getLatestMessages(channel: TCHChannel, count: Int) {
