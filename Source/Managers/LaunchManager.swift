@@ -7,24 +7,51 @@
 //
 
 import Foundation
+import Parse
 
 class LaunchManager {
 
     static let shared = LaunchManager()
 
     // Important - update this URL with your Twilio Function URL
-    let tokenURL = "https://violet-lionfish-6641.twil.io/chat-token"
+    private let tokenURL = "https://violet-lionfish-6641.twil.io/chat-token"
 
     // Important - this identity would be assigned by your app, for
     // instance after a user logs in
-    var identity = "Benji"
+    private let identity = "Benji"
+    private let url = "https://benji-ios.herokuapp.com/parse"
+    private let appID = "benjamindodgson.Benji"
+    private let clientKey = "myMasterKey"
+    private let tempPhone = "2068509234"//Used for demo
 
     func launchApp() {
+        Parse.enableLocalDatastore()
 
-        self.login()
+        Parse.initialize(with: ParseClientConfiguration(block: { (configuration: ParseMutableClientConfiguration) -> Void in
+            configuration.server = self.url
+            configuration.clientKey = self.clientKey
+            configuration.applicationId = self.appID
+        }))
+
+        if PFUser.current() != nil {
+            self.authenticateChatClient()
+        } else {
+
+            PFUser.logInWithUsername(inBackground: self.tempPhone, password: self.tempPhone, block: { (user, error) in
+                if user != nil {
+                    self.authenticateChatClient()
+                }
+
+                if error != nil {
+                    print(error.debugDescription)
+                }
+            })
+        }
+
+        self.authenticateChatClient()
     }
 
-    func login() {
+    func authenticateChatClient() {
         // Fetch Access Token from the server and initialize Chat Client - this assumes you are running
         // the PHP starter app on your local machine, as instructed in the quick start guide
         let deviceId = UIDevice.current.identifierForVendor!.uuidString
