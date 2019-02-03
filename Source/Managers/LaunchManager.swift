@@ -36,7 +36,6 @@ class LaunchManager {
         if PFUser.current() != nil {
             self.authenticateChatClient()
         } else {
-
             PFUser.logInWithUsername(inBackground: self.tempPhone, password: self.tempPhone, block: { (user, error) in
                 if user != nil {
                     self.authenticateChatClient()
