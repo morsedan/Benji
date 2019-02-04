@@ -14,15 +14,13 @@ class CollectionViewManager<ItemType: DisplayableCellItem & Diffable, CellType: 
     var collectionView: UICollectionView
     weak var delegate: AnyCollectionViewManagerDelegate<ItemType>?
 
-    let items = MutableProperty<[ItemType]>([])
+    var items = MutableProperty<[ItemType]>([])
     // A deep copied array representing the last state of the items.
     // Used to animate changes to the collection view
     private var previousItems: [ItemType]?
 
-    init(with collectionView: UICollectionView,
-         items: [ItemType]) {
+    init(with collectionView: UICollectionView) {
 
-        self.items.value = items
         collectionView.register(CellType.self, forCellWithReuseIdentifier: CellType.reuseID)
         self.collectionView = collectionView
 
