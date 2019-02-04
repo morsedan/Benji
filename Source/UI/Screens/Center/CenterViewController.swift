@@ -20,32 +20,21 @@ class CenterViewController: FullScreenViewController {
         return RightViewController()
     }()
 
-//    lazy var channelVC: ChannelViewController = {
-//        return ChannelViewController()
-//    }()
+    lazy var channelsVC: ChannelsViewController = {
+        return ChannelsViewController()
+    }()
 
     override func viewDidLoad() {
         super.viewDidLoad()
 
-//        ChannelManager.shared.createAndJoin(channelName: "TEST CHANNEL", type: .public) { (channel, error) in
-//
-//        }
-//
-//        self.addChild(viewController: self.channelVC, toView: self.view)
-       // self.channelVC.view.autoPinEdgesToSuperviewEdges()
+        self.addChild(viewController: self.channelsVC, toView: self.view)
+        self.channelsVC.view.autoPinEdgesToSuperviewEdges()
         self.setupSideMenu()
     }
 
     override func viewIsReadyForLayout() {
         super.viewIsReadyForLayout()
 
-    }
-
-    private func getChannels() {
-        ChannelManager.shared.getChannels { (optionalChannels, error) in
-            guard let channels = optionalChannels else { return }
-
-        }
     }
 
     private func setupSideMenu() {

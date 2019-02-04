@@ -59,7 +59,6 @@
 		D6D1500721D5E73D00CD8CE4 /* ChannelViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6D1500621D5E73D00CD8CE4 /* ChannelViewController.swift */; };
 		D6D1500921D5E77900CD8CE4 /* ChannelCollectionViewManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6D1500821D5E77900CD8CE4 /* ChannelCollectionViewManager.swift */; };
 		D6D1500C21D5E7C200CD8CE4 /* CollectionViewManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6D1500B21D5E7C200CD8CE4 /* CollectionViewManager.swift */; };
-		D6D1500E21D5E89B00CD8CE4 /* CollectionViewManagerDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6D1500D21D5E89B00CD8CE4 /* CollectionViewManagerDelegate.swift */; };
 		D6D1501021D5E9A800CD8CE4 /* TextDisplayable.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6D1500F21D5E9A800CD8CE4 /* TextDisplayable.swift */; };
 		D6D1501221D5EA0400CD8CE4 /* ImageDisplayable.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6D1501121D5EA0400CD8CE4 /* ImageDisplayable.swift */; };
 		D6D1501421D5EA2500CD8CE4 /* DisplyableItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6D1501321D5EA2500CD8CE4 /* DisplyableItem.swift */; };
@@ -167,7 +166,6 @@
 		D6D1500621D5E73D00CD8CE4 /* ChannelViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChannelViewController.swift; sourceTree = "<group>"; };
 		D6D1500821D5E77900CD8CE4 /* ChannelCollectionViewManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChannelCollectionViewManager.swift; sourceTree = "<group>"; };
 		D6D1500B21D5E7C200CD8CE4 /* CollectionViewManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollectionViewManager.swift; sourceTree = "<group>"; };
-		D6D1500D21D5E89B00CD8CE4 /* CollectionViewManagerDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollectionViewManagerDelegate.swift; sourceTree = "<group>"; };
 		D6D1500F21D5E9A800CD8CE4 /* TextDisplayable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextDisplayable.swift; sourceTree = "<group>"; };
 		D6D1501121D5EA0400CD8CE4 /* ImageDisplayable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageDisplayable.swift; sourceTree = "<group>"; };
 		D6D1501321D5EA2500CD8CE4 /* DisplyableItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DisplyableItem.swift; sourceTree = "<group>"; };
@@ -313,7 +311,6 @@
 			children = (
 				D61EC0DA21D30CB300204BEE /* Dismissable.swift */,
 				D6D1460021D5514300CD8CE4 /* Localized.swift */,
-				D6D1500D21D5E89B00CD8CE4 /* CollectionViewManagerDelegate.swift */,
 				D6D1500F21D5E9A800CD8CE4 /* TextDisplayable.swift */,
 				D6D1501121D5EA0400CD8CE4 /* ImageDisplayable.swift */,
 				D6D1501321D5EA2500CD8CE4 /* DisplyableItem.swift */,
@@ -708,7 +705,6 @@
 				D6D1460921D5531D00CD8CE4 /* LocalString.swift in Sources */,
 				D6D1501E21D5FA0300CD8CE4 /* DisplayableCellItem.swift in Sources */,
 				D6DADF722207DF83007D9EB1 /* ChannelsCollectionView.swift in Sources */,
-				D6D1500E21D5E89B00CD8CE4 /* CollectionViewManagerDelegate.swift in Sources */,
 				D6D1502B21D69C3300CD8CE4 /* NSObject+Extensions.swift in Sources */,
 				D6D1460321D551B100CD8CE4 /* StringLibrary.swift in Sources */,
 				D6D1501021D5E9A800CD8CE4 /* TextDisplayable.swift in Sources */,

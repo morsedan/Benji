@@ -7,11 +7,16 @@
 //
 
 import Foundation
+import TwilioChatClient
 
 class ChannelsViewController: FullScreenViewController {
 
     lazy var manager: ChannelsCollectionViewManager = {
-        return ChannelsCollectionViewManager(with: self.content.collectionView)
+        let manager = ChannelsCollectionViewManager(with: self.content.collectionView)
+        manager.didSelect = { [unowned self] channel, indexPath in
+            self.didSelect(channel: channel, at: indexPath)
+        }
+        return manager
     }()
 
     let content: ChannelsContentView = UINib.loadView()
@@ -24,5 +29,22 @@ class ChannelsViewController: FullScreenViewController {
 
         self.view.addSubview(self.content)
         self.content.autoPinEdgesToSuperviewEdges()
+
+        self.getChannels()
+    }
+
+    private func getChannels() {
+        ChannelManager.shared.getChannels { (optionalChannels, error) in
+            guard let channels = optionalChannels else { return }
+            self.manager.items.value = channels
+        }
+    }
+
+    private func didSelect(channel: TCHChannel, at indexPath: IndexPath) {
+        //Go to Channel controller
+    }
+
+    private func createChannel() {
+        
     }
 }

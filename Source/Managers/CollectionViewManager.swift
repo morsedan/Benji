@@ -12,12 +12,13 @@ import ReactiveSwift
 class CollectionViewManager<ItemType: DisplayableCellItem & Diffable, CellType: DisplayableCell & UICollectionViewCell>: NSObject, UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout {
 
     var collectionView: UICollectionView
-    weak var delegate: AnyCollectionViewManagerDelegate<ItemType>?
 
     var items = MutableProperty<[ItemType]>([])
     // A deep copied array representing the last state of the items.
     // Used to animate changes to the collection view
     private var previousItems: [ItemType]?
+
+    var didSelect: (_ item: ItemType, _ indexPath: IndexPath) -> Void = { _, _ in }
 
     init(with collectionView: UICollectionView) {
 
@@ -50,7 +51,7 @@ class CollectionViewManager<ItemType: DisplayableCellItem & Diffable, CellType: 
 
         cell.didSelect = { [weak self] indexPath in
             guard let `self` = self, let item = self.items.value[safe: indexPath.row] else { return }
-            self.delegate?.collectionViewManager(didSelect: item, at: indexPath)
+            self.didSelect(item, indexPath)
         }
 
         return cell

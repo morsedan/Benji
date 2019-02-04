@@ -33,7 +33,7 @@ class ChannelCollectionViewManager: CollectionViewManager<TCHMessage, MessageCel
 
         cell.didSelect = { [weak self] indexPath in
             guard let `self` = self, let item = self.items.value[safe: indexPath.row] else { return }
-            self.delegate?.collectionViewManager(didSelect: item, at: indexPath)
+            self.didSelect(item, indexPath)
         }
 
         return cell
