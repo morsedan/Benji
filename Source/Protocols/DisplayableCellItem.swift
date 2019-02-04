@@ -9,5 +9,5 @@
 import Foundation
 
 protocol DisplayableCellItem {
-    var backgroundColor: Color { get set }
+    var backgroundColor: Color { get }
 }

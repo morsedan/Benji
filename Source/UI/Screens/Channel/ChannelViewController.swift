@@ -8,6 +8,7 @@
 
 import Foundation
 import ReactiveSwift
+import TwilioChatClient
 
 enum CollectionViewLayoutState {
     case bouncy
@@ -30,7 +31,6 @@ class ChannelViewController: FullScreenViewController {
 
     let messageInputView = MessageInputView()
 
-    var items: [Message] = []
 
     let showAnimator = UIViewPropertyAnimator(duration: 0.1,
                                               curve: .linear,
@@ -39,8 +39,23 @@ class ChannelViewController: FullScreenViewController {
                                                  curve: .easeIn,
                                                  animations: nil)
 
+    private let channel: TCHChannel
+
+    init(channel: TCHChannel) {
+        self.channel = channel
+        super.init(nibName: nil, bundle: nil)
+    }
+
+    required init?(coder aDecoder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+
     override func viewDidLoad() {
         super.viewDidLoad()
+
+        if let messages = self.channel.messages {
+            self.manager.items.value = []
+        }
 
         self.collectionView.dataSource = self.manager
         self.collectionView.delegate = self.manager

@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import TwilioChatClient
 
 class ChannelCell: UICollectionViewCell, DisplayableCell {
     var didSelect: ((IndexPath) -> Void)?
@@ -18,13 +19,13 @@ class ChannelCell: UICollectionViewCell, DisplayableCell {
     let bubbleView = View()
 
     func cellIsReadyForLayout() {
-        guard let item = self.item as? Message else { return }
+        guard let item = self.item as? TCHMessage, let body = item.body else { return }
 
         self.contentView.addSubview(self.bubbleView)
         self.contentView.addSubview(self.textView)
         let textColor: Color  = .lightGray 
 
-        let attributedString = AttributedString(item.text,
+        let attributedString = AttributedString(body,
                                                 font: .medium,
                                                 size: 18,
                                                 color: textColor,

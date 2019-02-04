@@ -68,8 +68,6 @@
 		D6D1501A21D5F5D100CD8CE4 /* CollectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6D1501921D5F5D100CD8CE4 /* CollectionView.swift */; };
 		D6D1501C21D5F8AD00CD8CE4 /* ChannelCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6D1501B21D5F8AD00CD8CE4 /* ChannelCell.swift */; };
 		D6D1501E21D5FA0300CD8CE4 /* DisplayableCellItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6D1501D21D5FA0300CD8CE4 /* DisplayableCellItem.swift */; };
-		D6D1502521D6007800CD8CE4 /* Message.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6D1502421D6007800CD8CE4 /* Message.swift */; };
-		D6D1502721D6027D00CD8CE4 /* Channel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6D1502621D6027D00CD8CE4 /* Channel.swift */; };
 		D6D1502921D6085200CD8CE4 /* ResourceObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6D1502821D6085200CD8CE4 /* ResourceObject.swift */; };
 		D6D1502B21D69C3300CD8CE4 /* NSObject+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6D1502A21D69C3300CD8CE4 /* NSObject+Extensions.swift */; };
 		D6D1502D21D6A08300CD8CE4 /* ChannelCollectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6D1502C21D6A08300CD8CE4 /* ChannelCollectionView.swift */; };
@@ -82,6 +80,7 @@
 		D6D1503E21DAF98500CD8CE4 /* TextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6D1503D21DAF98500CD8CE4 /* TextField.swift */; };
 		D6D1504021DAFB8300CD8CE4 /* UITextField+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6D1503F21DAFB8300CD8CE4 /* UITextField+Extensions.swift */; };
 		D6D1504F21E304D800CD8CE4 /* BouncyCollectionViewLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6D1504E21E304D800CD8CE4 /* BouncyCollectionViewLayout.swift */; };
+		D6DADF692207D246007D9EB1 /* TCHMessage+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6DADF682207D246007D9EB1 /* TCHMessage+Extensions.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -170,8 +169,6 @@
 		D6D1501921D5F5D100CD8CE4 /* CollectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollectionView.swift; sourceTree = "<group>"; };
 		D6D1501B21D5F8AD00CD8CE4 /* ChannelCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChannelCell.swift; sourceTree = "<group>"; };
 		D6D1501D21D5FA0300CD8CE4 /* DisplayableCellItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DisplayableCellItem.swift; sourceTree = "<group>"; };
-		D6D1502421D6007800CD8CE4 /* Message.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Message.swift; sourceTree = "<group>"; };
-		D6D1502621D6027D00CD8CE4 /* Channel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Channel.swift; sourceTree = "<group>"; };
 		D6D1502821D6085200CD8CE4 /* ResourceObject.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResourceObject.swift; sourceTree = "<group>"; };
 		D6D1502A21D69C3300CD8CE4 /* NSObject+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NSObject+Extensions.swift"; sourceTree = "<group>"; };
 		D6D1502C21D6A08300CD8CE4 /* ChannelCollectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChannelCollectionView.swift; sourceTree = "<group>"; };
@@ -184,6 +181,7 @@
 		D6D1503D21DAF98500CD8CE4 /* TextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextField.swift; sourceTree = "<group>"; };
 		D6D1503F21DAFB8300CD8CE4 /* UITextField+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UITextField+Extensions.swift"; sourceTree = "<group>"; };
 		D6D1504E21E304D800CD8CE4 /* BouncyCollectionViewLayout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BouncyCollectionViewLayout.swift; sourceTree = "<group>"; };
+		D6DADF682207D246007D9EB1 /* TCHMessage+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "TCHMessage+Extensions.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -332,6 +330,7 @@
 				D6D1460621D552B100CD8CE4 /* Character+Extensions.swift */,
 				D6D1502A21D69C3300CD8CE4 /* NSObject+Extensions.swift */,
 				D6D1503421D7E62800CD8CE4 /* CGPoint+Extensions.swift */,
+				D6DADF682207D246007D9EB1 /* TCHMessage+Extensions.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -480,8 +479,6 @@
 		D6D1501F21D5FF1600CD8CE4 /* Data Models */ = {
 			isa = PBXGroup;
 			children = (
-				D6D1502421D6007800CD8CE4 /* Message.swift */,
-				D6D1502621D6027D00CD8CE4 /* Channel.swift */,
 			);
 			path = "Data Models";
 			sourceTree = "<group>";
@@ -648,8 +645,8 @@
 				D6D1503521D7E62800CD8CE4 /* CGPoint+Extensions.swift in Sources */,
 				D6D1501A21D5F5D100CD8CE4 /* CollectionView.swift in Sources */,
 				D61EC0E421D30E9100204BEE /* TextView.swift in Sources */,
-				D6D1502521D6007800CD8CE4 /* Message.swift in Sources */,
 				D6AF02FD220153F5002D5C75 /* LaunchManager.swift in Sources */,
+				D6DADF692207D246007D9EB1 /* TCHMessage+Extensions.swift in Sources */,
 				D61EC0F721D316F100204BEE /* Color.swift in Sources */,
 				D6D1503121D6A2B900CD8CE4 /* UITableView+Extensions.swift in Sources */,
 				D6D1502921D6085200CD8CE4 /* ResourceObject.swift in Sources */,
@@ -694,7 +691,6 @@
 				D61EC0F321D3146600204BEE /* UINib+Extensions.swift in Sources */,
 				D6D145F421D5493000CD8CE4 /* CenterViewController.swift in Sources */,
 				D6D1501421D5EA2500CD8CE4 /* DisplyableItem.swift in Sources */,
-				D6D1502721D6027D00CD8CE4 /* Channel.swift in Sources */,
 				D6D145F921D54A0700CD8CE4 /* RightViewController.swift in Sources */,
 				D6D1500921D5E77900CD8CE4 /* ChannelCollectionViewManager.swift in Sources */,
 				D6D14FF921D5893700CD8CE4 /* NSString+IGListDiffable.m in Sources */,

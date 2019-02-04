@@ -66,10 +66,8 @@ class ChannelManager: NSObject {
         completion(subscribedChannels, nil)
     }
 
-    func createAndJoin(withOptions options: Dictionary<String, Any>, completion: @escaping ChannelCompletion) {
-
-        self.createChannel(options: options) { [weak self] (createdChannel, error) in
-            guard let `self` = self else { return }
+    func createAndJoin(channelName: String, type: TCHChannelType, completion: @escaping ChannelCompletion) {
+        self.createChannel(channelName: channelName, type: type) { (createdChannel, error) in
             if let channel = createdChannel, let sid = channel.sid {
                 self.joinChannel(sid: sid, completion: { (joinedChannel, error) in
                     if let channel = joinedChannel {
@@ -80,8 +78,13 @@ class ChannelManager: NSObject {
         }
     }
 
-    func createChannel(options: Dictionary<String, Any>, completion: @escaping ChannelCompletion) {
+    func createChannel(channelName: String, type: TCHChannelType, completion: @escaping ChannelCompletion) {
         guard let client = self.client, let channels = client.channelsList() else { return }
+
+        let options = [
+            TCHChannelOptionFriendlyName: channelName,
+            TCHChannelOptionType: type.rawValue
+            ] as [String : Any]
 
         channels.createChannel(options: options, completion: { result, channel in
             completion(channel, result.error)
