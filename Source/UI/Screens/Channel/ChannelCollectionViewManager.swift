@@ -12,9 +12,9 @@ import TwilioChatClient
 class ChannelCollectionViewManager: CollectionViewManager<TCHMessage, MessageCell> {
 
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        var cell: ChannelCell = collectionView.dequeueReusableCell(
-            withReuseIdentifier: ChannelCell.reuseID,
-            for: indexPath) as! ChannelCell
+        var cell: MessageCell = collectionView.dequeueReusableCell(
+            withReuseIdentifier: MessageCell.reuseID,
+            for: indexPath) as! MessageCell
 
         if let message = self.items.value[safe: indexPath.row] {
             cell.configure(with: message, indexPath: indexPath)

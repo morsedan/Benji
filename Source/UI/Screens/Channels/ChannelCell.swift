@@ -9,5 +9,11 @@
 import Foundation
 
 class ChannelCell: UICollectionViewCell, DisplayableCell {
-    
+    var item: DisplayableCellItem?
+
+    var didSelect: ((IndexPath) -> Void)?
+
+    func cellIsReadyForLayout() {
+
+    }
 }
