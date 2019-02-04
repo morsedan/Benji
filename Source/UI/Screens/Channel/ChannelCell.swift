@@ -9,7 +9,7 @@
 import Foundation
 import TwilioChatClient
 
-class ChannelCell: UICollectionViewCell, DisplayableCell {
+class MessageCell: UICollectionViewCell, DisplayableCell {
     var didSelect: ((IndexPath) -> Void)?
     var item: DisplayableCellItem?
 

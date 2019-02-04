@@ -9,7 +9,7 @@
 import Foundation
 import TwilioChatClient
 
-class ChannelCollectionViewManager: CollectionViewManager<TCHMessage, ChannelCell> {
+class ChannelCollectionViewManager: CollectionViewManager<TCHMessage, MessageCell> {
 
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         var cell: ChannelCell = collectionView.dequeueReusableCell(
