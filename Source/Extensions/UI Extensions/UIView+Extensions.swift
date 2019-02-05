@@ -282,5 +282,29 @@ extension UIView {
     func set(backgroundColor: Color) {
         self.backgroundColor = backgroundColor.color
     }
+
+    func moveTo(_ x: CGFloat, _ y: CGFloat) {
+        self.frame = CGRect(x: x, y: y, width: self.width, height: self.height)
+    }
+
+    func moveTo(_ origin: CGPoint) {
+        self.moveTo(origin.x, origin.y)
+    }
+
+    func scaleDown() {
+        let propertyAnimator = UIViewPropertyAnimator(duration: 0.6,
+                                                      dampingRatio: 0.6) {
+                                                        self.transform = CGAffineTransform(scaleX: 0.9, y: 0.9)
+        }
+        propertyAnimator.startAnimation()
+    }
+
+    func scaleUp() {
+        let propertyAnimator = UIViewPropertyAnimator(duration: 0.6,
+                                                      dampingRatio: 0.6) {
+                                                        self.transform = CGAffineTransform.identity
+        }
+        propertyAnimator.startAnimation()
+    }
 }
 

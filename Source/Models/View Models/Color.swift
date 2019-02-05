@@ -45,4 +45,11 @@ enum Color: String, CaseIterable {
             return #colorLiteral(red: 0.1607843137, green: 0.4745098039, blue: 1, alpha: 0.95)
         }
     }
+
+    var highlightColor: Color {
+        switch self {
+        default:
+            return .clear
+        }
+    }
 }

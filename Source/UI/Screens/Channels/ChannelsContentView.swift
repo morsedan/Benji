@@ -15,6 +15,7 @@ class ChannelsContentView: View {
     }()
 
     @IBOutlet weak var collectionViewContainer: UIView!
+    @IBOutlet weak var button: Button!
 
     override func awakeFromNib() {
         super.awakeFromNib()
