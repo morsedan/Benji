@@ -40,13 +40,10 @@ class CollectionViewManager<ItemType: DisplayableCellItem & Diffable, CellType: 
     func collectionView(_ collectionView: UICollectionView,
                         cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
 
-        var cell: CellType = collectionView.dequeueReusableCell(
-            withReuseIdentifier: CellType.reuseID,
-            for: indexPath) as! CellType
+        var cell: CellType = collectionView.dequeueReusableCell(withReuseIdentifier: CellType.reuseID, for: indexPath) as! CellType
 
         if let item = self.items.value[safe: indexPath.row] {
-            cell.configure(with: item,
-                           indexPath: indexPath)
+            cell.configure(with: item, indexPath: indexPath)
         }
 
         cell.didSelect = { [weak self] indexPath in

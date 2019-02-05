@@ -41,10 +41,18 @@ class ChannelsViewController: FullScreenViewController {
     }
 
     private func didSelect(channel: TCHChannel, at indexPath: IndexPath) {
-        //Go to Channel controller
+        self.present(channel: channel)
     }
 
     private func createChannel() {
+        ChannelManager.shared.createAndJoin(channelName: "Some Channel", type: .public) { (newChannel, error) in
+            guard let channel = newChannel else { return }
+            self.present(channel: channel)
+        }
+    }
 
+    private func present(channel: TCHChannel) {
+        let channelVC = ChannelViewController(channel: channel)
+        self.present(channelVC, animated: true, completion: nil)
     }
 }

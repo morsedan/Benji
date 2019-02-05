@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import TwilioChatClient
 
 class ChannelCell: UICollectionViewCell, DisplayableCell {
     var item: DisplayableCellItem?
@@ -14,6 +15,8 @@ class ChannelCell: UICollectionViewCell, DisplayableCell {
     var didSelect: ((IndexPath) -> Void)?
 
     func cellIsReadyForLayout() {
+        guard let channel = self.item as? TCHChannel else { return }
 
+        
     }
 }
