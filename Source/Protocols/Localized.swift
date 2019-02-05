@@ -16,5 +16,8 @@ protocol Localized {
 }
 
 func localized(_ localized: Localized) -> String {
+    if let string = localized as? String {
+        return string
+    }
     return StringLibrary.shared.getLocalizedString(for: localized)
 }
