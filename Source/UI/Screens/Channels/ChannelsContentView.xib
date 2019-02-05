@@ -18,22 +18,16 @@
             <subviews>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="2CR-En-vCp">
                     <rect key="frame" x="0.0" y="20" width="375" height="647"/>
-                    <subviews>
-                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="6dJ-Pc-d6Q" customClass="Button" customModule="Benji" customModuleProvider="target">
-                            <rect key="frame" x="265" y="537" width="70" height="70"/>
-                            <constraints>
-                                <constraint firstAttribute="width" constant="70" id="7US-ET-EtA"/>
-                                <constraint firstAttribute="height" constant="70" id="EWQ-L6-uk9"/>
-                            </constraints>
-                            <state key="normal" title="Button"/>
-                        </button>
-                    </subviews>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                    <constraints>
-                        <constraint firstAttribute="bottom" secondItem="6dJ-Pc-d6Q" secondAttribute="bottom" constant="40" id="ULl-dz-wgj"/>
-                        <constraint firstAttribute="trailing" secondItem="6dJ-Pc-d6Q" secondAttribute="trailing" constant="40" id="mOQ-F6-BLP"/>
-                    </constraints>
                 </view>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="mRb-5s-r9Y" customClass="Button" customModule="Benji" customModuleProvider="target">
+                    <rect key="frame" x="265" y="557" width="70" height="70"/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="70" id="fZh-GW-bYI"/>
+                        <constraint firstAttribute="height" constant="70" id="pzL-kN-oOU"/>
+                    </constraints>
+                    <state key="normal" title="Button"/>
+                </button>
             </subviews>
             <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
             <constraints>
@@ -41,11 +35,13 @@
                 <constraint firstItem="2CR-En-vCp" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" id="42u-H7-NT7"/>
                 <constraint firstItem="vUN-kp-3ea" firstAttribute="bottom" secondItem="2CR-En-vCp" secondAttribute="bottom" id="Ygz-vb-6DN"/>
                 <constraint firstItem="2CR-En-vCp" firstAttribute="top" secondItem="vUN-kp-3ea" secondAttribute="top" id="bgr-T5-l8V"/>
+                <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="mRb-5s-r9Y" secondAttribute="trailing" constant="40" id="bpt-xY-fyR"/>
+                <constraint firstItem="vUN-kp-3ea" firstAttribute="bottom" secondItem="mRb-5s-r9Y" secondAttribute="bottom" constant="40" id="o8R-Uh-a6l"/>
             </constraints>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
             <viewLayoutGuide key="safeArea" id="vUN-kp-3ea"/>
             <connections>
-                <outlet property="button" destination="6dJ-Pc-d6Q" id="8tU-mb-gie"/>
+                <outlet property="button" destination="mRb-5s-r9Y" id="IXH-8n-aQL"/>
                 <outlet property="collectionViewContainer" destination="2CR-En-vCp" id="3YD-kT-Rm8"/>
             </connections>
         </view>
