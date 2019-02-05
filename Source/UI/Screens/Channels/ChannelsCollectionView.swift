@@ -8,12 +8,11 @@
 
 import Foundation
 
-class ChannelsCollectionView: CollectionView {
+class ChannelsCollectionView: PagingCollectionView {
 
     init() {
-        let flowLayout = UICollectionViewFlowLayout()
-        flowLayout.scrollDirection = .vertical
-        super.init(flowLayout: flowLayout)
+        let flowLayout = PagingCollectionViewFlowLayout(portraitRatio: 0.8, landscapeRatio: 0.6)
+        super.init(pagingLayout: flowLayout)
     }
     
     required init?(coder aDecoder: NSCoder) {

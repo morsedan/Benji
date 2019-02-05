@@ -20,6 +20,7 @@ class ChannelsContentView: View {
         super.awakeFromNib()
 
         self.set(backgroundColor: .clear)
+        self.collectionViewContainer.set(backgroundColor: .clear)
 
         self.collectionViewContainer.addSubview(self.collectionView)
         self.collectionView.autoPinEdgesToSuperviewEdges()

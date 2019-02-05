@@ -12,7 +12,7 @@ import TwilioChatClient
 extension TCHChannel: Diffable, DisplayableCellItem {
     
     var backgroundColor: Color {
-        return .gray
+        return .blue
     }
 
     func diffIdentifier() -> NSObjectProtocol {

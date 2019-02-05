@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		D60C814222092D5300A127A3 /* PagingCollectionViewFlowLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = D60C814122092D5300A127A3 /* PagingCollectionViewFlowLayout.swift */; };
+		D60C814422092E4700A127A3 /* PagingCollectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D60C814322092E4700A127A3 /* PagingCollectionView.swift */; };
 		D61EC0C021D3071400204BEE /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D61EC0BF21D3071400204BEE /* AppDelegate.swift */; };
 		D61EC0C221D3071400204BEE /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D61EC0C121D3071400204BEE /* ViewController.swift */; };
 		D61EC0C521D3071400204BEE /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D61EC0C321D3071400204BEE /* Main.storyboard */; };
@@ -93,6 +95,8 @@
 		8D57EE102F30EFF6827543EB /* Pods-Benji.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Benji.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Benji/Pods-Benji.debug.xcconfig"; sourceTree = "<group>"; };
 		B0D58BAEEF651AA0027FE108 /* Pods_Benji.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Benji.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		B8144E2A6499F243C0C3F7C9 /* Pods-Benji.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Benji.release.xcconfig"; path = "Pods/Target Support Files/Pods-Benji/Pods-Benji.release.xcconfig"; sourceTree = "<group>"; };
+		D60C814122092D5300A127A3 /* PagingCollectionViewFlowLayout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PagingCollectionViewFlowLayout.swift; sourceTree = "<group>"; };
+		D60C814322092E4700A127A3 /* PagingCollectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PagingCollectionView.swift; sourceTree = "<group>"; };
 		D61EC0BC21D3071400204BEE /* Benji.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Benji.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D61EC0BF21D3071400204BEE /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		D61EC0C121D3071400204BEE /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -284,6 +288,8 @@
 				D61EC0E521D30EB300204BEE /* View.swift */,
 				D6D1501921D5F5D100CD8CE4 /* CollectionView.swift */,
 				D6D1503D21DAF98500CD8CE4 /* TextField.swift */,
+				D60C814122092D5300A127A3 /* PagingCollectionViewFlowLayout.swift */,
+				D60C814322092E4700A127A3 /* PagingCollectionView.swift */,
 			);
 			path = "Base Classes";
 			sourceTree = "<group>";
@@ -657,6 +663,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D60C814422092E4700A127A3 /* PagingCollectionView.swift in Sources */,
 				D61EC0DB21D30CB300204BEE /* Dismissable.swift in Sources */,
 				D6D14FF821D5893700CD8CE4 /* IGListMoveIndexPath.m in Sources */,
 				D6D14D9121D5893600CD8CE4 /* IGListIndexSetResult.m in Sources */,
@@ -703,6 +710,7 @@
 				D6D145FB21D54A2500CD8CE4 /* LeftViewController.swift in Sources */,
 				D6D1501221D5EA0400CD8CE4 /* ImageDisplayable.swift in Sources */,
 				D6D1460921D5531D00CD8CE4 /* LocalString.swift in Sources */,
+				D60C814222092D5300A127A3 /* PagingCollectionViewFlowLayout.swift in Sources */,
 				D6D1501E21D5FA0300CD8CE4 /* DisplayableCellItem.swift in Sources */,
 				D6DADF722207DF83007D9EB1 /* ChannelsCollectionView.swift in Sources */,
 				D6D1502B21D69C3300CD8CE4 /* NSObject+Extensions.swift in Sources */,
