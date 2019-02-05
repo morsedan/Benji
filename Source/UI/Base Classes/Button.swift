@@ -18,6 +18,7 @@ class Button: UIButton {
 
     //Sets text font, color and background color
     func set(type: ButtonStyle,
+             shouldRound: Bool = true,
              casingType: StringCasing = StringCasing.unchanged) {
 
         switch type {
@@ -52,6 +53,11 @@ class Button: UIButton {
 
         case .icon(let image):
             self.setBackgroundImage(image, for: state)
+        }
+
+        if shouldRound {
+            self.layer.cornerRadius = self.halfHeight
+            self.layer.masksToBounds = true
         }
     }
 

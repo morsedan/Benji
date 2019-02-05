@@ -31,6 +31,10 @@ class ChannelsViewController: FullScreenViewController {
         self.content.autoPinEdgesToSuperviewEdges()
 
         self.getChannels()
+
+        self.content.button.onTap { [unowned self] (tap) in
+            self.createChannel()
+        }
     }
 
     private func getChannels() {

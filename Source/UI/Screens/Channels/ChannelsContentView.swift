@@ -25,5 +25,7 @@ class ChannelsContentView: View {
 
         self.collectionViewContainer.addSubview(self.collectionView)
         self.collectionView.autoPinEdgesToSuperviewEdges()
+
+        self.button.set(type: .normal(color: .blue, text: "ADD"))
     }
 }
