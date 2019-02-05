@@ -23,3 +23,13 @@ extension UIImage {
         return image!
     }
 }
+
+extension UIImage: ImageDisplayable {
+    var photoUrl: URL? {
+        return nil
+    }
+
+    var photo: UIImage? {
+        return self
+    }
+}

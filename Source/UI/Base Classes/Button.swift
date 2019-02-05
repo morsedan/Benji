@@ -11,7 +11,7 @@ import Foundation
 enum ButtonStyle {
     case rounded(color: Color, text: Localized)
     case normal(color: Color, text: Localized)
-    case image(displayable: ImageDisplayable)
+    case icon(image: UIImage)
 }
 
 class Button: UIButton {
@@ -50,8 +50,8 @@ class Button: UIButton {
                 self.setAttributedTitle(highlightedString, for: .highlighted)
             }
 
-        case .image(let displayable):
-            self.setBackgroundImage(UIImage.imageWithColor(color: color), for: state)
+        case .icon(let image):
+            self.setBackgroundImage(image, for: state)
         }
     }
 

@@ -12,13 +12,11 @@ protocol DisplayableDelegate {
     func didSet(displayable: ImageDisplayable)
 }
 
-class DisplayableImageView: UIView {
+class DisplayableImageView: View {
 
     var delegate: DisplayableDelegate?
-    var containerColor: TomorrowColor
 
     private let imageView = UIImageView()
-    private let highlightView = HighlightView()
 
     var displayable: ImageDisplayable {
         didSet {
@@ -28,36 +26,20 @@ class DisplayableImageView: UIView {
         }
     }
 
-    init(displayable: ImageDisplayable = UIImage(),
-         highlightOnTouch: Bool,
-         containerColor: TomorrowColor) {
-
-        self.containerColor = containerColor
+    init(displayable: ImageDisplayable = UIImage()) {
         self.displayable = displayable
-
-        super.init(frame: CGRect.zero)
-
-        self.initializeView(addHighlightView: highlightOnTouch)
+        super.init()
     }
 
     required init?(coder aDecoder: NSCoder) {
-        self.containerColor = .clear
         self.displayable = UIImage()
-
         super.init(coder: aDecoder)
-
-        self.initializeView(addHighlightView: true)
     }
 
-    private func initializeView(addHighlightView: Bool) {
+    override func initializeViews() {
         self.addSubview(self.imageView)
         self.imageView.contentMode = .scaleAspectFill
-        self.layer.borderWidth = TomorrowTheme.borderWidth
         self.updateImageView()
-
-        if addHighlightView {
-            self.addSubview(self.highlightView)
-        }
     }
 
     override func layoutSubviews() {
@@ -67,15 +49,6 @@ class DisplayableImageView: UIView {
         self.imageView.height = self.height - 1
         self.imageView.centerOnXAndY()
         self.imageView.makeRound()
-
-        self.updateBorder()
-
-        self.highlightView.makeRound(masksToBounds: false)
-    }
-
-    func updateBorder() {
-        self.makeRound(masksToBounds: true)
-        self.layer.borderColor = TomorrowColor.white.cgColor
     }
 
     private func updateImageView() {
@@ -83,8 +56,6 @@ class DisplayableImageView: UIView {
             self.imageView.image = photo
         } else if let photoUrl = self.displayable.photoUrl {
             self.downloadAndSetImage(url: photoUrl)
-        } else {
-            self.imageView.image = self.displayable.icon.getImage(forBackgroundColor: self.containerColor)
         }
     }
 
