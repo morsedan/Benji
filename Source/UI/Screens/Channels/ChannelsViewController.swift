@@ -45,6 +45,6 @@ class ChannelsViewController: FullScreenViewController {
     }
 
     private func createChannel() {
-        
+
     }
 }

@@ -14,10 +14,14 @@ class ChannelsContentView: View {
         return ChannelsCollectionView()
     }()
 
-    override func initializeViews() {
-        super.initializeViews()
+    @IBOutlet weak var collectionViewContainer: UIView!
 
-        self.addSubview(self.collectionView)
-        self.autoPinEdgesToSuperviewEdges()
+    override func awakeFromNib() {
+        super.awakeFromNib()
+
+        self.set(backgroundColor: .clear)
+
+        self.collectionViewContainer.addSubview(self.collectionView)
+        self.collectionView.autoPinEdgesToSuperviewEdges()
     }
 }
