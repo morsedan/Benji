@@ -60,10 +60,11 @@ class DisplayableImageView: View {
     }
 
     private func downloadAndSetImage(url: URL) {
-        self.imageView.sd_setImage(with: url,
-                                   completed: { [weak self] (image, error, imageCacheType, imageUrl) in
-                                    guard let `self` = self, image != nil else { return }
-                                    self.imageView.image = image
-        })
+        //Possible Parse integration
+//        self.imageView.sd_setImage(with: url,
+//                                   completed: { [weak self] (image, error, imageCacheType, imageUrl) in
+//                                    guard let `self` = self, image != nil else { return }
+//                                    self.imageView.image = image
+//        })
     }
 }
