@@ -10,8 +10,6 @@ import Foundation
 import TwilioChatClient
 
 class ChannelCell: UICollectionViewCell, DisplayableCell {
-    var item: DisplayableCellItem?
-    var didSelect: ((IndexPath) -> Void)?
     let label = Label()
 
     var localizedText: Localized? {

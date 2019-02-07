@@ -42,11 +42,10 @@ class CollectionViewManager<ItemType: DisplayableCellItem & Diffable, CellType: 
 
         var cell: CellType = collectionView.dequeueReusableCell(withReuseIdentifier: CellType.reuseID, for: indexPath) as! CellType
 
-        if let item = self.items.value[safe: indexPath.row] {
-            cell.configure(with: item, indexPath: indexPath)
-        }
+        let item = self.items.value[safe: indexPath.row]
+        cell.configure(with: item)
 
-        cell.didSelect = { [weak self] indexPath in
+        cell.contentView.onTap { [weak self] (tap) in
             guard let `self` = self, let item = self.items.value[safe: indexPath.row] else { return }
             self.didSelect(item, indexPath)
         }

@@ -10,9 +10,7 @@ import Foundation
 import TwilioChatClient
 
 class MessageCell: UICollectionViewCell, DisplayableCell {
-    var didSelect: ((IndexPath) -> Void)?
-    var item: DisplayableCellItem?
-
+    
     static let offset: CGFloat = 10
 
     let textView = TextView()
