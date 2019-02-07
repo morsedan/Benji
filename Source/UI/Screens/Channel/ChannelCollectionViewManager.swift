@@ -17,7 +17,7 @@ class ChannelCollectionViewManager: CollectionViewManager<TCHMessage, MessageCel
             for: indexPath) as! MessageCell
 
         if let message = self.items.value[safe: indexPath.row] {
-            cell.configure(with: message, indexPath: indexPath)
+            cell.configure(with: message)
 
             let estimatedSize = self.getSize(for: message, collectionView: collectionView)
 
@@ -31,7 +31,7 @@ class ChannelCollectionViewManager: CollectionViewManager<TCHMessage, MessageCel
             cell.bubbleView.frame = CGRect(x: bubbleXOffset, y: 0, width: estimatedSize.width + 20, height: estimatedSize.height + 10)
         }
 
-        cell.didSelect = { [weak self] indexPath in
+        cell.contentView.onTap { [weak self] (tap) in
             guard let `self` = self, let item = self.items.value[safe: indexPath.row] else { return }
             self.didSelect(item, indexPath)
         }
