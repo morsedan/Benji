@@ -9,7 +9,7 @@
 import Foundation
 import TwilioChatClient
 
-class ChannelCollectionViewManager: CollectionViewManager<TCHMessage, MessageCell> {
+class ChannelCollectionViewManager: CollectionViewManager<MessageCell> {
 
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         var cell: MessageCell = collectionView.dequeueReusableCell(
@@ -50,13 +50,21 @@ class ChannelCollectionViewManager: CollectionViewManager<TCHMessage, MessageCel
     private func getSize(for item: TCHMessage, collectionView: UICollectionView) -> CGSize {
         guard let body = item.body else { return .zero }
 
-        let attributedString = AttributedString(body,
-                                                font: .medium,
-                                                size: 18,
-                                                color: .white,
-                                                kern: 0)
+        let attributed = AttributedString(body,
+                                          font: .medium,
+                                          size: 18,
+                                          color: .white,
+                                          kern: 0)
+
+        let attributedString = attributed.string
+        for emojiRange in attributedString.string.getEmojiRanges() {
+            attributedString.removeAttributes(atRange: emojiRange)
+            if let emojiFont = UIFont(name: "AppleColorEmoji", size: attributed.style.size) {
+                attributedString.addAttributes([NSAttributedString.Key.font: emojiFont], range: emojiRange)
+            }
+        }
 
         let maxWidth = (collectionView.width - 20) * 0.8
-        return attributedString.string.getSize(withWidth: maxWidth)
+        return attributedString.getSize(withWidth: maxWidth)
     }
 }

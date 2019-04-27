@@ -13,6 +13,7 @@ extension UICollectionView {
     func reload<T: Diffable>(previousItems: [T],
                              newItems: [T],
                              equalityOption: IGListDiffOption,
+                             modify: @escaping () -> Swift.Void,
                              completion: ((Bool) -> Swift.Void)? = nil) {
         let previousBoxItems: [ListDiffable] = previousItems.map { (item) -> ListDiffable in
             return DiffableBox<T>(value: item, equal: ==)
@@ -24,12 +25,14 @@ extension UICollectionView {
         self.reload(previousItems: previousBoxItems,
                     newItems: newBoxItems,
                     equalityOption: equalityOption,
+                    modifyItems: modify,
                     completion: completion)
     }
 
     func reload(previousItems: [ListDiffable],
                 newItems: [ListDiffable],
                 equalityOption: IGListDiffOption,
+                modifyItems: (() -> Swift.Void)? = nil,
                 completion: ((Bool) -> Swift.Void)? = nil) {
 
 
@@ -38,10 +41,13 @@ extension UICollectionView {
                                                             oldArray: previousItems,
                                                             newArray: newItems,
                                                             option: equalityOption)
-        self.reloadItems(withDiffResult: diffResult, completion: completion)
+        self.reloadItems(withDiffResult: diffResult,
+                         modifyItems: modifyItems,
+                         completion: completion)
     }
 
     private func reloadItems(withDiffResult diffResult: ListIndexPathResult,
+                             modifyItems: (() -> Swift.Void)? = nil,
                              completion: ((Bool) -> Swift.Void)? = nil) {
 
         // Don't reload the collection view if no changes have been made to the items array
@@ -49,7 +55,17 @@ extension UICollectionView {
 
         let sanitizedResults: ListIndexPathResult = diffResult.forBatchUpdates()
 
+        if self.frame == .zero {
+            modifyItems?()
+            self.reloadData()
+            completion?(true)
+            return
+        }
+
         self.performBatchUpdates({
+
+            modifyItems?()
+
             self.deleteItems(at: sanitizedResults.deletes)
             self.insertItems(at: sanitizedResults.inserts)
             self.reloadItems(at: sanitizedResults.updates)

@@ -9,7 +9,7 @@
 import Foundation
 import TwilioChatClient
 
-class ChannelsCollectionViewManager: CollectionViewManager<TCHChannel, ChannelCell> {
+class ChannelsCollectionViewManager: CollectionViewManager<ChannelCell> {
 
     override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         collectionView.backgroundView?.isHidden = self.items.value.count > 0

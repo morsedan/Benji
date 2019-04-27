@@ -10,14 +10,14 @@ import Foundation
 import TwilioChatClient
 
 class MessageCell: UICollectionViewCell, DisplayableCell {
-    
+    typealias ItemType = TCHMessage
     static let offset: CGFloat = 10
 
     let textView = TextView()
     let bubbleView = View()
 
-    func cellIsReadyForLayout() {
-        guard let item = self.item as? TCHMessage, let body = item.body else { return }
+    func configure(with item: TCHMessage?) {
+        guard let message = item, let body = message.body else { return }
 
         self.contentView.addSubview(self.bubbleView)
         self.contentView.addSubview(self.textView)
@@ -41,7 +41,7 @@ class MessageCell: UICollectionViewCell, DisplayableCell {
         self.textView.isScrollEnabled = false
         self.textView.isSelectable = true
 
-        self.bubbleView.set(backgroundColor: item.backgroundColor)
+        self.bubbleView.set(backgroundColor: message.backgroundColor)
         self.bubbleView.roundCorners()
     }
 }

@@ -10,4 +10,14 @@ import Foundation
 
 class ChannelCollectionView: CollectionView {
 
+    init() {
+        let flowLayout = UICollectionViewFlowLayout()
+        flowLayout.scrollDirection = .vertical
+        flowLayout.sectionInset = UIEdgeInsets(top: 0, left: 0, bottom: 90, right: 0)
+        super.init(flowLayout: flowLayout)
+    }
+
+    required init?(coder aDecoder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
 }

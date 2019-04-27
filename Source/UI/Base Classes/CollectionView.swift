@@ -18,4 +18,11 @@ class CollectionView: UICollectionView {
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
+
+    func scrollToLastItem() {
+        let lastSection = self.numberOfSections - 1
+        let lastRow = self.numberOfItems(inSection: lastSection)
+        let indexPath = IndexPath(row: lastRow - 1, section: lastSection)
+        self.scrollToItem(at: indexPath, at: .top, animated: true)
+    }
 }

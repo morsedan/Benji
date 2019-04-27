@@ -12,7 +12,6 @@ target 'Benji' do
   pod 'ReactiveSwift'
 end
 
-
 post_install do |installer|
 
     # Twilio chat client includes a prebuilt framework that is too big to source control

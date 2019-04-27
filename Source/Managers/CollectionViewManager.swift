@@ -8,17 +8,21 @@
 
 import Foundation
 import ReactiveSwift
+import GestureRecognizerClosures
 
-class CollectionViewManager<ItemType: DisplayableCellItem & Diffable, CellType: DisplayableCell & UICollectionViewCell>: NSObject, UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout {
+class CollectionViewManager<CellType: DisplayableCell & UICollectionViewCell>: NSObject, UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout {
 
     var collectionView: UICollectionView
 
-    var items = MutableProperty<[ItemType]>([])
+    private var isReady = false
+
+    var items = MutableProperty<[CellType.ItemType]>([])
     // A deep copied array representing the last state of the items.
     // Used to animate changes to the collection view
-    private var previousItems: [ItemType]?
+    private var previousItems: [CellType.ItemType]?
 
-    var didSelect: (_ item: ItemType, _ indexPath: IndexPath) -> Void = { _, _ in }
+    var didSelect: (_ item: CellType.ItemType, _ indexPath: IndexPath) -> Void = { _, _ in }
+    var didLongPress: (_ item: CellType.ItemType, _ indexPath: IndexPath) -> Void = { _, _ in }
 
     init(with collectionView: UICollectionView) {
 
@@ -26,51 +30,117 @@ class CollectionViewManager<ItemType: DisplayableCellItem & Diffable, CellType: 
         self.collectionView = collectionView
 
         super.init()
+    }
 
-        self.items.producer.on { [unowned self] (items) in
-            self.updateCollectionView(items: items)
-        }.start()
+    func set(newItems: [CellType.ItemType]) {
+        self.updateCollectionView(items: newItems, modify: { [weak self] in
+            guard let `self` = self else { return }
+            self.items.value = newItems
+        })
+    }
+
+    func append(item: CellType.ItemType, in section: Int = 0) {
+
+        guard self.items.value.count > 0 else {
+            self.set(newItems: [item])
+            return
+        }
+
+        guard !self.items.value.contains(item) else { return }
+
+        let indexPath = IndexPath(item: self.items.value.count, section: section)
+        self.items.value.append(item)
+        self.collectionView.insertItems(at: [indexPath])
+    }
+
+    func update(item: CellType.ItemType, in section: Int = 0) {
+        var indexPath: IndexPath?
+        for (index, existingItem) in self.items.value.enumerated() {
+            if existingItem == item {
+                indexPath = IndexPath(item: index, section: section)
+                break
+            }
+        }
+
+        guard let ip = indexPath else { return }
+
+        self.items.value[ip.item] = item
+        self.collectionView.reloadItems(at: [ip])
+    }
+
+    func delete(item: CellType.ItemType, in section: Int = 0) {
+
+        var indexPath: IndexPath?
+        for (index, existingItem) in self.items.value.enumerated() {
+            if existingItem == item {
+                indexPath = IndexPath(item: index, section: section)
+                break
+            }
+        }
+
+        guard let ip = indexPath else { return }
+
+        self.items.value.remove(at: ip.item)
+        self.collectionView.deleteItems(at: [ip])
     }
 
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         collectionView.backgroundView?.isHidden = self.items.value.count > 0
+        self.isReady = true
         return self.items.value.count
     }
 
     func collectionView(_ collectionView: UICollectionView,
                         cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
 
-        var cell: CellType = collectionView.dequeueReusableCell(withReuseIdentifier: CellType.reuseID, for: indexPath) as! CellType
+        let cell: CellType = collectionView.dequeueReusableCell(withReuseIdentifier: CellType.reuseID,
+                                                                for: indexPath) as! CellType
 
         let item = self.items.value[safe: indexPath.row]
         cell.configure(with: item)
+        //Reset all gestures
+        cell.contentView.gestureRecognizers?.forEach({ (recognizer) in
+            cell.contentView.removeGestureRecognizer(recognizer)
+        })
 
         cell.contentView.onTap { [weak self] (tap) in
             guard let `self` = self, let item = self.items.value[safe: indexPath.row] else { return }
             self.didSelect(item, indexPath)
         }
 
+        cell.contentView.onLongPress { [weak self] (longPress) in
+            guard let `self` = self, let item = self.items.value[safe: indexPath.row] else { return }
+            self.didLongPress(item, indexPath)
+        }
+
+        return self.managerWillDisplay(cell: cell, for: indexPath)
+    }
+
+    func managerWillDisplay(cell: CellType, for indexPath: IndexPath) -> CellType {
         return cell
     }
 
-    private func updateCollectionView(items: [ItemType]) {
+    private func updateCollectionView(items: [CellType.ItemType], modify: @escaping () -> Void) {
 
-        if self.previousItems == nil {
-            self.previousItems = items
-        }
-
-        self.reloadCollectionView(previousItems: self.previousItems ?? [], newItems: items)
+        self.reloadCollectionView(previousItems: self.previousItems ?? [],
+                                  newItems: items,
+                                  modify: modify)
 
         self.previousItems = items
     }
 
-    private func reloadCollectionView(previousItems: [ItemType], newItems: [ItemType]) {
+    private func reloadCollectionView(previousItems: [CellType.ItemType],
+                                      newItems: [CellType.ItemType],
+                                      modify: @escaping () -> Void) {
+
         self.collectionView.reload(previousItems: previousItems,
                                    newItems: newItems,
-                                   equalityOption: IGListDiffOption.equality)
+                                   equalityOption: .equality,
+                                   modify: modify,
+                                   completion: nil)
     }
 
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        return .zero 
+        return .zero
     }
 }
