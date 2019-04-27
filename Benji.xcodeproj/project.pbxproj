@@ -575,6 +575,7 @@
 				TargetAttributes = {
 					D61EC0BB21D3071400204BEE = {
 						CreatedOnToolsVersion = 10.1;
+						LastSwiftMigration = 1020;
 					};
 				};
 			};
@@ -908,7 +909,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.Benji.Benji;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OBJC_BRIDGING_HEADER = "/Users/benjamindodgson 1/Desktop/Benji/Source/Bridging-Header.h";
-				SWIFT_VERSION = 4.2;
+				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Debug;
@@ -928,7 +929,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.Benji.Benji;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OBJC_BRIDGING_HEADER = "/Users/benjamindodgson 1/Desktop/Benji/Source/Bridging-Header.h";
-				SWIFT_VERSION = 4.2;
+				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Release;

@@ -38,13 +38,13 @@ extension Array where Element: Equatable {
 
     // Remove first collection element that is equal to the given object
     mutating func remove(object: Element) {
-        if let index = self.index(of: object) {
+        if let index = self.firstIndex(of: object) {
             self.remove(at: index)
         }
     }
 
     func find(_ object: Element) -> Element? {
-        if let index = self.index(of: object) {
+        if let index = self.firstIndex(of: object) {
             return self[index]
         } else {
             return nil
