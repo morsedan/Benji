@@ -233,6 +233,8 @@ extension ChannelManager: TwilioChatClientDelegate {
             print("STATUS CHANGED TO: COMPLETED")
         case .failed:
             print("STATUS CHANGED TO: FAILED")
+        @unknown default:
+            break 
         }
         self.delegate?.didChange(status: status)
     }

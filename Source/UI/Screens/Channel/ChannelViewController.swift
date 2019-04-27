@@ -53,10 +53,6 @@ class ChannelViewController: FullScreenViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        if let messages = self.channel.messages {
-            self.manager.items.value = []
-        }
-
         self.collectionView.dataSource = self.manager
         self.collectionView.delegate = self.manager
 

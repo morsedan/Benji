@@ -83,6 +83,8 @@ class BouncyCollectionViewLayout: UICollectionViewFlowLayout {
         switch scrollDirection {
         case .horizontal: item.center.x += delta.dx < 0 ? max(delta.dx, delta.dx * resistance.dx) : min(delta.dx, delta.dx * resistance.dx)
         case .vertical: item.center.y += delta.dy < 0 ? max(delta.dy, delta.dy * resistance.dy) : min(delta.dy, delta.dy * resistance.dy)
+        @unknown default:
+            break 
         }
 
         item.center.flooredInPlace()

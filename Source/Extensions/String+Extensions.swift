@@ -56,9 +56,9 @@ extension String {
 }
 
 extension Range where Bound == String.Index {
-    var nsRange: NSRange {
-        return NSRange(location: self.lowerBound.encodedOffset,
-                       length: self.upperBound.encodedOffset - self.lowerBound.encodedOffset)
+    func nsRange(_ string: String) -> NSRange {
+        return NSRange(location: self.lowerBound.utf16Offset(in: string),
+                       length: self.upperBound.utf16Offset(in: string) - self.lowerBound.utf16Offset(in: string))
     }
 }
 

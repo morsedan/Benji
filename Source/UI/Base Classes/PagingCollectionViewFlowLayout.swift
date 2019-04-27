@@ -81,6 +81,8 @@ class PagingCollectionViewFlowLayout: UICollectionViewFlowLayout {
             ratio = self.portraitRatio
         case .landscapeLeft, .landscapeRight, .faceDown:
             ratio = self.landscapeRatio
+        @unknown default:
+            ratio = self.portraitRatio
         }
 
         let spacing: CGFloat = collectionView.width * ratio

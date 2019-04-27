@@ -37,7 +37,7 @@ extension NSMutableAttributedString {
 
     func addAttribute(_ attributeKey: NSAttributedString.Key, toSubstring substring: String) {
         if let range = self.string.range(of: substring) {
-            self.addAttribute(attributeKey, value: substring, range: range.nsRange)
+            self.addAttribute(attributeKey, value: substring, range: range.nsRange(self.string))
         }
     }
 
@@ -91,12 +91,12 @@ extension NSMutableAttributedString {
                                             locale: nil) {
 
                 let finalRange = NSRange(location: match.range.location + 1,
-                                         length: labelRange.nsRange.length - 1)
+                                         length: labelRange.nsRange(self.string).length - 1)
 
                 let openBracketRange = NSRange(location: match.range.location, length: 1)
                 rangesToDelete.append(openBracketRange)
                 let closedBrackedRange = NSRange(location: match.range.location
-                    + (labelRange.nsRange.length - 1),
+                    + (labelRange.nsRange(self.string).length - 1),
                                                  length: 1)
                 rangesToDelete.append(closedBrackedRange)
 
@@ -112,7 +112,7 @@ extension NSMutableAttributedString {
                     link = link.replacingOccurrences(of: ")", with: "")
                     linkValue = link
 
-                    rangesToDelete.append(valueRange.nsRange)
+                    rangesToDelete.append(valueRange.nsRange(self.string))
                 }
 
                 if let link = linkValue {
