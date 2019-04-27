@@ -38,10 +38,10 @@ class ChannelsViewController: FullScreenViewController {
     }
 
     private func getChannels() {
-        ChannelManager.shared.getChannels { (optionalChannels, error) in
-            guard let channels = optionalChannels else { return }
-            self.manager.items.value = channels
-        }
+//        ChannelManager.shared.getChannels { (optionalChannels, error) in
+//            guard let channels = optionalChannels else { return }
+//            self.manager.items.value = channels
+//        }
     }
 
     private func didSelect(channel: TCHChannel, at indexPath: IndexPath) {
@@ -49,10 +49,10 @@ class ChannelsViewController: FullScreenViewController {
     }
 
     private func createChannel() {
-        ChannelManager.shared.createAndJoin(channelName: "Some Channel", type: .public) { (newChannel, error) in
-            guard let channel = newChannel else { return }
-            self.present(channel: channel)
-        }
+//        ChannelManager.shared.createAndJoin(channelName: "Some Channel", type: .public) { (newChannel, error) in
+//            guard let channel = newChannel else { return }
+//            self.present(channel: channel)
+//        }
     }
 
     private func present(channel: TCHChannel) {

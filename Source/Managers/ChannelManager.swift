@@ -8,27 +8,17 @@
 
 import Foundation
 import TwilioChatClient
-
-enum ChannelStatus {
-    case added
-    case changed
-    case deleted
-}
-
-protocol ChannelManagerDelegate: class {
-    func didChange(status: TCHClientSynchronizationStatus)
-    func didChange(status: ChannelStatus, forChannel channel: TCHChannel)
-}
-typealias ClientCompletion = (_ client: TwilioChatClient?, _ error: Error?) -> Void
-typealias ChannelsCompletion = (_ channel: [TCHChannel]?, _ error: Error?) -> Void
-typealias ChannelCompletion = (_ channel: TCHChannel?, _ error: Error?) -> Void
-typealias CompletionHandler = (_ success: Bool, _ error: Error?) -> Void
+import ReactiveSwift
 
 class ChannelManager: NSObject {
 
     static let shared = ChannelManager()
     var client: TwilioChatClient?
-    weak var delegate: ChannelManagerDelegate?
+
+    var clientUpdate = MutableProperty<ChatClientUpdate?>(nil)
+    var channelsUpdate = MutableProperty<ChannelUpdate?>(nil)
+    var messageUpdate = MutableProperty<MessageUpdate?>(nil)
+    var memberUpdate = MutableProperty<ChannelMemberUpdate?>(nil)
 
     var isSynced: Bool {
         guard let client = self.client else { return false }
@@ -42,9 +32,9 @@ class ChannelManager: NSObject {
     func initialize(token: String, completion: @escaping ClientCompletion) {
         TwilioChatClient.chatClient(withToken: token, properties: nil, delegate: self, completion: { [weak self] (result, client) in
             guard let `self` = self else { return }
-            if client != nil {
-                self.client = client
-                completion(self.client, nil)
+            if let strongClient = client {
+                self.client = strongClient
+                completion(strongClient, nil)
             }
         })
     }
@@ -66,29 +56,29 @@ class ChannelManager: NSObject {
         completion(subscribedChannels, nil)
     }
 
-    func createAndJoin(channelName: String, type: TCHChannelType, completion: @escaping ChannelCompletion) {
-        self.createChannel(channelName: channelName, type: type) { (createdChannel, error) in
-            if let channel = createdChannel, let sid = channel.sid {
-                self.joinChannel(sid: sid, completion: { (joinedChannel, error) in
-                    if let channel = joinedChannel {
-                        completion(channel, error)
-                    }
+    func createChannel(channelName: String,
+                       uniqueName: String,
+                       type: TCHChannelType,
+                       attribtutes: Dictionary<String, Any> = [:],
+                       completion: @escaping ChannelCreationCompletion) {
+        guard let client = self.client, let channels = client.channelsList() else { return }
+
+        self.hasChannel(with: uniqueName) { (channel) in
+            if let strongChannel = channel {
+                completion(strongChannel, nil)
+            } else {
+                let options = [
+                    TCHChannelOptionFriendlyName: channelName,
+                    TCHChannelOptionUniqueName: uniqueName,
+                    TCHChannelOptionType: type.rawValue,
+                    TCHChannelOptionAttributes: attribtutes,
+                    ] as [String : Any]
+
+                channels.createChannel(options: options, completion: { result, channel in
+                    completion(channel, result.error)
                 })
             }
         }
-    }
-
-    func createChannel(channelName: String, type: TCHChannelType, completion: @escaping ChannelCompletion) {
-        guard let client = self.client, let channels = client.channelsList() else { return }
-
-        let options = [
-            TCHChannelOptionFriendlyName: channelName,
-            TCHChannelOptionType: type.rawValue
-            ] as [String : Any]
-
-        channels.createChannel(options: options, completion: { result, channel in
-            completion(channel, result.error)
-        })
     }
 
     func delete(channel: TCHChannel, completion: @escaping CompletionHandler) {
@@ -97,15 +87,21 @@ class ChannelManager: NSObject {
         }
     }
 
-    func joinChannel(sid: String, completion: @escaping ChannelCompletion) {
+    func joinChannel(sid: String, completion: @escaping ClientCompletion) {
         guard let client = self.client, let channels = client.channelsList() else { return }
 
         channels.channel(withSidOrUniqueName: sid, completion: { (result, channel) in
+            guard let strongChannel = channel else {
+                completion(client, result.error)
+                return
+            }
 
-            if result.isSuccessful() {
-                channel?.join(completion: { (result) in
-                    completion(channel, result.error)
+            if result.isSuccessful(), strongChannel.status != .joined {
+                strongChannel.join(completion: { (result) in
+                    completion(client, result.error)
                 })
+            } else {
+                completion(client, result.error)
             }
         })
     }
@@ -138,109 +134,15 @@ class ChannelManager: NSObject {
     func update(channel: TCHChannel, withAttributes: Any) {
 
     }
-}
 
-//MARK: CLIENT DELEGATE
+    func hasChannel(with name: String, completion: @escaping (TCHChannel?) -> Void) {
+        guard let client = self.client, let channels = client.channelsList() else {
+            completion(nil)
+            return
+        }
 
-extension ChannelManager: TwilioChatClientDelegate {
-
-    func chatClientToastSubscribed(_ client: TwilioChatClient!) {
-
-    }
-
-    func chatClient(_ client: TwilioChatClient, errorReceived error: TCHError) {
-
-    }
-
-    func chatClient(_ client: TwilioChatClient, channelAdded channel: TCHChannel) {
-
-        if channel.status == TCHChannelStatus.notParticipating {
-            channel.join() { result in
-                if result.isSuccessful() {
-                    self.delegate?.didChange(status: .added, forChannel: channel)
-                }
-            }
-        } else {
-            self.delegate?.didChange(status: .added, forChannel: channel)
+        channels.channel(withSidOrUniqueName: name) { (result, channel) in
+            completion(channel)
         }
     }
-
-    func chatClient(_ client: TwilioChatClient!, channelChanged channel: TCHChannel!) {
-        self.delegate?.didChange(status: .changed, forChannel: channel)
-    }
-
-    func chatClient(_ client: TwilioChatClient, channelDeleted channel: TCHChannel) {
-        self.delegate?.didChange(status: .deleted, forChannel: channel)
-    }
-
-    func chatClient(_ client: TwilioChatClient!, toastRegistrationFailedWithError error: TCHError!) {
-
-    }
-
-    func chatClient(_ client: TwilioChatClient, user: TCHUser, updated: TCHUserUpdate) {
-
-    }
-
-    func chatClient(_ client: TwilioChatClient, channel: TCHChannel, memberLeft member: TCHMember) {
-
-    }
-
-    func chatClient(_ client: TwilioChatClient, channel: TCHChannel, memberJoined member: TCHMember) {
-
-    }
-
-    func chatClient(_ client: TwilioChatClient!, channel: TCHChannel!, memberChanged member: TCHMember!) {
-
-    }
-
-    func chatClient(_ client: TwilioChatClient, connectionStateUpdated state: TCHClientConnectionState) {
-
-    }
-
-    func chatClient(_ client: TwilioChatClient, typingEndedOn channel: TCHChannel, member: TCHMember) {
-
-    }
-
-    func chatClient(_ client: TwilioChatClient, channel: TCHChannel, messageAdded message: TCHMessage) {
-
-    }
-
-    func chatClient(_ client: TwilioChatClient, typingStartedOn channel: TCHChannel, member: TCHMember) {
-
-    }
-
-    func chatClient(_ client: TwilioChatClient!, channel: TCHChannel!, messageChanged message: TCHMessage!) {
-
-    }
-
-    func chatClient(_ client: TwilioChatClient, channel: TCHChannel, messageDeleted message: TCHMessage) {
-
-    }
-
-    func chatClient(_ client: TwilioChatClient!, toastReceivedOn channel: TCHChannel!, message: TCHMessage!) {
-
-    }
-
-    func chatClient(_ client: TwilioChatClient, synchronizationStatusUpdated status: TCHClientSynchronizationStatus) {
-
-        switch status {
-
-        case .started:
-            print("STATUS CHANGED TO: STARTED")
-        case .channelsListCompleted:
-            print("STATUS CHANGED TO: CHANNEL LIST COMPLETED")
-        case .completed:
-            print("STATUS CHANGED TO: COMPLETED")
-        case .failed:
-            print("STATUS CHANGED TO: FAILED")
-        @unknown default:
-            break 
-        }
-        self.delegate?.didChange(status: status)
-    }
-
-    func chatClient(_ client: TwilioChatClient, channel: TCHChannel, synchronizationStatusUpdated status: TCHChannelSynchronizationStatus) {
-
-    }
 }
-
