@@ -1,24 +1,20 @@
 PODS:
   - Bolts/Tasks (1.9.0)
-  - GestureRecognizerClosures (4.1.0)
+  - GestureRecognizerClosures (5.0.0)
   - Parse (1.17.2):
     - Parse/Core (= 1.17.2)
   - Parse/Core (1.17.2):
     - Bolts/Tasks (~> 1.9)
   - PureLayout (3.1.4)
-  - ReactiveSwift (4.0.0):
-    - Result (~> 4.0)
-  - Result (4.0.0)
-  - SideMenu (5.0.3)
+  - ReactiveSwift (6.0.0)
   - TwilioAccessManager (1.1.2)
-  - TwilioChatClient (2.4.2)
+  - TwilioChatClient (2.4.6)
 
 DEPENDENCIES:
   - GestureRecognizerClosures
   - Parse
   - PureLayout
   - ReactiveSwift
-  - SideMenu
   - TwilioAccessManager
   - TwilioChatClient
 
@@ -29,22 +25,18 @@ SPEC REPOS:
     - Parse
     - PureLayout
     - ReactiveSwift
-    - Result
-    - SideMenu
     - TwilioAccessManager
     - TwilioChatClient
 
 SPEC CHECKSUMS:
   Bolts: ac6567323eac61e203f6a9763667d0f711be34c8
-  GestureRecognizerClosures: e6d9bcec709119720729ac7badd60dc868f1037a
+  GestureRecognizerClosures: 0dcafb45e669e7a775c840383e54b3d16983037b
   Parse: 3b31a3dd1777b07ee7f0caee32fafbff544483a5
   PureLayout: f08c01b8dec00bb14a1fefa3de4c7d9c265df85e
-  ReactiveSwift: a2bb9ace428a109e9c0209615645d9d286c8c433
-  Result: 7645bb3f50c2ce726dd0ff2fa7b6f42bbe6c3713
-  SideMenu: 1dcaabce84538c53325c287f7fe62999379a641c
+  ReactiveSwift: 24b7ed245617bbfd30ee0c87779b6c64ac1b4518
   TwilioAccessManager: f3b0d9edd2eb5a044e50ff78057ab13611a0baa1
-  TwilioChatClient: a6a7117d79294471b4dde1efed23a580153025ae
+  TwilioChatClient: a942ada72abaaac1e25cec16826771441e1afb75
 
-PODFILE CHECKSUM: e7d159d5f972d3b97a4af0820c384fc29f90b1db
+PODFILE CHECKSUM: 57ebadc3a8032fb068f2d5935c35182b0fabad41
 
 COCOAPODS: 1.5.3
