@@ -9,7 +9,7 @@
 import Foundation
 import PureLayout
 
-class CenterViewController: FullScreenViewController {
+class HomeViewController: FullScreenViewController {
 
     lazy var channelsVC: ChannelsViewController = {
         return ChannelsViewController()

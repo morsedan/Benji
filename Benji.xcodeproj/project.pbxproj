@@ -39,7 +39,7 @@
 		D63826D22274C8C0001D4B8B /* ChannelManager+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = D63826D12274C8C0001D4B8B /* ChannelManager+Extensions.swift */; };
 		D6AF02FD220153F5002D5C75 /* LaunchManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6AF02FC220153F5002D5C75 /* LaunchManager.swift */; };
 		D6AF0301220154E3002D5C75 /* ChannelManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6AF0300220154E3002D5C75 /* ChannelManager.swift */; };
-		D6D145F421D5493000CD8CE4 /* CenterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6D145F321D5493000CD8CE4 /* CenterViewController.swift */; };
+		D6D145F421D5493000CD8CE4 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6D145F321D5493000CD8CE4 /* HomeViewController.swift */; };
 		D6D145FD21D550E400CD8CE4 /* AttributedString.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6D145FC21D550E400CD8CE4 /* AttributedString.swift */; };
 		D6D145FF21D5510400CD8CE4 /* StringStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6D145FE21D5510400CD8CE4 /* StringStyle.swift */; };
 		D6D1460121D5514300CD8CE4 /* Localized.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6D1460021D5514300CD8CE4 /* Localized.swift */; };
@@ -49,7 +49,7 @@
 		D6D1460921D5531D00CD8CE4 /* LocalString.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6D1460821D5531D00CD8CE4 /* LocalString.swift */; };
 		D6D1460B21D5547000CD8CE4 /* Font.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6D1460A21D5547000CD8CE4 /* Font.swift */; };
 		D6D1460D21D5693100CD8CE4 /* NSMutableAttributedString+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6D1460C21D5693100CD8CE4 /* NSMutableAttributedString+Extensions.swift */; };
-		D6D1461121D583D200CD8CE4 /* CenterNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6D1461021D583D200CD8CE4 /* CenterNavigationController.swift */; };
+		D6D1461121D583D200CD8CE4 /* HomeNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6D1461021D583D200CD8CE4 /* HomeNavigationController.swift */; };
 		D6D1461321D583E500CD8CE4 /* NavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6D1461221D583E500CD8CE4 /* NavigationController.swift */; };
 		D6D14D8F21D5893600CD8CE4 /* NSNumber+IGListDiffable.m in Sources */ = {isa = PBXBuildFile; fileRef = D6D14AFF21D5892F00CD8CE4 /* NSNumber+IGListDiffable.m */; };
 		D6D14D9021D5893600CD8CE4 /* IGListMoveIndex.m in Sources */ = {isa = PBXBuildFile; fileRef = D6D14B0221D5892F00CD8CE4 /* IGListMoveIndex.m */; };
@@ -131,7 +131,7 @@
 		D63826D12274C8C0001D4B8B /* ChannelManager+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ChannelManager+Extensions.swift"; sourceTree = "<group>"; };
 		D6AF02FC220153F5002D5C75 /* LaunchManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LaunchManager.swift; sourceTree = "<group>"; };
 		D6AF0300220154E3002D5C75 /* ChannelManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChannelManager.swift; sourceTree = "<group>"; };
-		D6D145F321D5493000CD8CE4 /* CenterViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CenterViewController.swift; sourceTree = "<group>"; };
+		D6D145F321D5493000CD8CE4 /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
 		D6D145FC21D550E400CD8CE4 /* AttributedString.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AttributedString.swift; sourceTree = "<group>"; };
 		D6D145FE21D5510400CD8CE4 /* StringStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StringStyle.swift; sourceTree = "<group>"; };
 		D6D1460021D5514300CD8CE4 /* Localized.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Localized.swift; sourceTree = "<group>"; };
@@ -141,7 +141,7 @@
 		D6D1460821D5531D00CD8CE4 /* LocalString.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocalString.swift; sourceTree = "<group>"; };
 		D6D1460A21D5547000CD8CE4 /* Font.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Font.swift; sourceTree = "<group>"; };
 		D6D1460C21D5693100CD8CE4 /* NSMutableAttributedString+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NSMutableAttributedString+Extensions.swift"; sourceTree = "<group>"; };
-		D6D1461021D583D200CD8CE4 /* CenterNavigationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CenterNavigationController.swift; sourceTree = "<group>"; };
+		D6D1461021D583D200CD8CE4 /* HomeNavigationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeNavigationController.swift; sourceTree = "<group>"; };
 		D6D1461221D583E500CD8CE4 /* NavigationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavigationController.swift; sourceTree = "<group>"; };
 		D6D14AFF21D5892F00CD8CE4 /* NSNumber+IGListDiffable.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSNumber+IGListDiffable.m"; sourceTree = "<group>"; };
 		D6D14B0021D5892F00CD8CE4 /* NSString+IGListDiffable.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+IGListDiffable.h"; sourceTree = "<group>"; };
@@ -400,8 +400,8 @@
 			isa = PBXGroup;
 			children = (
 				D61EC0C321D3071400204BEE /* Main.storyboard */,
-				D6D145F321D5493000CD8CE4 /* CenterViewController.swift */,
-				D6D1461021D583D200CD8CE4 /* CenterNavigationController.swift */,
+				D6D145F321D5493000CD8CE4 /* HomeViewController.swift */,
+				D6D1461021D583D200CD8CE4 /* HomeNavigationController.swift */,
 			);
 			path = Center;
 			sourceTree = "<group>";
@@ -682,7 +682,7 @@
 				D635551B21E5B3D400530602 /* UIScrollView+Extensions.swift in Sources */,
 				D61EC0C221D3071400204BEE /* ViewController.swift in Sources */,
 				D6D14D9021D5893600CD8CE4 /* IGListMoveIndex.m in Sources */,
-				D6D1461121D583D200CD8CE4 /* CenterNavigationController.swift in Sources */,
+				D6D1461121D583D200CD8CE4 /* HomeNavigationController.swift in Sources */,
 				D61EC0EC21D312B600204BEE /* UIView+Extensions.swift in Sources */,
 				D6D1504021DAFB8300CD8CE4 /* UITextField+Extensions.swift in Sources */,
 				D60C814622092F6B00A127A3 /* Button.swift in Sources */,
@@ -714,7 +714,7 @@
 				D6D1500C21D5E7C200CD8CE4 /* CollectionViewManager.swift in Sources */,
 				D6D14FFA21D5893700CD8CE4 /* IGListDiff.mm in Sources */,
 				D61EC0F321D3146600204BEE /* UINib+Extensions.swift in Sources */,
-				D6D145F421D5493000CD8CE4 /* CenterViewController.swift in Sources */,
+				D6D145F421D5493000CD8CE4 /* HomeViewController.swift in Sources */,
 				D6D1501421D5EA2500CD8CE4 /* DisplyableItem.swift in Sources */,
 				D6D1500921D5E77900CD8CE4 /* ChannelCollectionViewManager.swift in Sources */,
 				D6D14FF921D5893700CD8CE4 /* NSString+IGListDiffable.m in Sources */,

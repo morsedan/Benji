@@ -8,7 +8,7 @@
 
 import Foundation
 
-class CenterNavigationController: NavigationController {
+class HomeNavigationController: NavigationController {
 
     
 }
