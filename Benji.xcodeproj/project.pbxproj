@@ -384,7 +384,7 @@
 			children = (
 				D6DADF6A2207DC90007D9EB1 /* Channels */,
 				D6D1500521D5E71E00CD8CE4 /* Channel */,
-				D6D145F521D549A300CD8CE4 /* Center */,
+				D6D145F521D549A300CD8CE4 /* Home */,
 			);
 			path = Screens;
 			sourceTree = "<group>";
@@ -396,14 +396,14 @@
 			path = Modals;
 			sourceTree = "<group>";
 		};
-		D6D145F521D549A300CD8CE4 /* Center */ = {
+		D6D145F521D549A300CD8CE4 /* Home */ = {
 			isa = PBXGroup;
 			children = (
 				D61EC0C321D3071400204BEE /* Home.storyboard */,
 				D6D145F321D5493000CD8CE4 /* HomeViewController.swift */,
 				D6D1461021D583D200CD8CE4 /* HomeNavigationController.swift */,
 			);
-			path = Center;
+			path = Home;
 			sourceTree = "<group>";
 		};
 		D6D14AF821D5890E00CD8CE4 /* State Management */ = {
