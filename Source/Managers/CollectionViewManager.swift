@@ -24,7 +24,7 @@ class CollectionViewManager<CellType: DisplayableCell & UICollectionViewCell>: N
     var didSelect: (_ item: CellType.ItemType, _ indexPath: IndexPath) -> Void = { _, _ in }
     var didLongPress: (_ item: CellType.ItemType, _ indexPath: IndexPath) -> Void = { _, _ in }
 
-    init(with collectionView: UICollectionView) {
+    required init(with collectionView: UICollectionView) {
 
         collectionView.register(CellType.self, forCellWithReuseIdentifier: CellType.reuseID)
         self.collectionView = collectionView

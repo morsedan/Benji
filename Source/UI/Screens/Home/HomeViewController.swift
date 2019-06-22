@@ -21,11 +21,6 @@ class HomeViewController: FullScreenViewController {
         self.addChild(viewController: self.channelsVC, toView: self.view)
         self.channelsVC.view.autoPinEdgesToSuperviewEdges()
     }
-
-    override func viewIsReadyForLayout() {
-        super.viewIsReadyForLayout()
-
-    }
 }
 
 

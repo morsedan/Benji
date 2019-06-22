@@ -12,16 +12,6 @@ class ViewController: UIViewController, Dismissable {
 
     var didDismiss: (() -> Void)?
 
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-
-        once(caller: self, token: String(describing: self)) {
-            self.viewIsReadyForLayout()
-        }
-    }
-
-    func viewIsReadyForLayout() {}
-
     override func viewDidDisappear(_ animated: Bool) {
         super.viewDidDisappear(animated)
 

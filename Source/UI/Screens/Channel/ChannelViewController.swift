@@ -72,16 +72,6 @@ class ChannelViewController: FullScreenViewController {
         }
     }
 
-    override func viewIsReadyForLayout() {
-        super.viewIsReadyForLayout()
-
-        self.collectionView.frame = self.view.bounds
-        
-        self.messageInputView.size = CGSize(width: self.view.width, height: 76)
-        self.messageInputView.bottom = self.view.height
-        self.messageInputView.centerOnX()
-    }
-
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
 
@@ -127,5 +117,15 @@ class ChannelViewController: FullScreenViewController {
 
         self.dismissAnimator.stopAnimation(true)
         self.dismissAnimator.startAnimation()
+    }
+
+    override func viewDidLayoutSubviews() {
+        super.viewDidLayoutSubviews()
+
+        self.collectionView.frame = self.view.bounds
+
+        self.messageInputView.size = CGSize(width: self.view.width, height: 76)
+        self.messageInputView.bottom = self.view.height
+        self.messageInputView.centerOnX()
     }
 }
