@@ -8,6 +8,6 @@
 
 import Foundation
 
-class HomeStackViewController: ViewController {
-    
+class FeedViewController: CollectionViewController<FeedCell, FeedCollectionViewManager> {
+
 }

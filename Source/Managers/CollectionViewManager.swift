@@ -11,7 +11,7 @@ import ReactiveSwift
 import GestureRecognizerClosures
 
 class CollectionViewManager<CellType: DisplayableCell & UICollectionViewCell>: NSObject, UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout {
-
+    
     var collectionView: UICollectionView
 
     private var isReady = false

@@ -8,15 +8,10 @@
 
 import Foundation
 
-protocol CollectionDisplayable {
-    associatedtype ManagerType: CollectionViewManager<CellType>
-    associatedtype CellType: UICollectionViewCell & DisplayableCell
-}
+class CollectionViewController<CellType: DisplayableCell & UICollectionViewCell, ManagerType: CollectionViewManager<CellType>>: ViewController {
 
-class CollectionViewController<CollectionType: CollectionDisplayable>: ViewController {
-
-    lazy var manager: CollectionType.ManagerType = {
-        let manager = CollectionType.ManagerType.init(with: self.collectionView)
+    lazy var manager: ManagerType = {
+        let manager = ManagerType.init(with: self.collectionView)
         manager.didSelect = { [unowned self] item, indexPath in
             self.didSelect(item: item, at: indexPath)
         }
@@ -45,5 +40,5 @@ class CollectionViewController<CollectionType: CollectionDisplayable>: ViewContr
         self.collectionView.delegate = self.manager
     }
 
-    func didSelect(item: CollectionType.CellType.ItemType, at indexPath: IndexPath) {}
+    func didSelect(item: CellType.ItemType, at indexPath: IndexPath) {}
 }
