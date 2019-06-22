@@ -11,14 +11,6 @@ import PureLayout
 
 class CenterViewController: FullScreenViewController {
 
-    lazy var leftVC: LeftViewController = {
-        return LeftViewController()
-    }()
-
-    lazy var rightVC: RightViewController = {
-        return RightViewController()
-    }()
-
     lazy var channelsVC: ChannelsViewController = {
         return ChannelsViewController()
     }()

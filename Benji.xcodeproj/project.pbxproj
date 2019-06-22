@@ -40,8 +40,6 @@
 		D6AF02FD220153F5002D5C75 /* LaunchManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6AF02FC220153F5002D5C75 /* LaunchManager.swift */; };
 		D6AF0301220154E3002D5C75 /* ChannelManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6AF0300220154E3002D5C75 /* ChannelManager.swift */; };
 		D6D145F421D5493000CD8CE4 /* CenterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6D145F321D5493000CD8CE4 /* CenterViewController.swift */; };
-		D6D145F921D54A0700CD8CE4 /* RightViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6D145F821D54A0700CD8CE4 /* RightViewController.swift */; };
-		D6D145FB21D54A2500CD8CE4 /* LeftViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6D145FA21D54A2500CD8CE4 /* LeftViewController.swift */; };
 		D6D145FD21D550E400CD8CE4 /* AttributedString.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6D145FC21D550E400CD8CE4 /* AttributedString.swift */; };
 		D6D145FF21D5510400CD8CE4 /* StringStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6D145FE21D5510400CD8CE4 /* StringStyle.swift */; };
 		D6D1460121D5514300CD8CE4 /* Localized.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6D1460021D5514300CD8CE4 /* Localized.swift */; };
@@ -134,8 +132,6 @@
 		D6AF02FC220153F5002D5C75 /* LaunchManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LaunchManager.swift; sourceTree = "<group>"; };
 		D6AF0300220154E3002D5C75 /* ChannelManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChannelManager.swift; sourceTree = "<group>"; };
 		D6D145F321D5493000CD8CE4 /* CenterViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CenterViewController.swift; sourceTree = "<group>"; };
-		D6D145F821D54A0700CD8CE4 /* RightViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RightViewController.swift; sourceTree = "<group>"; };
-		D6D145FA21D54A2500CD8CE4 /* LeftViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LeftViewController.swift; sourceTree = "<group>"; };
 		D6D145FC21D550E400CD8CE4 /* AttributedString.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AttributedString.swift; sourceTree = "<group>"; };
 		D6D145FE21D5510400CD8CE4 /* StringStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StringStyle.swift; sourceTree = "<group>"; };
 		D6D1460021D5514300CD8CE4 /* Localized.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Localized.swift; sourceTree = "<group>"; };
@@ -388,8 +384,6 @@
 			children = (
 				D6DADF6A2207DC90007D9EB1 /* Channels */,
 				D6D1500521D5E71E00CD8CE4 /* Channel */,
-				D6D145F721D549B600CD8CE4 /* Right */,
-				D6D145F621D549AC00CD8CE4 /* Left */,
 				D6D145F521D549A300CD8CE4 /* Center */,
 			);
 			path = Screens;
@@ -410,22 +404,6 @@
 				D6D1461021D583D200CD8CE4 /* CenterNavigationController.swift */,
 			);
 			path = Center;
-			sourceTree = "<group>";
-		};
-		D6D145F621D549AC00CD8CE4 /* Left */ = {
-			isa = PBXGroup;
-			children = (
-				D6D145FA21D54A2500CD8CE4 /* LeftViewController.swift */,
-			);
-			path = Left;
-			sourceTree = "<group>";
-		};
-		D6D145F721D549B600CD8CE4 /* Right */ = {
-			isa = PBXGroup;
-			children = (
-				D6D145F821D54A0700CD8CE4 /* RightViewController.swift */,
-			);
-			path = Right;
 			sourceTree = "<group>";
 		};
 		D6D14AF821D5890E00CD8CE4 /* State Management */ = {
@@ -716,7 +694,6 @@
 				D6D14D8F21D5893600CD8CE4 /* NSNumber+IGListDiffable.m in Sources */,
 				D60C814A2209360400A127A3 /* DisplayableImageView.swift in Sources */,
 				D6D1460521D5524C00CD8CE4 /* StringCasing.swift in Sources */,
-				D6D145FB21D54A2500CD8CE4 /* LeftViewController.swift in Sources */,
 				D6D1501221D5EA0400CD8CE4 /* ImageDisplayable.swift in Sources */,
 				D6D1460921D5531D00CD8CE4 /* LocalString.swift in Sources */,
 				D60C814222092D5300A127A3 /* PagingCollectionViewFlowLayout.swift in Sources */,
@@ -739,7 +716,6 @@
 				D61EC0F321D3146600204BEE /* UINib+Extensions.swift in Sources */,
 				D6D145F421D5493000CD8CE4 /* CenterViewController.swift in Sources */,
 				D6D1501421D5EA2500CD8CE4 /* DisplyableItem.swift in Sources */,
-				D6D145F921D54A0700CD8CE4 /* RightViewController.swift in Sources */,
 				D6D1500921D5E77900CD8CE4 /* ChannelCollectionViewManager.swift in Sources */,
 				D6D14FF921D5893700CD8CE4 /* NSString+IGListDiffable.m in Sources */,
 				D63826D22274C8C0001D4B8B /* ChannelManager+Extensions.swift in Sources */,
