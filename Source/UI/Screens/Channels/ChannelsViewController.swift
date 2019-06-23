@@ -9,34 +9,24 @@
 import Foundation
 import TwilioChatClient
 
-class ChannelsViewController: FullScreenViewController {
+class ChannelsViewController: CollectionViewController<ChannelCell, ChannelsCollectionViewManager> {
 
-    lazy var manager: ChannelsCollectionViewManager = {
-        let manager = ChannelsCollectionViewManager(with: self.content.collectionView)
-        manager.didSelect = { [unowned self] channel, indexPath in
-            self.didSelect(channel: channel, at: indexPath)
-        }
-        return manager
-    }()
 
-    let content: ChannelsContentView = UINib.loadView()
+    init() {
+        let collectionView = ChannelsCollectionView()
+        super.init(with: collectionView)
+        self.view.set(backgroundColor: .green)
+    }
+
+    required init?(coder aDecoder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
 
     override func viewDidLoad() {
         super.viewDidLoad()
 
         self.view.set(backgroundColor: .red)
-
-        self.content.collectionView.dataSource = self.manager
-        self.content.collectionView.delegate = self.manager
-
-        self.view.addSubview(self.content)
-        self.content.autoPinEdgesToSuperviewEdges()
-
         self.getChannels()
-
-        self.content.button.onTap { [unowned self] (tap) in
-            self.createChannel()
-        }
     }
 
     private func getChannels() {

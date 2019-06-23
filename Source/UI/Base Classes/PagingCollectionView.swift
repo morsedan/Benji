@@ -8,7 +8,7 @@
 
 import Foundation
 
-class PagingCollectionView: UICollectionView {
+class PagingCollectionView: CollectionView {
 
     // Proportion of view width that is deemed a page margin. Taps in the margin area can
     // be used to automatically scroll to the next/previous page. The value should be between 0 and 0.5
@@ -18,7 +18,7 @@ class PagingCollectionView: UICollectionView {
 
         pagingLayout.scrollDirection = .horizontal
 
-        super.init(frame: .zero, collectionViewLayout: pagingLayout)
+        super.init(flowLayout: pagingLayout)
 
         self.isPagingEnabled = false
         self.decelerationRate = .fast

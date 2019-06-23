@@ -104,7 +104,6 @@
 		D6DADF722207DF83007D9EB1 /* ChannelsCollectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6DADF712207DF83007D9EB1 /* ChannelsCollectionView.swift */; };
 		D6DADF742207E0E2007D9EB1 /* TCHChannel+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6DADF732207E0E2007D9EB1 /* TCHChannel+Extensions.swift */; };
 		D6DADF76220801CF007D9EB1 /* ChannelsContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6DADF75220801CF007D9EB1 /* ChannelsContentView.swift */; };
-		D6DADF78220801F4007D9EB1 /* ChannelsContentView.xib in Resources */ = {isa = PBXBuildFile; fileRef = D6DADF77220801F4007D9EB1 /* ChannelsContentView.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -229,7 +228,6 @@
 		D6DADF712207DF83007D9EB1 /* ChannelsCollectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChannelsCollectionView.swift; sourceTree = "<group>"; };
 		D6DADF732207E0E2007D9EB1 /* TCHChannel+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "TCHChannel+Extensions.swift"; sourceTree = "<group>"; };
 		D6DADF75220801CF007D9EB1 /* ChannelsContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChannelsContentView.swift; sourceTree = "<group>"; };
-		D6DADF77220801F4007D9EB1 /* ChannelsContentView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ChannelsContentView.xib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -575,7 +573,6 @@
 				D6DADF6F2207DF60007D9EB1 /* ChannelCell.swift */,
 				D6DADF712207DF83007D9EB1 /* ChannelsCollectionView.swift */,
 				D6DADF75220801CF007D9EB1 /* ChannelsContentView.swift */,
-				D6DADF77220801F4007D9EB1 /* ChannelsContentView.xib */,
 			);
 			path = Channels;
 			sourceTree = "<group>";
@@ -643,7 +640,6 @@
 			files = (
 				D61EC0CA21D3071500204BEE /* LaunchScreen.storyboard in Resources */,
 				D61EC0C721D3071500204BEE /* Assets.xcassets in Resources */,
-				D6DADF78220801F4007D9EB1 /* ChannelsContentView.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
