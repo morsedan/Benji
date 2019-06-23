@@ -10,9 +10,9 @@ import Foundation
 import TwilioChatClient
 
 class FeedCell: UICollectionViewCell, DisplayableCell {
-    typealias ItemType = TCHMessage
+    typealias ItemType = FeedType
 
-    func configure(with item: TCHMessage?) {
+    func configure(with item: FeedType?) {
         guard let _ = item else { return }
     }
 }
