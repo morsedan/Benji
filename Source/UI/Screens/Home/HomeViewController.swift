@@ -14,6 +14,8 @@ class HomeViewController: FullScreenViewController {
     lazy var channelsVC = ChannelsViewController()
     lazy var feedVC = FeedViewController()
 
+    let segmentControl = UISegmentedControl(frame: .zero)
+
     override func viewDidLoad() {
         super.viewDidLoad()
 

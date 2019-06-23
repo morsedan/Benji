@@ -16,9 +16,12 @@ class ViewController: UIViewController, Dismissable {
         super.viewDidDisappear(animated)
 
         if self.isBeingClosed {
+            self.viewWasDismissed()
             self.didDismiss?()
         }
     }
+
+    func viewWasDismissed() { }
 
     override var preferredStatusBarStyle: UIStatusBarStyle {
         return .lightContent
