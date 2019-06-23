@@ -8,27 +8,18 @@
 
 import Foundation
 
-class FullScreenViewController: ViewController {
-
-    override func viewDidLoad() {
-        super.viewDidLoad()
-
-        self.view.set(backgroundColor: .darkGray)
-    }
-}
-
 // Base class for all full screen view controllers pushed onto a UINavigationController stack.
 // Contains a custom navigation bar that replaces the standard navigation bar. View content is
 // placed in the space below the nav bar.
-class NavigationPageViewController: ViewController {
+class FullScreenViewController: ViewController {
 
     // A custom nav bar that replaces the standard UINavController bar
-    let tomorrowNavigationBar = NavigationBar()
+    let navigationBar = NavigationBar()
 
     // A view to insert content. Takes up the space below the custom nav bar
     let contentContainer = View()
 
-    var isTomorrowNavBarHidden: Bool = false {
+    var isNavBarHidden: Bool = false {
         didSet {
             self.view.setNeedsLayout()
         }
@@ -39,7 +30,7 @@ class NavigationPageViewController: ViewController {
     override var title: String? {
         willSet {
             if let text = newValue {
-                self.tomorrowNavigationBar.setTitle(text)
+                self.navigationBar.setTitle(text)
             }
         }
     }
@@ -47,7 +38,7 @@ class NavigationPageViewController: ViewController {
     var localizedTitle: Localized? {
         willSet {
             if let localized = newValue {
-                self.tomorrowNavigationBar.setTitle(localized)
+                self.navigationBar.setTitle(localized)
             }
         }
     }
@@ -67,23 +58,23 @@ class NavigationPageViewController: ViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        self.view.set(backgroundColor: .blue)
-        self.view.addSubview(self.tomorrowNavigationBar)
+        self.view.set(backgroundColor: .darkGray)
+        self.view.addSubview(self.navigationBar)
         self.view.addSubview(self.contentContainer)
     }
 
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
 
-        self.tomorrowNavigationBar.top = self.view.safeAreaInsets.top
-        self.tomorrowNavigationBar.width = self.view.width
-        self.tomorrowNavigationBar.height = self.isTomorrowNavBarHidden ? 0 : 44
-        self.tomorrowNavigationBar.isHidden = self.isTomorrowNavBarHidden
-        self.tomorrowNavigationBar.centerOnX()
+        self.navigationBar.top = self.view.safeAreaInsets.top
+        self.navigationBar.width = self.view.width
+        self.navigationBar.height = self.isNavBarHidden ? 0 : 44
+        self.navigationBar.isHidden = self.isNavBarHidden
+        self.navigationBar.centerOnX()
 
-        self.contentContainer.top = self.tomorrowNavigationBar.bottom
+        self.contentContainer.top = self.navigationBar.bottom
         self.contentContainer.width = self.view.width
-        self.contentContainer.height = self.view.height - self.tomorrowNavigationBar.bottom
+        self.contentContainer.height = self.view.height - self.navigationBar.bottom
         self.contentContainer.centerOnX()
     }
 
@@ -116,13 +107,13 @@ class NavigationPageViewController: ViewController {
     private func updateNavigationBar() {}
 
     func setLeftNavBar(_ item: UIView) {
-        self.tomorrowNavigationBar.setLeft(item) { [unowned self] in
+        self.navigationBar.setLeft(item) { [unowned self] in
             self.didTapLeftItem()
         }
     }
 
     func setRightNavBar(_ item: UIView) {
-        self.tomorrowNavigationBar.setRight(item) { [unowned self] in
+        self.navigationBar.setRight(item) { [unowned self] in
             self.didTapRightItem()
         }
     }

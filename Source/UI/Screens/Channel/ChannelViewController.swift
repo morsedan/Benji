@@ -39,11 +39,15 @@ class ChannelViewController: FullScreenViewController {
 
     init(channel: TCHChannel) {
         self.channel = channel
-        super.init(nibName: nil, bundle: nil)
+        super.init()
     }
 
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
+    }
+
+    required init?(withObject object: DeepLinkable) {
+        fatalError("init(withObject:) has not been implemented")
     }
 
     override func viewDidLoad() {
