@@ -12,19 +12,16 @@ import UIKit
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
+    var mainCoordinator: MainCoordinator?
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
-        // Override point for customization after application launch.
+
         LaunchManager.shared.launchApp()
         let rootNavController = RootNavigationController()
         self.initializeKeyWindow(with: rootNavController)
-        return true
-    }
+        self.initializeMainCoordinator(with: rootNavController, withOptions: launchOptions)
 
-    func initializeKeyWindow(with rootViewController: UIViewController) {
-        self.window = UIWindow(frame: UIScreen.main.bounds)
-        self.window?.rootViewController = rootViewController
-        self.window?.makeKeyAndVisible()
+        return true
     }
 }
 
