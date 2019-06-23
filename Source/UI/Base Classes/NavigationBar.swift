@@ -25,7 +25,7 @@ class NavigationBar: View {
     override func initializeViews() {
         super.initializeViews()
 
-        self.set(backgroundColor: .blue)
+        self.set(backgroundColor: .clear)
 
         self.addSubview(self.titleLabel)
         self.addSubview(self.leftContainer)

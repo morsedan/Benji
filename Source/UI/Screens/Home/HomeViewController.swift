@@ -13,14 +13,21 @@ class HomeViewController: FullScreenViewController {
 
     lazy var channelsVC = ChannelsViewController()
     lazy var feedVC = FeedViewController()
-
-    let segmentControl = UISegmentedControl(frame: .zero)
+    lazy var segmentControl = HomeSegmentControl()
 
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        self.addChild(viewController: self.channelsVC, toView: self.view)
-        self.channelsVC.view.autoPinEdgesToSuperviewEdges()
+        self.contentContainer.addSubview(self.segmentControl)
+
+
+    }
+
+    override func viewDidLayoutSubviews() {
+        super.viewDidLayoutSubviews()
+
+        self.segmentControl.top = self.contentContainer.top
+        self.segmentControl.centerOnX()
     }
 }
 
