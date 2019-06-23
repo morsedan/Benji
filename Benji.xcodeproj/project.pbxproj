@@ -311,20 +311,8 @@
 		D61EC0D221D30B8800204BEE /* Base Classes */ = {
 			isa = PBXGroup;
 			children = (
-				D60C814522092F6B00A127A3 /* Button.swift */,
-				D6D1501921D5F5D100CD8CE4 /* CollectionView.swift */,
-				D62C635522BE9E5C00F4D097 /* CollectionViewController.swift */,
-				D60C81492209360400A127A3 /* DisplayableImageView.swift */,
-				D61EC0DF21D30E3F00204BEE /* FullScreenViewController.swift */,
-				D61EC0E121D30E6000204BEE /* Label.swift */,
-				D6D1461221D583E500CD8CE4 /* NavigationController.swift */,
-				D60C814322092E4700A127A3 /* PagingCollectionView.swift */,
-				D60C814122092D5300A127A3 /* PagingCollectionViewFlowLayout.swift */,
-				D6D1503D21DAF98500CD8CE4 /* TextField.swift */,
-				D61EC0E321D30E9100204BEE /* TextView.swift */,
-				D61EC0E521D30EB300204BEE /* View.swift */,
-				D61EC0C121D3071400204BEE /* ViewController.swift */,
-				D66F0FCC22BF04C000BA277D /* NavigationBar.swift */,
+				D66F0FE022C0413300BA277D /* View Controllers */,
+				D66F0FDF22C0412300BA277D /* Views */,
 			);
 			path = "Base Classes";
 			sourceTree = "<group>";
@@ -433,6 +421,34 @@
 				D66F0FDB22BF2ADC00BA277D /* HomeCoordinator.swift */,
 			);
 			path = Deeplink;
+			sourceTree = "<group>";
+		};
+		D66F0FDF22C0412300BA277D /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				D60C814522092F6B00A127A3 /* Button.swift */,
+				D6D1501921D5F5D100CD8CE4 /* CollectionView.swift */,
+				D60C81492209360400A127A3 /* DisplayableImageView.swift */,
+				D61EC0E121D30E6000204BEE /* Label.swift */,
+				D60C814322092E4700A127A3 /* PagingCollectionView.swift */,
+				D60C814122092D5300A127A3 /* PagingCollectionViewFlowLayout.swift */,
+				D6D1503D21DAF98500CD8CE4 /* TextField.swift */,
+				D61EC0E321D30E9100204BEE /* TextView.swift */,
+				D61EC0E521D30EB300204BEE /* View.swift */,
+				D66F0FCC22BF04C000BA277D /* NavigationBar.swift */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		D66F0FE022C0413300BA277D /* View Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				D62C635522BE9E5C00F4D097 /* CollectionViewController.swift */,
+				D61EC0DF21D30E3F00204BEE /* FullScreenViewController.swift */,
+				D6D1461221D583E500CD8CE4 /* NavigationController.swift */,
+				D61EC0C121D3071400204BEE /* ViewController.swift */,
+			);
+			path = "View Controllers";
 			sourceTree = "<group>";
 		};
 		D6D145F121D548F600CD8CE4 /* Screens */ = {

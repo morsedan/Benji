@@ -14,6 +14,9 @@ class HomeViewController: FullScreenViewController {
     lazy var channelsVC = ChannelsViewController()
     lazy var feedVC = FeedViewController()
     lazy var segmentControl = HomeSegmentControl(items: ["FEED", "LIST"])
+    //lazy var avatarView =
+    //search icon
+    //add button
 
     override init() {
         super.init()
