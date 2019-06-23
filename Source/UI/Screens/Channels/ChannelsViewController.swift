@@ -11,7 +11,6 @@ import TwilioChatClient
 
 class ChannelsViewController: CollectionViewController<ChannelCell, ChannelsCollectionViewManager> {
 
-
     init() {
         let collectionView = ChannelsCollectionView()
         super.init(with: collectionView)
