@@ -10,17 +10,19 @@ import Foundation
 
 class HomeSegmentControl: UISegmentedControl {
 
-    init() {
-        super.init(frame: .zero)
+    override init(items: [Any]?) {
+        super.init(items: items)
         self.initialize()
+
+    }
+
+    override init(frame: CGRect) {
+        super.init(frame: frame)
     }
 
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
 
-    private func initialize() {
-        self.insertSegment(withTitle: "FEED", at: 0, animated: false)
-        self.insertSegment(withTitle: "LIST", at: 1, animated: false)
-    }
+    private func initialize() {}
 }

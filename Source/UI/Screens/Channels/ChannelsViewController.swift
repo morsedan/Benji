@@ -24,6 +24,8 @@ class ChannelsViewController: FullScreenViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        self.view.set(backgroundColor: .red)
+
         self.content.collectionView.dataSource = self.manager
         self.content.collectionView.delegate = self.manager
 

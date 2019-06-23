@@ -13,6 +13,7 @@ class FeedViewController: CollectionViewController<FeedCell, FeedCollectionViewM
     init() {
         let collectionView = FeedCollectionView()
         super.init(with: collectionView)
+        self.view.set(backgroundColor: .green)
     }
 
     required init?(coder aDecoder: NSCoder) {
