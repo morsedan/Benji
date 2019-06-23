@@ -33,7 +33,7 @@ extension NSAttributedString {
         return mutableLHS
     }
 
-    func height(withConstrainedWidth width: CGFloat) -> CGFloat {
+    func height(considering width: CGFloat) -> CGFloat {
         let constraintRect = CGSize(width: width, height: .greatestFiniteMagnitude)
         let boundingBox = boundingRect(with: constraintRect,
                                        options: [.usesLineFragmentOrigin, .usesFontLeading],
@@ -42,7 +42,7 @@ extension NSAttributedString {
         return boundingBox.height.rounded(FloatingPointRoundingRule.up)
     }
 
-    func width(withConstrainedHeight height: CGFloat) -> CGFloat {
+    func width(considering height: CGFloat) -> CGFloat {
         let constraintRect = CGSize(width: .greatestFiniteMagnitude, height: height)
         let boundingBox = boundingRect(with: constraintRect,
                                        options: [.usesLineFragmentOrigin,
