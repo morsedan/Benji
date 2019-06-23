@@ -1,5 +1,5 @@
 //
-//  HomeStackViewController.swift
+//  FeedCollectionView.swift
 //  Benji
 //
 //  Created by Benji Dodgson on 6/22/19.
@@ -8,14 +8,15 @@
 
 import Foundation
 
-class FeedViewController: CollectionViewController<FeedCell, FeedCollectionViewManager> {
+class FeedCollectionView: CollectionView {
 
     init() {
-        let collectionView = FeedCollectionView()
-        super.init(with: collectionView)
+        let flowLayout = UICollectionViewFlowLayout()
+        super.init(flowLayout: flowLayout)
     }
-
+    
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
+    
 }

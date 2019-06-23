@@ -11,9 +11,8 @@ import PureLayout
 
 class HomeViewController: FullScreenViewController {
 
-    lazy var channelsVC: ChannelsViewController = {
-        return ChannelsViewController()
-    }()
+    lazy var channelsVC = ChannelsViewController()
+    lazy var feedVC = FeedViewController()
 
     override func viewDidLoad() {
         super.viewDidLoad()
