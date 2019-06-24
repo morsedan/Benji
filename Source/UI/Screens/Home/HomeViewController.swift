@@ -14,7 +14,10 @@ class HomeViewController: FullScreenViewController {
     lazy var channelsVC = ChannelsViewController()
     lazy var feedVC = FeedViewController()
     lazy var segmentControl = HomeSegmentControl(items: ["FEED", "LIST"])
-    //lazy var avatarView =
+    lazy var avatarView: AvatarView = {
+        //let avatar = Avatar(
+        return AvatarView(avatar: <#T##Avatar#>)
+    }()
     //search icon
     //add button
 

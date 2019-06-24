@@ -54,6 +54,8 @@
 		D66F0FDE22BF2C5D00BA277D /* HomeSegmentControl.swift in Sources */ = {isa = PBXBuildFile; fileRef = D66F0FDD22BF2C5D00BA277D /* HomeSegmentControl.swift */; };
 		D66F0FE222C041AF00BA277D /* AvatarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D66F0FE122C041AF00BA277D /* AvatarView.swift */; };
 		D66F0FE622C0640E00BA277D /* Avatar.swift in Sources */ = {isa = PBXBuildFile; fileRef = D66F0FE522C0640E00BA277D /* Avatar.swift */; };
+		D66F0FE822C0662300BA277D /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = D66F0FE722C0662300BA277D /* User.swift */; };
+		D66F0FEA22C0695E00BA277D /* CNContact+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = D66F0FE922C0695E00BA277D /* CNContact+Extensions.swift */; };
 		D6AF02FD220153F5002D5C75 /* LaunchManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6AF02FC220153F5002D5C75 /* LaunchManager.swift */; };
 		D6AF0301220154E3002D5C75 /* ChannelManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6AF0300220154E3002D5C75 /* ChannelManager.swift */; };
 		D6D145F421D5493000CD8CE4 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6D145F321D5493000CD8CE4 /* HomeViewController.swift */; };
@@ -162,6 +164,8 @@
 		D66F0FDD22BF2C5D00BA277D /* HomeSegmentControl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeSegmentControl.swift; sourceTree = "<group>"; };
 		D66F0FE122C041AF00BA277D /* AvatarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AvatarView.swift; sourceTree = "<group>"; };
 		D66F0FE522C0640E00BA277D /* Avatar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Avatar.swift; sourceTree = "<group>"; };
+		D66F0FE722C0662300BA277D /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
+		D66F0FE922C0695E00BA277D /* CNContact+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CNContact+Extensions.swift"; sourceTree = "<group>"; };
 		D6AF02FC220153F5002D5C75 /* LaunchManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LaunchManager.swift; sourceTree = "<group>"; };
 		D6AF0300220154E3002D5C75 /* ChannelManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChannelManager.swift; sourceTree = "<group>"; };
 		D6D145F321D5493000CD8CE4 /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
@@ -378,6 +382,7 @@
 				D6D1503421D7E62800CD8CE4 /* CGPoint+Extensions.swift */,
 				D6DADF682207D246007D9EB1 /* TCHMessage+Extensions.swift */,
 				D6DADF732207E0E2007D9EB1 /* TCHChannel+Extensions.swift */,
+				D66F0FE922C0695E00BA277D /* CNContact+Extensions.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -565,6 +570,7 @@
 			children = (
 				D66F0FC622BF004300BA277D /* FeedType.swift */,
 				D66F0FC822BF006D00BA277D /* SystemMessage.swift */,
+				D66F0FE722C0662300BA277D /* User.swift */,
 			);
 			path = "Data Models";
 			sourceTree = "<group>";
@@ -765,6 +771,7 @@
 				D61EC0F121D313F500204BEE /* ScreenSize.swift in Sources */,
 				D61EC0E821D3107A00204BEE /* Date+Extensions.swift in Sources */,
 				D61EC0F921D317AB00204BEE /* Theme.swift in Sources */,
+				D66F0FE822C0662300BA277D /* User.swift in Sources */,
 				D635551B21E5B3D400530602 /* UIScrollView+Extensions.swift in Sources */,
 				D61EC0C221D3071400204BEE /* ViewController.swift in Sources */,
 				D6D14D9021D5893600CD8CE4 /* IGListMoveIndex.m in Sources */,
@@ -775,6 +782,7 @@
 				D6D1504021DAFB8300CD8CE4 /* UITextField+Extensions.swift in Sources */,
 				D60C814622092F6B00A127A3 /* Button.swift in Sources */,
 				D6D1503721D7E74500CD8CE4 /* UIViewController+Extensions.swift in Sources */,
+				D66F0FEA22C0695E00BA277D /* CNContact+Extensions.swift in Sources */,
 				D6DADF6E2207DF33007D9EB1 /* ChannelsCollectionViewManager.swift in Sources */,
 				D66F0FCF22BF060500BA277D /* Deeplinkable.swift in Sources */,
 				D6AF0301220154E3002D5C75 /* ChannelManager.swift in Sources */,

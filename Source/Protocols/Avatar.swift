@@ -11,9 +11,3 @@ import Foundation
 protocol Avatar: ImageDisplayable {
     var initials: String { get }
 }
-
-extension Avatar {
-    var initials: String {
-        return "?"
-    }
-}

@@ -54,8 +54,9 @@ class AvatarView: DisplayableImageView {
 
     // MARK: - Initializers
 
-    override init(displayable: ImageDisplayable = UIImage()) {
+    init(avatar: Avatar) {
         super.init(displayable: displayable)
+        self.set(avatar: avatar)
         self.prepareView()
     }
 
@@ -183,7 +184,6 @@ class AvatarView: DisplayableImageView {
         self.radius = radius
         self.layer.cornerRadius = radius
     }
-
 }
 
 fileprivate extension FloatingPoint {
