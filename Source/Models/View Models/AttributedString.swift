@@ -23,7 +23,7 @@ struct AttributedString {
     }
 
     init(_ localized: Localized,
-         font: Font = .regular,
+         font: FontType = .regular,
          size: CGFloat,
          color: Color,
          kern: CGFloat = 0) {

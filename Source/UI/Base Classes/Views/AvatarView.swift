@@ -18,7 +18,7 @@ class AvatarView: UIImageView {
         }
     }
 
-    var placeholderFont: Font = .ultraLight {
+    var placeholderFont: UIFont = FontType.ultraLight.getFont(with: 16) {
         didSet {
             self.setImageFrom(initials: self.initials)
         }
@@ -121,11 +121,15 @@ class AvatarView: UIImageView {
     /**
      Recursively find the biggest size to fit the text with a given width and height
      */
-    private func calculateFontSize(text: String, font: UIFont, width: CGFloat, height: CGFloat) -> CGFloat {
+    private func calculateFontSize(text: String,
+                                   font: UIFont,
+                                   width: CGFloat,
+                                   height: CGFloat) -> CGFloat {
+
         let attributedText = NSAttributedString(string: text, attributes: [.font: font])
         if attributedText.width(considering: height) > width {
             let newFont = font.withSize(font.pointSize - 1)
-            if newFont.pointSize > minimumFontSize {
+            if newFont.pointSize > self.minimumFontSize {
                 return font.pointSize
             } else {
                 return calculateFontSize(text: text, font: newFont, width: width, height: height)
@@ -157,16 +161,16 @@ class AvatarView: UIImageView {
     // MARK: - Internal methods
 
     internal func prepareView() {
-        backgroundColor = .gray
-        contentMode = .scaleAspectFill
-        layer.masksToBounds = true
-        clipsToBounds = true
-        setCorner(radius: nil)
+        self.set(backgroundColor: .blueGray)
+        self.contentMode = .scaleAspectFill
+        self.layer.masksToBounds = true
+        self.clipsToBounds = true
+        self.setCorner(radius: nil)
     }
 
     // MARK: - Open setters
 
-    open func set(avatar: Avatar) {
+    func set(avatar: Avatar) {
         if let image = avatar.image {
             self.image = image
         } else {
@@ -174,15 +178,15 @@ class AvatarView: UIImageView {
         }
     }
 
-    open func setCorner(radius: CGFloat?) {
+    func setCorner(radius: CGFloat?) {
         guard let radius = radius else {
             //if corner radius not set default to Circle
             let cornerRadius = min(frame.width, frame.height)
-            layer.cornerRadius = cornerRadius/2
+            self.layer.cornerRadius = cornerRadius/2
             return
         }
         self.radius = radius
-        layer.cornerRadius = radius
+        self.layer.cornerRadius = radius
     }
 
 }

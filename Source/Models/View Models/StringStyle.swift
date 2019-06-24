@@ -9,12 +9,12 @@
 import Foundation
 
 struct StringStyle {
-    var font: Font
+    var font: FontType
     var size: CGFloat
     var color: Color
     var kern: CGFloat
 
-    init(font: Font = .regular,
+    init(font: FontType = .regular,
          size: CGFloat,
          color: Color,
          kern: CGFloat = 0) {
