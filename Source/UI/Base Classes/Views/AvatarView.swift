@@ -8,7 +8,7 @@
 
 import Foundation
 
-class AvatarView: UIImageView {
+class AvatarView: DisplayableImageView {
 
     // MARK: - Properties
 
@@ -53,24 +53,19 @@ class AvatarView: UIImageView {
     }
 
     // MARK: - Initializers
-    override init(frame: CGRect) {
-        super.init(frame: frame)
+
+    override init(displayable: ImageDisplayable = UIImage()) {
+        super.init(displayable: displayable)
         self.prepareView()
     }
 
-    required public init?(coder aDecoder: NSCoder) {
-        super.init(coder: aDecoder)
-        self.prepareView()
-    }
-
-    convenience public init() {
-        self.init(frame: .zero)
-        self.prepareView()
+    required init?(coder aDecoder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
     }
 
     private func setImageFrom(initials: String?) {
         guard let initials = initials else { return }
-        self.image = self.getImageFrom(initials: initials)
+        self.imageView.image = self.getImageFrom(initials: initials)
     }
 
     private func getImageFrom(initials: String) -> UIImage {
@@ -97,7 +92,9 @@ class AvatarView: UIImageView {
 
         let textStyle = NSMutableParagraphStyle()
         textStyle.alignment = .center
-        let textFontAttributes: [NSAttributedString.Key: Any] = [NSAttributedString.Key.font: font, NSAttributedString.Key.foregroundColor: placeholderTextColor, NSAttributedString.Key.paragraphStyle: textStyle]
+        let textFontAttributes: [NSAttributedString.Key: Any] = [NSAttributedString.Key.font: font,
+                                                                 NSAttributedString.Key.foregroundColor: self.placeholderTextColor,
+                                                                 NSAttributedString.Key.paragraphStyle: textStyle]
 
         let textTextHeight: CGFloat = initials.boundingRect(with: CGSize(width: textRect.width, height: CGFloat.infinity),
                                                             options: .usesLineFragmentOrigin,
@@ -158,11 +155,9 @@ class AvatarView: UIImageView {
         return CGRect(x: startX+2, y: startY, width: w-4, height: h)
     }
 
-    // MARK: - Internal methods
-
-    internal func prepareView() {
+    private func prepareView() {
         self.set(backgroundColor: .blueGray)
-        self.contentMode = .scaleAspectFill
+        self.imageView.contentMode = .scaleAspectFill
         self.layer.masksToBounds = true
         self.clipsToBounds = true
         self.setCorner(radius: nil)
@@ -171,10 +166,10 @@ class AvatarView: UIImageView {
     // MARK: - Open setters
 
     func set(avatar: Avatar) {
-        if let image = avatar.image {
-            self.image = image
+        if let image = avatar.photo {
+            self.imageView.image = image
         } else {
-            initials = avatar.initials
+            self.initials = avatar.initials
         }
     }
 

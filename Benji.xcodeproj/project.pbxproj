@@ -53,7 +53,7 @@
 		D66F0FDC22BF2ADC00BA277D /* HomeCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = D66F0FDB22BF2ADC00BA277D /* HomeCoordinator.swift */; };
 		D66F0FDE22BF2C5D00BA277D /* HomeSegmentControl.swift in Sources */ = {isa = PBXBuildFile; fileRef = D66F0FDD22BF2C5D00BA277D /* HomeSegmentControl.swift */; };
 		D66F0FE222C041AF00BA277D /* AvatarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D66F0FE122C041AF00BA277D /* AvatarView.swift */; };
-		D66F0FE422C043E400BA277D /* Avatar.swift in Sources */ = {isa = PBXBuildFile; fileRef = D66F0FE322C043E400BA277D /* Avatar.swift */; };
+		D66F0FE622C0640E00BA277D /* Avatar.swift in Sources */ = {isa = PBXBuildFile; fileRef = D66F0FE522C0640E00BA277D /* Avatar.swift */; };
 		D6AF02FD220153F5002D5C75 /* LaunchManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6AF02FC220153F5002D5C75 /* LaunchManager.swift */; };
 		D6AF0301220154E3002D5C75 /* ChannelManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6AF0300220154E3002D5C75 /* ChannelManager.swift */; };
 		D6D145F421D5493000CD8CE4 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6D145F321D5493000CD8CE4 /* HomeViewController.swift */; };
@@ -161,7 +161,7 @@
 		D66F0FDB22BF2ADC00BA277D /* HomeCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeCoordinator.swift; sourceTree = "<group>"; };
 		D66F0FDD22BF2C5D00BA277D /* HomeSegmentControl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeSegmentControl.swift; sourceTree = "<group>"; };
 		D66F0FE122C041AF00BA277D /* AvatarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AvatarView.swift; sourceTree = "<group>"; };
-		D66F0FE322C043E400BA277D /* Avatar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Avatar.swift; sourceTree = "<group>"; };
+		D66F0FE522C0640E00BA277D /* Avatar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Avatar.swift; sourceTree = "<group>"; };
 		D6AF02FC220153F5002D5C75 /* LaunchManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LaunchManager.swift; sourceTree = "<group>"; };
 		D6AF0300220154E3002D5C75 /* ChannelManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChannelManager.swift; sourceTree = "<group>"; };
 		D6D145F321D5493000CD8CE4 /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
@@ -351,6 +351,7 @@
 				D6D1501521D5F08700CD8CE4 /* DisplyableCell.swift */,
 				D6D1502821D6085200CD8CE4 /* ResourceObject.swift */,
 				D66F0FCE22BF060500BA277D /* Deeplinkable.swift */,
+				D66F0FE522C0640E00BA277D /* Avatar.swift */,
 			);
 			path = Protocols;
 			sourceTree = "<group>";
@@ -385,7 +386,6 @@
 			isa = PBXGroup;
 			children = (
 				D6D145FC21D550E400CD8CE4 /* AttributedString.swift */,
-				D66F0FE322C043E400BA277D /* Avatar.swift */,
 				D61EC0F621D316F100204BEE /* Color.swift */,
 				D6D1460A21D5547000CD8CE4 /* FontType.swift */,
 				D6D1460821D5531D00CD8CE4 /* LocalString.swift */,
@@ -731,7 +731,7 @@
 				D61EC0DB21D30CB300204BEE /* Dismissable.swift in Sources */,
 				D6D14FF821D5893700CD8CE4 /* IGListMoveIndexPath.m in Sources */,
 				D6D14D9121D5893600CD8CE4 /* IGListIndexSetResult.m in Sources */,
-				D66F0FE422C043E400BA277D /* Avatar.swift in Sources */,
+				D66F0FE622C0640E00BA277D /* Avatar.swift in Sources */,
 				D6D14FFB21D5893700CD8CE4 /* DiffableBox.swift in Sources */,
 				D6D1501621D5F08700CD8CE4 /* DisplyableCell.swift in Sources */,
 				D66F0FE222C041AF00BA277D /* AvatarView.swift in Sources */,

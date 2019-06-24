@@ -16,7 +16,7 @@ class DisplayableImageView: View {
 
     var delegate: DisplayableDelegate?
 
-    private let imageView = UIImageView()
+    private(set) var imageView = UIImageView()
 
     var displayable: ImageDisplayable {
         didSet {
