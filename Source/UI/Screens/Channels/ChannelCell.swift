@@ -10,7 +10,7 @@ import Foundation
 import TwilioChatClient
 
 class ChannelCell: UICollectionViewCell, DisplayableCell {
-    typealias ItemType = TCHChannel
+    typealias ItemType = ChannelsType
     let label = Label()
 
     var localizedText: Localized? {
@@ -23,18 +23,23 @@ class ChannelCell: UICollectionViewCell, DisplayableCell {
         }
     }
 
-
-    func configure(with item: TCHChannel?) {
+    func configure(with item: ChannelsType?) {
 
         self.contentView.addSubview(self.label)
         self.label.autoPinEdgesToSuperviewEdges()
 
-        guard let channel = item else {
+        guard let type = item else {
             self.configureAddChannel()
             return
         }
 
-        self.localizedText = channel.friendlyName
+        switch type {
+        case .system(let message):
+            self.localizedText = message.body
+        case .channel(let channel):
+            self.localizedText = channel.friendlyName
+        }
+
     }
 
     private func configureAddChannel() {

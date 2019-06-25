@@ -23,30 +23,32 @@ class ChannelsViewController: CollectionViewController<ChannelCell, ChannelsColl
 
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        self.getChannels()
+        self.loadChannels()
     }
 
     private func loadChannels() {
-//        ChannelManager.shared.getChannels { (optionalChannels, error) in
-//            guard let channels = optionalChannels else { return }
-//            self.manager.items.value = channels
-//        }
+        var items: [ChannelsType] = []
+        let system1 = SystemMessage(body: "This is a system messgae", id: "system.1")
+        let system2 = SystemMessage(body: "This is a system messgae", id: "system.2")
+        let system3 = SystemMessage(body: "This is a system messgae", id: "system.3")
+        let system4 = SystemMessage(body: "This is a system messgae", id: "system.4")
+        let system5 = SystemMessage(body: "This is a system messgae", id: "system.5")
+        items.append(contentsOf: [.system(system1), .system(system2), .system(system3), .system(system4), .system(system5)])
+        self.manager.set(newItems: items)
     }
 
-    private func didSelect(channel: TCHChannel, at indexPath: IndexPath) {
-        self.present(channel: channel)
+    override func didSelect(item: ChannelsType, at indexPath: IndexPath) {
+        self.present(type: item)
     }
 
-    private func createChannel() {
-//        ChannelManager.shared.createAndJoin(channelName: "Some Channel", type: .public) { (newChannel, error) in
-//            guard let channel = newChannel else { return }
-//            self.present(channel: channel)
-//        }
-    }
+    private func present(type: ChannelsType) {
+        switch type {
+        case .system(_):
+            break
+        case .channel(let channel):
+            let channelVC = ChannelViewController(channel: channel)
+            self.present(channelVC, animated: true, completion: nil)
+        }
 
-    private func present(channel: TCHChannel) {
-        let channelVC = ChannelViewController(channel: channel)
-        self.present(channelVC, animated: true, completion: nil)
     }
 }
