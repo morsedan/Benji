@@ -27,7 +27,7 @@ class ChannelsViewController: CollectionViewController<ChannelCell, ChannelsColl
         self.getChannels()
     }
 
-    private func getChannels() {
+    private func loadChannels() {
 //        ChannelManager.shared.getChannels { (optionalChannels, error) in
 //            guard let channels = optionalChannels else { return }
 //            self.manager.items.value = channels

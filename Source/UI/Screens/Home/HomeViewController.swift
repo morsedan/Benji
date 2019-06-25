@@ -9,15 +9,28 @@
 import Foundation
 import PureLayout
 
+struct MeAvatar: Avatar {
+    var initials: String {
+        return "BD"
+    }
+
+    var photoUrl: URL?
+
+    var photo: UIImage? {
+        return UIImage(named: "MeAvatar")
+    }
+}
+
 class HomeViewController: FullScreenViewController {
 
     lazy var channelsVC = ChannelsViewController()
     lazy var feedVC = FeedViewController()
     lazy var segmentControl = HomeSegmentControl(items: ["FEED", "LIST"])
     lazy var avatarView: AvatarView = {
-        //let avatar = Avatar(
-        return AvatarView(avatar: <#T##Avatar#>)
+        return AvatarView(avatar: MeAvatar())
     }()
+
+    let searchImageView = UIImageView(image: #imageLiteral(resourceName: "Search"))
     //search icon
     //add button
 
@@ -35,6 +48,10 @@ class HomeViewController: FullScreenViewController {
     }
 
     private func initializeViews() {
+
+        self.contentContainer.addSubview(self.avatarView)
+        self.contentContainer.addSubview(self.searchImageView)
+
         self.contentContainer.addSubview(self.segmentControl)
         self.segmentControl.addTarget(self, action: #selector(updateContent), for: .valueChanged)
 
@@ -51,9 +68,17 @@ class HomeViewController: FullScreenViewController {
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
 
+        self.avatarView.size = CGSize(width: 40, height: 40)
+        self.avatarView.left = 20
+        self.avatarView.top = 0
+
         self.segmentControl.size = CGSize(width: 120, height: 40)
         self.segmentControl.top = 0
         self.segmentControl.centerOnX()
+
+        self.searchImageView.size = CGSize(width: 40, height: 40)
+        self.searchImageView.top = 0
+        self.searchImageView.right = self.contentContainer.right - 20
 
         self.feedVC.view.size = CGSize(width: self.contentContainer.width, height: self.contentContainer.height - self.segmentControl.height)
         self.feedVC.view.top = self.segmentControl.bottom
