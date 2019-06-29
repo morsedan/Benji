@@ -9,24 +9,21 @@
 import Foundation
 
 struct StringStyle {
-    var font: FontType
-    var size: CGFloat
+    var fontType: FontType
     var color: Color
     var kern: CGFloat
 
     init(font: FontType = .regular,
-         size: CGFloat,
          color: Color,
          kern: CGFloat = 0) {
 
-        self.font = font
-        self.size = size
+        self.fontType = font
         self.color = color
         self.kern = kern
     }
 
     var attributes: [NSAttributedString.Key: Any] {
-        return [NSAttributedString.Key.font: UIFont(name: self.font.rawValue, size: self.size)!,
+        return [NSAttributedString.Key.font: self.fontType.font,
                 NSAttributedString.Key.kern: self.kern,
                 NSAttributedString.Key.foregroundColor: self.color.color]
     }

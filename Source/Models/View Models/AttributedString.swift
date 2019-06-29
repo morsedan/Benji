@@ -23,13 +23,11 @@ struct AttributedString {
     }
 
     init(_ localized: Localized,
-         font: FontType = .regular,
-         size: CGFloat,
+         fontType: FontType = .regular,
          color: Color,
          kern: CGFloat = 0) {
 
-        let style = StringStyle(font: font,
-                                size: size,
+        let style = StringStyle(font: fontType,
                                 color: color,
                                 kern: kern)
         self.init(localized, style: style)

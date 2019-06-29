@@ -72,7 +72,6 @@ class NavigationBar: View {
 
     func setTitle(_ localizedTitle: Localized, stringCasing: StringCasing = .capitalized) {
         self.titleLabel.set(attributed: AttributedString(localizedTitle,
-                                                         size: 24,
                                                          color: .white),
                             alignment: .center,
                             stringCasing: stringCasing)

@@ -18,7 +18,7 @@ class AvatarView: DisplayableImageView {
         }
     }
 
-    var placeholderFont: UIFont = FontType.ultraLight.getFont(with: 16) {
+    var placeholderFont: UIFont = FontType.regular.font {
         didSet {
             self.setImageFrom(initials: self.initials)
         }

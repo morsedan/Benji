@@ -24,9 +24,9 @@ class MessageInputView: View, UITextViewDelegate {
         self.addSubview(self.lightEffectView)
         self.addSubview(self.textView)
 
-        let styleAttributes = StringStyle(font: .ultraLight, size: 18, color: .white, kern: 0).attributes
-        let string = NSAttributedString(string: "Message @Natalie", attributes: styleAttributes)
-        self.textView.attributedPlaceholder = string
+//        let styleAttributes = StringStyle(font: .ultraLight, size: 18, color: .white, kern: 0).attributes
+//        let string = NSAttributedString(string: "Message @Natalie", attributes: styleAttributes)
+//        self.textView.attributedPlaceholder = string
         self.textView.growingDelegate = self
         self.textView.minHeight = 34
         self.lightEffectView.height = 34
@@ -106,8 +106,8 @@ class GrowingTextView: TextView {
     // Initialize
     override func initialize() {
         super.initialize()
-        let typingStyle = StringStyle(font: .regular, size: 18, color: .white, kern: 0)
-        self.typingAttributes = typingStyle.attributes
+//        let typingStyle = StringStyle(font: .regular, size: 18, color: .white, kern: 0)
+//        self.typingAttributes = typingStyle.attributes
         self.contentMode = .redraw
 
         self.keyboardAppearance = .dark

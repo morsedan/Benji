@@ -52,8 +52,14 @@ class Lorem {
 
     private static let nameList = ["Jane", "Bobby", "Ashley", "Benjamin", "Devon", "Kevin", "Leo"]
 
+    private static let imageList = [UIImage(named: "Profile1")!, UIImage(named: "Profile2")!, UIImage(named: "Profile3")!, UIImage(named: "Profile4")!, UIImage(named: "Profile5")!,]
+
     class func name() -> String {
         return self.nameList.random()
+    }
+
+    class func image() -> UIImage {
+        return self.imageList.random()
     }
 
     /**

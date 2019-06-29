@@ -28,13 +28,12 @@ class Button: UIButton {
 
             localizedString = casingType.format(string: localizedString)
 
-            let fontSize: CGFloat = UIScreen.main.isSmallerThan(screenSize: .tablet) ? 12 : 14
             let normalString = NSMutableAttributedString(string: localizedString)
-            normalString.addAttribute(.font, value: UIFont(name: FontType.heavy.rawValue, size: fontSize)!)
+            normalString.addAttribute(.font, value: FontType.regular.font)
             normalString.addAttribute(.kern, value: CGFloat(2))
 
             let highlightedString = NSMutableAttributedString(string: localizedString)
-            highlightedString.addAttribute(.font, value: UIFont(name: FontType.heavy.rawValue, size: fontSize)!)
+            highlightedString.addAttribute(.font, value: FontType.regular.font)
             highlightedString.addAttribute(.kern, value: CGFloat(2))
 
             normalString.addAttribute(.foregroundColor, value: Color.white.color)

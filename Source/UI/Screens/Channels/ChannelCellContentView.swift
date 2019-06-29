@@ -16,7 +16,6 @@ class ChannelCellContentView: View {
         didSet {
             guard let text = self.localizedText else { return }
             let attributed = AttributedString(text,
-                                              size: 20,
                                               color: .white)
             self.label.set(attributed: attributed)
         }

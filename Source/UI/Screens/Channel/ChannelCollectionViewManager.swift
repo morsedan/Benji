@@ -51,15 +51,14 @@ class ChannelCollectionViewManager: CollectionViewManager<MessageCell> {
         guard let body = item.body else { return .zero }
 
         let attributed = AttributedString(body,
-                                          font: .medium,
-                                          size: 18,
+                                          fontType: .medium,
                                           color: .white,
                                           kern: 0)
 
         let attributedString = attributed.string
         for emojiRange in attributedString.string.getEmojiRanges() {
             attributedString.removeAttributes(atRange: emojiRange)
-            if let emojiFont = UIFont(name: "AppleColorEmoji", size: attributed.style.size) {
+            if let emojiFont = UIFont(name: "AppleColorEmoji", size: attributed.style.fontType.size) {
                 attributedString.addAttributes([NSAttributedString.Key.font: emojiFont], range: emojiRange)
             }
         }

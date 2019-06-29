@@ -24,8 +24,7 @@ class MessageCell: UICollectionViewCell, DisplayableCell {
         let textColor: Color  = .white
 
         let attributedString = AttributedString(body,
-                                                font: .medium,
-                                                size: 18,
+                                                fontType: .medium,
                                                 color: textColor,
                                                 kern: 0)
 
