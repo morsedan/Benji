@@ -14,7 +14,7 @@ class ChannelsViewController: CollectionViewController<ChannelCell, ChannelsColl
     init() {
         let collectionView = ChannelsCollectionView()
         super.init(with: collectionView)
-        self.view.set(backgroundColor: .red)
+        self.view.set(backgroundColor: .clear)
     }
 
     required init?(coder aDecoder: NSCoder) {

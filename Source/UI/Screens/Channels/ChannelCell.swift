@@ -11,34 +11,21 @@ import TwilioChatClient
 
 class ChannelCell: UICollectionViewCell, DisplayableCell {
     typealias ItemType = ChannelsType
-    let label = Label()
 
-    var localizedText: Localized? {
-        didSet {
-            guard let text = self.localizedText else { return }
-            let attributed = AttributedString(text,
-                                              size: 20,
-                                              color: .white)
-            self.label.set(attributed: attributed)
-        }
-    }
+    let content = ChannelCellContentView()
 
     func configure(with item: ChannelsType?) {
         guard let type = item else { return }
 
-        self.contentView.addSubview(self.label)
+        self.contentView.removeAllSubviews()
+        self.contentView.addSubview(self.content)
 
-        switch type {
-        case .system(let message):
-            self.localizedText = message.body
-        case .channel(let channel):
-            self.localizedText = channel.friendlyName
-        }
+        self.content.configure(with: type)
     }
 
     override func layoutSubviews() {
         super.layoutSubviews()
 
-        self.label.frame = self.contentView.bounds
+        self.content.frame = self.contentView.bounds
     }
 }
