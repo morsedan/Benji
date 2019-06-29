@@ -13,7 +13,7 @@ import Parse
 extension TCHMessage: Diffable, DisplayableCellItem {
     var backgroundColor: Color {
         get {
-            return self.isFromCurrentUser ? .blue : .gray
+            return self.isFromCurrentUser ? .purple : .lightPurple
         }
     }
     

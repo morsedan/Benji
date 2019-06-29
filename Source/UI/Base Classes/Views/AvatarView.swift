@@ -157,7 +157,7 @@ class AvatarView: DisplayableImageView {
     }
 
     private func prepareView() {
-        self.set(backgroundColor: .blueGray)
+        self.set(backgroundColor: .lightPurple)
         self.imageView.contentMode = .scaleAspectFill
         self.layer.masksToBounds = true
         self.clipsToBounds = true

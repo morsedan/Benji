@@ -21,7 +21,7 @@ class MessageCell: UICollectionViewCell, DisplayableCell {
 
         self.contentView.addSubview(self.bubbleView)
         self.contentView.addSubview(self.textView)
-        let textColor: Color  = .lightGray 
+        let textColor: Color  = .white
 
         let attributedString = AttributedString(body,
                                                 font: .medium,

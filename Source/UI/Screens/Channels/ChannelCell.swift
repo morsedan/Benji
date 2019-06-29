@@ -18,7 +18,7 @@ class ChannelCell: UICollectionViewCell, DisplayableCell {
             guard let text = self.localizedText else { return }
             let attributed = AttributedString(text,
                                               size: 20,
-                                              color: .darkGray)
+                                              color: .white)
             self.label.set(attributed: attributed)
         }
     }

@@ -24,5 +24,7 @@ class HomeSegmentControl: UISegmentedControl {
         fatalError("init(coder:) has not been implemented")
     }
 
-    private func initialize() {}
+    private func initialize() {
+        self.tintColor = Color.purple.color
+    }
 }

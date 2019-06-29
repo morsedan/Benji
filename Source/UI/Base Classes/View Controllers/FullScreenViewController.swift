@@ -58,7 +58,7 @@ class FullScreenViewController: ViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        self.view.set(backgroundColor: .darkGray)
+        self.view.set(backgroundColor: .background1)
         self.view.addSubview(self.navigationBar)
         self.view.addSubview(self.contentContainer)
     }
