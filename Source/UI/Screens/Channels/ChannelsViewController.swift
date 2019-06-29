@@ -28,12 +28,10 @@ class ChannelsViewController: CollectionViewController<ChannelCell, ChannelsColl
 
     private func loadChannels() {
         var items: [ChannelsType] = []
-        let system1 = SystemMessage(body: "This is a system messgae", id: "system.1")
-        let system2 = SystemMessage(body: "This is a system messgae", id: "system.2")
-        let system3 = SystemMessage(body: "This is a system messgae", id: "system.3")
-        let system4 = SystemMessage(body: "This is a system messgae", id: "system.4")
-        let system5 = SystemMessage(body: "This is a system messgae", id: "system.5")
-        items.append(contentsOf: [.system(system1), .system(system2), .system(system3), .system(system4), .system(system5)])
+        for index in 0...10 {
+            let message = SystemMessage(body: Lorem.sentence(), id: "sysytem.\(String(index))")
+            items.append(.system(message))
+        }
         self.manager.set(newItems: items)
     }
 
