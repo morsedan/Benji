@@ -24,14 +24,9 @@ class ChannelCell: UICollectionViewCell, DisplayableCell {
     }
 
     func configure(with item: ChannelsType?) {
+        guard let type = item else { return }
 
         self.contentView.addSubview(self.label)
-        self.label.autoPinEdgesToSuperviewEdges()
-
-        guard let type = item else {
-            self.configureAddChannel()
-            return
-        }
 
         switch type {
         case .system(let message):
@@ -39,10 +34,11 @@ class ChannelCell: UICollectionViewCell, DisplayableCell {
         case .channel(let channel):
             self.localizedText = channel.friendlyName
         }
-
     }
 
-    private func configureAddChannel() {
-        self.localizedText = "Create New Channel"
+    override func layoutSubviews() {
+        super.layoutSubviews()
+
+        self.label.frame = self.contentView.bounds
     }
 }
