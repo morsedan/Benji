@@ -21,6 +21,11 @@ struct MeAvatar: Avatar {
     }
 }
 
+enum HomeContentType: Int {
+    case feed
+    case list
+}
+
 class HomeViewController: FullScreenViewController {
 
     lazy var channelsVC = ChannelsViewController()
@@ -34,6 +39,10 @@ class HomeViewController: FullScreenViewController {
 
     let searchImageView = UIImageView(image: #imageLiteral(resourceName: "Search"))
     let addButton = HomeAddButton()
+
+    var currentType: HomeContentType {
+        return HomeContentType(rawValue: self.segmentControl.selectedSegmentIndex) ?? .feed
+    }
 
     override init() {
         super.init()
@@ -50,13 +59,14 @@ class HomeViewController: FullScreenViewController {
 
     private func initializeViews() {
 
-        self.addChild(viewController: self.feedVC, toView: self.contentContainer)
-        self.addChild(viewController: self.channelsVC, toView: self.contentContainer)
-
         self.contentContainer.addSubview(self.avatarView)
         self.contentContainer.addSubview(self.searchImageView)
 
         self.contentContainer.addSubview(self.segmentControl)
+
+        self.addChild(viewController: self.feedVC, toView: self.contentContainer)
+        self.addChild(self.channelsVC)
+
         self.segmentControl.addTarget(self, action: #selector(updateContent), for: .valueChanged)
 
         self.contentContainer.addSubview(self.addButton)
@@ -71,13 +81,13 @@ class HomeViewController: FullScreenViewController {
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
 
-        self.avatarView.size = CGSize(width: 40, height: 40)
-        self.avatarView.left = 20
-        self.avatarView.top = 0
-
         self.segmentControl.size = CGSize(width: 120, height: 40)
-        self.segmentControl.top = 0
+        self.segmentControl.top = Theme.contentOffset
         self.segmentControl.centerOnX()
+
+        self.avatarView.size = CGSize(width: 30, height: 30)
+        self.avatarView.left = 20
+        self.avatarView.centerY = self.segmentControl.centerY
 
         self.searchImageView.size = CGSize(width: 22, height: 22)
         self.searchImageView.centerY = self.segmentControl.centerY
@@ -87,23 +97,52 @@ class HomeViewController: FullScreenViewController {
         self.addButton.right = self.contentContainer.width - 25
         self.addButton.bottom = self.contentContainer.height - 25
 
-        self.feedVC.view.size = CGSize(width: self.contentContainer.width, height: self.contentContainer.height - self.segmentControl.height)
-        self.feedVC.view.top = 0
-        self.feedVC.view.left = 0
+        let feedHeight = (self.contentContainer.height * 0.8) - self.segmentControl.height - 30
+        self.feedVC.view.size = CGSize(width: self.contentContainer.width * 0.9, height: feedHeight)
+        self.feedVC.view.top = self.segmentControl.bottom + 30
+        self.feedVC.view.left = self.contentContainer.width * 0.05
 
         self.channelsVC.view.size = self.contentContainer.size
-        self.channelsVC.view.top = self.feedVC.view.top
-        self.channelsVC.view.left = self.feedVC.view.right
+        self.channelsVC.view.top = 0
+        self.channelsVC.view.centerOnX()
     }
 
     @objc func updateContent() {
-        let offset = self.segmentControl.selectedSegmentIndex == 0 ? 0 : self.contentContainer.right * -1
+        guard let type = HomeContentType(rawValue: self.segmentControl.selectedSegmentIndex) else { return }
 
-        guard self.feedVC.view.left != offset else { return }
+        var newView: UIView
+        var currentView: UIView
 
-        UIView.animate(withDuration: 0.25) {
-            self.feedVC.view.left = offset
-            self.channelsVC.view.left = self.feedVC.view.right
+        switch type {
+        case .feed:
+            newView = self.feedVC.view
+            currentView = self.channelsVC.view
+        case .list:
+            newView = self.channelsVC.view
+            currentView = self.feedVC.view
+        }
+
+        guard !self.contentContainer.contains(newView) else { return }
+
+        UIView.animate(withDuration: Theme.animationDuration,
+                       animations: {
+                        currentView.transform = CGAffineTransform(scaleX: 0.9, y: 0.9)
+                        currentView.alpha = 0
+        }) { (completed) in
+            if completed {
+                currentView.removeFromSuperview()
+                self.contentContainer.insertSubview(newView, belowSubview: self.segmentControl)
+                self.contentContainer.layoutNow()
+                newView.transform = CGAffineTransform(scaleX: 0.9, y: 0.9)
+                newView.alpha = 0
+                UIView.animate(withDuration: Theme.animationDuration,
+                               animations: {
+                                newView.transform = CGAffineTransform.identity
+                                newView.alpha = 1
+                }, completion: { (completed) in
+
+                })
+            }
         }
     }
 }

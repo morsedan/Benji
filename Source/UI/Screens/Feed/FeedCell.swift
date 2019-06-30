@@ -10,6 +10,13 @@ import Foundation
 import TwilioChatClient
 
 class FeedCell: SwipeableView {
+
+    override func initializeViews() {
+        super.initializeViews()
+
+        self.set(backgroundColor: .background3)
+        self.roundCorners()
+    }
     
     func configure(with item: FeedType) {
 
