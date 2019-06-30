@@ -17,7 +17,7 @@ struct MeAvatar: Avatar {
     var photoUrl: URL?
 
     var photo: UIImage? {
-        return UIImage(named: "MeAvatar")
+        return UIImage(named: "Profile1")
     }
 }
 
@@ -27,7 +27,9 @@ class HomeViewController: FullScreenViewController {
     lazy var feedVC = FeedViewController()
     lazy var segmentControl = HomeSegmentControl(items: ["FEED", "LIST"])
     lazy var avatarView: AvatarView = {
-        return AvatarView(avatar: MeAvatar())
+        let avatarView = AvatarView()
+        avatarView.set(avatar: MeAvatar())
+        return avatarView
     }()
 
     let searchImageView = UIImageView(image: #imageLiteral(resourceName: "Search"))

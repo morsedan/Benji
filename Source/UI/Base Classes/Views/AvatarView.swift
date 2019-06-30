@@ -54,9 +54,8 @@ class AvatarView: DisplayableImageView {
 
     // MARK: - Initializers
 
-    init(avatar: Avatar) {
-        super.init(displayable: avatar)
-        self.set(avatar: avatar)
+    init() {
+        super.init()
         self.prepareView()
     }
 

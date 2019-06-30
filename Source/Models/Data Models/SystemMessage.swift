@@ -8,12 +8,22 @@
 
 import Foundation
 
-struct SystemMessage: Diffable {
+struct SystemMessage: Diffable, Hashable {
 
+    var avatar: Avatar
+    var context: MessageContext
     var body: String
     var id: String
 
     func diffIdentifier() -> NSObjectProtocol {
         return self.id as NSObjectProtocol
+    }
+
+    static func == (lhs: SystemMessage, rhs: SystemMessage) -> Bool {
+        return lhs.id == rhs.id
+    }
+
+    func hash(into hasher: inout Hasher) {
+        hasher.combine(self.id)
     }
 }
