@@ -8,15 +8,52 @@
 
 import Foundation
 
-class FeedViewController: CollectionViewController<FeedCell, FeedCollectionViewManager> {
+class FeedViewController: SwipeableViewController {
 
-    init() {
-        let collectionView = FeedCollectionView()
-        super.init(with: collectionView)
-        self.view.set(backgroundColor: .background1)
+    private var items: [FeedType] = [] {
+        didSet {
+            self.reloadData()
+        }
     }
 
-    required init?(coder aDecoder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
+    override func viewDidLoad() {
+        super.viewDidLoad()
+
+        self.dataSource = self
+        self.addItems()
+    }
+
+    private func addItems() {
+        var items: [FeedType] = []
+
+        for index in 0...10 {
+            let avatar = SystemAvatar(photoUrl: nil, photo: Lorem.image())
+            let systemMessage = SystemMessage(avatar: avatar,
+                                              context: Lorem.context(),
+                                              body: Lorem.paragraph(),
+                                              id: "systemmessage.\(String(index))")
+            items.append(.system(systemMessage))
+        }
+        self.items = items 
+    }
+}
+
+extension FeedViewController: SwipeableDataSource {
+
+    func numberOfCards() -> Int {
+        return self.items.count
+    }
+
+    func card(forItemAtIndex index: Int) -> SwipeableView {
+        guard let item = self.items[safe: index] else { return SwipeableView() }
+
+        let feedCell = FeedCell()
+        feedCell.configure(with: item)
+
+        return feedCell
+    }
+
+    func viewForEmptyCards() -> UIView? {
+        return nil
     }
 }

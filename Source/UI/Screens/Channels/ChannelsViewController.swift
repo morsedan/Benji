@@ -31,7 +31,7 @@ class ChannelsViewController: CollectionViewController<ChannelCell, ChannelsColl
         for index in 0...10 {
             let avatar = SystemAvatar(photoUrl: nil, photo: Lorem.image())
             let message = SystemMessage(avatar: avatar,
-                                        context: MessageContext.emergency,
+                                        context: Lorem.context(),
                                         body: Lorem.sentence(),
                                         id: "sysytem.\(String(index))")
             items.append(.system(message))

@@ -14,7 +14,7 @@ protocol SwipeableViewDelegate: class {
     func swipeableViewDidEndSwipe(_ view: SwipeableView)
 }
 
-class SwipeableView: UIView {
+class SwipeableView: View {
 
     var delegate: SwipeableViewDelegate?
 
@@ -36,12 +36,12 @@ class SwipeableView: UIView {
         self.initializeViews()
     }
 
-    override init(frame: CGRect) {
-        super.init(frame: frame)
+    override init() {
+        super.init()
         self.initializeViews()
     }
 
-    func initializeViews() {
+    override func initializeViews() {
         self.isUserInteractionEnabled = true
         // Pan Gesture Recognizer
         self.onPan { [unowned self] (pan) in

@@ -63,6 +63,10 @@ class Lorem {
         return self.imageList.random()
     }
 
+    class func context() -> MessageContext {
+        return MessageContext.allCases.random()
+    }
+
     /**
      Return a random word.
 
