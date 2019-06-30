@@ -10,14 +10,25 @@ import Foundation
 
 class ChannelCellContentView: View {
 
-    let label = Label()
+    private let contextLabel = Label()
+    private let messageLabel = Label()
+    private var avatarView: AvatarView?
 
-    var localizedText: Localized? {
+    var contextText: Localized? {
         didSet {
-            guard let text = self.localizedText else { return }
+            guard let text = self.contextText else { return }
             let attributed = AttributedString(text,
                                               color: .white)
-            self.label.set(attributed: attributed)
+            self.contextLabel.set(attributed: attributed)
+        }
+    }
+
+    var messageText: Localized? {
+        didSet {
+            guard let text = self.messageText else { return }
+            let attributed = AttributedString(text,
+                                              color: .white)
+            self.messageLabel.set(attributed: attributed)
         }
     }
 
@@ -25,9 +36,11 @@ class ChannelCellContentView: View {
 
         switch type {
         case .system(let message):
-            self.localizedText = message.body
+            //self.localizedText = message.body
+            break
         case .channel(let channel):
-            self.localizedText = channel.friendlyName
+            //self.localizedText = channel.friendlyName
+            break
         }
     }
 }

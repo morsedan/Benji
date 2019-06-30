@@ -52,7 +52,9 @@ class Lorem {
 
     private static let nameList = ["Jane", "Bobby", "Ashley", "Benjamin", "Devon", "Kevin", "Leo"]
 
-    private static let imageList = [UIImage(named: "Profile1")!, UIImage(named: "Profile2")!, UIImage(named: "Profile3")!, UIImage(named: "Profile4")!, UIImage(named: "Profile5")!,]
+    private static let imageList = [UIImage(named: "Profile1")!, UIImage(named: "Profile2")!, UIImage(named: "Profile3")!, UIImage(named: "Profile4")!, UIImage(named: "Profile5")!]
+
+    private static let contextList = ["Emergency", "Time-Sensitive", "When you have time", "Casual"]
 
     class func name() -> String {
         return self.nameList.random()
@@ -62,6 +64,10 @@ class Lorem {
         return self.imageList.random()
     }
 
+    class func context() -> String {
+        return self.contextList.random()
+    }
+    
     /**
      Return a random word.
 
