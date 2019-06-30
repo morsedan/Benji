@@ -37,6 +37,7 @@ class HomeViewController: FullScreenViewController {
         return avatarView
     }()
 
+    let headerContainer = View()
     let searchImageView = UIImageView(image: #imageLiteral(resourceName: "Search"))
     let addButton = HomeAddButton()
 
@@ -62,10 +63,12 @@ class HomeViewController: FullScreenViewController {
         self.addChild(viewController: self.feedVC, toView: self.contentContainer)
         self.addChild(self.channelsVC)
 
-        self.contentContainer.addSubview(self.avatarView)
-        self.contentContainer.addSubview(self.searchImageView)
+        self.contentContainer.addSubview(self.headerContainer)
 
-        self.contentContainer.addSubview(self.segmentControl)
+        self.headerContainer.addSubview(self.avatarView)
+        self.headerContainer.addSubview(self.searchImageView)
+
+        self.headerContainer.addSubview(self.segmentControl)
         self.segmentControl.addTarget(self, action: #selector(updateContent), for: .valueChanged)
 
         self.contentContainer.addSubview(self.addButton)
@@ -80,9 +83,12 @@ class HomeViewController: FullScreenViewController {
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
 
+        self.headerContainer.size = CGSize(width: self.contentContainer.width, height: 40)
+        self.headerContainer.top = Theme.contentOffset
+        self.headerContainer.centerOnX()
+
         self.segmentControl.size = CGSize(width: 120, height: 40)
-        self.segmentControl.top = Theme.contentOffset
-        self.segmentControl.centerOnX()
+        self.segmentControl.centerOnXAndY()
 
         self.avatarView.size = CGSize(width: 30, height: 30)
         self.avatarView.left = 20
@@ -90,7 +96,7 @@ class HomeViewController: FullScreenViewController {
 
         self.searchImageView.size = CGSize(width: 22, height: 22)
         self.searchImageView.centerY = self.segmentControl.centerY
-        self.searchImageView.right = self.contentContainer.right - 20
+        self.searchImageView.right = self.headerContainer.width - 20
 
         self.addButton.size = CGSize(width: 48, height: 48)
         self.addButton.right = self.contentContainer.width - 25
@@ -125,13 +131,13 @@ class HomeViewController: FullScreenViewController {
 
         UIView.animate(withDuration: Theme.animationDuration,
                        animations: {
-                        currentView.transform = CGAffineTransform(scaleX: 0.95, y: 0.95)
+                        currentView.transform = CGAffineTransform(scaleX: 0.9, y: 0.9)
                         currentView.alpha = 0
                         currentView.setNeedsLayout()
         }) { (completed) in
             if completed {
                 currentView.removeFromSuperview()
-                self.contentContainer.insertSubview(newView, belowSubview: self.segmentControl)
+                self.contentContainer.insertSubview(newView, belowSubview: self.headerContainer)
                 self.contentContainer.layoutNow()
                 newView.transform = CGAffineTransform(scaleX: 0.9, y: 0.9)
                 newView.alpha = 0
@@ -139,8 +145,6 @@ class HomeViewController: FullScreenViewController {
                                animations: {
                                 newView.transform = CGAffineTransform.identity
                                 newView.alpha = 1
-                }, completion: { (completed) in
-
                 })
             }
         }

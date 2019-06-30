@@ -16,6 +16,7 @@ class FeedCell: SwipeableView {
 
         self.set(backgroundColor: .background3)
         self.roundCorners()
+        self.addShadow(withOffset: 20)
     }
     
     func configure(with item: FeedType) {
