@@ -10,6 +10,9 @@ import Foundation
 
 class ChannelCellContentView: View {
 
+    let moreButton = Button()
+
+    private let contextCircle = View()
     private let headerView = View()
     private let contextLabel = Label()
     private let messageLabel = Label()
@@ -38,6 +41,10 @@ class ChannelCellContentView: View {
 
         self.addSubview(self.headerView)
         self.headerView.set(backgroundColor: .background2)
+        self.headerView.addSubview(self.moreButton)
+        self.moreButton.set(type: .normal(color: .clear, text: "MORE"))
+        self.headerView.addSubview(self.contextCircle)
+        self.contextCircle.makeRound()
         self.addSubview(self.avatarView)
         self.headerView.addSubview(self.contextLabel)
         self.addSubview(self.messageLabel)
@@ -49,6 +56,8 @@ class ChannelCellContentView: View {
 
         switch type {
         case .system(let message):
+            self.contextCircle.layer.borderColor = message.context.color.color.cgColor
+            self.contextCircle.layer.borderWidth = 2
             self.avatarView.set(avatar: message.avatar)
             self.contextText = message.context.text
             self.messageText = message.body
@@ -67,8 +76,16 @@ class ChannelCellContentView: View {
         self.headerView.centerOnX()
         self.headerView.top = 0
 
-        self.contextLabel.size = CGSize(width: self.width - 40, height: self.headerView.height)
-        self.contextLabel.left = 12
+        self.contextCircle.size = CGSize(width: 25, height: 25)
+        self.contextCircle.left = Theme.contentOffset
+        self.contextCircle.centerOnY()
+
+        self.moreButton.size = CGSize(width: 50, height: self.headerView.height)
+        self.moreButton.right = self.width - Theme.contentOffset
+        self.moreButton.centerOnY()
+
+        self.contextLabel.size = CGSize(width: 200, height: self.headerView.height)
+        self.contextLabel.left = self.contextCircle.right + Theme.contentOffset
         self.contextLabel.centerOnY()
 
         self.avatarView.size = CGSize(width: 56, height: 56)

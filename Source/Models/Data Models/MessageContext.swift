@@ -27,4 +27,17 @@ enum MessageContext: TextDisplayable {
             return "Casual"
         }
     }
+
+    var color: Color {
+        switch self {
+        case .emergency:
+            return .red
+        case .timeSensitive:
+            return .orange
+        case .convenient:
+            return .green
+        case .casual:
+            return .teal
+        }
+    }
 }
