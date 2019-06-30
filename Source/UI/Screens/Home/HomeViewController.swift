@@ -97,7 +97,6 @@ class HomeViewController: FullScreenViewController {
     }
 
     @objc func updateContent() {
-        print(self.segmentControl.selectedSegmentIndex)
         let offset = self.segmentControl.selectedSegmentIndex == 0 ? 0 : self.contentContainer.right * -1
 
         guard self.feedVC.view.left != offset else { return }
