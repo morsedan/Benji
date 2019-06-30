@@ -51,14 +51,14 @@ class HomeViewController: FullScreenViewController {
 
     private func initializeViews() {
 
+        self.addChild(viewController: self.feedVC, toView: self.contentContainer)
+        self.addChild(viewController: self.channelsVC, toView: self.contentContainer)
+
         self.contentContainer.addSubview(self.avatarView)
         self.contentContainer.addSubview(self.searchImageView)
 
         self.contentContainer.addSubview(self.segmentControl)
         self.segmentControl.addTarget(self, action: #selector(updateContent), for: .valueChanged)
-
-        self.addChild(viewController: self.feedVC, toView: self.contentContainer)
-        self.addChild(viewController: self.channelsVC, toView: self.contentContainer)
     }
 
     override func viewDidLoad() {
@@ -78,12 +78,12 @@ class HomeViewController: FullScreenViewController {
         self.segmentControl.top = 0
         self.segmentControl.centerOnX()
 
-        self.searchImageView.size = CGSize(width: 40, height: 40)
-        self.searchImageView.top = 0
+        self.searchImageView.size = CGSize(width: 22, height: 22)
+        self.searchImageView.centerY = self.segmentControl.centerY
         self.searchImageView.right = self.contentContainer.right - 20
 
         self.feedVC.view.size = CGSize(width: self.contentContainer.width, height: self.contentContainer.height - self.segmentControl.height)
-        self.feedVC.view.top = self.segmentControl.bottom
+        self.feedVC.view.top = 0
         self.feedVC.view.left = 0
 
         self.channelsVC.view.size = self.contentContainer.size
