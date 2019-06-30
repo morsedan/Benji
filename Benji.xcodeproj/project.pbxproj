@@ -42,6 +42,7 @@
 		D63826D22274C8C0001D4B8B /* ChannelManager+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = D63826D12274C8C0001D4B8B /* ChannelManager+Extensions.swift */; };
 		D642735122C857760088256B /* MessageContext.swift in Sources */ = {isa = PBXBuildFile; fileRef = D642735022C857760088256B /* MessageContext.swift */; };
 		D642735322C85B740088256B /* SystemAvatar.swift in Sources */ = {isa = PBXBuildFile; fileRef = D642735222C85B740088256B /* SystemAvatar.swift */; };
+		D642735522C87CCA0088256B /* HomeAddButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = D642735422C87CCA0088256B /* HomeAddButton.swift */; };
 		D66F0FC722BF004300BA277D /* FeedType.swift in Sources */ = {isa = PBXBuildFile; fileRef = D66F0FC622BF004300BA277D /* FeedType.swift */; };
 		D66F0FC922BF006D00BA277D /* SystemMessage.swift in Sources */ = {isa = PBXBuildFile; fileRef = D66F0FC822BF006D00BA277D /* SystemMessage.swift */; };
 		D66F0FCB22BF01D300BA277D /* FeedCollectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D66F0FCA22BF01D300BA277D /* FeedCollectionView.swift */; };
@@ -156,6 +157,7 @@
 		D63826D12274C8C0001D4B8B /* ChannelManager+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ChannelManager+Extensions.swift"; sourceTree = "<group>"; };
 		D642735022C857760088256B /* MessageContext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageContext.swift; sourceTree = "<group>"; };
 		D642735222C85B740088256B /* SystemAvatar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SystemAvatar.swift; sourceTree = "<group>"; };
+		D642735422C87CCA0088256B /* HomeAddButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeAddButton.swift; sourceTree = "<group>"; };
 		D66F0FC622BF004300BA277D /* FeedType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedType.swift; sourceTree = "<group>"; };
 		D66F0FC822BF006D00BA277D /* SystemMessage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SystemMessage.swift; sourceTree = "<group>"; };
 		D66F0FCA22BF01D300BA277D /* FeedCollectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedCollectionView.swift; sourceTree = "<group>"; };
@@ -494,6 +496,7 @@
 				D6D145F321D5493000CD8CE4 /* HomeViewController.swift */,
 				D6D1461021D583D200CD8CE4 /* RootNavigationController.swift */,
 				D66F0FDD22BF2C5D00BA277D /* HomeSegmentControl.swift */,
+				D642735422C87CCA0088256B /* HomeAddButton.swift */,
 			);
 			path = Home;
 			sourceTree = "<group>";
@@ -751,6 +754,7 @@
 				D642735322C85B740088256B /* SystemAvatar.swift in Sources */,
 				D6D14FF821D5893700CD8CE4 /* IGListMoveIndexPath.m in Sources */,
 				D6D14D9121D5893600CD8CE4 /* IGListIndexSetResult.m in Sources */,
+				D642735522C87CCA0088256B /* HomeAddButton.swift in Sources */,
 				D66F0FE622C0640E00BA277D /* Avatar.swift in Sources */,
 				D6D14FFB21D5893700CD8CE4 /* DiffableBox.swift in Sources */,
 				D6D1501621D5F08700CD8CE4 /* DisplyableCell.swift in Sources */,

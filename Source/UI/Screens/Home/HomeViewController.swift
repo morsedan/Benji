@@ -33,8 +33,7 @@ class HomeViewController: FullScreenViewController {
     }()
 
     let searchImageView = UIImageView(image: #imageLiteral(resourceName: "Search"))
-    //search icon
-    //add button
+    let addButton = HomeAddButton()
 
     override init() {
         super.init()
@@ -59,6 +58,8 @@ class HomeViewController: FullScreenViewController {
 
         self.contentContainer.addSubview(self.segmentControl)
         self.segmentControl.addTarget(self, action: #selector(updateContent), for: .valueChanged)
+
+        self.contentContainer.addSubview(self.addButton)
     }
 
     override func viewDidLoad() {
@@ -81,6 +82,10 @@ class HomeViewController: FullScreenViewController {
         self.searchImageView.size = CGSize(width: 22, height: 22)
         self.searchImageView.centerY = self.segmentControl.centerY
         self.searchImageView.right = self.contentContainer.right - 20
+
+        self.addButton.size = CGSize(width: 48, height: 48)
+        self.addButton.right = self.contentContainer.width - 25
+        self.addButton.bottom = self.contentContainer.height - 25
 
         self.feedVC.view.size = CGSize(width: self.contentContainer.width, height: self.contentContainer.height - self.segmentControl.height)
         self.feedVC.view.top = 0
