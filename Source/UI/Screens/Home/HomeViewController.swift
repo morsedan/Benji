@@ -59,14 +59,13 @@ class HomeViewController: FullScreenViewController {
 
     private func initializeViews() {
 
+        self.addChild(viewController: self.feedVC, toView: self.contentContainer)
+        self.addChild(self.channelsVC)
+
         self.contentContainer.addSubview(self.avatarView)
         self.contentContainer.addSubview(self.searchImageView)
 
         self.contentContainer.addSubview(self.segmentControl)
-
-        self.addChild(viewController: self.feedVC, toView: self.contentContainer)
-        self.addChild(self.channelsVC)
-
         self.segmentControl.addTarget(self, action: #selector(updateContent), for: .valueChanged)
 
         self.contentContainer.addSubview(self.addButton)
@@ -126,8 +125,9 @@ class HomeViewController: FullScreenViewController {
 
         UIView.animate(withDuration: Theme.animationDuration,
                        animations: {
-                        currentView.transform = CGAffineTransform(scaleX: 0.9, y: 0.9)
+                        currentView.transform = CGAffineTransform(scaleX: 0.95, y: 0.95)
                         currentView.alpha = 0
+                        currentView.setNeedsLayout()
         }) { (completed) in
             if completed {
                 currentView.removeFromSuperview()
