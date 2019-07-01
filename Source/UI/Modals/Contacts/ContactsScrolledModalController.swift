@@ -21,15 +21,4 @@ class ContactsScrolledModalController: ScrolledModalController {
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
-
-    override func scrolledModalContainerViewFinishedAnimating(_ container: ScrolledModalContainerView,
-                                                              withProgress progress: Float) {
-        super.scrolledModalContainerViewFinishedAnimating(container, withProgress: progress)
-
-        guard progress == 1 else { return }
-
-        once(caller: self, token: "getAuthorizationStatus") {
-            self.contactsVC.getAuthorizationStatus()
-        }
-    }
 }

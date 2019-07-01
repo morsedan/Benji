@@ -39,7 +39,7 @@ enum FontType {
         case .small:
             return UIFont(name: "AvenirNext-Regular", size: self.size)!
         case .smallSemiBold:
-            return UIFont(name: "AvenirNext-Medium,", size: self.size)!
+            return UIFont(name: "AvenirNext-Medium", size: self.size)!
         case .xSmall:
             return UIFont(name: "AvenirNext-Regular", size: self.size)!
         case .xxSmall:

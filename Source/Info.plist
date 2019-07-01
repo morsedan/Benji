@@ -41,5 +41,15 @@
 		<string>UIInterfaceOrientationLandscapeLeft</string>
 		<string>UIInterfaceOrientationLandscapeRight</string>
 	</array>
+	<key>NSCameraUsageDescription</key>
+	<string>Create photo messages and profile pictures for yourself. </string>
+	<key>NSContactsUsageDescription</key>
+	<string>Select contacts to message. Contact information never leaves this device. </string>
+	<key>NSFaceIDUsageDescription</key>
+	<string>You can use FaceID to securely access your account</string>
+	<key>NSMicrophoneUsageDescription</key>
+	<string>MICROPHONE DESCRIPTION</string>
+	<key>NSPhotoLibraryUsageDescription</key>
+	<string>ADD PHOTOS DESCRIPTION</string>
 </dict>
 </plist>

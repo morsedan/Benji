@@ -29,12 +29,12 @@ class Button: UIButton {
             localizedString = casingType.format(string: localizedString)
 
             let normalString = NSMutableAttributedString(string: localizedString)
-            normalString.addAttribute(.font, value: FontType.xSmall.font)
-            normalString.addAttribute(.kern, value: CGFloat(2))
+            normalString.addAttribute(.font, value: FontType.smallSemiBold.font)
+            normalString.addAttribute(.kern, value: CGFloat(0))
 
             let highlightedString = NSMutableAttributedString(string: localizedString)
-            highlightedString.addAttribute(.font, value: FontType.xSmall.font)
-            highlightedString.addAttribute(.kern, value: CGFloat(2))
+            highlightedString.addAttribute(.font, value: FontType.small.font)
+            highlightedString.addAttribute(.kern, value: CGFloat(0))
 
             normalString.addAttribute(.foregroundColor, value: Color.white.color)
             highlightedString.addAttribute(.foregroundColor, value: Color.white.color)
