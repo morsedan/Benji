@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import Contacts
 
 class ContactsViewController: CollectionViewController<ContactCell, ContactsCollectionViewManager>, ScrolledModalControllerPresentable {
 
@@ -20,9 +21,70 @@ class ContactsViewController: CollectionViewController<ContactCell, ContactsColl
         return true
     }
 
+    init() {
+        let collectionView = ContactsCollectionView()
+        super.init(with: collectionView)
+    }
+
+    required init?(coder aDecoder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+
     override func viewDidLoad() {
         super.viewDidLoad()
 
         self.view.set(backgroundColor: .background3)
+    }
+
+    func getAuthorizationStatus() {
+        ContactsManager.shared.getAuthorizationStatus { [unowned self] (authorizationStatus) in
+            switch authorizationStatus {
+            case .notDetermined, .restricted, .denied:
+                runMain {
+                    self.askForAuthorization(status: authorizationStatus)
+                }
+            case .authorized:
+                self.getContacts()
+            @unknown default:
+                runMain {
+                    self.askForAuthorization(status: authorizationStatus)
+                }
+            }
+        }
+    }
+
+    func getContacts() {
+        runMain {
+            //self.tableView.activityIndicator.startAnimating()
+        }
+
+        ContactsManager.shared.getContacts { [weak self] (contacts: [CNContact]) in
+            guard let `self` = self else { return }
+            //self.tableView.activityIndicator.stopAnimating()
+            //self.tableViewManager.processContacts(contacts: contacts)
+        }
+    }
+
+    private func sort(contacts: [CNContact]) {
+        self.manager.set(newItems: contacts)
+    }
+
+    private func askForAuthorization(status: CNAuthorizationStatus) {
+
+//        let contactModal = ContactAuthorizationModalController(status: status)
+//        contactModal.onAuthorization = { [unowned self] (result) in
+//            switch result {
+//            case .denied:
+//                self.dismiss(animated: true) {
+//                    self.didComplete()
+//                }
+//            case .authorized:
+//                self.dismiss(animated: true) {
+//                    self.getContacts()
+//                }
+//            }
+//        }
+//
+//        self.present(contactModal, animated: true)
     }
 }

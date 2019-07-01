@@ -60,6 +60,7 @@
 		D642737A22C99DD20088256B /* ContactCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D642737922C99DD20088256B /* ContactCell.swift */; };
 		D642737D22C9A2D70088256B /* NameLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D642737C22C9A2D70088256B /* NameLabel.swift */; };
 		D642737F22C9A7EC0088256B /* ContactsManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = D642737E22C9A7EC0088256B /* ContactsManager.swift */; };
+		D642738122C9AB290088256B /* ContactsScrolledModalController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D642738022C9AB290088256B /* ContactsScrolledModalController.swift */; };
 		D66F0FC722BF004300BA277D /* FeedType.swift in Sources */ = {isa = PBXBuildFile; fileRef = D66F0FC622BF004300BA277D /* FeedType.swift */; };
 		D66F0FC922BF006D00BA277D /* SystemMessage.swift in Sources */ = {isa = PBXBuildFile; fileRef = D66F0FC822BF006D00BA277D /* SystemMessage.swift */; };
 		D66F0FCF22BF060500BA277D /* Deeplinkable.swift in Sources */ = {isa = PBXBuildFile; fileRef = D66F0FCE22BF060500BA277D /* Deeplinkable.swift */; };
@@ -190,6 +191,7 @@
 		D642737922C99DD20088256B /* ContactCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactCell.swift; sourceTree = "<group>"; };
 		D642737C22C9A2D70088256B /* NameLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NameLabel.swift; sourceTree = "<group>"; };
 		D642737E22C9A7EC0088256B /* ContactsManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactsManager.swift; sourceTree = "<group>"; };
+		D642738022C9AB290088256B /* ContactsScrolledModalController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactsScrolledModalController.swift; sourceTree = "<group>"; };
 		D66F0FC622BF004300BA277D /* FeedType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedType.swift; sourceTree = "<group>"; };
 		D66F0FC822BF006D00BA277D /* SystemMessage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SystemMessage.swift; sourceTree = "<group>"; };
 		D66F0FCE22BF060500BA277D /* Deeplinkable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Deeplinkable.swift; sourceTree = "<group>"; };
@@ -488,6 +490,7 @@
 		D642737222C99D540088256B /* Contacts */ = {
 			isa = PBXGroup;
 			children = (
+				D642738022C9AB290088256B /* ContactsScrolledModalController.swift */,
 				D642737322C99D6A0088256B /* ContactsViewController.swift */,
 				D642737522C99D9F0088256B /* ContactsCollectionViewManager.swift */,
 				D642737722C99DB50088256B /* ContactsCollectionView.swift */,
@@ -930,6 +933,7 @@
 				D6D1501421D5EA2500CD8CE4 /* DisplyableItem.swift in Sources */,
 				D642736C22C98FA00088256B /* MathFunctions.swift in Sources */,
 				D62C635422BE9CBB00F4D097 /* FeedViewController.swift in Sources */,
+				D642738122C9AB290088256B /* ContactsScrolledModalController.swift in Sources */,
 				D6D1500921D5E77900CD8CE4 /* ChannelCollectionViewManager.swift in Sources */,
 				D6D14FF921D5893700CD8CE4 /* NSString+IGListDiffable.m in Sources */,
 				D63826D22274C8C0001D4B8B /* ChannelManager+Extensions.swift in Sources */,
