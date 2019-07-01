@@ -54,6 +54,10 @@
 		D642736A22C98EB40088256B /* ScrolledModalContainerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D642736922C98EB40088256B /* ScrolledModalContainerView.swift */; };
 		D642736C22C98FA00088256B /* MathFunctions.swift in Sources */ = {isa = PBXBuildFile; fileRef = D642736B22C98FA00088256B /* MathFunctions.swift */; };
 		D642737122C991A60088256B /* ClosedRange+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = D642737022C991A60088256B /* ClosedRange+Extensions.swift */; };
+		D642737422C99D6A0088256B /* ContactsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D642737322C99D6A0088256B /* ContactsViewController.swift */; };
+		D642737622C99D9F0088256B /* ContactsCollectionViewManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = D642737522C99D9F0088256B /* ContactsCollectionViewManager.swift */; };
+		D642737822C99DB50088256B /* ContactsCollectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D642737722C99DB50088256B /* ContactsCollectionView.swift */; };
+		D642737A22C99DD20088256B /* ContactCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D642737922C99DD20088256B /* ContactCell.swift */; };
 		D66F0FC722BF004300BA277D /* FeedType.swift in Sources */ = {isa = PBXBuildFile; fileRef = D66F0FC622BF004300BA277D /* FeedType.swift */; };
 		D66F0FC922BF006D00BA277D /* SystemMessage.swift in Sources */ = {isa = PBXBuildFile; fileRef = D66F0FC822BF006D00BA277D /* SystemMessage.swift */; };
 		D66F0FCF22BF060500BA277D /* Deeplinkable.swift in Sources */ = {isa = PBXBuildFile; fileRef = D66F0FCE22BF060500BA277D /* Deeplinkable.swift */; };
@@ -178,6 +182,10 @@
 		D642736922C98EB40088256B /* ScrolledModalContainerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScrolledModalContainerView.swift; sourceTree = "<group>"; };
 		D642736B22C98FA00088256B /* MathFunctions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MathFunctions.swift; sourceTree = "<group>"; };
 		D642737022C991A60088256B /* ClosedRange+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ClosedRange+Extensions.swift"; sourceTree = "<group>"; };
+		D642737322C99D6A0088256B /* ContactsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactsViewController.swift; sourceTree = "<group>"; };
+		D642737522C99D9F0088256B /* ContactsCollectionViewManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactsCollectionViewManager.swift; sourceTree = "<group>"; };
+		D642737722C99DB50088256B /* ContactsCollectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactsCollectionView.swift; sourceTree = "<group>"; };
+		D642737922C99DD20088256B /* ContactCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactCell.swift; sourceTree = "<group>"; };
 		D66F0FC622BF004300BA277D /* FeedType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedType.swift; sourceTree = "<group>"; };
 		D66F0FC822BF006D00BA277D /* SystemMessage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SystemMessage.swift; sourceTree = "<group>"; };
 		D66F0FCE22BF060500BA277D /* Deeplinkable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Deeplinkable.swift; sourceTree = "<group>"; };
@@ -473,6 +481,17 @@
 			path = "Collection Extensions";
 			sourceTree = "<group>";
 		};
+		D642737222C99D540088256B /* Contacts */ = {
+			isa = PBXGroup;
+			children = (
+				D642737322C99D6A0088256B /* ContactsViewController.swift */,
+				D642737522C99D9F0088256B /* ContactsCollectionViewManager.swift */,
+				D642737722C99DB50088256B /* ContactsCollectionView.swift */,
+				D642737922C99DD20088256B /* ContactCell.swift */,
+			);
+			path = Contacts;
+			sourceTree = "<group>";
+		};
 		D66F0FD022BF064700BA277D /* Deeplink */ = {
 			isa = PBXGroup;
 			children = (
@@ -527,6 +546,7 @@
 		D6D145F221D5490500CD8CE4 /* Modals */ = {
 			isa = PBXGroup;
 			children = (
+				D642737222C99D540088256B /* Contacts */,
 				D642736722C98E5D0088256B /* ScrolledModalViewController.swift */,
 				D642736922C98EB40088256B /* ScrolledModalContainerView.swift */,
 			);
@@ -792,6 +812,7 @@
 				D62C635622BE9E5C00F4D097 /* CollectionViewController.swift in Sources */,
 				D642735122C857760088256B /* MessageContext.swift in Sources */,
 				D60C814422092E4700A127A3 /* PagingCollectionView.swift in Sources */,
+				D642737622C99D9F0088256B /* ContactsCollectionViewManager.swift in Sources */,
 				D61EC0DB21D30CB300204BEE /* Dismissable.swift in Sources */,
 				D642735322C85B740088256B /* SystemAvatar.swift in Sources */,
 				D6D14FF821D5893700CD8CE4 /* IGListMoveIndexPath.m in Sources */,
@@ -827,6 +848,8 @@
 				D6DADF76220801CF007D9EB1 /* ChannelsContentView.swift in Sources */,
 				D6D1501821D5F40F00CD8CE4 /* UICollectionView+Extensions.swift in Sources */,
 				D642735B22C90C0F0088256B /* SwipeDirection.swift in Sources */,
+				D642737822C99DB50088256B /* ContactsCollectionView.swift in Sources */,
+				D642737A22C99DD20088256B /* ContactCell.swift in Sources */,
 				D6D1460B21D5547000CD8CE4 /* FontType.swift in Sources */,
 				D6D1461321D583E500CD8CE4 /* NavigationController.swift in Sources */,
 				D642735E22C90C820088256B /* CGPoint+Extensions.swift in Sources */,
@@ -886,6 +909,7 @@
 				D66F0FDA22BF297F00BA277D /* MainCoordinator.swift in Sources */,
 				D6D14FFA21D5893700CD8CE4 /* IGListDiff.mm in Sources */,
 				D61EC0F321D3146600204BEE /* UINib+Extensions.swift in Sources */,
+				D642737422C99D6A0088256B /* ContactsViewController.swift in Sources */,
 				D6D145F421D5493000CD8CE4 /* HomeViewController.swift in Sources */,
 				D6D1501421D5EA2500CD8CE4 /* DisplyableItem.swift in Sources */,
 				D642736C22C98FA00088256B /* MathFunctions.swift in Sources */,

@@ -12,6 +12,16 @@ import Contacts
 infix operator ~~: ComparisonPrecedence
 infix operator !~: ComparisonPrecedence
 
+extension CNContact: DisplayableCellItem {
+    var backgroundColor: Color {
+        return .background3
+    }
+
+    func diffIdentifier() -> NSObjectProtocol {
+        return self.identifier as NSObjectProtocol
+    }
+}
+
 extension CNContact: Avatar {
 
     var initials: String {
