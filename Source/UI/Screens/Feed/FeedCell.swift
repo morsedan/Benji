@@ -11,8 +11,14 @@ import TwilioChatClient
 
 class FeedCell: SwipeableView {
 
+    let textView = FeedTextView()
+    let avatarView = AvatarView()
+
     override func initializeViews() {
         super.initializeViews()
+
+        self.addSubview(self.textView)
+        self.addSubview(self.avatarView)
 
         self.set(backgroundColor: .background3)
         self.roundCorners()
@@ -20,6 +26,24 @@ class FeedCell: SwipeableView {
     }
     
     func configure(with item: FeedType) {
+        switch item {
+        case .system(let systemMessage):
+            self.textView.set(localizedText: systemMessage.body)
+            self.avatarView.set(avatar: systemMessage.avatar)
+        case .message(_):
+            break
+        }
+    }
 
+    override func layoutSubviews() {
+        super.layoutSubviews()
+
+        self.textView.size = CGSize(width: self.width * 0.85, height: self.height * 0.5)
+        self.textView.top = 40
+        self.textView.centerOnX()
+
+        self.avatarView.size = CGSize(width: 24, height: 24)
+        self.avatarView.bottom = self.height - 100
+        self.avatarView.centerOnX()
     }
 }

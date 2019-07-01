@@ -49,6 +49,7 @@
 		D642736022C90D0E0088256B /* CGRect+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = D642735F22C90D0E0088256B /* CGRect+Extensions.swift */; };
 		D642736222C90D660088256B /* SwipeableDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = D642736122C90D660088256B /* SwipeableDataSource.swift */; };
 		D642736422C9132A0088256B /* EmptyFeedView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D642736322C9132A0088256B /* EmptyFeedView.swift */; };
+		D642736622C971FD0088256B /* FeedTextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D642736522C971FD0088256B /* FeedTextView.swift */; };
 		D66F0FC722BF004300BA277D /* FeedType.swift in Sources */ = {isa = PBXBuildFile; fileRef = D66F0FC622BF004300BA277D /* FeedType.swift */; };
 		D66F0FC922BF006D00BA277D /* SystemMessage.swift in Sources */ = {isa = PBXBuildFile; fileRef = D66F0FC822BF006D00BA277D /* SystemMessage.swift */; };
 		D66F0FCF22BF060500BA277D /* Deeplinkable.swift in Sources */ = {isa = PBXBuildFile; fileRef = D66F0FCE22BF060500BA277D /* Deeplinkable.swift */; };
@@ -168,6 +169,7 @@
 		D642735F22C90D0E0088256B /* CGRect+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CGRect+Extensions.swift"; sourceTree = "<group>"; };
 		D642736122C90D660088256B /* SwipeableDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwipeableDataSource.swift; sourceTree = "<group>"; };
 		D642736322C9132A0088256B /* EmptyFeedView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmptyFeedView.swift; sourceTree = "<group>"; };
+		D642736522C971FD0088256B /* FeedTextView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedTextView.swift; sourceTree = "<group>"; };
 		D66F0FC622BF004300BA277D /* FeedType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedType.swift; sourceTree = "<group>"; };
 		D66F0FC822BF006D00BA277D /* SystemMessage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SystemMessage.swift; sourceTree = "<group>"; };
 		D66F0FCE22BF060500BA277D /* Deeplinkable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Deeplinkable.swift; sourceTree = "<group>"; };
@@ -439,6 +441,7 @@
 				D642735A22C90C0F0088256B /* SwipeDirection.swift */,
 				D642736122C90D660088256B /* SwipeableDataSource.swift */,
 				D642736322C9132A0088256B /* EmptyFeedView.swift */,
+				D642736522C971FD0088256B /* FeedTextView.swift */,
 			);
 			path = Feed;
 			sourceTree = "<group>";
@@ -787,6 +790,7 @@
 				D66F0FF222C1D86800BA277D /* ChannelsType.swift in Sources */,
 				D60C81482209314200A127A3 /* UIImage+Extensions.swift in Sources */,
 				D61EC0EA21D3111600204BEE /* String+Extensions.swift in Sources */,
+				D642736622C971FD0088256B /* FeedTextView.swift in Sources */,
 				D6DADF6C2207DCA8007D9EB1 /* ChannelsViewController.swift in Sources */,
 				D6D1503321D7E5F800CD8CE4 /* UIDynamicAnimator+Extensions.swift in Sources */,
 				D66F0FD222BF065F00BA277D /* DeeplinkTarget.swift in Sources */,
