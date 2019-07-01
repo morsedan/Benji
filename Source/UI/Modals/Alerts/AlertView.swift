@@ -52,8 +52,10 @@ class AlertView: View {
     override func layoutSubviews() {
         super.layoutSubviews()
 
+        guard let buttonsContainer = self.buttonsContainer else { return }
+
         var yOffset: CGFloat = 0
-        for (index, subview) in self.buttonsContainer.subviews.enumerated() {
+        for (index, subview) in buttonsContainer.subviews.enumerated() {
             guard let button = subview as? UIButton else { return }
             button.frame = CGRect(x: 0, y: yOffset, width: self.buttonsContainer.width, height: 40)
             button.layer.cornerRadius = button.halfHeight
