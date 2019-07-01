@@ -25,8 +25,9 @@ class AlertView: View {
         super.awakeFromNib()
 
         self.set(backgroundColor: .clear)
-
+        self.contentView.set(backgroundColor: .clear)
         self.cardView.roundCorners()
+        self.cardView.set(backgroundColor: .background3)
         self.buttonsContainer.set(backgroundColor: .clear)
         self.showShadow(withOffset: 5)
 

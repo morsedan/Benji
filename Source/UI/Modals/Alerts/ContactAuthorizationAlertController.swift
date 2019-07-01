@@ -63,7 +63,7 @@ class ContactAuthorizationAlertController: PagingModalController {
         case .notDetermined:
 
             text = LocalizedString(id: "alert.contactauthorizationnotdetermined.text",
-                                   default: "Tomorrow can import your info, so you don't have to type it in.")
+                                   default: "Invite contacts from your phone with peace of mind knowing that their information never leaves the device.")
 
             let allowTitle = LocalizedString(id: "alert.contactauthorizationnotdetermined.allow",
                                              default: "ALLOW")
@@ -74,10 +74,8 @@ class ContactAuthorizationAlertController: PagingModalController {
                 self.onAuthorization?(.authorized)
             }
 
-            let notNowTitle = LocalizedString(id: "alert.contactauthorizationnotdetermined.type",
-                                              default: "NOT NOW")
             let notNowButton = LoadingButton()
-            notNowButton.set(style: .rounded(color: .clear, text: notNowTitle)) { [weak self] in
+            notNowButton.set(style: .rounded(color: .clear, text: CommonWord.maybelater(.uppercase).localizedString)) { [weak self] in
                 guard let `self` = self else { return }
 
                 self.onAuthorization?(.denied)
