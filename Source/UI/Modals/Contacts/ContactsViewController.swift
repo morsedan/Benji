@@ -42,6 +42,11 @@ class ContactsViewController: CollectionViewController<ContactCell, ContactsColl
         super.viewDidLoad()
 
         self.view.set(backgroundColor: .background3)
+
+        ContactsManager.shared.getAuthorizationStatus { [unowned self] (authorizationStatus) in
+            guard authorizationStatus == .authorized else { return }
+            self.getContacts()
+        }
     }
 
     func getAuthorizationStatus() {

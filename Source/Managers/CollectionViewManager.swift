@@ -28,9 +28,11 @@ class CollectionViewManager<CellType: DisplayableCell & UICollectionViewCell>: N
 
         collectionView.register(CellType.self, forCellWithReuseIdentifier: CellType.reuseID)
         self.collectionView = collectionView
-
         super.init()
+        self.initialize()
     }
+
+    func initialize() {}
 
     func set(newItems: [CellType.ItemType]) {
         self.updateCollectionView(items: newItems, modify: { [weak self] in

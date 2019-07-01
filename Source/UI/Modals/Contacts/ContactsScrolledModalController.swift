@@ -16,6 +16,7 @@ class ContactsScrolledModalController: ScrolledModalController {
         let vc = ContactsViewController()
         self.contactsVC = vc
         super.init(presentable: vc)
+        self.titleText = LocalizedString(id: "", default: "Contacts")
     }
 
     required init?(coder aDecoder: NSCoder) {
