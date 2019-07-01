@@ -70,6 +70,7 @@
 		D642739122C9BFA10088256B /* AlertViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D642739022C9BFA10088256B /* AlertViewController.swift */; };
 		D642739322C9C0110088256B /* AlertView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D642739222C9C0110088256B /* AlertView.swift */; };
 		D642739522C9C0850088256B /* AlertView.xib in Resources */ = {isa = PBXBuildFile; fileRef = D642739422C9C0850088256B /* AlertView.xib */; };
+		D642739722CA6E1F0088256B /* CommonWord.swift in Sources */ = {isa = PBXBuildFile; fileRef = D642739622CA6E1F0088256B /* CommonWord.swift */; };
 		D66F0FC722BF004300BA277D /* FeedType.swift in Sources */ = {isa = PBXBuildFile; fileRef = D66F0FC622BF004300BA277D /* FeedType.swift */; };
 		D66F0FC922BF006D00BA277D /* SystemMessage.swift in Sources */ = {isa = PBXBuildFile; fileRef = D66F0FC822BF006D00BA277D /* SystemMessage.swift */; };
 		D66F0FCF22BF060500BA277D /* Deeplinkable.swift in Sources */ = {isa = PBXBuildFile; fileRef = D66F0FCE22BF060500BA277D /* Deeplinkable.swift */; };
@@ -210,6 +211,7 @@
 		D642739022C9BFA10088256B /* AlertViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertViewController.swift; sourceTree = "<group>"; };
 		D642739222C9C0110088256B /* AlertView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertView.swift; sourceTree = "<group>"; };
 		D642739422C9C0850088256B /* AlertView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = AlertView.xib; sourceTree = "<group>"; };
+		D642739622CA6E1F0088256B /* CommonWord.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommonWord.swift; sourceTree = "<group>"; };
 		D66F0FC622BF004300BA277D /* FeedType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedType.swift; sourceTree = "<group>"; };
 		D66F0FC822BF006D00BA277D /* SystemMessage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SystemMessage.swift; sourceTree = "<group>"; };
 		D66F0FCE22BF060500BA277D /* Deeplinkable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Deeplinkable.swift; sourceTree = "<group>"; };
@@ -459,6 +461,7 @@
 				D6D1460421D5524C00CD8CE4 /* StringCasing.swift */,
 				D6D1460221D551B100CD8CE4 /* StringLibrary.swift */,
 				D6D145FE21D5510400CD8CE4 /* StringStyle.swift */,
+				D642739622CA6E1F0088256B /* CommonWord.swift */,
 			);
 			path = "View Models";
 			sourceTree = "<group>";
@@ -982,6 +985,7 @@
 				D642738822C9AF690088256B /* ModalViewController.swift in Sources */,
 				D642737422C99D6A0088256B /* ContactsViewController.swift in Sources */,
 				D6D145F421D5493000CD8CE4 /* HomeViewController.swift in Sources */,
+				D642739722CA6E1F0088256B /* CommonWord.swift in Sources */,
 				D6D1501421D5EA2500CD8CE4 /* DisplyableItem.swift in Sources */,
 				D642736C22C98FA00088256B /* MathFunctions.swift in Sources */,
 				D62C635422BE9CBB00F4D097 /* FeedViewController.swift in Sources */,

@@ -8,7 +8,7 @@
 
 import Foundation
 
-struct LocalString: Localized {
+struct LocalizedString: Localized {
     var identifier: String
     var arguments: [Localized]
     var defaultString: String?
@@ -23,12 +23,12 @@ struct LocalString: Localized {
     }
 
     func localized(withArguments arguments: [Localized]) -> Localized {
-        return LocalString(id: self.identifier,
-                           arguments: arguments,
-                           default: self.defaultString)
+        return LocalizedString(id: self.identifier,
+                               arguments: arguments,
+                               default: self.defaultString)
     }
     
-    static var empty: LocalString {
-        return LocalString(id: "", default: "")
+    static var empty: LocalizedString {
+        return LocalizedString(id: "", default: "")
     }
 }

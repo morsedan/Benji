@@ -37,65 +37,70 @@ class ContactAuthorizationAlertController: PagingModalController {
 
         switch status {
         case .denied:
-            break
-//            text = TomorrowString(id: "alert.contactauthorizationdenied.text",
-//                                  default: "You can change address book permissions in your settings.")
-//
-//            let settingsTitle = TomorrowString(id: "alert.contactauthorizationdenied.changesettings",
-//                                               default: "CHANGE SETTINGS")
-//            let settingsButton = FooterButton(localizedTitle: settingsTitle, color: .blue2) {
-//                if let settingsUrl = URL(string: UIApplication.openSettingsURLString),
-//                    UIApplication.shared.canOpenURL(settingsUrl) {
-//                    UIApplication.shared.open(settingsUrl)
-//                }
-//            }
-//
-//            let nevermindButton = FooterButton(localizedTitle: CommonWord.nevermind(.uppercase).localizedString,
-//                                               color: .clear) { [unowned self] in
-//                                                self.onAuthorization?(.denied)
-//            }
-//            buttons = [settingsButton, nevermindButton]
-//
-//            icon = Icon.PhoneIcon.darkImage
+            text = LocalizedString(id: "alert.contactauthorizationdenied.text",
+                                   default: "You can change address book permissions in your settings.")
+
+            let settingsTitle = LocalizedString(id: "alert.contactauthorizationdenied.changesettings",
+                                                default: "CHANGE SETTINGS")
+            let settingsButton = LoadingButton()
+            settingsButton.set(style: .rounded(color: .blue, text: settingsTitle)) {
+                if let settingsUrl = URL(string: UIApplication.openSettingsURLString),
+                    UIApplication.shared.canOpenURL(settingsUrl) {
+                    UIApplication.shared.open(settingsUrl)
+                }
+            }
+
+            let nevermindButton = LoadingButton()
+            nevermindButton.set(style: .rounded(color: .clear,
+                                                text: CommonWord.nevermind(.uppercase).localizedString)) { [weak self] in
+                guard let `self` = self else { return }
+
+                 self.onAuthorization?(.denied)
+            }
+
+            buttons = [settingsButton, nevermindButton]
 
         case .notDetermined:
-            break
-//            text = TomorrowString(id: "alert.contactauthorizationnotdetermined.text",
-//                                  default: "Tomorrow can import your info, so you don't have to type it in.")
-//
-//            let allowTitle = TomorrowString(id: "alert.contactauthorizationnotdetermined.allow",
-//                                            default: "ALLOW")
-//            let allowButton = FooterButton(localizedTitle: allowTitle, color: .blue2) { [unowned self] in
-//                self.onAuthorization?(.authorized)
-//            }
-//
-//            let notNowTitle = TomorrowString(id: "alert.contactauthorizationnotdetermined.type",
-//                                             default: "I'LL TYPE IT IN")
-//            let notNowButton = FooterButton(localizedTitle: notNowTitle, color: .clear) { [unowned self] in
-//                self.onAuthorization?(.denied)
-//            }
-//
-//            buttons = [allowButton, notNowButton]
-//
-//            icon = Icon.FamilyIcon.darkImage
+
+            text = LocalizedString(id: "alert.contactauthorizationnotdetermined.text",
+                                   default: "Tomorrow can import your info, so you don't have to type it in.")
+
+            let allowTitle = LocalizedString(id: "alert.contactauthorizationnotdetermined.allow",
+                                             default: "ALLOW")
+            let allowButton = LoadingButton()
+            allowButton.set(style: .rounded(color: .blue, text: allowTitle)) { [weak self] in
+                guard let `self` = self else { return }
+
+                self.onAuthorization?(.authorized)
+            }
+
+            let notNowTitle = LocalizedString(id: "alert.contactauthorizationnotdetermined.type",
+                                              default: "NOT NOW")
+            let notNowButton = LoadingButton()
+            notNowButton.set(style: .rounded(color: .clear, text: notNowTitle)) { [weak self] in
+                guard let `self` = self else { return }
+
+                self.onAuthorization?(.denied)
+            }
+
+            buttons = [allowButton, notNowButton]
 
         case .authorized:
             return nil
 
         case .restricted:
-            break 
-//            text = TomorrowString(id: "alert.contactauthorizationrestricted.text",
-//                                  default: "Tomorrow can't access your contacts because of a parental setting.")
-//
-//            let okTitle = TomorrowString(id: "alert.contactauthorizationrestricted.ok",
-//                                         default: "OK")
-//            let okButton = FooterButton(localizedTitle: okTitle, color: .blue2) { [unowned self] in
-//                self.onAuthorization?(.denied)
-//            }
-//
-//            buttons = [okButton]
-//
-//            icon = Icon.FatherIcon.darkImage
+            
+            text = LocalizedString(id: "alert.contactauthorizationrestricted.text",
+                                   default: "Tomorrow can't access your contacts because of a parental setting.")
+
+            let okButton = LoadingButton()
+            okButton.set(style: .rounded(color: .blue, text: CommonWord.ok(.uppercase).localizedString)) { [weak self] in
+                guard let `self` = self else { return }
+
+                self.onAuthorization?(.denied)
+            }
+
+            buttons = [okButton]
 
         @unknown default:
             return nil
