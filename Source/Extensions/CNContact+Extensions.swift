@@ -12,34 +12,10 @@ import Contacts
 infix operator ~~: ComparisonPrecedence
 infix operator !~: ComparisonPrecedence
 
-extension CNContact: DisplayableCellItem {
-    var backgroundColor: Color {
-        return .background3
-    }
+extension CNContact {
 
-    func diffIdentifier() -> NSObjectProtocol {
-        return self.identifier as NSObjectProtocol
-    }
-}
-
-extension CNContact: Avatar {
-
-    var initials: String {
-        guard let first = self.givenName.first,
-            let last = self.familyName.first else { return "?" }
-
-        return String(first) + String(last)
-    }
-
-    var photoUrl: URL? {
-        return nil
-    }
-
-    var photo: UIImage? {
-        if let imageData = self.thumbnailImageData {
-            return UIImage(data: imageData)
-        }
-        return nil
+    var fullName: String {
+        return self.givenName + " " + self.familyName
     }
 
     static func ~~(lhs: CNContact, rhs: CNContact) -> Bool {
@@ -79,5 +55,36 @@ extension CNContact: Avatar {
         } else {
             return false
         }
+    }
+}
+
+extension CNContact: DisplayableCellItem {
+    var backgroundColor: Color {
+        return .background3
+    }
+
+    func diffIdentifier() -> NSObjectProtocol {
+        return self.identifier as NSObjectProtocol
+    }
+}
+
+extension CNContact: Avatar {
+
+    var initials: String {
+        guard let first = self.givenName.first,
+            let last = self.familyName.first else { return "?" }
+
+        return String(first) + String(last)
+    }
+
+    var photoUrl: URL? {
+        return nil
+    }
+
+    var photo: UIImage? {
+        if let imageData = self.thumbnailImageData {
+            return UIImage(data: imageData)
+        }
+        return nil
     }
 }

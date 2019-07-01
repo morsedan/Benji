@@ -12,7 +12,7 @@ protocol ScrolledModalControllerPresentable where Self : UIViewController {
     var topMargin: CGFloat { get }
     var scrollView: UIScrollView? { get }
     var scrollingEnabled: Bool { get }
-    var didExit: (() -> Void)? { get set }
+    var didDismiss: (() -> Void)? { get set }
 }
 
 class ScrolledModalController: ViewController {
@@ -58,7 +58,7 @@ class ScrolledModalController: ViewController {
         self.view.addSubview(self.modalContainerView)
 
         self.addChild(viewController: self.presentable, toView: self.modalContainerView)
-        self.presentable.didExit = { [unowned self] in
+        self.presentable.didDismiss = { [unowned self] in
             self.dismiss(animated: true)
         }
     }

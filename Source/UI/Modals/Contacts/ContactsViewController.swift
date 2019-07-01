@@ -8,6 +8,21 @@
 
 import Foundation
 
-class ContactsViewController: CollectionViewController<ContactCell, ContactsCollectionViewManager> {
+class ContactsViewController: CollectionViewController<ContactCell, ContactsCollectionViewManager>, ScrolledModalControllerPresentable {
 
+    var topMargin: CGFloat = 100
+
+    var scrollView: UIScrollView? {
+        return self.collectionView
+    }
+
+    var scrollingEnabled: Bool {
+        return true
+    }
+
+    override func viewDidLoad() {
+        super.viewDidLoad()
+
+        self.view.set(backgroundColor: .background3)
+    }
 }

@@ -9,5 +9,8 @@
 import Foundation
 
 class ContactsCollectionViewManager: CollectionViewManager<ContactCell> {
-    
+
+    override func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+        return CGSize(width: collectionView.width * 0.95, height: 90)
+    }
 }

@@ -58,6 +58,7 @@
 		D642737622C99D9F0088256B /* ContactsCollectionViewManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = D642737522C99D9F0088256B /* ContactsCollectionViewManager.swift */; };
 		D642737822C99DB50088256B /* ContactsCollectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D642737722C99DB50088256B /* ContactsCollectionView.swift */; };
 		D642737A22C99DD20088256B /* ContactCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D642737922C99DD20088256B /* ContactCell.swift */; };
+		D642737D22C9A2D70088256B /* NameLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D642737C22C9A2D70088256B /* NameLabel.swift */; };
 		D66F0FC722BF004300BA277D /* FeedType.swift in Sources */ = {isa = PBXBuildFile; fileRef = D66F0FC622BF004300BA277D /* FeedType.swift */; };
 		D66F0FC922BF006D00BA277D /* SystemMessage.swift in Sources */ = {isa = PBXBuildFile; fileRef = D66F0FC822BF006D00BA277D /* SystemMessage.swift */; };
 		D66F0FCF22BF060500BA277D /* Deeplinkable.swift in Sources */ = {isa = PBXBuildFile; fileRef = D66F0FCE22BF060500BA277D /* Deeplinkable.swift */; };
@@ -186,6 +187,7 @@
 		D642737522C99D9F0088256B /* ContactsCollectionViewManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactsCollectionViewManager.swift; sourceTree = "<group>"; };
 		D642737722C99DB50088256B /* ContactsCollectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactsCollectionView.swift; sourceTree = "<group>"; };
 		D642737922C99DD20088256B /* ContactCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactCell.swift; sourceTree = "<group>"; };
+		D642737C22C9A2D70088256B /* NameLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NameLabel.swift; sourceTree = "<group>"; };
 		D66F0FC622BF004300BA277D /* FeedType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedType.swift; sourceTree = "<group>"; };
 		D66F0FC822BF006D00BA277D /* SystemMessage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SystemMessage.swift; sourceTree = "<group>"; };
 		D66F0FCE22BF060500BA277D /* Deeplinkable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Deeplinkable.swift; sourceTree = "<group>"; };
@@ -492,6 +494,15 @@
 			path = Contacts;
 			sourceTree = "<group>";
 		};
+		D642737B22C9A2BB0088256B /* Labels */ = {
+			isa = PBXGroup;
+			children = (
+				D61EC0E121D30E6000204BEE /* Label.swift */,
+				D642737C22C9A2D70088256B /* NameLabel.swift */,
+			);
+			path = Labels;
+			sourceTree = "<group>";
+		};
 		D66F0FD022BF064700BA277D /* Deeplink */ = {
 			isa = PBXGroup;
 			children = (
@@ -507,10 +518,10 @@
 		D66F0FDF22C0412300BA277D /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				D642737B22C9A2BB0088256B /* Labels */,
 				D60C814522092F6B00A127A3 /* Button.swift */,
 				D6D1501921D5F5D100CD8CE4 /* CollectionView.swift */,
 				D60C81492209360400A127A3 /* DisplayableImageView.swift */,
-				D61EC0E121D30E6000204BEE /* Label.swift */,
 				D60C814322092E4700A127A3 /* PagingCollectionView.swift */,
 				D60C814122092D5300A127A3 /* PagingCollectionViewFlowLayout.swift */,
 				D6D1503D21DAF98500CD8CE4 /* TextField.swift */,
@@ -893,6 +904,7 @@
 				D61EC0E621D30EB300204BEE /* View.swift in Sources */,
 				D66F0FC722BF004300BA277D /* FeedType.swift in Sources */,
 				D6DADF742207E0E2007D9EB1 /* TCHChannel+Extensions.swift in Sources */,
+				D642737D22C9A2D70088256B /* NameLabel.swift in Sources */,
 				D6D1503E21DAF98500CD8CE4 /* TextField.swift in Sources */,
 				D61EC0EE21D313BA00204BEE /* UIScreen+Extensions.swift in Sources */,
 				D6D1503C21D859A700CD8CE4 /* MessageInputView.swift in Sources */,
