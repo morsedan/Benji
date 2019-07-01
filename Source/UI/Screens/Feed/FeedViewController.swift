@@ -10,6 +10,12 @@ import Foundation
 
 class FeedViewController: SwipeableViewController {
 
+    lazy var emptyView: EmptyFeedView = {
+        let view = EmptyFeedView()
+        view.text = LocalizedString(id: "", default: "🎉 You are all done!")
+        return view
+    }()
+
     private var items: [FeedType] = [] {
         didSet {
             self.reloadData()
@@ -49,6 +55,6 @@ extension FeedViewController: SwipeableDataSource {
     }
 
     func viewForEmptyCards() -> UIView? {
-        return nil
+        return self.emptyView
     }
 }

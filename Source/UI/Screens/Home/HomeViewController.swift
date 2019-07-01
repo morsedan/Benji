@@ -78,12 +78,6 @@ class HomeViewController: FullScreenViewController {
         }
     }
 
-    override func viewDidLoad() {
-        super.viewDidLoad()
-
-        self.segmentControl.setEnabled(true, forSegmentAt: 0)
-    }
-
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
 
@@ -129,6 +123,11 @@ class HomeViewController: FullScreenViewController {
         case .list:
             newView = self.channelsVC.view
             currentView = self.feedVC.view
+        }
+
+        if !self.contentContainer.contains(currentView) {
+            self.contentContainer.addSubview(currentView)
+            self.view.layoutNow()
         }
 
         guard !self.contentContainer.contains(newView) else { return }
