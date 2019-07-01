@@ -306,5 +306,18 @@ extension UIView {
         }
         propertyAnimator.startAnimation()
     }
+
+    func subviews<T: UIView>(type : T.Type) -> [T] {
+
+        var matchingViews: [T] = []
+
+        for view in self.subviews {
+            if let view = view as? T {
+                matchingViews.append(view)
+            }
+        }
+
+        return matchingViews
+    }
 }
 

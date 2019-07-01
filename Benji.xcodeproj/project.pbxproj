@@ -61,6 +61,15 @@
 		D642737D22C9A2D70088256B /* NameLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D642737C22C9A2D70088256B /* NameLabel.swift */; };
 		D642737F22C9A7EC0088256B /* ContactsManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = D642737E22C9A7EC0088256B /* ContactsManager.swift */; };
 		D642738122C9AB290088256B /* ContactsScrolledModalController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D642738022C9AB290088256B /* ContactsScrolledModalController.swift */; };
+		D642738322C9AEA30088256B /* ContactAuthorizationAlertController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D642738222C9AEA30088256B /* ContactAuthorizationAlertController.swift */; };
+		D642738622C9AF1C0088256B /* PagingModalController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D642738522C9AF1C0088256B /* PagingModalController.swift */; };
+		D642738822C9AF690088256B /* ModalViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D642738722C9AF690088256B /* ModalViewController.swift */; };
+		D642738A22C9B0170088256B /* ModalControllerAnimatedTransitioning.swift in Sources */ = {isa = PBXBuildFile; fileRef = D642738922C9B0170088256B /* ModalControllerAnimatedTransitioning.swift */; };
+		D642738C22C9B24E0088256B /* LoadingButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = D642738B22C9B24E0088256B /* LoadingButton.swift */; };
+		D642738F22C9BE330088256B /* TextAlertViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D642738E22C9BE330088256B /* TextAlertViewController.swift */; };
+		D642739122C9BFA10088256B /* AlertViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D642739022C9BFA10088256B /* AlertViewController.swift */; };
+		D642739322C9C0110088256B /* AlertView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D642739222C9C0110088256B /* AlertView.swift */; };
+		D642739522C9C0850088256B /* AlertView.xib in Resources */ = {isa = PBXBuildFile; fileRef = D642739422C9C0850088256B /* AlertView.xib */; };
 		D66F0FC722BF004300BA277D /* FeedType.swift in Sources */ = {isa = PBXBuildFile; fileRef = D66F0FC622BF004300BA277D /* FeedType.swift */; };
 		D66F0FC922BF006D00BA277D /* SystemMessage.swift in Sources */ = {isa = PBXBuildFile; fileRef = D66F0FC822BF006D00BA277D /* SystemMessage.swift */; };
 		D66F0FCF22BF060500BA277D /* Deeplinkable.swift in Sources */ = {isa = PBXBuildFile; fileRef = D66F0FCE22BF060500BA277D /* Deeplinkable.swift */; };
@@ -192,6 +201,15 @@
 		D642737C22C9A2D70088256B /* NameLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NameLabel.swift; sourceTree = "<group>"; };
 		D642737E22C9A7EC0088256B /* ContactsManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactsManager.swift; sourceTree = "<group>"; };
 		D642738022C9AB290088256B /* ContactsScrolledModalController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactsScrolledModalController.swift; sourceTree = "<group>"; };
+		D642738222C9AEA30088256B /* ContactAuthorizationAlertController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactAuthorizationAlertController.swift; sourceTree = "<group>"; };
+		D642738522C9AF1C0088256B /* PagingModalController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PagingModalController.swift; sourceTree = "<group>"; };
+		D642738722C9AF690088256B /* ModalViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModalViewController.swift; sourceTree = "<group>"; };
+		D642738922C9B0170088256B /* ModalControllerAnimatedTransitioning.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModalControllerAnimatedTransitioning.swift; sourceTree = "<group>"; };
+		D642738B22C9B24E0088256B /* LoadingButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadingButton.swift; sourceTree = "<group>"; };
+		D642738E22C9BE330088256B /* TextAlertViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextAlertViewController.swift; sourceTree = "<group>"; };
+		D642739022C9BFA10088256B /* AlertViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertViewController.swift; sourceTree = "<group>"; };
+		D642739222C9C0110088256B /* AlertView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertView.swift; sourceTree = "<group>"; };
+		D642739422C9C0850088256B /* AlertView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = AlertView.xib; sourceTree = "<group>"; };
 		D66F0FC622BF004300BA277D /* FeedType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedType.swift; sourceTree = "<group>"; };
 		D66F0FC822BF006D00BA277D /* SystemMessage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SystemMessage.swift; sourceTree = "<group>"; };
 		D66F0FCE22BF060500BA277D /* Deeplinkable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Deeplinkable.swift; sourceTree = "<group>"; };
@@ -508,6 +526,28 @@
 			path = Labels;
 			sourceTree = "<group>";
 		};
+		D642738422C9AEAB0088256B /* Alerts */ = {
+			isa = PBXGroup;
+			children = (
+				D642738222C9AEA30088256B /* ContactAuthorizationAlertController.swift */,
+				D642738522C9AF1C0088256B /* PagingModalController.swift */,
+				D642738E22C9BE330088256B /* TextAlertViewController.swift */,
+				D642739022C9BFA10088256B /* AlertViewController.swift */,
+				D642739222C9C0110088256B /* AlertView.swift */,
+				D642739422C9C0850088256B /* AlertView.xib */,
+			);
+			path = Alerts;
+			sourceTree = "<group>";
+		};
+		D642738D22C9B2540088256B /* Buttons */ = {
+			isa = PBXGroup;
+			children = (
+				D60C814522092F6B00A127A3 /* Button.swift */,
+				D642738B22C9B24E0088256B /* LoadingButton.swift */,
+			);
+			path = Buttons;
+			sourceTree = "<group>";
+		};
 		D66F0FD022BF064700BA277D /* Deeplink */ = {
 			isa = PBXGroup;
 			children = (
@@ -523,8 +563,8 @@
 		D66F0FDF22C0412300BA277D /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				D642738D22C9B2540088256B /* Buttons */,
 				D642737B22C9A2BB0088256B /* Labels */,
-				D60C814522092F6B00A127A3 /* Button.swift */,
 				D6D1501921D5F5D100CD8CE4 /* CollectionView.swift */,
 				D60C81492209360400A127A3 /* DisplayableImageView.swift */,
 				D60C814322092E4700A127A3 /* PagingCollectionView.swift */,
@@ -562,6 +602,9 @@
 		D6D145F221D5490500CD8CE4 /* Modals */ = {
 			isa = PBXGroup;
 			children = (
+				D642738922C9B0170088256B /* ModalControllerAnimatedTransitioning.swift */,
+				D642738722C9AF690088256B /* ModalViewController.swift */,
+				D642738422C9AEAB0088256B /* Alerts */,
 				D642737222C99D540088256B /* Contacts */,
 				D642736722C98E5D0088256B /* ScrolledModalViewController.swift */,
 				D642736922C98EB40088256B /* ScrolledModalContainerView.swift */,
@@ -761,6 +804,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D642739522C9C0850088256B /* AlertView.xib in Resources */,
 				D61EC0CA21D3071500204BEE /* LaunchScreen.storyboard in Resources */,
 				D61EC0C721D3071500204BEE /* Assets.xcassets in Resources */,
 			);
@@ -840,6 +884,7 @@
 				D6D14FFB21D5893700CD8CE4 /* DiffableBox.swift in Sources */,
 				D6D1501621D5F08700CD8CE4 /* DisplyableCell.swift in Sources */,
 				D66F0FE222C041AF00BA277D /* AvatarView.swift in Sources */,
+				D642738622C9AF1C0088256B /* PagingModalController.swift in Sources */,
 				D6D1501C21D5F8AD00CD8CE4 /* MessageCell.swift in Sources */,
 				D6D1460121D5514300CD8CE4 /* Localized.swift in Sources */,
 				D6D1504F21E304D800CD8CE4 /* BouncyCollectionViewLayout.swift in Sources */,
@@ -879,6 +924,7 @@
 				D61EC0C221D3071400204BEE /* ViewController.swift in Sources */,
 				D6D14D9021D5893600CD8CE4 /* IGListMoveIndex.m in Sources */,
 				D66F0FD822BF295A00BA277D /* Coordinator.swift in Sources */,
+				D642738322C9AEA30088256B /* ContactAuthorizationAlertController.swift in Sources */,
 				D66F0FD422BF074C00BA277D /* DeeplinkObject.swift in Sources */,
 				D6D1461121D583D200CD8CE4 /* RootNavigationController.swift in Sources */,
 				D61EC0EC21D312B600204BEE /* UIView+Extensions.swift in Sources */,
@@ -891,10 +937,12 @@
 				D6DADF6E2207DF33007D9EB1 /* ChannelsCollectionViewManager.swift in Sources */,
 				D66F0FCF22BF060500BA277D /* Deeplinkable.swift in Sources */,
 				D642737F22C9A7EC0088256B /* ContactsManager.swift in Sources */,
+				D642738A22C9B0170088256B /* ModalControllerAnimatedTransitioning.swift in Sources */,
 				D6AF0301220154E3002D5C75 /* ChannelManager.swift in Sources */,
 				D642736422C9132A0088256B /* EmptyFeedView.swift in Sources */,
 				D61EC0C021D3071400204BEE /* AppDelegate.swift in Sources */,
 				D62C635A22BEBADE00F4D097 /* FeedCell.swift in Sources */,
+				D642739322C9C0110088256B /* AlertView.swift in Sources */,
 				D6D145FD21D550E400CD8CE4 /* AttributedString.swift in Sources */,
 				D6D14D8F21D5893600CD8CE4 /* NSNumber+IGListDiffable.m in Sources */,
 				D60C814A2209360400A127A3 /* DisplayableImageView.swift in Sources */,
@@ -908,7 +956,9 @@
 				D6D1502B21D69C3300CD8CE4 /* NSObject+Extensions.swift in Sources */,
 				D6D1460321D551B100CD8CE4 /* StringLibrary.swift in Sources */,
 				D6D1501021D5E9A800CD8CE4 /* TextDisplayable.swift in Sources */,
+				D642739122C9BFA10088256B /* AlertViewController.swift in Sources */,
 				D61EC0E621D30EB300204BEE /* View.swift in Sources */,
+				D642738F22C9BE330088256B /* TextAlertViewController.swift in Sources */,
 				D66F0FC722BF004300BA277D /* FeedType.swift in Sources */,
 				D6DADF742207E0E2007D9EB1 /* TCHChannel+Extensions.swift in Sources */,
 				D642737D22C9A2D70088256B /* NameLabel.swift in Sources */,
@@ -923,11 +973,13 @@
 				D635551D21E5BA0800530602 /* ChannelFooterView.swift in Sources */,
 				D66F102622C7C6A900BA277D /* Lorem.swift in Sources */,
 				D66F0FC922BF006D00BA277D /* SystemMessage.swift in Sources */,
+				D642738C22C9B24E0088256B /* LoadingButton.swift in Sources */,
 				D6D1500C21D5E7C200CD8CE4 /* CollectionViewManager.swift in Sources */,
 				D642736A22C98EB40088256B /* ScrolledModalContainerView.swift in Sources */,
 				D66F0FDA22BF297F00BA277D /* MainCoordinator.swift in Sources */,
 				D6D14FFA21D5893700CD8CE4 /* IGListDiff.mm in Sources */,
 				D61EC0F321D3146600204BEE /* UINib+Extensions.swift in Sources */,
+				D642738822C9AF690088256B /* ModalViewController.swift in Sources */,
 				D642737422C99D6A0088256B /* ContactsViewController.swift in Sources */,
 				D6D145F421D5493000CD8CE4 /* HomeViewController.swift in Sources */,
 				D6D1501421D5EA2500CD8CE4 /* DisplyableItem.swift in Sources */,

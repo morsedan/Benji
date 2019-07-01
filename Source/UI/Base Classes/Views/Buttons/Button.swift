@@ -17,11 +17,11 @@ enum ButtonStyle {
 class Button: UIButton {
 
     //Sets text font, color and background color
-    func set(type: ButtonStyle,
+    func set(style: ButtonStyle,
              shouldRound: Bool = true,
              casingType: StringCasing = StringCasing.unchanged) {
 
-        switch type {
+        switch style {
 
         case .rounded(let color, let text), .normal(let color, let text):
             var localizedString = localized(text)

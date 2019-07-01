@@ -42,7 +42,7 @@ class ChannelCellContentView: View {
         self.addSubview(self.headerView)
         self.headerView.set(backgroundColor: .background2)
         self.headerView.addSubview(self.moreButton)
-        self.moreButton.set(type: .normal(color: .clear, text: "MORE"))
+        self.moreButton.set(style: .normal(color: .clear, text: "MORE"))
         self.headerView.addSubview(self.contextCircle)
         self.contextCircle.makeRound()
         self.addSubview(self.avatarView)

@@ -23,4 +23,12 @@ class View: UIView {
     func initializeViews() {
         self.layoutNow()
     }
+
+    func showShadow(withOffset offset: CGFloat) {
+        self.layer.shadowColor = UIColor.black.cgColor
+        self.layer.shadowOpacity = 0.2
+        self.layer.shadowOffset = CGSize(width: 0, height: offset)
+        self.layer.shadowRadius = 10
+        self.layer.masksToBounds = false
+    }
 }
