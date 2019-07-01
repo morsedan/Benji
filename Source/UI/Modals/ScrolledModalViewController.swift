@@ -50,6 +50,9 @@ class ScrolledModalController: ViewController, ScrolledModalContainerViewDelegat
 
         // The tap dismiss view should be added as the bottom most view so it doesn't prevent interactions
         // with the content.
+        self.tapDismissView.set(backgroundColor: .backgroundWithAlpha)
+        self.tapDismissView.alpha = 0
+
         self.view.addSubview(self.tapDismissView)
         self.tapDismissView.onTap { [unowned self] (tap) in
             self.dismiss(animated: true)
@@ -66,8 +69,16 @@ class ScrolledModalController: ViewController, ScrolledModalContainerViewDelegat
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
 
-        let expandedHeight = self.view.height - self.presentable.topMargin
-        self.modalContainerView.setExpandedHeight(expandedHeight: expandedHeight)
+
+    }
+
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+
+        UIView.animate(withDuration: Theme.animationDuration) {
+            let expandedHeight = self.view.height - self.presentable.topMargin
+            self.modalContainerView.setExpandedHeight(expandedHeight: expandedHeight)
+        }
     }
 
     override func viewDidLayoutSubviews() {
@@ -75,10 +86,11 @@ class ScrolledModalController: ViewController, ScrolledModalContainerViewDelegat
 
         self.tapDismissView.frame = self.view.bounds
 
-        self.modalContainerView.size = CGSize(width: self.view.width,
+        self.modalContainerView.size = CGSize(width: self.view.width * 0.95,
                                               height: self.modalContainerView.currentHeight)
-        self.modalContainerView.left = 0
+        self.modalContainerView.centerOnX()
         self.modalContainerView.bottom = self.view.height
+        self.modalContainerView.round(corners: UIRectCorner(arrayLiteral: [.topLeft, .topRight]), size: CGSize(width: Theme.cornerRadius, height: Theme.cornerRadius))
 
         self.presentable.view.frame = self.modalContainerView.bounds
     }
@@ -91,14 +103,25 @@ class ScrolledModalController: ViewController, ScrolledModalContainerViewDelegat
         self.modalContainerView.setExpandedHeight(expandedHeight: expandedHeight)
     }
 
+    func scrolledmodalContainerViewIsPanning(_ container: ScrolledModalContainerView,
+                                             withProgress progress: Float) {
+        self.updateAlpha(with: progress)
+    }
+
     func scrolledModalContainerView(_ container: ScrolledModalContainerView,
                                     updated currentHeight: CGFloat) {
         self.view.layoutNow()
+        self.updateAlpha(with: self.modalContainerView.progress)
     }
 
     func scrolledModalContainerViewFinishedAnimating(_ container: ScrolledModalContainerView,
                                                      withProgress progress: Float) {
+        self.updateAlpha(with: progress)
         guard progress == 0 else { return }
         self.dismiss(animated: true, completion: nil)
+    }
+
+    private func updateAlpha(with progress: Float) {
+        self.tapDismissView.alpha = CGFloat(progress)
     }
 }

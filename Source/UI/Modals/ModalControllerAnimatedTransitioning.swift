@@ -28,7 +28,7 @@ class ModalControllerAnimatedTransitioning: NSObject, UIViewControllerAnimatedTr
 
         // Make sure we have all the components we need to complete this transition
         guard let presentedVC = transitionContext.viewController(forKey: vcKey)
-            as? TomorrowModalController else {
+            as? ModalViewController else {
                 return
         }
 
@@ -86,7 +86,7 @@ class ModalControllerAnimatedTransitioning: NSObject, UIViewControllerAnimatedTr
         return blurView
     }
 
-    private func setMainContentPosition(isOffscreen: Bool, on modal: TomorrowModalController) {
+    private func setMainContentPosition(isOffscreen: Bool, on modal: ModalViewController) {
         if isOffscreen {
             modal.mainContent.top = modal.view.height
         } else {
@@ -94,7 +94,7 @@ class ModalControllerAnimatedTransitioning: NSObject, UIViewControllerAnimatedTr
         }
     }
 
-    private func setSubviewsAlpha(_ alpha: CGFloat, on modal: TomorrowModalController) {
+    private func setSubviewsAlpha(_ alpha: CGFloat, on modal: ModalViewController) {
         for subview in modal.view.subviews {
             guard subview !== modal.mainContent else { continue }
             subview.alpha = alpha

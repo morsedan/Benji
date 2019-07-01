@@ -11,7 +11,7 @@ import Foundation
 // A container viewcontroller to display modal content, such as branded alerts.
 // Automatically handles presentation and dismissal animations.
 
-class TomorrowModalController: ViewController {
+class ModalViewController: ViewController {
 
     // A container view to hold any views you want to slide up from the bottom of the screen
     let mainContent = UIView()
@@ -54,13 +54,13 @@ private class ModalControllerTransitioningDelegate: NSObject, UIViewControllerTr
                              source: UIViewController) -> UIViewControllerAnimatedTransitioning? {
 
         self.transitionController.isPresenting = true
-        return transitionController
+        return self.transitionController
     }
 
     func animationController(forDismissed dismissed: UIViewController)
         -> UIViewControllerAnimatedTransitioning? {
 
             self.transitionController.isPresenting = false
-            return transitionController
+            return self.transitionController
     }
 }

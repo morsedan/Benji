@@ -9,7 +9,10 @@
 import Foundation
 
 protocol ScrolledModalContainerViewDelegate: class {
-    func scrolledModalContainerView(_ container: ScrolledModalContainerView, updated currentHeight: CGFloat)
+    func scrolledmodalContainerViewIsPanning(_ container: ScrolledModalContainerView,
+                                     withProgress progress: Float)
+    func scrolledModalContainerView(_ container: ScrolledModalContainerView,
+                                    updated currentHeight: CGFloat)
     func scrolledModalContainerViewFinishedAnimating(_ container: ScrolledModalContainerView,
                                                      withProgress progress: Float)
 }
@@ -133,6 +136,8 @@ class ScrolledModalContainerView: UIView {
         @unknown default:
             break
         }
+
+        self.delegate?.scrolledmodalContainerViewIsPanning(self, withProgress: self.progress)
     }
 
     private func initializePanIfNeeded(panRecognizer: UIPanGestureRecognizer) {

@@ -17,7 +17,7 @@ protocol PagingModalPresentable: class {
 // Provides methods to scroll amongst the pages.
 // Presentation and dismissal animations are handled by a custom transitioning controller.
 
-class PagingModalController: TomorrowModalController {
+class PagingModalController: ModalViewController {
 
     enum ScrollType {
         // No user initiated scrolling
