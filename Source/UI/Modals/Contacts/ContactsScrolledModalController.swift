@@ -28,6 +28,8 @@ class ContactsScrolledModalController: ScrolledModalController {
 
         guard progress == 1 else { return }
 
-        //Check permissions
+        once(caller: self, token: "getAuthorizationStatus") {
+            self.contactsVC.getAuthorizationStatus()
+        }
     }
 }

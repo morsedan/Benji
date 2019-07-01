@@ -72,6 +72,10 @@ class HomeViewController: FullScreenViewController {
         self.segmentControl.addTarget(self, action: #selector(updateContent), for: .valueChanged)
 
         self.contentContainer.addSubview(self.addButton)
+        self.addButton.onTap { [unowned self] (tap) in
+            let vc = ContactsScrolledModalController()
+            self.present(vc, animated: true)
+        }
     }
 
     override func viewDidLoad() {
