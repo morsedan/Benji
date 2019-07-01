@@ -28,13 +28,8 @@ class ChannelsViewController: CollectionViewController<ChannelCell, ChannelsColl
 
     private func loadChannels() {
         var items: [ChannelsType] = []
-        for index in 0...10 {
-            let avatar = SystemAvatar(photoUrl: nil, photo: Lorem.image())
-            let message = SystemMessage(avatar: avatar,
-                                        context: Lorem.context(),
-                                        body: Lorem.sentence(),
-                                        id: "sysytem.\(String(index))")
-            items.append(.system(message))
+        for _ in 0...10 {
+            items.append(.system(Lorem.systemMessage()))
         }
         self.manager.set(newItems: items)
     }

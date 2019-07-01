@@ -34,6 +34,15 @@ extension Date {
         return newDate
     }
 
+    static func subtract(component: Calendar.Component,
+                         amount: Int,
+                         toDate: Date) -> Date? {
+        let newDate = Calendar.current.date(byAdding: component,
+                                            value: amount * -1,
+                                            to: toDate)
+        return newDate
+    }
+
     func add(component: Calendar.Component, amount: Int) -> Date? {
         return Date.add(component: component, amount: amount, toDate: self)
     }

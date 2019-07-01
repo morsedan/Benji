@@ -105,7 +105,7 @@ class HomeViewController: FullScreenViewController {
         let feedHeight = (self.contentContainer.height * 0.8) - self.segmentControl.height - 30
         self.feedVC.view.size = CGSize(width: self.contentContainer.width * 0.85, height: feedHeight)
         self.feedVC.view.top = self.segmentControl.bottom + 30
-        self.feedVC.view.left = self.contentContainer.width * 0.05
+        self.feedVC.view.left = self.contentContainer.width * 0.075
 
         self.channelsVC.view.size = self.contentContainer.size
         self.channelsVC.view.top = 0

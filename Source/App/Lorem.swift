@@ -52,8 +52,36 @@ class Lorem {
 
     private static let nameList = ["Jane", "Bobby", "Ashley", "Benjamin", "Devon", "Kevin", "Leo"]
 
+    private static let dateList = [Date.subtract(component: .day, amount: 1, toDate: Date())!,
+                                   Date.subtract(component: .month, amount: 1, toDate: Date())!,
+                                   Date.subtract(component: .second, amount: 30, toDate: Date())!,
+                                   Date.subtract(component: .year, amount: 2, toDate: Date())!,
+                                   Date.subtract(component: .minute, amount: 10, toDate: Date())!]
+
     private static let imageList = [UIImage(named: "Profile1")!, UIImage(named: "Profile2")!, UIImage(named: "Profile3")!, UIImage(named: "Profile4")!, UIImage(named: "Profile5")!]
 
+    class func systemMessage() -> SystemMessage {
+        let avatar = SystemAvatar(photoUrl: nil, photo: self.image())
+        let message = SystemMessage(avatar: avatar,
+                                    context: self.context(),
+                                    body: self.sentence(),
+                                    id: String(self.randomString()))
+        return message
+    }
+
+    class func systemParagraph() -> SystemMessage {
+        let avatar = SystemAvatar(photoUrl: nil, photo: self.image())
+        let message = SystemMessage(avatar: avatar,
+                                    context: self.context(),
+                                    body: self.paragraph(),
+                                    id: String(self.randomString()))
+        return message
+    }
+
+    class func randomString(length: Int = 10) -> String {
+        let letters = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789"
+        return String((0..<length).map{ _ in letters.randomElement()! })
+    }
 
     class func name() -> String {
         return self.nameList.random()
@@ -65,6 +93,10 @@ class Lorem {
 
     class func context() -> MessageContext {
         return MessageContext.allCases.random()
+    }
+
+    class func date() -> Date {
+        return self.dateList.random()
     }
 
     /**

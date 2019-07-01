@@ -26,13 +26,8 @@ class FeedViewController: SwipeableViewController {
     private func addItems() {
         var items: [FeedType] = []
 
-        for index in 0...10 {
-            let avatar = SystemAvatar(photoUrl: nil, photo: Lorem.image())
-            let systemMessage = SystemMessage(avatar: avatar,
-                                              context: Lorem.context(),
-                                              body: Lorem.paragraph(),
-                                              id: "systemmessage.\(String(index))")
-            items.append(.system(systemMessage))
+        for _ in 0...10 {
+            items.append(.system(Lorem.systemParagraph()))
         }
         self.items = items 
     }
