@@ -43,5 +43,4 @@ class EmptyFeedView: View {
 
         self.label.centerOnXAndY()
     }
-    
 }

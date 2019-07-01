@@ -55,6 +55,6 @@ extension FeedViewController: SwipeableDataSource {
     }
 
     func viewForEmptyCards() -> UIView? {
-        return self.emptyView
+        return nil//self.emptyView
     }
 }

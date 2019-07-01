@@ -40,7 +40,7 @@ class SwipeableViewController: ViewController, SwipeableViewDelegate {
 
     fileprivate var remainingCards: Int = 0
     let numberOfVisibleCards: Int = 3
-    var isRecursive: Bool = true
+    var isRecursive: Bool = false
     var direction: PageDirection = .backward
 
     override func viewDidLoad() {
@@ -63,13 +63,13 @@ class SwipeableViewController: ViewController, SwipeableViewDelegate {
                 let numberOfCards = dataSource.numberOfCards()
                 self.remainingCards = numberOfCards
 
-                for index in 0..<min(numberOfCards, self.numberOfVisibleCards) {
-                    self.addCardView(cardView: dataSource.card(forItemAtIndex: index), atIndex: index)
-                }
-
                 if let emptyView = dataSource.viewForEmptyCards() {
                     self.view.addSubview(emptyView)
                     emptyView.autoPinEdgesToSuperviewEdges()
+                }
+
+                for index in 0..<min(numberOfCards, self.numberOfVisibleCards) {
+                    self.addCardView(cardView: dataSource.card(forItemAtIndex: index), atIndex: index)
                 }
 
                 self.view.layoutNow()
