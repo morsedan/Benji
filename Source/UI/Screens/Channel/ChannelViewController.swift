@@ -25,8 +25,15 @@ class ChannelViewController: FullScreenViewController {
         return ChannelCollectionViewManager(with: self.collectionView)
     }()
 
-    let messageInputView = MessageInputView()
+    lazy var inputTextView: InputTextView = {
+        let textView = InputTextView()
+        textView.delegate = self
+        return textView
+    }()
 
+    lazy var contextButton = MessageContextButton()
+
+    var oldTextViewHeight: CGFloat = 48
 
     let showAnimator = UIViewPropertyAnimator(duration: 0.1,
                                               curve: .linear,
@@ -42,7 +49,8 @@ class ChannelViewController: FullScreenViewController {
         self.collectionView.delegate = self.manager
 
         self.view.addSubview(self.collectionView)
-        self.view.addSubview(self.messageInputView)
+        self.view.addSubview(self.inputTextView)
+        self.view.addSubview(self.contextButton)
 
         NotificationCenter.default.addObserver(self,
                                                selector: #selector(keyboardWillShow(notification:)),
@@ -55,8 +63,8 @@ class ChannelViewController: FullScreenViewController {
                                                object: nil)
 
         self.collectionView.onDoubleTap { [unowned self] (doubleTap) in
-            if self.messageInputView.textView.isFirstResponder {
-                self.messageInputView.textView.resignFirstResponder()
+            if self.inputTextView.isFirstResponder {
+                self.inputTextView.resignFirstResponder()
             }
         }
     }
@@ -75,7 +83,7 @@ class ChannelViewController: FullScreenViewController {
         let keyboardHeight = keyboardRectangle.height
 
         self.showAnimator.addAnimations {
-            self.messageInputView.bottom = self.view.height - keyboardHeight
+            self.inputTextView.bottom = self.view.height - keyboardHeight
             self.collectionView.height = self.view.height - keyboardHeight
             self.collectionView.collectionViewLayout.invalidateLayout()
         }
@@ -93,7 +101,7 @@ class ChannelViewController: FullScreenViewController {
     @objc private func keyboardWillHide(notification: Notification) {
 
         self.dismissAnimator.addAnimations {
-            self.messageInputView.bottom = self.view.height
+            self.inputTextView.bottom = self.view.height
             self.collectionView.height = self.view.height
         }
 
@@ -113,12 +121,28 @@ class ChannelViewController: FullScreenViewController {
 
         self.collectionView.frame = self.view.bounds
 
-        self.messageInputView.size = CGSize(width: self.view.width, height: 76)
-        self.messageInputView.bottom = self.view.height
-        self.messageInputView.centerOnX()
+        self.contextButton.size = CGSize(width: 48, height: 48)
+        self.contextButton.left = 16
+        self.contextButton.bottom = self.view.height - self.view.safeAreaInsets.bottom - 16
+
+        let textViewWidth = self.view.width - self.contextButton.right - 12 - 16
+        self.inputTextView.size = CGSize(width: textViewWidth, height: 48)
+        self.inputTextView.left = self.contextButton.right + 12
+        self.inputTextView.bottom = self.contextButton.bottom
     }
 
     func loadMessages(for type: ChannelType) {
         //create dummy messages 
+    }
+}
+
+extension ChannelViewController: GrowingTextViewDelegate {
+    func textViewDidChangeHeight(_ textView: GrowingTextView, height: CGFloat) {
+        UIView.animate(withDuration: Theme.animationDuration) {
+            self.inputTextView.height = height
+            self.inputTextView.y = self.inputTextView.y + (self.oldTextViewHeight - height)
+            self.view.layoutNow()
+            self.oldTextViewHeight = height
+        }
     }
 }

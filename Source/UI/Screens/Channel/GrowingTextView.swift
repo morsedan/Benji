@@ -72,7 +72,7 @@ class GrowingTextView: TextView {
     }
 
     override var intrinsicContentSize: CGSize {
-        return CGSize(width: UIView.noIntrinsicMetric, height: 34)
+        return CGSize(width: UIView.noIntrinsicMetric, height: self.minHeight)
     }
 
     private func resetLayout() {
