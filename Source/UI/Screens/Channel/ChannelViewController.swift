@@ -31,7 +31,7 @@ class ChannelViewController: FullScreenViewController {
         return textView
     }()
 
-    lazy var contextButton = MessageContextButton()
+    lazy var contextButton = ContextButton()
 
     var oldTextViewHeight: CGFloat = 48
 

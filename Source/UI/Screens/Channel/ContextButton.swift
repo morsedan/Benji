@@ -8,16 +8,17 @@
 
 import Foundation
 
-class MessageContextButton: Button {
+class ContextButton: Button {
 
-    let contextCircleTop = View()
-    let contextCircleLeft = View()
-    let contextCircleRight = View()
-    let contextCircleCenter = View()
-    let contextCircleBottom = View()
+    private let contextCircleTop = ContextCircleView()
+    private let contextCircleLeft = ContextCircleView()
+    private let contextCircleRight = ContextCircleView()
+    private let contextCircleCenter = ContextCircleView()
+    private let contextCircleBottom = ContextCircleView()
 
     init() {
         super.init(frame: .zero)
+        self.initializeViews()
     }
 
     required init?(coder aDecoder: NSCoder) {
@@ -25,21 +26,15 @@ class MessageContextButton: Button {
     }
 
     private func initializeViews() {
+        
         self.addSubview(self.contextCircleTop)
         self.addSubview(self.contextCircleBottom)
         self.addSubview(self.contextCircleLeft)
         self.addSubview(self.contextCircleRight)
         self.addSubview(self.contextCircleCenter)
 
-        self.contextCircleCenter.set(backgroundColor: .white)
-        self.contextCircleTop.set(backgroundColor: .white)
-        self.contextCircleRight.set(backgroundColor: .white)
-        self.contextCircleLeft.set(backgroundColor: .white)
-        self.contextCircleBottom.set(backgroundColor: .white)
-
         self.layer.borderWidth = Theme.borderWidth
         self.layer.borderColor = Color.lightPurple.color.cgColor
-        self.makeRound()
     }
 
     override func layoutSubviews() {
@@ -66,5 +61,22 @@ class MessageContextButton: Button {
         self.contextCircleLeft.size = circleSize
         self.contextCircleLeft.right = self.contextCircleCenter.left - circleOffset
         self.contextCircleLeft.centerOnY()
+
+        self.makeRound()
+    }
+}
+
+private class ContextCircleView: View {
+
+    override func initializeViews() {
+        super.initializeViews()
+
+        self.set(backgroundColor: .white)
+    }
+
+    override func layoutSubviews() {
+        super.layoutSubviews()
+
+        self.makeRound()
     }
 }
