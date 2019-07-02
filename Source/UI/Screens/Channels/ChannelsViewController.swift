@@ -27,25 +27,15 @@ class ChannelsViewController: CollectionViewController<ChannelCell, ChannelsColl
     }
 
     private func loadChannels() {
-        var items: [ChannelsType] = []
+        var items: [ChannelType] = []
         for _ in 0...10 {
             items.append(.system(Lorem.systemMessage()))
         }
         self.manager.set(newItems: items)
     }
 
-    override func didSelect(item: ChannelsType, at indexPath: IndexPath) {
-        self.present(type: item)
-    }
-
-    private func present(type: ChannelsType) {
-        switch type {
-        case .system(_):
-            break
-        case .channel(let channel):
-            let channelVC = ChannelViewController(channel: channel)
-            self.present(channelVC, animated: true, completion: nil)
-        }
-
+    override func didSelect(item: ChannelType, at indexPath: IndexPath) {
+        let channelVC = ChannelViewController()
+        self.present(channelVC, animated: true, completion: nil)
     }
 }

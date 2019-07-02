@@ -23,6 +23,19 @@ enum MessageType: DisplayableCellItem {
         }
     }
 
+    var body: Localized {
+        switch self {
+        case .system(let message):
+            return message.body
+        case .message(let message):
+            return String(optional: message.body)
+        }
+    }
+
+    var isFromCurrentUser: Bool {
+        return false
+    }
+
     func diffIdentifier() -> NSObjectProtocol {
         switch self {
         case .system(let message):

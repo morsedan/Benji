@@ -22,15 +22,7 @@ class MessageCell: UICollectionViewCell, DisplayableCell {
         self.contentView.addSubview(self.bubbleView)
         self.contentView.addSubview(self.textView)
 
-        var body: Localized
-        switch type {
-        case .system(let message):
-            body = message.body
-        case .message(let message):
-            body = String(optional: message.body)
-        }
-
-        self.textView.set(text: body)
+        self.textView.set(text: type.body)
         self.bubbleView.set(backgroundColor: type.backgroundColor)
         self.bubbleView.roundCorners()
     }

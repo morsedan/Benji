@@ -47,10 +47,9 @@ class ChannelCollectionViewManager: CollectionViewManager<MessageCell> {
         return size 
     }
 
-    private func getSize(for item: TCHMessage, collectionView: UICollectionView) -> CGSize {
-        guard let body = item.body else { return .zero }
+    private func getSize(for item: MessageType, collectionView: UICollectionView) -> CGSize {
 
-        let attributed = AttributedString(body,
+        let attributed = AttributedString(item.body,
                                           fontType: .medium,
                                           color: .white,
                                           kern: 0)

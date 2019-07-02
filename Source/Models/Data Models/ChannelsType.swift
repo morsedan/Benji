@@ -9,7 +9,7 @@
 import Foundation
 import TwilioChatClient
 
-enum ChannelsType: DisplayableCellItem {
+enum ChannelType: DisplayableCellItem {
 
     case system(SystemMessage)
     case channel(TCHChannel)

@@ -52,7 +52,7 @@ class ChannelCellContentView: View {
         self.set(backgroundColor: .background3)
     }
 
-    func configure(with type: ChannelsType) {
+    func configure(with type: ChannelType) {
 
         switch type {
         case .system(let message):
@@ -62,10 +62,14 @@ class ChannelCellContentView: View {
             self.contextText = message.context.text
             self.messageText = message.body
             //self.localizedText = message.body
-            break
         case .channel(let channel):
-            //self.localizedText = channel.friendlyName
-            break
+            guard let channelMessages = channel.messages else { return }
+
+            channelMessages.getLastWithCount(10, completion: { (result, messages) in
+                guard let msgs = messages, let first = msgs.first else { return }
+
+                self.messageText = first.body
+            })
         }
     }
 

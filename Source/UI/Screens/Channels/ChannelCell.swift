@@ -10,11 +10,11 @@ import Foundation
 import TwilioChatClient
 
 class ChannelCell: UICollectionViewCell, DisplayableCell {
-    typealias ItemType = ChannelsType
+    typealias ItemType = ChannelType
 
     let content = ChannelCellContentView()
 
-    func configure(with item: ChannelsType?) {
+    func configure(with item: ChannelType?) {
         guard let type = item else { return }
 
         self.contentView.removeAllSubviews()
