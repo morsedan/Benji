@@ -17,9 +17,10 @@ class GradientView: PassThroughView {
         self.set(backgroundColor: .clear)
 
         self.gradient.colors = [Color.background1.color.cgColor,
+                                Color.background1.color.cgColor,
+                                Color.background1.color.withAlphaComponent(0.9).cgColor,
                                 Color.background1.color.withAlphaComponent(0.8).cgColor,
                                 Color.background1.color.withAlphaComponent(0.6).cgColor,
-                                Color.background1.color.withAlphaComponent(0.4).cgColor,
                                 Color.background1.color.withAlphaComponent(0).cgColor].reversed()
         self.gradient.type = .axial
         self.layer.addSublayer(self.gradient)

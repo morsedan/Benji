@@ -41,7 +41,7 @@ class ChannelViewController: FullScreenViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        self.view.set(backgroundColor: .background2)
+        self.view.set(backgroundColor: .background1)
 
         self.addChild(viewController: self.channelCollectionVC, toView: self.contentContainer)
         self.contentContainer.addSubview(self.bottomGradientView)
@@ -133,7 +133,7 @@ class ChannelViewController: FullScreenViewController {
         self.inputTextView.left = self.contextButton.right + 12
         self.inputTextView.bottom = self.contextButton.bottom
 
-        let gradientHeight = self.contentContainer.height - self.contextButton.top - 10
+        let gradientHeight = self.contentContainer.height - self.contextButton.top + 20
         self.bottomGradientView.size = CGSize(width: self.contentContainer.width, height: gradientHeight)
         self.bottomGradientView.bottom = self.contentContainer.height
         self.bottomGradientView.centerOnX()
