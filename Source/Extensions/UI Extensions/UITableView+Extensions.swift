@@ -32,4 +32,72 @@ extension UITableView {
             }
         }, completion: completion)
     }
+
+    func reload<T: Diffable>(previousItems: [T],
+                             newItems: [T],
+                             equalityOption: IGListDiffOption,
+                             modify: @escaping () -> Swift.Void,
+                             completion: ((Bool) -> Swift.Void)? = nil) {
+        let previousBoxItems: [ListDiffable] = previousItems.map { (item) -> ListDiffable in
+            return DiffableBox<T>(value: item, equal: ==)
+        }
+        let newBoxItems: [ListDiffable] = newItems.map { (item) -> ListDiffable in
+            return DiffableBox<T>(value: item, equal: ==)
+        }
+
+        self.reload(previousItems: previousBoxItems,
+                    newItems: newBoxItems,
+                    equalityOption: equalityOption,
+                    modifyItems: modify,
+                    completion: completion)
+    }
+
+    func reload(previousItems: [ListDiffable],
+                newItems: [ListDiffable],
+                equalityOption: IGListDiffOption,
+                modifyItems: (() -> Swift.Void)? = nil,
+                completion: ((Bool) -> Swift.Void)? = nil) {
+
+
+        let diffResult: ListIndexPathResult = ListDiffPaths(fromSection: 0,
+                                                            toSection: 0,
+                                                            oldArray: previousItems,
+                                                            newArray: newItems,
+                                                            option: equalityOption)
+        self.reloadItems(withDiffResult: diffResult,
+                         modifyItems: modifyItems,
+                         completion: completion)
+    }
+
+    private func reloadItems(withDiffResult diffResult: ListIndexPathResult,
+                             modifyItems: (() -> Swift.Void)? = nil,
+                             completion: ((Bool) -> Swift.Void)? = nil) {
+
+        // Don't reload the collection view if no changes have been made to the items array
+        guard diffResult.hasChanges else { return }
+
+        let sanitizedResults: ListIndexPathResult = diffResult.forBatchUpdates()
+
+        if self.frame == .zero {
+            modifyItems?()
+            self.reloadData()
+            completion?(true)
+            return
+        }
+
+        self.performBatchUpdates({
+
+            modifyItems?()
+            self.deleteRows(at: sanitizedResults.deletes, with: .automatic)
+            self.insertRows(at: sanitizedResults.inserts, with: .automatic)
+            self.reloadRows(at: sanitizedResults.updates, with: .automatic)
+            for moveIndexPath in sanitizedResults.moves {
+                self.moveRow(at: moveIndexPath.from, to: moveIndexPath.to)
+            }
+        }, completion: { (completed) in
+            // Force table view to update otherwise the cells will reflect the old layout
+            self.refreshHeights()
+            completion?(completed)
+        })
+    }
 }

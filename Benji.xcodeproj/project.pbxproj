@@ -95,6 +95,9 @@
 		D66F102622C7C6A900BA277D /* Lorem.swift in Sources */ = {isa = PBXBuildFile; fileRef = D66F102522C7C6A900BA277D /* Lorem.swift */; };
 		D66F102822C7D1D200BA277D /* ChannelCellContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D66F102722C7D1D200BA277D /* ChannelCellContentView.swift */; };
 		D68483F922CC3DE400362AC3 /* ChannelCollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D68483F822CC3DE400362AC3 /* ChannelCollectionViewController.swift */; };
+		D68483FB22CD050D00362AC3 /* TableViewManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = D68483FA22CD050C00362AC3 /* TableViewManager.swift */; };
+		D68483FD22CD09C800362AC3 /* ListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D68483FC22CD09C800362AC3 /* ListViewController.swift */; };
+		D68483FF22CD0A1A00362AC3 /* TableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D68483FE22CD0A1A00362AC3 /* TableView.swift */; };
 		D6AF02FD220153F5002D5C75 /* LaunchManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6AF02FC220153F5002D5C75 /* LaunchManager.swift */; };
 		D6AF0301220154E3002D5C75 /* ChannelManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6AF0300220154E3002D5C75 /* ChannelManager.swift */; };
 		D6D145F421D5493000CD8CE4 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6D145F321D5493000CD8CE4 /* HomeViewController.swift */; };
@@ -242,6 +245,9 @@
 		D66F102522C7C6A900BA277D /* Lorem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Lorem.swift; sourceTree = "<group>"; };
 		D66F102722C7D1D200BA277D /* ChannelCellContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChannelCellContentView.swift; sourceTree = "<group>"; };
 		D68483F822CC3DE400362AC3 /* ChannelCollectionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChannelCollectionViewController.swift; sourceTree = "<group>"; };
+		D68483FA22CD050C00362AC3 /* TableViewManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableViewManager.swift; sourceTree = "<group>"; };
+		D68483FC22CD09C800362AC3 /* ListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListViewController.swift; sourceTree = "<group>"; };
+		D68483FE22CD0A1A00362AC3 /* TableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableView.swift; sourceTree = "<group>"; };
 		D6AF02FC220153F5002D5C75 /* LaunchManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LaunchManager.swift; sourceTree = "<group>"; };
 		D6AF0300220154E3002D5C75 /* ChannelManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChannelManager.swift; sourceTree = "<group>"; };
 		D6D145F321D5493000CD8CE4 /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
@@ -588,6 +594,7 @@
 				D61EC0E321D30E9100204BEE /* TextView.swift */,
 				D61EC0E521D30EB300204BEE /* View.swift */,
 				D66F0FE122C041AF00BA277D /* AvatarView.swift */,
+				D68483FE22CD0A1A00362AC3 /* TableView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -596,6 +603,7 @@
 			isa = PBXGroup;
 			children = (
 				D62C635522BE9E5C00F4D097 /* CollectionViewController.swift */,
+				D68483FC22CD09C800362AC3 /* ListViewController.swift */,
 				D61EC0DF21D30E3F00204BEE /* FullScreenViewController.swift */,
 				D6D1461221D583E500CD8CE4 /* NavigationController.swift */,
 				D61EC0C121D3071400204BEE /* ViewController.swift */,
@@ -709,6 +717,7 @@
 		D6D1500A21D5E79B00CD8CE4 /* Managers */ = {
 			isa = PBXGroup;
 			children = (
+				D68483FA22CD050C00362AC3 /* TableViewManager.swift */,
 				D6D1500B21D5E7C200CD8CE4 /* CollectionViewManager.swift */,
 				D6AF02FC220153F5002D5C75 /* LaunchManager.swift */,
 				D6AF0300220154E3002D5C75 /* ChannelManager.swift */,
@@ -966,6 +975,7 @@
 				D66F0FCF22BF060500BA277D /* Deeplinkable.swift in Sources */,
 				D642737F22C9A7EC0088256B /* ContactsManager.swift in Sources */,
 				D642738A22C9B0170088256B /* ModalControllerAnimatedTransitioning.swift in Sources */,
+				D68483FF22CD0A1A00362AC3 /* TableView.swift in Sources */,
 				D6AF0301220154E3002D5C75 /* ChannelManager.swift in Sources */,
 				D642736422C9132A0088256B /* EmptyFeedView.swift in Sources */,
 				D61EC0C021D3071400204BEE /* AppDelegate.swift in Sources */,
@@ -993,6 +1003,7 @@
 				D642737D22C9A2D70088256B /* NameLabel.swift in Sources */,
 				D6D1503E21DAF98500CD8CE4 /* TextField.swift in Sources */,
 				D61EC0EE21D313BA00204BEE /* UIScreen+Extensions.swift in Sources */,
+				D68483FD22CD09C800362AC3 /* ListViewController.swift in Sources */,
 				D61EC0D921D30C8E00204BEE /* DispatchQue+Extensions.swift in Sources */,
 				D6D1503921D7F46F00CD8CE4 /* UITextView+Extensions.swift in Sources */,
 				D6DADF702207DF60007D9EB1 /* ChannelCell.swift in Sources */,
@@ -1021,6 +1032,7 @@
 				D61EC0E021D30E3F00204BEE /* FullScreenViewController.swift in Sources */,
 				D6D1502D21D6A08300CD8CE4 /* ChannelCollectionView.swift in Sources */,
 				D642735722C90BB90088256B /* SwipeableViewController.swift in Sources */,
+				D68483FB22CD050D00362AC3 /* TableViewManager.swift in Sources */,
 				D66F0FDC22BF2ADC00BA277D /* HomeCoordinator.swift in Sources */,
 				D6D14FFC21D5893700CD8CE4 /* IGListBatchUpdateData.mm in Sources */,
 				D6D1500721D5E73D00CD8CE4 /* ChannelViewController.swift in Sources */,

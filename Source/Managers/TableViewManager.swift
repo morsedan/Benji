@@ -1,18 +1,18 @@
 //
-//  CollectionViewManager.swift
+//  TableViewManager.swift
 //  Benji
 //
-//  Created by Benji Dodgson on 12/27/18.
-//  Copyright © 2018 Benjamin Dodgson. All rights reserved.
+//  Created by Benji Dodgson on 7/3/19.
+//  Copyright © 2019 Benjamin Dodgson. All rights reserved.
 //
 
 import Foundation
 import ReactiveSwift
 import GestureRecognizerClosures
 
-class CollectionViewManager<CellType: DisplayableCell & UICollectionViewCell>: NSObject, UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout {
-    
-    var collectionView: UICollectionView
+class TableViewManager<CellType: DisplayableCell & UITableViewCell>: NSObject, UITableViewDelegate, UITableViewDataSource {
+
+    var tableView: UITableView
 
     var items = MutableProperty<[CellType.ItemType]>([])
     // A deep copied array representing the last state of the items.
@@ -22,10 +22,10 @@ class CollectionViewManager<CellType: DisplayableCell & UICollectionViewCell>: N
     var didSelect: (_ item: CellType.ItemType, _ indexPath: IndexPath) -> Void = { _, _ in }
     var didLongPress: (_ item: CellType.ItemType, _ indexPath: IndexPath) -> Void = { _, _ in }
 
-    required init(with collectionView: UICollectionView) {
+    required init(with tableView: UITableView) {
 
-        collectionView.register(CellType.self, forCellWithReuseIdentifier: CellType.reuseID)
-        self.collectionView = collectionView
+        tableView.register(CellType.self, forCellReuseIdentifier: CellType.reuseID)
+        self.tableView = tableView
         super.init()
         self.initialize()
     }
@@ -39,7 +39,9 @@ class CollectionViewManager<CellType: DisplayableCell & UICollectionViewCell>: N
         })
     }
 
-    func append(item: CellType.ItemType, in section: Int = 0) {
+    func append(item: CellType.ItemType,
+                in section: Int = 0,
+                with animation: UITableView.RowAnimation = .automatic) {
 
         guard self.items.value.count > 0 else {
             self.set(newItems: [item])
@@ -50,10 +52,13 @@ class CollectionViewManager<CellType: DisplayableCell & UICollectionViewCell>: N
 
         let indexPath = IndexPath(item: self.items.value.count, section: section)
         self.items.value.append(item)
-        self.collectionView.insertItems(at: [indexPath])
+        self.tableView.insertRows(at: [indexPath], with: animation)
     }
 
-    func update(item: CellType.ItemType, in section: Int = 0) {
+    func update(item: CellType.ItemType,
+                in section: Int = 0,
+                with animation: UITableView.RowAnimation = .automatic) {
+
         var indexPath: IndexPath?
         for (index, existingItem) in self.items.value.enumerated() {
             if existingItem == item {
@@ -65,10 +70,12 @@ class CollectionViewManager<CellType: DisplayableCell & UICollectionViewCell>: N
         guard let ip = indexPath else { return }
 
         self.items.value[ip.item] = item
-        self.collectionView.reloadItems(at: [ip])
+        self.tableView.reloadRows(at: [ip], with: animation)
     }
 
-    func delete(item: CellType.ItemType, in section: Int = 0) {
+    func delete(item: CellType.ItemType,
+                in section: Int = 0,
+                with animation: UITableView.RowAnimation = .automatic) {
 
         var indexPath: IndexPath?
         for (index, existingItem) in self.items.value.enumerated() {
@@ -81,19 +88,22 @@ class CollectionViewManager<CellType: DisplayableCell & UICollectionViewCell>: N
         guard let ip = indexPath else { return }
 
         self.items.value.remove(at: ip.item)
-        self.collectionView.deleteItems(at: [ip])
+        self.tableView.deleteRows(at: [ip], with: animation)
     }
 
-    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        collectionView.backgroundView?.isHidden = self.items.value.count > 0
+    func numberOfSections(in tableView: UITableView) -> Int {
+        return 1
+    }
+
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        tableView.backgroundView?.isHidden = self.items.value.count > 0
         return self.items.value.count
     }
 
-    func collectionView(_ collectionView: UICollectionView,
-                        cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
 
-        let cell: CellType = collectionView.dequeueReusableCell(withReuseIdentifier: CellType.reuseID,
-                                                                for: indexPath) as! CellType
+        let cell: CellType = tableView.dequeueReusableCell(withIdentifier: CellType.reuseID,
+                                                           for: indexPath) as! CellType
 
         let item = self.items.value[safe: indexPath.row]
         cell.configure(with: item)
@@ -132,14 +142,10 @@ class CollectionViewManager<CellType: DisplayableCell & UICollectionViewCell>: N
                                       newItems: [CellType.ItemType],
                                       modify: @escaping () -> Void) {
 
-        self.collectionView.reload(previousItems: previousItems,
-                                   newItems: newItems,
-                                   equalityOption: .equality,
-                                   modify: modify,
-                                   completion: nil)
-    }
-
-    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        return .zero
+        self.tableView.reload(previousItems: previousItems,
+                              newItems: newItems,
+                              equalityOption: .equality,
+                              modify: modify,
+                              completion: nil)
     }
 }
