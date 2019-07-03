@@ -12,12 +12,19 @@ class ReceiverMessageCellContentView: View {
 
     @IBOutlet weak var textView: MessageTextView!
     @IBOutlet weak var bubbleView: View!
+    @IBOutlet weak var avatarView: AvatarView!
 
     override func awakeFromNib() {
         super.awakeFromNib()
 
         self.bubbleView.translatesAutoresizingMaskIntoConstraints = false
         self.textView.translatesAutoresizingMaskIntoConstraints = false 
+    }
+
+    func set(type: MessageType) {
+        self.textView.set(text: type.body)
+        self.bubbleView.set(backgroundColor: type.backgroundColor)
+        self.avatarView.set(avatar: type.avatar)
     }
 
     override func layoutSubviews() {

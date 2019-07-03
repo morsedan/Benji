@@ -31,8 +31,7 @@ class MessageCell: UICollectionViewCell, DisplayableCell {
         self.contentView.addSubview(self.receiverContent)
         self.receiverContent.autoPinEdgesToSuperviewEdges()
 
-        self.receiverContent.textView.set(text: type.body)
-        self.receiverContent.bubbleView.set(backgroundColor: type.backgroundColor)
+        self.receiverContent.set(type: type)
     }
 
     private func setupSenderContent(with type: MessageType) {

@@ -40,7 +40,16 @@ enum MessageType: DisplayableCellItem {
             return message.isFromCurrentUser
 
         }
-        return false
+    }
+
+    var avatar: Avatar {
+        switch self {
+        case .system(let message):
+            return message.avatar
+        case .message(let message):
+            return message
+
+        }
     }
 
     func diffIdentifier() -> NSObjectProtocol {

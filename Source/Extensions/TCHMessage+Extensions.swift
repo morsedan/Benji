@@ -10,7 +10,8 @@ import Foundation
 import TwilioChatClient
 import Parse
 
-extension TCHMessage: Diffable, DisplayableCellItem {
+extension TCHMessage: Diffable, DisplayableCellItem, Avatar {
+
     var backgroundColor: Color {
         get {
             return self.isFromCurrentUser ? .purple : .lightPurple
@@ -24,5 +25,18 @@ extension TCHMessage: Diffable, DisplayableCellItem {
     var isFromCurrentUser: Bool {
         guard let author = self.author else { return false }
         return author == PFUser.current()?.username
+    }
+
+    //TODO: Fill these in 
+    var initials: String {
+        return String()
+    }
+
+    var photoUrl: URL? {
+        return nil
+    }
+
+    var photo: UIImage? {
+        return nil
     }
 }
