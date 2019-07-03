@@ -24,8 +24,7 @@ class CollectionViewManager<CellType: DisplayableCell & UICollectionViewCell>: N
 
     required init(with collectionView: UICollectionView) {
 
-        if CellType.hasXib {
-            let nib = UINib.init(nibName: String(describing: CellType.self), bundle: nil)
+        if let nib = CellType.nib {
             collectionView.register(nib, forCellWithReuseIdentifier: CellType.reuseID)
         } else {
             collectionView.register(CellType.self, forCellWithReuseIdentifier: CellType.reuseID)
