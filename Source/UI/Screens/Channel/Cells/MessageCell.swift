@@ -15,7 +15,7 @@ class MessageCell: UICollectionViewCell, DisplayableCell {
     static let offset: CGFloat = 10
 
     let receiverContent: ReceiverMessageCellContentView = UINib.loadView()
-    //let senderContent:
+    let senderContent: SenderMessageCellContentView = UINib.loadView()
 
     func configure(with item: MessageType?) {
         guard let type = item else { return }
@@ -36,7 +36,11 @@ class MessageCell: UICollectionViewCell, DisplayableCell {
     }
 
     private func setupSenderContent(with type: MessageType) {
-        
+        self.contentView.addSubview(self.senderContent)
+        self.senderContent.autoPinEdgesToSuperviewEdges()
+
+        self.senderContent.textView.set(text: type.body)
+        self.senderContent.textView.set(backgroundColor: type.backgroundColor)
     }
 
     override func preferredLayoutAttributesFitting(_ layoutAttributes: UICollectionViewLayoutAttributes) -> UICollectionViewLayoutAttributes {
