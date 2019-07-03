@@ -24,17 +24,14 @@ class CollectionViewManager<CellType: DisplayableCell & UICollectionViewCell>: N
 
     required init(with collectionView: UICollectionView) {
 
-        if let nib = CellType.nib {
-            collectionView.register(nib, forCellWithReuseIdentifier: CellType.reuseID)
-        } else {
-            collectionView.register(CellType.self, forCellWithReuseIdentifier: CellType.reuseID)
-        }
         self.collectionView = collectionView
         super.init()
         self.initialize()
     }
 
-    func initialize() {}
+    func initialize() {
+        self.collectionView.register(CellType.self, forCellWithReuseIdentifier: CellType.reuseID)
+    }
 
     func set(newItems: [CellType.ItemType]) {
         self.updateCollectionView(items: newItems, modify: { [weak self] in

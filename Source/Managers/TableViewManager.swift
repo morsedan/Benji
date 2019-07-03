@@ -24,18 +24,14 @@ class TableViewManager<CellType: DisplayableCell & UITableViewCell>: NSObject, U
 
     required init(with tableView: UITableView) {
 
-        if let nib = CellType.nib {
-            tableView.register(nib, forCellReuseIdentifier: CellType.reuseID)
-        } else {
-            tableView.register(CellType.self, forCellReuseIdentifier: CellType.reuseID)
-        }
-
         self.tableView = tableView
         super.init()
         self.initialize()
     }
 
-    func initialize() {}
+    func initialize() {
+        self.tableView.register(CellType.self, forCellReuseIdentifier: CellType.reuseID)
+    }
 
     func set(newItems: [CellType.ItemType]) {
         self.updateCollectionView(items: newItems, modify: { [weak self] in
@@ -132,6 +128,10 @@ class TableViewManager<CellType: DisplayableCell & UITableViewCell>: NSObject, U
 
     func managerWillDisplay(cell: CellType, for indexPath: IndexPath) -> CellType {
         return cell
+    }
+
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return UITableView.automaticDimension
     }
 
     private func updateCollectionView(items: [CellType.ItemType], modify: @escaping () -> Void) {

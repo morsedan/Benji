@@ -8,29 +8,44 @@
 
 import Foundation
 import TwilioChatClient
+import PureLayout
 
 class MessageCell: UICollectionViewCell, DisplayableCell {
     typealias ItemType = MessageType
     static let offset: CGFloat = 10
 
-    let textView = MessageTextView()
+    let receiverContent: ReceiverMessageCellContentView = UINib.loadView()
+    //let senderContent:
 
     func configure(with item: MessageType?) {
         guard let type = item else { return }
 
-        self.contentView.addSubview(self.textView)
-
-        self.textView.set(text: type.body)
-        self.textView.set(backgroundColor: type.backgroundColor)
+        if type.isFromCurrentUser {
+            self.setupSenderContent(with: type)
+        } else {
+            self.setupReceiverContent(with: type)
+        }
     }
 
-    override func layoutSubviews() {
-        super.layoutSubviews()
+    private func setupReceiverContent(with type: MessageType) {
+        self.contentView.addSubview(self.receiverContent)
+        self.receiverContent.autoPinEdgesToSuperviewEdges()
 
-        if self.textView.numberOfLines == 1 {
-            self.textView.layer.cornerRadius = self.textView.halfHeight
-        } else {
-            self.textView.roundCorners()
-        }
+        self.receiverContent.textView.set(text: type.body)
+        self.receiverContent.textView.set(backgroundColor: type.backgroundColor)
+    }
+
+    private func setupSenderContent(with type: MessageType) {
+        
+    }
+
+    override func preferredLayoutAttributesFitting(_ layoutAttributes: UICollectionViewLayoutAttributes) -> UICollectionViewLayoutAttributes {
+        self.layoutNow()
+
+        let size = self.contentView.systemLayoutSizeFitting(layoutAttributes.size)
+        var frame = layoutAttributes.frame
+        frame.size.height = ceil(size.height)
+        layoutAttributes.frame = frame
+        return layoutAttributes
     }
 }

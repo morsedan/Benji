@@ -98,6 +98,8 @@
 		D68483FB22CD050D00362AC3 /* TableViewManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = D68483FA22CD050C00362AC3 /* TableViewManager.swift */; };
 		D68483FD22CD09C800362AC3 /* ListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D68483FC22CD09C800362AC3 /* ListViewController.swift */; };
 		D68483FF22CD0A1A00362AC3 /* TableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D68483FE22CD0A1A00362AC3 /* TableView.swift */; };
+		D684840122CD234B00362AC3 /* ReceiverMessageCellContentView.xib in Resources */ = {isa = PBXBuildFile; fileRef = D684840022CD234B00362AC3 /* ReceiverMessageCellContentView.xib */; };
+		D684840322CD295600362AC3 /* ReceiverMessageCellContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D684840222CD295600362AC3 /* ReceiverMessageCellContentView.swift */; };
 		D6AF02FD220153F5002D5C75 /* LaunchManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6AF02FC220153F5002D5C75 /* LaunchManager.swift */; };
 		D6AF0301220154E3002D5C75 /* ChannelManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6AF0300220154E3002D5C75 /* ChannelManager.swift */; };
 		D6D145F421D5493000CD8CE4 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6D145F321D5493000CD8CE4 /* HomeViewController.swift */; };
@@ -248,6 +250,8 @@
 		D68483FA22CD050C00362AC3 /* TableViewManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableViewManager.swift; sourceTree = "<group>"; };
 		D68483FC22CD09C800362AC3 /* ListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListViewController.swift; sourceTree = "<group>"; };
 		D68483FE22CD0A1A00362AC3 /* TableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableView.swift; sourceTree = "<group>"; };
+		D684840022CD234B00362AC3 /* ReceiverMessageCellContentView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ReceiverMessageCellContentView.xib; sourceTree = "<group>"; };
+		D684840222CD295600362AC3 /* ReceiverMessageCellContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReceiverMessageCellContentView.swift; sourceTree = "<group>"; };
 		D6AF02FC220153F5002D5C75 /* LaunchManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LaunchManager.swift; sourceTree = "<group>"; };
 		D6AF0300220154E3002D5C75 /* ChannelManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChannelManager.swift; sourceTree = "<group>"; };
 		D6D145F321D5493000CD8CE4 /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
@@ -706,8 +710,10 @@
 				D64273A622CC2D280088256B /* ChannelViewController+Extensions.swift */,
 				D64273A222CC040A0088256B /* GrowingTextView.swift */,
 				D6D1501B21D5F8AD00CD8CE4 /* MessageCell.swift */,
-				D64273A022CBDC870088256B /* ContextButton.swift */,
 				D642739E22CAFD680088256B /* MessageTextView.swift */,
+				D684840222CD295600362AC3 /* ReceiverMessageCellContentView.swift */,
+				D684840022CD234B00362AC3 /* ReceiverMessageCellContentView.xib */,
+				D64273A022CBDC870088256B /* ContextButton.swift */,
 				D64273A422CC05DD0088256B /* InputTextView.swift */,
 				D68483F822CC3DE400362AC3 /* ChannelCollectionViewController.swift */,
 			);
@@ -835,6 +841,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				D642739522C9C0850088256B /* AlertView.xib in Resources */,
+				D684840122CD234B00362AC3 /* ReceiverMessageCellContentView.xib in Resources */,
 				D61EC0CA21D3071500204BEE /* LaunchScreen.storyboard in Resources */,
 				D61EC0C721D3071500204BEE /* Assets.xcassets in Resources */,
 			);
@@ -948,6 +955,7 @@
 				D642735B22C90C0F0088256B /* SwipeDirection.swift in Sources */,
 				D642737822C99DB50088256B /* ContactsCollectionView.swift in Sources */,
 				D642737A22C99DD20088256B /* ContactCell.swift in Sources */,
+				D684840322CD295600362AC3 /* ReceiverMessageCellContentView.swift in Sources */,
 				D6D1460B21D5547000CD8CE4 /* FontType.swift in Sources */,
 				D6D1461321D583E500CD8CE4 /* NavigationController.swift in Sources */,
 				D642735E22C90C820088256B /* CGPoint+Extensions.swift in Sources */,
