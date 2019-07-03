@@ -20,9 +20,7 @@ class View: UIView {
         self.initializeViews()
     }
 
-    func initializeViews() {
-        self.layoutNow()
-    }
+    func initializeViews() { }
 
     func showShadow(withOffset offset: CGFloat) {
         self.layer.shadowColor = UIColor.black.cgColor

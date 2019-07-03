@@ -83,6 +83,7 @@ class ChannelCellContentView: View {
         self.contextCircle.size = CGSize(width: 25, height: 25)
         self.contextCircle.left = Theme.contentOffset
         self.contextCircle.centerOnY()
+        self.contextCircle.makeRound()
 
         self.moreButton.size = CGSize(width: 50, height: self.headerView.height)
         self.moreButton.right = self.width - Theme.contentOffset
