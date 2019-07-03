@@ -22,13 +22,10 @@ class ChannelCollectionViewManager: CollectionViewManager<MessageCell> {
             let estimatedSize = self.getSize(for: message, collectionView: collectionView)
 
             var textViewXOffset: CGFloat = 20
-            var bubbleXOffset: CGFloat = 10
             if message.isFromCurrentUser {
                 textViewXOffset = collectionView.width - estimatedSize.width - 20
-                bubbleXOffset = collectionView.width - estimatedSize.width - 30
             }
             cell.textView.frame = CGRect(x: textViewXOffset, y: 5, width: estimatedSize.width, height: estimatedSize.height)
-            cell.bubbleView.frame = CGRect(x: bubbleXOffset, y: 0, width: estimatedSize.width + 20, height: estimatedSize.height + 10)
         }
 
         cell.contentView.onTap { [weak self] (tap) in
@@ -50,7 +47,7 @@ class ChannelCollectionViewManager: CollectionViewManager<MessageCell> {
     private func getSize(for item: MessageType, collectionView: UICollectionView) -> CGSize {
 
         let attributed = AttributedString(item.body,
-                                          fontType: .medium,
+                                          fontType: .regular,
                                           color: .white,
                                           kern: 0)
 
@@ -62,7 +59,8 @@ class ChannelCollectionViewManager: CollectionViewManager<MessageCell> {
             }
         }
 
-        let maxWidth = (collectionView.width - 20) * 0.8
-        return attributedString.getSize(withWidth: maxWidth)
+        let maxWidth = (collectionView.width - 20) - (MessageTextView.contentInset * 2) * 0.8
+        var size = attributedString.getSize(withWidth: maxWidth)
+        return size
     }
 }

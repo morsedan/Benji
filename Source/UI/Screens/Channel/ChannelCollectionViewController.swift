@@ -20,12 +20,8 @@ class ChannelCollectionViewController: CollectionViewController<MessageCell, Cha
         fatalError("init(coder:) has not been implemented")
     }
 
-    private func loadMessages() {
-        var items: [MessageType] = []
-        for _ in 0...10 {
-            items.append(.system(Lorem.systemMessage()))
-        }
-        self.manager.set(newItems: items)
+    func loadMessages() {
+        self.manager.set(newItems: Lorem.systemMessageTypes())
     }
 
     override func didSelect(item: MessageType, at indexPath: IndexPath) {

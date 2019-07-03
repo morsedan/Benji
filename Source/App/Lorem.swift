@@ -60,12 +60,25 @@ class Lorem {
 
     private static let imageList = [UIImage(named: "Profile1")!, UIImage(named: "Profile2")!, UIImage(named: "Profile3")!, UIImage(named: "Profile4")!, UIImage(named: "Profile5")!]
 
+    private static let isFromCurrentUserList = [true, false]
+
+    class func systemMessageTypes() -> [MessageType] {
+        var types: [MessageType] = []
+        for _ in 0...10 {
+            let message = self.systemMessage()
+            let type = MessageType.system(message)
+            types.append(type)
+        }
+        return types
+    }
+
     class func systemMessage() -> SystemMessage {
         let avatar = SystemAvatar(photoUrl: nil, photo: self.image())
         let message = SystemMessage(avatar: avatar,
                                     context: self.context(),
                                     body: self.sentence(),
-                                    id: String(self.randomString()))
+                                    id: String(self.randomString()),
+                                    isFromCurrentUser: self.isFromCurrentUserList.random())
         return message
     }
 
@@ -74,7 +87,8 @@ class Lorem {
         let message = SystemMessage(avatar: avatar,
                                     context: self.context(),
                                     body: self.paragraph(),
-                                    id: String(self.randomString()))
+                                    id: String(self.randomString()),
+                                    isFromCurrentUser: self.isFromCurrentUserList.random())
         return message
     }
 

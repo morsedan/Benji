@@ -16,10 +16,10 @@ enum MessageType: DisplayableCellItem {
 
     var backgroundColor: Color {
         switch self {
-        case .system(_):
-            return .blue
-        case .message(_):
-            return .blue
+        case .system(let message):
+            return message.isFromCurrentUser ? .lightPurple : .purple
+        case .message(let message):
+            return message.isFromCurrentUser ? .lightPurple : .purple
         }
     }
 
@@ -33,6 +33,13 @@ enum MessageType: DisplayableCellItem {
     }
 
     var isFromCurrentUser: Bool {
+        switch self {
+        case .system(let message):
+            return message.isFromCurrentUser
+        case .message(let message):
+            return message.isFromCurrentUser
+
+        }
         return false
     }
 

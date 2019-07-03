@@ -14,16 +14,14 @@ class MessageCell: UICollectionViewCell, DisplayableCell {
     static let offset: CGFloat = 10
 
     let textView = MessageTextView()
-    let bubbleView = View()
 
     func configure(with item: MessageType?) {
         guard let type = item else { return }
 
-        self.contentView.addSubview(self.bubbleView)
         self.contentView.addSubview(self.textView)
 
         self.textView.set(text: type.body)
-        self.bubbleView.set(backgroundColor: type.backgroundColor)
-        self.bubbleView.roundCorners()
+        self.textView.set(backgroundColor: type.backgroundColor)
+        self.textView.roundCorners()
     }
 }

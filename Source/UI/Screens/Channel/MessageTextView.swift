@@ -10,19 +10,26 @@ import Foundation
 
 class MessageTextView: TextView {
 
+    static let contentInset: CGFloat = 14
+
     override func initialize() {
         super.initialize()
 
         self.isEditable = false
         self.isScrollEnabled = false
         self.isSelectable = true
+
+        self.textContainerInset.top = MessageTextView.contentInset
+        self.textContainerInset.bottom = MessageTextView.contentInset
+        self.textContainerInset.right = MessageTextView.contentInset
+        self.textContainerInset.left = MessageTextView.contentInset
     }
 
     func set(text: Localized) {
         let textColor: Color  = .white
 
         let attributedString = AttributedString(text,
-                                                fontType: .medium,
+                                                fontType: .regular,
                                                 color: textColor,
                                                 kern: 0)
 

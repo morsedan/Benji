@@ -14,6 +14,7 @@ struct SystemMessage: Diffable, Hashable {
     var context: MessageContext
     var body: String
     var id: String
+    var isFromCurrentUser: Bool = false 
 
     func diffIdentifier() -> NSObjectProtocol {
         return self.id as NSObjectProtocol
