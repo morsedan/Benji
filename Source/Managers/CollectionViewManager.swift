@@ -24,7 +24,12 @@ class CollectionViewManager<CellType: DisplayableCell & UICollectionViewCell>: N
 
     required init(with collectionView: UICollectionView) {
 
-        collectionView.register(CellType.self, forCellWithReuseIdentifier: CellType.reuseID)
+        if CellType.hasXib {
+            let nib = UINib.init(nibName: String(describing: CellType.self), bundle: nil)
+            collectionView.register(nib, forCellWithReuseIdentifier: CellType.reuseID)
+        } else {
+            collectionView.register(CellType.self, forCellWithReuseIdentifier: CellType.reuseID)
+        }
         self.collectionView = collectionView
         super.init()
         self.initialize()
@@ -140,6 +145,6 @@ class CollectionViewManager<CellType: DisplayableCell & UICollectionViewCell>: N
     }
 
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        return .zero
+        return CGSize(width: collectionView.width, height: 100)
     }
 }

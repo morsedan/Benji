@@ -24,7 +24,13 @@ class TableViewManager<CellType: DisplayableCell & UITableViewCell>: NSObject, U
 
     required init(with tableView: UITableView) {
 
-        tableView.register(CellType.self, forCellReuseIdentifier: CellType.reuseID)
+        if CellType.hasXib {
+            let nib = UINib.init(nibName: String(describing: CellType.self), bundle: nil)
+            tableView.register(nib, forCellReuseIdentifier: CellType.reuseID)
+        } else {
+            tableView.register(CellType.self, forCellReuseIdentifier: CellType.reuseID)
+        }
+
         self.tableView = tableView
         super.init()
         self.initialize()

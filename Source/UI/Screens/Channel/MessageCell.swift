@@ -12,6 +12,7 @@ import TwilioChatClient
 class MessageCell: UICollectionViewCell, DisplayableCell {
     typealias ItemType = MessageType
     static let offset: CGFloat = 10
+    static var hasXib: Bool = false
 
     let textView = MessageTextView()
 

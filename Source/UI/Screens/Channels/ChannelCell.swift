@@ -11,7 +11,7 @@ import TwilioChatClient
 
 class ChannelCell: UICollectionViewCell, DisplayableCell {
     typealias ItemType = ChannelType
-
+    static var hasXib: Bool = false
     let content = ChannelCellContentView()
 
     func configure(with item: ChannelType?) {

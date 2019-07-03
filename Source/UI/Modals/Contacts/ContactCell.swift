@@ -11,7 +11,7 @@ import Contacts
 
 class ContactCell: UICollectionViewCell, DisplayableCell {
     typealias ItemType = CNContact
-
+    static var hasXib: Bool = false 
     let avatarView = AvatarView()
     let nameLabel = NameLabel()
 

@@ -16,6 +16,7 @@ protocol DisplayableCell: class {
     associatedtype ItemType: DisplayableCellItem
 
     static var reuseID: String { get }
+    static var hasXib: Bool { get set }
     func configure(with item: ItemType?)
 }
 
