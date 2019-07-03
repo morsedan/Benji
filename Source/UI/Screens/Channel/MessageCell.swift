@@ -22,6 +22,15 @@ class MessageCell: UICollectionViewCell, DisplayableCell {
 
         self.textView.set(text: type.body)
         self.textView.set(backgroundColor: type.backgroundColor)
-        self.textView.roundCorners()
+    }
+
+    override func layoutSubviews() {
+        super.layoutSubviews()
+
+        if self.textView.numberOfLines == 1 {
+            self.textView.layer.cornerRadius = self.textView.halfHeight
+        } else {
+            self.textView.roundCorners()
+        }
     }
 }
