@@ -17,13 +17,15 @@ class InputTextView: GrowingTextView {
         self.set(placeholder: "Message...")
 
         self.layer.masksToBounds = true
-        self.layer.borderColor = Color.white.color.cgColor
+        self.layer.borderColor = Color.lightPurple.color.cgColor
         self.layer.borderWidth = Theme.borderWidth
 
         self.textContainerInset.left = 16
         self.textContainerInset.right = 16
         self.textContainerInset.top = 14
         self.textContainerInset.bottom = 14
+
+        self.set(backgroundColor: .backgroundWithAlpha)
     }
 
     func set(placeholder: Localized) {

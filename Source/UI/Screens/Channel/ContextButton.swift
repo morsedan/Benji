@@ -35,6 +35,8 @@ class ContextButton: Button {
 
         self.layer.borderWidth = Theme.borderWidth
         self.layer.borderColor = Color.lightPurple.color.cgColor
+
+        self.set(backgroundColor: .backgroundWithAlpha)
     }
 
     override func layoutSubviews() {

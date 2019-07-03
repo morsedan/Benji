@@ -26,7 +26,7 @@ class ChannelViewController: FullScreenViewController {
     }()
 
     lazy var contextButton = ContextButton()
-    lazy var gradientView = GradientView()
+    lazy var bottomGradientView = GradientView()
 
     var oldTextViewHeight: CGFloat = 48
     private let bottomOffset: CGFloat = 16
@@ -44,7 +44,7 @@ class ChannelViewController: FullScreenViewController {
         self.view.set(backgroundColor: .background2)
 
         self.addChild(viewController: self.channelCollectionVC, toView: self.contentContainer)
-        self.contentContainer.addSubview(self.gradientView)
+        self.contentContainer.addSubview(self.bottomGradientView)
 
         self.contentContainer.addSubview(self.inputTextView)
         self.inputTextView.growingDelegate = self
@@ -102,6 +102,7 @@ class ChannelViewController: FullScreenViewController {
             self.contextButton.bottom = self.contentContainer.height - self.view.safeAreaInsets.bottom - 16
             self.inputTextView.bottom = self.contextButton.bottom
             self.channelCollectionVC.collectionView.height = self.contentContainer.height
+            self.channelCollectionVC.collectionView.collectionViewLayout.invalidateLayout()
         }
 
 
@@ -118,6 +119,9 @@ class ChannelViewController: FullScreenViewController {
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
 
+        self.contentContainer.height = self.view.height
+        self.contentContainer.top = 0
+
         self.channelCollectionVC.view.frame = self.contentContainer.bounds
 
         self.contextButton.size = CGSize(width: 48, height: 48)
@@ -129,10 +133,10 @@ class ChannelViewController: FullScreenViewController {
         self.inputTextView.left = self.contextButton.right + 12
         self.inputTextView.bottom = self.contextButton.bottom
 
-        let gradientHeight = self.contentContainer.height - self.contextButton.top 
-        self.gradientView.size = CGSize(width: self.contentContainer.width, height: gradientHeight)
-        self.gradientView.bottom = self.contentContainer.height
-        self.gradientView.centerOnX()
+        let gradientHeight = self.contentContainer.height - self.contextButton.top - 10
+        self.bottomGradientView.size = CGSize(width: self.contentContainer.width, height: gradientHeight)
+        self.bottomGradientView.bottom = self.contentContainer.height
+        self.bottomGradientView.centerOnX()
     }
 
     func loadMessages(for type: ChannelType) {

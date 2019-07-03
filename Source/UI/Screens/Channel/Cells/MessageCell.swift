@@ -51,4 +51,10 @@ class MessageCell: UICollectionViewCell, DisplayableCell {
         layoutAttributes.frame = frame
         return layoutAttributes
     }
+
+    override func prepareForReuse() {
+        super.prepareForReuse()
+
+        self.contentView.removeAllSubviews()
+    }
 }
