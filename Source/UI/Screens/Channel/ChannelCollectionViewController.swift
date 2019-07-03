@@ -22,6 +22,10 @@ class ChannelCollectionViewController: CollectionViewController<MessageCell, Cha
 
     func loadMessages() {
         self.manager.set(newItems: Lorem.systemMessageTypes())
+        delay(0.5) { [weak self] in
+            guard let `self` = self else { return }
+            self.collectionView.scrollToLastItem()
+        }
     }
 
     override func didSelect(item: MessageType, at indexPath: IndexPath) {

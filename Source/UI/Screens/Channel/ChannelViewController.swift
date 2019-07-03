@@ -26,6 +26,7 @@ class ChannelViewController: FullScreenViewController {
     }()
 
     lazy var contextButton = ContextButton()
+    lazy var gradientView = GradientView()
 
     var oldTextViewHeight: CGFloat = 48
     private let bottomOffset: CGFloat = 16
@@ -40,7 +41,11 @@ class ChannelViewController: FullScreenViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        self.view.set(backgroundColor: .background2)
+
         self.addChild(viewController: self.channelCollectionVC, toView: self.contentContainer)
+        self.contentContainer.addSubview(self.gradientView)
+
         self.contentContainer.addSubview(self.inputTextView)
         self.inputTextView.growingDelegate = self
 
@@ -123,11 +128,17 @@ class ChannelViewController: FullScreenViewController {
         self.inputTextView.size = CGSize(width: textViewWidth, height: self.inputTextView.currentHeight)
         self.inputTextView.left = self.contextButton.right + 12
         self.inputTextView.bottom = self.contextButton.bottom
+
+        let gradientHeight = self.contentContainer.height - self.contextButton.top 
+        self.gradientView.size = CGSize(width: self.contentContainer.width, height: gradientHeight)
+        self.gradientView.bottom = self.contentContainer.height
+        self.gradientView.centerOnX()
     }
 
     func loadMessages(for type: ChannelType) {
         //create dummy messages
         self.channelCollectionVC.loadMessages()
+        
     }
 }
 

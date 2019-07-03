@@ -102,6 +102,8 @@
 		D684840322CD295600362AC3 /* ReceiverMessageCellContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D684840222CD295600362AC3 /* ReceiverMessageCellContentView.swift */; };
 		D684840522CD2E0100362AC3 /* SenderMessageCellContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D684840422CD2E0100362AC3 /* SenderMessageCellContentView.swift */; };
 		D684840722CD2E1100362AC3 /* SenderMessageCellContentView.xib in Resources */ = {isa = PBXBuildFile; fileRef = D684840622CD2E1100362AC3 /* SenderMessageCellContentView.xib */; };
+		D684840A22CD48D000362AC3 /* GradientView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D684840922CD48D000362AC3 /* GradientView.swift */; };
+		D684840C22CD48FA00362AC3 /* PassThroughView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D684840B22CD48FA00362AC3 /* PassThroughView.swift */; };
 		D6AF02FD220153F5002D5C75 /* LaunchManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6AF02FC220153F5002D5C75 /* LaunchManager.swift */; };
 		D6AF0301220154E3002D5C75 /* ChannelManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6AF0300220154E3002D5C75 /* ChannelManager.swift */; };
 		D6D145F421D5493000CD8CE4 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6D145F321D5493000CD8CE4 /* HomeViewController.swift */; };
@@ -256,6 +258,8 @@
 		D684840222CD295600362AC3 /* ReceiverMessageCellContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReceiverMessageCellContentView.swift; sourceTree = "<group>"; };
 		D684840422CD2E0100362AC3 /* SenderMessageCellContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SenderMessageCellContentView.swift; sourceTree = "<group>"; };
 		D684840622CD2E1100362AC3 /* SenderMessageCellContentView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SenderMessageCellContentView.xib; sourceTree = "<group>"; };
+		D684840922CD48D000362AC3 /* GradientView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GradientView.swift; sourceTree = "<group>"; };
+		D684840B22CD48FA00362AC3 /* PassThroughView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PassThroughView.swift; sourceTree = "<group>"; };
 		D6AF02FC220153F5002D5C75 /* LaunchManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LaunchManager.swift; sourceTree = "<group>"; };
 		D6AF0300220154E3002D5C75 /* ChannelManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChannelManager.swift; sourceTree = "<group>"; };
 		D6D145F321D5493000CD8CE4 /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
@@ -603,6 +607,8 @@
 				D61EC0E521D30EB300204BEE /* View.swift */,
 				D66F0FE122C041AF00BA277D /* AvatarView.swift */,
 				D68483FE22CD0A1A00362AC3 /* TableView.swift */,
+				D684840922CD48D000362AC3 /* GradientView.swift */,
+				D684840B22CD48FA00362AC3 /* PassThroughView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -946,6 +952,7 @@
 				D64273A522CC05DD0088256B /* InputTextView.swift in Sources */,
 				D642739F22CAFD680088256B /* MessageTextView.swift in Sources */,
 				D642739922CA79B60088256B /* UIWindow+Extensions.swift in Sources */,
+				D684840C22CD48FA00362AC3 /* PassThroughView.swift in Sources */,
 				D60C81482209314200A127A3 /* UIImage+Extensions.swift in Sources */,
 				D61EC0EA21D3111600204BEE /* String+Extensions.swift in Sources */,
 				D684840522CD2E0100362AC3 /* SenderMessageCellContentView.swift in Sources */,
@@ -1024,6 +1031,7 @@
 				D642738F22C9BE330088256B /* TextAlertViewController.swift in Sources */,
 				D66F0FC722BF004300BA277D /* FeedType.swift in Sources */,
 				D6DADF742207E0E2007D9EB1 /* TCHChannel+Extensions.swift in Sources */,
+				D684840A22CD48D000362AC3 /* GradientView.swift in Sources */,
 				D642737D22C9A2D70088256B /* NameLabel.swift in Sources */,
 				D6D1503E21DAF98500CD8CE4 /* TextField.swift in Sources */,
 				D61EC0EE21D313BA00204BEE /* UIScreen+Extensions.swift in Sources */,
