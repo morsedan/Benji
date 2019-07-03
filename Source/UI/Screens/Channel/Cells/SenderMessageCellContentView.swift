@@ -11,10 +11,12 @@ import Foundation
 class SenderMessageCellContentView: View {
 
     @IBOutlet weak var textView: MessageTextView!
+    @IBOutlet weak var bubbleView: View!
 
     override func awakeFromNib() {
         super.awakeFromNib()
 
+        self.bubbleView.translatesAutoresizingMaskIntoConstraints = false
         self.textView.translatesAutoresizingMaskIntoConstraints = false
     }
 
@@ -24,9 +26,9 @@ class SenderMessageCellContentView: View {
         guard let textView = self.textView else { return }
 
         if textView.numberOfLines == 1 {
-            textView.layer.cornerRadius = self.textView.halfHeight
+            self.bubbleView.layer.cornerRadius = self.bubbleView.halfHeight
         } else {
-            textView.roundCorners()
+            self.bubbleView.roundCorners()
         }
     }
 }

@@ -16,8 +16,12 @@
             <rect key="frame" x="0.0" y="0.0" width="401" height="121"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
             <subviews>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="E8m-Yg-AFc" customClass="View" customModule="Benji" customModuleProvider="target">
+                    <rect key="frame" x="14" y="0.0" width="48" height="121"/>
+                    <color key="backgroundColor" red="1" green="0.14913141730000001" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                </view>
                 <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="omD-Z1-iSZ" customClass="MessageTextView" customModule="Benji" customModuleProvider="target">
-                    <rect key="frame" x="5" y="5" width="20" height="111"/>
+                    <rect key="frame" x="28" y="14" width="20" height="93"/>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     <constraints>
                         <constraint firstAttribute="width" priority="750" constant="20" id="hH8-c4-D0w"/>
@@ -29,16 +33,21 @@
             </subviews>
             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
             <constraints>
-                <constraint firstAttribute="bottom" secondItem="omD-Z1-iSZ" secondAttribute="bottom" constant="5" id="0OF-l8-h7U"/>
-                <constraint firstItem="omD-Z1-iSZ" firstAttribute="leading" secondItem="aGG-2V-wiD" secondAttribute="leading" constant="5" id="GrK-kf-CYU"/>
-                <constraint firstItem="omD-Z1-iSZ" firstAttribute="top" secondItem="aGG-2V-wiD" secondAttribute="top" constant="5" id="QnQ-Wb-IPe"/>
-                <constraint firstItem="omD-Z1-iSZ" firstAttribute="width" relation="lessThanOrEqual" secondItem="aGG-2V-wiD" secondAttribute="width" multiplier="0.8" id="l0x-cl-IOg"/>
+                <constraint firstAttribute="bottom" secondItem="omD-Z1-iSZ" secondAttribute="bottom" constant="14" id="0OF-l8-h7U"/>
+                <constraint firstItem="E8m-Yg-AFc" firstAttribute="bottom" secondItem="omD-Z1-iSZ" secondAttribute="bottom" constant="14" id="FEg-p8-222"/>
+                <constraint firstItem="omD-Z1-iSZ" firstAttribute="leading" secondItem="aGG-2V-wiD" secondAttribute="leading" constant="28" id="GrK-kf-CYU"/>
+                <constraint firstItem="omD-Z1-iSZ" firstAttribute="top" secondItem="aGG-2V-wiD" secondAttribute="top" constant="14" id="QnQ-Wb-IPe"/>
+                <constraint firstItem="E8m-Yg-AFc" firstAttribute="top" secondItem="omD-Z1-iSZ" secondAttribute="top" constant="-14" id="SYv-Cd-i39"/>
+                <constraint firstItem="E8m-Yg-AFc" firstAttribute="trailing" secondItem="omD-Z1-iSZ" secondAttribute="trailing" constant="14" id="YI9-yI-1M6"/>
+                <constraint firstItem="E8m-Yg-AFc" firstAttribute="leading" secondItem="omD-Z1-iSZ" secondAttribute="leading" constant="-14" id="aBF-mB-ARO"/>
+                <constraint firstItem="omD-Z1-iSZ" firstAttribute="width" relation="lessThanOrEqual" secondItem="aGG-2V-wiD" secondAttribute="width" multiplier="0.7" id="l0x-cl-IOg"/>
             </constraints>
             <nil key="simulatedTopBarMetrics"/>
             <nil key="simulatedBottomBarMetrics"/>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
             <viewLayoutGuide key="safeArea" id="mXu-fY-cpN"/>
             <connections>
+                <outlet property="bubbleView" destination="E8m-Yg-AFc" id="ID3-iD-gJX"/>
                 <outlet property="textView" destination="omD-Z1-iSZ" id="GO6-N4-pla"/>
             </connections>
             <point key="canvasLocation" x="458.69565217391306" y="-191.85267857142856"/>

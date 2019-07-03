@@ -32,7 +32,7 @@ class MessageCell: UICollectionViewCell, DisplayableCell {
         self.receiverContent.autoPinEdgesToSuperviewEdges()
 
         self.receiverContent.textView.set(text: type.body)
-        self.receiverContent.textView.set(backgroundColor: type.backgroundColor)
+        self.receiverContent.bubbleView.set(backgroundColor: type.backgroundColor)
     }
 
     private func setupSenderContent(with type: MessageType) {
@@ -40,7 +40,7 @@ class MessageCell: UICollectionViewCell, DisplayableCell {
         self.senderContent.autoPinEdgesToSuperviewEdges()
 
         self.senderContent.textView.set(text: type.body)
-        self.senderContent.textView.set(backgroundColor: type.backgroundColor)
+        self.senderContent.bubbleView.set(backgroundColor: type.backgroundColor)
     }
 
     override func preferredLayoutAttributesFitting(_ layoutAttributes: UICollectionViewLayoutAttributes) -> UICollectionViewLayoutAttributes {

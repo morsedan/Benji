@@ -12,15 +12,19 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
-        <view contentMode="scaleToFill" id="cnB-JP-2TG" customClass="SenderMessageCellContentView" customModule="Benji" customModuleProvider="target">
+        <view contentMode="scaleToFill" id="gB9-AR-sJ0" customClass="SenderMessageCellContentView" customModule="Benji" customModuleProvider="target">
             <rect key="frame" x="0.0" y="0.0" width="401" height="121"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
             <subviews>
-                <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="Ah4-0y-Ifh" customClass="MessageTextView" customModule="Benji" customModuleProvider="target">
-                    <rect key="frame" x="5" y="5" width="20" height="111"/>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="wH5-x4-TWl" customClass="View" customModule="Benji" customModuleProvider="target">
+                    <rect key="frame" x="339" y="0.0" width="48" height="121"/>
+                    <color key="backgroundColor" red="1" green="0.14913141730000001" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                </view>
+                <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="OQY-Ay-c9o" customClass="MessageTextView" customModule="Benji" customModuleProvider="target">
+                    <rect key="frame" x="353" y="14" width="20" height="93"/>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     <constraints>
-                        <constraint firstAttribute="width" priority="750" constant="20" id="aQG-W6-Tbk"/>
+                        <constraint firstAttribute="width" priority="750" constant="20" id="1XB-iE-b4h"/>
                     </constraints>
                     <string key="text">Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.</string>
                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
@@ -29,17 +33,22 @@
             </subviews>
             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
             <constraints>
-                <constraint firstItem="Ah4-0y-Ifh" firstAttribute="leading" secondItem="cnB-JP-2TG" secondAttribute="leading" constant="5" id="4Rw-2H-Xcp"/>
-                <constraint firstAttribute="bottom" secondItem="Ah4-0y-Ifh" secondAttribute="bottom" constant="5" id="GqA-Dh-0MU"/>
-                <constraint firstItem="Ah4-0y-Ifh" firstAttribute="top" secondItem="cnB-JP-2TG" secondAttribute="top" constant="5" id="HjH-kb-Epg"/>
-                <constraint firstItem="Ah4-0y-Ifh" firstAttribute="width" relation="lessThanOrEqual" secondItem="cnB-JP-2TG" secondAttribute="width" multiplier="0.8" id="s9f-TD-qVg"/>
+                <constraint firstItem="wH5-x4-TWl" firstAttribute="trailing" secondItem="OQY-Ay-c9o" secondAttribute="trailing" constant="14" id="Bmz-uZ-hL9"/>
+                <constraint firstItem="wH5-x4-TWl" firstAttribute="leading" secondItem="OQY-Ay-c9o" secondAttribute="leading" constant="-14" id="RtF-vs-8qR"/>
+                <constraint firstAttribute="bottom" secondItem="OQY-Ay-c9o" secondAttribute="bottom" constant="14" id="Zn9-0c-xh7"/>
+                <constraint firstItem="wH5-x4-TWl" firstAttribute="bottom" secondItem="OQY-Ay-c9o" secondAttribute="bottom" constant="14" id="cdK-Hx-XML"/>
+                <constraint firstItem="OQY-Ay-c9o" firstAttribute="width" relation="lessThanOrEqual" secondItem="gB9-AR-sJ0" secondAttribute="width" multiplier="0.7" id="dl1-pX-caF"/>
+                <constraint firstItem="OQY-Ay-c9o" firstAttribute="top" secondItem="gB9-AR-sJ0" secondAttribute="top" constant="14" id="hGV-D4-Lhr"/>
+                <constraint firstItem="Rfq-oc-nzX" firstAttribute="trailing" secondItem="OQY-Ay-c9o" secondAttribute="trailing" constant="28" id="t3M-uf-beK"/>
+                <constraint firstItem="wH5-x4-TWl" firstAttribute="top" secondItem="OQY-Ay-c9o" secondAttribute="top" constant="-14" id="vXg-RR-3B9"/>
             </constraints>
             <nil key="simulatedTopBarMetrics"/>
             <nil key="simulatedBottomBarMetrics"/>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
-            <viewLayoutGuide key="safeArea" id="wCg-EZ-rX1"/>
+            <viewLayoutGuide key="safeArea" id="Rfq-oc-nzX"/>
             <connections>
-                <outlet property="textView" destination="Ah4-0y-Ifh" id="72j-aw-nIC"/>
+                <outlet property="bubbleView" destination="wH5-x4-TWl" id="2u6-BX-tER"/>
+                <outlet property="textView" destination="OQY-Ay-c9o" id="zKd-Es-n3R"/>
             </connections>
             <point key="canvasLocation" x="458.69565217391306" y="-191.85267857142856"/>
         </view>
