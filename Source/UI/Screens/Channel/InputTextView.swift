@@ -19,6 +19,11 @@ class InputTextView: GrowingTextView {
         self.layer.masksToBounds = true
         self.layer.borderColor = Color.white.color.cgColor
         self.layer.borderWidth = Theme.borderWidth
+
+        self.textContainerInset.left = 16
+        self.textContainerInset.right = 16
+        self.textContainerInset.top = 14
+        self.textContainerInset.bottom = 14
     }
 
     func set(placeholder: Localized) {
@@ -30,6 +35,6 @@ class InputTextView: GrowingTextView {
     override func layoutSubviews() {
         super.layoutSubviews()
 
-        self.layer.cornerRadius = self.halfHeight
+        self.layer.cornerRadius = self.minHeight * 0.5
     }
 }

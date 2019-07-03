@@ -34,6 +34,7 @@ class ChannelViewController: FullScreenViewController {
     lazy var contextButton = ContextButton()
 
     var oldTextViewHeight: CGFloat = 48
+    private let bottomOffset: CGFloat = 16
 
     let showAnimator = UIViewPropertyAnimator(duration: 0.1,
                                               curve: .linear,
@@ -50,7 +51,12 @@ class ChannelViewController: FullScreenViewController {
 
         self.view.addSubview(self.collectionView)
         self.view.addSubview(self.inputTextView)
+        self.inputTextView.growingDelegate = self
+
         self.view.addSubview(self.contextButton)
+        self.contextButton.onTap { [unowned self] (tap) in
+            //show context menu
+        }
 
         NotificationCenter.default.addObserver(self,
                                                selector: #selector(keyboardWillShow(notification:)),
@@ -83,7 +89,9 @@ class ChannelViewController: FullScreenViewController {
         let keyboardHeight = keyboardRectangle.height
 
         self.showAnimator.addAnimations {
-            self.inputTextView.bottom = self.view.height - keyboardHeight
+            self.contextButton.bottom = self.view.height - keyboardHeight - self.bottomOffset
+            self.inputTextView.bottom = self.contextButton.bottom
+
             self.collectionView.height = self.view.height - keyboardHeight
             self.collectionView.collectionViewLayout.invalidateLayout()
         }
@@ -101,7 +109,8 @@ class ChannelViewController: FullScreenViewController {
     @objc private func keyboardWillHide(notification: Notification) {
 
         self.dismissAnimator.addAnimations {
-            self.inputTextView.bottom = self.view.height
+            self.contextButton.bottom = self.view.height - self.view.safeAreaInsets.bottom - 16
+            self.inputTextView.bottom = self.contextButton.bottom
             self.collectionView.height = self.view.height
         }
 
@@ -126,7 +135,7 @@ class ChannelViewController: FullScreenViewController {
         self.contextButton.bottom = self.view.height - self.view.safeAreaInsets.bottom - 16
 
         let textViewWidth = self.view.width - self.contextButton.right - 12 - 16
-        self.inputTextView.size = CGSize(width: textViewWidth, height: 48)
+        self.inputTextView.size = CGSize(width: textViewWidth, height: self.inputTextView.currentHeight)
         self.inputTextView.left = self.contextButton.right + 12
         self.inputTextView.bottom = self.contextButton.bottom
     }
@@ -140,8 +149,7 @@ extension ChannelViewController: GrowingTextViewDelegate {
     func textViewDidChangeHeight(_ textView: GrowingTextView, height: CGFloat) {
         UIView.animate(withDuration: Theme.animationDuration) {
             self.inputTextView.height = height
-            self.inputTextView.y = self.inputTextView.y + (self.oldTextViewHeight - height)
-            self.view.layoutNow()
+            self.inputTextView.bottom = self.contextButton.bottom
             self.oldTextViewHeight = height
         }
     }

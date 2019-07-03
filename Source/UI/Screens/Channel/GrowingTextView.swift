@@ -66,9 +66,6 @@ class GrowingTextView: TextView {
         self.keyboardType = .twitter
 
         self.tintColor = Color.white.color
-
-        self.textContainerInset.left = 5
-        self.textContainerInset.right = 5
     }
 
     override var intrinsicContentSize: CGSize {
