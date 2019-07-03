@@ -76,6 +76,7 @@
 		D64273A122CBDC870088256B /* ContextButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = D64273A022CBDC870088256B /* ContextButton.swift */; };
 		D64273A322CC040B0088256B /* GrowingTextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D64273A222CC040A0088256B /* GrowingTextView.swift */; };
 		D64273A522CC05DD0088256B /* InputTextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D64273A422CC05DD0088256B /* InputTextView.swift */; };
+		D64273A722CC2D280088256B /* ChannelViewController+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = D64273A622CC2D280088256B /* ChannelViewController+Extensions.swift */; };
 		D66F0FC722BF004300BA277D /* FeedType.swift in Sources */ = {isa = PBXBuildFile; fileRef = D66F0FC622BF004300BA277D /* FeedType.swift */; };
 		D66F0FC922BF006D00BA277D /* SystemMessage.swift in Sources */ = {isa = PBXBuildFile; fileRef = D66F0FC822BF006D00BA277D /* SystemMessage.swift */; };
 		D66F0FCF22BF060500BA277D /* Deeplinkable.swift in Sources */ = {isa = PBXBuildFile; fileRef = D66F0FCE22BF060500BA277D /* Deeplinkable.swift */; };
@@ -93,6 +94,7 @@
 		D66F0FF222C1D86800BA277D /* ChannelsType.swift in Sources */ = {isa = PBXBuildFile; fileRef = D66F0FF122C1D86800BA277D /* ChannelsType.swift */; };
 		D66F102622C7C6A900BA277D /* Lorem.swift in Sources */ = {isa = PBXBuildFile; fileRef = D66F102522C7C6A900BA277D /* Lorem.swift */; };
 		D66F102822C7D1D200BA277D /* ChannelCellContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D66F102722C7D1D200BA277D /* ChannelCellContentView.swift */; };
+		D68483F922CC3DE400362AC3 /* ChannelCollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D68483F822CC3DE400362AC3 /* ChannelCollectionViewController.swift */; };
 		D6AF02FD220153F5002D5C75 /* LaunchManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6AF02FC220153F5002D5C75 /* LaunchManager.swift */; };
 		D6AF0301220154E3002D5C75 /* ChannelManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6AF0300220154E3002D5C75 /* ChannelManager.swift */; };
 		D6D145F421D5493000CD8CE4 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6D145F321D5493000CD8CE4 /* HomeViewController.swift */; };
@@ -221,6 +223,7 @@
 		D64273A022CBDC870088256B /* ContextButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContextButton.swift; sourceTree = "<group>"; };
 		D64273A222CC040A0088256B /* GrowingTextView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GrowingTextView.swift; sourceTree = "<group>"; };
 		D64273A422CC05DD0088256B /* InputTextView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InputTextView.swift; sourceTree = "<group>"; };
+		D64273A622CC2D280088256B /* ChannelViewController+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ChannelViewController+Extensions.swift"; sourceTree = "<group>"; };
 		D66F0FC622BF004300BA277D /* FeedType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedType.swift; sourceTree = "<group>"; };
 		D66F0FC822BF006D00BA277D /* SystemMessage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SystemMessage.swift; sourceTree = "<group>"; };
 		D66F0FCE22BF060500BA277D /* Deeplinkable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Deeplinkable.swift; sourceTree = "<group>"; };
@@ -238,6 +241,7 @@
 		D66F0FF122C1D86800BA277D /* ChannelsType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChannelsType.swift; sourceTree = "<group>"; };
 		D66F102522C7C6A900BA277D /* Lorem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Lorem.swift; sourceTree = "<group>"; };
 		D66F102722C7D1D200BA277D /* ChannelCellContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChannelCellContentView.swift; sourceTree = "<group>"; };
+		D68483F822CC3DE400362AC3 /* ChannelCollectionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChannelCollectionViewController.swift; sourceTree = "<group>"; };
 		D6AF02FC220153F5002D5C75 /* LaunchManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LaunchManager.swift; sourceTree = "<group>"; };
 		D6AF0300220154E3002D5C75 /* ChannelManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChannelManager.swift; sourceTree = "<group>"; };
 		D6D145F321D5493000CD8CE4 /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
@@ -691,11 +695,13 @@
 				D6D1502C21D6A08300CD8CE4 /* ChannelCollectionView.swift */,
 				D6D1500821D5E77900CD8CE4 /* ChannelCollectionViewManager.swift */,
 				D6D1500621D5E73D00CD8CE4 /* ChannelViewController.swift */,
+				D64273A622CC2D280088256B /* ChannelViewController+Extensions.swift */,
 				D64273A222CC040A0088256B /* GrowingTextView.swift */,
 				D6D1501B21D5F8AD00CD8CE4 /* MessageCell.swift */,
 				D64273A022CBDC870088256B /* ContextButton.swift */,
 				D642739E22CAFD680088256B /* MessageTextView.swift */,
 				D64273A422CC05DD0088256B /* InputTextView.swift */,
+				D68483F822CC3DE400362AC3 /* ChannelCollectionViewController.swift */,
 			);
 			path = Channel;
 			sourceTree = "<group>";
@@ -927,6 +933,7 @@
 				D66F102822C7D1D200BA277D /* ChannelCellContentView.swift in Sources */,
 				D6D1502921D6085200CD8CE4 /* ResourceObject.swift in Sources */,
 				D6D145FF21D5510400CD8CE4 /* StringStyle.swift in Sources */,
+				D68483F922CC3DE400362AC3 /* ChannelCollectionViewController.swift in Sources */,
 				D6DADF76220801CF007D9EB1 /* ChannelsContentView.swift in Sources */,
 				D6D1501821D5F40F00CD8CE4 /* UICollectionView+Extensions.swift in Sources */,
 				D642735B22C90C0F0088256B /* SwipeDirection.swift in Sources */,
@@ -967,6 +974,7 @@
 				D6D145FD21D550E400CD8CE4 /* AttributedString.swift in Sources */,
 				D6D14D8F21D5893600CD8CE4 /* NSNumber+IGListDiffable.m in Sources */,
 				D60C814A2209360400A127A3 /* DisplayableImageView.swift in Sources */,
+				D64273A722CC2D280088256B /* ChannelViewController+Extensions.swift in Sources */,
 				D66F0FDE22BF2C5D00BA277D /* HomeSegmentControl.swift in Sources */,
 				D6D1460521D5524C00CD8CE4 /* StringCasing.swift in Sources */,
 				D6D1501221D5EA0400CD8CE4 /* ImageDisplayable.swift in Sources */,

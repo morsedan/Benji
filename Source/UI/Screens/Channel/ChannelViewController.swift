@@ -17,13 +17,7 @@ enum CollectionViewLayoutState {
 
 class ChannelViewController: FullScreenViewController {
 
-    lazy var collectionView: ChannelCollectionView = {
-        return ChannelCollectionView()
-    }()
-
-    lazy var manager: ChannelCollectionViewManager = {
-        return ChannelCollectionViewManager(with: self.collectionView)
-    }()
+    lazy var channelCollectionVC = ChannelCollectionViewController()
 
     lazy var inputTextView: InputTextView = {
         let textView = InputTextView()
@@ -46,14 +40,11 @@ class ChannelViewController: FullScreenViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        self.collectionView.dataSource = self.manager
-        self.collectionView.delegate = self.manager
-
-        self.view.addSubview(self.collectionView)
-        self.view.addSubview(self.inputTextView)
+        self.addChild(viewController: self.channelCollectionVC, toView: self.contentContainer)
+        self.contentContainer.addSubview(self.inputTextView)
         self.inputTextView.growingDelegate = self
 
-        self.view.addSubview(self.contextButton)
+        self.contentContainer.addSubview(self.contextButton)
         self.contextButton.onTap { [unowned self] (tap) in
             //show context menu
         }
@@ -68,17 +59,11 @@ class ChannelViewController: FullScreenViewController {
                                                name: UIResponder.keyboardWillHideNotification,
                                                object: nil)
 
-        self.collectionView.onDoubleTap { [unowned self] (doubleTap) in
+        self.channelCollectionVC.collectionView.onDoubleTap { [unowned self] (doubleTap) in
             if self.inputTextView.isFirstResponder {
                 self.inputTextView.resignFirstResponder()
             }
         }
-    }
-
-    override func viewDidAppear(_ animated: Bool) {
-        super.viewDidAppear(animated)
-
-        self.collectionView.scrollToBottom()
     }
 
     @objc private func keyboardWillShow(notification: Notification) {
@@ -89,16 +74,16 @@ class ChannelViewController: FullScreenViewController {
         let keyboardHeight = keyboardRectangle.height
 
         self.showAnimator.addAnimations {
-            self.contextButton.bottom = self.view.height - keyboardHeight - self.bottomOffset
+            self.contextButton.bottom = self.contentContainer.height - keyboardHeight - self.bottomOffset
             self.inputTextView.bottom = self.contextButton.bottom
 
-            self.collectionView.height = self.view.height - keyboardHeight
-            self.collectionView.collectionViewLayout.invalidateLayout()
+            self.channelCollectionVC.collectionView.height = self.contentContainer.height - keyboardHeight
+            self.channelCollectionVC.collectionView.collectionViewLayout.invalidateLayout()
         }
 
         self.showAnimator.addCompletion { (position) in
             if position == .end {
-                self.collectionView.scrollToBottom()
+                self.channelCollectionVC.collectionView.scrollToBottom()
             }
         }
 
@@ -109,15 +94,15 @@ class ChannelViewController: FullScreenViewController {
     @objc private func keyboardWillHide(notification: Notification) {
 
         self.dismissAnimator.addAnimations {
-            self.contextButton.bottom = self.view.height - self.view.safeAreaInsets.bottom - 16
+            self.contextButton.bottom = self.contentContainer.height - self.view.safeAreaInsets.bottom - 16
             self.inputTextView.bottom = self.contextButton.bottom
-            self.collectionView.height = self.view.height
+            self.channelCollectionVC.collectionView.height = self.contentContainer.height
         }
 
 
         self.dismissAnimator.addCompletion { (position) in
             if position == .end {
-                self.collectionView.scrollToBottom()
+                self.channelCollectionVC.collectionView.scrollToBottom()
             }
         }
 
@@ -128,13 +113,13 @@ class ChannelViewController: FullScreenViewController {
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
 
-        self.collectionView.frame = self.view.bounds
+        self.channelCollectionVC.view.frame = self.contentContainer.bounds
 
         self.contextButton.size = CGSize(width: 48, height: 48)
         self.contextButton.left = 16
-        self.contextButton.bottom = self.view.height - self.view.safeAreaInsets.bottom - 16
+        self.contextButton.bottom = self.contentContainer.height - self.view.safeAreaInsets.bottom - 16
 
-        let textViewWidth = self.view.width - self.contextButton.right - 12 - 16
+        let textViewWidth = self.contentContainer.width - self.contextButton.right - 12 - 16
         self.inputTextView.size = CGSize(width: textViewWidth, height: self.inputTextView.currentHeight)
         self.inputTextView.left = self.contextButton.right + 12
         self.inputTextView.bottom = self.contextButton.bottom
