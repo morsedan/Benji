@@ -10,7 +10,7 @@ import Foundation
 
 class BouncyCollectionViewLayout: UICollectionViewFlowLayout {
 
-    private var damping: CGFloat = 0.8
+    private var damping: CGFloat = 0.9
     private var frequency: CGFloat = 2
 
     override init() {

@@ -11,7 +11,7 @@ import Foundation
 class ChannelsCollectionView: CollectionView {
 
     init() {
-        let flowLayout = UICollectionViewFlowLayout()
+        let flowLayout = BouncyCollectionViewLayout()
         flowLayout.scrollDirection = .vertical
         flowLayout.estimatedItemSize = CGSize(width: 300, height: 150)
         flowLayout.minimumLineSpacing = 16
