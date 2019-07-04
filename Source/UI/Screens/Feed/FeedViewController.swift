@@ -10,6 +10,14 @@ import Foundation
 
 class FeedViewController: SwipeableViewController {
 
+    let animateInProperty = UIViewPropertyAnimator(duration: Theme.animationDuration,
+                                                   curve: .easeInOut,
+                                                   animations: nil)
+
+    let animateOutProperty = UIViewPropertyAnimator(duration: Theme.animationDuration,
+                                                   curve: .easeInOut,
+                                                   animations: nil)
+
     lazy var emptyView: EmptyFeedView = {
         let view = EmptyFeedView()
         view.text = LocalizedString(id: "", default: "🎉 You are all done!")
@@ -36,6 +44,37 @@ class FeedViewController: SwipeableViewController {
             items.append(.system(Lorem.systemParagraph()))
         }
         self.items = items 
+    }
+
+    func animateIn(completion: @escaping CompletionHandler) {
+        let animator = UIViewPropertyAnimator(duration: Theme.animationDuration,
+                                              curve: .easeInOut) {
+                                                self.view.transform = CGAffineTransform.identity
+                                                self.view.alpha = 1
+        }
+        animator.addCompletion { (position) in
+            if position == .end {
+                completion(true, nil)
+            }
+        }
+
+        animator.startAnimation()
+    }
+
+    func animateOut(completion: @escaping CompletionHandler) {
+        let animator = UIViewPropertyAnimator(duration: Theme.animationDuration,
+                                              curve: .easeInOut) {
+                                                self.view.transform = CGAffineTransform(scaleX: 0.9, y: 0.9)
+                                                self.view.alpha = 0
+                                                self.view.setNeedsLayout()
+        }
+        animator.addCompletion { (position) in
+            if position == .end {
+                completion(true, nil)
+            }
+        }
+
+        animator.startAnimation()
     }
 }
 

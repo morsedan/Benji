@@ -41,9 +41,7 @@ class HomeViewController: FullScreenViewController {
     let searchImageView = UIImageView(image: #imageLiteral(resourceName: "Search"))
     let addButton = HomeAddButton()
 
-    var currentType: HomeContentType {
-        return HomeContentType(rawValue: self.segmentControl.selectedSegmentIndex) ?? .feed
-    }
+    private var currentType: HomeContentType = .feed
 
     override init() {
         super.init()
@@ -76,6 +74,14 @@ class HomeViewController: FullScreenViewController {
             let vc = ContactsScrolledModalController()
             self.present(vc, animated: true)
         }
+    }
+
+    private func resetContent(currentView: UIView, newView: UIView) {
+        currentView.removeFromSuperview()
+        self.contentContainer.insertSubview(newView, belowSubview: self.headerContainer)
+        self.contentContainer.layoutNow()
+        newView.transform = CGAffineTransform(scaleX: 0.9, y: 0.9)
+        newView.alpha = 0
     }
 
     override func viewDidLayoutSubviews() {
@@ -111,46 +117,29 @@ class HomeViewController: FullScreenViewController {
     }
 
     @objc func updateContent() {
-        guard let type = HomeContentType(rawValue: self.segmentControl.selectedSegmentIndex) else { return }
+        guard let newType = HomeContentType(rawValue: self.segmentControl.selectedSegmentIndex),
+           self.currentType != newType else { return }
 
-        var newView: UIView
-        var currentView: UIView
-
-        switch type {
+        switch newType {
         case .feed:
-            newView = self.feedVC.view
-            currentView = self.channelsVC.view
+            self.channelsVC.animateOut { (completed, error) in
+                if completed {
+                    self.resetContent(currentView: self.channelsVC.view, newView: self.feedVC.view)
+                    self.feedVC.animateIn(completion: { (completed, error) in })
+                }
+            }
         case .list:
-            newView = self.channelsVC.view
-            currentView = self.feedVC.view
-        }
+            self.feedVC.animateOut { (completed, error) in
+                if completed {
+                    self.resetContent(currentView: self.feedVC.view, newView: self.channelsVC.view)
+                    self.channelsVC.animateIn(completion: { (completed, error) in
 
-        if !self.contentContainer.contains(currentView) {
-            self.contentContainer.addSubview(currentView)
-            self.view.layoutNow()
-        }
-
-        guard !self.contentContainer.contains(newView) else { return }
-
-        UIView.animate(withDuration: Theme.animationDuration,
-                       animations: {
-                        currentView.transform = CGAffineTransform(scaleX: 0.9, y: 0.9)
-                        currentView.alpha = 0
-                        currentView.setNeedsLayout()
-        }) { (completed) in
-            if completed {
-                currentView.removeFromSuperview()
-                self.contentContainer.insertSubview(newView, belowSubview: self.headerContainer)
-                self.contentContainer.layoutNow()
-                newView.transform = CGAffineTransform(scaleX: 0.9, y: 0.9)
-                newView.alpha = 0
-                UIView.animate(withDuration: Theme.animationDuration,
-                               animations: {
-                                newView.transform = CGAffineTransform.identity
-                                newView.alpha = 1
-                })
+                    })
+                }
             }
         }
+
+        self.currentType = newType
     }
 }
 
