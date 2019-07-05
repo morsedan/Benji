@@ -70,9 +70,35 @@ class HomeViewController: FullScreenViewController {
         self.segmentControl.addTarget(self, action: #selector(updateContent), for: .valueChanged)
 
         self.contentContainer.addSubview(self.addButton)
+
         self.addButton.onTap { [unowned self] (tap) in
-            let vc = ContactsScrolledModalController()
-            self.present(vc, animated: true)
+
+            //Create new channel
+            //Join channel
+            let name = Lorem.name()
+            ChannelManager.createChannel(channelName: name, uniqueName: name, type: .public)
+                .withProgressBanner("Creating channel with \(name)")
+                .withErrorBanner()
+                .ignoreUserInteractionEventsUntilDone()
+                .observe { (result) in
+                    switch result {
+                    case .success(let channel):
+                        let channelVC = ChannelViewController()
+                        self.present(channelVC, animated: true) {
+                            channelVC.loadMessages(for: .channel(channel))
+                        }
+                    case .failure(let error):
+                        if let tomorrowError = error as? ClientError {
+                            print(tomorrowError.localizedDescription)
+                        } else {
+                            print(error.localizedDescription)
+                        }
+                    }
+            }
+
+
+//            let vc = ContactsScrolledModalController()
+//            self.present(vc, animated: true)
         }
     }
 

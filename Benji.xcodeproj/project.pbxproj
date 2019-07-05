@@ -81,6 +81,8 @@
 		D646DB3C22CFCCD80055CC7C /* ClientError.swift in Sources */ = {isa = PBXBuildFile; fileRef = D646DB3B22CFCCD80055CC7C /* ClientError.swift */; };
 		D646DB3E22CFCF330055CC7C /* TwilioChatClient+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = D646DB3D22CFCF330055CC7C /* TwilioChatClient+Extensions.swift */; };
 		D646DB4022CFCFDB0055CC7C /* Future+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = D646DB3F22CFCFDB0055CC7C /* Future+Extensions.swift */; };
+		D646DB4222CFDB400055CC7C /* ChannelCollectionViewController+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = D646DB4122CFDB400055CC7C /* ChannelCollectionViewController+Extensions.swift */; };
+		D646DB4422CFDE0C0055CC7C /* LoadingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D646DB4322CFDE0C0055CC7C /* LoadingView.swift */; };
 		D66F0FC722BF004300BA277D /* FeedType.swift in Sources */ = {isa = PBXBuildFile; fileRef = D66F0FC622BF004300BA277D /* FeedType.swift */; };
 		D66F0FC922BF006D00BA277D /* SystemMessage.swift in Sources */ = {isa = PBXBuildFile; fileRef = D66F0FC822BF006D00BA277D /* SystemMessage.swift */; };
 		D66F0FCF22BF060500BA277D /* Deeplinkable.swift in Sources */ = {isa = PBXBuildFile; fileRef = D66F0FCE22BF060500BA277D /* Deeplinkable.swift */; };
@@ -241,6 +243,8 @@
 		D646DB3B22CFCCD80055CC7C /* ClientError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClientError.swift; sourceTree = "<group>"; };
 		D646DB3D22CFCF330055CC7C /* TwilioChatClient+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "TwilioChatClient+Extensions.swift"; sourceTree = "<group>"; };
 		D646DB3F22CFCFDB0055CC7C /* Future+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Future+Extensions.swift"; sourceTree = "<group>"; };
+		D646DB4122CFDB400055CC7C /* ChannelCollectionViewController+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ChannelCollectionViewController+Extensions.swift"; sourceTree = "<group>"; };
+		D646DB4322CFDE0C0055CC7C /* LoadingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadingView.swift; sourceTree = "<group>"; };
 		D66F0FC622BF004300BA277D /* FeedType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedType.swift; sourceTree = "<group>"; };
 		D66F0FC822BF006D00BA277D /* SystemMessage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SystemMessage.swift; sourceTree = "<group>"; };
 		D66F0FCE22BF060500BA277D /* Deeplinkable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Deeplinkable.swift; sourceTree = "<group>"; };
@@ -619,6 +623,7 @@
 				D68483FE22CD0A1A00362AC3 /* TableView.swift */,
 				D684840922CD48D000362AC3 /* GradientView.swift */,
 				D684840B22CD48FA00362AC3 /* PassThroughView.swift */,
+				D646DB4322CFDE0C0055CC7C /* LoadingView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -746,6 +751,7 @@
 				D64273A022CBDC870088256B /* ContextButton.swift */,
 				D64273A422CC05DD0088256B /* InputTextView.swift */,
 				D68483F822CC3DE400362AC3 /* ChannelCollectionViewController.swift */,
+				D646DB4122CFDB400055CC7C /* ChannelCollectionViewController+Extensions.swift */,
 			);
 			path = Channel;
 			sourceTree = "<group>";
@@ -1028,6 +1034,7 @@
 				D642739322C9C0110088256B /* AlertView.swift in Sources */,
 				D6D145FD21D550E400CD8CE4 /* AttributedString.swift in Sources */,
 				D6D14D8F21D5893600CD8CE4 /* NSNumber+IGListDiffable.m in Sources */,
+				D646DB4222CFDB400055CC7C /* ChannelCollectionViewController+Extensions.swift in Sources */,
 				D60C814A2209360400A127A3 /* DisplayableImageView.swift in Sources */,
 				D64273A722CC2D280088256B /* ChannelViewController+Extensions.swift in Sources */,
 				D66F0FDE22BF2C5D00BA277D /* HomeSegmentControl.swift in Sources */,
@@ -1049,6 +1056,7 @@
 				D642737D22C9A2D70088256B /* NameLabel.swift in Sources */,
 				D646DB3E22CFCF330055CC7C /* TwilioChatClient+Extensions.swift in Sources */,
 				D6D1503E21DAF98500CD8CE4 /* TextField.swift in Sources */,
+				D646DB4422CFDE0C0055CC7C /* LoadingView.swift in Sources */,
 				D61EC0EE21D313BA00204BEE /* UIScreen+Extensions.swift in Sources */,
 				D68483FD22CD09C800362AC3 /* ListViewController.swift in Sources */,
 				D61EC0D921D30C8E00204BEE /* DispatchQue+Extensions.swift in Sources */,

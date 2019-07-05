@@ -56,3 +56,66 @@ extension Future {
         })
     }
 }
+
+extension Future {
+
+    func ignoreUserInteractionEventsUntilDone() -> Future<Value> {
+        UIApplication.shared.beginIgnoringInteractionEvents()
+
+        self.observe { (result) in
+            UIApplication.shared.endIgnoringInteractionEvents()
+        }
+
+        return self
+    }
+
+    func withProgressBanner(_ text: String) -> Future<Value> {
+        print(text)
+        //Add banner
+        //let banner = TomorrowBanner.showProgress(text)
+        let start = Date()
+
+        self.observe { (result) in
+            switch result {
+            case .success:
+                // Minimum display time of 1 second
+                let elapsed: Double = Date().timeIntervalSince(start)
+
+                if elapsed < 1 {
+                    delay(1 - elapsed) {
+                       // banner.dismiss()
+                    }
+                } else {
+                    //banner.dismiss()
+                }
+            case .failure:
+                break 
+                //banner.dismiss()
+            }
+        }
+
+        return self
+    }
+
+    func withErrorBanner() -> Future<Value> {
+
+        self.observe { (result) in
+            switch result {
+            case .success:
+                break
+            case .failure(let error):
+                let message: String
+                if let error = error as? ClientError {
+                    message = error.localizedDescription
+                } else {
+                    message = error.localizedDescription
+                }
+
+                print(message)
+                //Add banner
+            }
+        }
+
+        return self
+    }
+}

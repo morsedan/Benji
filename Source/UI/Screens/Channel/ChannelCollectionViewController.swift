@@ -7,8 +7,12 @@
 //
 
 import Foundation
+import TwilioChatClient
 
 class ChannelCollectionViewController: CollectionViewController<MessageCell, ChannelCollectionViewManager> {
+
+    private(set) var selectedChannel: TCHChannel?
+    let loadingView = LoadingView()
 
     init() {
         let collectionView = ChannelCollectionView()
@@ -18,14 +22,6 @@ class ChannelCollectionViewController: CollectionViewController<MessageCell, Cha
 
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
-    }
-
-    func loadMessages() {
-        self.manager.set(newItems: Lorem.systemMessageTypes())
-        delay(0.5) { [weak self] in
-            guard let `self` = self else { return }
-            self.collectionView.scrollToLastItem()
-        }
     }
 
     override func didSelect(item: MessageType, at indexPath: IndexPath) {

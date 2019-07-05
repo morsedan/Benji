@@ -140,9 +140,7 @@ class ChannelViewController: FullScreenViewController {
     }
 
     func loadMessages(for type: ChannelType) {
-        //create dummy messages
-        self.channelCollectionVC.loadMessages()
-        
+        self.channelCollectionVC.loadMessages(for: type)
     }
 }
 

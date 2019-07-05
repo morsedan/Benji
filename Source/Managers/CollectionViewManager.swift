@@ -33,6 +33,12 @@ class CollectionViewManager<CellType: DisplayableCell & UICollectionViewCell>: N
         self.collectionView.register(CellType.self, forCellWithReuseIdentifier: CellType.reuseID)
     }
 
+    func reset() {
+        self.items.value = []
+        self.previousItems = nil
+        self.collectionView.reloadData()
+    }
+
     func set(newItems: [CellType.ItemType]) {
         self.updateCollectionView(items: newItems, modify: { [weak self] in
             guard let `self` = self else { return }
