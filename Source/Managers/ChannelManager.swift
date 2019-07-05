@@ -21,6 +21,8 @@ class ChannelManager: NSObject {
     var messageUpdate = MutableProperty<MessageUpdate?>(nil)
     var memberUpdate = MutableProperty<ChannelMemberUpdate?>(nil)
 
+    var selectedChannel: TCHChannel?
+
     var isSynced: Bool {
         guard let client = self.client else { return false }
         if client.synchronizationStatus == .completed || client.synchronizationStatus == .channelsListCompleted {

@@ -11,7 +11,6 @@ import TwilioChatClient
 
 class ChannelCollectionViewController: CollectionViewController<MessageCell, ChannelCollectionViewManager> {
 
-    private(set) var selectedChannel: TCHChannel?
     let loadingView = LoadingView()
 
     init() {

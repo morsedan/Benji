@@ -73,8 +73,6 @@ class HomeViewController: FullScreenViewController {
 
         self.addButton.onTap { [unowned self] (tap) in
 
-            //Create new channel
-            //Join channel
             let name = Lorem.name()
             ChannelManager.createChannel(channelName: name, uniqueName: name, type: .public)
                 .withProgressBanner("Creating channel with \(name)")

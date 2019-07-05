@@ -51,7 +51,8 @@ class ChannelViewController: FullScreenViewController {
 
         self.contentContainer.addSubview(self.contextButton)
         self.contextButton.onTap { [unowned self] (tap) in
-            //show context menu
+            guard let text = self.inputTextView.text, !text.isEmpty else { return }
+            self.send(message: text)
         }
 
         NotificationCenter.default.addObserver(self,
@@ -141,6 +142,13 @@ class ChannelViewController: FullScreenViewController {
 
     func loadMessages(for type: ChannelType) {
         self.channelCollectionVC.loadMessages(for: type)
+    }
+
+    func send(message: String) {
+        guard let channel = ChannelManager.shared.selectedChannel else { return }
+
+        ChannelManager.shared.sendMessage(to: channel, with: message)
+        self.inputTextView.text = String()
     }
 }
 

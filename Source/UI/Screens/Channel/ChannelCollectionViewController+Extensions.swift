@@ -17,6 +17,7 @@ extension ChannelCollectionViewController {
         case .system( _ ):
             self.loadTestMessages()
         case .channel(let channel):
+            ChannelManager.shared.selectedChannel = channel
             self.loadChannelMessages(with: channel)
         }
     }
@@ -24,7 +25,7 @@ extension ChannelCollectionViewController {
     private func loadChannelMessages(with channel: TCHChannel) {
         self.manager.reset()
 
-        guard let allMessages = self.selectedChannel?.messages else { return }
+        guard let allMessages = ChannelManager.shared.selectedChannel?.messages else { return }
 
         allMessages.getLastWithCount(100) { (result, messages) in
             guard let strongMessages = messages, let last = strongMessages.last, let lastIndex = last.index else {
@@ -76,7 +77,7 @@ extension ChannelCollectionViewController {
         ChannelManager.shared.messageUpdate.producer.on { [weak self] (update) in
             guard let `self` = self else { return }
 
-            guard let channelUpdate = update, channelUpdate.channel == self.selectedChannel else { return }
+            guard let channelUpdate = update, channelUpdate.channel == ChannelManager.shared.selectedChannel else { return }
 
             switch channelUpdate.status {
             case .added:
@@ -97,7 +98,7 @@ extension ChannelCollectionViewController {
         ChannelManager.shared.memberUpdate.producer.on { [weak self] (update) in
             guard let `self` = self else { return }
 
-            guard let memberUpdate = update, memberUpdate.channel == self.selectedChannel else { return }
+            guard let memberUpdate = update, memberUpdate.channel == ChannelManager.shared.selectedChannel else { return }
 
             switch memberUpdate.status {
             case .joined:
@@ -122,7 +123,7 @@ extension ChannelCollectionViewController {
         ChannelManager.shared.channelsUpdate.producer.on { [weak self] (update) in
             guard let `self` = self else { return }
 
-            guard let channelsUpdate = update, channelsUpdate.channel == self.selectedChannel
+            guard let channelsUpdate = update, channelsUpdate.channel == ChannelManager.shared.selectedChannel
                 else { return }
 
             switch channelsUpdate.status {
