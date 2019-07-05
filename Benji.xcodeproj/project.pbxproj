@@ -77,6 +77,10 @@
 		D64273A322CC040B0088256B /* GrowingTextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D64273A222CC040A0088256B /* GrowingTextView.swift */; };
 		D64273A522CC05DD0088256B /* InputTextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D64273A422CC05DD0088256B /* InputTextView.swift */; };
 		D64273A722CC2D280088256B /* ChannelViewController+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = D64273A622CC2D280088256B /* ChannelViewController+Extensions.swift */; };
+		D646DB3A22CFCC110055CC7C /* Future.swift in Sources */ = {isa = PBXBuildFile; fileRef = D646DB3922CFCC110055CC7C /* Future.swift */; };
+		D646DB3C22CFCCD80055CC7C /* ClientError.swift in Sources */ = {isa = PBXBuildFile; fileRef = D646DB3B22CFCCD80055CC7C /* ClientError.swift */; };
+		D646DB3E22CFCF330055CC7C /* TwilioChatClient+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = D646DB3D22CFCF330055CC7C /* TwilioChatClient+Extensions.swift */; };
+		D646DB4022CFCFDB0055CC7C /* Future+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = D646DB3F22CFCFDB0055CC7C /* Future+Extensions.swift */; };
 		D66F0FC722BF004300BA277D /* FeedType.swift in Sources */ = {isa = PBXBuildFile; fileRef = D66F0FC622BF004300BA277D /* FeedType.swift */; };
 		D66F0FC922BF006D00BA277D /* SystemMessage.swift in Sources */ = {isa = PBXBuildFile; fileRef = D66F0FC822BF006D00BA277D /* SystemMessage.swift */; };
 		D66F0FCF22BF060500BA277D /* Deeplinkable.swift in Sources */ = {isa = PBXBuildFile; fileRef = D66F0FCE22BF060500BA277D /* Deeplinkable.swift */; };
@@ -233,6 +237,10 @@
 		D64273A222CC040A0088256B /* GrowingTextView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GrowingTextView.swift; sourceTree = "<group>"; };
 		D64273A422CC05DD0088256B /* InputTextView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InputTextView.swift; sourceTree = "<group>"; };
 		D64273A622CC2D280088256B /* ChannelViewController+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ChannelViewController+Extensions.swift"; sourceTree = "<group>"; };
+		D646DB3922CFCC110055CC7C /* Future.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Future.swift; sourceTree = "<group>"; };
+		D646DB3B22CFCCD80055CC7C /* ClientError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClientError.swift; sourceTree = "<group>"; };
+		D646DB3D22CFCF330055CC7C /* TwilioChatClient+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "TwilioChatClient+Extensions.swift"; sourceTree = "<group>"; };
+		D646DB3F22CFCFDB0055CC7C /* Future+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Future+Extensions.swift"; sourceTree = "<group>"; };
 		D66F0FC622BF004300BA277D /* FeedType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedType.swift; sourceTree = "<group>"; };
 		D66F0FC822BF006D00BA277D /* SystemMessage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SystemMessage.swift; sourceTree = "<group>"; };
 		D66F0FCE22BF060500BA277D /* Deeplinkable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Deeplinkable.swift; sourceTree = "<group>"; };
@@ -476,6 +484,8 @@
 				D6DADF682207D246007D9EB1 /* TCHMessage+Extensions.swift */,
 				D6DADF732207E0E2007D9EB1 /* TCHChannel+Extensions.swift */,
 				D66F0FE922C0695E00BA277D /* CNContact+Extensions.swift */,
+				D646DB3D22CFCF330055CC7C /* TwilioChatClient+Extensions.swift */,
+				D646DB3F22CFCFDB0055CC7C /* Future+Extensions.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -763,6 +773,8 @@
 				D642735222C85B740088256B /* SystemAvatar.swift */,
 				D66F0FC822BF006D00BA277D /* SystemMessage.swift */,
 				D66F0FE722C0662300BA277D /* User.swift */,
+				D646DB3922CFCC110055CC7C /* Future.swift */,
+				D646DB3B22CFCCD80055CC7C /* ClientError.swift */,
 			);
 			path = "Data Models";
 			sourceTree = "<group>";
@@ -968,6 +980,7 @@
 				D61EC0F721D316F100204BEE /* Color.swift in Sources */,
 				D642739D22CAFC930088256B /* MessageType.swift in Sources */,
 				D6D1503121D6A2B900CD8CE4 /* UITableView+Extensions.swift in Sources */,
+				D646DB3A22CFCC110055CC7C /* Future.swift in Sources */,
 				D66F0FD622BF28A100BA277D /* AppDelegate+Initialization.swift in Sources */,
 				D66F102822C7D1D200BA277D /* ChannelCellContentView.swift in Sources */,
 				D6D1502921D6085200CD8CE4 /* ResourceObject.swift in Sources */,
@@ -1010,6 +1023,7 @@
 				D6AF0301220154E3002D5C75 /* ChannelManager.swift in Sources */,
 				D642736422C9132A0088256B /* EmptyFeedView.swift in Sources */,
 				D61EC0C021D3071400204BEE /* AppDelegate.swift in Sources */,
+				D646DB4022CFCFDB0055CC7C /* Future+Extensions.swift in Sources */,
 				D62C635A22BEBADE00F4D097 /* FeedCell.swift in Sources */,
 				D642739322C9C0110088256B /* AlertView.swift in Sources */,
 				D6D145FD21D550E400CD8CE4 /* AttributedString.swift in Sources */,
@@ -1033,6 +1047,7 @@
 				D6DADF742207E0E2007D9EB1 /* TCHChannel+Extensions.swift in Sources */,
 				D684840A22CD48D000362AC3 /* GradientView.swift in Sources */,
 				D642737D22C9A2D70088256B /* NameLabel.swift in Sources */,
+				D646DB3E22CFCF330055CC7C /* TwilioChatClient+Extensions.swift in Sources */,
 				D6D1503E21DAF98500CD8CE4 /* TextField.swift in Sources */,
 				D61EC0EE21D313BA00204BEE /* UIScreen+Extensions.swift in Sources */,
 				D68483FD22CD09C800362AC3 /* ListViewController.swift in Sources */,
@@ -1064,6 +1079,7 @@
 				D61EC0E021D30E3F00204BEE /* FullScreenViewController.swift in Sources */,
 				D6D1502D21D6A08300CD8CE4 /* ChannelCollectionView.swift in Sources */,
 				D642735722C90BB90088256B /* SwipeableViewController.swift in Sources */,
+				D646DB3C22CFCCD80055CC7C /* ClientError.swift in Sources */,
 				D68483FB22CD050D00362AC3 /* TableViewManager.swift in Sources */,
 				D66F0FDC22BF2ADC00BA277D /* HomeCoordinator.swift in Sources */,
 				D6D14FFC21D5893700CD8CE4 /* IGListBatchUpdateData.mm in Sources */,

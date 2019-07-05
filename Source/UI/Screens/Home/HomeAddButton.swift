@@ -20,5 +20,6 @@ class HomeAddButton: View {
         super.layoutSubviews()
 
         self.makeRound()
+        self.addShadow(withOffset: 5)
     }
 }

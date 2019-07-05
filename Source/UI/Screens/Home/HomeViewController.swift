@@ -104,7 +104,7 @@ class HomeViewController: FullScreenViewController {
 
         self.addButton.size = CGSize(width: 48, height: 48)
         self.addButton.right = self.contentContainer.width - 25
-        self.addButton.bottom = self.contentContainer.height - 25
+        self.addButton.bottom = self.contentContainer.height - 25 - self.view.safeAreaInsets.bottom
 
         let feedHeight = (self.contentContainer.height * 0.8) - self.segmentControl.height - 30
         self.feedVC.view.size = CGSize(width: self.contentContainer.width * 0.85, height: feedHeight)

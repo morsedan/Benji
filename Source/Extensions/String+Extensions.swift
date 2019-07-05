@@ -53,6 +53,17 @@ extension String {
         guard let range = Range(nsrange, in: self) else { return nil }
         return self[range]
     }
+
+    func extraWhitespaceRemoved() -> String {
+        return components(separatedBy: CharacterSet.whitespaces)
+            .filter { !$0.isEmpty }
+            .joined(separator: " ")
+            .trimWhitespace()
+    }
+
+    func trimWhitespace() -> String {
+        return trimmingCharacters(in: .whitespacesAndNewlines)
+    }
 }
 
 extension Range where Bound == String.Index {

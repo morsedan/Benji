@@ -9,6 +9,7 @@
 import Foundation
 import TwilioChatClient
 import ReactiveSwift
+import Parse
 
 class ChannelManager: NSObject {
 
@@ -30,13 +31,16 @@ class ChannelManager: NSObject {
     }
 
     func initialize(token: String, completion: @escaping ClientCompletion) {
-//        TwilioChatClient.chatClient(withToken: token, properties: nil, delegate: self, completion: { [weak self] (result, client) in
-//            guard let `self` = self else { return }
-//            if let strongClient = client {
-//                self.client = strongClient
-//                completion(strongClient, nil)
-//            }
-//        })
+        TwilioChatClient.chatClient(withToken: token,
+                                    properties: nil,
+                                    delegate: self,
+                                    completion: { [weak self] (result, client) in
+            guard let `self` = self else { return }
+            if let strongClient = client {
+                self.client = strongClient
+                completion(strongClient, nil)
+            }
+        })
     }
 
     func update(token: String, completion: @escaping CompletionHandler) {
@@ -56,29 +60,20 @@ class ChannelManager: NSObject {
         completion(subscribedChannels, nil)
     }
 
-    func createChannel(channelName: String,
-                       uniqueName: String,
-                       type: TCHChannelType,
-                       attribtutes: Dictionary<String, Any> = [:],
-                       completion: @escaping ChannelCreationCompletion) {
-        guard let client = self.client, let channels = client.channelsList() else { return }
+    static func createChannel(channelName: String,
+                              uniqueName: String,
+                              type: TCHChannelType,
+                              attributes: NSMutableDictionary = [:]) -> Future<TCHChannel> {
 
-        self.hasChannel(with: uniqueName) { (channel) in
-            if let strongChannel = channel {
-                completion(strongChannel, nil)
-            } else {
-                let options = [
-                    TCHChannelOptionFriendlyName: channelName,
-                    TCHChannelOptionUniqueName: uniqueName,
-                    TCHChannelOptionType: type.rawValue,
-                    TCHChannelOptionAttributes: attribtutes,
-                    ] as [String : Any]
-
-                channels.createChannel(options: options, completion: { result, channel in
-                    completion(channel, result.error)
-                })
-            }
+        guard let client = self.shared.client else {
+            let errorMessage = "Unable to create channel. Twilio client uninitialized"
+            return Promise<TCHChannel>(error: ClientError.apiError(detail: errorMessage))
         }
+
+        return client.createChannel(channelName: "DM",
+                                    uniqueName: UUID().uuidString,
+                                    type: .private,
+                                    attributes: attributes)
     }
 
     func delete(channel: TCHChannel, completion: @escaping CompletionHandler) {
@@ -106,9 +101,18 @@ class ChannelManager: NSObject {
         })
     }
 
-    func sendMessage(channel: TCHChannel, body: String, attributes: Dictionary<String, Any>) {
+    //MARK: MESSAGE HELPERS
+
+    func sendMessage(to channel: TCHChannel,
+                     with body: String,
+                     attributes: Dictionary<String, Any> = [:]) {
+        let message = body.extraWhitespaceRemoved()
+
+        guard !message.isEmpty, channel.status == .joined else { return }
+
         if let messages = channel.messages {
             let messageOptions = TCHMessageOptions().withBody(body)
+            messageOptions.withAttributes(attributes, completion: nil)
             messages.sendMessage(with: messageOptions, completion: { (result, message) in
 
             })
