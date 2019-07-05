@@ -8,7 +8,7 @@
 
 import Foundation
 
-class ContextButton: Button {
+class ContextButton: View {
 
     private let contextCircleTop = ContextCircleView()
     private let contextCircleLeft = ContextCircleView()
@@ -16,16 +16,7 @@ class ContextButton: Button {
     private let contextCircleCenter = ContextCircleView()
     private let contextCircleBottom = ContextCircleView()
 
-    init() {
-        super.init(frame: .zero)
-        self.initializeViews()
-    }
-
-    required init?(coder aDecoder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
-    }
-
-    private func initializeViews() {
+    override func initializeViews() {
         
         self.addSubview(self.contextCircleTop)
         self.addSubview(self.contextCircleBottom)
