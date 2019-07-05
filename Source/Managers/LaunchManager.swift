@@ -18,7 +18,6 @@ class LaunchManager {
 
     // Important - this identity would be assigned by your app, for
     // instance after a user logs in
-    private let identity = "Benji"
     private let url = "https://benji-ios.herokuapp.com/parse"
     private let appID = "benjamindodgson.Benji"
     private let clientKey = "myMasterKey"
@@ -33,12 +32,12 @@ class LaunchManager {
             configuration.applicationId = self.appID
         }))
 
-        if PFUser.current() != nil {
-            self.authenticateChatClient()
+        if let identity = PFUser.current()?.objectId {
+            self.authenticateChatClient(with: identity)
         } else {
             PFUser.logInWithUsername(inBackground: self.tempPhone, password: self.tempPhone, block: { (user, error) in
-                if user != nil {
-                    self.authenticateChatClient()
+                if let identity = user?.objectId {
+                    self.authenticateChatClient(with: identity)
                 }
 
                 if error != nil {
@@ -46,15 +45,13 @@ class LaunchManager {
                 }
             })
         }
-
-        self.authenticateChatClient()
     }
 
-    func authenticateChatClient() {
+    func authenticateChatClient(with identity: String) {
         // Fetch Access Token from the server and initialize Chat Client - this assumes you are running
         // the PHP starter app on your local machine, as instructed in the quick start guide
         let deviceId = UIDevice.current.identifierForVendor!.uuidString
-        let urlString = "\(self.tokenURL)?identity=\(self.identity)&device=\(deviceId)"
+        let urlString = "\(self.tokenURL)?identity=\(identity)&device=\(deviceId)"
 
         TokenUtils.retrieveToken(url: urlString) { (token, identity, error) in
             if let token = token {
