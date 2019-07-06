@@ -29,9 +29,7 @@ class ContactsCollectionEmptyView: View {
 
     let button = Button()
 
-    override func initializeViews() {
-        super.initializeViews()
-
+    override func initialize() {
         self.addSubview(self.button)
         self.button.set(style: .rounded(color: .blue, text: "ADD CONTACTS"))
     }

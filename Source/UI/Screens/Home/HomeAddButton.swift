@@ -10,9 +10,7 @@ import Foundation
 
 class HomeAddButton: View {
 
-    override func initializeViews() {
-        super.initializeViews()
-
+    override func initialize() {
         self.set(backgroundColor: .purple)
     }
 

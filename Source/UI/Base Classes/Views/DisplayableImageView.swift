@@ -36,7 +36,7 @@ class DisplayableImageView: View {
         super.init(coder: aDecoder)
     }
 
-    override func initializeViews() {
+    override func initialize() {
         self.addSubview(self.imageView)
         self.imageView.contentMode = .scaleAspectFill
         self.updateImageView()

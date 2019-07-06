@@ -17,7 +17,7 @@
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
             <subviews>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="wH5-x4-TWl" customClass="View" customModule="Benji" customModuleProvider="target">
-                    <rect key="frame" x="343" y="-2" width="48" height="125"/>
+                    <rect key="frame" x="343" y="0.0" width="48" height="121"/>
                     <color key="backgroundColor" red="1" green="0.14913141730000001" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                 </view>
                 <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="OQY-Ay-c9o" customClass="MessageTextView" customModule="Benji" customModuleProvider="target">
@@ -36,11 +36,11 @@
                 <constraint firstItem="wH5-x4-TWl" firstAttribute="trailing" secondItem="OQY-Ay-c9o" secondAttribute="trailing" constant="14" id="Bmz-uZ-hL9"/>
                 <constraint firstItem="wH5-x4-TWl" firstAttribute="leading" secondItem="OQY-Ay-c9o" secondAttribute="leading" constant="-14" id="RtF-vs-8qR"/>
                 <constraint firstAttribute="bottom" secondItem="OQY-Ay-c9o" secondAttribute="bottom" constant="10" id="Zn9-0c-xh7"/>
-                <constraint firstItem="wH5-x4-TWl" firstAttribute="bottom" secondItem="OQY-Ay-c9o" secondAttribute="bottom" constant="12" id="cdK-Hx-XML"/>
+                <constraint firstItem="wH5-x4-TWl" firstAttribute="bottom" secondItem="OQY-Ay-c9o" secondAttribute="bottom" constant="10" id="cdK-Hx-XML"/>
                 <constraint firstItem="OQY-Ay-c9o" firstAttribute="width" relation="lessThanOrEqual" secondItem="gB9-AR-sJ0" secondAttribute="width" multiplier="0.6" id="dl1-pX-caF"/>
                 <constraint firstItem="OQY-Ay-c9o" firstAttribute="top" secondItem="gB9-AR-sJ0" secondAttribute="top" constant="10" id="hGV-D4-Lhr"/>
                 <constraint firstItem="Rfq-oc-nzX" firstAttribute="trailing" secondItem="OQY-Ay-c9o" secondAttribute="trailing" constant="24" id="t3M-uf-beK"/>
-                <constraint firstItem="wH5-x4-TWl" firstAttribute="top" secondItem="OQY-Ay-c9o" secondAttribute="top" constant="-12" id="vXg-RR-3B9"/>
+                <constraint firstItem="wH5-x4-TWl" firstAttribute="top" secondItem="OQY-Ay-c9o" secondAttribute="top" constant="-10" id="vXg-RR-3B9"/>
             </constraints>
             <nil key="simulatedTopBarMetrics"/>
             <nil key="simulatedBottomBarMetrics"/>

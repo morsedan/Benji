@@ -31,17 +31,7 @@ class SwipeableView: View {
     var animationDirectionY: CGFloat = 1.0
     var swipePercentageMargin: CGFloat = 0.7
 
-    required init?(coder aDecoder: NSCoder) {
-        super.init(coder: aDecoder)
-        self.initializeViews()
-    }
-
-    override init() {
-        super.init()
-        self.initializeViews()
-    }
-
-    override func initializeViews() {
+    override func initialize() {
         self.isUserInteractionEnabled = true
         // Pan Gesture Recognizer
         self.onPan { [unowned self] (pan) in

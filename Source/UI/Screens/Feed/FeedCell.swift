@@ -14,8 +14,7 @@ class FeedCell: SwipeableView {
     let textView = FeedTextView()
     let avatarView = AvatarView()
 
-    override func initializeViews() {
-        super.initializeViews()
+    override func initialize() {
 
         self.addSubview(self.textView)
         self.addSubview(self.avatarView)

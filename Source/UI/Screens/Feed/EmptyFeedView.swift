@@ -26,8 +26,7 @@ class EmptyFeedView: View {
         }
     }
 
-    override func initializeViews() {
-        super.initializeViews()
+    override func initialize() {
 
         self.addSubview(self.label)
         self.set(backgroundColor: .clear)

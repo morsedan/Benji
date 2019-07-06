@@ -36,8 +36,7 @@ class ChannelCellContentView: View {
         }
     }
 
-    override func initializeViews() {
-        super.initializeViews()
+    override func initialize() {
 
         self.addSubview(self.headerView)
         self.headerView.set(backgroundColor: .background2)

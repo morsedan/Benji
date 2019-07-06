@@ -23,8 +23,9 @@ extension TCHMessage: Diffable, DisplayableCellItem, Avatar {
     }
 
     var isFromCurrentUser: Bool {
-        guard let author = self.author else { return false }
-        return author == PFUser.current()?.username
+        guard let author = self.author,
+            let identity = PFUser.current()?.objectId else { return false }
+        return author == identity
     }
 
     //TODO: Fill these in 

@@ -110,6 +110,7 @@
 		D684840722CD2E1100362AC3 /* SenderMessageCellContentView.xib in Resources */ = {isa = PBXBuildFile; fileRef = D684840622CD2E1100362AC3 /* SenderMessageCellContentView.xib */; };
 		D684840A22CD48D000362AC3 /* GradientView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D684840922CD48D000362AC3 /* GradientView.swift */; };
 		D684840C22CD48FA00362AC3 /* PassThroughView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D684840B22CD48FA00362AC3 /* PassThroughView.swift */; };
+		D684D6E922D0E1CB00874B08 /* EmptyChannelView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D684D6E822D0E1CB00874B08 /* EmptyChannelView.swift */; };
 		D6AF02FD220153F5002D5C75 /* LaunchManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6AF02FC220153F5002D5C75 /* LaunchManager.swift */; };
 		D6AF0301220154E3002D5C75 /* ChannelManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6AF0300220154E3002D5C75 /* ChannelManager.swift */; };
 		D6D145F421D5493000CD8CE4 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6D145F321D5493000CD8CE4 /* HomeViewController.swift */; };
@@ -272,6 +273,7 @@
 		D684840622CD2E1100362AC3 /* SenderMessageCellContentView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SenderMessageCellContentView.xib; sourceTree = "<group>"; };
 		D684840922CD48D000362AC3 /* GradientView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GradientView.swift; sourceTree = "<group>"; };
 		D684840B22CD48FA00362AC3 /* PassThroughView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PassThroughView.swift; sourceTree = "<group>"; };
+		D684D6E822D0E1CB00874B08 /* EmptyChannelView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmptyChannelView.swift; sourceTree = "<group>"; };
 		D6AF02FC220153F5002D5C75 /* LaunchManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LaunchManager.swift; sourceTree = "<group>"; };
 		D6AF0300220154E3002D5C75 /* ChannelManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChannelManager.swift; sourceTree = "<group>"; };
 		D6D145F321D5493000CD8CE4 /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
@@ -752,6 +754,7 @@
 				D64273A422CC05DD0088256B /* InputTextView.swift */,
 				D68483F822CC3DE400362AC3 /* ChannelCollectionViewController.swift */,
 				D646DB4122CFDB400055CC7C /* ChannelCollectionViewController+Extensions.swift */,
+				D684D6E822D0E1CB00874B08 /* EmptyChannelView.swift */,
 			);
 			path = Channel;
 			sourceTree = "<group>";
@@ -962,6 +965,7 @@
 				D66F0FE222C041AF00BA277D /* AvatarView.swift in Sources */,
 				D642738622C9AF1C0088256B /* PagingModalController.swift in Sources */,
 				D6D1501C21D5F8AD00CD8CE4 /* MessageCell.swift in Sources */,
+				D684D6E922D0E1CB00874B08 /* EmptyChannelView.swift in Sources */,
 				D6D1460121D5514300CD8CE4 /* Localized.swift in Sources */,
 				D6D1504F21E304D800CD8CE4 /* BouncyCollectionViewLayout.swift in Sources */,
 				D61EC0F521D3151400204BEE /* NSAttributedString+Extensions.swift in Sources */,
