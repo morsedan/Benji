@@ -32,16 +32,13 @@ class ChannelManager: NSObject {
         return false
     }
 
-    func initialize(token: String, completion: @escaping ClientCompletion) {
+    static func initialize(token: String) {
         TwilioChatClient.chatClient(withToken: token,
                                     properties: nil,
-                                    delegate: self,
-                                    completion: { [weak self] (result, client) in
-            guard let `self` = self else { return }
-            if let strongClient = client {
-                self.client = strongClient
-                completion(strongClient, nil)
-            }
+                                    delegate: shared,
+                                    completion: { (result, client) in
+                                        guard let strongClient = client else { return }
+                                        shared.client = strongClient
         })
     }
 

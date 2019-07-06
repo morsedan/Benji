@@ -17,6 +17,8 @@ class ChannelCollectionViewController: CollectionViewController<MessageCell, Cha
         let collectionView = ChannelCollectionView()
         super.init(with: collectionView)
         self.view.set(backgroundColor: .clear)
+        self.subscribeToClient()
+        self.subscribeToUpdates()
     }
 
     required init?(coder aDecoder: NSCoder) {

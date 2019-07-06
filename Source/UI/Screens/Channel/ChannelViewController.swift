@@ -34,7 +34,7 @@ class ChannelViewController: FullScreenViewController {
     let showAnimator = UIViewPropertyAnimator(duration: 0.1,
                                               curve: .linear,
                                               animations: nil)
-    let dismissAnimator = UIViewPropertyAnimator(duration: Theme.animationDuration,
+    let dismissAnimator = UIViewPropertyAnimator(duration: 0.1,
                                                  curve: .easeIn,
                                                  animations: nil)
 
@@ -82,7 +82,7 @@ class ChannelViewController: FullScreenViewController {
         self.showAnimator.addAnimations {
             self.contextButton.bottom = self.contentContainer.height - keyboardHeight - self.bottomOffset
             self.inputTextView.bottom = self.contextButton.bottom
-
+            self.bottomGradientView.bottom = self.contentContainer.height - keyboardHeight
             self.channelCollectionVC.collectionView.height = self.contentContainer.height - keyboardHeight
             self.channelCollectionVC.collectionView.collectionViewLayout.invalidateLayout()
         }
@@ -102,6 +102,7 @@ class ChannelViewController: FullScreenViewController {
         self.dismissAnimator.addAnimations {
             self.contextButton.bottom = self.contentContainer.height - self.view.safeAreaInsets.bottom - 16
             self.inputTextView.bottom = self.contextButton.bottom
+            self.bottomGradientView.bottom = self.contentContainer.height
             self.channelCollectionVC.collectionView.height = self.contentContainer.height
             self.channelCollectionVC.collectionView.collectionViewLayout.invalidateLayout()
         }
@@ -127,14 +128,14 @@ class ChannelViewController: FullScreenViewController {
 
         self.contextButton.size = CGSize(width: 48, height: 48)
         self.contextButton.left = 16
-        self.contextButton.bottom = self.contentContainer.height - self.view.safeAreaInsets.bottom - 16
+        self.contextButton.bottom = self.contentContainer.height - self.view.safeAreaInsets.bottom
 
         let textViewWidth = self.contentContainer.width - self.contextButton.right - 12 - 16
         self.inputTextView.size = CGSize(width: textViewWidth, height: self.inputTextView.currentHeight)
         self.inputTextView.left = self.contextButton.right + 12
         self.inputTextView.bottom = self.contextButton.bottom
 
-        let gradientHeight = self.contentContainer.height - self.contextButton.top + 20
+        let gradientHeight = self.contentContainer.height - self.contextButton.top 
         self.bottomGradientView.size = CGSize(width: self.contentContainer.width, height: gradientHeight)
         self.bottomGradientView.bottom = self.contentContainer.height
         self.bottomGradientView.centerOnX()
