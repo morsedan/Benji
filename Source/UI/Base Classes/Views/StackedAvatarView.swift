@@ -16,7 +16,6 @@ class StackedAvatarView: View {
     var offsetMultiplier: CGFloat = 0.5
 
     func configure(items: [Avatar]) {
-        self.set(backgroundColor: .red)
         self.imageViews.removeAllFromSuperview(andRemoveAll: true)
 
         let max: Int = min(items.count, self.maxItems)
@@ -33,6 +32,22 @@ class StackedAvatarView: View {
         self.setNeedsLayout()
     }
 
+    func setSize() {
+        guard self.imageViews.count > 1 else {
+            return self.size = CGSize(width: self.itemSize, height: self.itemSize)
+        }
+
+        let height = self.itemSize
+        var totalWidth: CGFloat = 0
+        for (index, _ ) in self.imageViews.enumerated() {
+            let offset = CGFloat(index) * self.itemSize * offsetMultiplier
+            totalWidth += offset
+        }
+
+        totalWidth += self.itemSize
+        self.size = CGSize(width: totalWidth, height: height)
+    }
+
     override func layoutSubviews() {
         super.layoutSubviews()
 
@@ -40,7 +55,7 @@ class StackedAvatarView: View {
 
             let offset = CGFloat(index) * self.itemSize * offsetMultiplier
             imageView.size = CGSize(width: self.itemSize, height: self.itemSize)
-            imageView.left = self.width - offset
+            imageView.right = self.width - offset
             imageView.centerOnY()
         }
     }
