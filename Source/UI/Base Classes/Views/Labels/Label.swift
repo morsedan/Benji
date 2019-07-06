@@ -30,4 +30,23 @@ class Label: UILabel {
         self.lineBreakMode = lineBreakMode
         self.textAlignment = alignment
     }
+
+    func setSize(withWidth width: CGFloat) {
+        guard let t = self.text,
+            !t.isEmpty,
+            let attText = self.attributedText else { return }
+
+        let attributes = attText.attributes(at: 0,
+                                            longestEffectiveRange: nil,
+                                            in: NSRange(location: 0, length: attText.length))
+
+        let maxSize = CGSize(width: width, height: CGFloat.infinity)
+
+        let labelSize: CGSize = t.boundingRect(with: maxSize,
+                                               options: .usesLineFragmentOrigin,
+                                               attributes: attributes,
+                                               context: nil).size
+
+        self.size = labelSize
+    }
 }

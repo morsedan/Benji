@@ -13,6 +13,7 @@ class EmptyChannelView: View {
     let titleLabel = Label()
     let descriptionLabel = Label()
     let actionLabel = Label()
+    let stackedAvatarView = StackedAvatarView()
 
     var titleText: Localized? {
         didSet {
@@ -57,11 +58,38 @@ class EmptyChannelView: View {
         self.addSubview(self.titleLabel)
         self.addSubview(self.descriptionLabel)
         self.addSubview(self.actionLabel)
+        self.addSubview(self.stackedAvatarView)
+
+        self.titleText = LocalizedString(id: "", default: "Great!")
+        self.descriptionText = LocalizedString(id: "", default: "You and Username are now in a conversation greeting.")
+        self.actionText = LocalizedString(id: "", default: "Tap the bottom to compose your first message.")
+
+        let avatar1 = Lorem.avatar()
+        let avatar2 = Lorem.avatar()
+        self.stackedAvatarView.itemSize = 72
+        self.stackedAvatarView.offsetMultiplier = 0.8
+        self.stackedAvatarView.configure(items: [avatar1, avatar2])
     }
 
     override func layoutSubviews() {
         super.layoutSubviews()
 
-        self.tt
+        let maxWidth = self.width * 0.8
+        self.titleLabel.setSize(withWidth: maxWidth)
+        self.titleLabel.top = self.height * 0.2
+        self.titleLabel.centerOnX()
+
+        self.descriptionLabel.setSize(withWidth: maxWidth)
+        self.descriptionLabel.top = self.titleLabel.bottom + 10
+        self.descriptionLabel.centerOnX()
+
+        self.stackedAvatarView.height = 72
+        self.stackedAvatarView.layoutNow()
+        self.stackedAvatarView.top = self.descriptionLabel.bottom + 25
+        self.stackedAvatarView.centerOnX()
+
+        self.actionLabel.setSize(withWidth: maxWidth)
+        self.actionLabel.top = self.stackedAvatarView.bottom + 25
+        self.actionLabel.centerOnX()
     }
 }

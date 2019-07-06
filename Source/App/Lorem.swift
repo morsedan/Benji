@@ -62,6 +62,10 @@ class Lorem {
 
     private static let isFromCurrentUserList = [true, false]
 
+    class func avatar() -> SystemAvatar {
+        return SystemAvatar(photoUrl: nil, photo: self.image())
+    }
+
     class func systemMessageTypes() -> [MessageType] {
         var types: [MessageType] = []
         for _ in 0...10 {
@@ -73,8 +77,7 @@ class Lorem {
     }
 
     class func systemMessage() -> SystemMessage {
-        let avatar = SystemAvatar(photoUrl: nil, photo: self.image())
-        let message = SystemMessage(avatar: avatar,
+        let message = SystemMessage(avatar: self.avatar(),
                                     context: self.context(),
                                     body: self.sentence(),
                                     id: String(self.randomString()),

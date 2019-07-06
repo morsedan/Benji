@@ -10,6 +10,8 @@ import Foundation
 
 class ChannelCollectionView: CollectionView {
 
+    lazy var emptyView = EmptyChannelView()
+
     init() {
         let flowLayout = UICollectionViewFlowLayout()
         flowLayout.scrollDirection = .vertical
@@ -18,9 +20,17 @@ class ChannelCollectionView: CollectionView {
         flowLayout.itemSize = UICollectionViewFlowLayout.automaticSize
         flowLayout.estimatedItemSize = CGSize(width: 255, height: 44)
         super.init(flowLayout: flowLayout)
+
+        self.backgroundView = self.emptyView
     }
 
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
+    }
+
+    override func layoutSubviews() {
+        super.layoutSubviews()
+
+        self.emptyView.frame = self.backgroundView?.bounds ?? .zero
     }
 }
