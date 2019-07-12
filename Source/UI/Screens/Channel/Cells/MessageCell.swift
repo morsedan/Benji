@@ -10,8 +10,8 @@ import Foundation
 import TwilioChatClient
 import PureLayout
 
-class MessageCell: UICollectionViewCell, DisplayableCell {
-    typealias ItemType = MessageType
+class MessageCell: UICollectionViewCell {
+    
     static let offset: CGFloat = 10
 
     let receiverContent: ReceiverMessageCellContentView = UINib.loadView()

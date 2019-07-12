@@ -9,14 +9,14 @@
 import Foundation
 import TwilioChatClient
 
-class ChannelCollectionViewController: CollectionViewController<MessageCell, ChannelCollectionViewManager> {
+class ChannelCollectionViewController: ViewController {
 
     let loadingView = LoadingView()
+    let collectionView = ChannelCollectionView()
 
     init() {
-        let collectionView = ChannelCollectionView()
-        super.init(with: collectionView)
-        self.view.set(backgroundColor: .clear)
+        super.init(nibName: nil, bundle: nil)
+        //self.view.set(backgroundColor: .clear)
         self.subscribeToClient()
         self.subscribeToUpdates()
     }
@@ -25,8 +25,8 @@ class ChannelCollectionViewController: CollectionViewController<MessageCell, Cha
         fatalError("init(coder:) has not been implemented")
     }
 
-    override func didSelect(item: MessageType, at indexPath: IndexPath) {
-        
-    }
+//    override func didSelect(item: MessageType, at indexPath: IndexPath) {
+//        
+//    }
 
 }

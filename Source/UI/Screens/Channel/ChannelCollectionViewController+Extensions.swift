@@ -23,7 +23,7 @@ extension ChannelCollectionViewController {
     }
 
     private func loadChannelMessages(with channel: TCHChannel) {
-        self.manager.reset()
+        //self.manager.reset()
 
         guard let allMessages = ChannelManager.shared.selectedChannel?.messages else { return }
 
@@ -38,14 +38,14 @@ extension ChannelCollectionViewController {
                 let messageTypes: [MessageType] = strongMessages.map({ (message) -> MessageType in
                     return .message(message)
                 })
-                self.manager.set(newItems: messageTypes)
+                //self.manager.set(newItems: messageTypes)
                 self.collectionView.scrollToLastItem()
             })
         }
     }
 
     private func loadTestMessages() {
-        self.manager.set(newItems: Lorem.systemMessageTypes())
+        //self.manager.set(newItems: Lorem.systemMessageTypes())
         delay(0.5) { [weak self] in
             guard let `self` = self else { return }
             self.collectionView.scrollToLastItem()
@@ -81,15 +81,17 @@ extension ChannelCollectionViewController {
 
             switch channelUpdate.status {
             case .added:
-                self.manager.append(item: .message(channelUpdate.message))
+                //self.manager.append(item: .message(channelUpdate.message))
                 runMain {
                     self.collectionView.scrollToLastItem()
                 }
             // Add check here for last message not from user and its attributes to find quick messsages
             case .changed:
-                self.manager.update(item: .message(channelUpdate.message))
+                break
+                //self.manager.update(item: .message(channelUpdate.message))
             case .deleted:
-                self.manager.delete(item: .message(channelUpdate.message))
+                break
+               // self.manager.delete(item: .message(channelUpdate.message))
             case .toastReceived:
                 break
             }
@@ -132,7 +134,8 @@ extension ChannelCollectionViewController {
             case .changed:
                 break
             case .deleted:
-                self.manager.reset()
+                break 
+                //self.manager.reset()
             case .syncUpdate(let syncStatus):
                 switch syncStatus {
                 case .none, .identifier, .metadata, .failed:

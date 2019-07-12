@@ -10,6 +10,8 @@ import Foundation
 
 class ChannelCollectionView: CollectionView {
 
+    weak var channelDataSource: ChannelDataSource?
+
     lazy var emptyView = EmptyChannelView()
 
     init() {
