@@ -12,7 +12,11 @@ import TwilioChatClient
 class ChannelCollectionViewController: ViewController {
 
     let loadingView = LoadingView()
-    let collectionView = ChannelCollectionView()
+
+    lazy var collectionView: ChannelCollectionView = {
+        let collectionView = ChannelCollectionView(with: UICollectionViewFlowLayout())
+        return collectionView
+    }()
 
     init() {
         super.init(nibName: nil, bundle: nil)

@@ -38,4 +38,8 @@ class CollectionView: UICollectionView {
 
         self.activityIndicator.centerOnXAndY()
     }
+
+    func register<T: UICollectionViewCell>(_ cellClass: T.Type) {
+        self.register(cellClass, forCellWithReuseIdentifier: String(describing: T.self))
+    }
 }

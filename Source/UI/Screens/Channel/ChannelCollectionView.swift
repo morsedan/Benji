@@ -14,13 +14,14 @@ class ChannelCollectionView: CollectionView {
 
     lazy var emptyView = EmptyChannelView()
 
-    init() {
-        let flowLayout = UICollectionViewFlowLayout()
-        flowLayout.scrollDirection = .vertical
-        flowLayout.minimumLineSpacing = 14 
-        flowLayout.sectionInset = UIEdgeInsets(top: 0, left: 0, bottom: 80, right: 0)
-        flowLayout.itemSize = UICollectionViewFlowLayout.automaticSize
-        flowLayout.estimatedItemSize = CGSize(width: 255, height: 44)
+
+    init(with flowLayout: UICollectionViewFlowLayout) {
+//        let flowLayout = UICollectionViewFlowLayout()
+//        flowLayout.scrollDirection = .vertical
+//        flowLayout.minimumLineSpacing = 14
+//        flowLayout.sectionInset = UIEdgeInsets(top: 0, left: 0, bottom: 80, right: 0)
+//        flowLayout.itemSize = UICollectionViewFlowLayout.automaticSize
+//        flowLayout.estimatedItemSize = CGSize(width: 255, height: 44)
         super.init(flowLayout: flowLayout)
 
         self.backgroundView = self.emptyView
@@ -28,6 +29,10 @@ class ChannelCollectionView: CollectionView {
 
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
+    }
+
+    private func registerReusableViews() {
+        self.register(MessageCell.self)
     }
 
     override func layoutSubviews() {
