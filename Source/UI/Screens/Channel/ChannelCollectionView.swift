@@ -14,8 +14,14 @@ class ChannelCollectionView: CollectionView {
 
     lazy var emptyView = EmptyChannelView()
 
+    var channelCollectionViewFlowLayout: ChannelCollectionViewFlowLayout {
+        guard let layout = collectionViewLayout as? ChannelCollectionViewFlowLayout else {
+            fatalError("ChannelCollectionViewFlowLayout NOT FOUND")
+        }
+        return layout
+    }
 
-    init(with flowLayout: UICollectionViewFlowLayout) {
+    init(with flowLayout: ChannelCollectionViewFlowLayout) {
 //        let flowLayout = UICollectionViewFlowLayout()
 //        flowLayout.scrollDirection = .vertical
 //        flowLayout.minimumLineSpacing = 14

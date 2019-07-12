@@ -14,7 +14,8 @@ class ChannelCollectionViewController: ViewController {
     let loadingView = LoadingView()
 
     lazy var collectionView: ChannelCollectionView = {
-        let collectionView = ChannelCollectionView(with: UICollectionViewFlowLayout())
+        let flowLayout = ChannelCollectionViewFlowLayout()
+        let collectionView = ChannelCollectionView(with: flowLayout)
         return collectionView
     }()
 
