@@ -12,4 +12,5 @@ import TwilioChatClient
 class ChannelCollectionViewManager: NSObject {
 
 
+    
 }

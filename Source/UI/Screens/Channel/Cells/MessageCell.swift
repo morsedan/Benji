@@ -11,50 +11,49 @@ import TwilioChatClient
 import PureLayout
 
 class MessageCell: UICollectionViewCell {
+
+    let avatarView = AvatarView()
+    let bubbleView = View()
+    let textView = MessageTextView()
     
-    static let offset: CGFloat = 10
 
-    let receiverContent: ReceiverMessageCellContentView = UINib.loadView()
-    let senderContent: SenderMessageCellContentView = UINib.loadView()
-
-    func configure(with item: MessageType?) {
-        guard let type = item else { return }
-
-        if type.isFromCurrentUser {
-            self.setupSenderContent(with: type)
-        } else {
-            self.setupReceiverContent(with: type)
-        }
+    override init(frame: CGRect) {
+        super.init(frame: frame)
+        self.contentView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
+        self.initializeViews()
     }
 
-    private func setupReceiverContent(with type: MessageType) {
-        self.contentView.addSubview(self.receiverContent)
-        self.receiverContent.autoPinEdgesToSuperviewEdges()
-
-        self.receiverContent.set(type: type)
+    required init?(coder aDecoder: NSCoder) {
+        super.init(coder: aDecoder)
+        self.contentView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
+        self.initializeViews()
     }
 
-    private func setupSenderContent(with type: MessageType) {
-        self.contentView.addSubview(self.senderContent)
-        self.senderContent.autoPinEdgesToSuperviewEdges()
-
-        self.senderContent.textView.set(text: type.body)
-        self.senderContent.bubbleView.set(backgroundColor: type.backgroundColor)
+    private func initializeViews() {
+        self.contentView.addSubview(self.avatarView)
+        self.contentView.addSubview(self.bubbleView)
+        self.contentView.addSubview(self.textView)
     }
 
-    override func preferredLayoutAttributesFitting(_ layoutAttributes: UICollectionViewLayoutAttributes) -> UICollectionViewLayoutAttributes {
-        self.layoutNow()
+    override func apply(_ layoutAttributes: UICollectionViewLayoutAttributes) {
+        super.apply(layoutAttributes)
 
-        let size = self.contentView.systemLayoutSizeFitting(layoutAttributes.size)
-        var frame = layoutAttributes.frame
-        frame.size.height = ceil(size.height)
-        layoutAttributes.frame = frame
-        return layoutAttributes
+        guard let attributes = layoutAttributes as? ChannelCollectionViewLayoutAttributes else { return }
+
     }
 
     override func prepareForReuse() {
         super.prepareForReuse()
 
-        self.contentView.removeAllSubviews()
+        self.textView.text = nil
+    }
+
+    func configure(with message: MessageType,
+                   at indexPath: IndexPath,
+                   and collectionView: ChannelCollectionView) {
+
+        guard let dataSource = collectionView.channelDataSource else { return }
+
+        
     }
 }
