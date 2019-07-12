@@ -14,7 +14,8 @@ class ChannelCollectionViewLayoutAttributes: UICollectionViewLayoutAttributes {
     var avatarLeadingPadding: CGFloat = .zero
     var bubbleViewSize: CGSize = .zero
     var messageTextViewSize: CGSize = .zero
-    var messageTextViewInsets: UIEdgeInsets = .zero
+    var messageTextViewVerticalPadding: CGFloat = .zero
+    var messageTextViewHorizontalPadding: CGFloat = .zero
 
     override func copy(with zone: NSZone? = nil) -> Any {
         let copy = super.copy(with: zone) as! ChannelCollectionViewLayoutAttributes
@@ -23,7 +24,8 @@ class ChannelCollectionViewLayoutAttributes: UICollectionViewLayoutAttributes {
         copy.avatarLeadingPadding = self.avatarLeadingPadding
         copy.bubbleViewSize = self.bubbleViewSize
         copy.messageTextViewSize = self.messageTextViewSize
-        copy.messageTextViewInsets = self.messageTextViewInsets
+        copy.messageTextViewVerticalPadding = self.messageTextViewVerticalPadding
+        copy.messageTextViewHorizontalPadding = self.messageTextViewHorizontalPadding
 
         return copy
     }
@@ -35,7 +37,8 @@ class ChannelCollectionViewLayoutAttributes: UICollectionViewLayoutAttributes {
             && attributes.avatarLeadingPadding == self.avatarLeadingPadding
             && attributes.bubbleViewSize == self.bubbleViewSize
             && attributes.messageTextViewSize == self.messageTextViewSize
-            && attributes.messageTextViewInsets == self.messageTextViewInsets
+            && attributes.messageTextViewVerticalPadding == self.messageTextViewVerticalPadding
+            && attributes.messageTextViewHorizontalPadding == self.messageTextViewHorizontalPadding
         }
 
         return false

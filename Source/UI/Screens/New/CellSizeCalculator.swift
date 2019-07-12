@@ -13,7 +13,7 @@ import Foundation
 class CellSizeCalculator {
 
     /// The layout object for which the cell size calculator is used.
-    weak var layout: UICollectionViewFlowLayout?
+    weak var channelLayout: ChannelCollectionViewFlowLayout?
 
     /// Used to configure the layout attributes for a given cell.
     ///
