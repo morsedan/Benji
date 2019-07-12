@@ -23,8 +23,7 @@ class MessageTextView: TextView {
 
         let attributedString = AttributedString(text,
                                                 fontType: .regular,
-                                                color: textColor,
-                                                kern: 0)
+                                                color: textColor)
 
         self.set(attributed: attributedString,
                  alignment: .left,

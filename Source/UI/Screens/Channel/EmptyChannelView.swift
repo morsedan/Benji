@@ -21,8 +21,7 @@ class EmptyChannelView: View {
 
             let attributed = AttributedString(text,
                                               fontType: .display1,
-                                              color: .white,
-                                              kern: 0)
+                                              color: .white)
             self.titleLabel.set(attributed: attributed,
                                 alignment: .center)
         }
@@ -34,8 +33,7 @@ class EmptyChannelView: View {
 
             let attributed = AttributedString(text,
                                               fontType: .small,
-                                              color: .white,
-                                              kern: 0)
+                                              color: .white)
             self.descriptionLabel.set(attributed: attributed,
                                       alignment: .center)
         }
@@ -47,8 +45,7 @@ class EmptyChannelView: View {
 
             let attributed = AttributedString(text,
                                               fontType: .regular,
-                                              color: .white,
-                                              kern: 0)
+                                              color: .white)
             self.actionLabel.set(attributed: attributed,
                                  alignment: .center)
         }

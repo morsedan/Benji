@@ -58,7 +58,7 @@ class GrowingTextView: TextView {
     override func initialize() {
         super.initialize()
 
-        let styleAttributes = StringStyle(font: .regularSemiBold, color: .white, kern: 0).attributes
+        let styleAttributes = StringStyle(font: .regularSemiBold, color: .white).attributes
         self.typingAttributes = styleAttributes
         self.contentMode = .redraw
 

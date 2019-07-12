@@ -18,8 +18,7 @@ class EmptyFeedView: View {
 
             let attributed = AttributedString(text,
                                               fontType: .medium,
-                                              color: .white,
-                                              kern: 0)
+                                              color: .white)
             self.label.set(attributed: attributed,
                            alignment: .center)
             self.layoutNow()

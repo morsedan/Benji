@@ -14,8 +14,7 @@ class FeedTextView: TextView {
 
         let attributed = AttributedString(localizedText,
                                           fontType: .regular,
-                                          color: .white,
-                                          kern: 0)
+                                          color: .white)
 
         self.set(attributed: attributed,
                  alignment: .left,

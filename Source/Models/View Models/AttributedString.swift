@@ -24,21 +24,15 @@ struct AttributedString {
 
     init(_ localized: Localized,
          fontType: FontType = .regular,
-         color: Color,
-         kern: CGFloat = 0) {
+         color: Color) {
 
         let style = StringStyle(font: fontType,
-                                color: color,
-                                kern: kern)
+                                color: color)
         self.init(localized, style: style)
     }
 
     init(_ localized: Localized, style: StringStyle) {
         self.localizedString = localized
         self.style = style
-    }
-
-    func wrapNeeded(for length: CGFloat) -> Bool {
-        return self.string.size().width > length
     }
 }

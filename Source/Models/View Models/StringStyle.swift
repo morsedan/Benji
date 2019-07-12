@@ -11,20 +11,17 @@ import Foundation
 struct StringStyle {
     var fontType: FontType
     var color: Color
-    var kern: CGFloat
 
     init(font: FontType = .regular,
-         color: Color,
-         kern: CGFloat = 0) {
+         color: Color) {
 
         self.fontType = font
         self.color = color
-        self.kern = kern
     }
 
     var attributes: [NSAttributedString.Key: Any] {
         return [NSAttributedString.Key.font: self.fontType.font,
-                NSAttributedString.Key.kern: self.kern,
+                NSAttributedString.Key.kern: self.fontType.kern,
                 NSAttributedString.Key.foregroundColor: self.color.color]
     }
 

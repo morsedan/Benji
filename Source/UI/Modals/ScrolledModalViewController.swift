@@ -34,8 +34,7 @@ class ScrolledModalController: ViewController, ScrolledModalContainerViewDelegat
             guard let text = self.titleText else { return }
             let attributed = AttributedString(text,
                                               fontType: .display2,
-                                              color: .white,
-                                              kern: 0)
+                                              color: .white)
             self.titleLabel.set(attributed: attributed,
                                 alignment: .left)
         }

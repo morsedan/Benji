@@ -67,4 +67,8 @@ enum FontType {
             return 11
         }
     }
+
+    var kern: CGFloat {
+        return 0 
+    }
 }

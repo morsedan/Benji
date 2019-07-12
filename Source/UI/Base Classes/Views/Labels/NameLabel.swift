@@ -12,8 +12,7 @@ class NameLabel: Label {
     func set(text: Localized) {
         let attributed = AttributedString(text,
                                           fontType: .regularSemiBold,
-                                          color: .white,
-                                          kern: 0)
+                                          color: .white)
 
         self.set(attributed: attributed,
                  alignment: .left,
