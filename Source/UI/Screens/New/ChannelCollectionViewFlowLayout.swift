@@ -10,6 +10,8 @@ import Foundation
 
 class ChannelCollectionViewFlowLayout: UICollectionViewFlowLayout {
 
+    lazy var messageSizeCalculator = MessageSizeCalculator(layout: self)
+
     var channelCollectionView: ChannelCollectionView {
         guard let channelCollectionView = collectionView as? ChannelCollectionView else {
             fatalError("ChannelCollectionView NOT FOUND")
@@ -50,8 +52,8 @@ class ChannelCollectionViewFlowLayout: UICollectionViewFlowLayout {
             return nil
         }
         for attributes in attributesArray where attributes.representedElementCategory == .cell {
-           // let cellSizeCalculator = cellSizeCalculatorForItem(at: attributes.indexPath)
-           // cellSizeCalculator.configure(attributes: attributes)
+            let cellSizeCalculator = self.cellSizeCalculatorForItem(at: attributes.indexPath)
+            cellSizeCalculator.configure(attributes: attributes)
         }
         return attributesArray
     }
@@ -61,8 +63,8 @@ class ChannelCollectionViewFlowLayout: UICollectionViewFlowLayout {
             return nil
         }
         if attributes.representedElementCategory == .cell {
-            //let cellSizeCalculator = cellSizeCalculatorForItem(at: attributes.indexPath)
-            //cellSizeCalculator.configure(attributes: attributes)
+            let cellSizeCalculator = self.cellSizeCalculatorForItem(at: attributes.indexPath)
+            cellSizeCalculator.configure(attributes: attributes)
         }
         return attributes
     }
@@ -78,5 +80,17 @@ class ChannelCollectionViewFlowLayout: UICollectionViewFlowLayout {
         guard let flowLayoutContext = context as? UICollectionViewFlowLayoutInvalidationContext else { return context }
         flowLayoutContext.invalidateFlowLayoutDelegateMetrics = self.shouldInvalidateLayout(forBoundsChange: newBounds)
         return flowLayoutContext
+    }
+
+    private func cellSizeCalculatorForItem(at indexPath: IndexPath) -> CellSizeCalculator {
+        //Can eventually extended this to switch over different message types and size calculators
+        return self.messageSizeCalculator
+    }
+
+    // MARK: - PUBLIC
+
+    func sizeForItem(at indexPath: IndexPath) -> CGSize {
+        let calculator = self.cellSizeCalculatorForItem(at: indexPath)
+        return calculator.sizeForItem(at: indexPath)
     }
 }

@@ -8,7 +8,7 @@
 
 import Foundation
 
-class MessageSizeCaluculator: CellSizeCalculator {
+class MessageSizeCalculator: CellSizeCalculator {
 
     var avatarSize = CGSize(width: 44, height: 44)
     var avatarLeadingPadding: CGFloat = 14

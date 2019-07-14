@@ -15,7 +15,6 @@ class MessageCell: UICollectionViewCell {
     let avatarView = AvatarView()
     let bubbleView = View()
     let textView = MessageTextView()
-    
 
     override init(frame: CGRect) {
         super.init(frame: frame)

@@ -50,6 +50,9 @@ class TextView: UITextView {
         // NOTE: Some emojis don't display properly with certain attributes applied to them
         for emojiRange in string.getEmojiRanges() {
             attributedString.removeAttributes(atRange: emojiRange)
+            if let emojiFont = UIFont(name: "AppleColorEmoji", size: attributed.style.fontType.size) {
+                attributedString.addAttributes([NSAttributedString.Key.font: emojiFont], range: emojiRange)
+            }
         }
 
         attributedString.linkItems()
