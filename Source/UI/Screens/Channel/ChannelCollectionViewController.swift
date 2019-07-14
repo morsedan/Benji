@@ -15,9 +15,10 @@ class ChannelCollectionViewController: ViewController, UICollectionViewDelegate,
 
     let loadingView = LoadingView()
     lazy var flowLayout = ChannelCollectionViewFlowLayout()
-
+    lazy var channelDataSource = ChannelDataSource()
     lazy var collectionView: ChannelCollectionView = {
         let collectionView = ChannelCollectionView(with: self.flowLayout)
+        collectionView.channelDataSource = self.channelDataSource
         return collectionView
     }()
 
@@ -107,17 +108,19 @@ class ChannelCollectionViewController: ViewController, UICollectionViewDelegate,
                         cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
 
         guard let channelCollectionView = collectionView as? ChannelCollectionView else {
-            fatalError("")
+            fatalError("Collection view not found")
         }
 
         guard let channelDataSource = channelCollectionView.channelDataSource else {
-            fatalError("")
+            fatalError("Data Source not found")
+        }
+
+        guard let message = channelDataSource.item(at: indexPath, in: channelCollectionView) else {
+            fatalError("Message not found")
         }
 
         let cell: MessageCell = collectionView.dequeueReusableCell(withReuseIdentifier: "MessageCell",
                                                                 for: indexPath) as! MessageCell
-
-        let message = channelDataSource.messageForItem(at: indexPath, in: channelCollectionView)
 
         cell.configure(with: message, at: indexPath, and: self.collectionView)
         //Reset all gestures

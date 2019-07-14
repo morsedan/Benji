@@ -28,7 +28,7 @@ class MessageSizeCalculator: CellSizeCalculator {
 
         let dataSource = layout.dataSource
         let indexPath = attributes.indexPath
-        let message = dataSource.messageForItem(at: indexPath, in: layout.channelCollectionView)
+        guard let message = dataSource.item(at: indexPath, in: layout.channelCollectionView) else { return }
 
         attributes.isFromCurrentUser = message.isFromCurrentUser
 
@@ -48,9 +48,9 @@ class MessageSizeCalculator: CellSizeCalculator {
     }
 
     override func sizeForItem(at indexPath: IndexPath) -> CGSize {
-        guard let layout = self.channelLayout else { return .zero }
-        let dataSource = layout.dataSource
-        let message = dataSource.messageForItem(at: indexPath, in: layout.channelCollectionView)
+        guard let layout = self.channelLayout,
+            let message = layout.dataSource.item(at: indexPath, in: layout.channelCollectionView) else { return .zero }
+        
         let itemHeight = self.cellContentHeight(for: message, at: indexPath)
         return CGSize(width: layout.itemWidth, height: itemHeight)
     }
