@@ -78,10 +78,11 @@
 		D64273A522CC05DD0088256B /* InputTextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D64273A422CC05DD0088256B /* InputTextView.swift */; };
 		D64273A722CC2D280088256B /* ChannelViewController+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = D64273A622CC2D280088256B /* ChannelViewController+Extensions.swift */; };
 		D6432BF022D824BA0016001A /* ChannelCollectionViewLayoutAttributes.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6432BEF22D824BA0016001A /* ChannelCollectionViewLayoutAttributes.swift */; };
-		D6432BF322D828480016001A /* ChannelDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6432BF222D828480016001A /* ChannelDataSource.swift */; };
+		D6432BF322D828480016001A /* CollectionDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6432BF222D828480016001A /* CollectionDataSource.swift */; };
 		D6432BF522D82CDC0016001A /* ChannelCollectionViewFlowLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6432BF422D82CDC0016001A /* ChannelCollectionViewFlowLayout.swift */; };
 		D6432BF722D837340016001A /* CellSizeCalculator.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6432BF622D837340016001A /* CellSizeCalculator.swift */; };
 		D6432BF922D837A30016001A /* MessageSizeCaluculator.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6432BF822D837A30016001A /* MessageSizeCaluculator.swift */; };
+		D6432BFB22DB923C0016001A /* ChannelDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6432BFA22DB923C0016001A /* ChannelDataSource.swift */; };
 		D646DB3A22CFCC110055CC7C /* Future.swift in Sources */ = {isa = PBXBuildFile; fileRef = D646DB3922CFCC110055CC7C /* Future.swift */; };
 		D646DB3C22CFCCD80055CC7C /* ClientError.swift in Sources */ = {isa = PBXBuildFile; fileRef = D646DB3B22CFCCD80055CC7C /* ClientError.swift */; };
 		D646DB3E22CFCF330055CC7C /* TwilioChatClient+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = D646DB3D22CFCF330055CC7C /* TwilioChatClient+Extensions.swift */; };
@@ -247,10 +248,11 @@
 		D64273A422CC05DD0088256B /* InputTextView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InputTextView.swift; sourceTree = "<group>"; };
 		D64273A622CC2D280088256B /* ChannelViewController+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ChannelViewController+Extensions.swift"; sourceTree = "<group>"; };
 		D6432BEF22D824BA0016001A /* ChannelCollectionViewLayoutAttributes.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChannelCollectionViewLayoutAttributes.swift; sourceTree = "<group>"; };
-		D6432BF222D828480016001A /* ChannelDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChannelDataSource.swift; sourceTree = "<group>"; };
+		D6432BF222D828480016001A /* CollectionDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollectionDataSource.swift; sourceTree = "<group>"; };
 		D6432BF422D82CDC0016001A /* ChannelCollectionViewFlowLayout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChannelCollectionViewFlowLayout.swift; sourceTree = "<group>"; };
 		D6432BF622D837340016001A /* CellSizeCalculator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CellSizeCalculator.swift; sourceTree = "<group>"; };
 		D6432BF822D837A30016001A /* MessageSizeCaluculator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageSizeCaluculator.swift; sourceTree = "<group>"; };
+		D6432BFA22DB923C0016001A /* ChannelDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChannelDataSource.swift; sourceTree = "<group>"; };
 		D646DB3922CFCC110055CC7C /* Future.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Future.swift; sourceTree = "<group>"; };
 		D646DB3B22CFCCD80055CC7C /* ClientError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClientError.swift; sourceTree = "<group>"; };
 		D646DB3D22CFCF330055CC7C /* TwilioChatClient+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "TwilioChatClient+Extensions.swift"; sourceTree = "<group>"; };
@@ -466,6 +468,7 @@
 		D61EC0D521D30BF900204BEE /* Protocols */ = {
 			isa = PBXGroup;
 			children = (
+				D6432BF222D828480016001A /* CollectionDataSource.swift */,
 				D61EC0DA21D30CB300204BEE /* Dismissable.swift */,
 				D6D1460021D5514300CD8CE4 /* Localized.swift */,
 				D6D1500F21D5E9A800CD8CE4 /* TextDisplayable.swift */,
@@ -613,10 +616,10 @@
 			isa = PBXGroup;
 			children = (
 				D6432BEF22D824BA0016001A /* ChannelCollectionViewLayoutAttributes.swift */,
-				D6432BF222D828480016001A /* ChannelDataSource.swift */,
 				D6432BF422D82CDC0016001A /* ChannelCollectionViewFlowLayout.swift */,
 				D6432BF622D837340016001A /* CellSizeCalculator.swift */,
 				D6432BF822D837A30016001A /* MessageSizeCaluculator.swift */,
+				D6432BFA22DB923C0016001A /* ChannelDataSource.swift */,
 			);
 			path = New;
 			sourceTree = "<group>";
@@ -1042,7 +1045,7 @@
 				D61EC0F921D317AB00204BEE /* Theme.swift in Sources */,
 				D66F0FE822C0662300BA277D /* User.swift in Sources */,
 				D635551B21E5B3D400530602 /* UIScrollView+Extensions.swift in Sources */,
-				D6432BF322D828480016001A /* ChannelDataSource.swift in Sources */,
+				D6432BF322D828480016001A /* CollectionDataSource.swift in Sources */,
 				D61EC0C221D3071400204BEE /* ViewController.swift in Sources */,
 				D6D14D9021D5893600CD8CE4 /* IGListMoveIndex.m in Sources */,
 				D66F0FD822BF295A00BA277D /* Coordinator.swift in Sources */,
@@ -1105,6 +1108,7 @@
 				D6D1500C21D5E7C200CD8CE4 /* CollectionViewManager.swift in Sources */,
 				D6432BF722D837340016001A /* CellSizeCalculator.swift in Sources */,
 				D642736A22C98EB40088256B /* ScrolledModalContainerView.swift in Sources */,
+				D6432BFB22DB923C0016001A /* ChannelDataSource.swift in Sources */,
 				D66F0FDA22BF297F00BA277D /* MainCoordinator.swift in Sources */,
 				D6D14FFA21D5893700CD8CE4 /* IGListDiff.mm in Sources */,
 				D61EC0F321D3146600204BEE /* UINib+Extensions.swift in Sources */,
