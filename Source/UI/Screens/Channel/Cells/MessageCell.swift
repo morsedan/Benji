@@ -40,6 +40,7 @@ class MessageCell: UICollectionViewCell {
 
         guard let attributes = layoutAttributes as? ChannelCollectionViewLayoutAttributes else { return }
 
+        self.layoutContent(with: attributes)
     }
 
     override func prepareForReuse() {
@@ -54,6 +55,48 @@ class MessageCell: UICollectionViewCell {
 
         guard let dataSource = collectionView.channelDataSource else { return }
 
-        
+        let messageType = dataSource.messageForItem(at: indexPath, in: collectionView)
+
+        if !messageType.isFromCurrentUser {
+            self.avatarView.set(avatar: messageType.avatar)
+        }
+        self.textView.set(text: messageType.body)
+        self.bubbleView.set(backgroundColor: messageType.backgroundColor)
+    }
+
+    private func layoutContent(with attributes: ChannelCollectionViewLayoutAttributes) {
+        if attributes.isFromCurrentUser {
+            self.layoutOutgoing(with: attributes)
+        } else {
+            self.layoutIncoming(with: attributes)
+        }
+    }
+
+    // INCOMING
+    private func layoutIncoming(with attributes: ChannelCollectionViewLayoutAttributes) {
+        self.avatarView.size = attributes.avatarSize
+        self.avatarView.left = attributes.avatarLeadingPadding
+
+        self.textView.size = attributes.messageTextViewSize
+        self.textView.top = attributes.messageTextViewVerticalPadding
+        self.textView.left = attributes.messageTextViewHorizontalPadding
+
+        self.bubbleView.size = attributes.bubbleViewSize
+        self.bubbleView.top = 0
+        self.bubbleView.left = self.textView.left - attributes.bubbleViewHorizontalPadding
+    }
+
+    // OUTGOING
+    private func layoutOutgoing(with attributes: ChannelCollectionViewLayoutAttributes) {
+        self.avatarView.size = .zero
+        self.avatarView.left = attributes.avatarLeadingPadding
+
+        self.textView.size = attributes.messageTextViewSize
+        self.textView.top = attributes.messageTextViewVerticalPadding
+        self.textView.right = attributes.messageTextViewHorizontalPadding
+
+        self.bubbleView.size = attributes.bubbleViewSize
+        self.bubbleView.top = 0
+        self.bubbleView.right = self.textView.right - attributes.bubbleViewHorizontalPadding
     }
 }

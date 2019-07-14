@@ -13,6 +13,8 @@ class MessageSizeCaluculator: CellSizeCalculator {
     var avatarSize = CGSize(width: 44, height: 44)
     var avatarLeadingPadding: CGFloat = 14
     var messageTextViewVerticalPadding: CGFloat = 10
+    var messageTextViewHorizontalPadding: CGFloat = 24
+    var bubbleViewHorizontalPadding: CGFloat = 14
 
     init(layout: ChannelCollectionViewFlowLayout? = nil) {
         super.init()
@@ -28,11 +30,21 @@ class MessageSizeCaluculator: CellSizeCalculator {
         let indexPath = attributes.indexPath
         let message = dataSource.messageForItem(at: indexPath, in: layout.channelCollectionView)
 
+        attributes.isFromCurrentUser = message.isFromCurrentUser
+
         attributes.avatarSize = self.avatarSize
         attributes.avatarLeadingPadding = self.avatarLeadingPadding
-        attributes.messageTextViewSize = self.getMessageTextViewSize(for: message)
+
+        let textViewSize = self.getMessageTextViewSize(for: message)
+        attributes.messageTextViewSize = textViewSize
         attributes.messageTextViewVerticalPadding = self.messageTextViewVerticalPadding
         attributes.messageTextViewMaxWidth = layout.itemWidth * 0.6
+        attributes.messageTextViewHorizontalPadding = self.messageTextViewHorizontalPadding
+
+        let bubbleHeight = textViewSize.height + (self.messageTextViewVerticalPadding * 2)
+        let bubbleWidth = textViewSize.width + (self.messageTextViewVerticalPadding * 2)
+        attributes.bubbleViewSize = CGSize(width: bubbleWidth, height: bubbleHeight)
+        attributes.bubbleViewHorizontalPadding = self.bubbleViewHorizontalPadding
     }
 
     override func sizeForItem(at indexPath: IndexPath) -> CGSize {
