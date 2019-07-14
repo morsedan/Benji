@@ -9,7 +9,7 @@
 import Foundation
 import TwilioChatClient
 
-extension ChannelCollectionViewController {
+extension ChannelCollectionViewController: ChannelDataSource {
 
     func loadMessages(for type: ChannelType) {
 
@@ -50,6 +50,19 @@ extension ChannelCollectionViewController {
             guard let `self` = self else { return }
             self.collectionView.scrollToLastItem()
         }
+    }
+
+    func messageForItem(at indexPath: IndexPath, in collectionView: ChannelCollectionView) -> MessageType {
+        let message = MessageType.system(Lorem.systemMessage())
+        return message
+    }
+
+    func numberOfSections(in collectionView: ChannelCollectionView) -> Int {
+        return 0
+    }
+
+    func numberOfItems(inSection section: Int, in collectionView: ChannelCollectionView) -> Int {
+        return 0
     }
 
     func subscribeToClient() {

@@ -42,7 +42,9 @@ class ChannelCollectionViewFlowLayout: UICollectionViewFlowLayout {
     }
 
     private func setupView() {
-        self.sectionInset = UIEdgeInsets(top: 4, left: 8, bottom: 4, right: 8)
+        self.scrollDirection = .vertical
+        self.minimumLineSpacing = 14
+        self.sectionInset = UIEdgeInsets(top: 0, left: 0, bottom: 80, right: 0)
     }
 
     // MARK: - Attributes

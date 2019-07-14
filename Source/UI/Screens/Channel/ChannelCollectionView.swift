@@ -22,12 +22,6 @@ class ChannelCollectionView: CollectionView {
     }
 
     init(with flowLayout: ChannelCollectionViewFlowLayout) {
-//        let flowLayout = UICollectionViewFlowLayout()
-//        flowLayout.scrollDirection = .vertical
-//        flowLayout.minimumLineSpacing = 14
-//        flowLayout.sectionInset = UIEdgeInsets(top: 0, left: 0, bottom: 80, right: 0)
-//        flowLayout.itemSize = UICollectionViewFlowLayout.automaticSize
-//        flowLayout.estimatedItemSize = CGSize(width: 255, height: 44)
         super.init(flowLayout: flowLayout)
 
         self.backgroundView = self.emptyView
