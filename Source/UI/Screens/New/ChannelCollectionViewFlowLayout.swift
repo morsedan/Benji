@@ -10,7 +10,10 @@ import Foundation
 
 class ChannelCollectionViewFlowLayout: UICollectionViewFlowLayout {
 
-    lazy var messageSizeCalculator = MessageSizeCalculator(layout: self)
+    lazy var messageSizeCalculator: MessageSizeCalculator = {
+        let calculator = MessageSizeCalculator(layout: self)
+        return calculator
+    }()
 
     var channelCollectionView: ChannelCollectionView {
         guard let channelCollectionView = collectionView as? ChannelCollectionView else {

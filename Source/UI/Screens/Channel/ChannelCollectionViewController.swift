@@ -15,7 +15,10 @@ class ChannelCollectionViewController: ViewController, UICollectionViewDelegate,
 
     let loadingView = LoadingView()
     lazy var flowLayout = ChannelCollectionViewFlowLayout()
-    lazy var channelDataSource = ChannelDataSource()
+    lazy var channelDataSource: ChannelDataSource = {
+        let dataSource = ChannelDataSource(with: self.collectionView)
+        return dataSource
+    }()
     lazy var collectionView: ChannelCollectionView = {
         let collectionView = ChannelCollectionView(with: self.flowLayout)
         collectionView.channelDataSource = self.channelDataSource
