@@ -29,9 +29,13 @@ UICollectionViewDelegateFlowLayout, ChannelDataSource {
         // Do Stuff
     }
 
+    func numberOfSections(in collectionView: UICollectionView) -> Int {
+        collectionView.backgroundView?.isHidden = self.sections.value.count > 0
+        return self.sections.value.count
+    }
+
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         guard let section = self.sections.value[safe: section] else { return 0 }
-        collectionView.backgroundView?.isHidden = section.items.count > 0
         return section.items.count
     }
 
