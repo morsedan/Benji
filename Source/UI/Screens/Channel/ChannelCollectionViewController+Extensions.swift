@@ -39,7 +39,7 @@ extension ChannelCollectionViewController {
                     return .message(message)
                 })
                 //self.manager.set(newItems: messageTypes)
-                self.collectionView?.scrollToLastItem()
+                self.manager.collectionView.scrollToLastItem()
             })
         }
     }
@@ -48,7 +48,7 @@ extension ChannelCollectionViewController {
         //self.manager.set(newItems: Lorem.systemMessageTypes())
         delay(0.5) { [weak self] in
             guard let `self` = self else { return }
-            self.collectionView?.scrollToLastItem()
+            self.manager.collectionView.scrollToLastItem()
         }
     }
 
@@ -83,7 +83,7 @@ extension ChannelCollectionViewController {
             case .added:
                 //self.manager.append(item: .message(channelUpdate.message))
                 runMain {
-                    self.collectionView?.scrollToLastItem()
+                    self.manager.collectionView.scrollToLastItem()
                 }
             // Add check here for last message not from user and its attributes to find quick messsages
             case .changed:

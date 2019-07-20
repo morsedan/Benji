@@ -21,13 +21,13 @@ extension ChannelViewController {
             self.contextButton.bottom = self.contentContainer.height - keyboardHeight - self.bottomOffset
             self.inputTextView.bottom = self.contextButton.bottom
             self.bottomGradientView.bottom = self.contentContainer.height - keyboardHeight
-            self.channelCollectionVC.collectionView?.height = self.contentContainer.height - keyboardHeight
-            self.channelCollectionVC.collectionView?.collectionViewLayout.invalidateLayout()
+            self.channelCollectionVC.manager.collectionView.height = self.contentContainer.height - keyboardHeight
+            self.channelCollectionVC.manager.collectionView.collectionViewLayout.invalidateLayout()
         }
 
         self.showAnimator.addCompletion { (position) in
             if position == .end {
-                self.channelCollectionVC.collectionView?.scrollToBottom()
+                self.channelCollectionVC.manager.collectionView.scrollToBottom()
             }
         }
 
@@ -41,13 +41,13 @@ extension ChannelViewController {
             self.contextButton.bottom = self.contentContainer.height - self.view.safeAreaInsets.bottom - 16
             self.inputTextView.bottom = self.contextButton.bottom
             self.bottomGradientView.bottom = self.contentContainer.height
-            self.channelCollectionVC.collectionView?.height = self.contentContainer.height
-            self.channelCollectionVC.collectionView?.collectionViewLayout.invalidateLayout()
+            self.channelCollectionVC.manager.collectionView.height = self.contentContainer.height
+            self.channelCollectionVC.manager.collectionView.collectionViewLayout.invalidateLayout()
         }
 
         self.dismissAnimator.addCompletion { (position) in
             if position == .end {
-                self.channelCollectionVC.collectionView?.scrollToBottom()
+                self.channelCollectionVC.manager.collectionView.scrollToBottom()
             }
         }
 

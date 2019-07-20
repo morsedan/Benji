@@ -8,12 +8,6 @@
 
 import Foundation
 import ReactiveSwift
-import TwilioChatClient
-
-enum CollectionViewLayoutState {
-    case bouncy
-    case overlaped
-}
 
 class ChannelViewController: FullScreenViewController {
 
@@ -65,7 +59,7 @@ class ChannelViewController: FullScreenViewController {
                                                name: UIResponder.keyboardWillHideNotification,
                                                object: nil)
 
-        self.channelCollectionVC.collectionView?.onDoubleTap { [unowned self] (doubleTap) in
+        self.channelCollectionVC.manager.collectionView.onDoubleTap { [unowned self] (doubleTap) in
             if self.inputTextView.isFirstResponder {
                 self.inputTextView.resignFirstResponder()
             }

@@ -13,7 +13,7 @@ protocol ChannelDataSource: AnyObject {
 
     var sections: MutableProperty<[ChannelSectionType]> { get set }
     var previousSections: [ChannelSectionType]? { get set }
-    var collectionView: CollectionView? { get set }
+    var collectionView: CollectionView { get set }
 
     func item(at indexPath: IndexPath) -> MessageType?
     func numberOfSections() -> Int
@@ -47,7 +47,7 @@ extension ChannelDataSource {
     func reset() {
         self.sections.value = []
         self.previousSections = nil
-        self.collectionView?.reloadData()
+        self.collectionView.reloadData()
     }
 
     func set(newSections: [ChannelSectionType]) {
@@ -65,7 +65,7 @@ extension ChannelDataSource {
         let indexPath = IndexPath(item: sectionValue.items.count, section: section)
 
         self.sections.value[section].items.append(item)
-        self.collectionView?.insertItems(at: [indexPath])
+        self.collectionView.insertItems(at: [indexPath])
     }
 
     func update(item: MessageType, in section: Int = 0) {
@@ -83,7 +83,7 @@ extension ChannelDataSource {
         guard let ip = indexPath else { return }
 
         self.sections.value[section].items[ip.row] = item
-        self.collectionView?.reloadItems(at: [ip])
+        self.collectionView.reloadItems(at: [ip])
     }
 
     func delete(item: MessageType, in section: Int = 0) {
@@ -102,7 +102,7 @@ extension ChannelDataSource {
         guard let ip = indexPath else { return }
 
         self.sections.value[section].items.remove(at: ip.row)
-        self.collectionView?.deleteItems(at: [ip])
+        self.collectionView.deleteItems(at: [ip])
     }
 
     private func updateCollectionView(sections: [ChannelSectionType], modify: @escaping () -> Void) {
@@ -119,10 +119,10 @@ extension ChannelDataSource {
                                       newSections: [MessageType],
                                       modify: @escaping () -> Void) {
 
-        self.collectionView?.reload(previousItems: previousSections,
-                                    newItems: newSections,
-                                    equalityOption: .equality,
-                                    modify: modify,
-                                    completion: nil)
+        self.collectionView.reload(previousItems: previousSections,
+                                   newItems: newSections,
+                                   equalityOption: .equality,
+                                   modify: modify,
+                                   completion: nil)
     }
 }

@@ -11,77 +11,34 @@ import TwilioChatClient
 import ReactiveSwift
 import GestureRecognizerClosures
 
-class ChannelCollectionViewController: ViewController, ChannelDataSource,
-UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
-
-    var sections: MutableProperty<[ChannelSectionType]> = MutableProperty([])
-    var previousSections: [ChannelSectionType]?
-    var collectionView: CollectionView?
+class ChannelCollectionViewController: ViewController {
 
     let loadingView = LoadingView()
-    lazy var flowLayout = ChannelCollectionViewFlowLayout()
 
-    var didSelect: (_ item: MessageType, _ indexPath: IndexPath) -> Void = { _, _ in }
-    var didLongPress: (_ item: MessageType, _ indexPath: IndexPath) -> Void = { _, _ in }
+    lazy var collectionView: ChannelCollectionView = {
+        let flowLayout = ChannelCollectionViewFlowLayout()
+        let collectionView = ChannelCollectionView(with: flowLayout)
+        return collectionView
+    }()
 
-    init() {
-        super.init(nibName: nil, bundle: nil)
-        self.collectionView = ChannelCollectionView(with: self.flowLayout)
+    lazy var manager: ChannelCollectionViewManager = {
+        let manager = ChannelCollectionViewManager(with: self.collectionView)
+        manager.didSelect = { [unowned self] (item, indexPath) in
+
+        }
+        manager.didLongPress = { [unowned self] (item, indexPath) in
+
+        }
+        return manager
+    }()
+
+    override func viewDidLoad() {
+        super.viewDidLoad()
+
+        self.collectionView.dataSource = self.manager
+        self.collectionView.delegate = self.manager
+
         self.subscribeToClient()
         self.subscribeToUpdates()
-    }
-
-    required init?(coder aDecoder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
-    }
-
-    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        guard let section = self.sections.value[safe: section] else { return 0 }
-        collectionView.backgroundView?.isHidden = section.items.count > 0
-        return section.items.count
-    }
-
-    func collectionView(_ collectionView: UICollectionView,
-                        cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-
-        guard let channelCollectionView = collectionView as? ChannelCollectionView else {
-            fatalError("Collection view not found")
-        }
-
-        guard let channelDataSource = channelCollectionView.channelDataSource else {
-            fatalError("Data Source not found")
-        }
-
-        guard let message = channelDataSource.item(at: indexPath) else {
-            fatalError("Message not found")
-        }
-
-        let cell: MessageCell = collectionView.dequeueReusableCell(withReuseIdentifier: "MessageCell",
-                                                                for: indexPath) as! MessageCell
-
-        cell.configure(with: message, at: indexPath, and: channelCollectionView)
-        //Reset all gestures
-        cell.contentView.gestureRecognizers?.forEach({ (recognizer) in
-            cell.contentView.removeGestureRecognizer(recognizer)
-        })
-
-        cell.contentView.onTap { [weak self] (tap) in
-            guard let `self` = self else { return }
-            self.didSelect(message, indexPath)
-        }
-
-        cell.contentView.onLongPress { [weak self] (longPress) in
-            guard let `self` = self else { return }
-            self.didLongPress(message, indexPath)
-        }
-
-        return cell
-    }
-
-    func collectionView(_ collectionView: UICollectionView,
-                        layout collectionViewLayout: UICollectionViewLayout,
-                        sizeForItemAt indexPath: IndexPath) -> CGSize {
-        guard let channelLayout = collectionViewLayout as? ChannelCollectionViewFlowLayout else { return .zero }
-        return  channelLayout.sizeForItem(at: indexPath)
     }
 }
