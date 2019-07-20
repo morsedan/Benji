@@ -82,7 +82,7 @@
 		D6432BF522D82CDC0016001A /* ChannelCollectionViewFlowLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6432BF422D82CDC0016001A /* ChannelCollectionViewFlowLayout.swift */; };
 		D6432BF722D837340016001A /* CellSizeCalculator.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6432BF622D837340016001A /* CellSizeCalculator.swift */; };
 		D6432BF922D837A30016001A /* MessageSizeCaluculator.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6432BF822D837A30016001A /* MessageSizeCaluculator.swift */; };
-		D6432BFB22DB923C0016001A /* ChannelDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6432BFA22DB923C0016001A /* ChannelDataSource.swift */; };
+		D6432BFB22DB923C0016001A /* ChannelSectionType.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6432BFA22DB923C0016001A /* ChannelSectionType.swift */; };
 		D646DB3A22CFCC110055CC7C /* Future.swift in Sources */ = {isa = PBXBuildFile; fileRef = D646DB3922CFCC110055CC7C /* Future.swift */; };
 		D646DB3C22CFCCD80055CC7C /* ClientError.swift in Sources */ = {isa = PBXBuildFile; fileRef = D646DB3B22CFCCD80055CC7C /* ClientError.swift */; };
 		D646DB3E22CFCF330055CC7C /* TwilioChatClient+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = D646DB3D22CFCF330055CC7C /* TwilioChatClient+Extensions.swift */; };
@@ -252,7 +252,7 @@
 		D6432BF422D82CDC0016001A /* ChannelCollectionViewFlowLayout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChannelCollectionViewFlowLayout.swift; sourceTree = "<group>"; };
 		D6432BF622D837340016001A /* CellSizeCalculator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CellSizeCalculator.swift; sourceTree = "<group>"; };
 		D6432BF822D837A30016001A /* MessageSizeCaluculator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageSizeCaluculator.swift; sourceTree = "<group>"; };
-		D6432BFA22DB923C0016001A /* ChannelDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChannelDataSource.swift; sourceTree = "<group>"; };
+		D6432BFA22DB923C0016001A /* ChannelSectionType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChannelSectionType.swift; sourceTree = "<group>"; };
 		D646DB3922CFCC110055CC7C /* Future.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Future.swift; sourceTree = "<group>"; };
 		D646DB3B22CFCCD80055CC7C /* ClientError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClientError.swift; sourceTree = "<group>"; };
 		D646DB3D22CFCF330055CC7C /* TwilioChatClient+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "TwilioChatClient+Extensions.swift"; sourceTree = "<group>"; };
@@ -619,7 +619,7 @@
 				D6432BF422D82CDC0016001A /* ChannelCollectionViewFlowLayout.swift */,
 				D6432BF622D837340016001A /* CellSizeCalculator.swift */,
 				D6432BF822D837A30016001A /* MessageSizeCaluculator.swift */,
-				D6432BFA22DB923C0016001A /* ChannelDataSource.swift */,
+				D6432BFA22DB923C0016001A /* ChannelSectionType.swift */,
 			);
 			path = New;
 			sourceTree = "<group>";
@@ -1108,7 +1108,7 @@
 				D6D1500C21D5E7C200CD8CE4 /* CollectionViewManager.swift in Sources */,
 				D6432BF722D837340016001A /* CellSizeCalculator.swift in Sources */,
 				D642736A22C98EB40088256B /* ScrolledModalContainerView.swift in Sources */,
-				D6432BFB22DB923C0016001A /* ChannelDataSource.swift in Sources */,
+				D6432BFB22DB923C0016001A /* ChannelSectionType.swift in Sources */,
 				D66F0FDA22BF297F00BA277D /* MainCoordinator.swift in Sources */,
 				D6D14FFA21D5893700CD8CE4 /* IGListDiff.mm in Sources */,
 				D61EC0F321D3146600204BEE /* UINib+Extensions.swift in Sources */,

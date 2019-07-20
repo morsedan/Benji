@@ -52,7 +52,7 @@ class MessageCell: UICollectionViewCell {
                    at indexPath: IndexPath,
                    and collectionView: ChannelCollectionView) {
 
-        guard let messageType = collectionView.channelDataSource?.item(at: indexPath, in: collectionView) else { return }
+        guard let messageType = collectionView.channelDataSource?.item(at: indexPath) else { return }
 
         if !messageType.isFromCurrentUser {
             self.avatarView.set(avatar: messageType.avatar)

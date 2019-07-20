@@ -15,17 +15,10 @@ extension Date: Diffable {
     }
 }
 
-class ChannelSectionType: DiffableSection {
-    typealias SectionType = Date
-    typealias ItemType = MessageType
+struct ChannelSectionType: Diffable {
 
     var sectionType: Date
     var items: [MessageType] = []
-
-    init(with sectionType: Date, items: [MessageType] = []) {
-        self.sectionType = sectionType
-        self.items = items
-    }
 
     func diffIdentifier() -> NSObjectProtocol {
         return self.sectionType.diffIdentifier()
@@ -37,18 +30,5 @@ class ChannelSectionType: DiffableSection {
 
     func hash(into hasher: inout Hasher) {
         hasher.combine(self.sectionType)
-    }
-}
-
-class ChannelDataSource: CollectionViewDataSource {
-    typealias SectionType = ChannelSectionType
-    typealias CollectionViewType = ChannelCollectionView
-
-    var sections: MutableProperty<[ChannelSectionType]> = MutableProperty([])
-    var previousSections: [ChannelSectionType]?
-    var collectionView: ChannelCollectionView
-
-    init(with collectionView: ChannelCollectionView) {
-        self.collectionView = collectionView
     }
 }

@@ -9,48 +9,37 @@
 import Foundation
 import ReactiveSwift
 
-protocol DiffableSection: AnyObject, Diffable {
-    associatedtype SectionType: Diffable
-    associatedtype ItemType: DisplayableCellItem
+protocol ChannelDataSource: AnyObject {
 
-    var sectionType: SectionType { get set }
-    var items: [ItemType] { get set }
-}
+    var sections: MutableProperty<[ChannelSectionType]> { get set }
+    var previousSections: [ChannelSectionType]? { get set }
+    var collectionView: CollectionView? { get set }
 
-protocol CollectionViewDataSource: AnyObject {
-    
-    associatedtype SectionType: DiffableSection
-    associatedtype CollectionViewType: CollectionView
-
-    var sections: MutableProperty<[SectionType]> { get set }
-    var previousSections: [SectionType]? { get set }
-    var collectionView: CollectionViewType { get set }
-
-    func item(at indexPath: IndexPath, in collectionView: CollectionViewType) -> SectionType.ItemType?
-    func numberOfSections(in collectionView: CollectionViewType) -> Int
-    func numberOfItems(inSection section: Int, in collectionView: CollectionViewType) -> Int
+    func item(at indexPath: IndexPath) -> MessageType?
+    func numberOfSections() -> Int
+    func numberOfItems(inSection section: Int) -> Int
 
     func reset()
-    func set(newSections: [SectionType])
-    func append(item: SectionType.ItemType, in section: Int)
-    func update(item: SectionType.ItemType, in section: Int)
-    func delete(item: SectionType.ItemType, in section: Int)
+    func set(newSections: [ChannelSectionType])
+    func append(item: MessageType, in section: Int)
+    func update(item: MessageType, in section: Int)
+    func delete(item: MessageType, in section: Int)
 }
 
-extension CollectionViewDataSource {
+extension ChannelDataSource {
 
-    func item(at indexPath: IndexPath, in collectionView: CollectionViewType) -> SectionType.ItemType? {
+    func item(at indexPath: IndexPath) -> MessageType? {
         guard let section = self.sections.value[safe: indexPath.section],
             let item = section.items[safe: indexPath.row] else { return nil }
 
         return item
     }
 
-    func numberOfSections(in collectionView: CollectionViewType) -> Int {
+    func numberOfSections() -> Int {
         return self.sections.value.count
     }
 
-    func numberOfItems(inSection section: Int, in collectionView: CollectionViewType) -> Int {
+    func numberOfItems(inSection section: Int) -> Int {
         guard let section = self.sections.value[safe: section] else { return 0 }
         return section.items.count
     }
@@ -58,17 +47,17 @@ extension CollectionViewDataSource {
     func reset() {
         self.sections.value = []
         self.previousSections = nil
-        self.collectionView.reloadData()
+        self.collectionView?.reloadData()
     }
 
-    func set(newSections: [SectionType]) {
+    func set(newSections: [ChannelSectionType]) {
         self.updateCollectionView(sections: newSections, modify: { [weak self] in
             guard let `self` = self else { return }
             self.sections.value = newSections
         })
     }
 
-    func append(item: SectionType.ItemType, in section: Int = 0) {
+    func append(item: MessageType, in section: Int = 0) {
 
         guard let sectionValue = self.sections.value[safe: section],
         !sectionValue.items.contains(item) else { return }
@@ -76,10 +65,10 @@ extension CollectionViewDataSource {
         let indexPath = IndexPath(item: sectionValue.items.count, section: section)
 
         self.sections.value[section].items.append(item)
-        self.collectionView.insertItems(at: [indexPath])
+        self.collectionView?.insertItems(at: [indexPath])
     }
 
-    func update(item: SectionType.ItemType, in section: Int = 0) {
+    func update(item: MessageType, in section: Int = 0) {
         guard let sectionValue = self.sections.value[safe: section] else { return }
 
         var indexPath: IndexPath?
@@ -94,10 +83,10 @@ extension CollectionViewDataSource {
         guard let ip = indexPath else { return }
 
         self.sections.value[section].items[ip.row] = item
-        self.collectionView.reloadItems(at: [ip])
+        self.collectionView?.reloadItems(at: [ip])
     }
 
-    func delete(item: SectionType.ItemType, in section: Int = 0) {
+    func delete(item: MessageType, in section: Int = 0) {
 
         guard let sectionValue = self.sections.value[safe: section] else { return }
 
@@ -113,27 +102,27 @@ extension CollectionViewDataSource {
         guard let ip = indexPath else { return }
 
         self.sections.value[section].items.remove(at: ip.row)
-        self.collectionView.deleteItems(at: [ip])
+        self.collectionView?.deleteItems(at: [ip])
     }
 
-    private func updateCollectionView(sections: [SectionType], modify: @escaping () -> Void) {
+    private func updateCollectionView(sections: [ChannelSectionType], modify: @escaping () -> Void) {
 
         let previous = self.previousSections ?? []
-        self.reloadCollectionView(previousSections: previous,
-                                  newSections: sections,
-                                  modify: modify)
+//        self.reloadCollectionView(previousSections: previous,
+//                                  newSections: sections,
+//                                  modify: modify)
 
         self.previousSections = sections
     }
 
-    private func reloadCollectionView(previousSections: [SectionType],
-                                      newSections: [SectionType],
+    private func reloadCollectionView(previousSections: [MessageType],
+                                      newSections: [MessageType],
                                       modify: @escaping () -> Void) {
 
-        self.collectionView.reload(previousItems: previousSections,
-                                   newItems: newSections,
-                                   equalityOption: .equality,
-                                   modify: modify,
-                                   completion: nil)
+        self.collectionView?.reload(previousItems: previousSections,
+                                    newItems: newSections,
+                                    equalityOption: .equality,
+                                    modify: modify,
+                                    completion: nil)
     }
 }
