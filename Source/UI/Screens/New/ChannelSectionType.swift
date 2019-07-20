@@ -17,18 +17,18 @@ extension Date: Diffable {
 
 struct ChannelSectionType: Diffable {
 
-    var sectionType: Date
+    var date: Date
     var items: [MessageType] = []
 
     func diffIdentifier() -> NSObjectProtocol {
-        return self.sectionType.diffIdentifier()
+        return self.date.diffIdentifier()
     }
 
     static func == (lhs: ChannelSectionType, rhs: ChannelSectionType) -> Bool {
-        return lhs.sectionType == rhs.sectionType
+        return lhs.date == rhs.date
     }
 
     func hash(into hasher: inout Hasher) {
-        hasher.combine(self.sectionType)
+        hasher.combine(self.date)
     }
 }

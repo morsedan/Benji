@@ -60,20 +60,39 @@ class Lorem {
 
     private static let imageList = [UIImage(named: "Profile1")!, UIImage(named: "Profile2")!, UIImage(named: "Profile3")!, UIImage(named: "Profile4")!, UIImage(named: "Profile5")!]
 
+    private static let dates = [Date.easy("07/19/2019"), Date.easy("07/18/2019"), Date.easy("07/16/2019")]
+
     private static let isFromCurrentUserList = [true, false]
 
     class func avatar() -> SystemAvatar {
         return SystemAvatar(photoUrl: nil, photo: self.image())
     }
 
-    class func systemMessageTypes() -> [MessageType] {
-        var types: [MessageType] = []
+    class func systemSections() -> [ChannelSectionType] {
+        var sections: [ChannelSectionType] = []
+        var messages: [MessageType] = []
         for _ in 0...10 {
             let message = self.systemMessage()
             let type = MessageType.system(message)
-            types.append(type)
+            messages.append(type)
         }
-        return types
+
+        let grouped = Dictionary(grouping: messages) { (element) -> Date in
+            return element.createdAt
+        }
+
+        for key in grouped.keys {
+            if let value = grouped[key] {
+                let section = ChannelSectionType.init(date: key, items: value)
+                sections.append(section)
+            }
+        }
+
+        let sorted = sections.sorted { (lhs, rhs) -> Bool in
+            return rhs.date.compare(lhs.date) == .orderedDescending
+        }
+
+        return sorted
     }
 
     class func systemMessage() -> SystemMessage {
@@ -81,7 +100,8 @@ class Lorem {
                                     context: self.context(),
                                     body: self.sentence(),
                                     id: String(self.randomString()),
-                                    isFromCurrentUser: self.isFromCurrentUserList.random())
+                                    isFromCurrentUser: self.isFromCurrentUserList.random(),
+                                    timeStampAsDate: self.dates.random())
         return message
     }
 
@@ -91,7 +111,8 @@ class Lorem {
                                     context: self.context(),
                                     body: self.paragraph(),
                                     id: String(self.randomString()),
-                                    isFromCurrentUser: self.isFromCurrentUserList.random())
+                                    isFromCurrentUser: self.isFromCurrentUserList.random(),
+                                    timeStampAsDate: self.dates.random())
         return message
     }
 

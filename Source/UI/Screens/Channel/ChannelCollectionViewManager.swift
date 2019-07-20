@@ -14,20 +14,10 @@ UICollectionViewDelegateFlowLayout, ChannelDataSource {
     
     var sections: MutableProperty<[ChannelSectionType]> = MutableProperty([])
     var previousSections: [ChannelSectionType]?
-    var collectionView: CollectionView
+    var collectionView: CollectionView?
 
     var didSelect: (_ item: MessageType, _ indexPath: IndexPath) -> Void = { _, _ in }
     var didLongPress: (_ item: MessageType, _ indexPath: IndexPath) -> Void = { _, _ in }
-
-    init(with collectionView: CollectionView) {
-        self.collectionView = collectionView
-        super.init()
-        self.initialize()
-    }
-
-    private func initialize() {
-        // Do Stuff
-    }
 
     func numberOfSections(in collectionView: UICollectionView) -> Int {
         collectionView.backgroundView?.isHidden = self.sections.value.count > 0

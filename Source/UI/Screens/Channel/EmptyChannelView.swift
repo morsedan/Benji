@@ -84,8 +84,6 @@ class EmptyChannelView: View {
         self.stackedAvatarView.top = self.descriptionLabel.bottom + 25
         self.stackedAvatarView.centerOnX()
 
-        print(self.stackedAvatarView.size)
-
         self.actionLabel.setSize(withWidth: maxWidth)
         self.actionLabel.top = self.stackedAvatarView.bottom + 25
         self.actionLabel.centerOnX()

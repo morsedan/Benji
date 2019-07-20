@@ -53,8 +53,8 @@ extension Date {
         return formatter
     }
 
-    static func easy(_ mmddyyyy: String) -> Date? {
-        return Date.standard.date(from: mmddyyyy)
+    static func easy(_ mmddyyyy: String) -> Date {
+        return Date.standard.date(from: mmddyyyy) ?? Date()
     }
 
     var year: Int {

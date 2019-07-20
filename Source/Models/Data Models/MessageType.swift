@@ -14,6 +14,15 @@ enum MessageType: DisplayableCellItem {
     case system(SystemMessage)
     case message(TCHMessage)
 
+    var createdAt: Date {
+        switch self {
+        case .system(let message):
+            return message.timeStampAsDate
+        case .message(let message):
+            return message.timestampAsDate ?? Date()
+        }
+    }
+
     var backgroundColor: Color {
         switch self {
         case .system(let message):

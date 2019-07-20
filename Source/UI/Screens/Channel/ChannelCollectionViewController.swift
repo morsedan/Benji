@@ -18,11 +18,12 @@ class ChannelCollectionViewController: ViewController {
     lazy var collectionView: ChannelCollectionView = {
         let flowLayout = ChannelCollectionViewFlowLayout()
         let collectionView = ChannelCollectionView(with: flowLayout)
+        collectionView.channelDataSource = self.manager
         return collectionView
     }()
 
     lazy var manager: ChannelCollectionViewManager = {
-        let manager = ChannelCollectionViewManager(with: self.collectionView)
+        let manager = ChannelCollectionViewManager()
         manager.didSelect = { [unowned self] (item, indexPath) in
 
         }
@@ -32,9 +33,14 @@ class ChannelCollectionViewController: ViewController {
         return manager
     }()
 
+    override func loadView() {
+        self.view = self.collectionView
+    }
+
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        self.manager.collectionView = self.collectionView
         self.collectionView.dataSource = self.manager
         self.collectionView.delegate = self.manager
 

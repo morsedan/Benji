@@ -22,11 +22,15 @@ class CollectionView: UICollectionView {
         fatalError("init(coder:) has not been implemented")
     }
 
-    func scrollToLastItem() {
-        let lastSection = self.numberOfSections - 1
-        let lastRow = self.numberOfItems(inSection: lastSection)
-        let indexPath = IndexPath(row: lastRow - 1, section: lastSection)
-        self.scrollToItem(at: indexPath, at: .top, animated: true)
+    func scrollToBottom(animated: Bool = true) {
+        let collectionViewContentHeight = collectionViewLayout.collectionViewContentSize.height
+
+        self.performBatchUpdates(nil) { _ in
+            self.scrollRectToVisible(CGRect(x: 0.0,
+                                            y: collectionViewContentHeight - 1.0,
+                                            width: 1.0, height: 1.0),
+                                     animated: animated)
+        }
     }
 
     private func initializeViews() {

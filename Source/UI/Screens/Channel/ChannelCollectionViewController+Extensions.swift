@@ -23,7 +23,7 @@ extension ChannelCollectionViewController {
     }
 
     private func loadChannelMessages(with channel: TCHChannel) {
-        //self.manager.reset()
+        self.manager.reset()
 
         guard let allMessages = ChannelManager.shared.selectedChannel?.messages else { return }
 
@@ -32,23 +32,19 @@ extension ChannelCollectionViewController {
                 return
             }
 
-            allMessages.setLastConsumedMessageIndex(lastIndex, completion: { (result, index) in
-                guard result.isSuccessful() else { return }
-
-                let messageTypes: [MessageType] = strongMessages.map({ (message) -> MessageType in
-                    return .message(message)
-                })
-                //self.manager.set(newItems: messageTypes)
-                self.manager.collectionView.scrollToLastItem()
+            let messageTypes: [MessageType] = strongMessages.map({ (message) -> MessageType in
+                return .message(message)
             })
+            //self.manager.set(newItems: messageTypes)
+            self.collectionView.scrollToBottom()
         }
     }
 
     private func loadTestMessages() {
-        //self.manager.set(newItems: Lorem.systemMessageTypes())
+        self.manager.set(newSections: Lorem.systemSections())
         delay(0.5) { [weak self] in
             guard let `self` = self else { return }
-            self.manager.collectionView.scrollToLastItem()
+            self.collectionView.scrollToBottom()
         }
     }
 
@@ -81,17 +77,15 @@ extension ChannelCollectionViewController {
 
             switch channelUpdate.status {
             case .added:
-                //self.manager.append(item: .message(channelUpdate.message))
+                self.manager.append(item: .message(channelUpdate.message))
                 runMain {
-                    self.manager.collectionView.scrollToLastItem()
+                    self.collectionView.scrollToBottom()
                 }
             // Add check here for last message not from user and its attributes to find quick messsages
             case .changed:
-                break
-                //self.manager.update(item: .message(channelUpdate.message))
+                self.manager.update(item: .message(channelUpdate.message))
             case .deleted:
-                break
-               // self.manager.delete(item: .message(channelUpdate.message))
+                self.manager.delete(item: .message(channelUpdate.message))
             case .toastReceived:
                 break
             }

@@ -23,7 +23,7 @@ class ChannelCollectionView: CollectionView {
 
     init(with flowLayout: ChannelCollectionViewFlowLayout) {
         super.init(flowLayout: flowLayout)
-
+        self.registerReusableViews()
         self.backgroundView = self.emptyView
     }
 
