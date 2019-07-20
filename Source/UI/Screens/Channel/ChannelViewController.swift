@@ -29,7 +29,7 @@ class ChannelViewController: FullScreenViewController {
     lazy var bottomGradientView = GradientView()
 
     var oldTextViewHeight: CGFloat = 48
-    private let bottomOffset: CGFloat = 16
+    let bottomOffset: CGFloat = 16
 
     let showAnimator = UIViewPropertyAnimator(duration: 0.1,
                                               curve: .linear,
@@ -43,7 +43,7 @@ class ChannelViewController: FullScreenViewController {
 
         self.view.set(backgroundColor: .background1)
 
-        //self.addChild(viewController: self.channelCollectionVC, toView: self.contentContainer)
+        self.addChild(viewController: self.channelCollectionVC, toView: self.contentContainer)
         self.contentContainer.addSubview(self.bottomGradientView)
 
         self.contentContainer.addSubview(self.inputTextView)
@@ -65,66 +65,20 @@ class ChannelViewController: FullScreenViewController {
                                                name: UIResponder.keyboardWillHideNotification,
                                                object: nil)
 
-//        self.channelCollectionVC.collectionView.onDoubleTap { [unowned self] (doubleTap) in
-//            if self.inputTextView.isFirstResponder {
-//                self.inputTextView.resignFirstResponder()
-//            }
-//        }
-    }
-
-    @objc private func keyboardWillShow(notification: Notification) {
-
-        let userInfo: NSDictionary = notification.userInfo! as NSDictionary
-        let keyboardFrame: NSValue = userInfo.value(forKey: UIResponder.keyboardFrameEndUserInfoKey) as! NSValue
-        let keyboardRectangle = keyboardFrame.cgRectValue
-        let keyboardHeight = keyboardRectangle.height
-
-        self.showAnimator.addAnimations {
-            self.contextButton.bottom = self.contentContainer.height - keyboardHeight - self.bottomOffset
-            self.inputTextView.bottom = self.contextButton.bottom
-            self.bottomGradientView.bottom = self.contentContainer.height - keyboardHeight
-            //self.channelCollectionVC.collectionView.height = self.contentContainer.height - keyboardHeight
-            //self.channelCollectionVC.collectionView.collectionViewLayout.invalidateLayout()
-        }
-
-        self.showAnimator.addCompletion { (position) in
-            if position == .end {
-                //self.channelCollectionVC.collectionView.scrollToBottom()
+        self.channelCollectionVC.collectionView?.onDoubleTap { [unowned self] (doubleTap) in
+            if self.inputTextView.isFirstResponder {
+                self.inputTextView.resignFirstResponder()
             }
         }
-
-        self.showAnimator.stopAnimation(true)
-        self.showAnimator.startAnimation()
     }
-
-    @objc private func keyboardWillHide(notification: Notification) {
-
-        self.dismissAnimator.addAnimations {
-            self.contextButton.bottom = self.contentContainer.height - self.view.safeAreaInsets.bottom - 16
-            self.inputTextView.bottom = self.contextButton.bottom
-            self.bottomGradientView.bottom = self.contentContainer.height
-            //self.channelCollectionVC.collectionView.height = self.contentContainer.height
-            //self.channelCollectionVC.collectionView.collectionViewLayout.invalidateLayout()
-        }
-
-
-        self.dismissAnimator.addCompletion { (position) in
-            if position == .end {
-               // self.channelCollectionVC.collectionView.scrollToBottom()
-            }
-        }
-
-        self.dismissAnimator.stopAnimation(true)
-        self.dismissAnimator.startAnimation()
-    }
-
+    
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
 
         self.contentContainer.height = self.view.height
         self.contentContainer.top = 0
 
-        //self.channelCollectionVC.view.frame = self.contentContainer.bounds
+        self.channelCollectionVC.view.frame = self.contentContainer.bounds
 
         self.contextButton.size = CGSize(width: 48, height: 48)
         self.contextButton.left = 16

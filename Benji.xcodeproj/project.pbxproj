@@ -142,7 +142,6 @@
 		D6D14FFC21D5893700CD8CE4 /* IGListBatchUpdateData.mm in Sources */ = {isa = PBXBuildFile; fileRef = D6D14D8821D5893400CD8CE4 /* IGListBatchUpdateData.mm */; };
 		D6D14FFD21D5893700CD8CE4 /* IGListIndexPathResult.m in Sources */ = {isa = PBXBuildFile; fileRef = D6D14D8D21D5893500CD8CE4 /* IGListIndexPathResult.m */; };
 		D6D1500721D5E73D00CD8CE4 /* ChannelViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6D1500621D5E73D00CD8CE4 /* ChannelViewController.swift */; };
-		D6D1500921D5E77900CD8CE4 /* ChannelCollectionViewManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6D1500821D5E77900CD8CE4 /* ChannelCollectionViewManager.swift */; };
 		D6D1500C21D5E7C200CD8CE4 /* CollectionViewManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6D1500B21D5E7C200CD8CE4 /* CollectionViewManager.swift */; };
 		D6D1501021D5E9A800CD8CE4 /* TextDisplayable.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6D1500F21D5E9A800CD8CE4 /* TextDisplayable.swift */; };
 		D6D1501221D5EA0400CD8CE4 /* ImageDisplayable.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6D1501121D5EA0400CD8CE4 /* ImageDisplayable.swift */; };
@@ -330,7 +329,6 @@
 		D6D1500221D589A300CD8CE4 /* IGListMoveIndexInternal.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IGListMoveIndexInternal.h; sourceTree = "<group>"; };
 		D6D1500321D589A300CD8CE4 /* IGListIndexPathResultInternal.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IGListIndexPathResultInternal.h; sourceTree = "<group>"; };
 		D6D1500621D5E73D00CD8CE4 /* ChannelViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChannelViewController.swift; sourceTree = "<group>"; };
-		D6D1500821D5E77900CD8CE4 /* ChannelCollectionViewManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChannelCollectionViewManager.swift; sourceTree = "<group>"; };
 		D6D1500B21D5E7C200CD8CE4 /* CollectionViewManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollectionViewManager.swift; sourceTree = "<group>"; };
 		D6D1500F21D5E9A800CD8CE4 /* TextDisplayable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextDisplayable.swift; sourceTree = "<group>"; };
 		D6D1501121D5EA0400CD8CE4 /* ImageDisplayable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageDisplayable.swift; sourceTree = "<group>"; };
@@ -774,7 +772,6 @@
 			children = (
 				D6D1504E21E304D800CD8CE4 /* BouncyCollectionViewLayout.swift */,
 				D6D1502C21D6A08300CD8CE4 /* ChannelCollectionView.swift */,
-				D6D1500821D5E77900CD8CE4 /* ChannelCollectionViewManager.swift */,
 				D6D1500621D5E73D00CD8CE4 /* ChannelViewController.swift */,
 				D64273A622CC2D280088256B /* ChannelViewController+Extensions.swift */,
 				D64273A222CC040A0088256B /* GrowingTextView.swift */,
@@ -1120,7 +1117,6 @@
 				D642736C22C98FA00088256B /* MathFunctions.swift in Sources */,
 				D62C635422BE9CBB00F4D097 /* FeedViewController.swift in Sources */,
 				D642738122C9AB290088256B /* ContactsScrolledModalController.swift in Sources */,
-				D6D1500921D5E77900CD8CE4 /* ChannelCollectionViewManager.swift in Sources */,
 				D6D14FF921D5893700CD8CE4 /* NSString+IGListDiffable.m in Sources */,
 				D63826D22274C8C0001D4B8B /* ChannelManager+Extensions.swift in Sources */,
 				D61EC0E221D30E6000204BEE /* Label.swift in Sources */,
