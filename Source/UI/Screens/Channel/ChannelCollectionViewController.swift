@@ -94,6 +94,35 @@ UICollectionViewDelegateFlowLayout {
         return cell
     }
 
+    open func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
+
+        switch kind {
+        case UICollectionView.elementKindSectionHeader:
+            return self.header(for: collectionView, at: indexPath)
+        case UICollectionView.elementKindSectionFooter:
+            fatalError("NO FOOTER")
+        default:
+            fatalError("UNRECOGNIZED SECTION KIND")
+        }
+    }
+
+    func collectionView(_ collectionView: UICollectionView,
+                        layout collectionViewLayout: UICollectionViewLayout,
+                        referenceSizeForHeaderInSection section: Int) -> CGSize {
+
+        return CGSize(width: collectionView.width, height: 50)
+    }
+
+    private func header(for collectionView: UICollectionView, at indexPath: IndexPath) -> UICollectionReusableView {
+        let header: ChannelSectionHeader = collectionView.dequeueReusableSupplementaryView(ofKind: UICollectionView.elementKindSectionHeader,
+                                                                                            withReuseIdentifier: "ChannelSectionHeader",
+                                                                                            for: indexPath) as! ChannelSectionHeader
+
+        guard let section = self.channelDataSource.sections.value[safe: indexPath.section] else { return header }
+        header.configure(with: section.date)
+        return header
+    }
+
     func collectionView(_ collectionView: UICollectionView,
                         layout collectionViewLayout: UICollectionViewLayout,
                         sizeForItemAt indexPath: IndexPath) -> CGSize {
