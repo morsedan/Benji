@@ -51,12 +51,12 @@ class MessageSizeCalculator: CellSizeCalculator {
         guard let layout = self.channelLayout,
             let message = layout.dataSource.item(at: indexPath) else { return .zero }
         
-        let itemHeight = self.cellContentHeight(for: message, at: indexPath)
+        let itemHeight = self.cellContentHeight(for: message)
         return CGSize(width: layout.itemWidth, height: itemHeight)
     }
 
-    private func cellContentHeight(for message: MessageType, at indexPath: IndexPath) -> CGFloat {
-        return .zero
+    private func cellContentHeight(for message: MessageType) -> CGFloat {
+        return self.getMessageTextViewSize(for: message).height
     }
 
     private func getMessageTextViewSize(for message: MessageType) -> CGSize {

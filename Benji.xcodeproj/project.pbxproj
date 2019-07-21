@@ -120,7 +120,7 @@
 		D684D6EB22D0E4F000874B08 /* StackedAvatarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D684D6EA22D0E4F000874B08 /* StackedAvatarView.swift */; };
 		D6AF02FD220153F5002D5C75 /* LaunchManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6AF02FC220153F5002D5C75 /* LaunchManager.swift */; };
 		D6AF0301220154E3002D5C75 /* ChannelManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6AF0300220154E3002D5C75 /* ChannelManager.swift */; };
-		D6B2601222E3854B00143CF0 /* ChannelCollectionViewManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6B2601122E3854B00143CF0 /* ChannelCollectionViewManager.swift */; };
+		D6B2601422E3E31500143CF0 /* ChannelDataSourceManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6B2601322E3E31500143CF0 /* ChannelDataSourceManager.swift */; };
 		D6D145F421D5493000CD8CE4 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6D145F321D5493000CD8CE4 /* HomeViewController.swift */; };
 		D6D145FD21D550E400CD8CE4 /* AttributedString.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6D145FC21D550E400CD8CE4 /* AttributedString.swift */; };
 		D6D145FF21D5510400CD8CE4 /* StringStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6D145FE21D5510400CD8CE4 /* StringStyle.swift */; };
@@ -290,7 +290,7 @@
 		D684D6EA22D0E4F000874B08 /* StackedAvatarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StackedAvatarView.swift; sourceTree = "<group>"; };
 		D6AF02FC220153F5002D5C75 /* LaunchManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LaunchManager.swift; sourceTree = "<group>"; };
 		D6AF0300220154E3002D5C75 /* ChannelManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChannelManager.swift; sourceTree = "<group>"; };
-		D6B2601122E3854B00143CF0 /* ChannelCollectionViewManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChannelCollectionViewManager.swift; sourceTree = "<group>"; };
+		D6B2601322E3E31500143CF0 /* ChannelDataSourceManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChannelDataSourceManager.swift; sourceTree = "<group>"; };
 		D6D145F321D5493000CD8CE4 /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
 		D6D145FC21D550E400CD8CE4 /* AttributedString.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AttributedString.swift; sourceTree = "<group>"; };
 		D6D145FE21D5510400CD8CE4 /* StringStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StringStyle.swift; sourceTree = "<group>"; };
@@ -782,7 +782,7 @@
 				D64273A422CC05DD0088256B /* InputTextView.swift */,
 				D68483F822CC3DE400362AC3 /* ChannelCollectionViewController.swift */,
 				D646DB4122CFDB400055CC7C /* ChannelCollectionViewController+Extensions.swift */,
-				D6B2601122E3854B00143CF0 /* ChannelCollectionViewManager.swift */,
+				D6B2601322E3E31500143CF0 /* ChannelDataSourceManager.swift */,
 				D684D6E822D0E1CB00874B08 /* EmptyChannelView.swift */,
 			);
 			path = Channel;
@@ -1018,7 +1018,6 @@
 				D6AF02FD220153F5002D5C75 /* LaunchManager.swift in Sources */,
 				D64273A322CC040B0088256B /* GrowingTextView.swift in Sources */,
 				D6DADF692207D246007D9EB1 /* TCHMessage+Extensions.swift in Sources */,
-				D6B2601222E3854B00143CF0 /* ChannelCollectionViewManager.swift in Sources */,
 				D61EC0F721D316F100204BEE /* Color.swift in Sources */,
 				D642739D22CAFC930088256B /* MessageType.swift in Sources */,
 				D6D1503121D6A2B900CD8CE4 /* UITableView+Extensions.swift in Sources */,
@@ -1074,6 +1073,7 @@
 				D6D145FD21D550E400CD8CE4 /* AttributedString.swift in Sources */,
 				D6D14D8F21D5893600CD8CE4 /* NSNumber+IGListDiffable.m in Sources */,
 				D646DB4222CFDB400055CC7C /* ChannelCollectionViewController+Extensions.swift in Sources */,
+				D6B2601422E3E31500143CF0 /* ChannelDataSourceManager.swift in Sources */,
 				D60C814A2209360400A127A3 /* DisplayableImageView.swift in Sources */,
 				D64273A722CC2D280088256B /* ChannelViewController+Extensions.swift in Sources */,
 				D66F0FDE22BF2C5D00BA277D /* HomeSegmentControl.swift in Sources */,

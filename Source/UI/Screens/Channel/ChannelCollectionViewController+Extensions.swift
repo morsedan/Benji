@@ -23,7 +23,7 @@ extension ChannelCollectionViewController {
     }
 
     private func loadChannelMessages(with channel: TCHChannel) {
-        self.manager.reset()
+        self.channelDataSource.reset()
 
         guard let allMessages = ChannelManager.shared.selectedChannel?.messages else { return }
 
@@ -41,7 +41,7 @@ extension ChannelCollectionViewController {
     }
 
     private func loadTestMessages() {
-        self.manager.set(newSections: Lorem.systemSections())
+        self.channelDataSource.set(newSections: Lorem.systemSections())
         delay(0.5) { [weak self] in
             guard let `self` = self else { return }
             self.collectionView.scrollToBottom()
@@ -77,15 +77,15 @@ extension ChannelCollectionViewController {
 
             switch channelUpdate.status {
             case .added:
-                self.manager.append(item: .message(channelUpdate.message))
+                self.channelDataSource.append(item: .message(channelUpdate.message))
                 runMain {
                     self.collectionView.scrollToBottom()
                 }
             // Add check here for last message not from user and its attributes to find quick messsages
             case .changed:
-                self.manager.update(item: .message(channelUpdate.message))
+                self.channelDataSource.update(item: .message(channelUpdate.message))
             case .deleted:
-                self.manager.delete(item: .message(channelUpdate.message))
+                self.channelDataSource.delete(item: .message(channelUpdate.message))
             case .toastReceived:
                 break
             }

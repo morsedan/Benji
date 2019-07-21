@@ -11,26 +11,23 @@ import TwilioChatClient
 import ReactiveSwift
 import GestureRecognizerClosures
 
-class ChannelCollectionViewController: ViewController {
+class ChannelCollectionViewController: ViewController, UICollectionViewDelegate, UICollectionViewDataSource,
+UICollectionViewDelegateFlowLayout {
 
     let loadingView = LoadingView()
+
+    var didSelect: (_ item: MessageType, _ indexPath: IndexPath) -> Void = { _, _ in }
+    var didLongPress: (_ item: MessageType, _ indexPath: IndexPath) -> Void = { _, _ in }
+
+    lazy var channelDataSource: ChannelDataSourceManager = {
+        let dataSource = ChannelDataSourceManager()
+        return dataSource
+    }()
 
     lazy var collectionView: ChannelCollectionView = {
         let flowLayout = ChannelCollectionViewFlowLayout()
         let collectionView = ChannelCollectionView(with: flowLayout)
-        collectionView.channelDataSource = self.manager
         return collectionView
-    }()
-
-    lazy var manager: ChannelCollectionViewManager = {
-        let manager = ChannelCollectionViewManager()
-        manager.didSelect = { [unowned self] (item, indexPath) in
-
-        }
-        manager.didLongPress = { [unowned self] (item, indexPath) in
-
-        }
-        return manager
     }()
 
     override func loadView() {
@@ -40,11 +37,78 @@ class ChannelCollectionViewController: ViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        self.manager.collectionView = self.collectionView
-        self.collectionView.dataSource = self.manager
-        self.collectionView.delegate = self.manager
+        self.channelDataSource.collectionView = self.collectionView
+        self.collectionView.channelDataSource = self.channelDataSource
+
+        self.collectionView.dataSource = self
+        self.collectionView.delegate = self
 
         self.subscribeToClient()
         self.subscribeToUpdates()
+    }
+
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+
+        
+    }
+
+    func numberOfSections(in collectionView: UICollectionView) -> Int {
+        collectionView.backgroundView?.isHidden = self.channelDataSource.sections.value.count > 0
+        return self.channelDataSource.sections.value.count
+    }
+
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        guard let section = self.channelDataSource.sections.value[safe: section] else { return 0 }
+        return section.items.count
+    }
+
+    func collectionView(_ collectionView: UICollectionView,
+                        cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+
+        guard let channelCollectionView = collectionView as? ChannelCollectionView else {
+            fatalError("Collection view not found")
+        }
+
+        guard let channelDataSource = channelCollectionView.channelDataSource else {
+            fatalError("Data Source not found")
+        }
+
+        guard let message = channelDataSource.item(at: indexPath) else {
+            fatalError("Message not found")
+        }
+
+        let cell: MessageCell = collectionView.dequeueReusableCell(withReuseIdentifier: "MessageCell",
+                                                                   for: indexPath) as! MessageCell
+
+        cell.configure(with: message, at: indexPath, and: channelCollectionView)
+        //Reset all gestures
+        cell.contentView.gestureRecognizers?.forEach({ (recognizer) in
+            cell.contentView.removeGestureRecognizer(recognizer)
+        })
+
+        cell.contentView.onTap { [weak self] (tap) in
+            guard let `self` = self else { return }
+            self.didSelect(message, indexPath)
+        }
+
+        cell.contentView.onLongPress { [weak self] (longPress) in
+            guard let `self` = self else { return }
+            self.didLongPress(message, indexPath)
+        }
+
+        return cell
+    }
+
+    func collectionView(_ collectionView: UICollectionView,
+                        layout collectionViewLayout: UICollectionViewLayout,
+                        sizeForItemAt indexPath: IndexPath) -> CGSize {
+        guard let channelLayout = collectionViewLayout as? ChannelCollectionViewFlowLayout else {
+            return .zero
+        }
+        let size = channelLayout.sizeForItem(at: indexPath)
+        print("SIZE OF CELL \(size)")
+        print("SIZE OF COLLECTION VEIW \(collectionView.size)")
+        return size
     }
 }
