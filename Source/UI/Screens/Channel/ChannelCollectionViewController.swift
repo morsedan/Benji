@@ -100,9 +100,6 @@ UICollectionViewDelegateFlowLayout {
         guard let channelLayout = collectionViewLayout as? ChannelCollectionViewFlowLayout else {
             return .zero
         }
-        let size = channelLayout.sizeForItem(at: indexPath)
-        print("SIZE OF CELL \(size)")
-        print("SIZE OF COLLECTION VEIW \(collectionView.size)")
-        return size
+        return channelLayout.sizeForItem(at: indexPath)
     }
 }

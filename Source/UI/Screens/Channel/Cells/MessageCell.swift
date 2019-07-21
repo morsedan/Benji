@@ -81,6 +81,8 @@ class MessageCell: UICollectionViewCell {
         self.bubbleView.size = attributes.bubbleViewSize
         self.bubbleView.top = 0
         self.bubbleView.left = self.textView.left - attributes.bubbleViewHorizontalPadding
+        self.bubbleView.roundCorners()
+        self.avatarView.top = self.bubbleView.top
     }
 
     // OUTGOING
@@ -90,10 +92,11 @@ class MessageCell: UICollectionViewCell {
 
         self.textView.size = attributes.messageTextViewSize
         self.textView.top = attributes.messageTextViewVerticalPadding
-        self.textView.right = attributes.messageTextViewHorizontalPadding
+        self.textView.right = attributes.size.width - attributes.messageTextViewHorizontalPadding
 
         self.bubbleView.size = attributes.bubbleViewSize
         self.bubbleView.top = 0
-        self.bubbleView.right = self.textView.right - attributes.bubbleViewHorizontalPadding
+        self.bubbleView.right = self.textView.right + attributes.bubbleViewHorizontalPadding
+        self.bubbleView.roundCorners()
     }
 }
