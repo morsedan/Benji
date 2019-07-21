@@ -47,12 +47,6 @@ UICollectionViewDelegateFlowLayout {
         self.subscribeToUpdates()
     }
 
-    override func viewDidAppear(_ animated: Bool) {
-        super.viewDidAppear(animated)
-
-        
-    }
-
     func numberOfSections(in collectionView: UICollectionView) -> Int {
         collectionView.backgroundView?.isHidden = self.channelDataSource.sections.value.count > 0
         return self.channelDataSource.sections.value.count

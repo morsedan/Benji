@@ -37,7 +37,6 @@ class ChannelCollectionViewLayoutAttributes: UICollectionViewLayoutAttributes {
     }
 
     override func isEqual(_ object: Any?) -> Bool {
-        
         if let attributes = object as? ChannelCollectionViewLayoutAttributes {
             return super.isEqual(object) && attributes.avatarSize == self.avatarSize
             && attributes.avatarLeadingPadding == self.avatarLeadingPadding
