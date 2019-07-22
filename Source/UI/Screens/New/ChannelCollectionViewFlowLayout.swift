@@ -20,7 +20,7 @@ class ChannelCollectionViewFlowLayout: UICollectionViewFlowLayout {
     }()
 
     var channelCollectionView: ChannelCollectionView {
-        guard let channelCollectionView = collectionView as? ChannelCollectionView else {
+        guard let channelCollectionView = self.collectionView as? ChannelCollectionView else {
             fatalError("ChannelCollectionView NOT FOUND")
         }
         return channelCollectionView
@@ -51,7 +51,12 @@ class ChannelCollectionViewFlowLayout: UICollectionViewFlowLayout {
     private func setupView() {
         self.scrollDirection = .vertical
         self.minimumLineSpacing = 14
-        self.sectionInset = UIEdgeInsets(top: 0, left: 0, bottom: 80, right: 0)
+    }
+
+    override func prepare() {
+        super.prepare()
+
+        self.collectionView?.contentInset.bottom = 80
     }
 
     // MARK: - Attributes

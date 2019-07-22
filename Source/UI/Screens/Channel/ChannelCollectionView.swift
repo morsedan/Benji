@@ -25,6 +25,7 @@ class ChannelCollectionView: CollectionView {
         super.init(flowLayout: flowLayout)
         self.registerReusableViews()
         self.backgroundView = self.emptyView
+        
     }
 
     required init?(coder aDecoder: NSCoder) {
