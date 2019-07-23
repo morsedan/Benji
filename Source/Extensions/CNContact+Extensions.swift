@@ -87,4 +87,12 @@ extension CNContact: Avatar {
         }
         return nil
     }
+
+    var firstName: String {
+        return self.givenName
+    }
+
+    var lastName: String {
+        return self.familyName
+    }
 }

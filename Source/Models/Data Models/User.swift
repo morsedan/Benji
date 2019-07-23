@@ -15,4 +15,12 @@ class User: PFUser, Avatar {
     var initials: String {
         return "BD"
     }
+
+    var firstName: String {
+        return String()
+    }
+
+    var lastName: String {
+        return String()
+    }
 }

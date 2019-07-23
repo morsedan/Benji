@@ -28,7 +28,15 @@ extension TCHMessage: Diffable, DisplayableCellItem, Avatar {
         return author == identity
     }
 
-    //TODO: Fill these in 
+    //TODO: Fill these in
+    var firstName: String {
+        return String()
+    }
+
+    var lastName: String {
+        return String()
+    }
+    
     var initials: String {
         return String()
     }

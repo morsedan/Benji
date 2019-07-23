@@ -21,6 +21,7 @@ class ChannelViewController: FullScreenViewController {
 
     private(set) var contextButton = ContextButton()
     private(set) var bottomGradientView = GradientView()
+    let detailBar = ChannelDetailBar()
 
     var oldTextViewHeight: CGFloat = 48
     let bottomOffset: CGFloat = 16
@@ -50,6 +51,11 @@ class ChannelViewController: FullScreenViewController {
             //self.send(message: text)
         }
 
+        self.contentContainer.addSubview(self.detailBar)
+        self.detailBar.closeButton.onTap { [unowned self] (tap) in
+            self.dismiss(animated: true, completion: nil)
+        }
+
         NotificationCenter.default.addObserver(self,
                                                selector: #selector(keyboardWillShow(notification:)),
                                                name: UIResponder.keyboardWillShowNotification,
@@ -73,6 +79,10 @@ class ChannelViewController: FullScreenViewController {
         self.contentContainer.height = self.view.height
         self.contentContainer.top = 0
 
+        self.detailBar.size = CGSize(width: self.contentContainer.width, height: 60)
+        self.detailBar.top = self.view.safeAreaInsets.top
+        self.detailBar.centerOnX()
+
         self.channelCollectionVC.view.frame = self.contentContainer.bounds
 
         self.contextButton.size = CGSize(width: 48, height: 48)
@@ -91,6 +101,12 @@ class ChannelViewController: FullScreenViewController {
     }
 
     func loadMessages(for type: ChannelType) {
+        switch type {
+        case .system(let message):
+            self.detailBar.set(avatar: message.avatar)
+        default:
+            break
+        }
         self.channelCollectionVC.loadMessages(for: type)
     }
 

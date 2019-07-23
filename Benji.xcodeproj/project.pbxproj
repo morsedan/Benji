@@ -123,6 +123,8 @@
 		D6B2601422E3E31500143CF0 /* ChannelDataSourceManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6B2601322E3E31500143CF0 /* ChannelDataSourceManager.swift */; };
 		D6B2601622E41BE700143CF0 /* ChannelSectionHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6B2601522E41BE700143CF0 /* ChannelSectionHeader.swift */; };
 		D6B2601822E4208900143CF0 /* ChannelHeaderDateLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6B2601722E4208900143CF0 /* ChannelHeaderDateLabel.swift */; };
+		D6B2603822E6AB5E00143CF0 /* ChannelDetailBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6B2603722E6AB5E00143CF0 /* ChannelDetailBar.swift */; };
+		D6B2603A22E6ABCA00143CF0 /* Display1Label.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6B2603922E6ABCA00143CF0 /* Display1Label.swift */; };
 		D6D145F421D5493000CD8CE4 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6D145F321D5493000CD8CE4 /* HomeViewController.swift */; };
 		D6D145FD21D550E400CD8CE4 /* AttributedString.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6D145FC21D550E400CD8CE4 /* AttributedString.swift */; };
 		D6D145FF21D5510400CD8CE4 /* StringStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6D145FE21D5510400CD8CE4 /* StringStyle.swift */; };
@@ -295,6 +297,8 @@
 		D6B2601322E3E31500143CF0 /* ChannelDataSourceManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChannelDataSourceManager.swift; sourceTree = "<group>"; };
 		D6B2601522E41BE700143CF0 /* ChannelSectionHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChannelSectionHeader.swift; sourceTree = "<group>"; };
 		D6B2601722E4208900143CF0 /* ChannelHeaderDateLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChannelHeaderDateLabel.swift; sourceTree = "<group>"; };
+		D6B2603722E6AB5E00143CF0 /* ChannelDetailBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChannelDetailBar.swift; sourceTree = "<group>"; };
+		D6B2603922E6ABCA00143CF0 /* Display1Label.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Display1Label.swift; sourceTree = "<group>"; };
 		D6D145F321D5493000CD8CE4 /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
 		D6D145FC21D550E400CD8CE4 /* AttributedString.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AttributedString.swift; sourceTree = "<group>"; };
 		D6D145FE21D5510400CD8CE4 /* StringStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StringStyle.swift; sourceTree = "<group>"; };
@@ -590,6 +594,7 @@
 			children = (
 				D61EC0E121D30E6000204BEE /* Label.swift */,
 				D642737C22C9A2D70088256B /* NameLabel.swift */,
+				D6B2603922E6ABCA00143CF0 /* Display1Label.swift */,
 			);
 			path = Labels;
 			sourceTree = "<group>";
@@ -619,9 +624,9 @@
 		D6432BF122D8282E0016001A /* Channel */ = {
 			isa = PBXGroup;
 			children = (
-				D6D1502C21D6A08300CD8CE4 /* ChannelCollectionView.swift */,
 				D6D1500621D5E73D00CD8CE4 /* ChannelViewController.swift */,
 				D64273A622CC2D280088256B /* ChannelViewController+Extensions.swift */,
+				D6B2603722E6AB5E00143CF0 /* ChannelDetailBar.swift */,
 				D6B2603622E6AA3800143CF0 /* Input */,
 				D6D1500521D5E71E00CD8CE4 /* Channel Collection Views */,
 			);
@@ -801,6 +806,7 @@
 				D6B2603522E6A97400143CF0 /* Layout */,
 				D684840822CD2E1E00362AC3 /* Cells */,
 				D68483F822CC3DE400362AC3 /* ChannelCollectionViewController.swift */,
+				D6D1502C21D6A08300CD8CE4 /* ChannelCollectionView.swift */,
 				D646DB4122CFDB400055CC7C /* ChannelCollectionViewController+Extensions.swift */,
 				D6B2601322E3E31500143CF0 /* ChannelDataSourceManager.swift */,
 				D684D6E822D0E1CB00874B08 /* EmptyChannelView.swift */,
@@ -1084,6 +1090,7 @@
 				D642736022C90D0E0088256B /* CGRect+Extensions.swift in Sources */,
 				D66F0FEA22C0695E00BA277D /* CNContact+Extensions.swift in Sources */,
 				D6DADF6E2207DF33007D9EB1 /* ChannelsCollectionViewManager.swift in Sources */,
+				D6B2603822E6AB5E00143CF0 /* ChannelDetailBar.swift in Sources */,
 				D66F0FCF22BF060500BA277D /* Deeplinkable.swift in Sources */,
 				D642737F22C9A7EC0088256B /* ContactsManager.swift in Sources */,
 				D642738A22C9B0170088256B /* ModalControllerAnimatedTransitioning.swift in Sources */,
@@ -1151,6 +1158,7 @@
 				D61EC0E021D30E3F00204BEE /* FullScreenViewController.swift in Sources */,
 				D6D1502D21D6A08300CD8CE4 /* ChannelCollectionView.swift in Sources */,
 				D642735722C90BB90088256B /* SwipeableViewController.swift in Sources */,
+				D6B2603A22E6ABCA00143CF0 /* Display1Label.swift in Sources */,
 				D646DB3C22CFCCD80055CC7C /* ClientError.swift in Sources */,
 				D68483FB22CD050D00362AC3 /* TableViewManager.swift in Sources */,
 				D66F0FDC22BF2ADC00BA277D /* HomeCoordinator.swift in Sources */,

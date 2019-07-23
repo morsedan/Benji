@@ -10,4 +10,6 @@ import Foundation
 
 protocol Avatar: ImageDisplayable {
     var initials: String { get }
+    var firstName: String { get }
+    var lastName: String { get }
 }

@@ -13,6 +13,14 @@ struct SystemAvatar: Avatar {
     var initials: String {
         return "BD"
     }
+
+    var firstName: String {
+        return "Benji"
+    }
+
+    var lastName: String {
+        return "Dodgson"
+    }
     var photoUrl: URL?
     var photo: UIImage?
 }
