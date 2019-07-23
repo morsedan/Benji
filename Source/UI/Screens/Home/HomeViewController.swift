@@ -55,20 +55,7 @@ class HomeViewController: FullScreenViewController {
 
     private var currentType: HomeContentType = .feed
 
-    override init() {
-        super.init()
-        self.initializeViews()
-    }
-
-    required init?(coder aDecoder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
-    }
-
-    required init?(withObject object: DeepLinkable) {
-        fatalError("init(withObject:) has not been implemented")
-    }
-
-    private func initializeViews() {
+    override func initializeViews() {
 
         self.addChild(viewController: self.feedVC, toView: self.contentContainer)
         self.addChild(self.channelsVC)

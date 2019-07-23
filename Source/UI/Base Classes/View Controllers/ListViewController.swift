@@ -22,7 +22,7 @@ class ListViewController<CellType: DisplayableCell & UITableViewCell, ManagerTyp
 
     init(with tableView: TableView) {
         self.tableView = tableView
-        super.init(nibName: nil, bundle: nil)
+        super.init()
     }
 
     required init?(coder aDecoder: NSCoder) {

@@ -44,7 +44,7 @@ class ScrolledModalController: ViewController, ScrolledModalContainerViewDelegat
         self.presentable = presentable
         self.modalContainerView = ScrolledModalContainerView(presentable: presentable)
 
-        super.init(nibName: nil, bundle: nil)
+        super.init()
 
         // You should be able to see the rest of the view hierarchy underneath this controller
         self.modalPresentationStyle = .overFullScreen

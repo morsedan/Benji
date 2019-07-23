@@ -22,8 +22,16 @@ class FullScreenViewController: ViewController {
         }
     }
 
+    override init() {
+        super.init()
+    }
+
     required init?(withObject object: DeepLinkable) {
-        super.init(nibName: nil, bundle: nil)
+        super.init()
+    }
+
+    required init?(coder aDecoder: NSCoder) {
+        super.init(coder: aDecoder)
     }
 
     override func viewDidLoad() {

@@ -22,7 +22,7 @@ class CollectionViewController<CellType: DisplayableCell & UICollectionViewCell,
 
     init(with collectionView: CollectionView) {
         self.collectionView = collectionView
-        super.init(nibName: nil, bundle: nil)
+        super.init()
     }
 
     required init?(coder aDecoder: NSCoder) {

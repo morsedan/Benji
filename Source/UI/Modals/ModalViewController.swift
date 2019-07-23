@@ -18,20 +18,10 @@ class ModalViewController: ViewController {
 
     private var modalTransitionDelegate = ModalControllerTransitioningDelegate()
 
-    init() {
-        super.init(nibName: nil, bundle: nil)
+    override func initializeViews() {
 
         self.modalPresentationStyle = .overFullScreen
         self.transitioningDelegate = self.modalTransitionDelegate
-
-        self.initializeViews()
-    }
-
-    required init?(coder aDecoder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
-    }
-
-    func initializeViews() {
         // This is needed to maintain the contentViews frame
         self.definesPresentationContext = true
 

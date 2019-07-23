@@ -19,7 +19,7 @@ class AlertViewController: ViewController, PagingModalPresentable {
 
         self.childViewController = childViewController
 
-        super.init(nibName: nil, bundle: nil)
+        super.init()
 
         self.content.dismissHitArea.onTap { [unowned self] (tapGesture) in
             self.onTappedToDismiss?()

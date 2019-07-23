@@ -54,8 +54,8 @@ private class TextViewController: ViewController, UITextViewDelegate {
         }
     }
 
-    init() {
-        super.init(nibName: nil, bundle: nil)
+    override init() {
+        super.init()
         self.view.addSubview(self.textView)
         self.textView.delegate = self
     }
