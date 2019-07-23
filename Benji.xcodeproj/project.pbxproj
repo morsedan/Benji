@@ -129,6 +129,7 @@
 		D6B2603F22E6B92900143CF0 /* CloseButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6B2603E22E6B92900143CF0 /* CloseButton.swift */; };
 		D6B2604122E6B9C600143CF0 /* Display2Label.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6B2604022E6B9C600143CF0 /* Display2Label.swift */; };
 		D6B2604322E6BAE400143CF0 /* RegularBoldLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6B2604222E6BAE400143CF0 /* RegularBoldLabel.swift */; };
+		D6B2604522E6C09700143CF0 /* RegularSemiBoldLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6B2604422E6C09700143CF0 /* RegularSemiBoldLabel.swift */; };
 		D6D145F421D5493000CD8CE4 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6D145F321D5493000CD8CE4 /* HomeViewController.swift */; };
 		D6D145FD21D550E400CD8CE4 /* AttributedString.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6D145FC21D550E400CD8CE4 /* AttributedString.swift */; };
 		D6D145FF21D5510400CD8CE4 /* StringStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6D145FE21D5510400CD8CE4 /* StringStyle.swift */; };
@@ -307,6 +308,7 @@
 		D6B2603E22E6B92900143CF0 /* CloseButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CloseButton.swift; sourceTree = "<group>"; };
 		D6B2604022E6B9C600143CF0 /* Display2Label.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Display2Label.swift; sourceTree = "<group>"; };
 		D6B2604222E6BAE400143CF0 /* RegularBoldLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegularBoldLabel.swift; sourceTree = "<group>"; };
+		D6B2604422E6C09700143CF0 /* RegularSemiBoldLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegularSemiBoldLabel.swift; sourceTree = "<group>"; };
 		D6D145F321D5493000CD8CE4 /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
 		D6D145FC21D550E400CD8CE4 /* AttributedString.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AttributedString.swift; sourceTree = "<group>"; };
 		D6D145FE21D5510400CD8CE4 /* StringStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StringStyle.swift; sourceTree = "<group>"; };
@@ -605,6 +607,7 @@
 				D6B2603922E6ABCA00143CF0 /* Display1Label.swift */,
 				D6B2604022E6B9C600143CF0 /* Display2Label.swift */,
 				D6B2604222E6BAE400143CF0 /* RegularBoldLabel.swift */,
+				D6B2604422E6C09700143CF0 /* RegularSemiBoldLabel.swift */,
 			);
 			path = Labels;
 			sourceTree = "<group>";
@@ -1184,6 +1187,7 @@
 				D642735722C90BB90088256B /* SwipeableViewController.swift in Sources */,
 				D6B2603A22E6ABCA00143CF0 /* Display1Label.swift in Sources */,
 				D646DB3C22CFCCD80055CC7C /* ClientError.swift in Sources */,
+				D6B2604522E6C09700143CF0 /* RegularSemiBoldLabel.swift in Sources */,
 				D68483FB22CD050D00362AC3 /* TableViewManager.swift in Sources */,
 				D66F0FDC22BF2ADC00BA277D /* HomeCoordinator.swift in Sources */,
 				D6D14FFC21D5893700CD8CE4 /* IGListBatchUpdateData.mm in Sources */,

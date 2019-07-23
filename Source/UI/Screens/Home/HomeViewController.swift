@@ -63,6 +63,12 @@ class HomeViewController: FullScreenViewController {
         self.contentContainer.addSubview(self.headerContainer)
 
         self.headerContainer.addSubview(self.avatarView)
+        self.avatarView.onTap { [unowned self] (tap) in
+            let vc = ProfileViewController()
+            self.present(vc, animated: true, completion: {
+                vc.set(avatar: MeAvatar())
+            })
+        }
         self.headerContainer.addSubview(self.searchImageView)
 
         self.headerContainer.addSubview(self.segmentControl)
