@@ -616,18 +616,16 @@
 			path = Buttons;
 			sourceTree = "<group>";
 		};
-		D6432BF122D8282E0016001A /* New */ = {
+		D6432BF122D8282E0016001A /* Channel */ = {
 			isa = PBXGroup;
 			children = (
-				D6432BEF22D824BA0016001A /* ChannelCollectionViewLayoutAttributes.swift */,
-				D6432BF422D82CDC0016001A /* ChannelCollectionViewFlowLayout.swift */,
-				D6432BF622D837340016001A /* CellSizeCalculator.swift */,
-				D6432BF822D837A30016001A /* MessageSizeCaluculator.swift */,
-				D6432BFA22DB923C0016001A /* ChannelSectionType.swift */,
-				D6B2601522E41BE700143CF0 /* ChannelSectionHeader.swift */,
-				D6B2601722E4208900143CF0 /* ChannelHeaderDateLabel.swift */,
+				D6D1502C21D6A08300CD8CE4 /* ChannelCollectionView.swift */,
+				D6D1500621D5E73D00CD8CE4 /* ChannelViewController.swift */,
+				D64273A622CC2D280088256B /* ChannelViewController+Extensions.swift */,
+				D6B2603622E6AA3800143CF0 /* Input */,
+				D6D1500521D5E71E00CD8CE4 /* Channel Collection Views */,
 			);
-			path = New;
+			path = Channel;
 			sourceTree = "<group>";
 		};
 		D66F0FD022BF064700BA277D /* Deeplink */ = {
@@ -679,6 +677,8 @@
 		D684840822CD2E1E00362AC3 /* Cells */ = {
 			isa = PBXGroup;
 			children = (
+				D6B2601722E4208900143CF0 /* ChannelHeaderDateLabel.swift */,
+				D6B2601522E41BE700143CF0 /* ChannelSectionHeader.swift */,
 				D6D1501B21D5F8AD00CD8CE4 /* MessageCell.swift */,
 				D642739E22CAFD680088256B /* MessageTextView.swift */,
 				D684840222CD295600362AC3 /* ReceiverMessageCellContentView.swift */,
@@ -689,11 +689,31 @@
 			path = Cells;
 			sourceTree = "<group>";
 		};
+		D6B2603522E6A97400143CF0 /* Layout */ = {
+			isa = PBXGroup;
+			children = (
+				D6432BF822D837A30016001A /* MessageSizeCaluculator.swift */,
+				D6432BF622D837340016001A /* CellSizeCalculator.swift */,
+				D6432BF422D82CDC0016001A /* ChannelCollectionViewFlowLayout.swift */,
+				D6432BEF22D824BA0016001A /* ChannelCollectionViewLayoutAttributes.swift */,
+			);
+			path = Layout;
+			sourceTree = "<group>";
+		};
+		D6B2603622E6AA3800143CF0 /* Input */ = {
+			isa = PBXGroup;
+			children = (
+				D64273A422CC05DD0088256B /* InputTextView.swift */,
+				D64273A022CBDC870088256B /* ContextButton.swift */,
+				D64273A222CC040A0088256B /* GrowingTextView.swift */,
+			);
+			path = Input;
+			sourceTree = "<group>";
+		};
 		D6D145F121D548F600CD8CE4 /* Screens */ = {
 			isa = PBXGroup;
 			children = (
-				D6432BF122D8282E0016001A /* New */,
-				D6D1500521D5E71E00CD8CE4 /* Channel */,
+				D6432BF122D8282E0016001A /* Channel */,
 				D6DADF6A2207DC90007D9EB1 /* Channels */,
 				D6D145F521D549A300CD8CE4 /* Home */,
 				D62C634F22BE9C4600F4D097 /* Feed */,
@@ -775,23 +795,17 @@
 			path = IGListDiff;
 			sourceTree = "<group>";
 		};
-		D6D1500521D5E71E00CD8CE4 /* Channel */ = {
+		D6D1500521D5E71E00CD8CE4 /* Channel Collection Views */ = {
 			isa = PBXGroup;
 			children = (
-				D6D1504E21E304D800CD8CE4 /* BouncyCollectionViewLayout.swift */,
-				D6D1502C21D6A08300CD8CE4 /* ChannelCollectionView.swift */,
-				D6D1500621D5E73D00CD8CE4 /* ChannelViewController.swift */,
-				D64273A622CC2D280088256B /* ChannelViewController+Extensions.swift */,
-				D64273A222CC040A0088256B /* GrowingTextView.swift */,
+				D6B2603522E6A97400143CF0 /* Layout */,
 				D684840822CD2E1E00362AC3 /* Cells */,
-				D64273A022CBDC870088256B /* ContextButton.swift */,
-				D64273A422CC05DD0088256B /* InputTextView.swift */,
 				D68483F822CC3DE400362AC3 /* ChannelCollectionViewController.swift */,
 				D646DB4122CFDB400055CC7C /* ChannelCollectionViewController+Extensions.swift */,
 				D6B2601322E3E31500143CF0 /* ChannelDataSourceManager.swift */,
 				D684D6E822D0E1CB00874B08 /* EmptyChannelView.swift */,
 			);
-			path = Channel;
+			path = "Channel Collection Views";
 			sourceTree = "<group>";
 		};
 		D6D1500A21D5E79B00CD8CE4 /* Managers */ = {
@@ -810,6 +824,7 @@
 		D6D1501F21D5FF1600CD8CE4 /* Data Models */ = {
 			isa = PBXGroup;
 			children = (
+				D6432BFA22DB923C0016001A /* ChannelSectionType.swift */,
 				D66F0FF122C1D86800BA277D /* ChannelsType.swift */,
 				D66F0FC622BF004300BA277D /* FeedType.swift */,
 				D642735022C857760088256B /* MessageContext.swift */,
@@ -845,6 +860,7 @@
 		D6DADF6A2207DC90007D9EB1 /* Channels */ = {
 			isa = PBXGroup;
 			children = (
+				D6D1504E21E304D800CD8CE4 /* BouncyCollectionViewLayout.swift */,
 				D6DADF6B2207DCA8007D9EB1 /* ChannelsViewController.swift */,
 				D6DADF6D2207DF33007D9EB1 /* ChannelsCollectionViewManager.swift */,
 				D6DADF6F2207DF60007D9EB1 /* ChannelCell.swift */,

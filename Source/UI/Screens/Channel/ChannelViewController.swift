@@ -19,8 +19,8 @@ class ChannelViewController: FullScreenViewController {
         return textView
     }()
 
-    lazy var contextButton = ContextButton()
-    lazy var bottomGradientView = GradientView()
+    private(set) var contextButton = ContextButton()
+    private(set) var bottomGradientView = GradientView()
 
     var oldTextViewHeight: CGFloat = 48
     let bottomOffset: CGFloat = 16
