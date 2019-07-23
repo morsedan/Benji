@@ -9,6 +9,10 @@
 import Foundation
 
 struct SystemAvatar: Avatar {
+
+    var handle: String {
+        return "@benji"
+    }
     
     var initials: String {
         return "BD"

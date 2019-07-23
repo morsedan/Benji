@@ -10,7 +10,7 @@ import Foundation
 
 class ChannelDetailBar: View {
 
-    let closeButton = Button()
+    let closeButton = CloseButton()
     let titleLabel = Display1Label()
     let avatarView = AvatarView()
 
@@ -25,12 +25,8 @@ class ChannelDetailBar: View {
     override func layoutSubviews() {
         super.layoutSubviews()
 
-        self.closeButton.size = CGSize(width: 25, height: 25)
         self.closeButton.left = 18
         self.closeButton.centerOnY()
-        self.closeButton.makeRound()
-        self.closeButton.layer.borderColor = Color.white.color.cgColor
-        self.closeButton.layer.borderWidth = 2 
 
         self.titleLabel.setSize(withWidth: self.width * 0.7)
         self.titleLabel.left = self.closeButton.right + 25

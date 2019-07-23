@@ -12,6 +12,19 @@ class ViewController: UIViewController, Dismissable {
 
     var didDismiss: (() -> Void)?
 
+    init() {
+        super.init(nibName: nil, bundle: nil)
+        self.initializeViews()
+    }
+
+    required init?(coder aDecoder: NSCoder) {
+        super.init(coder: aDecoder)
+        self.initializeViews()
+    }
+
+    func initializeViews() {}
+
+
     override func viewDidDisappear(_ animated: Bool) {
         super.viewDidDisappear(animated)
 

@@ -22,14 +22,6 @@ class FullScreenViewController: ViewController {
         }
     }
 
-    init() {
-        super.init(nibName: nil, bundle: nil)
-    }
-
-    required init?(coder aDecoder: NSCoder) {
-        super.init(coder: aDecoder)
-    }
-
     required init?(withObject object: DeepLinkable) {
         super.init(nibName: nil, bundle: nil)
     }

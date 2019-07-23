@@ -95,4 +95,8 @@ extension CNContact: Avatar {
     var lastName: String {
         return self.familyName
     }
+
+    var handle: String {
+        return "@\(self.firstName)"
+    }
 }

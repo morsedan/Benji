@@ -23,4 +23,8 @@ class User: PFUser, Avatar {
     var lastName: String {
         return String()
     }
+
+    var handle: String {
+        return "@handle"
+    }
 }

@@ -29,6 +29,10 @@ extension TCHMessage: Diffable, DisplayableCellItem, Avatar {
     }
 
     //TODO: Fill these in
+    var handle: String {
+        return "@handle"
+    }
+
     var firstName: String {
         return String()
     }

@@ -27,6 +27,10 @@ struct MeAvatar: Avatar {
     var photo: UIImage? {
         return UIImage(named: "Profile1")
     }
+
+    var handle: String {
+        return "@benji"
+    }
 }
 
 enum HomeContentType: Int {

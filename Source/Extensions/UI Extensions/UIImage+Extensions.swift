@@ -33,17 +33,3 @@ extension UIImage: ImageDisplayable {
         return self
     }
 }
-
-extension UIImage: Avatar {
-    var initials: String {
-        return Lorem.text(maxNbChars: 2)
-    }
-
-    var firstName: String {
-        return ""
-    }
-
-    var lastName: String {
-        return ""
-    }
-}
