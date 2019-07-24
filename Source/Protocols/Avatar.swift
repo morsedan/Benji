@@ -8,7 +8,7 @@
 
 import Foundation
 
-protocol Avatar: ImageDisplayable {
+protocol Avatar: DisplayableItem {
     var initials: String { get }
     var firstName: String { get }
     var lastName: String { get }
