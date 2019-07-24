@@ -8,7 +8,7 @@
 
 import Foundation
 
-enum MessageContext: TextDisplayable, CaseIterable {
+enum MessageContext: CaseIterable {
 
     case emergency
     case timeSensitive

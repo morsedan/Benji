@@ -18,7 +18,7 @@ enum ToastState {
 
 class ToastView: UIView {
 
-    @IBOutlet weak var titleLabel: Label!
+    @IBOutlet weak var titleLabel: XSmallLabel!
     @IBOutlet weak var displayableImageView: DisplayableImageView!
     @IBOutlet weak var buttonContainer: UIView!
 
@@ -61,13 +61,8 @@ class ToastView: UIView {
 
     private var title: Localized? {
         didSet {
-            let attributes = AttributedString(self.title,
-                                              size: 14,
-                                              color: .blue)
-            self.titleLabel.set(attributed: attributes,
-                                alignment: .left,
-                                lineCount: 0,
-                                lineBreakMode: .byTruncatingTail)
+            guard let text = self.title else { return }
+            self.titleLabel.set(text: text, lineBreakMode: .byTruncatingTail)
         }
     }
 
@@ -90,7 +85,7 @@ class ToastView: UIView {
         self.titleLabel.alpha = 0
         self.buttonContainer.alpha = 0
 
-        self.showShadow(withOffset: 5)
+        self.addShadow(withOffset: 5)
         self.updateFor(state: self.toastState)
 
         if self.position == .top {
@@ -224,7 +219,7 @@ class ToastView: UIView {
             if UIScreen.main.isSmallerThan(screenSize: .tablet) {
                 self.width = superView.width * 0.95
             } else {
-                self.width = superView.width * TomorrowTheme.iPadPortraitWidthRatio
+                self.width = superView.width * Theme.iPadPortraitWidthRatio
             }
         case .alphaIn:
             self.titleLabel.alpha = 1

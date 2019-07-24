@@ -63,7 +63,7 @@ class LoadingButton: Button {
                                                name: UIResponder.keyboardWillHideNotification,
                                                object: nil)
 
-        self.showShadow(withOffset: 5)
+        self.addShadow(withOffset: 5)
 
         self.addSubview(self.loadingIndicator)
 
@@ -129,13 +129,5 @@ class LoadingButton: Button {
         self.alphaInAnimator.startAnimation()
         self.loadingIndicator.isHidden = !self.isLoading
         self.loadingIndicator.stopAnimating()
-    }
-
-    private func showShadow(withOffset offset: CGFloat) {
-        self.layer.shadowColor = UIColor.black.cgColor
-        self.layer.shadowOpacity = 0.2
-        self.layer.shadowOffset = CGSize(width: 0, height: offset)
-        self.layer.shadowRadius = 10
-        self.layer.masksToBounds = false
     }
 }

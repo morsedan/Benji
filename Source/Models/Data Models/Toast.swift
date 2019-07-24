@@ -14,7 +14,7 @@ struct Toast: Equatable {
     var priority: Int = 0
     var title: Localized
     var button: LoadingButton
-    var displayable: DisplayableItem
+    var displayable: ImageDisplayable
 
     static func == (lhs: Toast, rhs: Toast) -> Bool {
         return lhs.id == rhs.id

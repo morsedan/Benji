@@ -135,6 +135,7 @@
 		D6B2606C22E80B6A00143CF0 /* ToastScheduler.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6B2606B22E80B6A00143CF0 /* ToastScheduler.swift */; };
 		D6B2606E22E80E4000143CF0 /* ToastView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6B2606D22E80E4000143CF0 /* ToastView.swift */; };
 		D6B2607022E80E6500143CF0 /* ToastView.xib in Resources */ = {isa = PBXBuildFile; fileRef = D6B2606F22E80E6500143CF0 /* ToastView.xib */; };
+		D6B2607222E80FE000143CF0 /* XSmallLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6B2607122E80FE000143CF0 /* XSmallLabel.swift */; };
 		D6D145F421D5493000CD8CE4 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6D145F321D5493000CD8CE4 /* HomeViewController.swift */; };
 		D6D145FD21D550E400CD8CE4 /* AttributedString.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6D145FC21D550E400CD8CE4 /* AttributedString.swift */; };
 		D6D145FF21D5510400CD8CE4 /* StringStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6D145FE21D5510400CD8CE4 /* StringStyle.swift */; };
@@ -158,9 +159,7 @@
 		D6D14FFD21D5893700CD8CE4 /* IGListIndexPathResult.m in Sources */ = {isa = PBXBuildFile; fileRef = D6D14D8D21D5893500CD8CE4 /* IGListIndexPathResult.m */; };
 		D6D1500721D5E73D00CD8CE4 /* ChannelViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6D1500621D5E73D00CD8CE4 /* ChannelViewController.swift */; };
 		D6D1500C21D5E7C200CD8CE4 /* CollectionViewManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6D1500B21D5E7C200CD8CE4 /* CollectionViewManager.swift */; };
-		D6D1501021D5E9A800CD8CE4 /* TextDisplayable.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6D1500F21D5E9A800CD8CE4 /* TextDisplayable.swift */; };
 		D6D1501221D5EA0400CD8CE4 /* ImageDisplayable.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6D1501121D5EA0400CD8CE4 /* ImageDisplayable.swift */; };
-		D6D1501421D5EA2500CD8CE4 /* DisplyableItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6D1501321D5EA2500CD8CE4 /* DisplyableItem.swift */; };
 		D6D1501621D5F08700CD8CE4 /* DisplyableCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6D1501521D5F08700CD8CE4 /* DisplyableCell.swift */; };
 		D6D1501821D5F40F00CD8CE4 /* UICollectionView+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6D1501721D5F40F00CD8CE4 /* UICollectionView+Extensions.swift */; };
 		D6D1501A21D5F5D100CD8CE4 /* CollectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6D1501921D5F5D100CD8CE4 /* CollectionView.swift */; };
@@ -319,6 +318,7 @@
 		D6B2606B22E80B6A00143CF0 /* ToastScheduler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToastScheduler.swift; sourceTree = "<group>"; };
 		D6B2606D22E80E4000143CF0 /* ToastView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToastView.swift; sourceTree = "<group>"; };
 		D6B2606F22E80E6500143CF0 /* ToastView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ToastView.xib; sourceTree = "<group>"; };
+		D6B2607122E80FE000143CF0 /* XSmallLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = XSmallLabel.swift; sourceTree = "<group>"; };
 		D6D145F321D5493000CD8CE4 /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
 		D6D145FC21D550E400CD8CE4 /* AttributedString.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AttributedString.swift; sourceTree = "<group>"; };
 		D6D145FE21D5510400CD8CE4 /* StringStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StringStyle.swift; sourceTree = "<group>"; };
@@ -360,9 +360,7 @@
 		D6D1500321D589A300CD8CE4 /* IGListIndexPathResultInternal.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IGListIndexPathResultInternal.h; sourceTree = "<group>"; };
 		D6D1500621D5E73D00CD8CE4 /* ChannelViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChannelViewController.swift; sourceTree = "<group>"; };
 		D6D1500B21D5E7C200CD8CE4 /* CollectionViewManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollectionViewManager.swift; sourceTree = "<group>"; };
-		D6D1500F21D5E9A800CD8CE4 /* TextDisplayable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextDisplayable.swift; sourceTree = "<group>"; };
 		D6D1501121D5EA0400CD8CE4 /* ImageDisplayable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageDisplayable.swift; sourceTree = "<group>"; };
-		D6D1501321D5EA2500CD8CE4 /* DisplyableItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DisplyableItem.swift; sourceTree = "<group>"; };
 		D6D1501521D5F08700CD8CE4 /* DisplyableCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DisplyableCell.swift; sourceTree = "<group>"; };
 		D6D1501721D5F40F00CD8CE4 /* UICollectionView+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UICollectionView+Extensions.swift"; sourceTree = "<group>"; };
 		D6D1501921D5F5D100CD8CE4 /* CollectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollectionView.swift; sourceTree = "<group>"; };
@@ -499,9 +497,7 @@
 				D6432BF222D828480016001A /* CollectionDataSource.swift */,
 				D61EC0DA21D30CB300204BEE /* Dismissable.swift */,
 				D6D1460021D5514300CD8CE4 /* Localized.swift */,
-				D6D1500F21D5E9A800CD8CE4 /* TextDisplayable.swift */,
 				D6D1501121D5EA0400CD8CE4 /* ImageDisplayable.swift */,
-				D6D1501321D5EA2500CD8CE4 /* DisplyableItem.swift */,
 				D6D1501521D5F08700CD8CE4 /* DisplyableCell.swift */,
 				D6D1502821D6085200CD8CE4 /* ResourceObject.swift */,
 				D66F0FCE22BF060500BA277D /* Deeplinkable.swift */,
@@ -618,6 +614,7 @@
 				D6B2604022E6B9C600143CF0 /* Display2Label.swift */,
 				D6B2604222E6BAE400143CF0 /* RegularBoldLabel.swift */,
 				D6B2604422E6C09700143CF0 /* RegularSemiBoldLabel.swift */,
+				D6B2607122E80FE000143CF0 /* XSmallLabel.swift */,
 			);
 			path = Labels;
 			sourceTree = "<group>";
@@ -1143,6 +1140,7 @@
 				D6DADF6E2207DF33007D9EB1 /* ChannelsCollectionViewManager.swift in Sources */,
 				D6B2603822E6AB5E00143CF0 /* ChannelDetailBar.swift in Sources */,
 				D66F0FCF22BF060500BA277D /* Deeplinkable.swift in Sources */,
+				D6B2607222E80FE000143CF0 /* XSmallLabel.swift in Sources */,
 				D642737F22C9A7EC0088256B /* ContactsManager.swift in Sources */,
 				D642738A22C9B0170088256B /* ModalControllerAnimatedTransitioning.swift in Sources */,
 				D68483FF22CD0A1A00362AC3 /* TableView.swift in Sources */,
@@ -1170,7 +1168,6 @@
 				D6DADF722207DF83007D9EB1 /* ChannelsCollectionView.swift in Sources */,
 				D6D1502B21D69C3300CD8CE4 /* NSObject+Extensions.swift in Sources */,
 				D6D1460321D551B100CD8CE4 /* StringLibrary.swift in Sources */,
-				D6D1501021D5E9A800CD8CE4 /* TextDisplayable.swift in Sources */,
 				D642739122C9BFA10088256B /* AlertViewController.swift in Sources */,
 				D61EC0E621D30EB300204BEE /* View.swift in Sources */,
 				D642738F22C9BE330088256B /* TextAlertViewController.swift in Sources */,
@@ -1202,7 +1199,6 @@
 				D642737422C99D6A0088256B /* ContactsViewController.swift in Sources */,
 				D6D145F421D5493000CD8CE4 /* HomeViewController.swift in Sources */,
 				D642739722CA6E1F0088256B /* CommonWord.swift in Sources */,
-				D6D1501421D5EA2500CD8CE4 /* DisplyableItem.swift in Sources */,
 				D642736C22C98FA00088256B /* MathFunctions.swift in Sources */,
 				D62C635422BE9CBB00F4D097 /* FeedViewController.swift in Sources */,
 				D642738122C9AB290088256B /* ContactsScrolledModalController.swift in Sources */,

@@ -35,9 +35,13 @@ class Label: UILabel {
     }
 
     func setSize(withWidth width: CGFloat) {
+        self.size = self.getSize(withWidth: width)
+    }
+
+    func getSize(withWidth width: CGFloat) -> CGSize {
         guard let t = self.text,
             !t.isEmpty,
-            let attText = self.attributedText else { return }
+            let attText = self.attributedText else { return .zero }
 
         let attributes = attText.attributes(at: 0,
                                             longestEffectiveRange: nil,
@@ -50,6 +54,6 @@ class Label: UILabel {
                                                attributes: attributes,
                                                context: nil).size
 
-        self.size = labelSize
+        return labelSize
     }
 }

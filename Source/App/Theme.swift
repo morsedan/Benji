@@ -15,6 +15,7 @@ struct Theme {
     static let borderWidth: CGFloat = 2
     static let contentOffset: CGFloat = 12
     static let buttonHeight: CGFloat = 40
+    static let iPadPortraitWidthRatio: CGFloat = 0.65
 
     private init() {}
 }

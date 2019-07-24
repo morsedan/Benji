@@ -22,7 +22,7 @@ class ToastScheduler {
         switch toastType {
         case .systemMessage(let message):
             toast = self.createSystemMessageToast(for: message)
-        case .message(let message):
+        case .message(_):
             break
         }
 
@@ -33,7 +33,7 @@ class ToastScheduler {
 
     private func createSystemMessageToast(for systemMessage: SystemMessage) -> Toast? {
         let button = LoadingButton()
-        button.didSelect = { [unowned self] in
+        button.didSelect = {
             //Do something
         }
         return Toast(id: systemMessage.id + "system_message",
