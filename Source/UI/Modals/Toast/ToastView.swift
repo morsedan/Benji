@@ -62,7 +62,9 @@ class ToastView: UIView {
     private var title: Localized? {
         didSet {
             guard let text = self.title else { return }
-            self.titleLabel.set(text: text, lineBreakMode: .byTruncatingTail)
+            self.titleLabel.set(text: text,
+                                color: .white,
+                                lineBreakMode: .byTruncatingTail)
         }
     }
 
@@ -76,7 +78,7 @@ class ToastView: UIView {
         guard let superview = UIWindow.topWindow() else { return }
         superview.addSubview(self)
 
-        self.set(backgroundColor: .white)
+        self.set(backgroundColor: .purple)
 
         self.isUserInteractionEnabled = true
         self.layer.masksToBounds = true

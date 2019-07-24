@@ -33,8 +33,8 @@ class ToastScheduler {
 
     private func createSystemMessageToast(for systemMessage: SystemMessage) -> Toast? {
         let button = LoadingButton()
-        button.didSelect = {
-            //Do something
+        button.set(style: .rounded(color: .background3, text: "VIEW")) {
+
         }
         return Toast(id: systemMessage.id + "system_message",
                      analyticsID: "ToastSystemMessage",

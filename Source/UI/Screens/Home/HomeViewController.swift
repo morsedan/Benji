@@ -9,30 +9,6 @@
 import Foundation
 import PureLayout
 
-struct MeAvatar: Avatar {
-    var initials: String {
-        return "BD"
-    }
-
-    var firstName: String {
-        return "Benji"
-    }
-
-    var lastName: String {
-        return "Dodgson"
-    }
-
-    var photoUrl: URL?
-
-    var photo: UIImage? {
-        return UIImage(named: "Profile1")
-    }
-
-    var handle: String {
-        return "@benji"
-    }
-}
-
 enum HomeContentType: Int {
     case feed
     case list
@@ -45,7 +21,7 @@ class HomeViewController: FullScreenViewController {
     lazy var segmentControl = HomeSegmentControl(items: ["FEED", "LIST"])
     lazy var avatarView: AvatarView = {
         let avatarView = AvatarView()
-        avatarView.set(avatar: MeAvatar())
+        avatarView.set(avatar: Lorem.avatar())
         return avatarView
     }()
 
@@ -66,7 +42,7 @@ class HomeViewController: FullScreenViewController {
         self.avatarView.onTap { [unowned self] (tap) in
             let vc = ProfileViewController()
             self.present(vc, animated: true, completion: {
-                vc.set(avatar: MeAvatar())
+                vc.set(avatar: Lorem.avatar())
             })
         }
         self.headerContainer.addSubview(self.searchImageView)
@@ -78,26 +54,28 @@ class HomeViewController: FullScreenViewController {
 
         self.addButton.onTap { [unowned self] (tap) in
 
-            let name = Lorem.name()
-            ChannelManager.createChannel(channelName: name, uniqueName: name, type: .public)
-                .withProgressBanner("Creating channel with \(name)")
-                .withErrorBanner()
-                .ignoreUserInteractionEventsUntilDone()
-                .observe { (result) in
-                    switch result {
-                    case .success(let channel):
-                        let channelVC = ChannelViewController()
-                        self.present(channelVC, animated: true) {
-                            channelVC.loadMessages(for: .channel(channel))
-                        }
-                    case .failure(let error):
-                        if let tomorrowError = error as? ClientError {
-                            print(tomorrowError.localizedDescription)
-                        } else {
-                            print(error.localizedDescription)
-                        }
-                    }
-            }
+            ToastScheduler.shared.schedule(toastType: .systemMessage(Lorem.systemMessage()))
+
+//            let name = Lorem.name()
+//            ChannelManager.createChannel(channelName: name, uniqueName: name, type: .public)
+//                .withProgressBanner("Creating channel with \(name)")
+//                .withErrorBanner()
+//                .ignoreUserInteractionEventsUntilDone()
+//                .observe { (result) in
+//                    switch result {
+//                    case .success(let channel):
+//                        let channelVC = ChannelViewController()
+//                        self.present(channelVC, animated: true) {
+//                            channelVC.loadMessages(for: .channel(channel))
+//                        }
+//                    case .failure(let error):
+//                        if let tomorrowError = error as? ClientError {
+//                            print(tomorrowError.localizedDescription)
+//                        } else {
+//                            print(error.localizedDescription)
+//                        }
+//                    }
+//            }
 
 
 //            let vc = ContactsScrolledModalController()
