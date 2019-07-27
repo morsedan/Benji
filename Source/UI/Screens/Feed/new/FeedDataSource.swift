@@ -16,7 +16,7 @@ protocol FeedDatasource: class {
      - parameter verticalCardSwiperView: The `VerticalCardSwiperView` where we set the amount of cards.
      - returns: an `Int` with the amount of cards we want to show.
      */
-    func numberOfCards(feedContentView: FeedContentView) -> Int
+    func numberOfCards(cardSwiperView: CardSwiperView) -> Int
 
     /**
      Asks your data source object for the cell that corresponds to the specified item in the `VerticalCardSwiper`.
@@ -25,5 +25,5 @@ protocol FeedDatasource: class {
      - parameter index: The that the `CardCell` should be shown at.
      - returns: A CardCell object. The default value is an empty CardCell object.
      */
-    func cardForItemAt(feedContentView: FeedContentView, cardForItemAt index: Int) -> FeedCell
+    func cardForItemAt(cardSwiperView: CardSwiperView, cardForItemAt index: Int) -> FeedCell
 }

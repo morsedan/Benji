@@ -9,7 +9,7 @@
 import Foundation
 import TwilioChatClient
 
-class FeedCell: UICollectionViewCell, DisplayableCell {
+class CardCell: UICollectionViewCell, DisplayableCell {
     typealias ItemType = FeedType
 
     weak var delegate: FeedDelegate?

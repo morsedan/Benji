@@ -8,6 +8,6 @@
 
 import Foundation
 
-class FeedCollectionViewManager: CollectionViewManager<FeedCell> {
+class FeedCollectionViewManager: CollectionViewManager<CardCell> {
 
 }

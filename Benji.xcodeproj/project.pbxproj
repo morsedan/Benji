@@ -35,7 +35,7 @@
 		D61EC0FC21D437C100204BEE /* Pods_Benji.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D61EC0FB21D437C100204BEE /* Pods_Benji.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
 		D62C635422BE9CBB00F4D097 /* FeedViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D62C635322BE9CBB00F4D097 /* FeedViewController.swift */; };
 		D62C635622BE9E5C00F4D097 /* CollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D62C635522BE9E5C00F4D097 /* CollectionViewController.swift */; };
-		D62C635A22BEBADE00F4D097 /* FeedCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D62C635922BEBADE00F4D097 /* FeedCell.swift */; };
+		D62C635A22BEBADE00F4D097 /* CardCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D62C635922BEBADE00F4D097 /* CardCell.swift */; };
 		D635551B21E5B3D400530602 /* UIScrollView+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = D635551A21E5B3D400530602 /* UIScrollView+Extensions.swift */; };
 		D63826D22274C8C0001D4B8B /* ChannelManager+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = D63826D12274C8C0001D4B8B /* ChannelManager+Extensions.swift */; };
 		D642735122C857760088256B /* MessageContext.swift in Sources */ = {isa = PBXBuildFile; fileRef = D642735022C857760088256B /* MessageContext.swift */; };
@@ -106,6 +106,7 @@
 		D6815DB122ECAEC700E71251 /* MediumLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6815DB022ECAEC700E71251 /* MediumLabel.swift */; };
 		D6815DB322ECBA9D00E71251 /* FeedCollectionViewFlowLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6815DB222ECBA9D00E71251 /* FeedCollectionViewFlowLayout.swift */; };
 		D6815DB522ECC1B700E71251 /* FeedDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6815DB422ECC1B700E71251 /* FeedDataSource.swift */; };
+		D6815DB722ECC6EE00E71251 /* CardSwiperDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6815DB622ECC6EE00E71251 /* CardSwiperDelegate.swift */; };
 		D68483F922CC3DE400362AC3 /* ChannelCollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D68483F822CC3DE400362AC3 /* ChannelCollectionViewController.swift */; };
 		D68483FB22CD050D00362AC3 /* TableViewManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = D68483FA22CD050C00362AC3 /* TableViewManager.swift */; };
 		D68483FD22CD09C800362AC3 /* ListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D68483FC22CD09C800362AC3 /* ListViewController.swift */; };
@@ -138,7 +139,7 @@
 		D6B2607222E80FE000143CF0 /* XSmallLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6B2607122E80FE000143CF0 /* XSmallLabel.swift */; };
 		D6B260A722EAA97700143CF0 /* FeedDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6B260A622EAA97700143CF0 /* FeedDelegate.swift */; };
 		D6B260A922EAAFAD00143CF0 /* FeedCollectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6B260A822EAAFAD00143CF0 /* FeedCollectionView.swift */; };
-		D6B260AB22EAB00900143CF0 /* FeedContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6B260AA22EAB00900143CF0 /* FeedContentView.swift */; };
+		D6B260AB22EAB00900143CF0 /* CardSwiperView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6B260AA22EAB00900143CF0 /* CardSwiperView.swift */; };
 		D6D145F421D5493000CD8CE4 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6D145F321D5493000CD8CE4 /* HomeViewController.swift */; };
 		D6D145FD21D550E400CD8CE4 /* AttributedString.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6D145FC21D550E400CD8CE4 /* AttributedString.swift */; };
 		D6D145FF21D5510400CD8CE4 /* StringStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6D145FE21D5510400CD8CE4 /* StringStyle.swift */; };
@@ -221,7 +222,7 @@
 		D61EC0FB21D437C100204BEE /* Pods_Benji.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = Pods_Benji.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		D62C635322BE9CBB00F4D097 /* FeedViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedViewController.swift; sourceTree = "<group>"; };
 		D62C635522BE9E5C00F4D097 /* CollectionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollectionViewController.swift; sourceTree = "<group>"; };
-		D62C635922BEBADE00F4D097 /* FeedCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedCell.swift; sourceTree = "<group>"; };
+		D62C635922BEBADE00F4D097 /* CardCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardCell.swift; sourceTree = "<group>"; };
 		D635551A21E5B3D400530602 /* UIScrollView+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIScrollView+Extensions.swift"; sourceTree = "<group>"; };
 		D63826D12274C8C0001D4B8B /* ChannelManager+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ChannelManager+Extensions.swift"; sourceTree = "<group>"; };
 		D642735022C857760088256B /* MessageContext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageContext.swift; sourceTree = "<group>"; };
@@ -292,6 +293,7 @@
 		D6815DB022ECAEC700E71251 /* MediumLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MediumLabel.swift; sourceTree = "<group>"; };
 		D6815DB222ECBA9D00E71251 /* FeedCollectionViewFlowLayout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedCollectionViewFlowLayout.swift; sourceTree = "<group>"; };
 		D6815DB422ECC1B700E71251 /* FeedDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedDataSource.swift; sourceTree = "<group>"; };
+		D6815DB622ECC6EE00E71251 /* CardSwiperDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardSwiperDelegate.swift; sourceTree = "<group>"; };
 		D68483F822CC3DE400362AC3 /* ChannelCollectionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChannelCollectionViewController.swift; sourceTree = "<group>"; };
 		D68483FA22CD050C00362AC3 /* TableViewManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableViewManager.swift; sourceTree = "<group>"; };
 		D68483FC22CD09C800362AC3 /* ListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListViewController.swift; sourceTree = "<group>"; };
@@ -324,7 +326,7 @@
 		D6B2607122E80FE000143CF0 /* XSmallLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = XSmallLabel.swift; sourceTree = "<group>"; };
 		D6B260A622EAA97700143CF0 /* FeedDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedDelegate.swift; sourceTree = "<group>"; };
 		D6B260A822EAAFAD00143CF0 /* FeedCollectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedCollectionView.swift; sourceTree = "<group>"; };
-		D6B260AA22EAB00900143CF0 /* FeedContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedContentView.swift; sourceTree = "<group>"; };
+		D6B260AA22EAB00900143CF0 /* CardSwiperView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardSwiperView.swift; sourceTree = "<group>"; };
 		D6D145F321D5493000CD8CE4 /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
 		D6D145FC21D550E400CD8CE4 /* AttributedString.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AttributedString.swift; sourceTree = "<group>"; };
 		D6D145FE21D5510400CD8CE4 /* StringStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StringStyle.swift; sourceTree = "<group>"; };
@@ -762,12 +764,13 @@
 			children = (
 				D6B260A622EAA97700143CF0 /* FeedDelegate.swift */,
 				D642735A22C90C0F0088256B /* SwipeDirection.swift */,
-				D62C635922BEBADE00F4D097 /* FeedCell.swift */,
+				D62C635922BEBADE00F4D097 /* CardCell.swift */,
 				D6B260A822EAAFAD00143CF0 /* FeedCollectionView.swift */,
-				D6B260AA22EAB00900143CF0 /* FeedContentView.swift */,
+				D6B260AA22EAB00900143CF0 /* CardSwiperView.swift */,
 				D6815DAE22ECACCF00E71251 /* FeedCollectionViewManager.swift */,
 				D6815DB222ECBA9D00E71251 /* FeedCollectionViewFlowLayout.swift */,
 				D6815DB422ECC1B700E71251 /* FeedDataSource.swift */,
+				D6815DB622ECC6EE00E71251 /* CardSwiperDelegate.swift */,
 			);
 			path = new;
 			sourceTree = "<group>";
@@ -1083,7 +1086,7 @@
 				D6D14FFB21D5893700CD8CE4 /* DiffableBox.swift in Sources */,
 				D6D1501621D5F08700CD8CE4 /* DisplyableCell.swift in Sources */,
 				D66F0FE222C041AF00BA277D /* AvatarView.swift in Sources */,
-				D6B260AB22EAB00900143CF0 /* FeedContentView.swift in Sources */,
+				D6B260AB22EAB00900143CF0 /* CardSwiperView.swift in Sources */,
 				D642738622C9AF1C0088256B /* PagingModalController.swift in Sources */,
 				D6D1501C21D5F8AD00CD8CE4 /* MessageCell.swift in Sources */,
 				D684D6E922D0E1CB00874B08 /* EmptyChannelView.swift in Sources */,
@@ -1165,7 +1168,7 @@
 				D642736422C9132A0088256B /* EmptyFeedView.swift in Sources */,
 				D61EC0C021D3071400204BEE /* AppDelegate.swift in Sources */,
 				D646DB4022CFCFDB0055CC7C /* Future+Extensions.swift in Sources */,
-				D62C635A22BEBADE00F4D097 /* FeedCell.swift in Sources */,
+				D62C635A22BEBADE00F4D097 /* CardCell.swift in Sources */,
 				D642739322C9C0110088256B /* AlertView.swift in Sources */,
 				D6D145FD21D550E400CD8CE4 /* AttributedString.swift in Sources */,
 				D6D14D8F21D5893600CD8CE4 /* NSNumber+IGListDiffable.m in Sources */,
@@ -1185,6 +1188,7 @@
 				D642737122C991A60088256B /* ClosedRange+Extensions.swift in Sources */,
 				D6DADF722207DF83007D9EB1 /* ChannelsCollectionView.swift in Sources */,
 				D6D1502B21D69C3300CD8CE4 /* NSObject+Extensions.swift in Sources */,
+				D6815DB722ECC6EE00E71251 /* CardSwiperDelegate.swift in Sources */,
 				D6815DB122ECAEC700E71251 /* MediumLabel.swift in Sources */,
 				D6D1460321D551B100CD8CE4 /* StringLibrary.swift in Sources */,
 				D642739122C9BFA10088256B /* AlertViewController.swift in Sources */,

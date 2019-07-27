@@ -15,7 +15,7 @@ import Foundation
 
  If you want to handle actions like cards being swiped away, implement the `VerticalCardSwiperDelegate`.
  */
-class FeedContentView: View {
+class CardSwiperView: View {
 
     /// The collectionView where all the magic happens.
     var collectionView: FeedCollectionView!
@@ -95,7 +95,7 @@ class FeedContentView: View {
     }
     /// The currently focussed card index.
     var focussedCardIndex: Int? {
-        let center = self.convert(self.collectionView.center, to: self.verticalCardSwiperView)
+        let center = self.convert(self.collectionView.center, to: self.collectionView)
         if let indexPath = self.collectionView.indexPathForItem(at: center) {
             return indexPath.row
         }

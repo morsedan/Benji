@@ -8,7 +8,7 @@
 
 import Foundation
 
-class FeedViewController: CollectionViewController<FeedCell, FeedCollectionViewManager> {
+class FeedViewController: CollectionViewController<CardCell, FeedCollectionViewManager> {
 
     let animateInProperty = UIViewPropertyAnimator(duration: Theme.animationDuration,
                                                    curve: .easeInOut,
