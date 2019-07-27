@@ -33,19 +33,19 @@ class FeedContentView: View {
     /// The inset (spacing) at the top for the cards. Default is 40.
     var topInset: CGFloat = 40 {
         didSet {
-            self.setCardSwiperInsets()
+            self.setCardInsets()
         }
     }
     /// The inset (spacing) at each side of the cards. Default is 20.
     var sideInset: CGFloat = 20 {
         didSet {
-            self.setCardSwiperInsets()
+            self.setCardInsets()
         }
     }
     /// Sets how much of the next card should be visible. Default is 50.
     var visibleNextCardHeight: CGFloat = 50 {
         didSet {
-            self.setCardSwiperInsets()
+            self.setCardInsets()
         }
     }
     /// Vertical spacing between the focussed card and the bottom (next) card. Default is 40.
@@ -54,7 +54,7 @@ class FeedContentView: View {
             self.flowLayout.minimumLineSpacing = newValue
         }
         didSet {
-            self.setCardSwiperInsets()
+            self.setCardInsets()
         }
     }
     /// The transform animation that is shown on the top card when scrolling through the cards. Default is 0.05.
@@ -455,7 +455,7 @@ extension VerticalCardSwiper: UICollectionViewDelegate, UICollectionViewDataSour
             ])
     }
 
-    fileprivate func setCardSwiperInsets() {
+    private func setCardInsets() {
         let bottomInset = visibleNextCardHeight + flowLayout.minimumLineSpacing
         verticalCardSwiperView.contentInset = UIEdgeInsets(top: topInset, left: sideInset, bottom: bottomInset, right: sideInset)
     }
