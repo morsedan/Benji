@@ -10,20 +10,7 @@ import Foundation
 
 class EmptyFeedView: View {
 
-    let label = Label()
-
-    var text: Localized? {
-        didSet {
-            guard let text = self.text else { return }
-
-            let attributed = AttributedString(text,
-                                              fontType: .medium,
-                                              color: .white)
-            self.label.set(attributed: attributed,
-                           alignment: .center)
-            self.layoutNow()
-        }
-    }
+    let label = MediumLabel()
 
     override func initialize() {
 
@@ -40,5 +27,9 @@ class EmptyFeedView: View {
         }
 
         self.label.centerOnXAndY()
+    }
+
+    func set(text: Localized) {
+        self.label.set(text: text, alignment: .center)
     }
 }

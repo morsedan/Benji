@@ -15,7 +15,7 @@ class CollectionView: UICollectionView {
     init(flowLayout: UICollectionViewFlowLayout) {
         super.init(frame: .zero, collectionViewLayout: flowLayout)
         self.set(backgroundColor: .clear)
-        self.initializeViews()
+        self.initialize()
     }
     
     required init?(coder aDecoder: NSCoder) {
@@ -33,7 +33,7 @@ class CollectionView: UICollectionView {
         }
     }
 
-    private func initializeViews() {
+    func initialize() {
         self.addSubview(self.activityIndicator)
     }
 

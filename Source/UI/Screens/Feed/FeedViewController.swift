@@ -8,7 +8,7 @@
 
 import Foundation
 
-class FeedViewController: ViewController {
+class FeedViewController: CollectionViewController<FeedCell, FeedCollectionViewManager> {
 
     let animateInProperty = UIViewPropertyAnimator(duration: Theme.animationDuration,
                                                    curve: .easeInOut,
@@ -17,18 +17,6 @@ class FeedViewController: ViewController {
     let animateOutProperty = UIViewPropertyAnimator(duration: Theme.animationDuration,
                                                    curve: .easeInOut,
                                                    animations: nil)
-
-    lazy var emptyView: EmptyFeedView = {
-        let view = EmptyFeedView()
-        view.text = LocalizedString(id: "", default: "🎉 You are all done!")
-        return view
-    }()
-
-    private var items: [FeedType] = [] {
-        didSet {
-           // self.reloadData()
-        }
-    }
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -42,7 +30,7 @@ class FeedViewController: ViewController {
         for _ in 0...10 {
             items.append(.system(Lorem.systemParagraph()))
         }
-        self.items = items 
+        self.manager.set(newItems: items) 
     }
 
     func animateIn(completion: @escaping CompletionHandler) {

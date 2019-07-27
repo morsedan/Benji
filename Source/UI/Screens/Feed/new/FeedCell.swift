@@ -9,7 +9,8 @@
 import Foundation
 import TwilioChatClient
 
-class FeedCell: UICollectionViewCell {
+class FeedCell: UICollectionViewCell, DisplayableCell {
+    typealias ItemType = FeedType
 
     weak var delegate: FeedDelegate?
     let textView = FeedTextView()
@@ -24,9 +25,11 @@ class FeedCell: UICollectionViewCell {
 //        self.roundCorners()
 //        self.addShadow(withOffset: 20)
 //    }
+    
+    func configure(with item: FeedType?) {
+        guard let feedItem = item else { return }
 
-    func configure(with item: FeedType) {
-        switch item {
+        switch feedItem {
         case .system(let systemMessage):
             self.textView.set(localizedText: systemMessage.body)
             self.avatarView.set(avatar: systemMessage.avatar)
