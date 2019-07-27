@@ -48,9 +48,10 @@ class CollectionView: UICollectionView {
     }
 
     /// Registers a reusable view for a specific SectionKind
-    public func register<T: UICollectionReusableView>(_ reusableViewClass: T.Type, forSupplementaryViewOfKind kind: String) {
-        register(reusableViewClass,
-                 forSupplementaryViewOfKind: kind,
-                 withReuseIdentifier: String(describing: T.self))
+    public func register<T: UICollectionReusableView>(_ reusableViewClass: T.Type,
+                                                      forSupplementaryViewOfKind kind: String) {
+        self.register(reusableViewClass,
+                      forSupplementaryViewOfKind: kind,
+                      withReuseIdentifier: String(describing: T.self))
     }
 }

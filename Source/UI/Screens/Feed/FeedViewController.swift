@@ -8,7 +8,7 @@
 
 import Foundation
 
-class FeedViewController: SwipeableViewController {
+class FeedViewController: ViewController {
 
     let animateInProperty = UIViewPropertyAnimator(duration: Theme.animationDuration,
                                                    curve: .easeInOut,
@@ -26,14 +26,13 @@ class FeedViewController: SwipeableViewController {
 
     private var items: [FeedType] = [] {
         didSet {
-            self.reloadData()
+           // self.reloadData()
         }
     }
 
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        self.dataSource = self
         self.addItems()
     }
 
@@ -75,25 +74,5 @@ class FeedViewController: SwipeableViewController {
         }
 
         animator.startAnimation()
-    }
-}
-
-extension FeedViewController: SwipeableDataSource {
-
-    func numberOfCards() -> Int {
-        return self.items.count
-    }
-
-    func card(forItemAtIndex index: Int) -> SwipeableView {
-        guard let item = self.items[safe: index] else { return SwipeableView() }
-
-        let feedCell = FeedCell()
-        feedCell.configure(with: item)
-
-        return feedCell
-    }
-
-    func viewForEmptyCards() -> UIView? {
-        return nil//self.emptyView
     }
 }
