@@ -18,6 +18,17 @@ class FeedViewController: CollectionViewController<FeedCell, FeedCollectionViewM
                                                    curve: .easeInOut,
                                                    animations: nil)
 
+
+    init() {
+        let flowLayout = FeedCollectionViewFlowLayout()
+        let collectionView = FeedCollectionView(flowLayout: flowLayout)
+        super.init(with: collectionView)
+    }
+
+    required init?(coder aDecoder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+
     override func viewDidLoad() {
         super.viewDidLoad()
 
