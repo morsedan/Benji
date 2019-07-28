@@ -18,7 +18,7 @@ class LaunchManager {
 
     // Important - this identity would be assigned by your app, for
     // instance after a user logs in
-    private let url = "http://benji.herokuapp.com/parse"
+    private let url = "https://benji.herokuapp.com/parse"
     private let appID = "benjamindodgson.Benji"
     private let clientKey = "myMasterKey"
     private let tempPhone = "2068509234"//Used for demo

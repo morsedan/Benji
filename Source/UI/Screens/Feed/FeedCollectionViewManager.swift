@@ -22,7 +22,8 @@ class FeedCollectionViewManager: NSObject {
     }
 
     private func initialize() {
-
+        self.kolodaView.countOfVisibleCards = 3
+        self.kolodaView.backgroundCardsTopMargin = 10
     }
 
     func set(items: [FeedType]) {
@@ -38,7 +39,7 @@ extension FeedCollectionViewManager: KolodaViewDataSource {
     }
 
     func kolodaSpeedThatCardShouldDrag(_ koloda: KolodaView) -> DragSpeed {
-        return .default
+        return .slow
     }
 
     func koloda(_ koloda: KolodaView, viewForCardAt index: Int) -> UIView {
@@ -51,5 +52,24 @@ extension FeedCollectionViewManager: KolodaViewDataSource {
 
 extension FeedCollectionViewManager: KolodaViewDelegate {
 
+    func koloda(_ koloda: KolodaView, allowedDirectionsForIndex index: Int) -> [SwipeResultDirection] {
+        return [.left, .right]
+    }
+
+    func koloda(_ koloda: KolodaView, didSwipeCardAt index: Int, in direction: SwipeResultDirection) {
+
+    }
+
+    func kolodaDidRunOutOfCards(_ koloda: KolodaView) {
+        //Show empty view
+    }
+
+    func koloda(_ koloda: KolodaView, didShowCardAt index: Int) {
+        
+    }
+
+    func koloda(_ koloda: KolodaView, viewForCardOverlayAt index: Int) -> OverlayView? {
+        return FeedOverlayView()
+    }
 
 }

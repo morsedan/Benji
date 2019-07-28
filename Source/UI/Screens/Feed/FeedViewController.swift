@@ -36,6 +36,8 @@ class FeedViewController: ViewController {
 
         self.kolodaView.dataSource = self.manager
         self.kolodaView.delegate = self.manager
+
+        self.addItems()
     }
 
     private func addItems() {
@@ -44,7 +46,7 @@ class FeedViewController: ViewController {
         for _ in 0...10 {
             items.append(.system(Lorem.systemParagraph()))
         }
-       // self.manager.set(newItems: items) 
+        self.manager.set(items: items)
     }
 
     func animateIn(completion: @escaping CompletionHandler) {
