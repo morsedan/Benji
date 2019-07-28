@@ -7,71 +7,49 @@
 //
 
 import Foundation
-import VerticalCardSwiper
+import Koloda
 
 class FeedCollectionViewManager: NSObject {
 
-    private let cardSwiper: VerticalCardSwiper
+    private let kolodaView: KolodaView
 
-    init(with cardSwiper: VerticalCardSwiper) {
-        self.cardSwiper = cardSwiper
+    private var items: [FeedType] = []
+
+    init(with kolodaView: KolodaView) {
+        self.kolodaView = kolodaView
         super.init()
+        self.initialize()
     }
 
     private func initialize() {
-        self.cardSwiper.register(FeedCell.self, forCellWithReuseIdentifier: "FeedCell")
-        self.cardSwiper.isStackOnBottom = true
-        self.cardSwiper.isStackingEnabled = true
-        self.cardSwiper.isSideSwipingEnabled = true
-        self.cardSwiper.stackedCardsCount = 3
+
+    }
+
+    func set(items: [FeedType]) {
+        self.items = items
+        self.kolodaView.reloadData()
     }
 }
 
-extension FeedCollectionViewManager: VerticalCardSwiperDatasource {
+extension FeedCollectionViewManager: KolodaViewDataSource {
 
-    func numberOfCards(verticalCardSwiperView: VerticalCardSwiperView) -> Int {
-        return 0
+    func kolodaNumberOfCards(_ koloda: KolodaView) -> Int {
+        return self.items.count
     }
 
-    func cardForItemAt(verticalCardSwiperView: VerticalCardSwiperView, cardForItemAt index: Int) -> CardCell {
-        guard let cell = verticalCardSwiperView.dequeueReusableCell(withReuseIdentifier: "FeedCell", for: index) as? FeedCell else { return CardCell() }
+    func kolodaSpeedThatCardShouldDrag(_ koloda: KolodaView) -> DragSpeed {
+        return .default
+    }
 
-        cell.configure(with: nil)
-        return cell
+    func koloda(_ koloda: KolodaView, viewForCardAt index: Int) -> UIView {
+        guard let item = self.items[safe: index] else { return UIView() }
+        let feedView = FeedView()
+        feedView.configure(with: item)
+        return feedView
     }
 }
 
-extension FeedCollectionViewManager: VerticalCardSwiperDelegate {
+extension FeedCollectionViewManager: KolodaViewDelegate {
 
-    func willSwipeCardAway(card: CardCell, index: Int, swipeDirection: SwipeDirection) {
-        
-    }
 
-    func didSwipeCardAway(card: CardCell, index: Int, swipeDirection: SwipeDirection) {
-
-    }
-
-    func didDragCard(card: CardCell, index: Int, swipeDirection: SwipeDirection) {
-        
-    }
-
-    func didTapCard(verticalCardSwiperView: VerticalCardSwiperView, index: Int) {
-
-    }
-
-    func didHoldCard(verticalCardSwiperView: VerticalCardSwiperView, index: Int, state: UIGestureRecognizer.State) {
-
-    }
-
-    func didScroll(verticalCardSwiperView: VerticalCardSwiperView) {
-
-    }
-
-    func didEndScroll(verticalCardSwiperView: VerticalCardSwiperView) {
-        
-    }
-
-    func sizeForItem(verticalCardSwiperView: VerticalCardSwiperView, index: Int) -> CGSize {
-        return .zero
-    }
 }

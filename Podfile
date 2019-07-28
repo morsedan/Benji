@@ -10,7 +10,8 @@ target 'Benji' do
   pod 'GestureRecognizerClosures'
   pod 'PureLayout'
   pod 'ReactiveSwift'
-  pod 'VerticalCardSwiper'
+  pod 'Koloda'
+
 end
 
 post_install do |installer|

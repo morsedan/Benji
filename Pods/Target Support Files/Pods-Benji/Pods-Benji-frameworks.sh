@@ -145,24 +145,26 @@ strip_invalid_archs() {
 if [[ "$CONFIGURATION" == "Debug" ]]; then
   install_framework "${BUILT_PRODUCTS_DIR}/Bolts/Bolts.framework"
   install_framework "${BUILT_PRODUCTS_DIR}/GestureRecognizerClosures/GestureRecognizerClosures.framework"
+  install_framework "${BUILT_PRODUCTS_DIR}/Koloda/Koloda.framework"
   install_framework "${BUILT_PRODUCTS_DIR}/Parse/Parse.framework"
   install_framework "${BUILT_PRODUCTS_DIR}/PureLayout/PureLayout.framework"
   install_framework "${BUILT_PRODUCTS_DIR}/ReactiveSwift/ReactiveSwift.framework"
   install_framework "${PODS_ROOT}/TwilioAccessManager/TwilioAccessManager.framework"
   install_framework "${PODS_ROOT}/TwilioChatClient/TwilioChatClient.framework"
   install_dsym "${PODS_ROOT}/TwilioChatClient/TwilioChatClient.framework.dSYM"
-  install_framework "${BUILT_PRODUCTS_DIR}/VerticalCardSwiper/VerticalCardSwiper.framework"
+  install_framework "${BUILT_PRODUCTS_DIR}/pop/pop.framework"
 fi
 if [[ "$CONFIGURATION" == "Release" ]]; then
   install_framework "${BUILT_PRODUCTS_DIR}/Bolts/Bolts.framework"
   install_framework "${BUILT_PRODUCTS_DIR}/GestureRecognizerClosures/GestureRecognizerClosures.framework"
+  install_framework "${BUILT_PRODUCTS_DIR}/Koloda/Koloda.framework"
   install_framework "${BUILT_PRODUCTS_DIR}/Parse/Parse.framework"
   install_framework "${BUILT_PRODUCTS_DIR}/PureLayout/PureLayout.framework"
   install_framework "${BUILT_PRODUCTS_DIR}/ReactiveSwift/ReactiveSwift.framework"
   install_framework "${PODS_ROOT}/TwilioAccessManager/TwilioAccessManager.framework"
   install_framework "${PODS_ROOT}/TwilioChatClient/TwilioChatClient.framework"
   install_dsym "${PODS_ROOT}/TwilioChatClient/TwilioChatClient.framework.dSYM"
-  install_framework "${BUILT_PRODUCTS_DIR}/VerticalCardSwiper/VerticalCardSwiper.framework"
+  install_framework "${BUILT_PRODUCTS_DIR}/pop/pop.framework"
 fi
 if [ "${COCOAPODS_PARALLEL_CODE_SIGN}" == "true" ]; then
   wait

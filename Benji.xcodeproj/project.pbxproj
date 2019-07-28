@@ -101,7 +101,7 @@
 		D66F102622C7C6A900BA277D /* Lorem.swift in Sources */ = {isa = PBXBuildFile; fileRef = D66F102522C7C6A900BA277D /* Lorem.swift */; };
 		D66F102822C7D1D200BA277D /* ChannelCellContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D66F102722C7D1D200BA277D /* ChannelCellContentView.swift */; };
 		D6815DB122ECAEC700E71251 /* MediumLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6815DB022ECAEC700E71251 /* MediumLabel.swift */; };
-		D6815DB922EE1CAC00E71251 /* FeedCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6815DB822EE1CAC00E71251 /* FeedCell.swift */; };
+		D6815DB922EE1CAC00E71251 /* FeedView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6815DB822EE1CAC00E71251 /* FeedView.swift */; };
 		D6815DBB22EE1F1400E71251 /* FeedCollectionViewManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6815DBA22EE1F1400E71251 /* FeedCollectionViewManager.swift */; };
 		D68483F922CC3DE400362AC3 /* ChannelCollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D68483F822CC3DE400362AC3 /* ChannelCollectionViewController.swift */; };
 		D68483FB22CD050D00362AC3 /* TableViewManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = D68483FA22CD050C00362AC3 /* TableViewManager.swift */; };
@@ -282,7 +282,7 @@
 		D66F102522C7C6A900BA277D /* Lorem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Lorem.swift; sourceTree = "<group>"; };
 		D66F102722C7D1D200BA277D /* ChannelCellContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChannelCellContentView.swift; sourceTree = "<group>"; };
 		D6815DB022ECAEC700E71251 /* MediumLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MediumLabel.swift; sourceTree = "<group>"; };
-		D6815DB822EE1CAC00E71251 /* FeedCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedCell.swift; sourceTree = "<group>"; };
+		D6815DB822EE1CAC00E71251 /* FeedView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedView.swift; sourceTree = "<group>"; };
 		D6815DBA22EE1F1400E71251 /* FeedCollectionViewManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedCollectionViewManager.swift; sourceTree = "<group>"; };
 		D68483F822CC3DE400362AC3 /* ChannelCollectionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChannelCollectionViewController.swift; sourceTree = "<group>"; };
 		D68483FA22CD050C00362AC3 /* TableViewManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableViewManager.swift; sourceTree = "<group>"; };
@@ -562,7 +562,7 @@
 				D62C635322BE9CBB00F4D097 /* FeedViewController.swift */,
 				D642736322C9132A0088256B /* EmptyFeedView.swift */,
 				D642736522C971FD0088256B /* FeedTextView.swift */,
-				D6815DB822EE1CAC00E71251 /* FeedCell.swift */,
+				D6815DB822EE1CAC00E71251 /* FeedView.swift */,
 				D6815DBA22EE1F1400E71251 /* FeedCollectionViewManager.swift */,
 			);
 			path = Feed;
@@ -1004,25 +1004,27 @@
 				"${SRCROOT}/Pods/Target Support Files/Pods-Benji/Pods-Benji-frameworks.sh",
 				"${BUILT_PRODUCTS_DIR}/Bolts/Bolts.framework",
 				"${BUILT_PRODUCTS_DIR}/GestureRecognizerClosures/GestureRecognizerClosures.framework",
+				"${BUILT_PRODUCTS_DIR}/Koloda/Koloda.framework",
 				"${BUILT_PRODUCTS_DIR}/Parse/Parse.framework",
 				"${BUILT_PRODUCTS_DIR}/PureLayout/PureLayout.framework",
 				"${BUILT_PRODUCTS_DIR}/ReactiveSwift/ReactiveSwift.framework",
 				"${PODS_ROOT}/TwilioAccessManager/TwilioAccessManager.framework",
 				"${PODS_ROOT}/TwilioChatClient/TwilioChatClient.framework",
 				"${PODS_ROOT}/TwilioChatClient/TwilioChatClient.framework.dSYM",
-				"${BUILT_PRODUCTS_DIR}/VerticalCardSwiper/VerticalCardSwiper.framework",
+				"${BUILT_PRODUCTS_DIR}/pop/pop.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Bolts.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GestureRecognizerClosures.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Koloda.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Parse.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/PureLayout.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/ReactiveSwift.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/TwilioAccessManager.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/TwilioChatClient.framework",
 				"${DWARF_DSYM_FOLDER_PATH}/TwilioChatClient.framework.dSYM",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/VerticalCardSwiper.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/pop.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -1075,7 +1077,7 @@
 				D684D6E922D0E1CB00874B08 /* EmptyChannelView.swift in Sources */,
 				D6D1460121D5514300CD8CE4 /* Localized.swift in Sources */,
 				D6D1504F21E304D800CD8CE4 /* BouncyCollectionViewLayout.swift in Sources */,
-				D6815DB922EE1CAC00E71251 /* FeedCell.swift in Sources */,
+				D6815DB922EE1CAC00E71251 /* FeedView.swift in Sources */,
 				D61EC0F521D3151400204BEE /* NSAttributedString+Extensions.swift in Sources */,
 				D6D1460721D552B100CD8CE4 /* Character+Extensions.swift in Sources */,
 				D6B2606C22E80B6A00143CF0 /* ToastScheduler.swift in Sources */,

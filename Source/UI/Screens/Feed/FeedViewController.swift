@@ -7,7 +7,7 @@
 //
 
 import Foundation
-import VerticalCardSwiper
+import Koloda
 
 class FeedViewController: ViewController {
 
@@ -20,22 +20,22 @@ class FeedViewController: ViewController {
                                                    curve: .easeInOut,
                                                    animations: nil)
 
-    private let cardSwiper = VerticalCardSwiper(frame: .zero)
+    private let kolodaView = KolodaView()
 
     lazy var manager: FeedCollectionViewManager = {
-        let manager = FeedCollectionViewManager(with: self.cardSwiper)
+        let manager = FeedCollectionViewManager(with: self.kolodaView)
         return manager
     }()
 
     override func loadView() {
-        self.view = self.cardSwiper
+        self.view = self.kolodaView
     }
 
     override func initializeViews() {
         super.initializeViews()
 
-        self.cardSwiper.datasource = self.manager
-        self.cardSwiper.delegate = self.manager
+        self.kolodaView.dataSource = self.manager
+        self.kolodaView.delegate = self.manager
     }
 
     private func addItems() {
