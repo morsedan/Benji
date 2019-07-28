@@ -8,7 +8,7 @@
 
 import Foundation
 
-class FeedViewController: CollectionViewController<CardCell, FeedCollectionViewManager> {
+class FeedViewController: ViewController {
 
     let animateInProperty = UIViewPropertyAnimator(duration: Theme.animationDuration,
                                                    curve: .easeInOut,
@@ -18,16 +18,6 @@ class FeedViewController: CollectionViewController<CardCell, FeedCollectionViewM
                                                    curve: .easeInOut,
                                                    animations: nil)
 
-
-    init() {
-        let flowLayout = FeedCollectionViewFlowLayout()
-        let collectionView = FeedCollectionView(flowLayout: flowLayout)
-        super.init(with: collectionView)
-    }
-
-    required init?(coder aDecoder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
-    }
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -41,7 +31,7 @@ class FeedViewController: CollectionViewController<CardCell, FeedCollectionViewM
         for _ in 0...10 {
             items.append(.system(Lorem.systemParagraph()))
         }
-        self.manager.set(newItems: items) 
+       // self.manager.set(newItems: items) 
     }
 
     func animateIn(completion: @escaping CompletionHandler) {
