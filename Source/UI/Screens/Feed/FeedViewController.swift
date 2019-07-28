@@ -7,8 +7,10 @@
 //
 
 import Foundation
+import VerticalCardSwiper
 
 class FeedViewController: ViewController {
+
 
     let animateInProperty = UIViewPropertyAnimator(duration: Theme.animationDuration,
                                                    curve: .easeInOut,
@@ -18,11 +20,21 @@ class FeedViewController: ViewController {
                                                    curve: .easeInOut,
                                                    animations: nil)
 
+    private let cardSwiper = VerticalCardSwiper(frame: .zero)
 
-    override func viewDidLoad() {
-        super.viewDidLoad()
+    lazy var manager: FeedCollectionViewManager = {
+        let manager = FeedCollectionViewManager(with: self.cardSwiper)
+        return manager
+    }()
 
-        self.addItems()
+    override func loadView() {
+        self.view = self.cardSwiper
+    }
+
+    override func initializeViews() {
+        super.initializeViews()
+
+        self.cardSwiper.datasource = self.manager
     }
 
     private func addItems() {
