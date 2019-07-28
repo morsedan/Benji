@@ -1004,6 +1004,7 @@
 				"${PODS_ROOT}/TwilioAccessManager/TwilioAccessManager.framework",
 				"${PODS_ROOT}/TwilioChatClient/TwilioChatClient.framework",
 				"${PODS_ROOT}/TwilioChatClient/TwilioChatClient.framework.dSYM",
+				"${BUILT_PRODUCTS_DIR}/VerticalCardSwiper/VerticalCardSwiper.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
@@ -1015,6 +1016,7 @@
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/TwilioAccessManager.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/TwilioChatClient.framework",
 				"${DWARF_DSYM_FOLDER_PATH}/TwilioChatClient.framework.dSYM",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/VerticalCardSwiper.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;

@@ -151,6 +151,7 @@ if [[ "$CONFIGURATION" == "Debug" ]]; then
   install_framework "${PODS_ROOT}/TwilioAccessManager/TwilioAccessManager.framework"
   install_framework "${PODS_ROOT}/TwilioChatClient/TwilioChatClient.framework"
   install_dsym "${PODS_ROOT}/TwilioChatClient/TwilioChatClient.framework.dSYM"
+  install_framework "${BUILT_PRODUCTS_DIR}/VerticalCardSwiper/VerticalCardSwiper.framework"
 fi
 if [[ "$CONFIGURATION" == "Release" ]]; then
   install_framework "${BUILT_PRODUCTS_DIR}/Bolts/Bolts.framework"
@@ -161,6 +162,7 @@ if [[ "$CONFIGURATION" == "Release" ]]; then
   install_framework "${PODS_ROOT}/TwilioAccessManager/TwilioAccessManager.framework"
   install_framework "${PODS_ROOT}/TwilioChatClient/TwilioChatClient.framework"
   install_dsym "${PODS_ROOT}/TwilioChatClient/TwilioChatClient.framework.dSYM"
+  install_framework "${BUILT_PRODUCTS_DIR}/VerticalCardSwiper/VerticalCardSwiper.framework"
 fi
 if [ "${COCOAPODS_PARALLEL_CODE_SIGN}" == "true" ]; then
   wait

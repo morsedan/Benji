@@ -9,6 +9,7 @@ PODS:
   - ReactiveSwift (6.0.0)
   - TwilioAccessManager (1.1.2)
   - TwilioChatClient (2.4.6)
+  - VerticalCardSwiper (2.0.0)
 
 DEPENDENCIES:
   - GestureRecognizerClosures
@@ -17,6 +18,7 @@ DEPENDENCIES:
   - ReactiveSwift
   - TwilioAccessManager
   - TwilioChatClient
+  - VerticalCardSwiper
 
 SPEC REPOS:
   https://github.com/cocoapods/specs.git:
@@ -27,6 +29,7 @@ SPEC REPOS:
     - ReactiveSwift
     - TwilioAccessManager
     - TwilioChatClient
+    - VerticalCardSwiper
 
 SPEC CHECKSUMS:
   Bolts: ac6567323eac61e203f6a9763667d0f711be34c8
@@ -36,7 +39,8 @@ SPEC CHECKSUMS:
   ReactiveSwift: 24b7ed245617bbfd30ee0c87779b6c64ac1b4518
   TwilioAccessManager: f3b0d9edd2eb5a044e50ff78057ab13611a0baa1
   TwilioChatClient: a942ada72abaaac1e25cec16826771441e1afb75
+  VerticalCardSwiper: bfcd8f221fc831263ce763bb1a8523bae5e7a7fa
 
-PODFILE CHECKSUM: 57ebadc3a8032fb068f2d5935c35182b0fabad41
+PODFILE CHECKSUM: 7bc2516df7c88d312ace708559e02261f4e57263
 
 COCOAPODS: 1.5.3
