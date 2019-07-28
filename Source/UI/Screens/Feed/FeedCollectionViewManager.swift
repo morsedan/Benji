@@ -20,7 +20,10 @@ class FeedCollectionViewManager: NSObject {
 
     private func initialize() {
         self.cardSwiper.register(FeedCell.self, forCellWithReuseIdentifier: "FeedCell")
-        self.cardSwiper.datasource = self
+        self.cardSwiper.isStackOnBottom = true
+        self.cardSwiper.isStackingEnabled = true
+        self.cardSwiper.isSideSwipingEnabled = true
+        self.cardSwiper.stackedCardsCount = 3
     }
 }
 
@@ -35,5 +38,40 @@ extension FeedCollectionViewManager: VerticalCardSwiperDatasource {
 
         cell.configure(with: nil)
         return cell
+    }
+}
+
+extension FeedCollectionViewManager: VerticalCardSwiperDelegate {
+
+    func willSwipeCardAway(card: CardCell, index: Int, swipeDirection: SwipeDirection) {
+        
+    }
+
+    func didSwipeCardAway(card: CardCell, index: Int, swipeDirection: SwipeDirection) {
+
+    }
+
+    func didDragCard(card: CardCell, index: Int, swipeDirection: SwipeDirection) {
+        
+    }
+
+    func didTapCard(verticalCardSwiperView: VerticalCardSwiperView, index: Int) {
+
+    }
+
+    func didHoldCard(verticalCardSwiperView: VerticalCardSwiperView, index: Int, state: UIGestureRecognizer.State) {
+
+    }
+
+    func didScroll(verticalCardSwiperView: VerticalCardSwiperView) {
+
+    }
+
+    func didEndScroll(verticalCardSwiperView: VerticalCardSwiperView) {
+        
+    }
+
+    func sizeForItem(verticalCardSwiperView: VerticalCardSwiperView, index: Int) -> CGSize {
+        return .zero
     }
 }

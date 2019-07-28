@@ -35,6 +35,7 @@ class FeedViewController: ViewController {
         super.initializeViews()
 
         self.cardSwiper.datasource = self.manager
+        self.cardSwiper.delegate = self.manager
     }
 
     private func addItems() {
