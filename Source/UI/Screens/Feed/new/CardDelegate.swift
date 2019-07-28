@@ -9,7 +9,7 @@
 import Foundation
 
 /// This delegate is used for delegating `CardCell` actions.
-protocol FeedDelegate: class {
+protocol CardDelegate: class {
 
     /**
      Called right before a CardCell is swiped away.

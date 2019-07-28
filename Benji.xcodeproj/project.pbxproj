@@ -105,7 +105,7 @@
 		D6815DAF22ECACCF00E71251 /* FeedCollectionViewManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6815DAE22ECACCF00E71251 /* FeedCollectionViewManager.swift */; };
 		D6815DB122ECAEC700E71251 /* MediumLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6815DB022ECAEC700E71251 /* MediumLabel.swift */; };
 		D6815DB322ECBA9D00E71251 /* FeedCollectionViewFlowLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6815DB222ECBA9D00E71251 /* FeedCollectionViewFlowLayout.swift */; };
-		D6815DB522ECC1B700E71251 /* FeedDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6815DB422ECC1B700E71251 /* FeedDataSource.swift */; };
+		D6815DB522ECC1B700E71251 /* CardSwiperDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6815DB422ECC1B700E71251 /* CardSwiperDataSource.swift */; };
 		D6815DB722ECC6EE00E71251 /* CardSwiperDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6815DB622ECC6EE00E71251 /* CardSwiperDelegate.swift */; };
 		D68483F922CC3DE400362AC3 /* ChannelCollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D68483F822CC3DE400362AC3 /* ChannelCollectionViewController.swift */; };
 		D68483FB22CD050D00362AC3 /* TableViewManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = D68483FA22CD050C00362AC3 /* TableViewManager.swift */; };
@@ -137,7 +137,7 @@
 		D6B2606E22E80E4000143CF0 /* ToastView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6B2606D22E80E4000143CF0 /* ToastView.swift */; };
 		D6B2607022E80E6500143CF0 /* ToastView.xib in Resources */ = {isa = PBXBuildFile; fileRef = D6B2606F22E80E6500143CF0 /* ToastView.xib */; };
 		D6B2607222E80FE000143CF0 /* XSmallLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6B2607122E80FE000143CF0 /* XSmallLabel.swift */; };
-		D6B260A722EAA97700143CF0 /* FeedDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6B260A622EAA97700143CF0 /* FeedDelegate.swift */; };
+		D6B260A722EAA97700143CF0 /* CardDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6B260A622EAA97700143CF0 /* CardDelegate.swift */; };
 		D6B260A922EAAFAD00143CF0 /* FeedCollectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6B260A822EAAFAD00143CF0 /* FeedCollectionView.swift */; };
 		D6B260AB22EAB00900143CF0 /* CardSwiperView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6B260AA22EAB00900143CF0 /* CardSwiperView.swift */; };
 		D6D145F421D5493000CD8CE4 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6D145F321D5493000CD8CE4 /* HomeViewController.swift */; };
@@ -292,7 +292,7 @@
 		D6815DAE22ECACCF00E71251 /* FeedCollectionViewManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedCollectionViewManager.swift; sourceTree = "<group>"; };
 		D6815DB022ECAEC700E71251 /* MediumLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MediumLabel.swift; sourceTree = "<group>"; };
 		D6815DB222ECBA9D00E71251 /* FeedCollectionViewFlowLayout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedCollectionViewFlowLayout.swift; sourceTree = "<group>"; };
-		D6815DB422ECC1B700E71251 /* FeedDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedDataSource.swift; sourceTree = "<group>"; };
+		D6815DB422ECC1B700E71251 /* CardSwiperDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardSwiperDataSource.swift; sourceTree = "<group>"; };
 		D6815DB622ECC6EE00E71251 /* CardSwiperDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardSwiperDelegate.swift; sourceTree = "<group>"; };
 		D68483F822CC3DE400362AC3 /* ChannelCollectionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChannelCollectionViewController.swift; sourceTree = "<group>"; };
 		D68483FA22CD050C00362AC3 /* TableViewManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableViewManager.swift; sourceTree = "<group>"; };
@@ -324,7 +324,7 @@
 		D6B2606D22E80E4000143CF0 /* ToastView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToastView.swift; sourceTree = "<group>"; };
 		D6B2606F22E80E6500143CF0 /* ToastView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ToastView.xib; sourceTree = "<group>"; };
 		D6B2607122E80FE000143CF0 /* XSmallLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = XSmallLabel.swift; sourceTree = "<group>"; };
-		D6B260A622EAA97700143CF0 /* FeedDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedDelegate.swift; sourceTree = "<group>"; };
+		D6B260A622EAA97700143CF0 /* CardDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardDelegate.swift; sourceTree = "<group>"; };
 		D6B260A822EAAFAD00143CF0 /* FeedCollectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedCollectionView.swift; sourceTree = "<group>"; };
 		D6B260AA22EAB00900143CF0 /* CardSwiperView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardSwiperView.swift; sourceTree = "<group>"; };
 		D6D145F321D5493000CD8CE4 /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
@@ -762,14 +762,14 @@
 		D6B260A522EAA95B00143CF0 /* new */ = {
 			isa = PBXGroup;
 			children = (
-				D6B260A622EAA97700143CF0 /* FeedDelegate.swift */,
+				D6B260A622EAA97700143CF0 /* CardDelegate.swift */,
 				D642735A22C90C0F0088256B /* SwipeDirection.swift */,
 				D62C635922BEBADE00F4D097 /* CardCell.swift */,
 				D6B260A822EAAFAD00143CF0 /* FeedCollectionView.swift */,
 				D6B260AA22EAB00900143CF0 /* CardSwiperView.swift */,
 				D6815DAE22ECACCF00E71251 /* FeedCollectionViewManager.swift */,
 				D6815DB222ECBA9D00E71251 /* FeedCollectionViewFlowLayout.swift */,
-				D6815DB422ECC1B700E71251 /* FeedDataSource.swift */,
+				D6815DB422ECC1B700E71251 /* CardSwiperDataSource.swift */,
 				D6815DB622ECC6EE00E71251 /* CardSwiperDelegate.swift */,
 			);
 			path = new;
@@ -1114,7 +1114,7 @@
 				D64273A322CC040B0088256B /* GrowingTextView.swift in Sources */,
 				D6DADF692207D246007D9EB1 /* TCHMessage+Extensions.swift in Sources */,
 				D61EC0F721D316F100204BEE /* Color.swift in Sources */,
-				D6B260A722EAA97700143CF0 /* FeedDelegate.swift in Sources */,
+				D6B260A722EAA97700143CF0 /* CardDelegate.swift in Sources */,
 				D642739D22CAFC930088256B /* MessageType.swift in Sources */,
 				D6D1503121D6A2B900CD8CE4 /* UITableView+Extensions.swift in Sources */,
 				D646DB3A22CFCC110055CC7C /* Future.swift in Sources */,
@@ -1172,7 +1172,7 @@
 				D642739322C9C0110088256B /* AlertView.swift in Sources */,
 				D6D145FD21D550E400CD8CE4 /* AttributedString.swift in Sources */,
 				D6D14D8F21D5893600CD8CE4 /* NSNumber+IGListDiffable.m in Sources */,
-				D6815DB522ECC1B700E71251 /* FeedDataSource.swift in Sources */,
+				D6815DB522ECC1B700E71251 /* CardSwiperDataSource.swift in Sources */,
 				D646DB4222CFDB400055CC7C /* ChannelCollectionViewController+Extensions.swift in Sources */,
 				D6B2601422E3E31500143CF0 /* ChannelDataSourceManager.swift in Sources */,
 				D60C814A2209360400A127A3 /* DisplayableImageView.swift in Sources */,

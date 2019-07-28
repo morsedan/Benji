@@ -18,7 +18,7 @@ import Foundation
      - parameter index: The index of the card that is being removed.
      - parameter swipeDirection: The direction the card is swiped in. This can be Left, Right or None.
      */
-    @objc optional func willSwipeCardAway(card: CardCell, index: Int, swipeDirection: SwipeDirection)
+    @objc optional func willSwipeCardAway(cell: CardCell, index: Int, swipeDirection: SwipeDirection)
 
     /**
      Called when a CardCell has animated off screen.
@@ -26,7 +26,7 @@ import Foundation
      - parameter index: The index of the card that is being removed.
      - parameter swipeDirection: The direction the card is swiped in. This can be Left, Right or None.
      */
-    @objc optional func didSwipeCardAway(card: CardCell, index: Int, swipeDirection: SwipeDirection)
+    @objc optional func didSwipeCardAway(cell: CardCell, index: Int, swipeDirection: SwipeDirection)
 
     /**
      Called while the user is dragging a card to a side.
@@ -43,7 +43,7 @@ import Foundation
      - parameter verticalCardSwiperView: The `VerticalCardSwiperView` that displays the cardcells.
      - parameter index: The index of the CardCell that was tapped.
      */
-    @objc optional func didTapCard(verticalCardSwiperView: VerticalCardSwiperView, index: Int)
+    @objc optional func didTapCard(in collectionView: FeedCollectionView, index: Int)
 
     /**
      Tells the delegate when the user holds a card.
@@ -51,18 +51,18 @@ import Foundation
      - parameter index: The index of the CardCell that was tapped.
      - parameter state: The state of the long press gesture.
      */
-    @objc optional func didHoldCard(verticalCardSwiperView: VerticalCardSwiperView, index: Int, state: UITapGestureRecognizer.State)
+    @objc optional func didHoldCard(in collectionView: FeedCollectionView, index: Int, state: UITapGestureRecognizer.State)
 
     /**
      Tells the delegate when the user scrolls through the cards.
      - parameter verticalCardSwiperView: The `VerticalCardSwiperView` that displays the cardcells.
      */
-    @objc optional func didScroll(verticalCardSwiperView: VerticalCardSwiperView)
+    @objc optional func didScroll(in collectionView: FeedCollectionView)
     /**
      Tells the delegate when scrolling through the cards came to an end.
      - parameter verticalCardSwiperView: The `VerticalCardSwiperView` that displays the cardcells.
      */
-    @objc optional func didEndScroll(verticalCardSwiperView: VerticalCardSwiperView)
+    @objc optional func didEndScroll(in collectionView: FeedCollectionView)
 
     /**
      Allows you to return the size as a CGSize for each card at their specified index.
@@ -78,5 +78,5 @@ import Foundation
      - parameter index: The index for which we return the specific CGSize.
      - returns: The size of each card for its respective index as a CGSize.
      */
-    @objc optional func sizeForItem(verticalCardSwiperView: VerticalCardSwiperView, index: Int) -> CGSize
+    @objc optional func sizeForItem(in collectionView: FeedCollectionView, index: Int) -> CGSize
 }

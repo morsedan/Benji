@@ -12,7 +12,7 @@ import TwilioChatClient
 class CardCell: UICollectionViewCell, DisplayableCell {
     typealias ItemType = FeedType
 
-    weak var delegate: FeedDelegate?
+    weak var delegate: CardDelegate?
     let textView = FeedTextView()
     let avatarView = AvatarView()
 

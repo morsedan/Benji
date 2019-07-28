@@ -9,7 +9,7 @@
 import Foundation
 
 /// Indicates the direction of a cardcell swipe.
-enum SwipeDirection: Int {
+@objc enum SwipeDirection: Int {
     case Left
     case Right
     case None

@@ -9,7 +9,7 @@
 import Foundation
 
 /// This datasource is used for providing data to the `VerticalCardSwiper`.
-protocol FeedDatasource: class {
+protocol CardSwiperDataSource: class {
 
     /**
      Sets the number of cards for the `UICollectionView` inside the VerticalCardSwiperController.
@@ -25,5 +25,5 @@ protocol FeedDatasource: class {
      - parameter index: The that the `CardCell` should be shown at.
      - returns: A CardCell object. The default value is an empty CardCell object.
      */
-    func cardForItemAt(cardSwiperView: CardSwiperView, cardForItemAt index: Int) -> FeedCell
+    func cardForItemAt(cardSwiperView: CardSwiperView, cardForItemAt index: Int) -> CardCell
 }
