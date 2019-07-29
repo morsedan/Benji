@@ -54,6 +54,7 @@ class FeedViewController: ViewController {
                                               curve: .easeInOut) {
                                                 self.view.transform = CGAffineTransform.identity
                                                 self.view.alpha = 1
+                                                self.view.layoutNow()
         }
         animator.addCompletion { (position) in
             if position == .end {
@@ -69,7 +70,7 @@ class FeedViewController: ViewController {
                                               curve: .easeInOut) {
                                                 self.view.transform = CGAffineTransform(scaleX: 0.9, y: 0.9)
                                                 self.view.alpha = 0
-                                                self.view.setNeedsLayout()
+                                                self.view.layoutNow()
         }
         animator.addCompletion { (position) in
             if position == .end {

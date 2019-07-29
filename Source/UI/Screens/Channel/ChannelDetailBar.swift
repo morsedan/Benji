@@ -25,6 +25,7 @@ class ChannelDetailBar: View {
     override func layoutSubviews() {
         super.layoutSubviews()
 
+        self.closeButton.size = CGSize(width: 25, height: 25)
         self.closeButton.left = 18
         self.closeButton.centerOnY()
 
