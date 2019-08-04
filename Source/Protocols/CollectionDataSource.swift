@@ -81,7 +81,7 @@ extension ChannelDataSource {
             //Create new section
             let newSection = ChannelSectionType(date: item.createdAt, items: [item])
             self.sections.value.append(newSection)
-            self.collectionView?.insertItems(at: [IndexPath(item: 0, section: 0)])
+            self.collectionView?.reloadData()
         }
     }
 

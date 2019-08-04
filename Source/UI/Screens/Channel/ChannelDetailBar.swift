@@ -29,13 +29,14 @@ class ChannelDetailBar: View {
         self.closeButton.left = 18
         self.closeButton.centerOnY()
 
-        self.titleLabel.setSize(withWidth: self.width * 0.7)
-        self.titleLabel.left = self.closeButton.right + 25
-        self.titleLabel.centerOnY()
-
         self.avatarView.size = CGSize(width: 32, height: 32)
         self.avatarView.right = self.width - 18
         self.avatarView.centerOnY()
+
+        let titleWidth = self.width - self.closeButton.right - 68
+        self.titleLabel.setSize(withWidth: titleWidth)
+        self.titleLabel.left = self.closeButton.right + 25
+        self.titleLabel.centerOnY()
     }
 
     func set(avatar: Avatar) {

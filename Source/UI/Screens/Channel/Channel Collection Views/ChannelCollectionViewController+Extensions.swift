@@ -27,11 +27,7 @@ extension ChannelCollectionViewController {
         ChannelManager.shared.selectedChannel = channel
         ChannelManager.shared.getAllMessages(for: channel) { [unowned self] (sections) in
             self.channelDataSource.set(newSections: sections)
-            self.collectionView.animateEmptyView(shouldShow: sections.count == 0)
-            delay(0.5) { [weak self] in
-                guard let `self` = self else { return }
-                self.collectionView.scrollToBottom()
-            }
+            //self.collectionView.animateEmptyView(shouldShow: sections.count == 0)
         }
     }
 

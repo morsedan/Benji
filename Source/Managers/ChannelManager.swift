@@ -21,6 +21,15 @@ class ChannelManager: NSObject {
     var messageUpdate = MutableProperty<MessageUpdate?>(nil)
     var memberUpdate = MutableProperty<ChannelMemberUpdate?>(nil)
 
+    var channelTypes: [ChannelType] {
+        get {
+            guard let client = self.client, let channels = client.channelsList() else { return [] }
+            return channels.subscribedChannels().map({ (channel) -> ChannelType in
+                return .channel(channel)
+            })
+        }
+    }
+
     var selectedChannel: TCHChannel?
 
     var isSynced: Bool {
@@ -163,7 +172,9 @@ class ChannelManager: NSObject {
 
             var sections: [ChannelSectionType] = []
             let grouped = Dictionary(grouping: messageTypes) { (element) -> Date in
-                return element.createdAt
+                let components = Calendar.current.dateComponents([.day, .year, .month], from: element.createdAt)
+                let date = Calendar.current.date(from: components)
+                return date ?? element.createdAt
             }
 
             for key in grouped.keys {

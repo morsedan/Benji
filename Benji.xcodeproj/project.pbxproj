@@ -117,6 +117,7 @@
 		D684D6EB22D0E4F000874B08 /* StackedAvatarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D684D6EA22D0E4F000874B08 /* StackedAvatarView.swift */; };
 		D68DC7FC22EE5D9000BEAF80 /* FeedOverlayView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D68DC7FB22EE5D9000BEAF80 /* FeedOverlayView.swift */; };
 		D691794222F6418700340AA3 /* Router.swift in Sources */ = {isa = PBXBuildFile; fileRef = D691794122F6418700340AA3 /* Router.swift */; };
+		D691794422F67BEB00340AA3 /* ChannelsViewController+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = D691794322F67BEB00340AA3 /* ChannelsViewController+Extensions.swift */; };
 		D6AF02FD220153F5002D5C75 /* LaunchManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6AF02FC220153F5002D5C75 /* LaunchManager.swift */; };
 		D6AF0301220154E3002D5C75 /* ChannelManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6AF0300220154E3002D5C75 /* ChannelManager.swift */; };
 		D6B2601422E3E31500143CF0 /* ChannelDataSourceManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6B2601322E3E31500143CF0 /* ChannelDataSourceManager.swift */; };
@@ -299,6 +300,7 @@
 		D684D6EA22D0E4F000874B08 /* StackedAvatarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StackedAvatarView.swift; sourceTree = "<group>"; };
 		D68DC7FB22EE5D9000BEAF80 /* FeedOverlayView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedOverlayView.swift; sourceTree = "<group>"; };
 		D691794122F6418700340AA3 /* Router.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Router.swift; sourceTree = "<group>"; };
+		D691794322F67BEB00340AA3 /* ChannelsViewController+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ChannelsViewController+Extensions.swift"; sourceTree = "<group>"; };
 		D6AF02FC220153F5002D5C75 /* LaunchManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LaunchManager.swift; sourceTree = "<group>"; };
 		D6AF0300220154E3002D5C75 /* ChannelManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChannelManager.swift; sourceTree = "<group>"; };
 		D6B2601322E3E31500143CF0 /* ChannelDataSourceManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChannelDataSourceManager.swift; sourceTree = "<group>"; };
@@ -906,12 +908,13 @@
 		D6DADF6A2207DC90007D9EB1 /* Channels */ = {
 			isa = PBXGroup;
 			children = (
-				D6D1504E21E304D800CD8CE4 /* BouncyCollectionViewLayout.swift */,
 				D6DADF6B2207DCA8007D9EB1 /* ChannelsViewController.swift */,
+				D691794322F67BEB00340AA3 /* ChannelsViewController+Extensions.swift */,
 				D6DADF6D2207DF33007D9EB1 /* ChannelsCollectionViewManager.swift */,
 				D6DADF6F2207DF60007D9EB1 /* ChannelCell.swift */,
 				D66F102722C7D1D200BA277D /* ChannelCellContentView.swift */,
 				D6DADF712207DF83007D9EB1 /* ChannelsCollectionView.swift */,
+				D6D1504E21E304D800CD8CE4 /* BouncyCollectionViewLayout.swift */,
 				D6DADF75220801CF007D9EB1 /* ChannelsContentView.swift */,
 			);
 			path = Channels;
@@ -1176,6 +1179,7 @@
 				D684840A22CD48D000362AC3 /* GradientView.swift in Sources */,
 				D642737D22C9A2D70088256B /* NameLabel.swift in Sources */,
 				D646DB3E22CFCF330055CC7C /* TwilioChatClient+Extensions.swift in Sources */,
+				D691794422F67BEB00340AA3 /* ChannelsViewController+Extensions.swift in Sources */,
 				D6D1503E21DAF98500CD8CE4 /* TextField.swift in Sources */,
 				D646DB4422CFDE0C0055CC7C /* LoadingView.swift in Sources */,
 				D61EC0EE21D313BA00204BEE /* UIScreen+Extensions.swift in Sources */,

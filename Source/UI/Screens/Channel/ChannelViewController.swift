@@ -47,8 +47,8 @@ class ChannelViewController: FullScreenViewController {
         self.contentContainer.addSubview(self.contextButton)
         self.contextButton.onTap { [unowned self] (tap) in
             guard let text = self.inputTextView.text, !text.isEmpty else { return }
-            self.sendSystem(message: text)
-            //self.send(message: text)
+           // self.sendSystem(message: text)
+            self.send(message: text)
         }
 
         self.contentContainer.addSubview(self.detailBar)
