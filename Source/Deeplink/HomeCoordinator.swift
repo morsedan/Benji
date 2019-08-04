@@ -7,22 +7,23 @@
 //
 
 import Foundation
+import Parse
 
 class HomeCoordinator: Coordinator<Void> {
 
     lazy var homeVC = HomeViewController()
 
-    override func start(with deepLink: DeepLinkable? = nil) {
+    override func toPresentable() -> UIViewController {
+        return self.homeVC
+    }
 
-        super.start(with: deepLink)
+    override func start() {
+        super.start()
 
-        // Don't create a new home view controller if there's already one on the nav stack
-        if let currentHomeVC = self.navController.viewControllers.first(where: { (viewController) in
-            return viewController is HomeViewController
-        }) as? HomeViewController {
-            self.homeVC = currentHomeVC
+        if PFAnonymousUtils.isLinked(with: PFUser.current()) {
+
+        } else {
+
         }
-
-        self.navController.setViewControllers([self.homeVC], animated: true)
     }
 }

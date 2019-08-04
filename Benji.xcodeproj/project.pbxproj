@@ -116,6 +116,7 @@
 		D684D6E922D0E1CB00874B08 /* EmptyChannelView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D684D6E822D0E1CB00874B08 /* EmptyChannelView.swift */; };
 		D684D6EB22D0E4F000874B08 /* StackedAvatarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D684D6EA22D0E4F000874B08 /* StackedAvatarView.swift */; };
 		D68DC7FC22EE5D9000BEAF80 /* FeedOverlayView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D68DC7FB22EE5D9000BEAF80 /* FeedOverlayView.swift */; };
+		D691794222F6418700340AA3 /* Router.swift in Sources */ = {isa = PBXBuildFile; fileRef = D691794122F6418700340AA3 /* Router.swift */; };
 		D6AF02FD220153F5002D5C75 /* LaunchManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6AF02FC220153F5002D5C75 /* LaunchManager.swift */; };
 		D6AF0301220154E3002D5C75 /* ChannelManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6AF0300220154E3002D5C75 /* ChannelManager.swift */; };
 		D6B2601422E3E31500143CF0 /* ChannelDataSourceManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6B2601322E3E31500143CF0 /* ChannelDataSourceManager.swift */; };
@@ -297,6 +298,7 @@
 		D684D6E822D0E1CB00874B08 /* EmptyChannelView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmptyChannelView.swift; sourceTree = "<group>"; };
 		D684D6EA22D0E4F000874B08 /* StackedAvatarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StackedAvatarView.swift; sourceTree = "<group>"; };
 		D68DC7FB22EE5D9000BEAF80 /* FeedOverlayView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedOverlayView.swift; sourceTree = "<group>"; };
+		D691794122F6418700340AA3 /* Router.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Router.swift; sourceTree = "<group>"; };
 		D6AF02FC220153F5002D5C75 /* LaunchManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LaunchManager.swift; sourceTree = "<group>"; };
 		D6AF0300220154E3002D5C75 /* ChannelManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChannelManager.swift; sourceTree = "<group>"; };
 		D6B2601322E3E31500143CF0 /* ChannelDataSourceManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChannelDataSourceManager.swift; sourceTree = "<group>"; };
@@ -656,6 +658,7 @@
 				D66F0FD722BF295A00BA277D /* Coordinator.swift */,
 				D66F0FD922BF297F00BA277D /* MainCoordinator.swift */,
 				D66F0FDB22BF2ADC00BA277D /* HomeCoordinator.swift */,
+				D691794122F6418700340AA3 /* Router.swift */,
 			);
 			path = Deeplink;
 			sourceTree = "<group>";
@@ -1100,6 +1103,7 @@
 				D6D1502921D6085200CD8CE4 /* ResourceObject.swift in Sources */,
 				D6D145FF21D5510400CD8CE4 /* StringStyle.swift in Sources */,
 				D68483F922CC3DE400362AC3 /* ChannelCollectionViewController.swift in Sources */,
+				D691794222F6418700340AA3 /* Router.swift in Sources */,
 				D6DADF76220801CF007D9EB1 /* ChannelsContentView.swift in Sources */,
 				D6D1501821D5F40F00CD8CE4 /* UICollectionView+Extensions.swift in Sources */,
 				D642737822C99DB50088256B /* ContactsCollectionView.swift in Sources */,
