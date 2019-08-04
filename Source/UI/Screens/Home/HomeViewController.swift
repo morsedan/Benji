@@ -54,32 +54,25 @@ class HomeViewController: FullScreenViewController {
 
         self.addButton.onTap { [unowned self] (tap) in
 
-            ToastScheduler.shared.schedule(toastType: .systemMessage(Lorem.systemMessage()))
-
-//            let name = Lorem.name()
-//            ChannelManager.createChannel(channelName: name, uniqueName: name, type: .public)
-//                .withProgressBanner("Creating channel with \(name)")
-//                .withErrorBanner()
-//                .ignoreUserInteractionEventsUntilDone()
-//                .observe { (result) in
-//                    switch result {
-//                    case .success(let channel):
-//                        let channelVC = ChannelViewController()
-//                        self.present(channelVC, animated: true) {
-//                            channelVC.loadMessages(for: .channel(channel))
-//                        }
-//                    case .failure(let error):
-//                        if let tomorrowError = error as? ClientError {
-//                            print(tomorrowError.localizedDescription)
-//                        } else {
-//                            print(error.localizedDescription)
-//                        }
-//                    }
-//            }
-
-
-//            let vc = ContactsScrolledModalController()
-//            self.present(vc, animated: true)
+            ChannelManager.createChannel(channelName: "TEST CHANNEL", uniqueName: "TESTCHANNEL", type: .public)
+                .withProgressBanner("Creating channel with TEST CHANNEL")
+                .withErrorBanner()
+                .ignoreUserInteractionEventsUntilDone()
+                .observe { (result) in
+                    switch result {
+                    case .success(let channel):
+                        let channelVC = ChannelViewController()
+                        self.present(channelVC, animated: true) {
+                            channelVC.loadMessages(for: .channel(channel))
+                        }
+                    case .failure(let error):
+                        if let tomorrowError = error as? ClientError {
+                            print(tomorrowError.localizedDescription)
+                        } else {
+                            print(error.localizedDescription)
+                        }
+                    }
+            }
         }
     }
 
@@ -109,8 +102,8 @@ class HomeViewController: FullScreenViewController {
         self.searchImageView.centerY = self.segmentControl.centerY
         self.searchImageView.right = self.headerContainer.width - 20
 
-        self.addButton.size = CGSize(width: 48, height: 48)
-        self.addButton.right = self.contentContainer.width - 25
+        self.addButton.size = CGSize(width: 60, height: 60)
+        self.addButton.centerOnX()
         self.addButton.bottom = self.contentContainer.height - 25 - self.view.safeAreaInsets.bottom
 
         let feedHeight = (self.contentContainer.height * 0.8) - self.segmentControl.height - 30
@@ -125,7 +118,7 @@ class HomeViewController: FullScreenViewController {
 
     @objc func updateContent() {
         guard let newType = HomeContentType(rawValue: self.segmentControl.selectedSegmentIndex),
-           self.currentType != newType else { return }
+            self.currentType != newType else { return }
 
         switch newType {
         case .feed:

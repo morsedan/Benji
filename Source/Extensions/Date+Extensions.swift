@@ -91,6 +91,12 @@ extension Date {
         return Date.currentTimeZoneCalendar.date(from: dateComponents)!
     }
 
+    func sameDay(as date: Date) -> Bool {
+        return self.year == date.year
+        && self.month == date.month
+        && self.day == date.day
+    }
+
     var ageInYears: Int {
         return Date().year - self.year
     }

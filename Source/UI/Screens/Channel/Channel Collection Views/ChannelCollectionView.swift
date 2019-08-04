@@ -25,10 +25,17 @@ class ChannelCollectionView: CollectionView {
         super.init(flowLayout: flowLayout)
         self.registerReusableViews()
         self.backgroundView = self.emptyView
+        self.backgroundView?.alpha = 0
     }
 
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
+    }
+
+    func animateEmptyView(shouldShow: Bool) {
+        UIView.animate(withDuration: Theme.animationDuration) {
+            self.backgroundView?.alpha = shouldShow ? 1 : 0
+        }
     }
 
     private func registerReusableViews() {

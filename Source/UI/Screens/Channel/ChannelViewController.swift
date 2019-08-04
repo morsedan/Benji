@@ -104,8 +104,10 @@ class ChannelViewController: FullScreenViewController {
         switch type {
         case .system(let message):
             self.detailBar.set(avatar: message.avatar)
-        default:
-            break
+        case .channel(let channel):
+            if let name = channel.friendlyName {
+                self.detailBar.set(text: name)
+            }
         }
         self.channelCollectionVC.loadMessages(for: type)
     }
@@ -117,8 +119,7 @@ class ChannelViewController: FullScreenViewController {
                                           id: String(Lorem.randomString()),
                                           isFromCurrentUser: true,
                                           timeStampAsDate: Date())
-        let section = self.channelCollectionVC.channelDataSource.numberOfSections() - 1
-        self.channelCollectionVC.channelDataSource.append(item: .system(systemMessage), in: section)
+        self.channelCollectionVC.channelDataSource.append(item: .system(systemMessage))
         self.reset()
     }
 
@@ -126,7 +127,7 @@ class ChannelViewController: FullScreenViewController {
         guard let channel = ChannelManager.shared.selectedChannel else { return }
 
         ChannelManager.shared.sendMessage(to: channel, with: message)
-        self.inputTextView.text = String()
+        self.reset()
     }
 
     private func reset() {

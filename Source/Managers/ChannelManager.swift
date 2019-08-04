@@ -69,9 +69,9 @@ class ChannelManager: NSObject {
             return Promise<TCHChannel>(error: ClientError.apiError(detail: errorMessage))
         }
 
-        return client.createChannel(channelName: "DM",
+        return client.createChannel(channelName: channelName,
                                     uniqueName: UUID().uuidString,
-                                    type: .private,
+                                    type: type,
                                     attributes: attributes)
     }
 
@@ -146,6 +146,38 @@ class ChannelManager: NSObject {
 
         channels.channel(withSidOrUniqueName: name) { (result, channel) in
             completion(channel)
+        }
+    }
+
+    //MARK: MAPPING
+
+    func getAllMessages(for channel: TCHChannel, completion: @escaping ([ChannelSectionType]) -> Void) {
+        guard let allMessages = channel.messages else { return }
+
+        allMessages.getLastWithCount(100) { (result, messages) in
+            guard let strongMessages = messages else { return }
+
+            let messageTypes: [MessageType] = strongMessages.map({ (message) -> MessageType in
+                return .message(message)
+            })
+
+            var sections: [ChannelSectionType] = []
+            let grouped = Dictionary(grouping: messageTypes) { (element) -> Date in
+                return element.createdAt
+            }
+
+            for key in grouped.keys {
+                if let value = grouped[key] {
+                    let section = ChannelSectionType.init(date: key, items: value)
+                    sections.append(section)
+                }
+            }
+
+            let sorted = sections.sorted { (lhs, rhs) -> Bool in
+                return rhs.date.compare(lhs.date) == .orderedDescending
+            }
+
+            completion(sorted)
         }
     }
 }

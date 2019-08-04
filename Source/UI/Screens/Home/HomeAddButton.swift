@@ -18,6 +18,10 @@ class HomeAddButton: View {
         super.layoutSubviews()
 
         self.makeRound()
-        self.addShadow(withOffset: 5)
+        self.layer.shadowColor = Color.purple.color.cgColor
+        self.layer.shadowOpacity = 0.3
+        self.layer.shadowOffset = CGSize(width: 0, height: 5)
+        self.layer.shadowRadius = 5
+        self.layer.masksToBounds = false
     }
 }

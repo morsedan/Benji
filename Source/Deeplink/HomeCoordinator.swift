@@ -20,10 +20,5 @@ class HomeCoordinator: Coordinator<Void> {
     override func start() {
         super.start()
 
-        if PFAnonymousUtils.isLinked(with: PFUser.current()) {
-
-        } else {
-
-        }
     }
 }

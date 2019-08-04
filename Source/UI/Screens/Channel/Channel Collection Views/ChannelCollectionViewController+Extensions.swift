@@ -24,19 +24,14 @@ extension ChannelCollectionViewController {
 
     private func loadChannelMessages(with channel: TCHChannel) {
         self.channelDataSource.reset()
-
-        guard let allMessages = ChannelManager.shared.selectedChannel?.messages else { return }
-
-        allMessages.getLastWithCount(100) { (result, messages) in
-            guard let strongMessages = messages, let last = strongMessages.last, let lastIndex = last.index else {
-                return
+        ChannelManager.shared.selectedChannel = channel
+        ChannelManager.shared.getAllMessages(for: channel) { [unowned self] (sections) in
+            self.channelDataSource.set(newSections: sections)
+            self.collectionView.animateEmptyView(shouldShow: sections.count == 0)
+            delay(0.5) { [weak self] in
+                guard let `self` = self else { return }
+                self.collectionView.scrollToBottom()
             }
-
-            let messageTypes: [MessageType] = strongMessages.map({ (message) -> MessageType in
-                return .message(message)
-            })
-            //self.manager.set(newItems: messageTypes)
-            self.collectionView.scrollToBottom()
         }
     }
 
@@ -64,8 +59,8 @@ extension ChannelCollectionViewController {
             @unknown default:
                 break
             }
-            }
-            .start()
+        }
+        .start()
     }
 
     func subscribeToUpdates() {
@@ -88,8 +83,8 @@ extension ChannelCollectionViewController {
                 self.channelDataSource.delete(item: .message(channelUpdate.message))
             case .toastReceived:
                 break
-            }
-            }.start()
+        }
+        }.start()
 
         ChannelManager.shared.memberUpdate.producer.on { [weak self] (update) in
             guard let `self` = self else { return }
@@ -128,8 +123,7 @@ extension ChannelCollectionViewController {
             case .changed:
                 break
             case .deleted:
-                break 
-                //self.manager.reset()
+                self.channelDataSource.reset()
             case .syncUpdate(let syncStatus):
                 switch syncStatus {
                 case .none, .identifier, .metadata, .failed:

@@ -10,9 +10,9 @@ import Foundation
 
 class ChannelDetailBar: View {
 
-    let closeButton = CloseButton()
-    let titleLabel = Display1Label()
-    let avatarView = AvatarView()
+    private(set) var closeButton = CloseButton()
+    private(set) var titleLabel = Display1Label()
+    private(set) var avatarView = AvatarView()
 
     override func initialize() {
         super.initialize()
@@ -40,7 +40,11 @@ class ChannelDetailBar: View {
 
     func set(avatar: Avatar) {
         self.avatarView.set(avatar: avatar)
-        self.titleLabel.set(text: avatar.firstName)
+        self.set(text: avatar.firstName)
+    }
+
+    func set(text: Localized) {
+        self.titleLabel.set(text: text)
         self.layoutNow()
     }
 }

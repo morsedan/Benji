@@ -21,7 +21,7 @@ protocol ChannelDataSource: AnyObject {
 
     func reset()
     func set(newSections: [ChannelSectionType])
-    func append(item: MessageType, in section: Int)
+    func append(item: MessageType)
     func update(item: MessageType, in section: Int)
     func delete(item: MessageType, in section: Int)
 }
@@ -61,15 +61,28 @@ extension ChannelDataSource {
 //        })
     }
 
-    func append(item: MessageType, in section: Int = 0) {
+    func append(item: MessageType) {
+        var sectionIndex: Int?
+        var itemCount: Int?
+        
+        for (index, type) in self.sections.value.enumerated() {
+            if type.date.sameDay(as: item.createdAt) {
+                sectionIndex = index
+                itemCount = type.items.count
+            }
+        }
 
-        guard let sectionValue = self.sections.value[safe: section],
-        !sectionValue.items.contains(item) else { return }
+        if let count = itemCount, let section = sectionIndex {
+            let indexPath = IndexPath(item: count, section: section)
 
-        let indexPath = IndexPath(item: sectionValue.items.count, section: section)
-
-        self.sections.value[section].items.append(item)
-        self.collectionView?.insertItems(at: [indexPath])
+            self.sections.value[section].items.append(item)
+            self.collectionView?.insertItems(at: [indexPath])
+        } else {
+            //Create new section
+            let newSection = ChannelSectionType(date: item.createdAt, items: [item])
+            self.sections.value.append(newSection)
+            self.collectionView?.insertItems(at: [IndexPath(item: 0, section: 0)])
+        }
     }
 
     func update(item: MessageType, in section: Int = 0) {
