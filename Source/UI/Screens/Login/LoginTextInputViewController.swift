@@ -12,7 +12,7 @@ import ReactiveSwift
 class LoginTextInputViewController: ViewController {
 
     let textField: UITextField
-    let textFieldLabel = UILabel()
+    let textFieldLabel = Label()
     let toolbar = UIToolbar()
     let textFieldTitle: Localized
     let textFieldPlaceholder: Localized?
@@ -37,9 +37,8 @@ class LoginTextInputViewController: ViewController {
 
         self.view.set(backgroundColor: .blue)
         let attributed = AttributedString(self.textFieldTitle,
-                                          size: 12,
-                                          color: .white,
-                                          kern: 2)
+                                          fontType: .medium,
+                                          color: .black)
         self.textFieldLabel.set(attributed: attributed,
                                 lineCount: 1,
                                 stringCasing: .uppercase)
@@ -54,10 +53,9 @@ class LoginTextInputViewController: ViewController {
         self.textField.returnKeyType = .done
         self.textField.adjustsFontSizeToFitWidth = true
         if let placeholder = self.textFieldPlaceholder {
-            let attributed = AttributedString(placeholder, size: 24, color: .blue3)
+            let attributed = AttributedString(placeholder, fontType: .medium, color: .black)
             self.textField.setPlaceholder(attributed: attributed)
-            self.textField.setDefaultAttributes(style: StringStyle(size: 24,
-                                                                   color: .blue))
+            self.textField.setDefaultAttributes(style: StringStyle(font: .medium, color: .blue))
         }
 
         self.textField.addTarget(self,
@@ -98,7 +96,7 @@ class LoginTextInputViewController: ViewController {
         self.textField.width = self.view.width - 28
         self.textField.top = self.textFieldLabel.bottom + 5
         self.textField.left = self.textFieldLabel.left
-        self.textField.setBottomBorder(color: TomorrowColor.blue3.color)
+        self.textField.setBottomBorder(color: .blue)
     }
 }
 
