@@ -101,6 +101,8 @@
 		D66F102622C7C6A900BA277D /* Lorem.swift in Sources */ = {isa = PBXBuildFile; fileRef = D66F102522C7C6A900BA277D /* Lorem.swift */; };
 		D66F102822C7D1D200BA277D /* ChannelCellContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D66F102722C7D1D200BA277D /* ChannelCellContentView.swift */; };
 		D67896A322FF443C0059BA75 /* ScrolledModalFlowViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D67896A222FF443C0059BA75 /* ScrolledModalFlowViewController.swift */; };
+		D67896A522FF48D60059BA75 /* LoginFlowViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D67896A422FF48D60059BA75 /* LoginFlowViewController.swift */; };
+		D67896A722FF4D9B0059BA75 /* NavigationBarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D67896A622FF4D9B0059BA75 /* NavigationBarView.swift */; };
 		D6815DB122ECAEC700E71251 /* MediumLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6815DB022ECAEC700E71251 /* MediumLabel.swift */; };
 		D6815DB922EE1CAC00E71251 /* FeedView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6815DB822EE1CAC00E71251 /* FeedView.swift */; };
 		D6815DBB22EE1F1400E71251 /* FeedCollectionViewManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6815DBA22EE1F1400E71251 /* FeedCollectionViewManager.swift */; };
@@ -284,6 +286,8 @@
 		D66F102522C7C6A900BA277D /* Lorem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Lorem.swift; sourceTree = "<group>"; };
 		D66F102722C7D1D200BA277D /* ChannelCellContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChannelCellContentView.swift; sourceTree = "<group>"; };
 		D67896A222FF443C0059BA75 /* ScrolledModalFlowViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScrolledModalFlowViewController.swift; sourceTree = "<group>"; };
+		D67896A422FF48D60059BA75 /* LoginFlowViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginFlowViewController.swift; sourceTree = "<group>"; };
+		D67896A622FF4D9B0059BA75 /* NavigationBarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavigationBarView.swift; sourceTree = "<group>"; };
 		D6815DB022ECAEC700E71251 /* MediumLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MediumLabel.swift; sourceTree = "<group>"; };
 		D6815DB822EE1CAC00E71251 /* FeedView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedView.swift; sourceTree = "<group>"; };
 		D6815DBA22EE1F1400E71251 /* FeedCollectionViewManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedCollectionViewManager.swift; sourceTree = "<group>"; };
@@ -683,6 +687,7 @@
 				D684840B22CD48FA00362AC3 /* PassThroughView.swift */,
 				D646DB4322CFDE0C0055CC7C /* LoadingView.swift */,
 				D684D6EA22D0E4F000874B08 /* StackedAvatarView.swift */,
+				D67896A622FF4D9B0059BA75 /* NavigationBarView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -702,6 +707,7 @@
 		D67896A122FF40AB0059BA75 /* Onboarding */ = {
 			isa = PBXGroup;
 			children = (
+				D67896A422FF48D60059BA75 /* LoginFlowViewController.swift */,
 			);
 			path = Onboarding;
 			sourceTree = "<group>";
@@ -1123,6 +1129,7 @@
 				D642738322C9AEA30088256B /* ContactAuthorizationAlertController.swift in Sources */,
 				D66F0FD422BF074C00BA277D /* DeeplinkObject.swift in Sources */,
 				D6D1461121D583D200CD8CE4 /* RootNavigationController.swift in Sources */,
+				D67896A522FF48D60059BA75 /* LoginFlowViewController.swift in Sources */,
 				D61EC0EC21D312B600204BEE /* UIView+Extensions.swift in Sources */,
 				D6D1504021DAFB8300CD8CE4 /* UITextField+Extensions.swift in Sources */,
 				D60C814622092F6B00A127A3 /* Button.swift in Sources */,
@@ -1204,6 +1211,7 @@
 				D6B2603A22E6ABCA00143CF0 /* Display1Label.swift in Sources */,
 				D646DB3C22CFCCD80055CC7C /* ClientError.swift in Sources */,
 				D6B2604522E6C09700143CF0 /* RegularSemiBoldLabel.swift in Sources */,
+				D67896A722FF4D9B0059BA75 /* NavigationBarView.swift in Sources */,
 				D68483FB22CD050D00362AC3 /* TableViewManager.swift in Sources */,
 				D66F0FDC22BF2ADC00BA277D /* HomeCoordinator.swift in Sources */,
 				D6D14FFC21D5893700CD8CE4 /* IGListBatchUpdateData.mm in Sources */,
