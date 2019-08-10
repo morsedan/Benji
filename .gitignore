@@ -33,3 +33,5 @@ Pods/TwilioChatClient/TwilioChatClient.framework/Headers/TCHUserDescriptorPagina
 Pods/TwilioChatClient/TwilioChatClient.framework/Headers/TCHUsers.h
 Pods/TwilioChatClient/TwilioChatClient.framework/Headers/TwilioChatClient.h
 Pods/TwilioChatClient/TwilioChatClient.framework/Modules/module.modulemap
+Benji.xcodeproj/xcuserdata/benjidodgson.xcuserdatad/xcschemes/xcschememanagement.plist
+Pods/Pods.xcodeproj/xcuserdata/benjidodgson.xcuserdatad/xcschemes/xcschememanagement.plist
