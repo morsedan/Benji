@@ -20,7 +20,6 @@ enum LoginStep {
     case intro(LoginFlowableViewController)
     case phone
     case verifyCode(PhoneNumber)
-    case password
     case last(LoginFlowableViewController)
 }
 
@@ -122,7 +121,7 @@ class LoginFlowViewController: ScrolledModalFlowViewController {
             } else {
                 self.navigationBar.titleLabel.set(text: signUpTitle)
             }
-            self.navigationBar.setRight(UIImageView(image: #imageLiteral(resourceName: "CancelBlue"))) { [unowned self] in
+            self.navigationBar.setRight(UIImageView(image: #imageLiteral(resourceName: "icons8-close-window-100.png"))) { [unowned self] in
                 self.finishFlow(with: .cancelled)
             }
             self.navigationBar.setLeft(UIView()) { }
@@ -133,19 +132,16 @@ class LoginFlowViewController: ScrolledModalFlowViewController {
             } else {
                 self.navigationBar.titleLabel.set(text: signUpTitle)
             }
-            self.navigationBar.setRight(UIImageView(image: #imageLiteral(resourceName: "CancelBlue"))) { [unowned self] in
+            self.navigationBar.setRight(UIImageView(image: #imageLiteral(resourceName: "icons8-close-window-100.png"))) { [unowned self] in
                 self.finishFlow(with: .cancelled)
             }
-            self.navigationBar.setLeft(UIImageView(image: #imageLiteral(resourceName: "RightArrowIconBlue.png"))) { [unowned self] in
+            self.navigationBar.setLeft(UIImageView(image: #imageLiteral(resourceName: "icons8-back-100.png"))) { [unowned self] in
                 self.moveBackward()
             }
             self.configureVerifyCode(with: phoneNumber)
-        case .password:
-            self.navigationBar.titleLabel.set(text: loginTitle)
-            self.configurePassword()
         case .last(let controller):
             self.navigationBar.titleLabel.set(text: "Congrats")
-            self.navigationBar.setRight(UIImageView(image: #imageLiteral(resourceName: "CancelBlue"))) { [unowned self] in
+            self.navigationBar.setRight(UIImageView(image: #imageLiteral(resourceName: "icons8-close-window-100.png"))) { [unowned self] in
                 self.finishFlow(with: .loggedIn)
             }
             self.navigationBar.setLeft(UIView()) { }
@@ -187,39 +183,21 @@ class LoginFlowViewController: ScrolledModalFlowViewController {
     }
 
     private func configureVerifyCode(with phoneNumber: PhoneNumber) {
-//        let vc = LoginCodeViewController(phoneNumber: phoneNumber)
-//        vc.didVerifyUser = { [weak self] user in
-//            guard let `self` = self else { return }
-//            //show the last vc or the loading screen if there isnt one
-//            if let finalVC = self.endingVC {
-//                self.handle(step: .last(finalVC))
-//            } else {
-//                self.fetchAllData()
-//            }
-//        }
-//        vc.userNeedsPassword = { [weak self] in
-//            guard let `self` = self else { return }
-//            // user returned nil so they need a password
-//            self.handle(step: .password)
-//        }
-//        self.add(controller: vc)
-//        self.moveForward()
-//        delay(0.5) {
-//            vc.textField.becomeFirstResponder()
-//        }
-    }
-
-    private func configurePassword() {
-//        let vc = PasswordViewController()
-//
-//        vc.didComplete = { [unowned self] in
-//            self.fetchAllData()
-//        }
-//        self.add(controller: vc)
-//        self.moveForward()
-//        delay(0.5) {
-//            vc.textField.becomeFirstResponder()
-//        }
+        let vc = LoginCodeViewController(phoneNumber: phoneNumber)
+        vc.didVerifyUser = { [weak self] user in
+            guard let `self` = self else { return }
+            //show the last vc or the loading screen if there isnt one
+            if let finalVC = self.endingVC {
+                self.handle(step: .last(finalVC))
+            } else {
+                self.fetchAllData()
+            }
+        }
+        self.add(controller: vc)
+        self.moveForward()
+        delay(0.5) {
+            vc.textField.becomeFirstResponder()
+        }
     }
 
     private func configureLast(with controller: LoginFlowableViewController) {
@@ -231,13 +209,13 @@ class LoginFlowViewController: ScrolledModalFlowViewController {
     }
 
     private func fetchAllData() {
-        self.loadingView.startAnimating()
+//        self.loadingView.startAnimating()
 
 //        FetchAllUserData.begin(completion: { [weak self] (tomorrowError) in
 //            guard let `self` = self else { return }
 //
 //            self.loadingView.stopAnimating()
-//            self.finishFlow(with: .loggedIn)
+            self.finishFlow(with: .loggedIn)
 //        })
     }
 

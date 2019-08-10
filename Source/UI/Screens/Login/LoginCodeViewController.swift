@@ -13,7 +13,6 @@ import ReactiveSwift
 class LoginCodeViewController: LoginTextInputViewController {
 
     var didVerifyUser: (_ user: User) -> Void = { _ in }
-    var userNeedsPassword: () -> Void = {}
     let phoneNumber: PhoneNumber
 
     init(phoneNumber: PhoneNumber) {
