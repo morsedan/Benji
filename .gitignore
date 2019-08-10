@@ -35,3 +35,13 @@ Pods/TwilioChatClient/TwilioChatClient.framework/Headers/TwilioChatClient.h
 Pods/TwilioChatClient/TwilioChatClient.framework/Modules/module.modulemap
 Benji.xcodeproj/xcuserdata/benjidodgson.xcuserdatad/xcschemes/xcschememanagement.plist
 Pods/Pods.xcodeproj/xcuserdata/benjidodgson.xcuserdatad/xcschemes/xcschememanagement.plist
+Pods/Pods.xcodeproj/xcuserdata/martinyoung.xcuserdatad/xcschemes/Bolts.xcscheme
+Pods/Pods.xcodeproj/xcuserdata/martinyoung.xcuserdatad/xcschemes/GestureRecognizerClosures.xcscheme
+Pods/Pods.xcodeproj/xcuserdata/martinyoung.xcuserdatad/xcschemes/Koloda.xcscheme
+Pods/Pods.xcodeproj/xcuserdata/martinyoung.xcuserdatad/xcschemes/Parse-Parse.xcscheme
+Pods/Pods.xcodeproj/xcuserdata/martinyoung.xcuserdatad/xcschemes/Parse.xcscheme
+Pods/Pods.xcodeproj/xcuserdata/martinyoung.xcuserdatad/xcschemes/Pods-Benji.xcscheme
+Pods/Pods.xcodeproj/xcuserdata/martinyoung.xcuserdatad/xcschemes/pop.xcscheme
+Pods/Pods.xcodeproj/xcuserdata/martinyoung.xcuserdatad/xcschemes/ReactiveSwift.xcscheme
+Pods/Pods.xcodeproj/xcuserdata/martinyoung.xcuserdatad/xcschemes/TwilioAccessManager.xcscheme
+Pods/Pods.xcodeproj/xcuserdata/martinyoung.xcuserdatad/xcschemes/TwilioChatClient.xcscheme
