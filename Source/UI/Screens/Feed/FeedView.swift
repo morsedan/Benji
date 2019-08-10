@@ -48,6 +48,9 @@ class FeedView: KolodaView {
             self.avatarView.set(avatar: systemMessage.avatar)
         case .message(_):
             break
+        case .channelInvite(let channel):
+            self.textView.set(localizedText: "You have a new channel to join")
+            self.avatarView.set(avatar: Lorem.avatar())
         }
     }
 
