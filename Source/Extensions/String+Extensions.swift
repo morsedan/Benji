@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import PhoneNumberKit
 
 extension String {
 
@@ -63,6 +64,18 @@ extension String {
 
     func trimWhitespace() -> String {
         return trimmingCharacters(in: .whitespacesAndNewlines)
+    }
+
+    func isValidPhoneNumber() -> Bool {
+        let phoneNumberKit = PhoneKit.shared
+        let partialFormatter = PhoneKit.formatter
+
+        do {
+            let _ = try phoneNumberKit.parse(self, withRegion: partialFormatter.currentRegion)
+            return true
+        } catch {
+            return false
+        }
     }
 }
 

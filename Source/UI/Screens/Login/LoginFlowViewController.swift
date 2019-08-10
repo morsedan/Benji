@@ -9,6 +9,7 @@
 import Foundation
 import ReactiveSwift
 import PhoneNumberKit
+import Parse
 
 protocol LoginFlowable: class {
     var didComplete: () -> Void { get set }
@@ -155,7 +156,8 @@ class LoginFlowViewController: ScrolledModalFlowViewController {
     private func configureIntro(with controller: LoginFlowableViewController) {
         controller.didComplete = { [unowned self] in
 
-            guard !User.isLoggedIn else {
+
+            guard let current = PFUser.current(), current.isAuthenticated else {
                 // If the user is already logged in, refetch all their data
                 self.fetchAllData()
                 return
@@ -185,39 +187,39 @@ class LoginFlowViewController: ScrolledModalFlowViewController {
     }
 
     private func configureVerifyCode(with phoneNumber: PhoneNumber) {
-        let vc = LoginCodeViewController(phoneNumber: phoneNumber)
-        vc.didVerifyUser = { [weak self] user in
-            guard let `self` = self else { return }
-            //show the last vc or the loading screen if there isnt one
-            if let finalVC = self.endingVC {
-                self.handle(step: .last(finalVC))
-            } else {
-                self.fetchAllData()
-            }
-        }
-        vc.userNeedsPassword = { [weak self] in
-            guard let `self` = self else { return }
-            // user returned nil so they need a password
-            self.handle(step: .password)
-        }
-        self.add(controller: vc)
-        self.moveForward()
-        delay(0.5) {
-            vc.textField.becomeFirstResponder()
-        }
+//        let vc = LoginCodeViewController(phoneNumber: phoneNumber)
+//        vc.didVerifyUser = { [weak self] user in
+//            guard let `self` = self else { return }
+//            //show the last vc or the loading screen if there isnt one
+//            if let finalVC = self.endingVC {
+//                self.handle(step: .last(finalVC))
+//            } else {
+//                self.fetchAllData()
+//            }
+//        }
+//        vc.userNeedsPassword = { [weak self] in
+//            guard let `self` = self else { return }
+//            // user returned nil so they need a password
+//            self.handle(step: .password)
+//        }
+//        self.add(controller: vc)
+//        self.moveForward()
+//        delay(0.5) {
+//            vc.textField.becomeFirstResponder()
+//        }
     }
 
     private func configurePassword() {
-        let vc = PasswordViewController()
-
-        vc.didComplete = { [unowned self] in
-            self.fetchAllData()
-        }
-        self.add(controller: vc)
-        self.moveForward()
-        delay(0.5) {
-            vc.textField.becomeFirstResponder()
-        }
+//        let vc = PasswordViewController()
+//
+//        vc.didComplete = { [unowned self] in
+//            self.fetchAllData()
+//        }
+//        self.add(controller: vc)
+//        self.moveForward()
+//        delay(0.5) {
+//            vc.textField.becomeFirstResponder()
+//        }
     }
 
     private func configureLast(with controller: LoginFlowableViewController) {

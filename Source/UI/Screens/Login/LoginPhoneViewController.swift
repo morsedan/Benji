@@ -14,14 +14,13 @@ class LoginPhoneViewController: LoginTextInputViewController {
     var didComplete: (_ phone: PhoneNumber?) -> Void = { _ in }
 
     init() {
-        let phoneField = PhoneNumberTextField(frame: CGRect.zero, phoneNumberKit: PhoneKit.shared)
+        let phoneField = PhoneNumberTextField.init()
 
         super.init(textField: phoneField,
-                   textFieldTitle: TomorrowString(id: "", default: "MOBILE NUMBER"),
-                   textFieldPlaceholder: TomorrowString(id: "",
-                                                        default: "000-000-0000"))
+                   textFieldTitle: LocalizedString(id: "", default: "MOBILE NUMBER"),
+                   textFieldPlaceholder: LocalizedString(id: "", default: "000-000-0000"))
 
-        phoneField.defaultRegion = TomorrowTheme.defaultRegion
+        phoneField.defaultRegion = "US"
     }
 
     required init?(coder aDecoder: NSCoder) {
@@ -35,22 +34,6 @@ class LoginPhoneViewController: LoginTextInputViewController {
         self.textField.textContentType = .telephoneNumber
 
         self.textField.addTarget(self, action: #selector(editingDidEnd), for: .editingDidEnd)
-
-        let termsTitle = TomorrowString(id: "panel.loginphone.tos",
-                                        default: "I AGREE TO TOMORROW'S TERMS OF SERVICE & PRIVACY POLICY")
-        self.termsCheckbox.config(localizedTitle: termsTitle,
-                                  backgroundColor: TomorrowColor.blue2,
-                                  checkedStatus: CheckStatus.getStatus(isChecked: self.agreedToTerms, isLocked: false))
-        self.termsCheckbox.delegate = self
-        self.view.addSubview(self.termsCheckbox)
-    }
-
-    override func viewDidLayoutSubviews() {
-        super.viewDidLayoutSubviews()
-
-        self.termsCheckbox.size = CGSize(width: self.textField.width, height: 44)
-        self.termsCheckbox.left = self.textField.left - 12
-        self.termsCheckbox.top = self.textField.bottom + 5
     }
 
     override func textFieldDidChange() {
@@ -61,10 +44,9 @@ class LoginPhoneViewController: LoginTextInputViewController {
     }
 
     @objc func editingDidEnd() {
-        guard self.agreedToTerms,
-            let text = self.textField.text,
+        guard let text = self.textField.text,
             text.isValidPhoneNumber(),
-            let phone = try? PhoneKit.shared.parse(text, withRegion: TomorrowTheme.defaultRegion) else {
+            let phone = try? PhoneKit.shared.parse(text, withRegion: "US") else {
                 return
         }
         self.sendCode(to: phone)
@@ -78,13 +60,14 @@ class LoginPhoneViewController: LoginTextInputViewController {
     }
 
     private func sendCode(to phone: PhoneNumber) {
-        SendCode(phone: phone)
-            .producer
-            .withErrorBanner()
-            .on(completed: { [weak self] in
-                guard let self = `self` else { return }
-                self.didComplete(phone)
-            })
-            .start()
+//        SendCode(phone: phone)
+//            .producer
+//            .withErrorBanner()
+//            .on(completed: { [weak self] in
+//                guard let self = `self` else { return }
+//                self.didComplete(phone)
+//            })
+//            .start()
     }
 }
+
