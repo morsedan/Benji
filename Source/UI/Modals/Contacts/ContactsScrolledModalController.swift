@@ -8,7 +8,7 @@
 
 import Foundation
 
-class ContactsScrolledModalController: ScrolledModalController {
+class ContactsScrolledModalController: ScrolledModalViewController {
 
     let contactsVC: ContactsViewController
 

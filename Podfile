@@ -10,6 +10,7 @@ target 'Benji' do
   pod 'GestureRecognizerClosures'
   pod 'ReactiveSwift'
   pod 'Koloda'
+  pod 'PhoneNumberKit'
 
 end
 

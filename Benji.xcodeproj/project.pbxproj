@@ -100,6 +100,13 @@
 		D66F0FF222C1D86800BA277D /* ChannelsType.swift in Sources */ = {isa = PBXBuildFile; fileRef = D66F0FF122C1D86800BA277D /* ChannelsType.swift */; };
 		D66F102622C7C6A900BA277D /* Lorem.swift in Sources */ = {isa = PBXBuildFile; fileRef = D66F102522C7C6A900BA277D /* Lorem.swift */; };
 		D66F102822C7D1D200BA277D /* ChannelCellContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D66F102722C7D1D200BA277D /* ChannelCellContentView.swift */; };
+		D67896A322FF443C0059BA75 /* ScrolledModalFlowViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D67896A222FF443C0059BA75 /* ScrolledModalFlowViewController.swift */; };
+		D67896A522FF48D60059BA75 /* LoginFlowViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D67896A422FF48D60059BA75 /* LoginFlowViewController.swift */; };
+		D67896A722FF4D9B0059BA75 /* NavigationBarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D67896A622FF4D9B0059BA75 /* NavigationBarView.swift */; };
+		D67896A922FF51170059BA75 /* LoginPhoneViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D67896A822FF51170059BA75 /* LoginPhoneViewController.swift */; };
+		D67896AB22FF5C470059BA75 /* DoneToolBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = D67896AA22FF5C470059BA75 /* DoneToolBar.swift */; };
+		D67896AD22FF60190059BA75 /* LoginTextInputViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D67896AC22FF60190059BA75 /* LoginTextInputViewController.swift */; };
+		D67896AF22FF62630059BA75 /* PhoneKit.swift in Sources */ = {isa = PBXBuildFile; fileRef = D67896AE22FF62630059BA75 /* PhoneKit.swift */; };
 		D6815DB122ECAEC700E71251 /* MediumLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6815DB022ECAEC700E71251 /* MediumLabel.swift */; };
 		D6815DB922EE1CAC00E71251 /* FeedView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6815DB822EE1CAC00E71251 /* FeedView.swift */; };
 		D6815DBB22EE1F1400E71251 /* FeedCollectionViewManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6815DBA22EE1F1400E71251 /* FeedCollectionViewManager.swift */; };
@@ -282,6 +289,13 @@
 		D66F0FF122C1D86800BA277D /* ChannelsType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChannelsType.swift; sourceTree = "<group>"; };
 		D66F102522C7C6A900BA277D /* Lorem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Lorem.swift; sourceTree = "<group>"; };
 		D66F102722C7D1D200BA277D /* ChannelCellContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChannelCellContentView.swift; sourceTree = "<group>"; };
+		D67896A222FF443C0059BA75 /* ScrolledModalFlowViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScrolledModalFlowViewController.swift; sourceTree = "<group>"; };
+		D67896A422FF48D60059BA75 /* LoginFlowViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginFlowViewController.swift; sourceTree = "<group>"; };
+		D67896A622FF4D9B0059BA75 /* NavigationBarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavigationBarView.swift; sourceTree = "<group>"; };
+		D67896A822FF51170059BA75 /* LoginPhoneViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginPhoneViewController.swift; sourceTree = "<group>"; };
+		D67896AA22FF5C470059BA75 /* DoneToolBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DoneToolBar.swift; sourceTree = "<group>"; };
+		D67896AC22FF60190059BA75 /* LoginTextInputViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginTextInputViewController.swift; sourceTree = "<group>"; };
+		D67896AE22FF62630059BA75 /* PhoneKit.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhoneKit.swift; sourceTree = "<group>"; };
 		D6815DB022ECAEC700E71251 /* MediumLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MediumLabel.swift; sourceTree = "<group>"; };
 		D6815DB822EE1CAC00E71251 /* FeedView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedView.swift; sourceTree = "<group>"; };
 		D6815DBA22EE1F1400E71251 /* FeedCollectionViewManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedCollectionViewManager.swift; sourceTree = "<group>"; };
@@ -529,6 +543,7 @@
 				D66F0FE922C0695E00BA277D /* CNContact+Extensions.swift */,
 				D646DB3D22CFCF330055CC7C /* TwilioChatClient+Extensions.swift */,
 				D646DB3F22CFCFDB0055CC7C /* Future+Extensions.swift */,
+				D67896AE22FF62630059BA75 /* PhoneKit.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -666,13 +681,13 @@
 		D66F0FDF22C0412300BA277D /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				D67896B022FF63EF0059BA75 /* TextFields */,
 				D642738D22C9B2540088256B /* Buttons */,
 				D642737B22C9A2BB0088256B /* Labels */,
 				D6D1501921D5F5D100CD8CE4 /* CollectionView.swift */,
 				D60C81492209360400A127A3 /* DisplayableImageView.swift */,
 				D60C814322092E4700A127A3 /* PagingCollectionView.swift */,
 				D60C814122092D5300A127A3 /* PagingCollectionViewFlowLayout.swift */,
-				D6D1503D21DAF98500CD8CE4 /* TextField.swift */,
 				D61EC0E321D30E9100204BEE /* TextView.swift */,
 				D61EC0E521D30EB300204BEE /* View.swift */,
 				D66F0FE122C041AF00BA277D /* AvatarView.swift */,
@@ -681,6 +696,8 @@
 				D684840B22CD48FA00362AC3 /* PassThroughView.swift */,
 				D646DB4322CFDE0C0055CC7C /* LoadingView.swift */,
 				D684D6EA22D0E4F000874B08 /* StackedAvatarView.swift */,
+				D67896A622FF4D9B0059BA75 /* NavigationBarView.swift */,
+				D67896AA22FF5C470059BA75 /* DoneToolBar.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -695,6 +712,24 @@
 				D61EC0C121D3071400204BEE /* ViewController.swift */,
 			);
 			path = "View Controllers";
+			sourceTree = "<group>";
+		};
+		D67896A122FF40AB0059BA75 /* Login */ = {
+			isa = PBXGroup;
+			children = (
+				D67896A422FF48D60059BA75 /* LoginFlowViewController.swift */,
+				D67896A822FF51170059BA75 /* LoginPhoneViewController.swift */,
+				D67896AC22FF60190059BA75 /* LoginTextInputViewController.swift */,
+			);
+			path = Login;
+			sourceTree = "<group>";
+		};
+		D67896B022FF63EF0059BA75 /* TextFields */ = {
+			isa = PBXGroup;
+			children = (
+				D6D1503D21DAF98500CD8CE4 /* TextField.swift */,
+			);
+			path = TextFields;
 			sourceTree = "<group>";
 		};
 		D684840822CD2E1E00362AC3 /* Cells */ = {
@@ -755,6 +790,7 @@
 		D6D145F121D548F600CD8CE4 /* Screens */ = {
 			isa = PBXGroup;
 			children = (
+				D67896A122FF40AB0059BA75 /* Login */,
 				D6432BF122D8282E0016001A /* Channel */,
 				D6DADF6A2207DC90007D9EB1 /* Channels */,
 				D62C634F22BE9C4600F4D097 /* Feed */,
@@ -774,6 +810,7 @@
 				D642737222C99D540088256B /* Contacts */,
 				D642736722C98E5D0088256B /* ScrolledModalViewController.swift */,
 				D642736922C98EB40088256B /* ScrolledModalContainerView.swift */,
+				D67896A222FF443C0059BA75 /* ScrolledModalFlowViewController.swift */,
 			);
 			path = Modals;
 			sourceTree = "<group>";
@@ -1034,6 +1071,7 @@
 			files = (
 				D6432BF922D837A30016001A /* MessageSizeCaluculator.swift in Sources */,
 				D62C635622BE9E5C00F4D097 /* CollectionViewController.swift in Sources */,
+				D67896AF22FF62630059BA75 /* PhoneKit.swift in Sources */,
 				D6B2601822E4208900143CF0 /* ChannelHeaderDateLabel.swift in Sources */,
 				D642735122C857760088256B /* MessageContext.swift in Sources */,
 				D60C814422092E4700A127A3 /* PagingCollectionView.swift in Sources */,
@@ -1043,6 +1081,7 @@
 				D6D14FF821D5893700CD8CE4 /* IGListMoveIndexPath.m in Sources */,
 				D6D14D9121D5893600CD8CE4 /* IGListIndexSetResult.m in Sources */,
 				D6B2603F22E6B92900143CF0 /* CloseButton.swift in Sources */,
+				D67896A322FF443C0059BA75 /* ScrolledModalFlowViewController.swift in Sources */,
 				D642735522C87CCA0088256B /* HomeAddButton.swift in Sources */,
 				D66F0FE622C0640E00BA277D /* Avatar.swift in Sources */,
 				D6D14FFB21D5893700CD8CE4 /* DiffableBox.swift in Sources */,
@@ -1081,6 +1120,7 @@
 				D646DB3A22CFCC110055CC7C /* Future.swift in Sources */,
 				D66F0FD622BF28A100BA277D /* AppDelegate+Initialization.swift in Sources */,
 				D66F102822C7D1D200BA277D /* ChannelCellContentView.swift in Sources */,
+				D67896AD22FF60190059BA75 /* LoginTextInputViewController.swift in Sources */,
 				D6D1502921D6085200CD8CE4 /* ResourceObject.swift in Sources */,
 				D6D145FF21D5510400CD8CE4 /* StringStyle.swift in Sources */,
 				D68483F922CC3DE400362AC3 /* ChannelCollectionViewController.swift in Sources */,
@@ -1111,6 +1151,7 @@
 				D642738322C9AEA30088256B /* ContactAuthorizationAlertController.swift in Sources */,
 				D66F0FD422BF074C00BA277D /* DeeplinkObject.swift in Sources */,
 				D6D1461121D583D200CD8CE4 /* RootNavigationController.swift in Sources */,
+				D67896A522FF48D60059BA75 /* LoginFlowViewController.swift in Sources */,
 				D61EC0EC21D312B600204BEE /* UIView+Extensions.swift in Sources */,
 				D6D1504021DAFB8300CD8CE4 /* UITextField+Extensions.swift in Sources */,
 				D60C814622092F6B00A127A3 /* Button.swift in Sources */,
@@ -1165,6 +1206,7 @@
 				D6D1503921D7F46F00CD8CE4 /* UITextView+Extensions.swift in Sources */,
 				D6DADF702207DF60007D9EB1 /* ChannelCell.swift in Sources */,
 				D6D1460D21D5693100CD8CE4 /* NSMutableAttributedString+Extensions.swift in Sources */,
+				D67896AB22FF5C470059BA75 /* DoneToolBar.swift in Sources */,
 				D642736822C98E5D0088256B /* ScrolledModalViewController.swift in Sources */,
 				D66F102622C7C6A900BA277D /* Lorem.swift in Sources */,
 				D66F0FC922BF006D00BA277D /* SystemMessage.swift in Sources */,
@@ -1177,6 +1219,7 @@
 				D66F0FDA22BF297F00BA277D /* MainCoordinator.swift in Sources */,
 				D6D14FFA21D5893700CD8CE4 /* IGListDiff.mm in Sources */,
 				D61EC0F321D3146600204BEE /* UINib+Extensions.swift in Sources */,
+				D67896A922FF51170059BA75 /* LoginPhoneViewController.swift in Sources */,
 				D642738822C9AF690088256B /* ModalViewController.swift in Sources */,
 				D642737422C99D6A0088256B /* ContactsViewController.swift in Sources */,
 				D6D145F421D5493000CD8CE4 /* HomeViewController.swift in Sources */,
@@ -1192,6 +1235,7 @@
 				D6B2603A22E6ABCA00143CF0 /* Display1Label.swift in Sources */,
 				D646DB3C22CFCCD80055CC7C /* ClientError.swift in Sources */,
 				D6B2604522E6C09700143CF0 /* RegularSemiBoldLabel.swift in Sources */,
+				D67896A722FF4D9B0059BA75 /* NavigationBarView.swift in Sources */,
 				D68483FB22CD050D00362AC3 /* TableViewManager.swift in Sources */,
 				D66F0FDC22BF2ADC00BA277D /* HomeCoordinator.swift in Sources */,
 				D6D14FFC21D5893700CD8CE4 /* IGListBatchUpdateData.mm in Sources */,

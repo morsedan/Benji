@@ -54,16 +54,6 @@ class TextField: UITextField {
         self.onEditingEnded?()
     }
 
-    func setDefaultAttributes(style: StringStyle, alignment: NSTextAlignment = .left) {
-        self.defaultTextAttributes = style.attributes
-        self.textAlignment = alignment
-    }
-
-    func setPlaceholder(attributed: AttributedString, alignment: NSTextAlignment = .left) {
-        self.attributedPlaceholder = attributed.string
-        self.textAlignment = alignment
-    }
-
     func set(attributed: AttributedString, alignment: NSTextAlignment = .left) {
         //APPLE BUG: Trying to set both the attributed text AND the defaultAttributes will cause a memory crash
         self.text = attributed.string.string
