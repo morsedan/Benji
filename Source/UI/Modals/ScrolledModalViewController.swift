@@ -15,7 +15,7 @@ protocol ScrolledModalControllerPresentable where Self : UIViewController {
     var didDismiss: (() -> Void)? { get set }
 }
 
-class ScrolledModalController: ViewController, ScrolledModalContainerViewDelegate {
+class ScrolledModalViewController: ViewController, ScrolledModalContainerViewDelegate {
 
     var contentExpandedHeight: CGFloat {
         return self.view.height - self.presentable.topMargin
