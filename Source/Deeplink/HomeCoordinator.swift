@@ -20,5 +20,6 @@ class HomeCoordinator: Coordinator<Void> {
     override func start() {
         super.start()
 
+        self.homeVC.present(<#T##viewControllerToPresent: UIViewController##UIViewController#>, animated: <#T##Bool#>, completion: <#T##(() -> Void)?##(() -> Void)?##() -> Void#>)
     }
 }
