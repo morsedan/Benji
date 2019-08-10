@@ -37,6 +37,7 @@ protocol LoginFlowViewControllerDelegate: class {
 
 class LoginFlowViewController: ScrolledModalFlowViewController {
 
+    private let navigationBar = NavigationBarView()
     private let introVC: (LoginFlowableViewController)?
     private let endingVC: (LoginFlowableViewController)?
     private var userExists: Bool
@@ -68,6 +69,8 @@ class LoginFlowViewController: ScrolledModalFlowViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        self.view.addSubview(self.navigationBar)
+
         if let vc = self.introVC {
             self.handle(step: .intro(vc))
         } else {
@@ -88,6 +91,10 @@ class LoginFlowViewController: ScrolledModalFlowViewController {
 
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
+
+        self.navigationBar.size = CGSize(width: self.view.width, height: 44)
+        self.navigationBar.top = 0
+        self.navigationBar.centerOnX()
 
         self.loadingView.size = CGSize(width: self.view.width, height: self.view.height)
         self.loadingView.bottom = self.view.height
@@ -110,37 +117,37 @@ class LoginFlowViewController: ScrolledModalFlowViewController {
             self.configureIntro(with: controller)
         case .phone:
             if self.userExists == true {
-                //self.tomorrowNavigationBar.setTitle(loginTitle)
+                self.navigationBar.titleLabel.set(text: loginTitle)
             } else {
-               // self.tomorrowNavigationBar.setTitle(signUpTitle)
+                self.navigationBar.titleLabel.set(text: signUpTitle)
             }
-            self.tomorrowNavigationBar.setRight(UIImageView(image: #imageLiteral(resourceName: "CancelBlue"))) { [unowned self] in
+            self.navigationBar.setRight(UIImageView(image: #imageLiteral(resourceName: "CancelBlue"))) { [unowned self] in
                 self.finishFlow(with: .cancelled)
             }
-            self.tomorrowNavigationBar.setLeft(UIView()) { }
+            self.navigationBar.setLeft(UIView()) { }
             self.configurePhone()
         case .verifyCode(let phoneNumber):
             if self.userExists == true {
-                self.tomorrowNavigationBar.setTitle(loginTitle)
+                self.navigationBar.titleLabel.set(text: loginTitle)
             } else {
-                self.tomorrowNavigationBar.setTitle(signUpTitle)
+                self.navigationBar.titleLabel.set(text: signUpTitle)
             }
-            self.tomorrowNavigationBar.setRight(UIImageView(image: #imageLiteral(resourceName: "CancelBlue"))) { [unowned self] in
+            self.navigationBar.setRight(UIImageView(image: #imageLiteral(resourceName: "CancelBlue"))) { [unowned self] in
                 self.finishFlow(with: .cancelled)
             }
-            self.tomorrowNavigationBar.setLeft(UIImageView(image: #imageLiteral(resourceName: "RightArrowIconBlue.png"))) { [unowned self] in
+            self.navigationBar.setLeft(UIImageView(image: #imageLiteral(resourceName: "RightArrowIconBlue.png"))) { [unowned self] in
                 self.moveBackward()
             }
             self.configureVerifyCode(with: phoneNumber)
         case .password:
-            self.tomorrowNavigationBar.setTitle(loginTitle)
+            self.navigationBar.titleLabel.set(text: loginTitle)
             self.configurePassword()
         case .last(let controller):
-            self.tomorrowNavigationBar.setTitle(TomorrowString(id: "", default: "Congrats"))
-            self.tomorrowNavigationBar.setRight(UIImageView(image: #imageLiteral(resourceName: "CancelBlue"))) { [unowned self] in
+            self.navigationBar.titleLabel.set(text: "Congrats")
+            self.navigationBar.setRight(UIImageView(image: #imageLiteral(resourceName: "CancelBlue"))) { [unowned self] in
                 self.finishFlow(with: .loggedIn)
             }
-            self.tomorrowNavigationBar.setLeft(UIView()) { }
+            self.navigationBar.setLeft(UIView()) { }
             self.configureLast(with: controller)
         }
     }
@@ -224,12 +231,12 @@ class LoginFlowViewController: ScrolledModalFlowViewController {
     private func fetchAllData() {
         self.loadingView.startAnimating()
 
-        FetchAllUserData.begin(completion: { [weak self] (tomorrowError) in
-            guard let `self` = self else { return }
-
-            self.loadingView.stopAnimating()
-            self.finishFlow(with: .loggedIn)
-        })
+//        FetchAllUserData.begin(completion: { [weak self] (tomorrowError) in
+//            guard let `self` = self else { return }
+//
+//            self.loadingView.stopAnimating()
+//            self.finishFlow(with: .loggedIn)
+//        })
     }
 
     func finishFlow(with result: LoginFlowResult) {

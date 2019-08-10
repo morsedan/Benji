@@ -704,12 +704,12 @@
 			path = "View Controllers";
 			sourceTree = "<group>";
 		};
-		D67896A122FF40AB0059BA75 /* Onboarding */ = {
+		D67896A122FF40AB0059BA75 /* Login */ = {
 			isa = PBXGroup;
 			children = (
 				D67896A422FF48D60059BA75 /* LoginFlowViewController.swift */,
 			);
-			path = Onboarding;
+			path = Login;
 			sourceTree = "<group>";
 		};
 		D684840822CD2E1E00362AC3 /* Cells */ = {
@@ -770,7 +770,7 @@
 		D6D145F121D548F600CD8CE4 /* Screens */ = {
 			isa = PBXGroup;
 			children = (
-				D67896A122FF40AB0059BA75 /* Onboarding */,
+				D67896A122FF40AB0059BA75 /* Login */,
 				D6432BF122D8282E0016001A /* Channel */,
 				D6DADF6A2207DC90007D9EB1 /* Channels */,
 				D62C634F22BE9C4600F4D097 /* Feed */,
