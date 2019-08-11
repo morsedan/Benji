@@ -43,7 +43,7 @@ extension LoginCoordinator: LoginFlowViewControllerDelegate {
     func loginFlowViewController(_ controller: LoginFlowViewController, finishedWith result: LoginFlowResult) {
         switch result {
         case .loggedIn:
-            break
+            self.scrolledModal.dismiss(animated: true, completion: nil)
         case .cancelled:
             break 
         }

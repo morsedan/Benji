@@ -45,9 +45,6 @@ class LoginFlowViewController: ScrolledModalFlowViewController {
     // A view that covers up the other view controllers when loading
     var loadingView = LoadingView()
 
-    var keyboardWillShow: (_ notification: Notification) -> Void = { _ in }
-    var keyboardWillDismiss: (_ notification: Notification) -> Void = { _ in }
-
     weak var delegate: LoginFlowViewControllerDelegate?
 
     init(introVC: (LoginFlowableViewController)?,
@@ -59,7 +56,7 @@ class LoginFlowViewController: ScrolledModalFlowViewController {
         self.userExists = userExists
         super.init()
 
-        self.topMargin = UIScreen.main.bounds.height - 330
+        self.topMargin = UIScreen.main.bounds.height * 0.7
     }
 
     required init?(coder aDecoder: NSCoder) {
@@ -77,15 +74,6 @@ class LoginFlowViewController: ScrolledModalFlowViewController {
             self.handle(step: .phone)
         }
 
-        NotificationCenter.default.addObserver(self,
-                                               selector: #selector(keyboardWillDisappear),
-                                               name: UIResponder.keyboardWillHideNotification,
-                                               object: nil)
-        NotificationCenter.default.addObserver(self,
-                                               selector: #selector(keyboardWillAppear),
-                                               name: UIResponder.keyboardWillShowNotification,
-                                               object: nil)
-
         self.view.addSubview(self.loadingView)
     }
 
@@ -93,7 +81,7 @@ class LoginFlowViewController: ScrolledModalFlowViewController {
         super.viewDidLayoutSubviews()
 
         self.navigationBar.size = CGSize(width: self.view.width, height: 44)
-        self.navigationBar.top = 0
+        self.navigationBar.top = 10
         self.navigationBar.centerOnX()
 
         self.loadingView.size = CGSize(width: self.view.width, height: self.view.height)
@@ -101,49 +89,31 @@ class LoginFlowViewController: ScrolledModalFlowViewController {
         self.loadingView.centerOnX()
     }
 
-    @objc func keyboardWillAppear(_ notification: Notification) {
-        self.keyboardWillShow(notification)
-    }
-
-    @objc func keyboardWillDisappear(_ notification: Notification) {
-        self.keyboardWillDismiss(notification)
-    }
-
     func handle(step: LoginStep) {
         let loginTitle = LocalizedString(id: "", default: "Login")
         let signUpTitle = LocalizedString(id: "", default: "Sign-up")
+
+
         switch step {
         case .intro(let controller):
             self.configureIntro(with: controller)
         case .phone:
             if self.userExists == true {
-                self.navigationBar.titleLabel.set(text: loginTitle)
+                self.navigationBar.titleLabel.set(text: loginTitle, alignment: .center)
             } else {
-                self.navigationBar.titleLabel.set(text: signUpTitle)
-            }
-            self.navigationBar.setRight(UIImageView(image: #imageLiteral(resourceName: "close"))) { [unowned self] in
-                self.finishFlow(with: .cancelled)
+                self.navigationBar.titleLabel.set(text: signUpTitle, alignment: .center)
             }
             self.navigationBar.setLeft(UIView()) { }
             self.configurePhone()
         case .verifyCode(let phoneNumber):
             if self.userExists == true {
-                self.navigationBar.titleLabel.set(text: loginTitle)
+                self.navigationBar.titleLabel.set(text: loginTitle, alignment: .center)
             } else {
-                self.navigationBar.titleLabel.set(text: signUpTitle)
-            }
-            self.navigationBar.setRight(UIImageView(image: #imageLiteral(resourceName: "icons8-close-window-100.png"))) { [unowned self] in
-                self.finishFlow(with: .cancelled)
-            }
-            self.navigationBar.setLeft(UIImageView(image: #imageLiteral(resourceName: "icons8-back-100.png"))) { [unowned self] in
-                self.moveBackward()
+                self.navigationBar.titleLabel.set(text: signUpTitle, alignment: .center)
             }
             self.configureVerifyCode(with: phoneNumber)
         case .last(let controller):
             self.navigationBar.titleLabel.set(text: "Congrats")
-            self.navigationBar.setRight(UIImageView(image: #imageLiteral(resourceName: "icons8-close-window-100.png"))) { [unowned self] in
-                self.finishFlow(with: .loggedIn)
-            }
             self.navigationBar.setLeft(UIView()) { }
             self.configureLast(with: controller)
         }

@@ -37,15 +37,16 @@ extension KeyboardManageable where Self: ViewController {
     func registerKeyboardEvents() {
         // Disable when the keyboard is shown
         let handler = KeyboardHandler(with: self)
-        NotificationCenter.default.addObserver(self,
+        self.keyboardHandler = handler
+
+        NotificationCenter.default.addObserver(handler,
                                                selector: #selector(handler.keyboardWillShow),
                                                name: UIResponder.keyboardWillShowNotification,
                                                object: nil)
-        NotificationCenter.default.addObserver(self,
+        NotificationCenter.default.addObserver(handler,
                                                selector: #selector(handler.keyboardWillHide),
                                                name: UIResponder.keyboardWillHideNotification,
                                                object: nil)
-        self.keyboardHandler = handler
     }
 }
 
@@ -59,9 +60,10 @@ private class KeyboardHandler: NSObject {
     }
 
     @objc func keyboardWillShow(notification: Notification) {
-        // self.isEnabled = false
-        let userInfo: NSDictionary = notification.userInfo! as NSDictionary
-        let keyboardFrame: NSValue = userInfo.value(forKey: UIResponder.keyboardFrameEndUserInfoKey) as! NSValue
+        guard let userInfo: NSDictionary = notification.userInfo as NSDictionary?,
+            let keyboardFrame: NSValue = userInfo.value(forKey: UIResponder.keyboardFrameEndUserInfoKey) as? NSValue
+            else { return }
+
         let keyboardRectangle = keyboardFrame.cgRectValue
         let keyboardHeight = keyboardRectangle.height
         self.vc.handleKeyboard(height: keyboardHeight)

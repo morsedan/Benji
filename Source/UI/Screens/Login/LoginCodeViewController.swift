@@ -38,6 +38,9 @@ class LoginCodeViewController: LoginTextInputViewController {
         guard !self.verifying else { return }
 
         self.verifying = true
+
+        guard let current = PFUser.current() else { return }
+        self.didVerifyUser(current)
 //        VerifyCode(phone: self.phoneNumber, code: code).producer
 //            .withErrorBanner()
 //            .startWithResult { result in
