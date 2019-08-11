@@ -13,12 +13,15 @@ enum FeedType: DisplayableCellItem {
 
     case system(SystemMessage)
     case message(TCHMessage)
+    case channelInvite(TCHChannel)
 
     var backgroundColor: Color {
         switch self {
         case .system(_):
             return .blue
         case .message(_):
+            return .blue
+        case .channelInvite(_):
             return .blue
         }
     }
@@ -29,6 +32,8 @@ enum FeedType: DisplayableCellItem {
             return message.diffIdentifier()
         case .message(let message):
             return message.diffIdentifier()
+        case .channelInvite(let channel):
+            return channel.diffIdentifier()
         }
     }
 }

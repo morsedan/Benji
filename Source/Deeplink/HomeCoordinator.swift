@@ -9,7 +9,7 @@
 import Foundation
 import Parse
 
-class HomeCoordinator: Coordinator<Void> {
+class HomeCoordinator: PresentableCoordinator<Void> {
 
     lazy var homeVC = HomeViewController()
 
@@ -20,6 +20,6 @@ class HomeCoordinator: Coordinator<Void> {
     override func start() {
         super.start()
 
-        self.homeVC.present(<#T##viewControllerToPresent: UIViewController##UIViewController#>, animated: <#T##Bool#>, completion: <#T##(() -> Void)?##(() -> Void)?##() -> Void#>)
+       // self.homeVC.present(<#T##viewControllerToPresent: UIViewController##UIViewController#>, animated: <#T##Bool#>, completion: <#T##(() -> Void)?##(() -> Void)?##() -> Void#>)
     }
 }

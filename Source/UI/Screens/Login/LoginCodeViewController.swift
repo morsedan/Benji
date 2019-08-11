@@ -9,10 +9,11 @@
 import Foundation
 import PhoneNumberKit
 import ReactiveSwift
+import Parse
 
 class LoginCodeViewController: LoginTextInputViewController {
 
-    var didVerifyUser: (_ user: User) -> Void = { _ in }
+    var didVerifyUser: (_ user: PFUser) -> Void = { _ in }
     let phoneNumber: PhoneNumber
 
     init(phoneNumber: PhoneNumber) {

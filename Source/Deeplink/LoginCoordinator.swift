@@ -16,7 +16,7 @@ class LoginCoordinator: PresentableCoordinator<Void> {
                                                            endingVC: nil,
                                                            userExists: self.userExists)
 
-    lazy var scrolledModal = ScrolledModalController(presentable: self.loginFlowController)
+    lazy var scrolledModal = ScrolledModalViewController(presentable: self.loginFlowController)
 
     init(router: Router, userExists: Bool) {
         self.userExists = userExists
@@ -24,16 +24,13 @@ class LoginCoordinator: PresentableCoordinator<Void> {
         super.init(router: router, deepLink: nil)
     }
 
-    override func toPresentable() -> UIViewController {
-        return self.scrolledModal
-    }
+//    override func toPresentable() -> UIViewController {
+//        return self.scrolledModal
+//    }
 
     override func start() {
         self.scrolledModal.didDismiss = { [unowned self] in
             self.finishFlow(with: ())
         }
-
-        let identifier = TomorrowAnalytics.identifier(for: self.router.navController.topmostViewController())
-        TomorrowAnalytics.reportEvent(eventName: "\(identifier).presentUserLoginFlow")
     }
 }
