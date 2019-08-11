@@ -20,6 +20,17 @@ class HomeCoordinator: PresentableCoordinator<Void> {
     override func start() {
         super.start()
 
-       // self.homeVC.present(<#T##viewControllerToPresent: UIViewController##UIViewController#>, animated: <#T##Bool#>, completion: <#T##(() -> Void)?##(() -> Void)?##() -> Void#>)
+        if PFAnonymousUtils.isLinked(with: PFUser.current()) {
+            self.startLoginFlow()
+        }
+    }
+
+    func startLoginFlow() {
+        let coordinator = LoginCoordinator(router: self.router, userExists: false)
+        coordinator.setFinishedHandler { (_) in
+            self.router.dismiss(animated: true, completion: nil)
+        }
+        self.router.present(coordinator, animated: true)
+        self.addChildAndStart(coordinator)
     }
 }

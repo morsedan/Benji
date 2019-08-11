@@ -121,7 +121,7 @@ class LoginFlowViewController: ScrolledModalFlowViewController {
             } else {
                 self.navigationBar.titleLabel.set(text: signUpTitle)
             }
-            self.navigationBar.setRight(UIImageView(image: #imageLiteral(resourceName: "icons8-close-window-100.png"))) { [unowned self] in
+            self.navigationBar.setRight(UIImageView(image: #imageLiteral(resourceName: "close"))) { [unowned self] in
                 self.finishFlow(with: .cancelled)
             }
             self.navigationBar.setLeft(UIView()) { }

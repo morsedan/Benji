@@ -12,9 +12,13 @@ class LoginCoordinator: PresentableCoordinator<Void> {
 
     var userExists: Bool
 
-    lazy var loginFlowController = LoginFlowViewController(introVC: nil,
-                                                           endingVC: nil,
-                                                           userExists: self.userExists)
+    lazy var loginFlowController: LoginFlowViewController = {
+        let controller = LoginFlowViewController(introVC: nil,
+                                                 endingVC: nil,
+                                                 userExists: self.userExists)
+        controller.delegate = self
+        return controller
+    }()
 
     lazy var scrolledModal = ScrolledModalViewController(presentable: self.loginFlowController)
 
@@ -24,13 +28,24 @@ class LoginCoordinator: PresentableCoordinator<Void> {
         super.init(router: router, deepLink: nil)
     }
 
-//    override func toPresentable() -> UIViewController {
-//        return self.scrolledModal
-//    }
+    override func toPresentable() -> UIViewController {
+        return self.scrolledModal
+    }
 
     override func start() {
         self.scrolledModal.didDismiss = { [unowned self] in
             self.finishFlow(with: ())
+        }
+    }
+}
+
+extension LoginCoordinator: LoginFlowViewControllerDelegate {
+    func loginFlowViewController(_ controller: LoginFlowViewController, finishedWith result: LoginFlowResult) {
+        switch result {
+        case .loggedIn:
+            break
+        case .cancelled:
+            break 
         }
     }
 }
