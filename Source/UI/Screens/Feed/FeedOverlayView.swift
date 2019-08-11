@@ -11,12 +11,16 @@ import Koloda
 
 class FeedOverlayView: OverlayView {
 
+    let titleLabel = Display1Label()
+
     override var overlayState: SwipeResultDirection?  {
         didSet {
             switch overlayState {
             case .left? :
+                self.titleLabel.text =  "👎"
                 self.backgroundColor = Color.red.color.withAlphaComponent(0.5)
             case .right? :
+                self.titleLabel.text = "👍"
                 self.backgroundColor = Color.blue.color.withAlphaComponent(0.5)
             default:
                 break
@@ -37,5 +41,14 @@ class FeedOverlayView: OverlayView {
 
     private func initialize() {
         self.roundCorners()
+        self.titleLabel.font = UIFont.systemFont(ofSize: 100)
+        self.addSubview(self.titleLabel)
+    }
+
+    override func layoutSubviews() {
+        super.layoutSubviews()
+
+        self.titleLabel.setSize(withWidth: self.width * 0.8)
+        self.titleLabel.centerOnXAndY()
     }
 }

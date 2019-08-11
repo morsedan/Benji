@@ -63,7 +63,23 @@ extension FeedCollectionViewManager: KolodaViewDelegate {
     }
 
     func koloda(_ koloda: KolodaView, didSwipeCardAt index: Int, in direction: SwipeResultDirection) {
+        guard let item = self.items[safe: index] else { return }
 
+        switch item {
+        case .channelInvite(let channel):
+            if direction == .right {
+                channel.joinIfNeeded().observe { (result) in
+                    
+                }
+            } else if direction == .left {
+                channel.declineInvitation { (result) in
+
+                }
+            }
+            break
+        default:
+            break
+        }
     }
 
     func kolodaShouldApplyAppearAnimation(_ koloda: KolodaView) -> Bool {

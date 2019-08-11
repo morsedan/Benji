@@ -120,7 +120,7 @@ class ChannelManager: NSObject {
             let messageOptions = TCHMessageOptions().withBody(body)
             messageOptions.withAttributes(attributes, completion: nil)
             messages.sendMessage(with: messageOptions, completion: { (result, message) in
-
+                
             })
         }
     }
@@ -187,6 +187,22 @@ class ChannelManager: NSObject {
             }
 
             completion(sorted)
+        }
+    }
+
+    private func deleteAllChannels() {
+
+        for type in ChannelManager.shared.channelTypes {
+            switch type {
+            case .channel(let channel):
+                channel.destroy(completion: { (result) in
+                    if result.isSuccessful() {
+                        print("Channel deleted")
+                    }
+                })
+            default:
+                break
+            }
         }
     }
 }

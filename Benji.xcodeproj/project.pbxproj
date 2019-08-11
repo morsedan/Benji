@@ -107,6 +107,7 @@
 		D67896AB22FF5C470059BA75 /* DoneToolBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = D67896AA22FF5C470059BA75 /* DoneToolBar.swift */; };
 		D67896AD22FF60190059BA75 /* LoginTextInputViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D67896AC22FF60190059BA75 /* LoginTextInputViewController.swift */; };
 		D67896AF22FF62630059BA75 /* PhoneKit.swift in Sources */ = {isa = PBXBuildFile; fileRef = D67896AE22FF62630059BA75 /* PhoneKit.swift */; };
+		D67896B622FF86AB0059BA75 /* FeedViewController+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = D67896B522FF86AB0059BA75 /* FeedViewController+Extensions.swift */; };
 		D6815DB122ECAEC700E71251 /* MediumLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6815DB022ECAEC700E71251 /* MediumLabel.swift */; };
 		D6815DB922EE1CAC00E71251 /* FeedView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6815DB822EE1CAC00E71251 /* FeedView.swift */; };
 		D6815DBB22EE1F1400E71251 /* FeedCollectionViewManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6815DBA22EE1F1400E71251 /* FeedCollectionViewManager.swift */; };
@@ -296,6 +297,7 @@
 		D67896AA22FF5C470059BA75 /* DoneToolBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DoneToolBar.swift; sourceTree = "<group>"; };
 		D67896AC22FF60190059BA75 /* LoginTextInputViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginTextInputViewController.swift; sourceTree = "<group>"; };
 		D67896AE22FF62630059BA75 /* PhoneKit.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhoneKit.swift; sourceTree = "<group>"; };
+		D67896B522FF86AB0059BA75 /* FeedViewController+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "FeedViewController+Extensions.swift"; sourceTree = "<group>"; };
 		D6815DB022ECAEC700E71251 /* MediumLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MediumLabel.swift; sourceTree = "<group>"; };
 		D6815DB822EE1CAC00E71251 /* FeedView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedView.swift; sourceTree = "<group>"; };
 		D6815DBA22EE1F1400E71251 /* FeedCollectionViewManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedCollectionViewManager.swift; sourceTree = "<group>"; };
@@ -576,6 +578,7 @@
 			isa = PBXGroup;
 			children = (
 				D62C635322BE9CBB00F4D097 /* FeedViewController.swift */,
+				D67896B522FF86AB0059BA75 /* FeedViewController+Extensions.swift */,
 				D642736322C9132A0088256B /* EmptyFeedView.swift */,
 				D642736522C971FD0088256B /* FeedTextView.swift */,
 				D6815DB822EE1CAC00E71251 /* FeedView.swift */,
@@ -1165,6 +1168,7 @@
 				D642737F22C9A7EC0088256B /* ContactsManager.swift in Sources */,
 				D642738A22C9B0170088256B /* ModalControllerAnimatedTransitioning.swift in Sources */,
 				D68483FF22CD0A1A00362AC3 /* TableView.swift in Sources */,
+				D67896B622FF86AB0059BA75 /* FeedViewController+Extensions.swift in Sources */,
 				D6AF0301220154E3002D5C75 /* ChannelManager.swift in Sources */,
 				D642736422C9132A0088256B /* EmptyFeedView.swift in Sources */,
 				D61EC0C021D3071400204BEE /* AppDelegate.swift in Sources */,
