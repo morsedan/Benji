@@ -27,10 +27,9 @@ class HomeCoordinator: PresentableCoordinator<Void> {
 
     func startLoginFlow() {
         let coordinator = LoginCoordinator(router: self.router, userExists: false)
-        coordinator.setFinishedHandler { (_) in
-            self.router.dismiss(animated: true, completion: nil)
-        }
         self.router.present(coordinator, animated: true)
-        self.addChildAndStart(coordinator)
+        self.addChildAndStart(coordinator, finishedHandler: { (_) in
+            self.router.dismiss(animated: true, completion: nil)
+        })
     }
 }

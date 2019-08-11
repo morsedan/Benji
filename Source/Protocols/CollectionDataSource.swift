@@ -12,7 +12,6 @@ import ReactiveSwift
 protocol ChannelDataSource: AnyObject {
 
     var sections: MutableProperty<[ChannelSectionType]> { get set }
-    var previousSections: [ChannelSectionType]? { get set }
     var collectionView: CollectionView? { get set }
 
     func item(at indexPath: IndexPath) -> MessageType?
@@ -46,19 +45,12 @@ extension ChannelDataSource {
 
     func reset() {
         self.sections.value = []
-        self.previousSections = nil
         self.collectionView?.reloadData()
     }
 
     func set(newSections: [ChannelSectionType]) {
         self.sections.value = newSections
         self.collectionView?.reloadData()
-
-        //FIX ME!!!!
-//        self.updateCollectionView(sections: newSections, modify: { [weak self] in
-//            guard let `self` = self else { return }
-//            self.sections.value = newSections
-//        })
     }
 
     func append(item: MessageType) {
@@ -66,7 +58,7 @@ extension ChannelDataSource {
         var itemCount: Int?
         
         for (index, type) in self.sections.value.enumerated() {
-            if type.date.sameDay(as: item.createdAt) {
+            if type.date.isSameDay(as: item.createdAt) {
                 sectionIndex = index
                 itemCount = type.items.count
             }
@@ -120,26 +112,5 @@ extension ChannelDataSource {
 
         self.sections.value[section].items.remove(at: ip.row)
         self.collectionView?.deleteItems(at: [ip])
-    }
-
-    private func updateCollectionView(sections: [ChannelSectionType], modify: @escaping () -> Void) {
-
-        let previous = self.previousSections ?? []
-        self.reloadCollectionView(previousSections: previous,
-                                  newSections: sections,
-                                  modify: modify)
-
-        self.previousSections = sections
-    }
-
-    private func reloadCollectionView(previousSections: [ChannelSectionType],
-                                      newSections: [ChannelSectionType],
-                                      modify: @escaping () -> Void) {
-
-        self.collectionView?.reload(previousItems: previousSections,
-                                    newItems: newSections,
-                                    equalityOption: .equality,
-                                    modify: modify,
-                                    completion: nil)
     }
 }

@@ -44,7 +44,8 @@ class Coordinator<Result>: CoordinatorType {
         self.start()
     }
 
-    func addChildAndStart(_ coordinator: CoordinatorType) {
+    func addChildAndStart<ChildResult>(_ coordinator: Coordinator<ChildResult>,
+                                       finishedHandler: @escaping (ChildResult) -> Void) {
         guard self.childCoordinator == nil else {
             print("WARNING!!!!! ATTEMPTING TO ADD CHILD COORDINATOR \(coordinator)"
                 + " TO COORDINATOR \(self) THAT ALREADY HAS ONE \(self.childCoordinator!)")
@@ -53,11 +54,10 @@ class Coordinator<Result>: CoordinatorType {
 
         coordinator.parentCoordinator = self
         self.childCoordinator = coordinator
-        coordinator.start()
-    }
 
-    func setFinishedHandler(_ handler: @escaping (Result) -> Void) {
-        self.onFinishedFlow = handler
+        // Assign the finish handler before calling start in case the coordinator finishes immediately
+        coordinator.onFinishedFlow = finishedHandler
+        coordinator.start()
     }
 
     func removeChild() {
