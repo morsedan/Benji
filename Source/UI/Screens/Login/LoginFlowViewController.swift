@@ -20,6 +20,7 @@ enum LoginStep {
     case intro(LoginFlowableViewController)
     case phone
     case verifyCode(PhoneNumber)
+    case name
     case last(LoginFlowableViewController)
 }
 
@@ -112,6 +113,9 @@ class LoginFlowViewController: ScrolledModalFlowViewController {
                 self.navigationBar.titleLabel.set(text: signUpTitle, alignment: .center)
             }
             self.configureVerifyCode(with: phoneNumber)
+        case .name:
+            self.navigationBar.titleLabel.set(text: "Add Name", alignment: .center)
+            self.configureNameController()
         case .last(let controller):
             self.navigationBar.titleLabel.set(text: "Congrats")
             self.navigationBar.setLeft(UIView()) { }
@@ -121,8 +125,6 @@ class LoginFlowViewController: ScrolledModalFlowViewController {
 
     private func configureIntro(with controller: LoginFlowableViewController) {
         controller.didComplete = { [unowned self] in
-
-
             guard let current = PFUser.current(), current.isAuthenticated else {
                 // If the user is already logged in, refetch all their data
                 self.fetchAllData()
@@ -155,6 +157,20 @@ class LoginFlowViewController: ScrolledModalFlowViewController {
     private func configureVerifyCode(with phoneNumber: PhoneNumber) {
         let vc = LoginCodeViewController(phoneNumber: phoneNumber)
         vc.didVerifyUser = { [weak self] user in
+            guard let `self` = self else { return }
+            //show the last vc or the loading screen if there isnt one
+            self.handle(step: .name)
+        }
+        self.add(controller: vc)
+        self.moveForward()
+        delay(0.5) {
+            vc.textField.becomeFirstResponder()
+        }
+    }
+
+    private func configureNameController() {
+        let vc = LoginNameViewController()
+        vc.didAddName = { [weak self] in
             guard let `self` = self else { return }
             //show the last vc or the loading screen if there isnt one
             if let finalVC = self.endingVC {
