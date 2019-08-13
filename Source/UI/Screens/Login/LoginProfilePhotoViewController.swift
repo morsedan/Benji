@@ -35,13 +35,15 @@ class LoginProfilePhotoViewController: ViewController {
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
 
-        self.avatarView.size = CGSize(width: 100, height: 100)
+        self.view.round(corners: [.topLeft, .topRight], size: CGSize(width: 10, height: 10))
+
+        self.avatarView.size = CGSize(width: 150, height: 150)
         self.avatarView.top = 80
         self.avatarView.centerOnX()
         self.avatarView.makeRound()
 
         self.doneButton.size = CGSize(width: self.view.width - 28, height: 40)
-        self.doneButton.top = self.avatarView.bottom + 20
+        self.doneButton.bottom = self.view.height - self.view.safeAreaInsets.bottom - 20
         self.doneButton.centerOnX()
     }
 

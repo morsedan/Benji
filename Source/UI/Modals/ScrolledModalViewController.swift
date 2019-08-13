@@ -15,7 +15,7 @@ protocol ScrolledModalControllerPresentable where Self : UIViewController {
     var didDismiss: (() -> Void)? { get set }
 }
 
-class ScrolledModalViewController: ViewController, ScrolledModalContainerViewDelegate, KeyboardManageable {
+class ScrolledModalViewController: ViewController, ScrolledModalContainerViewDelegate, KeyboardObservable {
 
     var contentExpandedHeight: CGFloat {
         return self.view.height - self.presentable.topMargin
@@ -161,8 +161,18 @@ class ScrolledModalViewController: ViewController, ScrolledModalContainerViewDel
         return self.view.height - self.presentable.topMargin
     }
 
-    func handleKeyboard(height: CGFloat) {
-        let expandedHeight = self.getExpandedHeight() + height
-        self.animate(height: expandedHeight, with: 0.15)
+    func handleKeyboard(state: KeyboardState, with animationDuration: TimeInterval) {
+        var expandedHeight = self.getExpandedHeight()
+        switch state {
+        case .willShow(let height):
+            expandedHeight += height
+        case .didShow(let height):
+            expandedHeight += height
+        case .willHide(let height):
+            expandedHeight += height
+        case .didHide(let height):
+            expandedHeight += height
+        }
+        self.animate(height: expandedHeight, with: animationDuration)
     }
 }
