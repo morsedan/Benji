@@ -112,6 +112,7 @@
 		D67896B622FF86AB0059BA75 /* FeedViewController+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = D67896B522FF86AB0059BA75 /* FeedViewController+Extensions.swift */; };
 		D67896B8230096620059BA75 /* KeyboardManagable.swift in Sources */ = {isa = PBXBuildFile; fileRef = D67896B7230096620059BA75 /* KeyboardManagable.swift */; };
 		D67896BD23025FEC0059BA75 /* LoginNameViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D67896BC23025FEC0059BA75 /* LoginNameViewController.swift */; };
+		D67896BF2302683C0059BA75 /* LoginProfilePhotoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D67896BE2302683C0059BA75 /* LoginProfilePhotoViewController.swift */; };
 		D6815DB122ECAEC700E71251 /* MediumLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6815DB022ECAEC700E71251 /* MediumLabel.swift */; };
 		D6815DB922EE1CAC00E71251 /* FeedView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6815DB822EE1CAC00E71251 /* FeedView.swift */; };
 		D6815DBB22EE1F1400E71251 /* FeedCollectionViewManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6815DBA22EE1F1400E71251 /* FeedCollectionViewManager.swift */; };
@@ -306,6 +307,7 @@
 		D67896B522FF86AB0059BA75 /* FeedViewController+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "FeedViewController+Extensions.swift"; sourceTree = "<group>"; };
 		D67896B7230096620059BA75 /* KeyboardManagable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeyboardManagable.swift; sourceTree = "<group>"; };
 		D67896BC23025FEC0059BA75 /* LoginNameViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginNameViewController.swift; sourceTree = "<group>"; };
+		D67896BE2302683C0059BA75 /* LoginProfilePhotoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginProfilePhotoViewController.swift; sourceTree = "<group>"; };
 		D6815DB022ECAEC700E71251 /* MediumLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MediumLabel.swift; sourceTree = "<group>"; };
 		D6815DB822EE1CAC00E71251 /* FeedView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedView.swift; sourceTree = "<group>"; };
 		D6815DBA22EE1F1400E71251 /* FeedCollectionViewManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedCollectionViewManager.swift; sourceTree = "<group>"; };
@@ -735,6 +737,7 @@
 				D67896AC22FF60190059BA75 /* LoginTextInputViewController.swift */,
 				D67896B122FF67650059BA75 /* LoginCodeViewController.swift */,
 				D67896BC23025FEC0059BA75 /* LoginNameViewController.swift */,
+				D67896BE2302683C0059BA75 /* LoginProfilePhotoViewController.swift */,
 			);
 			path = Login;
 			sourceTree = "<group>";
@@ -1232,6 +1235,7 @@
 				D67896B422FF75640059BA75 /* LoginCoordinator.swift in Sources */,
 				D642738C22C9B24E0088256B /* LoadingButton.swift in Sources */,
 				D68DC7FC22EE5D9000BEAF80 /* FeedOverlayView.swift in Sources */,
+				D67896BF2302683C0059BA75 /* LoginProfilePhotoViewController.swift in Sources */,
 				D6D1500C21D5E7C200CD8CE4 /* CollectionViewManager.swift in Sources */,
 				D6432BF722D837340016001A /* CellSizeCalculator.swift in Sources */,
 				D642736A22C98EB40088256B /* ScrolledModalContainerView.swift in Sources */,

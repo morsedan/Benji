@@ -35,14 +35,25 @@ class LoginNameViewController: LoginTextInputViewController {
         }
 
         self.textField.autocapitalizationType = .words
+        self.textField.keyboardType = .default
+        self.textField.textContentType = .name
     }
 
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
 
-        self.doneButton.size = CGSize(width: self.view.width * 0.8, height: 40)
-        self.doneButton.top = self.textField.bottom + 40
+        self.doneButton.size = CGSize(width: self.textField.width, height: 40)
+        self.doneButton.top = self.textField.bottom + 20
         self.doneButton.centerOnX()
+    }
+
+    override func textFieldDidChange() {
+        guard let text = self.textField.text,
+            !text.isEmpty else {
+                self.doneButton.isEnabled = false
+                return
+        }
+        self.doneButton.isEnabled = true
     }
 
     override func textFieldDidEndEditing(_ textField: UITextField) {
@@ -58,7 +69,6 @@ class LoginNameViewController: LoginTextInputViewController {
         current.firstName = text
         current.saveInBackground { (success, error) in
             guard success else { return }
-            self.textField.resignFirstResponder()
             self.didAddName()
         }
 

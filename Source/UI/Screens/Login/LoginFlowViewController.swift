@@ -21,6 +21,7 @@ enum LoginStep {
     case phone
     case verifyCode(PhoneNumber)
     case name
+    case profilePicture
     case last(LoginFlowableViewController)
 }
 
@@ -116,6 +117,9 @@ class LoginFlowViewController: ScrolledModalFlowViewController {
         case .name:
             self.navigationBar.titleLabel.set(text: "Add Name", alignment: .center)
             self.configureNameController()
+        case .profilePicture:
+            self.navigationBar.titleLabel.set(text: "Add Photo", alignment: .center)
+            self.configureProfilePictureController()
         case .last(let controller):
             self.navigationBar.titleLabel.set(text: "Congrats")
             self.navigationBar.setLeft(UIView()) { }
@@ -172,6 +176,20 @@ class LoginFlowViewController: ScrolledModalFlowViewController {
         let vc = LoginNameViewController()
         vc.didAddName = { [weak self] in
             guard let `self` = self else { return }
+            vc.textField.resignFirstResponder()
+            self.handle(step: .profilePicture)
+        }
+        self.add(controller: vc)
+        self.moveForward()
+        delay(0.5) {
+            vc.textField.becomeFirstResponder()
+        }
+    }
+
+    func configureProfilePictureController() {
+        let vc = LoginProfilePhotoViewController()
+        vc.didSavePhoto = { [weak self] in
+            guard let `self` = self else { return }
             //show the last vc or the loading screen if there isnt one
             if let finalVC = self.endingVC {
                 self.handle(step: .last(finalVC))
@@ -181,9 +199,6 @@ class LoginFlowViewController: ScrolledModalFlowViewController {
         }
         self.add(controller: vc)
         self.moveForward()
-        delay(0.5) {
-            vc.textField.becomeFirstResponder()
-        }
     }
 
     private func configureLast(with controller: LoginFlowableViewController) {
