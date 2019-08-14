@@ -63,8 +63,8 @@ class ChannelViewController: FullScreenViewController, ScrolledModalControllerPr
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        self.view.set(backgroundColor: .background1)
-
+        self.view.set(backgroundColor: .background3)
+        
         self.addChild(viewController: self.channelCollectionVC, toView: self.contentContainer)
         self.contentContainer.addSubview(self.bottomGradientView)
 
@@ -104,6 +104,8 @@ class ChannelViewController: FullScreenViewController, ScrolledModalControllerPr
     
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
+
+        self.view.round(corners: [.topLeft, .topRight], size: CGSize(width: 10, height: 10))
 
         self.contentContainer.height = self.view.height
         self.contentContainer.top = 0
