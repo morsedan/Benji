@@ -8,13 +8,6 @@
 
 import Foundation
 
-protocol ScrolledModalControllerPresentable where Self : UIViewController {
-    var topMargin: CGFloat { get }
-    var scrollView: UIScrollView? { get }
-    var scrollingEnabled: Bool { get }
-    var didDismiss: (() -> Void)? { get set }
-}
-
 class ScrolledModalViewController: ViewController, ScrolledModalContainerViewDelegate {
 
     var contentExpandedHeight: CGFloat {
@@ -81,14 +74,18 @@ class ScrolledModalViewController: ViewController, ScrolledModalContainerViewDel
         self.presentable.didDismiss = { [unowned self] in
             self.dismiss(animated: true)
         }
+
+        self.presentable.didUpdateHeight = { [unowned self] (height, duration) in
+            let expandedHeight = self.getExpandedHeight() + height
+            self.animate(height: expandedHeight, with: duration)
+        }
     }
 
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
 
-        UIView.animate(withDuration: Theme.animationDuration) {
-            let expandedHeight = self.view.height - self.presentable.topMargin
-            self.modalContainerView.setExpandedHeight(expandedHeight: expandedHeight)
+        once(caller: self, token: "setScrolledModalExpanded") {
+            self.animate(height: self.getExpandedHeight(), with: Theme.animationDuration)
         }
     }
 
@@ -148,7 +145,17 @@ class ScrolledModalViewController: ViewController, ScrolledModalContainerViewDel
         self.dismiss(animated: true, completion: nil)
     }
 
+    private func animate(height: CGFloat, with duration: TimeInterval) {
+        UIView.animate(withDuration: duration) {
+            self.modalContainerView.setExpandedHeight(expandedHeight: height)
+        }
+    }
+
     private func updateAlpha(with progress: Float) {
         self.tapDismissView.alpha = CGFloat(progress)
+    }
+
+    private func getExpandedHeight() -> CGFloat {
+        return self.view.height - self.presentable.topMargin
     }
 }

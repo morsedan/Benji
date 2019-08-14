@@ -33,3 +33,21 @@ extension UIImage: ImageDisplayable {
         return self
     }
 }
+
+extension UIImage: Avatar {
+    var initials: String {
+        return String()
+    }
+
+    var firstName: String {
+        return String()
+    }
+
+    var lastName: String {
+        return String()
+    }
+
+    var handle: String {
+        return String()
+    }
+}

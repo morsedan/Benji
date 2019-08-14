@@ -9,7 +9,7 @@
 import Foundation
 import Parse
 
-class HomeCoordinator: Coordinator<Void> {
+class HomeCoordinator: PresentableCoordinator<Void> {
 
     lazy var homeVC = HomeViewController()
 
@@ -20,5 +20,16 @@ class HomeCoordinator: Coordinator<Void> {
     override func start() {
         super.start()
 
+        if PFAnonymousUtils.isLinked(with: PFUser.current()) {
+            self.startLoginFlow()
+        }
+    }
+
+    func startLoginFlow() {
+        let coordinator = LoginCoordinator(router: self.router, userExists: false)
+        self.router.present(coordinator, animated: true)
+        self.addChildAndStart(coordinator, finishedHandler: { (_) in
+            self.router.dismiss(animated: true, completion: nil)
+        })
     }
 }

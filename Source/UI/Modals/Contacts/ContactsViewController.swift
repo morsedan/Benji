@@ -13,7 +13,9 @@ protocol ContactsViewControllerDelegate: class {
     func contactsViewController(_ controller: ContactsViewController, didSelect contact: CNContact)
 }
 
-class ContactsViewController: CollectionViewController<ContactCell, ContactsCollectionViewManager>, ScrolledModalControllerPresentable {
+class ContactsViewController: CollectionViewController<ContactCell, ContactsCollectionViewManager>, ScrolledModalControllerPresentable, KeyboardObservable {
+
+    var didUpdateHeight: ((CGFloat, TimeInterval) -> ())?
 
     weak var delegate: ContactsViewControllerDelegate?
 
@@ -46,6 +48,8 @@ class ContactsViewController: CollectionViewController<ContactCell, ContactsColl
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        self.registerKeyboardEvents()
 
         self.view.set(backgroundColor: .background3)
 
@@ -110,5 +114,21 @@ class ContactsViewController: CollectionViewController<ContactCell, ContactsColl
 
     override func didSelect(item: CNContact, at indexPath: IndexPath) {
         self.delegate?.contactsViewController(self, didSelect: item)
+    }
+
+    func handleKeyboard(state: KeyboardState, with animationDuration: TimeInterval) {
+        var newHeight: CGFloat = .zero
+        switch state {
+        case .willShow(let height):
+            newHeight = height
+        case .didShow(let height):
+            newHeight = height
+        case .willHide(let height):
+            newHeight = height
+        case .didHide(let height):
+            newHeight = height
+        }
+
+        self.didUpdateHeight?(newHeight, animationDuration)
     }
 }
