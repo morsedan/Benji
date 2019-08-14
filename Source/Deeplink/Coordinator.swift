@@ -76,7 +76,17 @@ class Coordinator<Result>: CoordinatorType {
 
 class PresentableCoordinator<Result>: Coordinator<Result>, Presentable {
 
-    func toPresentable() -> UIViewController {
+    var isFinished: Bool = false
+
+    func toPresentable() -> DismissableVC {
         fatalError("toPresentable not implemented in \(self)")
+    }
+
+    override func finishFlow(with result: Result) {
+        // IMPORTANT: Set isFinished true before calling super in case a VC dismissal happens in the
+        // finished handler
+        self.isFinished = true
+
+        super.finishFlow(with: result)
     }
 }

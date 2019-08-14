@@ -24,7 +24,7 @@ class ChannelCoordinator: PresentableCoordinator<Void> {
         super.init(router: router, deepLink: nil)
     }
 
-    override func toPresentable() -> UIViewController {
+    override func toPresentable() -> DismissableVC {
         return self.scrolledModal
     }
 
