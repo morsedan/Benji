@@ -9,7 +9,19 @@
 import Foundation
 import ReactiveSwift
 
-class ChannelViewController: FullScreenViewController {
+class ChannelViewController: FullScreenViewController, ScrolledModalControllerPresentable {
+
+    var topMargin: CGFloat {
+        return 100
+    }
+
+    var scrollView: UIScrollView? {
+        return self.channelCollectionVC.collectionView
+    }
+
+    var scrollingEnabled: Bool = true
+    var didUpdateHeight: ((CGFloat, TimeInterval) -> ())?
+
 
     let channelType: ChannelType
 
