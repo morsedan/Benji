@@ -12,7 +12,6 @@ import ReactiveSwift
 protocol ChannelDataSource: AnyObject {
 
     var sections: MutableProperty<[ChannelSectionType]> { get set }
-    var previousSections: [ChannelSectionType]? { get set }
     var collectionView: CollectionView? { get set }
 
     func item(at indexPath: IndexPath) -> MessageType?
@@ -46,7 +45,6 @@ extension ChannelDataSource {
 
     func reset() {
         self.sections.value = []
-        self.previousSections = nil
         self.collectionView?.reloadData()
     }
 
@@ -120,26 +118,5 @@ extension ChannelDataSource {
 
         self.sections.value[section].items.remove(at: ip.row)
         self.collectionView?.deleteItems(at: [ip])
-    }
-
-    private func updateCollectionView(sections: [ChannelSectionType], modify: @escaping () -> Void) {
-
-        let previous = self.previousSections ?? []
-        self.reloadCollectionView(previousSections: previous,
-                                  newSections: sections,
-                                  modify: modify)
-
-        self.previousSections = sections
-    }
-
-    private func reloadCollectionView(previousSections: [ChannelSectionType],
-                                      newSections: [ChannelSectionType],
-                                      modify: @escaping () -> Void) {
-
-        self.collectionView?.reload(previousItems: previousSections,
-                                    newItems: newSections,
-                                    equalityOption: .equality,
-                                    modify: modify,
-                                    completion: nil)
     }
 }
