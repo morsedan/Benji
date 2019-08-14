@@ -37,13 +37,13 @@ class LoginProfilePhotoViewController: ViewController {
 
         self.view.round(corners: [.topLeft, .topRight], size: CGSize(width: 10, height: 10))
 
-        self.avatarView.size = CGSize(width: 150, height: 150)
+        self.avatarView.size = CGSize(width: 200, height: 200)
         self.avatarView.top = 80
         self.avatarView.centerOnX()
         self.avatarView.makeRound()
 
         self.doneButton.size = CGSize(width: self.view.width - 28, height: 40)
-        self.doneButton.bottom = self.view.height - self.view.safeAreaInsets.bottom - 20
+        self.doneButton.top = self.avatarView.bottom + 40
         self.doneButton.centerOnX()
     }
 
@@ -69,10 +69,11 @@ class LoginProfilePhotoViewController: ViewController {
 
         let imageFile = PFFileObject(name:"image.png", data: imageData)
         current["profilePicute"] = imageFile
-
+        self.doneButton.isLoading = true
         current.saveInBackground { (success, error) in
             guard success else { return }
             self.didSavePhoto()
+            self.doneButton.isLoading = false
         }
     }
 }

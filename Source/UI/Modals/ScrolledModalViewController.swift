@@ -84,7 +84,9 @@ class ScrolledModalViewController: ViewController, ScrolledModalContainerViewDel
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
 
-        self.animate(height: self.getExpandedHeight(), with: Theme.animationDuration)
+        once(caller: self, token: "setScrolledModalExpanded") {
+            self.animate(height: self.getExpandedHeight(), with: Theme.animationDuration)
+        }
     }
 
     override func viewDidLayoutSubviews() {

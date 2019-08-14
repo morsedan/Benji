@@ -56,22 +56,17 @@ class LoginNameViewController: LoginTextInputViewController {
         self.doneButton.isEnabled = true
     }
 
-    override func textFieldDidEndEditing(_ textField: UITextField) {
-        super.textFieldDidEndEditing(textField)
-        self.updateUserName()
-    }
-
     private func updateUserName() {
         guard let current = PFUser.current(),
             let text = self.textField.text,
             !text.isEmpty else { return }
 
         current.firstName = text
+        self.doneButton.isLoading = true
         current.saveInBackground { (success, error) in
             guard success else { return }
             self.didAddName()
+            self.doneButton.isLoading = false
         }
-
-        self.resignFirstResponder()
     }
 }
