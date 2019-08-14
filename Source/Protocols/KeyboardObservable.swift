@@ -90,6 +90,7 @@ class KeyboardHandler: NSObject {
 }
 
 extension Notification {
+
     var keyboardSize: CGSize? {
         return (self.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue)?.cgRectValue.size
     }

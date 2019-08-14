@@ -8,14 +8,7 @@
 
 import Foundation
 
-protocol ScrolledModalControllerPresentable where Self : UIViewController {
-    var topMargin: CGFloat { get }
-    var scrollView: UIScrollView? { get }
-    var scrollingEnabled: Bool { get }
-    var didDismiss: (() -> Void)? { get set }
-}
-
-class ScrolledModalViewController: ViewController, ScrolledModalContainerViewDelegate, KeyboardObservable {
+class ScrolledModalViewController: ViewController, ScrolledModalContainerViewDelegate {
 
     var contentExpandedHeight: CGFloat {
         return self.view.height - self.presentable.topMargin
@@ -59,8 +52,6 @@ class ScrolledModalViewController: ViewController, ScrolledModalContainerViewDel
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        self.registerKeyboardEvents()
-
         self.view.set(backgroundColor: .clear)
         self.modalContainerView.delegate = self
 
@@ -82,6 +73,11 @@ class ScrolledModalViewController: ViewController, ScrolledModalContainerViewDel
         self.addChild(viewController: self.presentable, toView: self.modalContainerView)
         self.presentable.didDismiss = { [unowned self] in
             self.dismiss(animated: true)
+        }
+
+        self.presentable.didUpdateHeight = { [unowned self] (height, duration) in
+            let expandedHeight = self.getExpandedHeight() + height
+            self.animate(height: expandedHeight, with: duration)
         }
     }
 
@@ -159,20 +155,5 @@ class ScrolledModalViewController: ViewController, ScrolledModalContainerViewDel
 
     private func getExpandedHeight() -> CGFloat {
         return self.view.height - self.presentable.topMargin
-    }
-
-    func handleKeyboard(state: KeyboardState, with animationDuration: TimeInterval) {
-        var expandedHeight = self.getExpandedHeight()
-        switch state {
-        case .willShow(let height):
-            expandedHeight += height
-        case .didShow(let height):
-            expandedHeight += height
-        case .willHide(let height):
-            expandedHeight += height
-        case .didHide(let height):
-            expandedHeight += height
-        }
-        self.animate(height: expandedHeight, with: animationDuration)
     }
 }

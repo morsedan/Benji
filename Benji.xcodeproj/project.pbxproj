@@ -113,6 +113,7 @@
 		D67896B8230096620059BA75 /* KeyboardObservable.swift in Sources */ = {isa = PBXBuildFile; fileRef = D67896B7230096620059BA75 /* KeyboardObservable.swift */; };
 		D67896BD23025FEC0059BA75 /* LoginNameViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D67896BC23025FEC0059BA75 /* LoginNameViewController.swift */; };
 		D67896BF2302683C0059BA75 /* LoginProfilePhotoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D67896BE2302683C0059BA75 /* LoginProfilePhotoViewController.swift */; };
+		D67896CA23039E680059BA75 /* ScrolledModalControllerPresentable.swift in Sources */ = {isa = PBXBuildFile; fileRef = D67896C923039E680059BA75 /* ScrolledModalControllerPresentable.swift */; };
 		D6815DB122ECAEC700E71251 /* MediumLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6815DB022ECAEC700E71251 /* MediumLabel.swift */; };
 		D6815DB922EE1CAC00E71251 /* FeedView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6815DB822EE1CAC00E71251 /* FeedView.swift */; };
 		D6815DBB22EE1F1400E71251 /* FeedCollectionViewManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6815DBA22EE1F1400E71251 /* FeedCollectionViewManager.swift */; };
@@ -308,6 +309,7 @@
 		D67896B7230096620059BA75 /* KeyboardObservable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeyboardObservable.swift; sourceTree = "<group>"; };
 		D67896BC23025FEC0059BA75 /* LoginNameViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginNameViewController.swift; sourceTree = "<group>"; };
 		D67896BE2302683C0059BA75 /* LoginProfilePhotoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginProfilePhotoViewController.swift; sourceTree = "<group>"; };
+		D67896C923039E680059BA75 /* ScrolledModalControllerPresentable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScrolledModalControllerPresentable.swift; sourceTree = "<group>"; };
 		D6815DB022ECAEC700E71251 /* MediumLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MediumLabel.swift; sourceTree = "<group>"; };
 		D6815DB822EE1CAC00E71251 /* FeedView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedView.swift; sourceTree = "<group>"; };
 		D6815DBA22EE1F1400E71251 /* FeedCollectionViewManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedCollectionViewManager.swift; sourceTree = "<group>"; };
@@ -527,6 +529,7 @@
 				D66F0FCE22BF060500BA277D /* Deeplinkable.swift */,
 				D66F0FE522C0640E00BA277D /* Avatar.swift */,
 				D67896B7230096620059BA75 /* KeyboardObservable.swift */,
+				D67896C923039E680059BA75 /* ScrolledModalControllerPresentable.swift */,
 			);
 			path = Protocols;
 			sourceTree = "<group>";
@@ -1174,6 +1177,7 @@
 				D67896A522FF48D60059BA75 /* LoginFlowViewController.swift in Sources */,
 				D61EC0EC21D312B600204BEE /* UIView+Extensions.swift in Sources */,
 				D6D1504021DAFB8300CD8CE4 /* UITextField+Extensions.swift in Sources */,
+				D67896CA23039E680059BA75 /* ScrolledModalControllerPresentable.swift in Sources */,
 				D60C814622092F6B00A127A3 /* Button.swift in Sources */,
 				D6D1503721D7E74500CD8CE4 /* UIViewController+Extensions.swift in Sources */,
 				D6B2606822E80A7900143CF0 /* ToastQueue.swift in Sources */,
