@@ -17,7 +17,6 @@ extension ChannelCollectionViewController {
         case .system( _ ):
             self.loadTestMessages()
         case .channel(let channel):
-            ChannelManager.shared.selectedChannel = channel
             self.loadChannelMessages(with: channel)
         }
     }

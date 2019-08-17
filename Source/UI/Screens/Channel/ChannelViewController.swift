@@ -12,7 +12,8 @@ import ReactiveSwift
 class ChannelViewController: ViewController, ScrolledModalControllerPresentable {
 
     var topMargin: CGFloat {
-        return self.view.safeAreaInsets.top + 60
+        guard let topInset = UIWindow.topWindow()?.safeAreaInsets.top else { return 0 }
+        return topInset + 60
     }
 
     var scrollView: UIScrollView? {

@@ -11,7 +11,7 @@ import Foundation
 class ChannelDetailBar: View {
 
     private(set) var closeButton = CloseButton()
-    private(set) var titleLabel = Display1Label()
+    private(set) var titleLabel = Display2Label()
     private(set) var avatarView = AvatarView()
 
     override func initialize() {
@@ -57,6 +57,7 @@ class ChannelDetailBar: View {
 
             guard let memberUpdate = update, memberUpdate.channel == ChannelManager.shared.selectedChannel else { return }
 
+            //Update collection of Avatars 
             switch memberUpdate.status {
             case .joined:
                 break
@@ -91,14 +92,14 @@ class ChannelDetailBar: View {
                 break
             case .deleted:
                 break
-               // self.channelDataSource.reset()
             case .syncUpdate(let syncStatus):
                 switch syncStatus {
                 case .none, .identifier, .metadata, .failed:
                     break
                 case .all:
-                    break
-                    //self.loadChannelMessages(with: channelsUpdate.channel)
+                    if let name = channelsUpdate.channel.friendlyName {
+                        self.set(text: name)
+                    }
                 @unknown default:
                     break
                 }
