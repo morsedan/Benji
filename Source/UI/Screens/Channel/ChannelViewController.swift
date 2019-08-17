@@ -22,7 +22,6 @@ class ChannelViewController: ViewController, ScrolledModalControllerPresentable 
     var scrollingEnabled: Bool = true
     var didUpdateHeight: ((CGFloat, TimeInterval) -> ())?
 
-
     let channelType: ChannelType
 
     lazy var channelCollectionVC = ChannelCollectionViewController()
@@ -35,7 +34,6 @@ class ChannelViewController: ViewController, ScrolledModalControllerPresentable 
 
     private(set) var contextButton = ContextButton()
     private(set) var bottomGradientView = GradientView()
-    //let detailBar = ChannelDetailBar()
 
     var oldTextViewHeight: CGFloat = 48
     let bottomOffset: CGFloat = 16
