@@ -25,10 +25,6 @@ class ChannelModalViewController: ScrolledModalViewController<ChannelViewControl
         
         self.tapDismissView.set(backgroundColor: .background1)
         self.view.addSubview(self.detailBar)
-
-        self.detailBar.closeButton.onTap { [unowned self] (tap) in
-            self.dismiss(animated: true, completion: nil)
-        }
     }
 
     override func viewDidLayoutSubviews() {

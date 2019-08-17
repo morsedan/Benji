@@ -10,14 +10,12 @@ import Foundation
 
 class ChannelDetailBar: View {
 
-    private(set) var closeButton = CloseButton()
     private(set) var titleLabel = Display2Label()
     private(set) var avatarView = AvatarView()
 
     override func initialize() {
         super.initialize()
 
-        self.addSubview(self.closeButton)
         self.addSubview(self.titleLabel)
         self.addSubview(self.avatarView)
 
@@ -27,17 +25,13 @@ class ChannelDetailBar: View {
     override func layoutSubviews() {
         super.layoutSubviews()
 
-        self.closeButton.size = CGSize(width: 25, height: 25)
-        self.closeButton.left = 18
-        self.closeButton.centerOnY()
-
         self.avatarView.size = CGSize(width: 32, height: 32)
         self.avatarView.right = self.width - 18
         self.avatarView.centerOnY()
 
-        let titleWidth = self.width - self.closeButton.right - 68
+        let titleWidth = self.width - 68
         self.titleLabel.setSize(withWidth: titleWidth)
-        self.titleLabel.left = self.closeButton.right + 25
+        self.titleLabel.left = 18
         self.titleLabel.centerOnY()
     }
 
