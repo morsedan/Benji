@@ -13,8 +13,9 @@ class ChannelModalViewController: ScrolledModalViewController {
     let detailBar = ChannelDetailBar()
 
     init(with channelType: ChannelType) {
-        let vc = ChannelViewController(channelType: channelType)
-        super.init(presentable: vc)
+        let channelVC = ChannelViewController(channelType: channelType)
+        super.init(presentable: channelVC)
+        channelVC.delegate = self
     }
 
     required init?(coder aDecoder: NSCoder) {
@@ -24,20 +25,29 @@ class ChannelModalViewController: ScrolledModalViewController {
     override func initializeViews() {
         super.initializeViews()
 
+        self.tapDismissView.set(backgroundColor: .background1)
         self.view.addSubview(self.detailBar)
 
         self.detailBar.closeButton.onTap { [unowned self] (tap) in
             self.dismiss(animated: true, completion: nil)
         }
-
-        //Have modal go to bottom of detail bar 
     }
 
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
 
         self.detailBar.size = CGSize(width: self.view.width, height: 60)
-        self.detailBar.top = self.view.safeAreaInsets.top
+        self.detailBar.bottom = self.modalContainerView.top 
         self.detailBar.centerOnX()
+    }
+}
+
+extension ChannelModalViewController: ChannelViewControllerDelegate {
+    func channelView(_ controller: ChannelViewController, didUpdate avatar: Avatar) {
+        self.detailBar.set(avatar: avatar)
+    }
+
+    func channelView(_ controller: ChannelViewController, didUpdate title: Localized) {
+        self.detailBar.set(text: title)
     }
 }

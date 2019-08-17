@@ -9,6 +9,11 @@
 import Foundation
 import ReactiveSwift
 
+protocol ChannelViewControllerDelegate: class {
+    func channelView(_ controller: ChannelViewController, didUpdate avatar: Avatar)
+    func channelView(_ controller: ChannelViewController, didUpdate title: Localized)
+}
+
 class ChannelViewController: ViewController, ScrolledModalControllerPresentable {
 
     var topMargin: CGFloat {
@@ -23,6 +28,7 @@ class ChannelViewController: ViewController, ScrolledModalControllerPresentable 
     var didUpdateHeight: ((CGFloat, TimeInterval) -> ())?
 
     let channelType: ChannelType
+    weak var delegate: ChannelViewControllerDelegate?
 
     lazy var channelCollectionVC = ChannelCollectionViewController()
 
@@ -118,12 +124,10 @@ class ChannelViewController: ViewController, ScrolledModalControllerPresentable 
     func loadMessages(for type: ChannelType) {
         switch type {
         case .system(let message):
-            break
-           // self.detailBar.set(avatar: message.avatar)
+            self.delegate?.channelView(self, didUpdate: message.avatar)
         case .channel(let channel):
             if let name = channel.friendlyName {
-                break 
-                //self.detailBar.set(text: name)
+                self.delegate?.channelView(self, didUpdate: name)
             }
         }
         self.channelCollectionVC.loadMessages(for: type)

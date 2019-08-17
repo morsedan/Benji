@@ -11,13 +11,7 @@ import Foundation
 class ChannelCoordinator: PresentableCoordinator<Void> {
 
     let channelType: ChannelType
-
-    lazy var channelController: ChannelViewController = {
-        let controller = ChannelViewController(channelType: self.channelType)
-        return controller
-    }()
-
-    lazy var scrolledModal = ScrolledModalViewController(presentable: self.channelController)
+    lazy var scrolledModal = ChannelModalViewController(with: self.channelType)
 
     init(router: Router, channelType: ChannelType) {
         self.channelType = channelType

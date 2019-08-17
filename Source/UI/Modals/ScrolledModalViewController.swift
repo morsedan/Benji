@@ -14,8 +14,7 @@ class ScrolledModalViewController: ViewController, ScrolledModalContainerViewDel
         return self.view.height - self.presentable.topMargin
     }
 
-    private let tapDismissView = UIView()
-
+    private(set) var tapDismissView = UIView()
     private(set) var modalContainerView: ScrolledModalContainerView
     private var presentable: ScrolledModalControllerPresentable
 
@@ -77,8 +76,9 @@ class ScrolledModalViewController: ViewController, ScrolledModalContainerViewDel
 
         self.tapDismissView.frame = self.view.bounds
 
-        self.modalContainerView.size = CGSize(width: self.view.width * 0.95,
+        self.modalContainerView.size = CGSize(width: self.view.width,
                                               height: self.modalContainerView.currentHeight)
+        self.modalContainerView.round(corners: [.topLeft, .topRight], size: CGSize(width: 10, height: 10))
         self.modalContainerView.centerOnX()
         self.modalContainerView.bottom = self.view.height
 
