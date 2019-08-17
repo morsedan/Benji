@@ -115,7 +115,6 @@
 		D67896BF2302683C0059BA75 /* LoginProfilePhotoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D67896BE2302683C0059BA75 /* LoginProfilePhotoViewController.swift */; };
 		D67896CA23039E680059BA75 /* ScrolledModalControllerPresentable.swift in Sources */ = {isa = PBXBuildFile; fileRef = D67896C923039E680059BA75 /* ScrolledModalControllerPresentable.swift */; };
 		D67896CC2304524C0059BA75 /* ChannelCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = D67896CB2304524C0059BA75 /* ChannelCoordinator.swift */; };
-		D67896CE23045E7C0059BA75 /* ChannelScrolledModalViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D67896CD23045E7C0059BA75 /* ChannelScrolledModalViewController.swift */; };
 		D67896FF2308A5B50059BA75 /* ChannelModalViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D67896FE2308A5B50059BA75 /* ChannelModalViewController.swift */; };
 		D67897012308A6080059BA75 /* ScrolledTitleModalViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D67897002308A6080059BA75 /* ScrolledTitleModalViewController.swift */; };
 		D6815DB122ECAEC700E71251 /* MediumLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6815DB022ECAEC700E71251 /* MediumLabel.swift */; };
@@ -315,7 +314,6 @@
 		D67896BE2302683C0059BA75 /* LoginProfilePhotoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginProfilePhotoViewController.swift; sourceTree = "<group>"; };
 		D67896C923039E680059BA75 /* ScrolledModalControllerPresentable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScrolledModalControllerPresentable.swift; sourceTree = "<group>"; };
 		D67896CB2304524C0059BA75 /* ChannelCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChannelCoordinator.swift; sourceTree = "<group>"; };
-		D67896CD23045E7C0059BA75 /* ChannelScrolledModalViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChannelScrolledModalViewController.swift; sourceTree = "<group>"; };
 		D67896FE2308A5B50059BA75 /* ChannelModalViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChannelModalViewController.swift; sourceTree = "<group>"; };
 		D67897002308A6080059BA75 /* ScrolledTitleModalViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScrolledTitleModalViewController.swift; sourceTree = "<group>"; };
 		D6815DB022ECAEC700E71251 /* MediumLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MediumLabel.swift; sourceTree = "<group>"; };
@@ -684,7 +682,6 @@
 				D67896FE2308A5B50059BA75 /* ChannelModalViewController.swift */,
 				D6D1500621D5E73D00CD8CE4 /* ChannelViewController.swift */,
 				D64273A622CC2D280088256B /* ChannelViewController+Extensions.swift */,
-				D67896CD23045E7C0059BA75 /* ChannelScrolledModalViewController.swift */,
 				D6B2603722E6AB5E00143CF0 /* ChannelDetailBar.swift */,
 				D6B2603622E6AA3800143CF0 /* Input */,
 				D6D1500521D5E71E00CD8CE4 /* Channel Collection Views */,
@@ -1108,7 +1105,6 @@
 				D6B2601822E4208900143CF0 /* ChannelHeaderDateLabel.swift in Sources */,
 				D642735122C857760088256B /* MessageContext.swift in Sources */,
 				D60C814422092E4700A127A3 /* PagingCollectionView.swift in Sources */,
-				D67896CE23045E7C0059BA75 /* ChannelScrolledModalViewController.swift in Sources */,
 				D642737622C99D9F0088256B /* ContactsCollectionViewManager.swift in Sources */,
 				D61EC0DB21D30CB300204BEE /* Dismissable.swift in Sources */,
 				D642735322C85B740088256B /* SystemAvatar.swift in Sources */,

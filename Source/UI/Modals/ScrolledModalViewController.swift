@@ -8,7 +8,7 @@
 
 import Foundation
 
-class ScrolledModalViewController: ViewController, ScrolledModalContainerViewDelegate {
+class ScrolledModalViewController<Presentable: ScrolledModalControllerPresentable>: ViewController, ScrolledModalContainerViewDelegate {
 
     var contentExpandedHeight: CGFloat {
         return self.view.height - self.presentable.topMargin
@@ -16,9 +16,9 @@ class ScrolledModalViewController: ViewController, ScrolledModalContainerViewDel
 
     private(set) var tapDismissView = UIView()
     private(set) var modalContainerView: ScrolledModalContainerView
-    private var presentable: ScrolledModalControllerPresentable
+    private(set) var presentable: Presentable
 
-    init(presentable: ScrolledModalControllerPresentable) {
+    init(presentable: Presentable) {
         self.presentable = presentable
         self.modalContainerView = ScrolledModalContainerView(presentable: presentable)
 

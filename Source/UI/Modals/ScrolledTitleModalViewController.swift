@@ -8,7 +8,7 @@
 
 import Foundation
 
-class ScrolledTitleModalViewController: ScrolledModalViewController {
+class ScrolledTitleModalViewController<TitlePresentable: ScrolledModalControllerPresentable>: ScrolledModalViewController<TitlePresentable> {
 
     private let titleLabel = Display2Label()
     private let titleContainer = View()

@@ -8,14 +8,12 @@
 
 import Foundation
 
-class ChannelModalViewController: ScrolledModalViewController {
+class ChannelModalViewController: ScrolledModalViewController<ChannelViewController> {
 
     let detailBar = ChannelDetailBar()
 
     init(with channelType: ChannelType) {
-        let channelVC = ChannelViewController(channelType: channelType)
-        super.init(presentable: channelVC)
-        channelVC.delegate = self
+        super.init(presentable: ChannelViewController(channelType: channelType))
     }
 
     required init?(coder aDecoder: NSCoder) {
@@ -24,6 +22,8 @@ class ChannelModalViewController: ScrolledModalViewController {
 
     override func initializeViews() {
         super.initializeViews()
+        
+        self.presentable.delegate = self
 
         self.tapDismissView.set(backgroundColor: .background1)
         self.view.addSubview(self.detailBar)
@@ -43,11 +43,15 @@ class ChannelModalViewController: ScrolledModalViewController {
 }
 
 extension ChannelModalViewController: ChannelViewControllerDelegate {
-    func channelView(_ controller: ChannelViewController, didUpdate avatar: Avatar) {
-        self.detailBar.set(avatar: avatar)
-    }
+    func channelView(_ controller: ChannelViewController, didLoad channelType: ChannelType) {
 
-    func channelView(_ controller: ChannelViewController, didUpdate title: Localized) {
-        self.detailBar.set(text: title)
+        switch channelType {
+        case .system(let message):
+            self.detailBar.set(avatar: message.avatar)
+        case .channel(let channel):
+            if let name = channel.friendlyName {
+                self.detailBar.set(text: name)
+            }
+        }
     }
 }

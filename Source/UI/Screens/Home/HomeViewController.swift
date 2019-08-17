@@ -107,7 +107,7 @@ class HomeViewController: FullScreenViewController {
 
     func presentContactPicker() {
         let contactController = ContactsScrolledModalController()
-        contactController.contactsVC.delegate = self
+        contactController.presentable.delegate = self
         self.present(contactController, animated: true, completion: nil)
     }
 

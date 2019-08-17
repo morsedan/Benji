@@ -10,8 +10,7 @@ import Foundation
 import ReactiveSwift
 
 protocol ChannelViewControllerDelegate: class {
-    func channelView(_ controller: ChannelViewController, didUpdate avatar: Avatar)
-    func channelView(_ controller: ChannelViewController, didUpdate title: Localized)
+    func channelView(_ controller: ChannelViewController, didLoad channelType: ChannelType)
 }
 
 class ChannelViewController: ViewController, ScrolledModalControllerPresentable {
@@ -122,14 +121,7 @@ class ChannelViewController: ViewController, ScrolledModalControllerPresentable 
     }
 
     func loadMessages(for type: ChannelType) {
-        switch type {
-        case .system(let message):
-            self.delegate?.channelView(self, didUpdate: message.avatar)
-        case .channel(let channel):
-            if let name = channel.friendlyName {
-                self.delegate?.channelView(self, didUpdate: name)
-            }
-        }
+        self.delegate?.channelView(self, didLoad: type)
         self.channelCollectionVC.loadMessages(for: type)
     }
 
