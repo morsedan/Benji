@@ -9,7 +9,7 @@
 import Foundation
 import ReactiveSwift
 
-class ChannelViewController: FullScreenViewController, ScrolledModalControllerPresentable {
+class ChannelViewController: ViewController, ScrolledModalControllerPresentable {
 
     var topMargin: CGFloat {
         return 100
@@ -35,7 +35,7 @@ class ChannelViewController: FullScreenViewController, ScrolledModalControllerPr
 
     private(set) var contextButton = ContextButton()
     private(set) var bottomGradientView = GradientView()
-    let detailBar = ChannelDetailBar()
+    //let detailBar = ChannelDetailBar()
 
     var oldTextViewHeight: CGFloat = 48
     let bottomOffset: CGFloat = 16
@@ -65,23 +65,23 @@ class ChannelViewController: FullScreenViewController, ScrolledModalControllerPr
 
         self.view.set(backgroundColor: .background3)
         
-        self.addChild(viewController: self.channelCollectionVC, toView: self.contentContainer)
-        self.contentContainer.addSubview(self.bottomGradientView)
+        self.addChild(viewController: self.channelCollectionVC)
+        self.view.addSubview(self.bottomGradientView)
 
-        self.contentContainer.addSubview(self.inputTextView)
+        self.view.addSubview(self.inputTextView)
         self.inputTextView.growingDelegate = self
 
-        self.contentContainer.addSubview(self.contextButton)
+        self.view.addSubview(self.contextButton)
         self.contextButton.onTap { [unowned self] (tap) in
             guard let text = self.inputTextView.text, !text.isEmpty else { return }
            // self.sendSystem(message: text)
             self.send(message: text)
         }
 
-        self.contentContainer.addSubview(self.detailBar)
-        self.detailBar.closeButton.onTap { [unowned self] (tap) in
-            self.dismiss(animated: true, completion: nil)
-        }
+        //self.contentContainer.addSubview(self.detailBar)
+//        self.detailBar.closeButton.onTap { [unowned self] (tap) in
+//            self.dismiss(animated: true, completion: nil)
+//        }
 
         NotificationCenter.default.addObserver(self,
                                                selector: #selector(keyboardWillShow(notification:)),
@@ -107,37 +107,39 @@ class ChannelViewController: FullScreenViewController, ScrolledModalControllerPr
 
         self.view.round(corners: [.topLeft, .topRight], size: CGSize(width: 10, height: 10))
 
-        self.contentContainer.height = self.view.height
-        self.contentContainer.top = 0
+//        self.contentContainer.height = self.view.height
+//        self.contentContainer.top = 0
 
-        self.detailBar.size = CGSize(width: self.contentContainer.width, height: 60)
-        self.detailBar.top = self.view.safeAreaInsets.top
-        self.detailBar.centerOnX()
+//        self.detailBar.size = CGSize(width: self.contentContainer.width, height: 60)
+//        self.detailBar.top = self.view.safeAreaInsets.top
+//        self.detailBar.centerOnX()
 
-        self.channelCollectionVC.view.frame = self.contentContainer.bounds
+        self.channelCollectionVC.view.frame = self.view.bounds
 
         self.contextButton.size = CGSize(width: 48, height: 48)
         self.contextButton.left = 16
-        self.contextButton.bottom = self.contentContainer.height - self.view.safeAreaInsets.bottom
+        self.contextButton.bottom = self.view.height - self.view.safeAreaInsets.bottom
 
-        let textViewWidth = self.contentContainer.width - self.contextButton.right - 12 - 16
+        let textViewWidth = self.view.width - self.contextButton.right - 12 - 16
         self.inputTextView.size = CGSize(width: textViewWidth, height: self.inputTextView.currentHeight)
         self.inputTextView.left = self.contextButton.right + 12
         self.inputTextView.bottom = self.contextButton.bottom
 
-        let gradientHeight = self.contentContainer.height - self.contextButton.top 
-        self.bottomGradientView.size = CGSize(width: self.contentContainer.width, height: gradientHeight)
-        self.bottomGradientView.bottom = self.contentContainer.height
+        let gradientHeight = self.view.height - self.contextButton.top
+        self.bottomGradientView.size = CGSize(width: self.view.width, height: gradientHeight)
+        self.bottomGradientView.bottom = self.view.height
         self.bottomGradientView.centerOnX()
     }
 
     func loadMessages(for type: ChannelType) {
         switch type {
         case .system(let message):
-            self.detailBar.set(avatar: message.avatar)
+            break
+           // self.detailBar.set(avatar: message.avatar)
         case .channel(let channel):
             if let name = channel.friendlyName {
-                self.detailBar.set(text: name)
+                break 
+                //self.detailBar.set(text: name)
             }
         }
         self.channelCollectionVC.loadMessages(for: type)

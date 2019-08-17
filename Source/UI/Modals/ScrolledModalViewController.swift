@@ -19,17 +19,13 @@ class ScrolledModalViewController: ViewController, ScrolledModalContainerViewDel
     private let modalContainerView: ScrolledModalContainerView
     private var presentable: ScrolledModalControllerPresentable
 
-    private let titleLabel = Label()
+    private let titleLabel = Display2Label()
     private let titleContainer = View()
 
     var titleText: Localized? {
         didSet {
             guard let text = self.titleText else { return }
-            let attributed = AttributedString(text,
-                                              fontType: .display2,
-                                              color: .white)
-            self.titleLabel.set(attributed: attributed,
-                                alignment: .left)
+            self.titleLabel.set(text: text, alignment: .center)
         }
     }
 

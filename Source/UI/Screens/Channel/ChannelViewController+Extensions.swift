@@ -18,10 +18,10 @@ extension ChannelViewController {
         let keyboardHeight = keyboardRectangle.height
 
         self.showAnimator.addAnimations {
-            self.contextButton.bottom = self.contentContainer.height - keyboardHeight - self.bottomOffset
+            self.contextButton.bottom = self.view.height - keyboardHeight - self.bottomOffset
             self.inputTextView.bottom = self.contextButton.bottom
-            self.bottomGradientView.bottom = self.contentContainer.height - keyboardHeight
-            self.channelCollectionVC.collectionView.height = self.contentContainer.height - keyboardHeight
+            self.bottomGradientView.bottom = self.view.height - keyboardHeight
+            self.channelCollectionVC.collectionView.height = self.view.height - keyboardHeight
             self.channelCollectionVC.collectionView.collectionViewLayout.invalidateLayout()
         }
 
@@ -38,10 +38,10 @@ extension ChannelViewController {
     @objc func keyboardWillHide(notification: Notification) {
 
         self.dismissAnimator.addAnimations {
-            self.contextButton.bottom = self.contentContainer.height - self.view.safeAreaInsets.bottom - 16
+            self.contextButton.bottom = self.view.height - self.view.safeAreaInsets.bottom - 16
             self.inputTextView.bottom = self.contextButton.bottom
-            self.bottomGradientView.bottom = self.contentContainer.height
-            self.channelCollectionVC.collectionView.height = self.contentContainer.height
+            self.bottomGradientView.bottom = self.view.height
+            self.channelCollectionVC.collectionView.height = self.view.height
             self.channelCollectionVC.collectionView.collectionViewLayout.invalidateLayout()
         }
 
