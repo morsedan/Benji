@@ -16,18 +16,8 @@ class ScrolledModalViewController: ViewController, ScrolledModalContainerViewDel
 
     private let tapDismissView = UIView()
 
-    private let modalContainerView: ScrolledModalContainerView
+    private(set) var modalContainerView: ScrolledModalContainerView
     private var presentable: ScrolledModalControllerPresentable
-
-    private let titleLabel = Display2Label()
-    private let titleContainer = View()
-
-    var titleText: Localized? {
-        didSet {
-            guard let text = self.titleText else { return }
-            self.titleLabel.set(text: text, alignment: .center)
-        }
-    }
 
     init(presentable: ScrolledModalControllerPresentable) {
         self.presentable = presentable
@@ -45,8 +35,8 @@ class ScrolledModalViewController: ViewController, ScrolledModalContainerViewDel
         fatalError("init(coder:) has not been implemented")
     }
 
-    override func viewDidLoad() {
-        super.viewDidLoad()
+    override func initializeViews() {
+        super.initializeViews()
 
         self.view.set(backgroundColor: .clear)
         self.modalContainerView.delegate = self
@@ -62,9 +52,6 @@ class ScrolledModalViewController: ViewController, ScrolledModalContainerViewDel
         }
 
         self.view.addSubview(self.modalContainerView)
-        self.view.addSubview(self.titleContainer)
-        self.titleContainer.addSubview(self.titleLabel)
-        self.titleContainer.set(backgroundColor: .background3)
 
         self.addChild(viewController: self.presentable, toView: self.modalContainerView)
         self.presentable.didDismiss = { [unowned self] in
@@ -94,23 +81,6 @@ class ScrolledModalViewController: ViewController, ScrolledModalContainerViewDel
                                               height: self.modalContainerView.currentHeight)
         self.modalContainerView.centerOnX()
         self.modalContainerView.bottom = self.view.height
-
-        self.titleContainer.width = self.modalContainerView.width
-
-        if let attributedText = self.titleLabel.attributedText {
-            let titleWidth = self.titleContainer.width - 24 * 2
-            self.titleLabel.size = attributedText.getSize(withWidth: titleWidth)
-            self.titleContainer.height = self.titleLabel.height + 32 + Theme.contentOffset
-        } else {
-            self.titleContainer.height = 0
-        }
-
-        self.titleLabel.top = 32
-        self.titleLabel.left = 24
-
-        self.titleContainer.bottom = self.modalContainerView.top
-        self.titleContainer.centerOnX()
-        self.titleContainer.round(corners: UIRectCorner(arrayLiteral: [.topLeft, .topRight]), size: CGSize(width: Theme.cornerRadius, height: Theme.cornerRadius))
 
         self.presentable.view.frame = self.modalContainerView.bounds
     }

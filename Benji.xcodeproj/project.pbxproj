@@ -116,6 +116,8 @@
 		D67896CA23039E680059BA75 /* ScrolledModalControllerPresentable.swift in Sources */ = {isa = PBXBuildFile; fileRef = D67896C923039E680059BA75 /* ScrolledModalControllerPresentable.swift */; };
 		D67896CC2304524C0059BA75 /* ChannelCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = D67896CB2304524C0059BA75 /* ChannelCoordinator.swift */; };
 		D67896CE23045E7C0059BA75 /* ChannelScrolledModalViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D67896CD23045E7C0059BA75 /* ChannelScrolledModalViewController.swift */; };
+		D67896FF2308A5B50059BA75 /* ChannelModalViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D67896FE2308A5B50059BA75 /* ChannelModalViewController.swift */; };
+		D67897012308A6080059BA75 /* ScrolledTitleModalViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D67897002308A6080059BA75 /* ScrolledTitleModalViewController.swift */; };
 		D6815DB122ECAEC700E71251 /* MediumLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6815DB022ECAEC700E71251 /* MediumLabel.swift */; };
 		D6815DB922EE1CAC00E71251 /* FeedView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6815DB822EE1CAC00E71251 /* FeedView.swift */; };
 		D6815DBB22EE1F1400E71251 /* FeedCollectionViewManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6815DBA22EE1F1400E71251 /* FeedCollectionViewManager.swift */; };
@@ -314,6 +316,8 @@
 		D67896C923039E680059BA75 /* ScrolledModalControllerPresentable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScrolledModalControllerPresentable.swift; sourceTree = "<group>"; };
 		D67896CB2304524C0059BA75 /* ChannelCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChannelCoordinator.swift; sourceTree = "<group>"; };
 		D67896CD23045E7C0059BA75 /* ChannelScrolledModalViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChannelScrolledModalViewController.swift; sourceTree = "<group>"; };
+		D67896FE2308A5B50059BA75 /* ChannelModalViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChannelModalViewController.swift; sourceTree = "<group>"; };
+		D67897002308A6080059BA75 /* ScrolledTitleModalViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScrolledTitleModalViewController.swift; sourceTree = "<group>"; };
 		D6815DB022ECAEC700E71251 /* MediumLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MediumLabel.swift; sourceTree = "<group>"; };
 		D6815DB822EE1CAC00E71251 /* FeedView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedView.swift; sourceTree = "<group>"; };
 		D6815DBA22EE1F1400E71251 /* FeedCollectionViewManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedCollectionViewManager.swift; sourceTree = "<group>"; };
@@ -677,6 +681,7 @@
 		D6432BF122D8282E0016001A /* Channel */ = {
 			isa = PBXGroup;
 			children = (
+				D67896FE2308A5B50059BA75 /* ChannelModalViewController.swift */,
 				D6D1500621D5E73D00CD8CE4 /* ChannelViewController.swift */,
 				D64273A622CC2D280088256B /* ChannelViewController+Extensions.swift */,
 				D67896CD23045E7C0059BA75 /* ChannelScrolledModalViewController.swift */,
@@ -836,6 +841,7 @@
 				D642738422C9AEAB0088256B /* Alerts */,
 				D642737222C99D540088256B /* Contacts */,
 				D642736722C98E5D0088256B /* ScrolledModalViewController.swift */,
+				D67897002308A6080059BA75 /* ScrolledTitleModalViewController.swift */,
 				D642736922C98EB40088256B /* ScrolledModalContainerView.swift */,
 				D67896A222FF443C0059BA75 /* ScrolledModalFlowViewController.swift */,
 			);
@@ -1229,6 +1235,7 @@
 				D66F0FC722BF004300BA277D /* FeedType.swift in Sources */,
 				D6DADF742207E0E2007D9EB1 /* TCHChannel+Extensions.swift in Sources */,
 				D684840A22CD48D000362AC3 /* GradientView.swift in Sources */,
+				D67896FF2308A5B50059BA75 /* ChannelModalViewController.swift in Sources */,
 				D642737D22C9A2D70088256B /* NameLabel.swift in Sources */,
 				D646DB3E22CFCF330055CC7C /* TwilioChatClient+Extensions.swift in Sources */,
 				D691794422F67BEB00340AA3 /* ChannelsViewController+Extensions.swift in Sources */,
@@ -1270,6 +1277,7 @@
 				D6D1502D21D6A08300CD8CE4 /* ChannelCollectionView.swift in Sources */,
 				D6B2603A22E6ABCA00143CF0 /* Display1Label.swift in Sources */,
 				D646DB3C22CFCCD80055CC7C /* ClientError.swift in Sources */,
+				D67897012308A6080059BA75 /* ScrolledTitleModalViewController.swift in Sources */,
 				D6B2604522E6C09700143CF0 /* RegularSemiBoldLabel.swift in Sources */,
 				D67896A722FF4D9B0059BA75 /* NavigationBarView.swift in Sources */,
 				D68483FB22CD050D00362AC3 /* TableViewManager.swift in Sources */,
