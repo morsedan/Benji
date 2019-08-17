@@ -23,8 +23,6 @@ class ChannelModalViewController: ScrolledModalViewController<ChannelViewControl
     override func initializeViews() {
         super.initializeViews()
         
-        self.presentable.delegate = self
-
         self.tapDismissView.set(backgroundColor: .background1)
         self.view.addSubview(self.detailBar)
 
@@ -39,19 +37,5 @@ class ChannelModalViewController: ScrolledModalViewController<ChannelViewControl
         self.detailBar.size = CGSize(width: self.view.width, height: 60)
         self.detailBar.bottom = self.modalContainerView.top 
         self.detailBar.centerOnX()
-    }
-}
-
-extension ChannelModalViewController: ChannelViewControllerDelegate {
-    func channelView(_ controller: ChannelViewController, didLoad channelType: ChannelType) {
-
-        switch channelType {
-        case .system(let message):
-            self.detailBar.set(avatar: message.avatar)
-        case .channel(let channel):
-            if let name = channel.friendlyName {
-                self.detailBar.set(text: name)
-            }
-        }
     }
 }

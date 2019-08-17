@@ -20,6 +20,8 @@ class ChannelDetailBar: View {
         self.addSubview(self.closeButton)
         self.addSubview(self.titleLabel)
         self.addSubview(self.avatarView)
+
+        self.subscribeToUpdates()
     }
 
     override func layoutSubviews() {
@@ -47,5 +49,61 @@ class ChannelDetailBar: View {
     func set(text: Localized) {
         self.titleLabel.set(text: text)
         self.layoutNow()
+    }
+
+    private func subscribeToUpdates() {
+        ChannelManager.shared.memberUpdate.producer.on { [weak self] (update) in
+            guard let `self` = self else { return }
+
+            guard let memberUpdate = update, memberUpdate.channel == ChannelManager.shared.selectedChannel else { return }
+
+            switch memberUpdate.status {
+            case .joined:
+                break
+            case .left:
+                break
+            case .changed:
+                break
+               // self.loadChannelMessages(with: memberUpdate.channel)
+            case .typingEnded:
+                break
+                //                if let memberID = memberUpdate.member.identity, memberID != User.me?.id {
+                //                    self.hideStatusUpdate()
+            //                }
+            case .typingStarted:
+                break
+                //                if let memberID = memberUpdate.member.identity, memberID != User.me?.id {
+                //                    self.showTyping(for: memberUpdate.member)
+                //                }
+            }
+            }.start()
+
+        ChannelManager.shared.channelsUpdate.producer.on { [weak self] (update) in
+            guard let `self` = self else { return }
+
+            guard let channelsUpdate = update, channelsUpdate.channel == ChannelManager.shared.selectedChannel
+                else { return }
+
+            switch channelsUpdate.status {
+            case .added:
+                break
+            case .changed:
+                break
+            case .deleted:
+                break
+               // self.channelDataSource.reset()
+            case .syncUpdate(let syncStatus):
+                switch syncStatus {
+                case .none, .identifier, .metadata, .failed:
+                    break
+                case .all:
+                    break
+                    //self.loadChannelMessages(with: channelsUpdate.channel)
+                @unknown default:
+                    break
+                }
+                break
+            }
+            }.start()
     }
 }

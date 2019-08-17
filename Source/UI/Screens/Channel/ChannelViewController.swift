@@ -9,14 +9,10 @@
 import Foundation
 import ReactiveSwift
 
-protocol ChannelViewControllerDelegate: class {
-    func channelView(_ controller: ChannelViewController, didLoad channelType: ChannelType)
-}
-
 class ChannelViewController: ViewController, ScrolledModalControllerPresentable {
 
     var topMargin: CGFloat {
-        return 100
+        return self.view.safeAreaInsets.top + 60
     }
 
     var scrollView: UIScrollView? {
@@ -27,10 +23,8 @@ class ChannelViewController: ViewController, ScrolledModalControllerPresentable 
     var didUpdateHeight: ((CGFloat, TimeInterval) -> ())?
 
     let channelType: ChannelType
-    weak var delegate: ChannelViewControllerDelegate?
 
     lazy var channelCollectionVC = ChannelCollectionViewController()
-
     lazy var inputTextView: InputTextView = {
         let textView = InputTextView()
         textView.delegate = self
@@ -121,7 +115,6 @@ class ChannelViewController: ViewController, ScrolledModalControllerPresentable 
     }
 
     func loadMessages(for type: ChannelType) {
-        self.delegate?.channelView(self, didLoad: type)
         self.channelCollectionVC.loadMessages(for: type)
     }
 
