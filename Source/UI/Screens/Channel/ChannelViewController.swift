@@ -78,11 +78,6 @@ class ChannelViewController: ViewController, ScrolledModalControllerPresentable 
             self.send(message: text)
         }
 
-        //self.contentContainer.addSubview(self.detailBar)
-//        self.detailBar.closeButton.onTap { [unowned self] (tap) in
-//            self.dismiss(animated: true, completion: nil)
-//        }
-
         NotificationCenter.default.addObserver(self,
                                                selector: #selector(keyboardWillShow(notification:)),
                                                name: UIResponder.keyboardWillShowNotification,
@@ -104,15 +99,6 @@ class ChannelViewController: ViewController, ScrolledModalControllerPresentable 
     
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
-
-        self.view.round(corners: [.topLeft, .topRight], size: CGSize(width: 10, height: 10))
-
-//        self.contentContainer.height = self.view.height
-//        self.contentContainer.top = 0
-
-//        self.detailBar.size = CGSize(width: self.contentContainer.width, height: 60)
-//        self.detailBar.top = self.view.safeAreaInsets.top
-//        self.detailBar.centerOnX()
 
         self.channelCollectionVC.view.frame = self.view.bounds
 
