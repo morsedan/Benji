@@ -60,14 +60,14 @@ class ChannelCellContentView: View {
             self.avatarView.set(avatar: message.avatar)
             self.contextText = message.context.text
             self.messageText = message.body
-            //self.localizedText = message.body
         case .channel(let channel):
+            
             guard let channelMessages = channel.messages else { return }
-
             channelMessages.getLastWithCount(10, completion: { (result, messages) in
-                guard let msgs = messages, let first = msgs.first else { return }
+                guard let msgs = messages, let last = msgs.last else { return }
 
-                self.messageText = first.body
+                self.messageText = last.body
+                self.layoutNow()
             })
         }
     }
