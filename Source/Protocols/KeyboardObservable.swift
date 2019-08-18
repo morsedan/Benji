@@ -44,11 +44,7 @@ class KeyboardHandler: NSObject {
 
     unowned let vc: ViewController & KeyboardObservable
 
-    private(set) var currentKeyboardHeight: CGFloat = 0 {
-        didSet {
-            print("Did set current height too \(self.currentKeyboardHeight)")
-        }
-    }
+    private(set) var currentKeyboardHeight: CGFloat = 0
 
     init(with vc: ViewController & KeyboardObservable) {
         self.vc = vc

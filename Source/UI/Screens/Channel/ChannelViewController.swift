@@ -83,13 +83,11 @@ class ChannelViewController: ViewController, ScrolledModalControllerPresentable,
 
         guard let handler = self.keyboardHandler else { return }
 
-        print("handler height \(handler.currentKeyboardHeight)")
         self.channelCollectionVC.view.size = CGSize(width: self.view.width,
                                                     height: self.view.height - handler.currentKeyboardHeight)
         self.channelCollectionVC.view.top = 0
         self.channelCollectionVC.view.centerOnX()
 
-        print(self.messageInputView.textView.currentHeight)
         self.messageInputView.size = CGSize(width: self.view.width - 32, height: self.messageInputView.textView.currentHeight)
         self.messageInputView.centerOnX()
         self.messageInputView.bottom = self.channelCollectionVC.view.bottom - self.bottomOffset
