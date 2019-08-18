@@ -15,7 +15,7 @@ class InputTextView: GrowingTextView {
 
         self.set(placeholder: "Message...")
 
-        self.textContainerInset.left = 5
+        self.textContainerInset.left = 0
         self.textContainerInset.right = 10
         self.textContainerInset.top = 12
         self.textContainerInset.bottom = 12

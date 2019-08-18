@@ -33,7 +33,7 @@ class MessageInputView: View {
         super.layoutSubviews()
 
         self.contextButton.size = CGSize(width: self.minHeight, height: self.minHeight)
-        self.contextButton.left = 5
+        self.contextButton.left = 0
         self.contextButton.centerOnY()
 
         let textViewWidth = self.width - self.contextButton.right

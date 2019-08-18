@@ -8,15 +8,8 @@
 
 import Foundation
 
-enum KeyboardState {
-    case willShow(height: CGFloat)
-    case didShow(height: CGFloat)
-    case willHide(height: CGFloat)
-    case didHide(height: CGFloat)
-}
-
 protocol KeyboardObservable: NSObjectProtocol {
-    func handleKeyboard(state: KeyboardState, with animationDuration: TimeInterval)
+    func handleKeyboard(height: CGFloat, with animationDuration: TimeInterval)
 }
 
 private var keyboardHandlerKey: UInt8 = 0
@@ -44,14 +37,6 @@ extension KeyboardObservable where Self: ViewController {
                                                selector: #selector(handler.keyboardWillHandle),
                                                name: UIResponder.keyboardWillHideNotification,
                                                object: nil)
-        NotificationCenter.default.addObserver(handler,
-                                               selector: #selector(handler.keyboardWillHandle),
-                                               name: UIResponder.keyboardDidHideNotification,
-                                               object: nil)
-        NotificationCenter.default.addObserver(handler,
-                                               selector: #selector(handler.keyboardWillHandle),
-                                               name: UIResponder.keyboardDidShowNotification,
-                                               object: nil)
     }
 }
 
@@ -59,7 +44,11 @@ class KeyboardHandler: NSObject {
 
     unowned let vc: ViewController & KeyboardObservable
 
-    private(set) var currentKeyboardHeight: CGFloat = 0
+    private(set) var currentKeyboardHeight: CGFloat = 0 {
+        didSet {
+            print("Did set current height too \(self.currentKeyboardHeight)")
+        }
+    }
 
     init(with vc: ViewController & KeyboardObservable) {
         self.vc = vc
@@ -69,21 +58,19 @@ class KeyboardHandler: NSObject {
     @objc func keyboardWillHandle(notification: Notification) {
         guard let size = notification.keyboardSize,
             let animationDuration = notification.keyboardAnimationDuration else { return }
-        
+
+        var newHeight: CGFloat = 0
         switch notification.name {
         case UIResponder.keyboardWillShowNotification:
-            self.vc.handleKeyboard(state: .willShow(height: size.height), with: animationDuration)
+            newHeight = size.height
         case UIResponder.keyboardWillHideNotification:
-            self.vc.handleKeyboard(state: .willHide(height: 0), with: animationDuration)
-        case UIResponder.keyboardDidHideNotification:
-            self.vc.handleKeyboard(state: .didHide(height: 0), with: animationDuration)
-        case UIResponder.keyboardDidShowNotification:
-            self.vc.handleKeyboard(state: .didShow(height: size.height), with: animationDuration)
+            newHeight = 0
         default:
             break
         }
 
-        self.currentKeyboardHeight = size.height
+        self.currentKeyboardHeight = newHeight
+        self.vc.handleKeyboard(height: newHeight, with: animationDuration)
     }
 }
 

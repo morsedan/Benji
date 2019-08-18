@@ -31,7 +31,13 @@ class ChannelViewController: ViewController, ScrolledModalControllerPresentable,
     private(set) var bottomGradientView = GradientView()
 
     var oldTextViewHeight: CGFloat = 48
-    let bottomOffset: CGFloat = 16
+    private var bottomOffset: CGFloat {
+        var offset: CGFloat = 16
+        if let handler = self.keyboardHandler, handler.currentKeyboardHeight == 0 {
+            offset += self.view.safeAreaInsets.bottom
+        }
+        return offset
+    }
 
     init(channelType: ChannelType) {
         self.channelType = channelType
@@ -76,20 +82,21 @@ class ChannelViewController: ViewController, ScrolledModalControllerPresentable,
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
 
-        self.channelCollectionVC.view.frame = self.view.bounds
+        guard let handler = self.keyboardHandler else { return }
+
+        print("handler height \(handler.currentKeyboardHeight)")
+        self.channelCollectionVC.view.size = CGSize(width: self.view.width,
+                                                    height: self.view.height - handler.currentKeyboardHeight)
+        self.channelCollectionVC.view.top = 0
+        self.channelCollectionVC.view.centerOnX()
 
         self.messageInputView.size = CGSize(width: self.view.width - 32, height: self.messageInputView.textView.currentHeight)
         self.messageInputView.centerOnX()
+        self.messageInputView.bottom = self.channelCollectionVC.view.bottom - self.bottomOffset
 
-        if let handler = self.keyboardHandler, handler.currentKeyboardHeight > 0 {
-            self.messageInputView.bottom = self.view.height - handler.currentKeyboardHeight - self.bottomOffset
-        } else {
-            self.messageInputView.bottom = self.view.height - self.view.safeAreaInsets.bottom - self.bottomOffset
-        }
-
-        let gradientHeight = self.view.height - self.messageInputView.top
+        let gradientHeight = self.channelCollectionVC.view.height - self.messageInputView.top
         self.bottomGradientView.size = CGSize(width: self.view.width, height: gradientHeight)
-        self.bottomGradientView.bottom = self.view.height
+        self.bottomGradientView.bottom = self.channelCollectionVC.view.bottom
         self.bottomGradientView.centerOnX()
     }
 
@@ -120,23 +127,15 @@ class ChannelViewController: ViewController, ScrolledModalControllerPresentable,
         self.messageInputView.textView.text = String()
     }
 
-    func handleKeyboard(state: KeyboardState, with animationDuration: TimeInterval) {
+    func handleKeyboard(height: CGFloat, with animationDuration: TimeInterval) {
 
-        switch state {
-        case .willHide(let height), .willShow(let height):
-            print(height)
-            UIView.animate(withDuration: animationDuration, animations: {
-                self.messageInputView.bottom = self.view.height - height - self.bottomOffset
-                self.bottomGradientView.bottom = self.messageInputView.bottom
-                self.channelCollectionVC.collectionView.height = self.view.height - height
-                self.channelCollectionVC.collectionView.collectionViewLayout.invalidateLayout()
-            }) { (completed) in
-                if completed {
-                    self.channelCollectionVC.collectionView.scrollToBottom()
-                }
+        UIView.animate(withDuration: animationDuration, animations: {
+            self.channelCollectionVC.collectionView.height = self.view.height - height
+            self.channelCollectionVC.collectionView.collectionViewLayout.invalidateLayout()
+        }) { (completed) in
+            if completed {
+                self.channelCollectionVC.collectionView.scrollToBottom()
             }
-        default:
-            break
         }
     }
 }

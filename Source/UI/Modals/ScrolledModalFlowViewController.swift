@@ -75,19 +75,7 @@ class ScrolledModalFlowViewController: ViewController, ScrolledModalControllerPr
         return false
     }
 
-    func handleKeyboard(state: KeyboardState, with animationDuration: TimeInterval) {
-        var newHeight: CGFloat = .zero
-        switch state {
-        case .willShow(let height):
-            newHeight = height
-        case .didShow(let height):
-            newHeight = height
-        case .willHide(let height):
-            newHeight = height
-        case .didHide(let height):
-            newHeight = height
-        }
-
-        self.didUpdateHeight?(newHeight, animationDuration)
+    func handleKeyboard(height: CGFloat, with animationDuration: TimeInterval) {
+        self.didUpdateHeight?(height, animationDuration)
     }
 }
