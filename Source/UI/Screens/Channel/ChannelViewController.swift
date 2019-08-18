@@ -80,7 +80,12 @@ class ChannelViewController: ViewController, ScrolledModalControllerPresentable,
 
         self.messageInputView.size = CGSize(width: self.view.width - 32, height: self.messageInputView.textView.currentHeight)
         self.messageInputView.centerOnX()
-        self.messageInputView.bottom = self.view.height - self.view.safeAreaInsets.bottom - self.bottomOffset
+
+        if let handler = self.keyboardHandler, handler.currentKeyboardHeight > 0 {
+            self.messageInputView.bottom = self.view.height - handler.currentKeyboardHeight - self.bottomOffset
+        } else {
+            self.messageInputView.bottom = self.view.height - self.view.safeAreaInsets.bottom - self.bottomOffset
+        }
 
         let gradientHeight = self.view.height - self.messageInputView.top
         self.bottomGradientView.size = CGSize(width: self.view.width, height: gradientHeight)
@@ -119,6 +124,7 @@ class ChannelViewController: ViewController, ScrolledModalControllerPresentable,
 
         switch state {
         case .willHide(let height), .willShow(let height):
+            print(height)
             UIView.animate(withDuration: animationDuration, animations: {
                 self.messageInputView.bottom = self.view.height - height - self.bottomOffset
                 self.bottomGradientView.bottom = self.messageInputView.bottom
@@ -130,7 +136,7 @@ class ChannelViewController: ViewController, ScrolledModalControllerPresentable,
                 }
             }
         default:
-            break 
+            break
         }
     }
 }

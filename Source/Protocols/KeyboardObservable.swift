@@ -70,19 +70,17 @@ class KeyboardHandler: NSObject {
         guard let size = notification.keyboardSize,
             let animationDuration = notification.keyboardAnimationDuration else { return }
         
-        if size.height != self.currentKeyboardHeight {
-            switch notification.name {
-            case UIResponder.keyboardWillShowNotification:
-                self.vc.handleKeyboard(state: .willShow(height: size.height), with: animationDuration)
-            case UIResponder.keyboardWillHideNotification:
-                self.vc.handleKeyboard(state: .willHide(height: size.height), with: animationDuration)
-            case UIResponder.keyboardDidHideNotification:
-                self.vc.handleKeyboard(state: .didHide(height: size.height), with: animationDuration)
-            case UIResponder.keyboardDidShowNotification:
-                self.vc.handleKeyboard(state: .didShow(height: size.height), with: animationDuration)
-            default:
-                break
-            }
+        switch notification.name {
+        case UIResponder.keyboardWillShowNotification:
+            self.vc.handleKeyboard(state: .willShow(height: size.height), with: animationDuration)
+        case UIResponder.keyboardWillHideNotification:
+            self.vc.handleKeyboard(state: .willHide(height: 0), with: animationDuration)
+        case UIResponder.keyboardDidHideNotification:
+            self.vc.handleKeyboard(state: .didHide(height: 0), with: animationDuration)
+        case UIResponder.keyboardDidShowNotification:
+            self.vc.handleKeyboard(state: .didShow(height: size.height), with: animationDuration)
+        default:
+            break
         }
 
         self.currentKeyboardHeight = size.height
