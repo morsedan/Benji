@@ -32,13 +32,13 @@ class MessageInputView: View {
     override func layoutSubviews() {
         super.layoutSubviews()
 
-        self.contextButton.size = CGSize(width: 48, height: 48)
-        self.contextButton.left = 10
-        self.contextButton.bottom = self.height
+        self.contextButton.size = CGSize(width: self.minHeight, height: self.minHeight)
+        self.contextButton.left = 5
+        self.contextButton.centerOnY()
 
-        let textViewWidth = self.width - self.contextButton.right - 12 - 10
+        let textViewWidth = self.width - self.contextButton.right
         self.textView.size = CGSize(width: textViewWidth, height: self.textView.currentHeight)
-        self.textView.left = self.contextButton.right + 12
+        self.textView.left = self.contextButton.right
         self.textView.bottom = self.contextButton.bottom
 
         self.layer.cornerRadius = self.minHeight * 0.5

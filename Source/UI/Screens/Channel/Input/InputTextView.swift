@@ -15,12 +15,12 @@ class InputTextView: GrowingTextView {
 
         self.set(placeholder: "Message...")
 
-        self.textContainerInset.left = 16
-        self.textContainerInset.right = 16
-        self.textContainerInset.top = 14
-        self.textContainerInset.bottom = 14
+        self.textContainerInset.left = 5
+        self.textContainerInset.right = 10
+        self.textContainerInset.top = 12
+        self.textContainerInset.bottom = 12
 
-        self.set(backgroundColor: .backgroundWithAlpha)
+        self.set(backgroundColor: .clear)
     }
 
     func set(placeholder: Localized) {

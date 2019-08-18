@@ -26,13 +26,8 @@ class ChannelViewController: ViewController, ScrolledModalControllerPresentable,
     let channelType: ChannelType
 
     lazy var channelCollectionVC = ChannelCollectionViewController()
-    lazy var inputTextView: InputTextView = {
-        let textView = InputTextView()
-        textView.delegate = self
-        return textView
-    }()
 
-    private(set) var contextButton = ContextButton()
+    private let messageInputView = MessageInputView()
     private(set) var bottomGradientView = GradientView()
 
     var oldTextViewHeight: CGFloat = 48
@@ -60,19 +55,18 @@ class ChannelViewController: ViewController, ScrolledModalControllerPresentable,
         self.addChild(viewController: self.channelCollectionVC)
         self.view.addSubview(self.bottomGradientView)
 
-        self.view.addSubview(self.inputTextView)
-        self.inputTextView.growingDelegate = self
+        self.view.addSubview(self.messageInputView)
+        self.messageInputView.textView.growingDelegate = self
 
-        self.view.addSubview(self.contextButton)
-        self.contextButton.onTap { [unowned self] (tap) in
-            guard let text = self.inputTextView.text, !text.isEmpty else { return }
+        self.messageInputView.contextButton.onTap { [unowned self] (tap) in
+            guard let text = self.messageInputView.textView.text, !text.isEmpty else { return }
             // self.sendSystem(message: text)
             self.send(message: text)
         }
 
         self.channelCollectionVC.collectionView.onDoubleTap { [unowned self] (doubleTap) in
-            if self.inputTextView.isFirstResponder {
-                self.inputTextView.resignFirstResponder()
+            if self.messageInputView.textView.isFirstResponder {
+                self.messageInputView.textView.resignFirstResponder()
             }
         }
 
@@ -84,16 +78,11 @@ class ChannelViewController: ViewController, ScrolledModalControllerPresentable,
 
         self.channelCollectionVC.view.frame = self.view.bounds
 
-        self.contextButton.size = CGSize(width: 48, height: 48)
-        self.contextButton.left = 16
-        self.contextButton.bottom = self.view.height - self.view.safeAreaInsets.bottom
+        self.messageInputView.size = CGSize(width: self.view.width - 32, height: self.messageInputView.textView.currentHeight)
+        self.messageInputView.centerOnX()
+        self.messageInputView.bottom = self.view.height - self.view.safeAreaInsets.bottom - self.bottomOffset
 
-        let textViewWidth = self.view.width - self.contextButton.right - 12 - 16
-        self.inputTextView.size = CGSize(width: textViewWidth, height: self.inputTextView.currentHeight)
-        self.inputTextView.left = self.contextButton.right + 12
-        self.inputTextView.bottom = self.contextButton.bottom
-
-        let gradientHeight = self.view.height - self.contextButton.top
+        let gradientHeight = self.view.height - self.messageInputView.top
         self.bottomGradientView.size = CGSize(width: self.view.width, height: gradientHeight)
         self.bottomGradientView.bottom = self.view.height
         self.bottomGradientView.centerOnX()
@@ -123,84 +112,33 @@ class ChannelViewController: ViewController, ScrolledModalControllerPresentable,
 
     private func reset() {
         self.channelCollectionVC.collectionView.scrollToBottom()
-        self.inputTextView.text = String()
+        self.messageInputView.textView.text = String()
     }
 
     func handleKeyboard(state: KeyboardState, with animationDuration: TimeInterval) {
-        var newHeight: CGFloat?
-        switch state {
-        case .willShow(let height):
-            newHeight = height
-        case .didShow(let height):
-            newHeight = height
-        case .willHide(let height):
-            newHeight = height
-        case .didHide(let height):
-            newHeight = height
-        }
 
-        if let height = newHeight {
+        switch state {
+        case .willHide(let height), .willShow(let height):
             UIView.animate(withDuration: animationDuration, animations: {
-                
+                self.messageInputView.bottom = self.view.height - height - self.bottomOffset
+                self.bottomGradientView.bottom = self.messageInputView.bottom
+                self.channelCollectionVC.collectionView.height = self.view.height - height
+                self.channelCollectionVC.collectionView.collectionViewLayout.invalidateLayout()
             }) { (completed) in
                 if completed {
-                    //scroll to bottom 
+                    self.channelCollectionVC.collectionView.scrollToBottom()
                 }
             }
+        default:
+            break 
         }
     }
 }
 
-//@objc func keyboardWillShow(notification: Notification) {
-//
-//    let userInfo: NSDictionary = notification.userInfo! as NSDictionary
-//    let keyboardFrame: NSValue = userInfo.value(forKey: UIResponder.keyboardFrameEndUserInfoKey) as! NSValue
-//    let keyboardRectangle = keyboardFrame.cgRectValue
-//    let keyboardHeight = keyboardRectangle.height
-//
-//    self.showAnimator.addAnimations {
-//        self.contextButton.bottom = self.view.height - keyboardHeight - self.bottomOffset
-//        self.inputTextView.bottom = self.contextButton.bottom
-//        self.bottomGradientView.bottom = self.view.height - keyboardHeight
-//        self.channelCollectionVC.collectionView.height = self.view.height - keyboardHeight
-//        self.channelCollectionVC.collectionView.collectionViewLayout.invalidateLayout()
-//    }
-//
-//    self.showAnimator.addCompletion { (position) in
-//        if position == .end {
-//            self.channelCollectionVC.collectionView.scrollToBottom()
-//        }
-//    }
-//
-//    self.showAnimator.stopAnimation(true)
-//    self.showAnimator.startAnimation()
-//}
-//
-//@objc func keyboardWillHide(notification: Notification) {
-//
-//    self.dismissAnimator.addAnimations {
-//        self.contextButton.bottom = self.view.height - self.view.safeAreaInsets.bottom - 16
-//        self.inputTextView.bottom = self.contextButton.bottom
-//        self.bottomGradientView.bottom = self.view.height
-//        self.channelCollectionVC.collectionView.height = self.view.height
-//        self.channelCollectionVC.collectionView.collectionViewLayout.invalidateLayout()
-//    }
-//
-//    self.dismissAnimator.addCompletion { (position) in
-//        if position == .end {
-//            self.channelCollectionVC.collectionView.scrollToBottom()
-//        }
-//    }
-//
-//    self.dismissAnimator.stopAnimation(true)
-//    self.dismissAnimator.startAnimation()
-//}
-
 extension ChannelViewController: GrowingTextViewDelegate {
     func textViewDidChangeHeight(_ textView: GrowingTextView, height: CGFloat) {
         UIView.animate(withDuration: Theme.animationDuration) {
-            self.inputTextView.height = height
-            self.inputTextView.bottom = self.contextButton.bottom
+            self.messageInputView.textView.height = height
             self.oldTextViewHeight = height
         }
     }
