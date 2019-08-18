@@ -65,7 +65,6 @@ class ChannelViewController: ViewController, ScrolledModalControllerPresentable,
 
         self.messageInputView.contextButton.onTap { [unowned self] (tap) in
             guard let text = self.messageInputView.textView.text, !text.isEmpty else { return }
-            // self.sendSystem(message: text)
             self.send(message: text)
         }
 

@@ -73,30 +73,20 @@ class ChannelDetailBar: View {
             }
             }.start()
 
-        ChannelManager.shared.channelsUpdate.producer.on { [weak self] (update) in
+        ChannelManager.shared.channelSyncUpdate.producer.on { [weak self] (update) in
             guard let `self` = self else { return }
 
             guard let channelsUpdate = update, channelsUpdate.channel == ChannelManager.shared.selectedChannel
                 else { return }
 
             switch channelsUpdate.status {
-            case .added:
+            case .none, .identifier, .metadata, .failed:
                 break
-            case .changed:
-                break
-            case .deleted:
-                break
-            case .syncUpdate(let syncStatus):
-                switch syncStatus {
-                case .none, .identifier, .metadata, .failed:
-                    break
-                case .all:
-                    if let name = channelsUpdate.channel.friendlyName {
-                        self.set(text: name)
-                    }
-                @unknown default:
-                    break
+            case .all:
+                if let name = channelsUpdate.channel.friendlyName {
+                    self.set(text: name)
                 }
+            @unknown default:
                 break
             }
             }.start()
