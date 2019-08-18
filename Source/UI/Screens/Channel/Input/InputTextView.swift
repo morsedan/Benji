@@ -17,7 +17,7 @@ class InputTextView: GrowingTextView {
 
         self.textContainerInset.left = 0
         self.textContainerInset.right = 10
-        self.textContainerInset.top = 12
+        self.textContainerInset.top = 14
         self.textContainerInset.bottom = 12
 
         self.set(backgroundColor: .clear)

@@ -10,7 +10,7 @@ import Foundation
 
 class MessageInputView: View {
 
-    let minHeight: CGFloat = 48
+    let minHeight: CGFloat = 52
 
     let contextButton = ContextButton()
     let textView = InputTextView()
@@ -34,12 +34,12 @@ class MessageInputView: View {
 
         self.contextButton.size = CGSize(width: self.minHeight, height: self.minHeight)
         self.contextButton.left = 0
-        self.contextButton.centerOnY()
+        self.contextButton.bottom = self.height
 
         let textViewWidth = self.width - self.contextButton.right
         self.textView.size = CGSize(width: textViewWidth, height: self.textView.currentHeight)
         self.textView.left = self.contextButton.right
-        self.textView.bottom = self.contextButton.bottom
+        self.textView.top = 0
 
         self.layer.cornerRadius = self.minHeight * 0.5
     }

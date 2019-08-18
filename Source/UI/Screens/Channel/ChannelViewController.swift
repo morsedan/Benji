@@ -30,7 +30,6 @@ class ChannelViewController: ViewController, ScrolledModalControllerPresentable,
     private let messageInputView = MessageInputView()
     private(set) var bottomGradientView = GradientView()
 
-    var oldTextViewHeight: CGFloat = 48
     private var bottomOffset: CGFloat {
         var offset: CGFloat = 16
         if let handler = self.keyboardHandler, handler.currentKeyboardHeight == 0 {
@@ -90,6 +89,7 @@ class ChannelViewController: ViewController, ScrolledModalControllerPresentable,
         self.channelCollectionVC.view.top = 0
         self.channelCollectionVC.view.centerOnX()
 
+        print(self.messageInputView.textView.currentHeight)
         self.messageInputView.size = CGSize(width: self.view.width - 32, height: self.messageInputView.textView.currentHeight)
         self.messageInputView.centerOnX()
         self.messageInputView.bottom = self.channelCollectionVC.view.bottom - self.bottomOffset
@@ -144,7 +144,7 @@ extension ChannelViewController: GrowingTextViewDelegate {
     func textViewDidChangeHeight(_ textView: GrowingTextView, height: CGFloat) {
         UIView.animate(withDuration: Theme.animationDuration) {
             self.messageInputView.textView.height = height
-            self.oldTextViewHeight = height
+            self.view.layoutNow()
         }
     }
 }
