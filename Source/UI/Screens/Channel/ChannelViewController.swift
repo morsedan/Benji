@@ -9,7 +9,7 @@
 import Foundation
 import ReactiveSwift
 
-class ChannelViewController: ViewController, ScrolledModalControllerPresentable {
+class ChannelViewController: ViewController, ScrolledModalControllerPresentable, KeyboardObservable {
 
     var topMargin: CGFloat {
         guard let topInset = UIWindow.topWindow()?.safeAreaInsets.top else { return 0 }
@@ -38,13 +38,6 @@ class ChannelViewController: ViewController, ScrolledModalControllerPresentable 
     var oldTextViewHeight: CGFloat = 48
     let bottomOffset: CGFloat = 16
 
-    let showAnimator = UIViewPropertyAnimator(duration: 0.1,
-                                              curve: .linear,
-                                              animations: nil)
-    let dismissAnimator = UIViewPropertyAnimator(duration: 0.1,
-                                                 curve: .easeIn,
-                                                 animations: nil)
-
     init(channelType: ChannelType) {
         self.channelType = channelType
         super.init()
@@ -58,11 +51,12 @@ class ChannelViewController: ViewController, ScrolledModalControllerPresentable 
         fatalError("init(withObject:) has not been implemented")
     }
 
-    override func viewDidLoad() {
-        super.viewDidLoad()
+    override func initializeViews() {
+        super.initializeViews()
 
+        self.registerKeyboardEvents()
         self.view.set(backgroundColor: .background3)
-        
+
         self.addChild(viewController: self.channelCollectionVC)
         self.view.addSubview(self.bottomGradientView)
 
@@ -72,19 +66,9 @@ class ChannelViewController: ViewController, ScrolledModalControllerPresentable 
         self.view.addSubview(self.contextButton)
         self.contextButton.onTap { [unowned self] (tap) in
             guard let text = self.inputTextView.text, !text.isEmpty else { return }
-           // self.sendSystem(message: text)
+            // self.sendSystem(message: text)
             self.send(message: text)
         }
-
-        NotificationCenter.default.addObserver(self,
-                                               selector: #selector(keyboardWillShow(notification:)),
-                                               name: UIResponder.keyboardWillShowNotification,
-                                               object: nil)
-
-        NotificationCenter.default.addObserver(self,
-                                               selector: #selector(keyboardWillHide(notification:)),
-                                               name: UIResponder.keyboardWillHideNotification,
-                                               object: nil)
 
         self.channelCollectionVC.collectionView.onDoubleTap { [unowned self] (doubleTap) in
             if self.inputTextView.isFirstResponder {
@@ -141,7 +125,76 @@ class ChannelViewController: ViewController, ScrolledModalControllerPresentable 
         self.channelCollectionVC.collectionView.scrollToBottom()
         self.inputTextView.text = String()
     }
+
+    func handleKeyboard(state: KeyboardState, with animationDuration: TimeInterval) {
+        var newHeight: CGFloat?
+        switch state {
+        case .willShow(let height):
+            newHeight = height
+        case .didShow(let height):
+            newHeight = height
+        case .willHide(let height):
+            newHeight = height
+        case .didHide(let height):
+            newHeight = height
+        }
+
+        if let height = newHeight {
+            UIView.animate(withDuration: animationDuration, animations: {
+                
+            }) { (completed) in
+                if completed {
+                    //scroll to bottom 
+                }
+            }
+        }
+    }
 }
+
+//@objc func keyboardWillShow(notification: Notification) {
+//
+//    let userInfo: NSDictionary = notification.userInfo! as NSDictionary
+//    let keyboardFrame: NSValue = userInfo.value(forKey: UIResponder.keyboardFrameEndUserInfoKey) as! NSValue
+//    let keyboardRectangle = keyboardFrame.cgRectValue
+//    let keyboardHeight = keyboardRectangle.height
+//
+//    self.showAnimator.addAnimations {
+//        self.contextButton.bottom = self.view.height - keyboardHeight - self.bottomOffset
+//        self.inputTextView.bottom = self.contextButton.bottom
+//        self.bottomGradientView.bottom = self.view.height - keyboardHeight
+//        self.channelCollectionVC.collectionView.height = self.view.height - keyboardHeight
+//        self.channelCollectionVC.collectionView.collectionViewLayout.invalidateLayout()
+//    }
+//
+//    self.showAnimator.addCompletion { (position) in
+//        if position == .end {
+//            self.channelCollectionVC.collectionView.scrollToBottom()
+//        }
+//    }
+//
+//    self.showAnimator.stopAnimation(true)
+//    self.showAnimator.startAnimation()
+//}
+//
+//@objc func keyboardWillHide(notification: Notification) {
+//
+//    self.dismissAnimator.addAnimations {
+//        self.contextButton.bottom = self.view.height - self.view.safeAreaInsets.bottom - 16
+//        self.inputTextView.bottom = self.contextButton.bottom
+//        self.bottomGradientView.bottom = self.view.height
+//        self.channelCollectionVC.collectionView.height = self.view.height
+//        self.channelCollectionVC.collectionView.collectionViewLayout.invalidateLayout()
+//    }
+//
+//    self.dismissAnimator.addCompletion { (position) in
+//        if position == .end {
+//            self.channelCollectionVC.collectionView.scrollToBottom()
+//        }
+//    }
+//
+//    self.dismissAnimator.stopAnimation(true)
+//    self.dismissAnimator.startAnimation()
+//}
 
 extension ChannelViewController: GrowingTextViewDelegate {
     func textViewDidChangeHeight(_ textView: GrowingTextView, height: CGFloat) {
