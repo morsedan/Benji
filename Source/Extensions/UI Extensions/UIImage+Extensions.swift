@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import Parse
 
 extension UIImage {
     static func imageWithColor(color: UIColor, size: CGSize = CGSize(width: 1, height: 1)) -> UIImage {
@@ -25,7 +26,8 @@ extension UIImage {
 }
 
 extension UIImage: ImageDisplayable {
-    var photoUrl: URL? {
+
+    var user: PFUser? {
         return nil
     }
 

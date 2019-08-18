@@ -24,7 +24,9 @@ class HomeViewController: FullScreenViewController {
     lazy var segmentControl = HomeSegmentControl(items: ["FEED", "LIST"])
     lazy var avatarView: AvatarView = {
         let avatarView = AvatarView()
-        avatarView.set(avatar: Lorem.avatar())
+        if let current = PFUser.current() {
+            avatarView.set(avatar: current)
+        }
         return avatarView
     }()
 

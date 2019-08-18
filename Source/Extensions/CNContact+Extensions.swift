@@ -8,6 +8,7 @@
 
 import Foundation
 import Contacts
+import Parse 
 
 infix operator ~~: ComparisonPrecedence
 infix operator !~: ComparisonPrecedence
@@ -77,7 +78,7 @@ extension CNContact: Avatar {
         return String(first) + String(last)
     }
 
-    var photoUrl: URL? {
+    var user: PFUser? {
         return nil
     }
 

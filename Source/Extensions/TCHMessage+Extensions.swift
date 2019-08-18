@@ -45,7 +45,7 @@ extension TCHMessage: Diffable, DisplayableCellItem, Avatar {
         return String()
     }
 
-    var photoUrl: URL? {
+    var user: PFUser? {
         return nil
     }
 
