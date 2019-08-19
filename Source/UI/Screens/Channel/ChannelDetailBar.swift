@@ -86,6 +86,16 @@ class ChannelDetailBar: View {
                 if let name = channelsUpdate.channel.friendlyName {
                     self.set(text: name)
                 }
+
+                channelsUpdate.channel.getAuthorAsUser().observe(with: { (result) in
+                    switch result {
+                    case .success(let user):
+                        self.avatarView.set(avatar: user)
+                    case .failure(let error):
+                        print(error)
+                    }
+                })
+                
             @unknown default:
                 break
             }
