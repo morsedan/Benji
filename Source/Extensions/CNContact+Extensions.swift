@@ -100,4 +100,8 @@ extension CNContact: Avatar {
     var handle: String {
         return "@\(self.firstName)"
     }
+
+    var userObjectID: String? {
+        return nil
+    }
 }

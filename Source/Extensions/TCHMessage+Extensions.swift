@@ -52,6 +52,10 @@ extension TCHMessage: Diffable, DisplayableCellItem, Avatar {
     var photo: UIImage? {
         return nil
     }
+
+    var userObjectID: String? {
+        return self.author
+    }
 }
 
 extension Future where Value == TCHMessage {

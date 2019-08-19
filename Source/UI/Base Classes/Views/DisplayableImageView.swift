@@ -60,16 +60,31 @@ class DisplayableImageView: View {
             self.imageView.image = photo
         } else if let user = self.displayable.user {
             self.downloadAndSetImage(for: user)
+        } else if let objectID = self.displayable.userObjectID {
+            self.findUser(with: objectID)
         }
     }
 
     private func downloadAndSetImage(for user: PFUser) {
         //Possible Parse integration
-        guard let imageFile = user["profilePicute"] as? PFFileObject else { return }
+        guard let imageFile = user["profilePicture"] as? PFFileObject else { return }
         
         imageFile.getDataInBackground { (imageData: Data?, error: Error?) in
             guard let data = imageData else { return }
-            self.imageView.image = UIImage(data: data)
+            let image = UIImage(data: data)
+            self.imageView.image = image
         }
+    }
+
+    private func findUser(with objectID: String) {
+        let query = PFUser.query()
+        query?.whereKey("objectId", equalTo: objectID)
+        query?.getFirstObjectInBackground(block: { (object, error) in
+            if let user = object as? PFUser {
+                self.downloadAndSetImage(for: user)
+            } else {
+                print(ClientError.message(detail: "FAILED TO FIND USER"))
+            }
+        })
     }
 }

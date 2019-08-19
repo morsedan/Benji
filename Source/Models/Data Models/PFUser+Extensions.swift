@@ -54,6 +54,10 @@ extension PFUser: Avatar {
             self.setObject(newValue, forKey: "handle")
         }
     }
+
+    var userObjectID: String? {
+        return self.objectId
+    }
 }
 
 extension PFUser {

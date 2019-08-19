@@ -34,9 +34,14 @@ extension UIImage: ImageDisplayable {
     var photo: UIImage? {
         return self
     }
+
+    var userObjectID: String? {
+        return nil
+    }
 }
 
 extension UIImage: Avatar {
+    
     var initials: String {
         return String()
     }
