@@ -17,7 +17,6 @@ protocol LoginFlowable: class {
 }
 
 enum LoginStep {
-    case intro
     case phone
     case verifyCode(PhoneNumber)
     case name
@@ -51,7 +50,7 @@ class LoginFlowViewController: ScrolledModalFlowViewController {
         self.userExists = userExists
         super.init()
 
-        self.topMargin = UIScreen.main.bounds.height * 0.7
+        self.topMargin = 500
     }
 
     required init?(coder aDecoder: NSCoder) {
@@ -64,7 +63,7 @@ class LoginFlowViewController: ScrolledModalFlowViewController {
         self.view.addSubview(self.navigationBar)
         self.view.addSubview(self.loadingView)
 
-        self.handle(step: .intro)
+        self.handle(step: .phone)
     }
 
     override func viewDidLayoutSubviews() {
@@ -85,8 +84,6 @@ class LoginFlowViewController: ScrolledModalFlowViewController {
         let signUpTitle = LocalizedString(id: "", default: "Sign-up")
 
         switch step {
-        case .intro:
-            self.configureIntro()
         case .phone:
             if self.userExists == true {
                 self.navigationBar.titleLabel.set(text: loginTitle, alignment: .center)
@@ -109,28 +106,10 @@ class LoginFlowViewController: ScrolledModalFlowViewController {
             self.navigationBar.titleLabel.set(text: "Add Photo", alignment: .center)
             self.configureProfilePictureController()
         case .last:
-            self.navigationBar.titleLabel.set(text: "Congrats")
+            self.navigationBar.titleLabel.set(text: "Congrats", alignment: .center)
             self.navigationBar.setLeft(UIView()) { }
             self.configureLast()
         }
-    }
-
-    private func configureIntro() {
-        let controller = LoginIntroViewController()
-        controller.didComplete = { [unowned self] in
-            guard let current = PFUser.current(), current.isAuthenticated else {
-                // If the user is already logged in, refetch all their data
-                self.fetchAllData()
-                return
-            }
-
-            self.handle(step: .phone)
-            self.moveForward()
-        }
-        controller.didClose = { [unowned self] in
-            self.finishFlow(with: .cancelled)
-        }
-        self.add(controller: controller)
     }
 
     private func configurePhone() {
@@ -139,6 +118,7 @@ class LoginFlowViewController: ScrolledModalFlowViewController {
             return
         }
 
+        self.topMargin = UIScreen.main.bounds.height * 0.7
         let vc = LoginPhoneViewController()
         vc.didComplete = { [unowned self] phone in
             if let phoneNumber = phone {
@@ -153,6 +133,7 @@ class LoginFlowViewController: ScrolledModalFlowViewController {
     }
 
     private func configureVerifyCode(with phoneNumber: PhoneNumber) {
+        self.topMargin = UIScreen.main.bounds.height * 0.7
         let vc = LoginCodeViewController(phoneNumber: phoneNumber)
         vc.didVerifyUser = { [weak self] user in
             guard let `self` = self else { return }
@@ -167,12 +148,8 @@ class LoginFlowViewController: ScrolledModalFlowViewController {
     }
 
     private func configureNameController() {
-        guard let current = PFUser.current(),
-            !current.firstName.isEmpty else {
 
-                return
-        }
-
+        self.topMargin = UIScreen.main.bounds.height * 0.7
         let vc = LoginNameViewController()
         vc.didAddName = { [weak self] in
             guard let `self` = self else { return }
@@ -187,6 +164,8 @@ class LoginFlowViewController: ScrolledModalFlowViewController {
     }
 
     func configureProfilePictureController() {
+
+        self.topMargin = 300
         let vc = LoginProfilePhotoViewController()
         vc.didSavePhoto = { [weak self] in
             guard let `self` = self else { return }
@@ -195,19 +174,31 @@ class LoginFlowViewController: ScrolledModalFlowViewController {
         }
         self.add(controller: vc)
         self.moveForward()
+        delay(0.25) {
+            self.didUpdateHeight?(0, 0.25)
+        }
     }
 
     private func configureLast() {
+        self.topMargin = 500
         let controller = LoginEndingViewController()
         controller.didComplete = {
-
+            self.fetchAllData()
         }
         self.add(controller: controller)
         self.moveForward()
     }
 
     private func fetchAllData() {
-            self.finishFlow(with: .loggedIn)
+        guard let _ = PFUser.current() else { return }
+
+        PFAnonymousUtils.logIn { (user, error) in
+            if error != nil || user == nil {
+                print("Anonymous login failed.")
+            } else {
+                self.finishFlow(with: .loggedIn)
+            }
+        }
     }
 
     func finishFlow(with result: LoginFlowResult) {

@@ -10,10 +10,11 @@ import Foundation
 import Parse
 
 class LoginEndingViewController: LoginFlowableViewController {
+
     var didComplete: (() -> Void)?
     var didClose: (() -> Void)?
 
-    let displayLabel = Display2Label()
+    let displayLabel = RegularSemiBoldLabel()
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -30,7 +31,9 @@ class LoginEndingViewController: LoginFlowableViewController {
         let text = LocalizedString(id: "",
                                    arguments: [current.firstName],
                                    default: "@1 I made this for you.\n ~Benji")
-        self.displayLabel.set(text: text, alignment: .center)
+        self.displayLabel.set(text: text,
+                              alignment: .center,
+                              stringCasing: .capitalized)
     }
 
     override func viewDidLayoutSubviews() {
