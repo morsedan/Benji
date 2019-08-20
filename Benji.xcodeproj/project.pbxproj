@@ -136,6 +136,8 @@
 		D691794222F6418700340AA3 /* Router.swift in Sources */ = {isa = PBXBuildFile; fileRef = D691794122F6418700340AA3 /* Router.swift */; };
 		D691794422F67BEB00340AA3 /* ChannelsViewController+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = D691794322F67BEB00340AA3 /* ChannelsViewController+Extensions.swift */; };
 		D696A8E92308D5C900DAFED4 /* MessageInputView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D696A8E82308D5C900DAFED4 /* MessageInputView.swift */; };
+		D696A8F1230BA01600DAFED4 /* LoginIntroViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D696A8F0230BA01600DAFED4 /* LoginIntroViewController.swift */; };
+		D696A8F5230BA06A00DAFED4 /* LoginEndingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D696A8F4230BA06A00DAFED4 /* LoginEndingViewController.swift */; };
 		D6AF02FD220153F5002D5C75 /* LaunchManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6AF02FC220153F5002D5C75 /* LaunchManager.swift */; };
 		D6AF0301220154E3002D5C75 /* ChannelManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6AF0300220154E3002D5C75 /* ChannelManager.swift */; };
 		D6B2601422E3E31500143CF0 /* ChannelDataSourceManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6B2601322E3E31500143CF0 /* ChannelDataSourceManager.swift */; };
@@ -336,6 +338,8 @@
 		D691794122F6418700340AA3 /* Router.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Router.swift; sourceTree = "<group>"; };
 		D691794322F67BEB00340AA3 /* ChannelsViewController+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ChannelsViewController+Extensions.swift"; sourceTree = "<group>"; };
 		D696A8E82308D5C900DAFED4 /* MessageInputView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageInputView.swift; sourceTree = "<group>"; };
+		D696A8F0230BA01600DAFED4 /* LoginIntroViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginIntroViewController.swift; sourceTree = "<group>"; };
+		D696A8F4230BA06A00DAFED4 /* LoginEndingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginEndingViewController.swift; sourceTree = "<group>"; };
 		D6AF02FC220153F5002D5C75 /* LaunchManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LaunchManager.swift; sourceTree = "<group>"; };
 		D6AF0300220154E3002D5C75 /* ChannelManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChannelManager.swift; sourceTree = "<group>"; };
 		D6B2601322E3E31500143CF0 /* ChannelDataSourceManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChannelDataSourceManager.swift; sourceTree = "<group>"; };
@@ -746,6 +750,8 @@
 			isa = PBXGroup;
 			children = (
 				D67896A422FF48D60059BA75 /* LoginFlowViewController.swift */,
+				D696A8F0230BA01600DAFED4 /* LoginIntroViewController.swift */,
+				D696A8F4230BA06A00DAFED4 /* LoginEndingViewController.swift */,
 				D67896A822FF51170059BA75 /* LoginPhoneViewController.swift */,
 				D67896AC22FF60190059BA75 /* LoginTextInputViewController.swift */,
 				D67896B122FF67650059BA75 /* LoginCodeViewController.swift */,
@@ -1168,10 +1174,12 @@
 				D684840322CD295600362AC3 /* ReceiverMessageCellContentView.swift in Sources */,
 				D6D1460B21D5547000CD8CE4 /* FontType.swift in Sources */,
 				D6D1461321D583E500CD8CE4 /* NavigationController.swift in Sources */,
+				D696A8F1230BA01600DAFED4 /* LoginIntroViewController.swift in Sources */,
 				D67896B8230096620059BA75 /* KeyboardObservable.swift in Sources */,
 				D642735E22C90C820088256B /* CGPoint+Extensions.swift in Sources */,
 				D61EC0DE21D30DAC00204BEE /* Array+Extensions.swift in Sources */,
 				D61EC0F121D313F500204BEE /* ScreenSize.swift in Sources */,
+				D696A8F5230BA06A00DAFED4 /* LoginEndingViewController.swift in Sources */,
 				D6B2606E22E80E4000143CF0 /* ToastView.swift in Sources */,
 				D67896CC2304524C0059BA75 /* ChannelCoordinator.swift in Sources */,
 				D61EC0E821D3107A00204BEE /* Date+Extensions.swift in Sources */,
