@@ -80,7 +80,7 @@ class LoginFlowViewController: ScrolledModalFlowViewController {
     }
 
     func handle(step: LoginStep) {
-        
+
         let loginTitle = LocalizedString(id: "", default: "Login")
         let signUpTitle = LocalizedString(id: "", default: "Sign-up")
 
@@ -134,6 +134,11 @@ class LoginFlowViewController: ScrolledModalFlowViewController {
     }
 
     private func configurePhone() {
+        guard let current = PFUser.current(), current.phoneNumber == nil else {
+            self.handle(step: .name)
+            return
+        }
+
         let vc = LoginPhoneViewController()
         vc.didComplete = { [unowned self] phone in
             if let phoneNumber = phone {
@@ -162,6 +167,12 @@ class LoginFlowViewController: ScrolledModalFlowViewController {
     }
 
     private func configureNameController() {
+        guard let current = PFUser.current(),
+            !current.firstName.isEmpty else {
+
+                return
+        }
+
         let vc = LoginNameViewController()
         vc.didAddName = { [weak self] in
             guard let `self` = self else { return }
@@ -196,14 +207,7 @@ class LoginFlowViewController: ScrolledModalFlowViewController {
     }
 
     private func fetchAllData() {
-//        self.loadingView.startAnimating()
-
-//        FetchAllUserData.begin(completion: { [weak self] (tomorrowError) in
-//            guard let `self` = self else { return }
-//
-//            self.loadingView.stopAnimating()
             self.finishFlow(with: .loggedIn)
-//        })
     }
 
     func finishFlow(with result: LoginFlowResult) {
