@@ -72,8 +72,9 @@ class LaunchManager {
                 // Set up Twilio Chat client
                 ChannelManager.initialize(token: token)
                 self.finishedInitialFetch = true
+                self.delegate?.launchManager(self, didFinishWith: .success(object: nil))
             } else {
-                print("Error retrieving token: \(error.debugDescription)")
+                self.delegate?.launchManager(self, didFinishWith: .failed(error: ClientError.apiError(detail: error.debugDescription)))
             }
         }
     }

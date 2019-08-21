@@ -43,11 +43,20 @@ extension LaunchCoordinator: LaunchManagerDelegate {
         switch options {
         case .success(let deepLink):
             self.deepLink = deepLink
-            self.finishFlow(with: self.deepLink)
+            runMain {
+                self.runHomeFlow()
+            }
         case .failed:
             break
-            //self.splashVC.showRetryButton()
         }
+    }
+
+    private func runHomeFlow() {
+        let homeCoordinator = HomeCoordinator(router: self.router, deepLink: self.deepLink)
+        self.router.setRootModule(homeCoordinator, animated: true)
+        self.addChildAndStart(homeCoordinator, finishedHandler: { _ in
+            // If the home coordinator ever finishes, put handling logic here.
+        })
     }
 }
 
