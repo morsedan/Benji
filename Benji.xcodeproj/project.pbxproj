@@ -155,7 +155,7 @@
 		D6B2606E22E80E4000143CF0 /* ToastView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6B2606D22E80E4000143CF0 /* ToastView.swift */; };
 		D6B2607022E80E6500143CF0 /* ToastView.xib in Resources */ = {isa = PBXBuildFile; fileRef = D6B2606F22E80E6500143CF0 /* ToastView.xib */; };
 		D6B2607222E80FE000143CF0 /* XSmallLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6B2607122E80FE000143CF0 /* XSmallLabel.swift */; };
-		D6C65E9E230CD07400259F7A /* SplashCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6C65E9D230CD07400259F7A /* SplashCoordinator.swift */; };
+		D6C65E9E230CD07400259F7A /* LaunchCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6C65E9D230CD07400259F7A /* LaunchCoordinator.swift */; };
 		D6D145F421D5493000CD8CE4 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6D145F321D5493000CD8CE4 /* HomeViewController.swift */; };
 		D6D145FD21D550E400CD8CE4 /* AttributedString.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6D145FC21D550E400CD8CE4 /* AttributedString.swift */; };
 		D6D145FF21D5510400CD8CE4 /* StringStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6D145FE21D5510400CD8CE4 /* StringStyle.swift */; };
@@ -357,7 +357,7 @@
 		D6B2606D22E80E4000143CF0 /* ToastView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToastView.swift; sourceTree = "<group>"; };
 		D6B2606F22E80E6500143CF0 /* ToastView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ToastView.xib; sourceTree = "<group>"; };
 		D6B2607122E80FE000143CF0 /* XSmallLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = XSmallLabel.swift; sourceTree = "<group>"; };
-		D6C65E9D230CD07400259F7A /* SplashCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplashCoordinator.swift; sourceTree = "<group>"; };
+		D6C65E9D230CD07400259F7A /* LaunchCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LaunchCoordinator.swift; sourceTree = "<group>"; };
 		D6D145F321D5493000CD8CE4 /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
 		D6D145FC21D550E400CD8CE4 /* AttributedString.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AttributedString.swift; sourceTree = "<group>"; };
 		D6D145FE21D5510400CD8CE4 /* StringStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StringStyle.swift; sourceTree = "<group>"; };
@@ -702,7 +702,7 @@
 				D66F0FD322BF074C00BA277D /* DeeplinkObject.swift */,
 				D66F0FD722BF295A00BA277D /* Coordinator.swift */,
 				D66F0FD922BF297F00BA277D /* MainCoordinator.swift */,
-				D6C65E9D230CD07400259F7A /* SplashCoordinator.swift */,
+				D6C65E9D230CD07400259F7A /* LaunchCoordinator.swift */,
 				D66F0FDB22BF2ADC00BA277D /* HomeCoordinator.swift */,
 				D67896B322FF75640059BA75 /* LoginCoordinator.swift */,
 				D67896CB2304524C0059BA75 /* ChannelCoordinator.swift */,
@@ -1191,7 +1191,7 @@
 				D6B2606E22E80E4000143CF0 /* ToastView.swift in Sources */,
 				D67896CC2304524C0059BA75 /* ChannelCoordinator.swift in Sources */,
 				D61EC0E821D3107A00204BEE /* Date+Extensions.swift in Sources */,
-				D6C65E9E230CD07400259F7A /* SplashCoordinator.swift in Sources */,
+				D6C65E9E230CD07400259F7A /* LaunchCoordinator.swift in Sources */,
 				D64273A122CBDC870088256B /* ContextButton.swift in Sources */,
 				D6432BF522D82CDC0016001A /* ChannelCollectionViewFlowLayout.swift in Sources */,
 				D6B2601622E41BE700143CF0 /* ChannelSectionHeader.swift in Sources */,

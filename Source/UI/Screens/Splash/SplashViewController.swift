@@ -8,27 +8,9 @@
 
 import Foundation
 
-protocol SplashViewControllerDelegate: class {
-}
-
 class SplashViewController: FullScreenViewController {
 
     let loadingIndicator = UIActivityIndicatorView(style: .whiteLarge)
-
-    unowned let delegate: SplashViewControllerDelegate
-
-    init(with delegate: SplashViewControllerDelegate) {
-        self.delegate = delegate
-        super.init()
-    }
-    
-    required init?(coder aDecoder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
-    }
-    
-    required init?(withObject object: DeepLinkable) {
-        fatalError("init(withObject:) has not been implemented")
-    }
     
     override func initializeViews() {
         super.initializeViews()

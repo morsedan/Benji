@@ -19,12 +19,34 @@ class MainCoordinator: Coordinator<Void> {
 
     private func initializeLogoutHandler() {
         // If the user ever logs out, restart the whole flow from the beginning
+        LaunchManager.shared.onLoggedOut = { [unowned self] in
+            self.removeChild()
+            self.runLaunchFlow()
+        }
     }
 
     override func start() {
         super.start()
 
-        self.runHomeFlow()
+        if !LaunchManager.shared.finishedInitialFetch {
+            self.runLaunchFlow()
+        } else {
+            self.runHomeFlow()
+        }
+    }
+
+    private func runLaunchFlow() {
+        let launchCoordinator = LaunchCoordinator(router: self.router,
+                                                  deepLink: self.deepLink,
+                                                  launchOptions: self.launchOptions)
+
+        self.router.setRootModule(launchCoordinator, animated: true)
+        self.addChildAndStart(launchCoordinator, finishedHandler: { [unowned self] (deepLink) in
+            // Listen for any future deep links
+            LaunchManager.shared.delegate = self
+
+            self.start(with: deepLink)
+        })
     }
 
     private func runHomeFlow() {
@@ -33,6 +55,18 @@ class MainCoordinator: Coordinator<Void> {
         self.addChildAndStart(homeCoordinator, finishedHandler: { _ in
             // If the home coordinator ever finishes, put handling logic here.
         })
+    }
+}
+
+extension MainCoordinator: LaunchManagerDelegate {
+    func launchManager(_ launchManager: LaunchManager, didFinishWith options: LaunchOptions) {
+        switch options {
+        case .success(let object):
+            guard let deepLink = object else { break }
+            self.start(with: deepLink)
+        case .failed:
+            break
+        }
     }
 }
 

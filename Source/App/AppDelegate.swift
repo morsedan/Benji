@@ -16,7 +16,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
 
-        LaunchManager.shared.launchApp()
         let rootNavController = RootNavigationController()
         self.initializeKeyWindow(with: rootNavController)
         self.initializeMainCoordinator(with: rootNavController, withOptions: launchOptions)

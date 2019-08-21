@@ -24,6 +24,9 @@ class LaunchManager {
 
     weak var delegate: LaunchManagerDelegate?
 
+    private(set) var finishedInitialFetch = false
+    var onLoggedOut: (() -> Void)?
+
     // Important - update this URL with your Twilio Function URL
     private let tokenURL = "https://violet-lionfish-6641.twil.io/chat-token"
 
@@ -34,9 +37,9 @@ class LaunchManager {
     private let clientKey = "myMasterKey"
     private let tempPhone = "2068509234"//Used for demo
 
-    func launchApp() {
-        Parse.enableLocalDatastore()
+    func launchApp(with: [UIApplication.LaunchOptionsKey: Any]?) {
 
+        Parse.enableLocalDatastore()
         Parse.initialize(with: ParseClientConfiguration(block: { (configuration: ParseMutableClientConfiguration) -> Void in
             configuration.server = self.url
             configuration.clientKey = self.clientKey
@@ -68,6 +71,7 @@ class LaunchManager {
                 //Setup Access manager with token
                 // Set up Twilio Chat client
                 ChannelManager.initialize(token: token)
+                self.finishedInitialFetch = true
             } else {
                 print("Error retrieving token: \(error.debugDescription)")
             }
