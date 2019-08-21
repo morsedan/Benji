@@ -10,6 +10,7 @@ import Foundation
 import ReactiveSwift
 import PhoneNumberKit
 import Parse
+import UserNotifications
 
 protocol LoginFlowable: class {
     var didComplete: (() -> Void)? { get set }
@@ -191,6 +192,9 @@ class LoginFlowViewController: ScrolledModalFlowViewController {
 
     private func fetchAllData() {
         guard let _ = PFUser.current() else { return }
+
+        let notificationCenter = UNUserNotificationCenter.current()
+        _ = notificationCenter.requestAuthorization()
 
         PFAnonymousUtils.logIn { (user, error) in
             if error != nil || user == nil {
