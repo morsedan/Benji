@@ -9,9 +9,20 @@
 import Foundation
 import Parse
 
+enum LaunchOptions {
+    case success(object: DeepLinkable?)
+    case failed(error: ClientError?)
+}
+
+protocol LaunchManagerDelegate: class {
+    func launchManager(_ launchManager: LaunchManager, didFinishWith options: LaunchOptions)
+}
+
 class LaunchManager {
 
     static let shared = LaunchManager()
+
+    weak var delegate: LaunchManagerDelegate?
 
     // Important - update this URL with your Twilio Function URL
     private let tokenURL = "https://violet-lionfish-6641.twil.io/chat-token"
