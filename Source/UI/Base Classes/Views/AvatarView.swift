@@ -161,7 +161,7 @@ class AvatarView: DisplayableImageView {
         self.imageView.contentMode = .scaleAspectFill
         self.layer.masksToBounds = true
         self.clipsToBounds = true
-        self.setCorner(radius: nil)
+        self.setCorner(radius: 5)
     }
 
     // MARK: - Open setters

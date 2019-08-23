@@ -26,16 +26,21 @@ extension ChannelsViewController {
             }
         }.start()
 
-        ChannelManager.shared.channelSyncUpdate.producer.on { [weak self] (update) in
+        ChannelManager.shared.clientSyncUpdate.producer.on { [weak self] (update) in
             guard let `self` = self else { return }
 
-            guard let channelsUpdate = update else { return }
+            guard let clientUpdate = update else { return }
 
-            switch channelsUpdate.status {
-            case .none, .identifier, .metadata, .failed:
+            switch clientUpdate {
+            case .started:
                 break
-            case .all:
-                self.loadChannels()
+            case .channelsListCompleted:
+                break
+            case .completed:
+                self.loadTestChannels()
+                //self.loadChannels()
+            case .failed:
+                break
             @unknown default:
                 break
             }

@@ -129,10 +129,6 @@
 		D68483FB22CD050D00362AC3 /* TableViewManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = D68483FA22CD050C00362AC3 /* TableViewManager.swift */; };
 		D68483FD22CD09C800362AC3 /* ListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D68483FC22CD09C800362AC3 /* ListViewController.swift */; };
 		D68483FF22CD0A1A00362AC3 /* TableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D68483FE22CD0A1A00362AC3 /* TableView.swift */; };
-		D684840122CD234B00362AC3 /* ReceiverMessageCellContentView.xib in Resources */ = {isa = PBXBuildFile; fileRef = D684840022CD234B00362AC3 /* ReceiverMessageCellContentView.xib */; };
-		D684840322CD295600362AC3 /* ReceiverMessageCellContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D684840222CD295600362AC3 /* ReceiverMessageCellContentView.swift */; };
-		D684840522CD2E0100362AC3 /* SenderMessageCellContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D684840422CD2E0100362AC3 /* SenderMessageCellContentView.swift */; };
-		D684840722CD2E1100362AC3 /* SenderMessageCellContentView.xib in Resources */ = {isa = PBXBuildFile; fileRef = D684840622CD2E1100362AC3 /* SenderMessageCellContentView.xib */; };
 		D684840A22CD48D000362AC3 /* GradientView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D684840922CD48D000362AC3 /* GradientView.swift */; };
 		D684840C22CD48FA00362AC3 /* PassThroughView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D684840B22CD48FA00362AC3 /* PassThroughView.swift */; };
 		D684D6E922D0E1CB00874B08 /* EmptyChannelView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D684D6E822D0E1CB00874B08 /* EmptyChannelView.swift */; };
@@ -336,10 +332,6 @@
 		D68483FA22CD050C00362AC3 /* TableViewManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableViewManager.swift; sourceTree = "<group>"; };
 		D68483FC22CD09C800362AC3 /* ListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListViewController.swift; sourceTree = "<group>"; };
 		D68483FE22CD0A1A00362AC3 /* TableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableView.swift; sourceTree = "<group>"; };
-		D684840022CD234B00362AC3 /* ReceiverMessageCellContentView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ReceiverMessageCellContentView.xib; sourceTree = "<group>"; };
-		D684840222CD295600362AC3 /* ReceiverMessageCellContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReceiverMessageCellContentView.swift; sourceTree = "<group>"; };
-		D684840422CD2E0100362AC3 /* SenderMessageCellContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SenderMessageCellContentView.swift; sourceTree = "<group>"; };
-		D684840622CD2E1100362AC3 /* SenderMessageCellContentView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SenderMessageCellContentView.xib; sourceTree = "<group>"; };
 		D684840922CD48D000362AC3 /* GradientView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GradientView.swift; sourceTree = "<group>"; };
 		D684840B22CD48FA00362AC3 /* PassThroughView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PassThroughView.swift; sourceTree = "<group>"; };
 		D684D6E822D0E1CB00874B08 /* EmptyChannelView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmptyChannelView.swift; sourceTree = "<group>"; };
@@ -795,10 +787,6 @@
 				D6B2601522E41BE700143CF0 /* ChannelSectionHeader.swift */,
 				D6D1501B21D5F8AD00CD8CE4 /* MessageCell.swift */,
 				D642739E22CAFD680088256B /* MessageTextView.swift */,
-				D684840222CD295600362AC3 /* ReceiverMessageCellContentView.swift */,
-				D684840022CD234B00362AC3 /* ReceiverMessageCellContentView.xib */,
-				D684840422CD2E0100362AC3 /* SenderMessageCellContentView.swift */,
-				D684840622CD2E1100362AC3 /* SenderMessageCellContentView.xib */,
 			);
 			path = Cells;
 			sourceTree = "<group>";
@@ -1079,8 +1067,6 @@
 			files = (
 				D6B2607022E80E6500143CF0 /* ToastView.xib in Resources */,
 				D642739522C9C0850088256B /* AlertView.xib in Resources */,
-				D684840122CD234B00362AC3 /* ReceiverMessageCellContentView.xib in Resources */,
-				D684840722CD2E1100362AC3 /* SenderMessageCellContentView.xib in Resources */,
 				D61EC0CA21D3071500204BEE /* LaunchScreen.storyboard in Resources */,
 				D61EC0C721D3071500204BEE /* Assets.xcassets in Resources */,
 			);
@@ -1169,7 +1155,6 @@
 				D60C81482209314200A127A3 /* UIImage+Extensions.swift in Sources */,
 				D6432BF022D824BA0016001A /* ChannelCollectionViewLayoutAttributes.swift in Sources */,
 				D61EC0EA21D3111600204BEE /* String+Extensions.swift in Sources */,
-				D684840522CD2E0100362AC3 /* SenderMessageCellContentView.swift in Sources */,
 				D642736622C971FD0088256B /* FeedTextView.swift in Sources */,
 				D6DADF6C2207DCA8007D9EB1 /* ChannelsViewController.swift in Sources */,
 				D6D1503321D7E5F800CD8CE4 /* UIDynamicAnimator+Extensions.swift in Sources */,
@@ -1196,7 +1181,6 @@
 				D6815DBB22EE1F1400E71251 /* FeedCollectionViewManager.swift in Sources */,
 				D642737A22C99DD20088256B /* ContactCell.swift in Sources */,
 				D684D6EB22D0E4F000874B08 /* StackedAvatarView.swift in Sources */,
-				D684840322CD295600362AC3 /* ReceiverMessageCellContentView.swift in Sources */,
 				D6D1460B21D5547000CD8CE4 /* FontType.swift in Sources */,
 				D6D1461321D583E500CD8CE4 /* NavigationController.swift in Sources */,
 				D67896B8230096620059BA75 /* KeyboardObservable.swift in Sources */,

@@ -80,6 +80,7 @@ class MessageCell: UICollectionViewCell {
         self.bubbleView.size = attributes.bubbleViewSize
         self.bubbleView.top = 0
         self.bubbleView.left = self.textView.left - attributes.bubbleViewHorizontalPadding
+        self.bubbleView.layer.maskedCorners = [.layerMaxXMaxYCorner, .layerMinXMaxYCorner, .layerMaxXMinYCorner]
         self.bubbleView.roundCorners()
         self.avatarView.top = self.bubbleView.top
     }
@@ -96,6 +97,7 @@ class MessageCell: UICollectionViewCell {
         self.bubbleView.size = attributes.bubbleViewSize
         self.bubbleView.top = 0
         self.bubbleView.right = self.textView.right + attributes.bubbleViewHorizontalPadding
+        self.bubbleView.layer.maskedCorners = [.layerMinXMaxYCorner, .layerMaxXMinYCorner, .layerMinXMinYCorner]
         self.bubbleView.roundCorners()
     }
 }

@@ -207,19 +207,6 @@ extension UIView {
         self.layer.mask = maskLayer1
     }
 
-    func scrollToVisible() {
-        var superview = self.superview
-        while superview != nil {
-            if let scrollView = superview as? UIScrollView {
-                let rect = self.convert(self.bounds, to: scrollView)
-                scrollView.scrollRectToVisible(rect, animated: true)
-                break
-            }
-
-            superview = superview?.superview
-        }
-    }
-
     func removeAllSubviews() {
         for view in subviews {
             view.removeFromSuperview()

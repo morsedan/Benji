@@ -13,7 +13,7 @@ class MessageSizeCalculator: CellSizeCalculator {
     var avatarSize = CGSize(width: 44, height: 44)
     var avatarLeadingPadding: CGFloat = 14
     var messageTextViewVerticalPadding: CGFloat = 10
-    var messageTextViewHorizontalPadding: CGFloat = 24
+    var messageTextViewHorizontalPadding: CGFloat = 20
     var bubbleViewHorizontalPadding: CGFloat = 14
     private let widthRatio: CGFloat = 0.8
 
