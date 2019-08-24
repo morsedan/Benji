@@ -12,6 +12,8 @@ import TwilioChatClient
 enum ToastType {
     case systemMessage(SystemMessage)
     case message(TCHMessage)
+    case channel(TCHChannel)
+    case error(ClientError)
 }
 
 class ToastScheduler {
@@ -22,8 +24,12 @@ class ToastScheduler {
         switch toastType {
         case .systemMessage(let message):
             toast = self.createSystemMessageToast(for: message)
-        case .message(_):
-            break
+        case .message(let message):
+            toast = self.createMessageToast(for: message)
+        case .channel(let channel):
+            toast = self.createChannelToast(for: channel)
+        case .error(let error):
+            toast = self.createErrorToast(for: error)
         }
 
         if let toast = toast {
@@ -42,5 +48,51 @@ class ToastScheduler {
                      title: systemMessage.body,
                      button: button,
                      displayable: systemMessage.avatar)
+    }
+
+    private func createMessageToast(for message: TCHMessage) -> Toast? {
+        guard let sid = message.sid,
+            let body = message.body,
+            !body.isEmpty else { return nil }
+
+        let button = LoadingButton()
+        button.set(style: .rounded(color: .background3, text: "VIEW")) {
+            //Go to channel 
+        }
+        return Toast(id: sid + "message",
+                     analyticsID: "ToastMessage",
+                     priority: 1,
+                     title: body,
+                     button: button,
+                     displayable: message)
+    }
+
+    private func createChannelToast(for channel: TCHChannel) -> Toast? {
+        guard let sid = channel.sid else { return nil }
+
+        let button = LoadingButton()
+        button.set(style: .rounded(color: .background3, text: "VIEW")) {
+            //Go to channel
+        }
+        return Toast(id: sid + "channel",
+                     analyticsID: "ToastMessage",
+                     priority: 1,
+                     title: "New conversation added.",
+                     button: button,
+                     displayable: channel)
+    }
+
+    private func createErrorToast(for error: ClientError) -> Toast? {
+        guard let image = UIImage(named: "error") else { return nil }
+        let button = LoadingButton()
+        button.set(style: .rounded(color: .background3, text: "")) {
+
+        }
+        return Toast(id: error.localizedDescription + "error",
+                     analyticsID: "ToastSystemMessage",
+                     priority: 1,
+                     title: error.localizedDescription,
+                     button: button,
+                     displayable: image)
     }
 }

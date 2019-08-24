@@ -75,20 +75,6 @@ extension ChannelManager: TwilioChatClientDelegate {
     //MARK: CLIENT UDPATES
 
     func chatClient(_ client: TwilioChatClient, synchronizationStatusUpdated status: TCHClientSynchronizationStatus) {
-
-        switch status {
-        case .started:
-            print("STATUS CHANGED TO: STARTED")
-        case .channelsListCompleted:
-            print("STATUS CHANGED TO: CHANNEL LIST COMPLETED")
-        case .completed:
-            print("STATUS CHANGED TO: COMPLETED")
-        case .failed:
-            print("STATUS CHANGED TO: FAILED")
-        @unknown default:
-            break
-        }
-
         self.clientSyncUpdate.value = status
     }
 
@@ -115,16 +101,8 @@ extension ChannelManager: TwilioChatClientDelegate {
     //MARK: CHANNEL UPDATES
 
     func chatClient(_ client: TwilioChatClient, channelAdded channel: TCHChannel) {
-
-        if channel.status == TCHChannelStatus.invited {
-            channel.join() { result in
-                if result.isSuccessful() {
-                    self.channelUpdate.value = ChannelUpdate(channel: channel, status: .added)
-                }
-            }
-        } else {
-            self.channelUpdate.value = ChannelUpdate(channel: channel, status: .added)
-        }
+        ToastScheduler.shared.schedule(toastType: .channel(channel))
+        self.channelUpdate.value = ChannelUpdate(channel: channel, status: .added)
     }
 
     func chatClient(_ client: TwilioChatClient!, channelChanged channel: TCHChannel!) {

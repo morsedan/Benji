@@ -100,3 +100,34 @@ extension Future where Value == TCHChannel {
         })
     }
 }
+
+extension TCHChannel: ImageDisplayable {
+    
+    var initials: String {
+        return String()
+    }
+
+    var firstName: String {
+        return String()
+    }
+
+    var lastName: String {
+        return String()
+    }
+
+    var handle: String {
+        return String()
+    }
+
+    var userObjectID: String? {
+        return self.createdBy
+    }
+
+    var user: PFUser? {
+        return nil
+    }
+
+    var photo: UIImage? {
+        return nil
+    }
+}
