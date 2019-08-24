@@ -69,6 +69,15 @@ class ChannelCellContentView: View {
                 self.messageText = last.body
                 self.layoutNow()
             })
+
+            channel.getAuthorAsUser().observe(with: { (result) in
+                switch result {
+                case .success(let user):
+                    self.avatarView.set(avatar: user)
+                case .failure(let error):
+                    print(error)
+                }
+            })
         }
     }
 
@@ -95,7 +104,7 @@ class ChannelCellContentView: View {
         self.avatarView.size = CGSize(width: 56, height: 56)
         self.avatarView.top = self.headerView.bottom + 16
         self.avatarView.left = 16
-
+        
         if let attributedText = self.messageLabel.attributedText {
             let maxWidth = self.width - self.avatarView.right - 40
             self.messageLabel.size = attributedText.getSize(withWidth: maxWidth)

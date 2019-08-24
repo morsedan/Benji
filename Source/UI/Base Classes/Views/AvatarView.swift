@@ -12,6 +12,12 @@ class AvatarView: DisplayableImageView {
 
     // MARK: - Properties
 
+    var borderColor: Color = .lightPurple {
+        didSet {
+            self.setBorder(color: self.borderColor)
+        }
+    }
+
     var initials: String? {
         didSet {
             self.setImageFrom(initials: self.initials)
@@ -162,6 +168,8 @@ class AvatarView: DisplayableImageView {
         self.layer.masksToBounds = true
         self.clipsToBounds = true
         self.setCorner(radius: 5)
+        self.layer.borderColor = Color.purple.color.cgColor
+        self.layer.borderWidth = 2
     }
 
     // MARK: - Open setters
@@ -181,6 +189,11 @@ class AvatarView: DisplayableImageView {
         }
         self.radius = radius
         self.layer.cornerRadius = radius
+    }
+
+    func setBorder(color: Color) {
+        self.layer.borderColor = color.color.cgColor
+        self.layer.borderWidth = 2
     }
 }
 

@@ -49,11 +49,7 @@ class DisplayableImageView: View {
     override func layoutSubviews() {
         super.layoutSubviews()
 
-        self.imageView.width = self.width - 4
-        self.imageView.height = self.height - 4
-        self.imageView.centerOnXAndY()
-        self.imageView.layer.cornerRadius = 5
-        self.imageView.layer.masksToBounds = true 
+        self.imageView.frame = self.bounds
     }
 
     private func updateImageView() {
