@@ -146,11 +146,9 @@ extension HomeViewController: ContactsViewControllerDelegate {
 
     func contactsViewController(_ controller: ContactsViewController, didSelect contact: CNContact) {
         self.dismiss(animated: true) {
-            guard let firstNumber = contact.phoneNumbers.first else { return }
-            let stringNumber = firstNumber.value.stringValue.filter("0123456789".contains)
+            guard let phoneNumber = contact.primaryPhoneNumber, let query = PFUser.query() else { return }
 
-            guard let query = PFUser.query() else { return }
-            query.whereKey("phoneNumber", equalTo: stringNumber)
+            query.whereKey("phoneNumber", equalTo: phoneNumber)
 
             query.findObjectsInBackground(block: { (objects, error) in
                 if let error = error {

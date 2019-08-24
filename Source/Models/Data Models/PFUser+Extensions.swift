@@ -60,10 +60,13 @@ extension PFUser: Avatar {
     }
 
     func parseName(from text: String) {
-        if let first = text.components(separatedBy: " ").first {
+        let components = text.components(separatedBy: " ").filter { (component) -> Bool in
+            return !component.isEmpty
+        }
+        if let first = components.first {
             self.firstName = first 
         }
-        if let last = text.components(separatedBy: " ").last {
+        if let last = components.last {
             self.lastName = last
         }
     }

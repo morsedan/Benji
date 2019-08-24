@@ -40,7 +40,13 @@ class LoginCodeViewController: LoginTextInputViewController {
         self.verifying = true
 
         guard let current = PFUser.current() else { return }
-        self.didVerifyUser(current)
+        current.phoneNumber = self.phoneNumber.numberString.formatPhoneNumber()
+        current.saveInBackground { (completed, error) in
+            if completed {
+                self.didVerifyUser(current)
+            }
+        }
+
 //        VerifyCode(phone: self.phoneNumber, code: code).producer
 //            .withErrorBanner()
 //            .startWithResult { result in

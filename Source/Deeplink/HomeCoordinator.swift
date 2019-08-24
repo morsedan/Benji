@@ -21,7 +21,9 @@ class HomeCoordinator: PresentableCoordinator<Void> {
         super.start()
 
         if PFAnonymousUtils.isLinked(with: PFUser.current()) {
-            self.startLoginFlow()
+            delay(1.0) {
+                self.startLoginFlow()
+            }
         }
     }
 

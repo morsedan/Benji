@@ -10,7 +10,7 @@ import Foundation
 
 class MessageSizeCalculator: CellSizeCalculator {
 
-    var avatarSize = CGSize(width: 44, height: 44)
+    var avatarSize = CGSize(width: 30, height: 30)
     var avatarLeadingPadding: CGFloat = 14
     var messageTextViewVerticalPadding: CGFloat = 10
     var messageTextViewHorizontalPadding: CGFloat = 20

@@ -12,7 +12,6 @@ extension FeedViewController {
 
     func subscribeToUpdates() {
 
-
         ChannelManager.shared.clientSyncUpdate.producer.on { [weak self] (update) in
             guard let `self` = self, let clientUpdate = update else { return }
 
