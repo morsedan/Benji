@@ -31,7 +31,6 @@ class HomeViewController: FullScreenViewController {
     }()
 
     private let headerContainer = View()
-    private let searchImageView = UIImageView(image: #imageLiteral(resourceName: "Search"))
     private let addButton = HomeAddButton()
     private var currentType: HomeContentType = .feed
     unowned let delegate: HomeViewControllerDelegate
@@ -63,7 +62,6 @@ class HomeViewController: FullScreenViewController {
                 vc.set(avatar: Lorem.avatar())
             })
         }
-        self.headerContainer.addSubview(self.searchImageView)
 
         self.headerContainer.addSubview(self.segmentControl)
         self.segmentControl.addTarget(self, action: #selector(updateContent), for: .valueChanged)
@@ -88,10 +86,6 @@ class HomeViewController: FullScreenViewController {
         self.avatarView.size = CGSize(width: 30, height: 30)
         self.avatarView.left = 20
         self.avatarView.centerY = self.segmentControl.centerY
-
-        self.searchImageView.size = CGSize(width: 22, height: 22)
-        self.searchImageView.centerY = self.segmentControl.centerY
-        self.searchImageView.right = self.headerContainer.width - 20
 
         self.addButton.size = CGSize(width: 60, height: 60)
         self.addButton.centerOnX()

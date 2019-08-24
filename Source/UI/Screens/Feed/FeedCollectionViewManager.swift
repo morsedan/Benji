@@ -32,9 +32,14 @@ class FeedCollectionViewManager: NSObject {
     }
 
     func set(items: [FeedType]) {
-        self.emptyView.removeFromSuperview()
-        self.items = items
-        self.kolodaView.reloadData()
+        if items.count == 0 {
+            self.kolodaView.addSubview(self.emptyView)
+            self.emptyView.frame = self.kolodaView.bounds
+        } else {
+            self.emptyView.removeFromSuperview()
+            self.items = items
+            self.kolodaView.reloadData()
+        }
     }
 }
 
@@ -99,5 +104,4 @@ extension FeedCollectionViewManager: KolodaViewDelegate {
     func koloda(_ koloda: KolodaView, viewForCardOverlayAt index: Int) -> OverlayView? {
         return FeedOverlayView()
     }
-
 }
