@@ -55,7 +55,7 @@ class ChannelViewController: ViewController, ScrolledModalControllerPresentable,
         super.initializeViews()
 
         self.registerKeyboardEvents()
-        self.view.set(backgroundColor: .background3)
+        self.view.set(backgroundColor: .background2)
 
         self.addChild(viewController: self.channelCollectionVC)
         self.view.addSubview(self.bottomGradientView)

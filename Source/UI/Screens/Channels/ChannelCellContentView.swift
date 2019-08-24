@@ -48,7 +48,7 @@ class ChannelCellContentView: View {
         self.headerView.addSubview(self.contextLabel)
         self.addSubview(self.messageLabel)
         self.roundCorners()
-        self.set(backgroundColor: .background3)
+        self.set(backgroundColor: .background2)
     }
 
     func configure(with type: ChannelType) {

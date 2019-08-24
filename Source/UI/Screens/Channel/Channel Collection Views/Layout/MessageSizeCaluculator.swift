@@ -11,7 +11,7 @@ import Foundation
 class MessageSizeCalculator: CellSizeCalculator {
 
     var avatarSize = CGSize(width: 30, height: 30)
-    var avatarLeadingPadding: CGFloat = 14
+    var avatarLeadingPadding: CGFloat = 8
     var messageTextViewVerticalPadding: CGFloat = 10
     var messageTextViewHorizontalPadding: CGFloat = 20
     var bubbleViewHorizontalPadding: CGFloat = 14
@@ -42,7 +42,7 @@ class MessageSizeCalculator: CellSizeCalculator {
         attributes.messageTextViewMaxWidth = layout.itemWidth * self.widthRatio
 
         let leadingPaddingForIncoming = self.avatarSize.width + self.avatarLeadingPadding + self.messageTextViewHorizontalPadding
-        let leadingPadding = message.isFromCurrentUser ? self.messageTextViewHorizontalPadding : leadingPaddingForIncoming
+        let leadingPadding = message.isFromCurrentUser ? self.messageTextViewHorizontalPadding + self.avatarLeadingPadding : leadingPaddingForIncoming
         attributes.messageTextViewHorizontalPadding = leadingPadding
 
         let bubbleHeight = textViewSize.height + (self.messageTextViewVerticalPadding * 2)
