@@ -28,14 +28,13 @@ class LaunchManager {
     var onLoggedOut: (() -> Void)?
 
     // Important - update this URL with your Twilio Function URL
-    private let tokenURL = "https://violet-lionfish-6641.twil.io/chat-token"
+    private let tokenURL = "https://topaz-booby-6355.twil.io/chat-token"
 
     // Important - this identity would be assigned by your app, for
     // instance after a user logs in
     private let url = "https://benji-ios.herokuapp.com/parse"
     private let appID = "benjamindodgson.Benji"
     private let clientKey = "myMasterKey"
-    private let tempPhone = "2068509234"//Used for demo
 
     func launchApp(with: [UIApplication.LaunchOptionsKey: Any]?) {
 
