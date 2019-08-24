@@ -78,11 +78,14 @@ class ToastView: UIView {
         guard let superview = UIWindow.topWindow() else { return }
         superview.addSubview(self)
 
-        self.set(backgroundColor: .purple)
+        self.set(backgroundColor: .background3)
 
         self.isUserInteractionEnabled = true
         self.layer.masksToBounds = true
-        self.layer.cornerRadius = 30
+        self.layer.cornerRadius = 10
+
+        self.displayableImageView.layer.masksToBounds = true
+        self.displayableImageView.layer.cornerRadius = 5
 
         self.titleLabel.alpha = 0
         self.buttonContainer.alpha = 0
@@ -279,7 +282,7 @@ class ToastView: UIView {
         let maxTitleWidth = self.buttonContainer.left - (self.displayableImageView.right + 12)
         let titleSize = self.titleLabel.getSize(withWidth: maxTitleWidth)
         self.titleLabel.width = titleSize.width
-        self.titleLabel.left = self.displayableImageView.right + 5
+        self.titleLabel.left = self.displayableImageView.right + 10
         self.titleLabel.top = self.displayableImageView.top
         self.titleLabel.height = self.displayableImageView.height
         self.titleLabel.centerOnY()
