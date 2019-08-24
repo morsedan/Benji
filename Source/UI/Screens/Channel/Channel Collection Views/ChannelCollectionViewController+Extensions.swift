@@ -14,7 +14,7 @@ extension ChannelCollectionViewController {
     func loadMessages(for type: ChannelType) {
 
         switch type {
-        case .system( _ ):
+        case .system(_):
             self.loadTestMessages()
         case .channel(let channel):
             self.loadChannelMessages(with: channel)

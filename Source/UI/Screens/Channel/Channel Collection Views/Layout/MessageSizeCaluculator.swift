@@ -49,6 +49,23 @@ class MessageSizeCalculator: CellSizeCalculator {
         let bubbleWidth = textViewSize.width + (self.bubbleViewHorizontalPadding * 2)
         attributes.bubbleViewSize = CGSize(width: bubbleWidth, height: bubbleHeight)
         attributes.bubbleViewHorizontalPadding = self.bubbleViewHorizontalPadding
+
+        //Determine masked corners
+        if message.isFromCurrentUser {
+            let previousIndexPath = IndexPath(item: indexPath.item - 1, section: indexPath.section)
+            if let previousMessage = dataSource.item(at: previousIndexPath), previousMessage.author == message.author {
+                attributes.maskedCorners = [.layerMinXMaxYCorner, .layerMinXMinYCorner]
+            } else {
+                attributes.maskedCorners = [.layerMinXMaxYCorner, .layerMaxXMinYCorner, .layerMinXMinYCorner]
+            }
+        } else {
+            let nextIndexPath = IndexPath(item: indexPath.item + 1, section: indexPath.section)
+            if let nextMessage = dataSource.item(at: nextIndexPath), nextMessage.author == message.author {
+                attributes.maskedCorners = [.layerMaxXMaxYCorner, .layerMaxXMinYCorner]
+            } else {
+                attributes.maskedCorners = [.layerMaxXMaxYCorner, .layerMinXMaxYCorner, .layerMaxXMinYCorner]
+            }
+        }
     }
 
     override func sizeForItem(at indexPath: IndexPath) -> CGSize {

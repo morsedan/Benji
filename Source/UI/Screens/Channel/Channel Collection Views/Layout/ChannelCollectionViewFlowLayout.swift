@@ -50,7 +50,7 @@ class ChannelCollectionViewFlowLayout: UICollectionViewFlowLayout {
 
     private func setupView() {
         self.scrollDirection = .vertical
-        self.minimumLineSpacing = 14
+        self.minimumLineSpacing = 4
     }
 
     override func prepare() {

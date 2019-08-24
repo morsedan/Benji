@@ -20,6 +20,7 @@ class ChannelCollectionViewLayoutAttributes: UICollectionViewLayoutAttributes {
     var messageTextViewHorizontalPadding: CGFloat = .zero
     var messageFontType: FontType = .regular
     var isFromCurrentUser: Bool = false
+    var maskedCorners: CACornerMask = []
 
     override func copy(with zone: NSZone? = nil) -> Any {
         let copy = super.copy(with: zone) as! ChannelCollectionViewLayoutAttributes
@@ -33,6 +34,7 @@ class ChannelCollectionViewLayoutAttributes: UICollectionViewLayoutAttributes {
         copy.messageFontType = self.messageFontType
         copy.messageTextViewHorizontalPadding = self.messageTextViewHorizontalPadding
         copy.isFromCurrentUser = self.isFromCurrentUser
+        copy.maskedCorners = self.maskedCorners
         return copy
     }
 
@@ -48,6 +50,7 @@ class ChannelCollectionViewLayoutAttributes: UICollectionViewLayoutAttributes {
             && attributes.messageTextViewHorizontalPadding == self.messageTextViewHorizontalPadding
             && attributes.isFromCurrentUser == self.isFromCurrentUser
             && attributes.bubbleViewHorizontalPadding == self.bubbleViewHorizontalPadding
+            && attributes.maskedCorners == self.maskedCorners
         }
 
         return false

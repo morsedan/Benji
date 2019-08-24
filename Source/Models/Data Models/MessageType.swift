@@ -69,4 +69,13 @@ enum MessageType: DisplayableCellItem {
             return message.diffIdentifier()
         }
     }
+
+    var author: String {
+        switch self {
+        case .system(_):
+            return "system"
+        case .message(let message):
+            return String(optional: message.author)
+        }
+    }
 }
