@@ -176,7 +176,7 @@ class LoginFlowViewController: ScrolledModalFlowViewController {
         self.add(controller: vc)
         self.moveForward()
         delay(0.25) {
-            self.didUpdateHeight?(0, 0.25)
+            self.didUpdateHeight?(0, 0.25, .easeInOut)
         }
     }
 

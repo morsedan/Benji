@@ -9,7 +9,7 @@
 import Foundation
 
 protocol KeyboardObservable: NSObjectProtocol {
-    func handleKeyboard(height: CGFloat, with animationDuration: TimeInterval)
+    func handleKeyboard(height: CGFloat, with animationDuration: TimeInterval, timingCurve: UIView.AnimationCurve)
 }
 
 private var keyboardHandlerKey: UInt8 = 0
@@ -53,7 +53,9 @@ class KeyboardHandler: NSObject {
 
     @objc func keyboardWillHandle(notification: Notification) {
         guard let size = notification.keyboardSize,
-            let animationDuration = notification.keyboardAnimationDuration else { return }
+            let animationDuration = notification.keyboardAnimationDuration,
+            let number = notification.timingCurve,
+            let timingCurve = UIView.AnimationCurve(rawValue: Int(truncating: number)) else { return }
 
         var newHeight: CGFloat = 0
         switch notification.name {
@@ -66,7 +68,7 @@ class KeyboardHandler: NSObject {
         }
 
         self.currentKeyboardHeight = newHeight
-        self.vc.handleKeyboard(height: newHeight, with: animationDuration)
+        self.vc.handleKeyboard(height: newHeight, with: animationDuration, timingCurve: timingCurve)
     }
 }
 
@@ -83,5 +85,4 @@ extension Notification {
     var timingCurve: NSNumber? {
         return self.userInfo?[UIResponder.keyboardAnimationCurveUserInfoKey] as? NSNumber
     }
-
 }

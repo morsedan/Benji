@@ -15,7 +15,7 @@ protocol ContactsViewControllerDelegate: class {
 
 class ContactsViewController: CollectionViewController<ContactCell, ContactsCollectionViewManager>, ScrolledModalControllerPresentable, KeyboardObservable {
 
-    var didUpdateHeight: ((CGFloat, TimeInterval) -> ())?
+    var didUpdateHeight: ((CGFloat, TimeInterval, UIView.AnimationCurve) -> ())?
 
     weak var delegate: ContactsViewControllerDelegate?
 
@@ -116,7 +116,7 @@ class ContactsViewController: CollectionViewController<ContactCell, ContactsColl
         self.delegate?.contactsViewController(self, didSelect: item)
     }
 
-    func handleKeyboard(height: CGFloat, with animationDuration: TimeInterval) {
-        self.didUpdateHeight?(height, animationDuration)
+    func handleKeyboard(height: CGFloat, with animationDuration: TimeInterval, timingCurve: UIView.AnimationCurve) {
+        self.didUpdateHeight?(height, animationDuration, timingCurve)
     }
 }

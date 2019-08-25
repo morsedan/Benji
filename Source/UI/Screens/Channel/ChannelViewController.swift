@@ -21,7 +21,7 @@ class ChannelViewController: ViewController, ScrolledModalControllerPresentable,
     }
 
     var scrollingEnabled: Bool = true
-    var didUpdateHeight: ((CGFloat, TimeInterval) -> ())?
+    var didUpdateHeight: ((CGFloat, TimeInterval, UIView.AnimationCurve) -> ())?
 
     let channelType: ChannelType
 
@@ -134,16 +134,14 @@ class ChannelViewController: ViewController, ScrolledModalControllerPresentable,
         self.messageInputView.textView.alpha = 1
     }
 
-    func handleKeyboard(height: CGFloat, with animationDuration: TimeInterval) {
+    func handleKeyboard(height: CGFloat, with animationDuration: TimeInterval, timingCurve: UIView.AnimationCurve) {
 
-        UIView.animate(withDuration: animationDuration, animations: {
+        let animator = UIViewPropertyAnimator(duration: animationDuration, curve: timingCurve) {
             self.channelCollectionVC.collectionView.height = self.view.height - height
-            self.channelCollectionVC.collectionView.collectionViewLayout.invalidateLayout()
-        }) { (completed) in
-            if completed {
-                self.channelCollectionVC.collectionView.scrollToBottom()
-            }
         }
+
+        animator.startAnimation()
+        self.channelCollectionVC.collectionView.scrollToBottom(animated: true)
     }
 
     private func handle(pan: UIPanGestureRecognizer) {

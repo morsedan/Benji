@@ -57,9 +57,9 @@ class ScrolledModalViewController<Presentable: ScrolledModalControllerPresentabl
             self.dismiss(animated: true)
         }
 
-        self.presentable.didUpdateHeight = { [unowned self] (height, duration) in
+        self.presentable.didUpdateHeight = { [unowned self] (height, duration, timingCurve) in
             let expandedHeight = self.getExpandedHeight() + height
-            self.animate(height: expandedHeight, with: duration)
+            self.animate(height: expandedHeight, with: duration, timingCurve: timingCurve)
         }
     }
 
@@ -67,7 +67,7 @@ class ScrolledModalViewController<Presentable: ScrolledModalControllerPresentabl
         super.viewDidAppear(animated)
 
         once(caller: self, token: "setScrolledModalExpanded") {
-            self.animate(height: self.getExpandedHeight(), with: Theme.animationDuration)
+            self.animate(height: self.getExpandedHeight(), with: Theme.animationDuration, timingCurve: .easeInOut)
         }
     }
 
@@ -112,10 +112,12 @@ class ScrolledModalViewController<Presentable: ScrolledModalControllerPresentabl
         self.dismiss(animated: true, completion: nil)
     }
 
-    private func animate(height: CGFloat, with duration: TimeInterval) {
-        UIView.animate(withDuration: duration) {
+    private func animate(height: CGFloat, with duration: TimeInterval, timingCurve: UIView.AnimationCurve) {
+        let animator = UIViewPropertyAnimator(duration: duration, curve: timingCurve) {
             self.modalContainerView.setExpandedHeight(expandedHeight: height)
         }
+
+        animator.startAnimation()
     }
 
     private func updateAlpha(with progress: Float) {

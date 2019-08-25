@@ -8,6 +8,7 @@
 
 import Foundation
 
+
 class PreviewMessageView: View {
 
     let minHeight: CGFloat = 52
@@ -33,5 +34,25 @@ class PreviewMessageView: View {
         self.textView.size = CGSize(width: textViewWidth, height: self.height)
         self.textView.left = 10
         self.textView.top = 0
+    }
+
+    func handle(longPress: UILongPressGestureRecognizer) {
+
+        switch longPress.state {
+        case .possible:
+            break
+        case .began:
+            break
+        case .changed:
+            break
+        case .ended:
+            break
+        case .cancelled:
+            break
+        case .failed:
+            break
+        @unknown default:
+            break
+        }
     }
 }
