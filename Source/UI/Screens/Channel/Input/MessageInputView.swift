@@ -8,12 +8,13 @@
 
 import Foundation
 
-class MessageInputView: View {
+class MessageInputView: View, UIGestureRecognizerDelegate {
 
     let minHeight: CGFloat = 52
 
     let contextButton = ContextButton()
     let textView = InputTextView()
+    let overlayButton = UIButton()
 
     override func initialize() {
         super.initialize()
@@ -24,6 +25,14 @@ class MessageInputView: View {
         self.addSubview(self.textView)
         self.textView.minHeight = self.minHeight
 
+        self.addSubview(self.overlayButton)
+
+        self.overlayButton.onTap { [unowned self] (tap) in
+            if !self.textView.isFirstResponder {
+                self.textView.becomeFirstResponder()
+            }
+        }
+
         self.layer.masksToBounds = true
         self.layer.borderColor = Color.lightPurple.color.cgColor
         self.layer.borderWidth = Theme.borderWidth
@@ -32,15 +41,17 @@ class MessageInputView: View {
     override func layoutSubviews() {
         super.layoutSubviews()
 
-        self.contextButton.size = CGSize(width: self.minHeight, height: self.minHeight)
+        self.contextButton.size = CGSize(width: 0, height: 0)
         self.contextButton.left = 0
         self.contextButton.bottom = self.height
 
-        let textViewWidth = self.width - self.contextButton.right
+        let textViewWidth = self.width - self.contextButton.right - 20
         self.textView.size = CGSize(width: textViewWidth, height: self.textView.currentHeight)
-        self.textView.left = self.contextButton.right
+        self.textView.left = self.contextButton.right + 10
         self.textView.top = 0
 
         self.layer.cornerRadius = self.minHeight * 0.5
+
+        self.overlayButton.frame = self.bounds
     }
 }

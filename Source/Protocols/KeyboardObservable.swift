@@ -75,7 +75,13 @@ extension Notification {
     var keyboardSize: CGSize? {
         return (self.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue)?.cgRectValue.size
     }
+
     var keyboardAnimationDuration: Double? {
         return self.userInfo?[UIResponder.keyboardAnimationDurationUserInfoKey] as? Double
     }
+
+    var timingCurve: NSNumber? {
+        return self.userInfo?[UIResponder.keyboardAnimationCurveUserInfoKey] as? NSNumber
+    }
+
 }

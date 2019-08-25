@@ -13,7 +13,7 @@ class InputTextView: GrowingTextView {
     override func initialize() {
         super.initialize()
 
-        self.set(placeholder: "Message...")
+        self.set(placeholder: "Swipe 👆 to Send message")
 
         self.textContainerInset.left = 0
         self.textContainerInset.right = 10
