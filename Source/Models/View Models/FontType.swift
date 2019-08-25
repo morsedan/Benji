@@ -25,27 +25,27 @@ enum FontType {
     var font: UIFont {
         switch self {
         case .display1:
-            return UIFont(name: "AvenirNext-Bold", size: self.size)!
+            return UIFont(name: "Roboto-Bold", size: self.size)!
         case .display2:
-            return UIFont(name: "AvenirNext-Bold", size: self.size)!
+            return UIFont(name: "Roboto-Bold", size: self.size)!
         case .medium:
-            return UIFont(name: "AvenirNext-Regular", size: self.size)!
+            return UIFont(name: "Roboto-Regular", size: self.size)!
         case .regular:
-            return UIFont(name: "AvenirNext-Regular", size: self.size)!
+            return UIFont(name: "Roboto-Regular", size: self.size)!
         case .regularSemiBold:
-            return UIFont(name: "AvenirNext-Medium", size: self.size)!
+            return UIFont(name: "Roboto-Medium", size: self.size)!
         case .regularBold:
-            return UIFont(name: "AvenirNext-Bold", size: self.size)!
+            return UIFont(name: "Roboto-Bold", size: self.size)!
         case .small:
-            return UIFont(name: "AvenirNext-Regular", size: self.size)!
+            return UIFont(name: "Roboto-Regular", size: self.size)!
         case .smallSemiBold:
-            return UIFont(name: "AvenirNext-Medium", size: self.size)!
+            return UIFont(name: "Roboto-Medium", size: self.size)!
         case .xSmall:
-            return UIFont(name: "AvenirNext-Regular", size: self.size)!
+            return UIFont(name: "Roboto-Regular", size: self.size)!
         case .xxSmall:
-             return UIFont(name: "AvenirNext-Regular", size: self.size)!
+             return UIFont(name: "Roboto-Regular", size: self.size)!
         case .xxSmallSemiBold:
-             return UIFont(name: "AvenirNext-Medium", size: self.size)!
+             return UIFont(name: "Roboto-Medium", size: self.size)!
         }
     }
 
