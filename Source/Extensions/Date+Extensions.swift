@@ -24,6 +24,12 @@ extension Date {
         return formatter
     }
 
+    static var monthAndDay: DateFormatter {
+        let formatter = DateFormatter()
+        formatter.dateFormat = "MMM d"
+        return formatter
+    }
+
     static func add(component: Calendar.Component,
                     amount: Int,
                     toDate: Date) -> Date? {

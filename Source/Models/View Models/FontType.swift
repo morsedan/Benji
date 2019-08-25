@@ -45,7 +45,7 @@ enum FontType {
         case .xxSmall:
              return UIFont(name: "Roboto-Regular", size: self.size)!
         case .xxSmallSemiBold:
-             return UIFont(name: "Roboto-Medium", size: self.size)!
+             return UIFont(name: "Roboto-Bold", size: self.size)!
         }
     }
 
@@ -58,7 +58,7 @@ enum FontType {
         case .medium:
             return 20
         case .regular, .regularBold, .regularSemiBold:
-            return 17
+            return 19
         case .small, .smallSemiBold:
             return 15
         case .xSmall:
@@ -69,6 +69,6 @@ enum FontType {
     }
 
     var kern: CGFloat {
-        return 0 
+        return 1
     }
 }

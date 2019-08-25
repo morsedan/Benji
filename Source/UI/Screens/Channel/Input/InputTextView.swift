@@ -15,7 +15,7 @@ class InputTextView: GrowingTextView {
 
         self.set(placeholder: "Swipe 👆 to Send message")
 
-        self.textContainerInset.left = 0
+        self.textContainerInset.left = 10
         self.textContainerInset.right = 10
         self.textContainerInset.top = 14
         self.textContainerInset.bottom = 12

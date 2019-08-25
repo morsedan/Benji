@@ -12,16 +12,21 @@ class ChannelHeaderDateLabel: Label {
 
     func set(date: Date) {
         let attributed = AttributedString(self.getString(for: date),
-                                          fontType: .xxSmall,
+                                          fontType: .xSmall,
                                           color: .white)
         self.set(attributed: attributed,
-                 alignment: .center,
+                 alignment: .left,
                  lineCount: 1,
                  stringCasing: .uppercase)
     }
 
     private func getString(for date: Date) -> String {
-        let stringDate = Date.standard.string(from: date)
+        
+        if date.isSameDay(as: Date.today) {
+            return "Today"
+        }
+
+        let stringDate = Date.monthAndDay.string(from: date)
         return stringDate
     }
 }

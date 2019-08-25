@@ -31,7 +31,7 @@ class ChannelViewController: ViewController, ScrolledModalControllerPresentable 
     private(set) var bottomGradientView = GradientView()
 
     private var bottomOffset: CGFloat {
-        var offset: CGFloat = 16
+        var offset: CGFloat = 6
         if let handler = self.keyboardHandler, handler.currentKeyboardHeight == 0 {
             offset += self.view.safeAreaInsets.bottom
         }

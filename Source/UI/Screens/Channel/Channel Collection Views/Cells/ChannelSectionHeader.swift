@@ -11,6 +11,7 @@ import Foundation
 class ChannelSectionHeader: UICollectionReusableView {
 
     let label = ChannelHeaderDateLabel()
+    let underLineView = View()
 
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -23,6 +24,8 @@ class ChannelSectionHeader: UICollectionReusableView {
     }
 
     private func initializeViews() {
+        self.addSubview(self.underLineView)
+        self.underLineView.set(backgroundColor: .white)
         self.addSubview(self.label)
     }
 
@@ -35,5 +38,10 @@ class ChannelSectionHeader: UICollectionReusableView {
 
         self.label.sizeToFit()
         self.label.centerOnXAndY()
+
+        self.underLineView.height = 1
+        self.underLineView.width = self.label.width
+        self.underLineView.top = self.label.bottom
+        self.underLineView.centerOnX()
     }
 }
