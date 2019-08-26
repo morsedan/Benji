@@ -47,7 +47,7 @@ class ChannelDetailBar: View {
 
     private func subscribeToUpdates() {
         ChannelManager.shared.memberUpdate.producer.on { [weak self] (update) in
-            guard let `self` = self else { return }
+            //guard let `self` = self else { return }
 
             guard let memberUpdate = update, memberUpdate.channel == ChannelManager.shared.selectedChannel else { return }
 

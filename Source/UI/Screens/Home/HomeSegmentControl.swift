@@ -10,10 +10,11 @@ import Foundation
 
 class HomeSegmentControl: UISegmentedControl {
 
+    private let selectionFeedback = UIImpactFeedbackGenerator(style: .light)
+
     override init(items: [Any]?) {
         super.init(items: items)
         self.initialize()
-
     }
 
     override init(frame: CGRect) {
@@ -26,5 +27,10 @@ class HomeSegmentControl: UISegmentedControl {
 
     private func initialize() {
         self.tintColor = Color.purple.color
+    }
+
+    override open func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+        super.touchesBegan(touches, with: event)
+        self.selectionFeedback.impactOccurred()
     }
 }

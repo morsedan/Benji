@@ -84,5 +84,4 @@ class Button: UIButton {
             button.scaleUp()
         }
     }
-    
 }

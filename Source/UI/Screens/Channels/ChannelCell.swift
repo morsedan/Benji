@@ -10,8 +10,10 @@ import Foundation
 import TwilioChatClient
 
 class ChannelCell: UICollectionViewCell, DisplayableCell {
+
     typealias ItemType = ChannelType
     let content = ChannelCellContentView()
+    private let selectionFeedback = UIImpactFeedbackGenerator(style: .light)
 
     func configure(with item: ChannelType?) {
         guard let type = item else { return }
@@ -26,5 +28,27 @@ class ChannelCell: UICollectionViewCell, DisplayableCell {
         super.layoutSubviews()
 
         self.content.frame = self.contentView.bounds
+    }
+
+    override open func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+        super.touchesBegan(touches, with: event)
+        if let touch = touches.first, let view = touch.view {
+            self.selectionFeedback.impactOccurred()
+            view.scaleDown()
+        }
+    }
+
+    override open func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {
+        super.touchesEnded(touches, with: event)
+        if let touch = touches.first, let view = touch.view {
+            view.scaleUp()
+        }
+    }
+
+    override open func touchesCancelled(_ touches: Set<UITouch>, with event: UIEvent?) {
+        super.touchesCancelled(touches, with: event)
+        if let touch = touches.first, let view = touch.view {
+            view.scaleUp()
+        }
     }
 }

@@ -22,8 +22,8 @@ class HomeViewController: FullScreenViewController {
     lazy var channelsVC = ChannelsViewController(with: self.delegate)
     lazy var feedVC = FeedViewController()
     lazy var segmentControl = HomeSegmentControl(items: ["FEED", "LIST"])
-    lazy var avatarView: AvatarView = {
-        let avatarView = AvatarView()
+    lazy var avatarView: ProfileAvatarView = {
+        let avatarView = ProfileAvatarView()
         if let current = PFUser.current() {
             avatarView.set(avatar: current)
         }
@@ -69,7 +69,6 @@ class HomeViewController: FullScreenViewController {
         self.contentContainer.addSubview(self.addButton)
 
         self.addButton.onTap { [unowned self] (tap) in
-            //ToastScheduler.shared.schedule(toastType: .systemMessage(Lorem.systemMessage()))
             self.presentContactPicker()
         }
     }
@@ -84,7 +83,7 @@ class HomeViewController: FullScreenViewController {
         self.segmentControl.size = CGSize(width: 120, height: 40)
         self.segmentControl.centerOnXAndY()
 
-        self.avatarView.size = CGSize(width: 30, height: 30)
+        self.avatarView.size = CGSize(width: 40, height: 40)
         self.avatarView.left = 20
         self.avatarView.centerY = self.segmentControl.centerY
 
