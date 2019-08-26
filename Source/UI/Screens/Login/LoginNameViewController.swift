@@ -62,6 +62,7 @@ class LoginNameViewController: LoginTextInputViewController {
             !text.isEmpty else { return }
 
         current.parseName(from: text)
+        current.createHandle()
         self.doneButton.isLoading = true
         current.saveInBackground { (success, error) in
             guard success else { return }

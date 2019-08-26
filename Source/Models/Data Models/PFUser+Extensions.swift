@@ -11,6 +11,8 @@ import Parse
 
 extension PFUser: Avatar {
 
+    static var current: PFUser = PFUser.current()!
+
     var user: PFUser? {
         return self
     }
@@ -69,6 +71,11 @@ extension PFUser: Avatar {
         if let last = components.last {
             self.lastName = last
         }
+    }
+
+    func createHandle() {
+        guard let last = self.lastName.first, let id = self.objectId else { return }
+        self.handle = self.firstName + String(last) + "_" + id
     }
 }
 

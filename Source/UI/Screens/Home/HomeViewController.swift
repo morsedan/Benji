@@ -59,7 +59,7 @@ class HomeViewController: FullScreenViewController {
         self.avatarView.onTap { [unowned self] (tap) in
             let vc = ProfileViewController()
             self.present(vc, animated: true, completion: {
-                vc.set(avatar: Lorem.avatar())
+                vc.set(avatar: PFUser.current)
             })
         }
 
