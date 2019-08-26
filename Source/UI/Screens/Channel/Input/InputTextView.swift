@@ -13,7 +13,7 @@ class InputTextView: GrowingTextView {
     override func initialize() {
         super.initialize()
 
-        self.set(placeholder: "Swipe 👆 to Send message")
+        self.set(placeholder: "Swipe 👆 to send")
 
         self.textContainerInset.left = 10
         self.textContainerInset.right = 10
@@ -24,7 +24,7 @@ class InputTextView: GrowingTextView {
     }
 
     func set(placeholder: Localized) {
-        let styleAttributes = StringStyle(font: .regularSemiBold, color: .lightPurple).attributes
+        let styleAttributes = StringStyle(font: .regular, color: .lightPurple).attributes
         let string = NSAttributedString(string: localized(placeholder), attributes: styleAttributes)
         self.attributedPlaceholder = string
     }
