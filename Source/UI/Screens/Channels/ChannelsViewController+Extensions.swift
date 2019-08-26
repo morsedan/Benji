@@ -37,8 +37,8 @@ extension ChannelsViewController {
             case .channelsListCompleted:
                 break
             case .completed:
-                self.loadTestChannels()
-                //self.loadChannels()
+                //self.loadTestChannels()
+                self.loadChannels()
             case .failed:
                 break
             @unknown default:

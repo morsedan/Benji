@@ -88,13 +88,6 @@ class MessageSizeCalculator: CellSizeCalculator {
                                           color: .white)
 
         let attributedString = attributed.string
-        for emojiRange in attributedString.string.getEmojiRanges() {
-            attributedString.removeAttributes(atRange: emojiRange)
-            if let emojiFont = UIFont(name: "AppleColorEmoji", size: attributed.style.fontType.size) {
-                attributedString.addAttributes([NSAttributedString.Key.font: emojiFont], range: emojiRange)
-            }
-        }
-
         let maxWidth = (layout.itemWidth * self.widthRatio) - self.avatarLeadingPadding - self.avatarSize.width
         let size = attributedString.getSize(withWidth: maxWidth)
         return size

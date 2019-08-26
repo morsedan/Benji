@@ -47,13 +47,6 @@ class TextView: UITextView {
         let attributedString = NSMutableAttributedString(string: string)
         attributedString.addAttributes(attributed.attributes, range: NSRange(location: 0,
                                                                              length: attributedString.length))
-        // NOTE: Some emojis don't display properly with certain attributes applied to them
-        for emojiRange in string.getEmojiRanges() {
-            attributedString.removeAttributes(atRange: emojiRange)
-            if let emojiFont = UIFont(name: "AppleColorEmoji", size: attributed.style.fontType.size) {
-                attributedString.addAttributes([NSAttributedString.Key.font: emojiFont], range: emojiRange)
-            }
-        }
 
         attributedString.linkItems()
         self.linkTextAttributes = [.foregroundColor: linkColor.color, .underlineStyle: 1]
