@@ -9,7 +9,7 @@
 import Foundation
 
 protocol KeyboardObservable: NSObjectProtocol {
-    func handleKeyboard(height: CGFloat, with animationDuration: TimeInterval, timingCurve: UIView.AnimationCurve)
+    func handleKeyboard(frame: CGRect, with animationDuration: TimeInterval, timingCurve: UIView.AnimationCurve)
 }
 
 private var keyboardHandlerKey: UInt8 = 0
@@ -52,7 +52,7 @@ class KeyboardHandler: NSObject {
     }
 
     @objc func keyboardWillHandle(notification: Notification) {
-        guard let size = notification.keyboardSize,
+        guard let frame = notification.keyboardFrame,
             let animationDuration = notification.keyboardAnimationDuration,
             let number = notification.timingCurve,
             let timingCurve = UIView.AnimationCurve(rawValue: Int(truncating: number)) else { return }
@@ -60,7 +60,7 @@ class KeyboardHandler: NSObject {
         var newHeight: CGFloat = 0
         switch notification.name {
         case UIResponder.keyboardWillShowNotification:
-            newHeight = size.height
+            newHeight = frame.size.height
         case UIResponder.keyboardWillHideNotification:
             newHeight = 0
         default:
@@ -68,14 +68,14 @@ class KeyboardHandler: NSObject {
         }
 
         self.currentKeyboardHeight = newHeight
-        self.vc.handleKeyboard(height: newHeight, with: animationDuration, timingCurve: timingCurve)
+        self.vc.handleKeyboard(frame: frame, with: animationDuration, timingCurve: timingCurve)
     }
 }
 
 extension Notification {
 
-    var keyboardSize: CGSize? {
-        return (self.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue)?.cgRectValue.size
+    var keyboardFrame: CGRect? {
+        return (self.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue)?.cgRectValue
     }
 
     var keyboardAnimationDuration: Double? {

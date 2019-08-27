@@ -10,16 +10,18 @@ import Foundation
 
 extension ChannelViewController: KeyboardObservable, UIGestureRecognizerDelegate {
 
-    func handleKeyboard(height: CGFloat, with animationDuration: TimeInterval, timingCurve: UIView.AnimationCurve) {
+    func handleKeyboard(frame: CGRect, with animationDuration: TimeInterval, timingCurve: UIView.AnimationCurve) {
+
+        guard self.maintainPositionOnKeyboardFrameChanged else { return }
 
         let animator = UIViewPropertyAnimator(duration: animationDuration, curve: timingCurve) {
-            self.channelCollectionVC.collectionView.height = self.view.height - height
+            self.channelCollectionVC.collectionView.height = self.view.height - frame.size.height
         }
 
         animator.startAnimation()
         self.channelCollectionVC.collectionView.scrollToBottom(animated: true)
     }
-
+    
     func handle(pan: UIPanGestureRecognizer) {
         guard let text = self.messageInputView.textView.text, !text.isEmpty else { return }
 

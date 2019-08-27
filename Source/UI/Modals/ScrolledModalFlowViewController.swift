@@ -10,7 +10,7 @@ import Foundation
 
 class ScrolledModalFlowViewController: ViewController, ScrolledModalControllerPresentable, KeyboardObservable {
 
-    var didUpdateHeight: ((CGFloat, TimeInterval, UIView.AnimationCurve) -> ())?
+    var didUpdateHeight: ((CGRect, TimeInterval, UIView.AnimationCurve) -> ())?
 
     var maxHeight: CGFloat = 100
     var topMargin: CGFloat = 54
@@ -75,7 +75,7 @@ class ScrolledModalFlowViewController: ViewController, ScrolledModalControllerPr
         return false
     }
 
-    func handleKeyboard(height: CGFloat, with animationDuration: TimeInterval, timingCurve: UIView.AnimationCurve) {
-        self.didUpdateHeight?(height, animationDuration, timingCurve)
+    func handleKeyboard(frame: CGRect, with animationDuration: TimeInterval, timingCurve: UIView.AnimationCurve) {
+        self.didUpdateHeight?(frame, animationDuration, timingCurve)
     }
 }

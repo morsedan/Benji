@@ -57,8 +57,8 @@ class ScrolledModalViewController<Presentable: ScrolledModalControllerPresentabl
             self.dismiss(animated: true)
         }
 
-        self.presentable.didUpdateHeight = { [unowned self] (height, duration, timingCurve) in
-            let expandedHeight = self.getExpandedHeight() + height
+        self.presentable.didUpdateHeight = { [unowned self] (rect, duration, timingCurve) in
+            let expandedHeight = self.getExpandedHeight() + rect.size.height
             self.animate(height: expandedHeight, with: duration, timingCurve: timingCurve)
         }
     }

@@ -11,6 +11,12 @@ import ReactiveSwift
 
 class ChannelViewController: ViewController, ScrolledModalControllerPresentable {
 
+    // A Boolean value that determines whether the `MessagesCollectionView`
+    /// maintains it's current position when the height of the `MessageInputBar` changes.
+    ///
+    /// The default value of this property is `false`.
+    var maintainPositionOnKeyboardFrameChanged: Bool = false
+
     var topMargin: CGFloat {
         guard let topInset = UIWindow.topWindow()?.safeAreaInsets.top else { return 0 }
         return topInset + 60
@@ -21,7 +27,7 @@ class ChannelViewController: ViewController, ScrolledModalControllerPresentable 
     }
 
     var scrollingEnabled: Bool = true
-    var didUpdateHeight: ((CGFloat, TimeInterval, UIView.AnimationCurve) -> ())?
+    var didUpdateHeight: ((CGRect, TimeInterval, UIView.AnimationCurve) -> ())?
 
     let channelType: ChannelType
 

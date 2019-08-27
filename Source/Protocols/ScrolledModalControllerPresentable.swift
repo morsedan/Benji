@@ -13,5 +13,5 @@ protocol ScrolledModalControllerPresentable where Self : UIViewController {
     var scrollView: UIScrollView? { get }
     var scrollingEnabled: Bool { get }
     var didDismiss: (() -> Void)? { get set }
-    var didUpdateHeight: ((CGFloat, TimeInterval, UIView.AnimationCurve) -> ())? { get set }
+    var didUpdateHeight: ((CGRect, TimeInterval, UIView.AnimationCurve) -> ())? { get set }
 }
