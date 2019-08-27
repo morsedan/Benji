@@ -130,4 +130,11 @@ extension TCHChannel: ImageDisplayable {
     var photo: UIImage? {
         return nil
     }
+
+    var context: MessageContext? {
+        guard let attributes = self.attributes(),
+            let contextString = attributes["context"] as? String,
+            let context = MessageContext(rawValue: contextString) else { return nil }
+        return context
+    }
 }

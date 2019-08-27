@@ -7,17 +7,36 @@
 //
 
 import Foundation
+import TwilioChatClient
 
 class ChannelDetailBar: View {
 
     private(set) var titleLabel = Display2Label()
-    private(set) var avatarView = AvatarView()
+    private(set) var stackedAvatarView = StackedAvatarView()
+
+    let channelType: ChannelType
+
+    init(with channelType: ChannelType) {
+        self.channelType = channelType
+        super.init()
+    }
+
+    required init?(coder aDecoder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
 
     override func initialize() {
         super.initialize()
 
         self.addSubview(self.titleLabel)
-        self.addSubview(self.avatarView)
+        self.addSubview(self.stackedAvatarView)
+
+        switch self.channelType {
+        case .system(let message):
+            break
+        case .channel(let channel):
+            break
+        }
 
         self.subscribeToUpdates()
     }
@@ -25,9 +44,8 @@ class ChannelDetailBar: View {
     override func layoutSubviews() {
         super.layoutSubviews()
 
-        self.avatarView.size = CGSize(width: 32, height: 32)
-        self.avatarView.right = self.width - 18
-        self.avatarView.centerOnY()
+        self.stackedAvatarView.right = self.width - 18
+        self.stackedAvatarView.centerOnY()
 
         let titleWidth = self.width - 68
         self.titleLabel.setSize(withWidth: titleWidth)
@@ -35,12 +53,21 @@ class ChannelDetailBar: View {
         self.titleLabel.centerOnY()
     }
 
-    func set(avatar: Avatar) {
-        self.avatarView.set(avatar: avatar)
-        self.set(text: avatar.firstName)
+    func setLayout(for system: SystemMessage) {
+        self.set(text: system.context.text)
+        self.set(avatars: [system.avatar])
     }
 
-    func set(text: Localized) {
+    func setLayout(for channel: TCHChannel) {
+//        self.set(text: channel.)
+//        self.set(avatars: [system.avatar])
+    }
+
+    private func set(avatars: [Avatar]) {
+        self.stackedAvatarView.configure(items: avatars)
+    }
+
+    private func set(text: Localized) {
         self.titleLabel.set(text: text)
         self.layoutNow()
     }
@@ -90,7 +117,7 @@ class ChannelDetailBar: View {
                 channelsUpdate.channel.getAuthorAsUser().observe(with: { (result) in
                     switch result {
                     case .success(let user):
-                        self.avatarView.set(avatar: user)
+                        self.stackedAvatarView.configure(items: [user])
                     case .failure(let error):
                         print(error)
                     }
