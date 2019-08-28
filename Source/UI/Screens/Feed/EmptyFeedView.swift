@@ -23,7 +23,7 @@ class EmptyFeedView: View {
         super.layoutSubviews()
 
         if let text = self.label.attributedText {
-            self.label.size = text.getSize(withWidth: self.width * 0.8)
+            self.label.size = text.getSize(withWidth: self.proportionalWidth)
         }
 
         self.label.centerOnXAndY()

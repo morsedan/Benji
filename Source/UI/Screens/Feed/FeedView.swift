@@ -78,7 +78,7 @@ class FeedView: KolodaView {
     override func layoutSubviews() {
         super.layoutSubviews()
 
-        self.textView.size = CGSize(width: self.width * 0.85, height: self.height * 0.5)
+        self.textView.size = CGSize(width: self.proportionalWidth, height: self.height * 0.5)
         self.textView.top = 40
         self.textView.centerOnX()
 

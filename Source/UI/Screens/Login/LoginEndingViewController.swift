@@ -39,7 +39,7 @@ class LoginEndingViewController: LoginFlowableViewController {
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
 
-        self.displayLabel.setSize(withWidth: self.view.width * 0.8)
+        self.displayLabel.setSize(withWidth: self.view.proportionalWidth)
         self.displayLabel.centerOnXAndY()
     }
 }

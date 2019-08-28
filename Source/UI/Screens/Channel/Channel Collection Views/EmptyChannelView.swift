@@ -71,12 +71,11 @@ class EmptyChannelView: View {
     override func layoutSubviews() {
         super.layoutSubviews()
 
-        let maxWidth = self.width * 0.8
-        self.titleLabel.setSize(withWidth: maxWidth)
+        self.titleLabel.setSize(withWidth: self.proportionalWidth)
         self.titleLabel.top = self.height * 0.2
         self.titleLabel.centerOnX()
 
-        self.descriptionLabel.setSize(withWidth: maxWidth)
+        self.descriptionLabel.setSize(withWidth: self.proportionalWidth)
         self.descriptionLabel.top = self.titleLabel.bottom + 10
         self.descriptionLabel.centerOnX()
 
@@ -84,7 +83,7 @@ class EmptyChannelView: View {
         self.stackedAvatarView.top = self.descriptionLabel.bottom + 25
         self.stackedAvatarView.centerOnX()
 
-        self.actionLabel.setSize(withWidth: maxWidth)
+        self.actionLabel.setSize(withWidth: self.proportionalWidth)
         self.actionLabel.top = self.stackedAvatarView.bottom + 25
         self.actionLabel.centerOnX()
     }

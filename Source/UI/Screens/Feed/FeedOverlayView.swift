@@ -48,7 +48,7 @@ class FeedOverlayView: OverlayView {
     override func layoutSubviews() {
         super.layoutSubviews()
 
-        self.titleLabel.setSize(withWidth: self.width * 0.8)
+        self.titleLabel.setSize(withWidth: self.proportionalWidth)
         self.titleLabel.centerOnXAndY()
     }
 }

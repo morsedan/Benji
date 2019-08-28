@@ -17,6 +17,9 @@ class NewChannelCollectionViewManager: NSObject, UICollectionViewDelegate, UICol
 
     let collectionView: NewChannelCollectionView
 
+    var favorites: [String] = []
+    var contextTypes: [MessageContext] = []
+
     init(with collectionView: NewChannelCollectionView) {
         self.collectionView = collectionView
     }

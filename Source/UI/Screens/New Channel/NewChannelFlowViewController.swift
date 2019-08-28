@@ -10,8 +10,15 @@ import Foundation
 
 class NewChannelFlowViewController: ScrolledModalFlowViewController {
 
-    let titleTextField = TextField()
+    let titleBar = NewChannelTitleBar()
     let collectionView = NewChannelCollectionView()
+
+    override func initializeViews() {
+        super.initializeViews()
+
+        self.view.addSubview(self.titleBar)
+        self.view.addSubview(self.collectionView)
+    }
     
 
 }

@@ -55,6 +55,7 @@
 		D637532C2316172700214F63 /* Roboto-Medium.ttf in Resources */ = {isa = PBXBuildFile; fileRef = D63753292316172700214F63 /* Roboto-Medium.ttf */; };
 		D637532E23161B9B00214F63 /* NewChannelSectionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D637532D23161B9B00214F63 /* NewChannelSectionCell.swift */; };
 		D637533023161C2500214F63 /* NewChannelCollectionViewManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = D637532F23161C2400214F63 /* NewChannelCollectionViewManager.swift */; };
+		D63753322316AF6700214F63 /* NewChannelTitleBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = D63753312316AF6700214F63 /* NewChannelTitleBar.swift */; };
 		D63826D22274C8C0001D4B8B /* ChannelManager+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = D63826D12274C8C0001D4B8B /* ChannelManager+Extensions.swift */; };
 		D642735122C857760088256B /* MessageContext.swift in Sources */ = {isa = PBXBuildFile; fileRef = D642735022C857760088256B /* MessageContext.swift */; };
 		D642735322C85B740088256B /* SystemAvatar.swift in Sources */ = {isa = PBXBuildFile; fileRef = D642735222C85B740088256B /* SystemAvatar.swift */; };
@@ -272,6 +273,7 @@
 		D63753292316172700214F63 /* Roboto-Medium.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Roboto-Medium.ttf"; sourceTree = "<group>"; };
 		D637532D23161B9B00214F63 /* NewChannelSectionCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewChannelSectionCell.swift; sourceTree = "<group>"; };
 		D637532F23161C2400214F63 /* NewChannelCollectionViewManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewChannelCollectionViewManager.swift; sourceTree = "<group>"; };
+		D63753312316AF6700214F63 /* NewChannelTitleBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewChannelTitleBar.swift; sourceTree = "<group>"; };
 		D63826D12274C8C0001D4B8B /* ChannelManager+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ChannelManager+Extensions.swift"; sourceTree = "<group>"; };
 		D642735022C857760088256B /* MessageContext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageContext.swift; sourceTree = "<group>"; };
 		D642735222C85B740088256B /* SystemAvatar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SystemAvatar.swift; sourceTree = "<group>"; };
@@ -668,6 +670,7 @@
 				D6375321231614DF00214F63 /* NewContextCell.swift */,
 				D63753232316150000214F63 /* NewFavoriteCell.swift */,
 				D637532D23161B9B00214F63 /* NewChannelSectionCell.swift */,
+				D63753312316AF6700214F63 /* NewChannelTitleBar.swift */,
 			);
 			path = "New Channel";
 			sourceTree = "<group>";
@@ -1252,6 +1255,7 @@
 				D61EC0F121D313F500204BEE /* ScreenSize.swift in Sources */,
 				D696A8F5230BA06A00DAFED4 /* LoginEndingViewController.swift in Sources */,
 				D6B2606E22E80E4000143CF0 /* ToastView.swift in Sources */,
+				D63753322316AF6700214F63 /* NewChannelTitleBar.swift in Sources */,
 				D67896CC2304524C0059BA75 /* ChannelCoordinator.swift in Sources */,
 				D61EC0E821D3107A00204BEE /* Date+Extensions.swift in Sources */,
 				D637532E23161B9B00214F63 /* NewChannelSectionCell.swift in Sources */,

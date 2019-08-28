@@ -102,6 +102,10 @@ extension UIView {
         }
     }
 
+    var proportionalWidth: CGFloat {
+        return self.width * 0.8
+    }
+
     func centerOnXAndY() {
         self.centerOnY()
         self.centerOnX()

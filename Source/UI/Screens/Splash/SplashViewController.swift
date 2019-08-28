@@ -26,7 +26,7 @@ class SplashViewController: FullScreenViewController {
         super.viewDidLayoutSubviews()
 
         self.loadingIndicator.centerOnXAndY()
-        self.label.setSize(withWidth: self.view.width * 0.8)
+        self.label.setSize(withWidth: self.view.proportionalWidth)
         self.label.top = self.loadingIndicator.bottom + 10
         self.label.centerOnX()
     }
