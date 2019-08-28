@@ -26,7 +26,7 @@ class NewChannelCollectionView: CollectionView {
         self.register(FavoriteCell.self)
         self.register(NewContextCell.self)
         self.register(NewFavoriteCell.self)
-        self.register(NewChannelSectionCell.self,
+        self.register(NewChannelSectionHeader.self,
                       forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader)
     }
     

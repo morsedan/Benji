@@ -8,10 +8,11 @@
 
 import Foundation
 
-class NewChannelSectionCell: UICollectionReusableView {
+class NewChannelSectionHeader: UICollectionReusableView {
 
-    let label = Label()
-    let underLineView = View()
+    static let reuseID = "NewChannelSectionHeader"
+
+    let label = RegularBoldLabel()
 
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -24,8 +25,6 @@ class NewChannelSectionCell: UICollectionReusableView {
     }
 
     private func initializeViews() {
-        self.addSubview(self.underLineView)
-        self.underLineView.set(backgroundColor: .white)
         self.addSubview(self.label)
     }
 
@@ -34,10 +33,5 @@ class NewChannelSectionCell: UICollectionReusableView {
 
         self.label.sizeToFit()
         self.label.centerOnXAndY()
-
-        self.underLineView.height = 1
-        self.underLineView.width = self.label.width
-        self.underLineView.top = self.label.bottom
-        self.underLineView.centerOnX()
     }
 }

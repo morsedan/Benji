@@ -53,7 +53,7 @@
 		D637532A2316172700214F63 /* Roboto-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = D63753272316172700214F63 /* Roboto-Regular.ttf */; };
 		D637532B2316172700214F63 /* Roboto-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = D63753282316172700214F63 /* Roboto-Bold.ttf */; };
 		D637532C2316172700214F63 /* Roboto-Medium.ttf in Resources */ = {isa = PBXBuildFile; fileRef = D63753292316172700214F63 /* Roboto-Medium.ttf */; };
-		D637532E23161B9B00214F63 /* NewChannelSectionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D637532D23161B9B00214F63 /* NewChannelSectionCell.swift */; };
+		D637532E23161B9B00214F63 /* NewChannelSectionHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = D637532D23161B9B00214F63 /* NewChannelSectionHeader.swift */; };
 		D637533023161C2500214F63 /* NewChannelCollectionViewManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = D637532F23161C2400214F63 /* NewChannelCollectionViewManager.swift */; };
 		D63753322316AF6700214F63 /* NewChannelTitleBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = D63753312316AF6700214F63 /* NewChannelTitleBar.swift */; };
 		D63826D22274C8C0001D4B8B /* ChannelManager+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = D63826D12274C8C0001D4B8B /* ChannelManager+Extensions.swift */; };
@@ -271,7 +271,7 @@
 		D63753272316172700214F63 /* Roboto-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Roboto-Regular.ttf"; sourceTree = "<group>"; };
 		D63753282316172700214F63 /* Roboto-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Roboto-Bold.ttf"; sourceTree = "<group>"; };
 		D63753292316172700214F63 /* Roboto-Medium.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Roboto-Medium.ttf"; sourceTree = "<group>"; };
-		D637532D23161B9B00214F63 /* NewChannelSectionCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewChannelSectionCell.swift; sourceTree = "<group>"; };
+		D637532D23161B9B00214F63 /* NewChannelSectionHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewChannelSectionHeader.swift; sourceTree = "<group>"; };
 		D637532F23161C2400214F63 /* NewChannelCollectionViewManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewChannelCollectionViewManager.swift; sourceTree = "<group>"; };
 		D63753312316AF6700214F63 /* NewChannelTitleBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewChannelTitleBar.swift; sourceTree = "<group>"; };
 		D63826D12274C8C0001D4B8B /* ChannelManager+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ChannelManager+Extensions.swift"; sourceTree = "<group>"; };
@@ -669,7 +669,7 @@
 				D637531F2316148E00214F63 /* FavoriteCell.swift */,
 				D6375321231614DF00214F63 /* NewContextCell.swift */,
 				D63753232316150000214F63 /* NewFavoriteCell.swift */,
-				D637532D23161B9B00214F63 /* NewChannelSectionCell.swift */,
+				D637532D23161B9B00214F63 /* NewChannelSectionHeader.swift */,
 				D63753312316AF6700214F63 /* NewChannelTitleBar.swift */,
 			);
 			path = "New Channel";
@@ -1258,7 +1258,7 @@
 				D63753322316AF6700214F63 /* NewChannelTitleBar.swift in Sources */,
 				D67896CC2304524C0059BA75 /* ChannelCoordinator.swift in Sources */,
 				D61EC0E821D3107A00204BEE /* Date+Extensions.swift in Sources */,
-				D637532E23161B9B00214F63 /* NewChannelSectionCell.swift in Sources */,
+				D637532E23161B9B00214F63 /* NewChannelSectionHeader.swift in Sources */,
 				D6C65E9E230CD07400259F7A /* LaunchCoordinator.swift in Sources */,
 				D64273A122CBDC870088256B /* ContextButton.swift in Sources */,
 				D6432BF522D82CDC0016001A /* ChannelCollectionViewFlowLayout.swift in Sources */,

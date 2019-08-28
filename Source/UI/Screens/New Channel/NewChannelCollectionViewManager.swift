@@ -13,15 +13,31 @@ enum NewChannelSection: Int {
     case favorites
 }
 
-class NewChannelCollectionViewManager: NSObject, UICollectionViewDelegate, UICollectionViewDataSource {
+class NewChannelCollectionViewManager: NSObject, UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
 
     let collectionView: NewChannelCollectionView
 
-    var favorites: [String] = []
+    var favorites: [Avatar] = []
     var contextTypes: [MessageContext] = []
 
     init(with collectionView: NewChannelCollectionView) {
         self.collectionView = collectionView
+        super.init()
+        self.initialize()
+    }
+
+    private func initialize() {
+        for _ in 0...9 {
+            self.favorites.append(Lorem.avatar())
+        }
+
+        MessageContext.allCases.forEach { (context) in
+            self.contextTypes.append(context)
+        }
+    }
+
+    func numberOfSections(in collectionView: UICollectionView) -> Int {
+        return 2
     }
 
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
@@ -29,9 +45,9 @@ class NewChannelCollectionViewManager: NSObject, UICollectionViewDelegate, UICol
 
         switch newSection {
         case .context:
-            return 0
+            return self.contextTypes.count
         case .favorites:
-            return 0
+            return self.favorites.count
         }
     }
 
@@ -56,5 +72,32 @@ class NewChannelCollectionViewManager: NSObject, UICollectionViewDelegate, UICol
         let cell: FavoriteCell = collectionView.dequeueReusableCell(withReuseIdentifier: FavoriteCell.reuseID,
                                                                    for: indexPath) as! FavoriteCell
         return cell
+    }
+
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, referenceSizeForHeaderInSection section: Int) -> CGSize {
+        return CGSize(width: collectionView.width, height: 50)
+    }
+
+    func collectionView(_ collectionView: UICollectionView,
+                        viewForSupplementaryElementOfKind kind: String,
+                        at indexPath: IndexPath) -> UICollectionReusableView {
+
+        switch kind {
+        case UICollectionView.elementKindSectionHeader:
+            return self.header(for: collectionView, at: indexPath)
+        case UICollectionView.elementKindSectionFooter:
+            fatalError("NO FOOTER")
+        default:
+            fatalError("UNRECOGNIZED SECTION KIND")
+        }
+    }
+
+    private func header(for collectionView: UICollectionView, at indexPath: IndexPath) -> UICollectionReusableView {
+        let header: NewChannelSectionHeader = collectionView.dequeueReusableSupplementaryView(ofKind: UICollectionView.elementKindSectionHeader,
+                                                                                           withReuseIdentifier: "NewChannelSectionHeader",
+                                                                                           for: indexPath) as! NewChannelSectionHeader
+        let text = indexPath.section == 0 ? "Context" : "Favorites"
+        header.label.set(text: text)
+        return header
     }
 }

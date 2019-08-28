@@ -17,6 +17,13 @@ enum HomeContentType: Int {
 
 class HomeViewController: FullScreenViewController {
 
+    //move
+    lazy var newChannelFlowViewController: NewChannelFlowViewController = {
+        let controller = NewChannelFlowViewController()
+        return controller
+    }()
+    lazy var scrolledModal = ScrolledModalViewController(presentable: self.newChannelFlowViewController)
+
     typealias HomeViewControllerDelegate = ChannelsViewControllerDelegate
 
     lazy var channelsVC = ChannelsViewController(with: self.delegate)
@@ -69,7 +76,7 @@ class HomeViewController: FullScreenViewController {
         self.contentContainer.addSubview(self.addButton)
 
         self.addButton.onTap { [unowned self] (tap) in
-            self.presentContactPicker()
+            self.presentNewChannel()
         }
     }
 
@@ -99,6 +106,10 @@ class HomeViewController: FullScreenViewController {
         self.channelsVC.view.size = self.contentContainer.size
         self.channelsVC.view.top = 0
         self.channelsVC.view.centerOnX()
+    }
+
+    func presentNewChannel() {
+        self.present(self.scrolledModal, animated: true, completion: nil)
     }
 
     func presentContactPicker() {
