@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		8002F37F230CD07F00F8C4E3 /* Authorization+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8002F37E230CD07F00F8C4E3 /* Authorization+Extensions.swift */; };
+		80C7C6062316112400643A14 /* TimeHumpView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80C7C6052316112400643A14 /* TimeHumpView.swift */; };
 		80D4A21623039B22007CB5F1 /* RoutineInputViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80D4A21523039B22007CB5F1 /* RoutineInputViewController.swift */; };
 		80D4A21823039B82007CB5F1 /* RoutineInputContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80D4A21723039B82007CB5F1 /* RoutineInputContentView.swift */; };
 		80D4A21A23039FA5007CB5F1 /* RoutineManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80D4A21923039FA5007CB5F1 /* RoutineManager.swift */; };
@@ -217,6 +218,7 @@
 
 /* Begin PBXFileReference section */
 		8002F37E230CD07F00F8C4E3 /* Authorization+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Authorization+Extensions.swift"; sourceTree = "<group>"; };
+		80C7C6052316112400643A14 /* TimeHumpView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeHumpView.swift; sourceTree = "<group>"; };
 		80D4A21523039B22007CB5F1 /* RoutineInputViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoutineInputViewController.swift; sourceTree = "<group>"; };
 		80D4A21723039B82007CB5F1 /* RoutineInputContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoutineInputContentView.swift; sourceTree = "<group>"; };
 		80D4A21923039FA5007CB5F1 /* RoutineManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoutineManager.swift; sourceTree = "<group>"; };
@@ -766,23 +768,24 @@
 		D66F0FDF22C0412300BA277D /* Views */ = {
 			isa = PBXGroup;
 			children = (
-				D67896B022FF63EF0059BA75 /* TextFields */,
+				D66F0FE122C041AF00BA277D /* AvatarView.swift */,
 				D642738D22C9B2540088256B /* Buttons */,
-				D642737B22C9A2BB0088256B /* Labels */,
 				D6D1501921D5F5D100CD8CE4 /* CollectionView.swift */,
 				D60C81492209360400A127A3 /* DisplayableImageView.swift */,
+				D67896AA22FF5C470059BA75 /* DoneToolBar.swift */,
+				D684840922CD48D000362AC3 /* GradientView.swift */,
+				D642737B22C9A2BB0088256B /* Labels */,
+				D646DB4322CFDE0C0055CC7C /* LoadingView.swift */,
+				D67896A622FF4D9B0059BA75 /* NavigationBarView.swift */,
 				D60C814322092E4700A127A3 /* PagingCollectionView.swift */,
 				D60C814122092D5300A127A3 /* PagingCollectionViewFlowLayout.swift */,
-				D61EC0E321D30E9100204BEE /* TextView.swift */,
-				D61EC0E521D30EB300204BEE /* View.swift */,
-				D66F0FE122C041AF00BA277D /* AvatarView.swift */,
-				D68483FE22CD0A1A00362AC3 /* TableView.swift */,
-				D684840922CD48D000362AC3 /* GradientView.swift */,
 				D684840B22CD48FA00362AC3 /* PassThroughView.swift */,
-				D646DB4322CFDE0C0055CC7C /* LoadingView.swift */,
 				D684D6EA22D0E4F000874B08 /* StackedAvatarView.swift */,
-				D67896A622FF4D9B0059BA75 /* NavigationBarView.swift */,
-				D67896AA22FF5C470059BA75 /* DoneToolBar.swift */,
+				D68483FE22CD0A1A00362AC3 /* TableView.swift */,
+				D67896B022FF63EF0059BA75 /* TextFields */,
+				D61EC0E321D30E9100204BEE /* TextView.swift */,
+				80C7C6052316112400643A14 /* TimeHumpView.swift */,
+				D61EC0E521D30EB300204BEE /* View.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -1325,6 +1328,7 @@
 				D646DB4422CFDE0C0055CC7C /* LoadingView.swift in Sources */,
 				D61EC0EE21D313BA00204BEE /* UIScreen+Extensions.swift in Sources */,
 				D68483FD22CD09C800362AC3 /* ListViewController.swift in Sources */,
+				80C7C6062316112400643A14 /* TimeHumpView.swift in Sources */,
 				D61EC0D921D30C8E00204BEE /* DispatchQue+Extensions.swift in Sources */,
 				D6D1503921D7F46F00CD8CE4 /* UITextView+Extensions.swift in Sources */,
 				D6DADF702207DF60007D9EB1 /* ChannelCell.swift in Sources */,

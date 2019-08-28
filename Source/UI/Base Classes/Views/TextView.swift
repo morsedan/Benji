@@ -31,8 +31,14 @@ class TextView: UITextView {
     func initialize() {
         self.set(backgroundColor: .clear)
 
-        NotificationCenter.default.addObserver(self, selector: #selector(textDidChange), name: UITextView.textDidChangeNotification, object: self)
-        NotificationCenter.default.addObserver(self, selector: #selector(textDidEndEditing), name: UITextView.textDidEndEditingNotification, object: self)
+        NotificationCenter.default.addObserver(self,
+                                               selector: #selector(textDidChange),
+                                               name: UITextView.textDidChangeNotification,
+                                               object: self)
+        NotificationCenter.default.addObserver(self,
+                                               selector: #selector(textDidEndEditing),
+                                               name: UITextView.textDidEndEditingNotification,
+                                               object: self)
     }
 
     func set(attributed: AttributedString,

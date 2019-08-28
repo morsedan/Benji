@@ -12,6 +12,7 @@ class RoutineInputContentView: View {
 
     let timePicker = UIDatePicker()
     let setRoutineButton = Button()
+    let timeHump = TimeHumpView()
 
     override func initialize() {
         self.addSubview(self.timePicker)
@@ -24,17 +25,25 @@ class RoutineInputContentView: View {
                                                   text: "Set Routine"),
                                   shouldRound: true,
                                   casingType: StringCasing.uppercase)
+
+        self.addSubview(self.timeHump)
+        self.timeHump.set(backgroundColor: .green)
     }
 
     override func layoutSubviews() {
         super.layoutSubviews()
 
         self.timePicker.frame = self.bounds
-        self.timePicker.height = 200
+        self.timePicker.height = 150
 
         self.setRoutineButton.frame = CGRect(x: 0,
                                              y: self.timePicker.bottom,
                                              width: self.width,
                                              height: 40)
+
+        self.timeHump.frame = CGRect(x: 0,
+                                     y: self.setRoutineButton.bottom,
+                                     width: self.width,
+                                     height: 300)
     }
 }
