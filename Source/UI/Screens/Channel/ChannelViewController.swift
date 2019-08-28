@@ -144,8 +144,6 @@ class ChannelViewController: ViewController, ScrolledModalControllerPresentable 
         self.messageInputView.textView.text = String()
         self.messageInputView.textView.alpha = 1
     }
-
-    
 }
 
 extension ChannelViewController: GrowingTextViewDelegate {
