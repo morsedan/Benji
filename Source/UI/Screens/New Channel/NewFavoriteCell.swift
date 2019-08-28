@@ -9,5 +9,5 @@
 import Foundation
 
 class NewFavoriteCell: UICollectionViewCell {
-    
+    static let reuseID = "NewFavoriteCell"
 }

@@ -47,6 +47,16 @@ enum FontType {
         case .xxSmallSemiBold:
              return UIFont(name: "AvenirNext-Bold", size: self.size)!
         }
+
+//        guard let customFont = UIFont(name: "CustomFont-Light", size: UIFont.labelFontSize) else {
+//            fatalError("""
+//        Failed to load the "CustomFont-Light" font.
+//        Make sure the font file is included in the project and the font name is spelled correctly.
+//        """
+//            )
+//        }
+//        label.font = UIFontMetrics.default.scaledFont(for: customFont)
+//        label.adjustsFontForContentSizeCategory = true
     }
 
     var size: CGFloat {

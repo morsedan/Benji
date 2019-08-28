@@ -9,5 +9,5 @@
 import Foundation
 
 class NewContextCell: UICollectionViewCell {
-    
+    static let reuseID = "NewContextCell"
 }

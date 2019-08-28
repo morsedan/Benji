@@ -18,5 +18,16 @@ class NewChannelCollectionView: CollectionView {
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
+
+    override func initialize() {
+        super.initialize()
+
+        self.register(ContextCell.self)
+        self.register(FavoriteCell.self)
+        self.register(NewContextCell.self)
+        self.register(NewFavoriteCell.self)
+        self.register(NewChannelSectionCell.self,
+                      forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader)
+    }
     
 }

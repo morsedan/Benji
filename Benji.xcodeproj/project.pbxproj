@@ -53,6 +53,8 @@
 		D637532A2316172700214F63 /* Roboto-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = D63753272316172700214F63 /* Roboto-Regular.ttf */; };
 		D637532B2316172700214F63 /* Roboto-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = D63753282316172700214F63 /* Roboto-Bold.ttf */; };
 		D637532C2316172700214F63 /* Roboto-Medium.ttf in Resources */ = {isa = PBXBuildFile; fileRef = D63753292316172700214F63 /* Roboto-Medium.ttf */; };
+		D637532E23161B9B00214F63 /* NewChannelSectionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D637532D23161B9B00214F63 /* NewChannelSectionCell.swift */; };
+		D637533023161C2500214F63 /* NewChannelCollectionViewManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = D637532F23161C2400214F63 /* NewChannelCollectionViewManager.swift */; };
 		D63826D22274C8C0001D4B8B /* ChannelManager+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = D63826D12274C8C0001D4B8B /* ChannelManager+Extensions.swift */; };
 		D642735122C857760088256B /* MessageContext.swift in Sources */ = {isa = PBXBuildFile; fileRef = D642735022C857760088256B /* MessageContext.swift */; };
 		D642735322C85B740088256B /* SystemAvatar.swift in Sources */ = {isa = PBXBuildFile; fileRef = D642735222C85B740088256B /* SystemAvatar.swift */; };
@@ -268,6 +270,8 @@
 		D63753272316172700214F63 /* Roboto-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Roboto-Regular.ttf"; sourceTree = "<group>"; };
 		D63753282316172700214F63 /* Roboto-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Roboto-Bold.ttf"; sourceTree = "<group>"; };
 		D63753292316172700214F63 /* Roboto-Medium.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Roboto-Medium.ttf"; sourceTree = "<group>"; };
+		D637532D23161B9B00214F63 /* NewChannelSectionCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewChannelSectionCell.swift; sourceTree = "<group>"; };
+		D637532F23161C2400214F63 /* NewChannelCollectionViewManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewChannelCollectionViewManager.swift; sourceTree = "<group>"; };
 		D63826D12274C8C0001D4B8B /* ChannelManager+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ChannelManager+Extensions.swift"; sourceTree = "<group>"; };
 		D642735022C857760088256B /* MessageContext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageContext.swift; sourceTree = "<group>"; };
 		D642735222C85B740088256B /* SystemAvatar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SystemAvatar.swift; sourceTree = "<group>"; };
@@ -656,12 +660,14 @@
 			isa = PBXGroup;
 			children = (
 				D63753192316115700214F63 /* NewChannelFlowViewController.swift */,
+				D637532F23161C2400214F63 /* NewChannelCollectionViewManager.swift */,
 				D637531B2316143700214F63 /* NewChannelCollectionView.swift */,
 				D63753252316156800214F63 /* NewChannelCollectionViewLayout.swift */,
 				D637531D2316146A00214F63 /* ContextCell.swift */,
 				D637531F2316148E00214F63 /* FavoriteCell.swift */,
 				D6375321231614DF00214F63 /* NewContextCell.swift */,
 				D63753232316150000214F63 /* NewFavoriteCell.swift */,
+				D637532D23161B9B00214F63 /* NewChannelSectionCell.swift */,
 			);
 			path = "New Channel";
 			sourceTree = "<group>";
@@ -1248,6 +1254,7 @@
 				D6B2606E22E80E4000143CF0 /* ToastView.swift in Sources */,
 				D67896CC2304524C0059BA75 /* ChannelCoordinator.swift in Sources */,
 				D61EC0E821D3107A00204BEE /* Date+Extensions.swift in Sources */,
+				D637532E23161B9B00214F63 /* NewChannelSectionCell.swift in Sources */,
 				D6C65E9E230CD07400259F7A /* LaunchCoordinator.swift in Sources */,
 				D64273A122CBDC870088256B /* ContextButton.swift in Sources */,
 				D6432BF522D82CDC0016001A /* ChannelCollectionViewFlowLayout.swift in Sources */,
@@ -1360,6 +1367,7 @@
 				D61EC0E221D30E6000204BEE /* Label.swift in Sources */,
 				D61EC0E021D30E3F00204BEE /* FullScreenViewController.swift in Sources */,
 				D6D1502D21D6A08300CD8CE4 /* ChannelCollectionView.swift in Sources */,
+				D637533023161C2500214F63 /* NewChannelCollectionViewManager.swift in Sources */,
 				D6B2603A22E6ABCA00143CF0 /* Display1Label.swift in Sources */,
 				D646DB3C22CFCCD80055CC7C /* ClientError.swift in Sources */,
 				D6B2604522E6C09700143CF0 /* RegularSemiBoldLabel.swift in Sources */,
