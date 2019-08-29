@@ -11,7 +11,7 @@ import Foundation
 class ContextCell: UICollectionViewCell {
     static let reuseID = "ContextCell"
 
-    let label = RegularSemiBoldLabel()
+    let label = XSmallLabel()
 
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -37,6 +37,7 @@ class ContextCell: UICollectionViewCell {
     override func layoutSubviews() {
         super.layoutSubviews()
 
+        self.contentView.roundCorners()
         self.label.setSize(withWidth: self.contentView.proportionalWidth)
         self.label.centerOnXAndY()
     }

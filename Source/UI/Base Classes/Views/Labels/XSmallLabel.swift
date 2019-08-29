@@ -12,7 +12,9 @@ class XSmallLabel: Label {
     
     func set(text: Localized,
              color: Color = .white,
-             lineBreakMode: NSLineBreakMode = .byWordWrapping) {
+             alignment: NSTextAlignment = .left,
+             lineBreakMode: NSLineBreakMode = .byWordWrapping,
+             stringCasing: StringCasing = .unchanged) {
         
         let attributed = AttributedString(text,
                                           fontType: .xSmall,

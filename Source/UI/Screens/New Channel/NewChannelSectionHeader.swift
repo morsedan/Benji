@@ -32,6 +32,7 @@ class NewChannelSectionHeader: UICollectionReusableView {
         super.layoutSubviews()
 
         self.label.sizeToFit()
-        self.label.centerOnXAndY()
+        self.label.left = 0
+        self.label.bottom = self.height - 10
     }
 }

@@ -10,13 +10,17 @@ import Foundation
 
 class RegularBoldLabel: Label {
 
-    func set(text: Localized, color: Color = .white) {
+    func set(text: Localized,
+             color: Color = .white,
+             alignment: NSTextAlignment = .left,
+             stringCasing: StringCasing = .lowercase) {
+
         let attributed = AttributedString(text,
                                           fontType: .regularBold,
                                           color: color)
 
         self.set(attributed: attributed,
-                 alignment: .left,
-                 stringCasing: .lowercase)
+                 alignment: alignment,
+                 stringCasing: stringCasing)
     }
 }

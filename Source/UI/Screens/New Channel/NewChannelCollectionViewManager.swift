@@ -63,19 +63,23 @@ class NewChannelCollectionViewManager: NSObject, UICollectionViewDelegate, UICol
     }
 
     private func contextCell(for collectionView: UICollectionView, at indexPath: IndexPath) -> UICollectionViewCell {
+        guard let context = self.contextTypes[safe: indexPath.row] else { return UICollectionViewCell() }
         let cell: ContextCell = collectionView.dequeueReusableCell(withReuseIdentifier: ContextCell.reuseID,
                                                                 for: indexPath) as! ContextCell
+        cell.configure(with: context)
         return cell
     }
 
     private func favoritesCell(for collectionView: UICollectionView, at indexPath: IndexPath) -> UICollectionViewCell {
+        guard let favorite = self.favorites[safe: indexPath.row] else { return UICollectionViewCell() }
         let cell: FavoriteCell = collectionView.dequeueReusableCell(withReuseIdentifier: FavoriteCell.reuseID,
                                                                    for: indexPath) as! FavoriteCell
+        cell.configure(with: favorite)
         return cell
     }
 
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, referenceSizeForHeaderInSection section: Int) -> CGSize {
-        return CGSize(width: collectionView.width, height: 50)
+        return CGSize(width: collectionView.width, height: 80)
     }
 
     func collectionView(_ collectionView: UICollectionView,
@@ -97,7 +101,18 @@ class NewChannelCollectionViewManager: NSObject, UICollectionViewDelegate, UICol
                                                                                            withReuseIdentifier: "NewChannelSectionHeader",
                                                                                            for: indexPath) as! NewChannelSectionHeader
         let text = indexPath.section == 0 ? "Context" : "Favorites"
-        header.label.set(text: text)
+        header.label.set(text: text, alignment: .left, stringCasing: .uppercase)
         return header
+    }
+
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+        guard let section = NewChannelSection(rawValue: indexPath.section) else { return .zero }
+
+        switch section {
+        case .context:
+            return CGSize(width: collectionView.halfWidth * 0.85, height: 50)
+        case .favorites:
+            return CGSize(width: 50, height: 50)
+        }
     }
 }
