@@ -20,7 +20,7 @@ extension UITextField {
         self.textAlignment = alignment
     }
 
-    @discardableResult func setBottomBorder(color: Color, height: CGFloat = 3.0) -> CALayer {
+    @discardableResult func setBottomBorder(color: Color, height: CGFloat = 2.0) -> CALayer {
         let border = CALayer()
         let width = height
         border.borderColor = color.color.cgColor
