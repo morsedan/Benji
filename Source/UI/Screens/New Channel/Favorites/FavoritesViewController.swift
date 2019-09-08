@@ -8,6 +8,6 @@
 
 import Foundation
 
-class FavoritesViewController: CollectionViewController<<#CellType: UICollectionViewCell & DisplayableCell#>, CollectionViewManager<CellType>> {
+class FavoritesViewController: CollectionViewController<FavoriteCell, FavoritesCollectionViewManager> {
     
 }

@@ -8,75 +8,7 @@
 
 import Foundation
 
-enum NewChannelSection: Int {
-    case context
-    case favorites
-}
-
-class FavoritesCollectionViewManager: NSObject, UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
-
-    let collectionView: FavoritesCollectionView
-
-    var favorites: [Avatar] = []
-    var contextTypes: [MessageContext] = []
-
-    init(with collectionView: FavoritesCollectionView) {
-        self.collectionView = collectionView
-        super.init()
-        self.initialize()
-    }
-
-    private func initialize() {
-        for _ in 0...9 {
-            self.favorites.append(Lorem.avatar())
-        }
-
-        MessageContext.allCases.forEach { (context) in
-            self.contextTypes.append(context)
-        }
-    }
-
-    func numberOfSections(in collectionView: UICollectionView) -> Int {
-        return 2
-    }
-
-    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        guard let newSection = NewChannelSection(rawValue: section) else { return 0 }
-
-        switch newSection {
-        case .context:
-            return self.contextTypes.count
-        case .favorites:
-            return self.favorites.count
-        }
-    }
-
-    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        guard let newSection = NewChannelSection(rawValue: indexPath.section) else { return UICollectionViewCell() }
-
-        switch newSection {
-        case .context:
-            return self.contextCell(for: collectionView, at: indexPath)
-        case .favorites:
-            return self.favoritesCell(for: collectionView, at: indexPath)
-        }
-    }
-
-    private func contextCell(for collectionView: UICollectionView, at indexPath: IndexPath) -> UICollectionViewCell {
-        guard let context = self.contextTypes[safe: indexPath.row] else { return UICollectionViewCell() }
-        let cell: ContextCell = collectionView.dequeueReusableCell(withReuseIdentifier: ContextCell.reuseID,
-                                                                for: indexPath) as! ContextCell
-        cell.configure(with: context)
-        return cell
-    }
-
-    private func favoritesCell(for collectionView: UICollectionView, at indexPath: IndexPath) -> UICollectionViewCell {
-        guard let favorite = self.favorites[safe: indexPath.row] else { return UICollectionViewCell() }
-        let cell: FavoriteCell = collectionView.dequeueReusableCell(withReuseIdentifier: FavoriteCell.reuseID,
-                                                                   for: indexPath) as! FavoriteCell
-        cell.configure(with: favorite)
-        return cell
-    }
+class FavoritesCollectionViewManager: CollectionViewManager<FavoriteCell> {
 
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, referenceSizeForHeaderInSection section: Int) -> CGSize {
         return CGSize(width: collectionView.width, height: 80)
@@ -105,14 +37,7 @@ class FavoritesCollectionViewManager: NSObject, UICollectionViewDelegate, UIColl
         return header
     }
 
-    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        guard let section = NewChannelSection(rawValue: indexPath.section) else { return .zero }
-
-        switch section {
-        case .context:
-            return CGSize(width: collectionView.halfWidth * 0.85, height: 50)
-        case .favorites:
-            return CGSize(width: 50, height: 50)
-        }
+    override func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+        return CGSize(width: 50, height: 50)
     }
 }

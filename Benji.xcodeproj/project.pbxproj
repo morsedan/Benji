@@ -850,8 +850,8 @@
 		D6A82B702325C105003E0A8B /* Favorites */ = {
 			isa = PBXGroup;
 			children = (
-				D637532F23161C2400214F63 /* FavoritesCollectionViewManager.swift */,
 				D6A82B6E2325BEA2003E0A8B /* FavoritesViewController.swift */,
+				D637532F23161C2400214F63 /* FavoritesCollectionViewManager.swift */,
 				D637531B2316143700214F63 /* FavoritesCollectionView.swift */,
 				D63753252316156800214F63 /* FavoritesCollectionViewLayout.swift */,
 				D637532D23161B9B00214F63 /* FavoritesSectionHeader.swift */,
