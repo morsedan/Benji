@@ -10,54 +10,13 @@ import Foundation
 
 class NewChannelFlowViewController: ScrolledModalFlowViewController {
 
-    let titleBar = NewChannelTitleBar()
-    let collectionView = FavoritesCollectionView()
-    let createButton = Button()
-
-    lazy var manager: FavoritesCollectionViewManager = {
-        let manager = FavoritesCollectionViewManager(with: self.collectionView)
-        return manager
-    }()
+    lazy var purposeVC = ChannelPurposeViewController()
 
     override func initializeViews() {
         super.initializeViews()
 
-        self.view.set(backgroundColor: .background2)
-
-        self.view.addSubview(self.titleBar)
-        self.view.addSubview(self.collectionView)
-        self.view.addSubview(self.createButton)
-
-        self.createButton.set(style: .normal(color: .purple, text: "CREATE"))
-        self.createButton.onTap { [unowned self] (tap) in
-            //create channel
-        }
-
-        self.collectionView.delegate = self.manager
-        self.collectionView.dataSource = self.manager
-    }
-
-    override func viewDidLayoutSubviews() {
-        super.viewDidLayoutSubviews()
-
-        self.titleBar.size = CGSize(width: self.view.width - 40, height: 80)
-        self.titleBar.top = 0
-        self.titleBar.centerOnX()
-
-        self.collectionView.size = CGSize(width: self.view.width, height: self.view.height - self.titleBar.height)
-        self.collectionView.top = self.titleBar.bottom
-
-        self.createButton.size = CGSize(width: 120, height: 50)
-        self.createButton.roundCorners()
-        self.createButton.right = self.view.width - 20
-        self.createButton.bottom = self.view.height - 25 - self.view.safeAreaInsets.bottom
-    }
-
-    override func handleKeyboard(frame: CGRect, with animationDuration: TimeInterval, timingCurve: UIView.AnimationCurve) {
-
-        let newHeight = (self.view.height - self.titleBar.bottom - frame.size.height) * -1
-        var newFrame = frame
-        newFrame.size.height = newHeight
-        self.didUpdateHeight?(newFrame, animationDuration, timingCurve)
+        self.topMargin = 500
+        self.add(controller: self.purposeVC)
+        self.moveForward()
     }
 }

@@ -8,7 +8,7 @@
 
 import Foundation
 
-class ChannelPurposeViewController: ViewController {
+class ChannelPurposeViewController: ViewController, KeyboardObservable {
 
     let textFieldTitleLabel = RegularSemiBoldLabel()
     let textField = PurposeTitleTextField()
@@ -20,6 +20,8 @@ class ChannelPurposeViewController: ViewController {
 
     override func initializeViews() {
         super.initializeViews()
+
+        self.registerKeyboardEvents()
 
         self.view.addSubview(self.textFieldTitleLabel)
         self.textFieldTitleLabel.set(text: "Channel Name")
@@ -34,6 +36,9 @@ class ChannelPurposeViewController: ViewController {
             self.handleTextChange()
         }
 
+        delay(0.5) {
+            self.textField.becomeFirstResponder()
+        }
     }
 
     override func viewDidLayoutSubviews() {
@@ -49,5 +54,13 @@ class ChannelPurposeViewController: ViewController {
     private func handleTextChange() {
         guard let text = self.textField.text else { return }
 
+    }
+
+    func handleKeyboard(frame: CGRect, with animationDuration: TimeInterval, timingCurve: UIView.AnimationCurve) {
+
+//        let newHeight = (self.view.height - self.titleBar.bottom - frame.size.height) * -1
+//        var newFrame = frame
+//        newFrame.size.height = newHeight
+//        self.didUpdateHeight?(newFrame, animationDuration, timingCurve)
     }
 }
