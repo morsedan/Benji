@@ -8,7 +8,7 @@
 
 import Foundation
 
-class NewChannelCollectionViewLayout: UICollectionViewFlowLayout {
+class FavoritesCollectionViewLayout: UICollectionViewFlowLayout {
 
     override func prepare() {
         super.prepare()

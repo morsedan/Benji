@@ -8,7 +8,7 @@
 
 import Foundation
 
-class NewChannelSectionHeader: UICollectionReusableView {
+class FavoritesSectionHeader: UICollectionReusableView {
 
     static let reuseID = "NewChannelSectionHeader"
 

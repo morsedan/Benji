@@ -8,10 +8,10 @@
 
 import Foundation
 
-class NewChannelCollectionView: CollectionView {
+class FavoritesCollectionView: CollectionView {
 
     init() {
-        let flowLayout = NewChannelCollectionViewLayout()
+        let flowLayout = FavoritesCollectionViewLayout()
         super.init(flowLayout: flowLayout)
     }
     
@@ -26,7 +26,7 @@ class NewChannelCollectionView: CollectionView {
         self.register(FavoriteCell.self)
         self.register(NewContextCell.self)
         self.register(NewFavoriteCell.self)
-        self.register(NewChannelSectionHeader.self,
+        self.register(FavoritesSectionHeader.self,
                       forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader)
     }
     

@@ -13,14 +13,14 @@ enum NewChannelSection: Int {
     case favorites
 }
 
-class NewChannelCollectionViewManager: NSObject, UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
+class FavoritesCollectionViewManager: NSObject, UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
 
-    let collectionView: NewChannelCollectionView
+    let collectionView: FavoritesCollectionView
 
     var favorites: [Avatar] = []
     var contextTypes: [MessageContext] = []
 
-    init(with collectionView: NewChannelCollectionView) {
+    init(with collectionView: FavoritesCollectionView) {
         self.collectionView = collectionView
         super.init()
         self.initialize()
@@ -97,9 +97,9 @@ class NewChannelCollectionViewManager: NSObject, UICollectionViewDelegate, UICol
     }
 
     private func header(for collectionView: UICollectionView, at indexPath: IndexPath) -> UICollectionReusableView {
-        let header: NewChannelSectionHeader = collectionView.dequeueReusableSupplementaryView(ofKind: UICollectionView.elementKindSectionHeader,
+        let header: FavoritesSectionHeader = collectionView.dequeueReusableSupplementaryView(ofKind: UICollectionView.elementKindSectionHeader,
                                                                                            withReuseIdentifier: "NewChannelSectionHeader",
-                                                                                           for: indexPath) as! NewChannelSectionHeader
+                                                                                           for: indexPath) as! FavoritesSectionHeader
         let text = indexPath.section == 0 ? "Context" : "Favorites"
         header.label.set(text: text, alignment: .left, stringCasing: .uppercase)
         return header

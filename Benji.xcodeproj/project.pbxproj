@@ -44,17 +44,17 @@
 		D63752C6231258DA00214F63 /* PreviewMessageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D63752C5231258DA00214F63 /* PreviewMessageView.swift */; };
 		D63752F92313833B00214F63 /* ProfileAvatarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D63752F82313833B00214F63 /* ProfileAvatarView.swift */; };
 		D637531A2316115700214F63 /* NewChannelFlowViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D63753192316115700214F63 /* NewChannelFlowViewController.swift */; };
-		D637531C2316143700214F63 /* NewChannelCollectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D637531B2316143700214F63 /* NewChannelCollectionView.swift */; };
+		D637531C2316143700214F63 /* FavoritesCollectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D637531B2316143700214F63 /* FavoritesCollectionView.swift */; };
 		D637531E2316146A00214F63 /* ContextCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D637531D2316146A00214F63 /* ContextCell.swift */; };
 		D63753202316148E00214F63 /* FavoriteCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D637531F2316148E00214F63 /* FavoriteCell.swift */; };
 		D6375322231614DF00214F63 /* NewContextCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6375321231614DF00214F63 /* NewContextCell.swift */; };
 		D63753242316150000214F63 /* NewFavoriteCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D63753232316150000214F63 /* NewFavoriteCell.swift */; };
-		D63753262316156800214F63 /* NewChannelCollectionViewLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = D63753252316156800214F63 /* NewChannelCollectionViewLayout.swift */; };
+		D63753262316156800214F63 /* FavoritesCollectionViewLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = D63753252316156800214F63 /* FavoritesCollectionViewLayout.swift */; };
 		D637532A2316172700214F63 /* Roboto-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = D63753272316172700214F63 /* Roboto-Regular.ttf */; };
 		D637532B2316172700214F63 /* Roboto-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = D63753282316172700214F63 /* Roboto-Bold.ttf */; };
 		D637532C2316172700214F63 /* Roboto-Medium.ttf in Resources */ = {isa = PBXBuildFile; fileRef = D63753292316172700214F63 /* Roboto-Medium.ttf */; };
-		D637532E23161B9B00214F63 /* NewChannelSectionHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = D637532D23161B9B00214F63 /* NewChannelSectionHeader.swift */; };
-		D637533023161C2500214F63 /* NewChannelCollectionViewManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = D637532F23161C2400214F63 /* NewChannelCollectionViewManager.swift */; };
+		D637532E23161B9B00214F63 /* FavoritesSectionHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = D637532D23161B9B00214F63 /* FavoritesSectionHeader.swift */; };
+		D637533023161C2500214F63 /* FavoritesCollectionViewManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = D637532F23161C2400214F63 /* FavoritesCollectionViewManager.swift */; };
 		D63753322316AF6700214F63 /* NewChannelTitleBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = D63753312316AF6700214F63 /* NewChannelTitleBar.swift */; };
 		D63826D22274C8C0001D4B8B /* ChannelManager+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = D63826D12274C8C0001D4B8B /* ChannelManager+Extensions.swift */; };
 		D642735122C857760088256B /* MessageContext.swift in Sources */ = {isa = PBXBuildFile; fileRef = D642735022C857760088256B /* MessageContext.swift */; };
@@ -153,6 +153,7 @@
 		D691794422F67BEB00340AA3 /* ChannelsViewController+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = D691794322F67BEB00340AA3 /* ChannelsViewController+Extensions.swift */; };
 		D696A8E92308D5C900DAFED4 /* MessageInputView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D696A8E82308D5C900DAFED4 /* MessageInputView.swift */; };
 		D696A8F5230BA06A00DAFED4 /* LoginEndingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D696A8F4230BA06A00DAFED4 /* LoginEndingViewController.swift */; };
+		D6A82B6F2325BEA2003E0A8B /* FavoritesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6A82B6E2325BEA2003E0A8B /* FavoritesViewController.swift */; };
 		D6AF02FD220153F5002D5C75 /* LaunchManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6AF02FC220153F5002D5C75 /* LaunchManager.swift */; };
 		D6AF0301220154E3002D5C75 /* ChannelManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6AF0300220154E3002D5C75 /* ChannelManager.swift */; };
 		D6B2601422E3E31500143CF0 /* ChannelDataSourceManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6B2601322E3E31500143CF0 /* ChannelDataSourceManager.swift */; };
@@ -262,17 +263,17 @@
 		D63752C5231258DA00214F63 /* PreviewMessageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PreviewMessageView.swift; sourceTree = "<group>"; };
 		D63752F82313833B00214F63 /* ProfileAvatarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileAvatarView.swift; sourceTree = "<group>"; };
 		D63753192316115700214F63 /* NewChannelFlowViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewChannelFlowViewController.swift; sourceTree = "<group>"; };
-		D637531B2316143700214F63 /* NewChannelCollectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewChannelCollectionView.swift; sourceTree = "<group>"; };
+		D637531B2316143700214F63 /* FavoritesCollectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoritesCollectionView.swift; sourceTree = "<group>"; };
 		D637531D2316146A00214F63 /* ContextCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContextCell.swift; sourceTree = "<group>"; };
 		D637531F2316148E00214F63 /* FavoriteCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoriteCell.swift; sourceTree = "<group>"; };
 		D6375321231614DF00214F63 /* NewContextCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewContextCell.swift; sourceTree = "<group>"; };
 		D63753232316150000214F63 /* NewFavoriteCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewFavoriteCell.swift; sourceTree = "<group>"; };
-		D63753252316156800214F63 /* NewChannelCollectionViewLayout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewChannelCollectionViewLayout.swift; sourceTree = "<group>"; };
+		D63753252316156800214F63 /* FavoritesCollectionViewLayout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoritesCollectionViewLayout.swift; sourceTree = "<group>"; };
 		D63753272316172700214F63 /* Roboto-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Roboto-Regular.ttf"; sourceTree = "<group>"; };
 		D63753282316172700214F63 /* Roboto-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Roboto-Bold.ttf"; sourceTree = "<group>"; };
 		D63753292316172700214F63 /* Roboto-Medium.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Roboto-Medium.ttf"; sourceTree = "<group>"; };
-		D637532D23161B9B00214F63 /* NewChannelSectionHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewChannelSectionHeader.swift; sourceTree = "<group>"; };
-		D637532F23161C2400214F63 /* NewChannelCollectionViewManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewChannelCollectionViewManager.swift; sourceTree = "<group>"; };
+		D637532D23161B9B00214F63 /* FavoritesSectionHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoritesSectionHeader.swift; sourceTree = "<group>"; };
+		D637532F23161C2400214F63 /* FavoritesCollectionViewManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoritesCollectionViewManager.swift; sourceTree = "<group>"; };
 		D63753312316AF6700214F63 /* NewChannelTitleBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewChannelTitleBar.swift; sourceTree = "<group>"; };
 		D63826D12274C8C0001D4B8B /* ChannelManager+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ChannelManager+Extensions.swift"; sourceTree = "<group>"; };
 		D642735022C857760088256B /* MessageContext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageContext.swift; sourceTree = "<group>"; };
@@ -371,6 +372,7 @@
 		D691794322F67BEB00340AA3 /* ChannelsViewController+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ChannelsViewController+Extensions.swift"; sourceTree = "<group>"; };
 		D696A8E82308D5C900DAFED4 /* MessageInputView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageInputView.swift; sourceTree = "<group>"; };
 		D696A8F4230BA06A00DAFED4 /* LoginEndingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginEndingViewController.swift; sourceTree = "<group>"; };
+		D6A82B6E2325BEA2003E0A8B /* FavoritesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoritesViewController.swift; sourceTree = "<group>"; };
 		D6AF02FC220153F5002D5C75 /* LaunchManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LaunchManager.swift; sourceTree = "<group>"; };
 		D6AF0300220154E3002D5C75 /* ChannelManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChannelManager.swift; sourceTree = "<group>"; };
 		D6B2601322E3E31500143CF0 /* ChannelDataSourceManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChannelDataSourceManager.swift; sourceTree = "<group>"; };
@@ -662,14 +664,10 @@
 			isa = PBXGroup;
 			children = (
 				D63753192316115700214F63 /* NewChannelFlowViewController.swift */,
-				D637532F23161C2400214F63 /* NewChannelCollectionViewManager.swift */,
-				D637531B2316143700214F63 /* NewChannelCollectionView.swift */,
-				D63753252316156800214F63 /* NewChannelCollectionViewLayout.swift */,
+				D6A82B702325C105003E0A8B /* Favorites */,
 				D637531D2316146A00214F63 /* ContextCell.swift */,
-				D637531F2316148E00214F63 /* FavoriteCell.swift */,
 				D6375321231614DF00214F63 /* NewContextCell.swift */,
 				D63753232316150000214F63 /* NewFavoriteCell.swift */,
-				D637532D23161B9B00214F63 /* NewChannelSectionHeader.swift */,
 				D63753312316AF6700214F63 /* NewChannelTitleBar.swift */,
 			);
 			path = "New Channel";
@@ -847,6 +845,19 @@
 				D642739E22CAFD680088256B /* MessageTextView.swift */,
 			);
 			path = Cells;
+			sourceTree = "<group>";
+		};
+		D6A82B702325C105003E0A8B /* Favorites */ = {
+			isa = PBXGroup;
+			children = (
+				D637532F23161C2400214F63 /* FavoritesCollectionViewManager.swift */,
+				D6A82B6E2325BEA2003E0A8B /* FavoritesViewController.swift */,
+				D637531B2316143700214F63 /* FavoritesCollectionView.swift */,
+				D63753252316156800214F63 /* FavoritesCollectionViewLayout.swift */,
+				D637532D23161B9B00214F63 /* FavoritesSectionHeader.swift */,
+				D637531F2316148E00214F63 /* FavoriteCell.swift */,
+			);
+			path = Favorites;
 			sourceTree = "<group>";
 		};
 		D6B2603522E6A97400143CF0 /* Layout */ = {
@@ -1201,6 +1212,7 @@
 				D66F0FE622C0640E00BA277D /* Avatar.swift in Sources */,
 				D67896BD23025FEC0059BA75 /* LoginNameViewController.swift in Sources */,
 				D6D14FFB21D5893700CD8CE4 /* DiffableBox.swift in Sources */,
+				D6A82B6F2325BEA2003E0A8B /* FavoritesViewController.swift in Sources */,
 				D6D1501621D5F08700CD8CE4 /* DisplyableCell.swift in Sources */,
 				D66F0FE222C041AF00BA277D /* AvatarView.swift in Sources */,
 				D642738622C9AF1C0088256B /* PagingModalController.swift in Sources */,
@@ -1226,7 +1238,7 @@
 				D66F0FD222BF065F00BA277D /* DeeplinkTarget.swift in Sources */,
 				D696A8E92308D5C900DAFED4 /* MessageInputView.swift in Sources */,
 				D6D1501A21D5F5D100CD8CE4 /* CollectionView.swift in Sources */,
-				D63753262316156800214F63 /* NewChannelCollectionViewLayout.swift in Sources */,
+				D63753262316156800214F63 /* FavoritesCollectionViewLayout.swift in Sources */,
 				D61EC0E421D30E9100204BEE /* TextView.swift in Sources */,
 				D6AF02FD220153F5002D5C75 /* LaunchManager.swift in Sources */,
 				D64273A322CC040B0088256B /* GrowingTextView.swift in Sources */,
@@ -1258,7 +1270,7 @@
 				D63753322316AF6700214F63 /* NewChannelTitleBar.swift in Sources */,
 				D67896CC2304524C0059BA75 /* ChannelCoordinator.swift in Sources */,
 				D61EC0E821D3107A00204BEE /* Date+Extensions.swift in Sources */,
-				D637532E23161B9B00214F63 /* NewChannelSectionHeader.swift in Sources */,
+				D637532E23161B9B00214F63 /* FavoritesSectionHeader.swift in Sources */,
 				D6C65E9E230CD07400259F7A /* LaunchCoordinator.swift in Sources */,
 				D64273A122CBDC870088256B /* ContextButton.swift in Sources */,
 				D6432BF522D82CDC0016001A /* ChannelCollectionViewFlowLayout.swift in Sources */,
@@ -1284,7 +1296,7 @@
 				D66F0FEA22C0695E00BA277D /* CNContact+Extensions.swift in Sources */,
 				D6DADF6E2207DF33007D9EB1 /* ChannelsCollectionViewManager.swift in Sources */,
 				D6B2603822E6AB5E00143CF0 /* ChannelDetailBar.swift in Sources */,
-				D637531C2316143700214F63 /* NewChannelCollectionView.swift in Sources */,
+				D637531C2316143700214F63 /* FavoritesCollectionView.swift in Sources */,
 				D66F0FCF22BF060500BA277D /* Deeplinkable.swift in Sources */,
 				D6B2607222E80FE000143CF0 /* XSmallLabel.swift in Sources */,
 				D642737F22C9A7EC0088256B /* ContactsManager.swift in Sources */,
@@ -1371,7 +1383,7 @@
 				D61EC0E221D30E6000204BEE /* Label.swift in Sources */,
 				D61EC0E021D30E3F00204BEE /* FullScreenViewController.swift in Sources */,
 				D6D1502D21D6A08300CD8CE4 /* ChannelCollectionView.swift in Sources */,
-				D637533023161C2500214F63 /* NewChannelCollectionViewManager.swift in Sources */,
+				D637533023161C2500214F63 /* FavoritesCollectionViewManager.swift in Sources */,
 				D6B2603A22E6ABCA00143CF0 /* Display1Label.swift in Sources */,
 				D646DB3C22CFCCD80055CC7C /* ClientError.swift in Sources */,
 				D6B2604522E6C09700143CF0 /* RegularSemiBoldLabel.swift in Sources */,

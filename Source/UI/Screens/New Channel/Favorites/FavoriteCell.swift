@@ -7,26 +7,17 @@
 //
 
 import Foundation
+import Contacts
 
-class FavoriteCell: UICollectionViewCell {
-    static let reuseID = "FavoriteCell"
+class FavoriteCell: UICollectionViewCell, DisplayableCell {
+    typealias ItemType = CNContact
 
     let avatarView = AvatarView()
 
-    override init(frame: CGRect) {
-        super.init(frame: frame)
-        self.initialize()
-    }
+    func configure(with item: CNContact?) {
+        guard let avatar = item else { return }
 
-    required init?(coder aDecoder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
-    }
-
-    private func initialize() {
         self.contentView.addSubview(self.avatarView)
-    }
-
-    func configure(with avatar: Avatar) {
         self.avatarView.set(avatar: avatar)
     }
 

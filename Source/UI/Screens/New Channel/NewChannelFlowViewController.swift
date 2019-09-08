@@ -11,11 +11,11 @@ import Foundation
 class NewChannelFlowViewController: ScrolledModalFlowViewController {
 
     let titleBar = NewChannelTitleBar()
-    let collectionView = NewChannelCollectionView()
+    let collectionView = FavoritesCollectionView()
     let createButton = Button()
 
-    lazy var manager: NewChannelCollectionViewManager = {
-        let manager = NewChannelCollectionViewManager(with: self.collectionView)
+    lazy var manager: FavoritesCollectionViewManager = {
+        let manager = FavoritesCollectionViewManager(with: self.collectionView)
         return manager
     }()
 
@@ -51,5 +51,13 @@ class NewChannelFlowViewController: ScrolledModalFlowViewController {
         self.createButton.roundCorners()
         self.createButton.right = self.view.width - 20
         self.createButton.bottom = self.view.height - 25 - self.view.safeAreaInsets.bottom
+    }
+
+    override func handleKeyboard(frame: CGRect, with animationDuration: TimeInterval, timingCurve: UIView.AnimationCurve) {
+
+        let newHeight = (self.view.height - self.titleBar.bottom - frame.size.height) * -1
+        var newFrame = frame
+        newFrame.size.height = newHeight
+        self.didUpdateHeight?(newFrame, animationDuration, timingCurve)
     }
 }

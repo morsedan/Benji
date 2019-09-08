@@ -38,6 +38,8 @@ class TextField: UITextField {
     }
 
     func initialize() {
+        self.keyboardAppearance = .dark
+ 
         self.addTarget(self,
                        action: #selector(handleTextChanged),
                        for: UIControl.Event.editingChanged)
