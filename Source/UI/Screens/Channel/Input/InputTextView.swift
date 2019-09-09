@@ -22,10 +22,4 @@ class InputTextView: GrowingTextView {
 
         self.set(backgroundColor: .clear)
     }
-
-    func set(placeholder: Localized) {
-        let styleAttributes = StringStyle(font: .regular, color: .lightPurple).attributes
-        let string = NSAttributedString(string: localized(placeholder), attributes: styleAttributes)
-        self.attributedPlaceholder = string
-    }
 }

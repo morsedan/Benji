@@ -15,7 +15,6 @@ class NewChannelFlowViewController: ScrolledModalFlowViewController {
     override func initializeViews() {
         super.initializeViews()
 
-        self.topMargin = 500
         self.add(controller: self.purposeVC)
         self.moveForward()
     }

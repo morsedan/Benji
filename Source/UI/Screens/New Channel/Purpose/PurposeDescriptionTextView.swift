@@ -13,10 +13,6 @@ class PurposeDescriptionTextView: TextView {
     override func initialize() {
         super.initialize()
 
-        
-    }
-
-    override func textDidChange(notification: Notification) {
-
+        self.set(placeholder: "Briefly describe the purpose of this channel.", color: .white)
     }
 }

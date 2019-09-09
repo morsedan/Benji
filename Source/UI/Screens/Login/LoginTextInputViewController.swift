@@ -13,7 +13,6 @@ class LoginTextInputViewController: ViewController {
 
     let textField: UITextField
     let textFieldLabel = Label()
-    let toolbar = UIToolbar()
     let textFieldTitle: Localized
     let textFieldPlaceholder: Localized?
 
@@ -80,7 +79,6 @@ class LoginTextInputViewController: ViewController {
         self.textField.width = self.view.width - 28
         self.textField.top = self.textFieldLabel.bottom + 5
         self.textField.left = self.textFieldLabel.left
-        self.textField.setBottomBorder(color: .blue)
     }
 }
 

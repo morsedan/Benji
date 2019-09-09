@@ -41,12 +41,6 @@ class GrowingTextView: TextView {
         }
     }
 
-    var attributedPlaceholder: NSAttributedString? {
-        didSet {
-            self.setNeedsDisplay()
-        }
-    }
-
     weak var growingDelegate: GrowingTextViewDelegate?
 
     private var shouldScrollAfterHeightChanged = true
@@ -109,24 +103,6 @@ class GrowingTextView: TextView {
             self.scrollRangeToVisible(NSMakeRange(-1, 0)) // Scroll to bottom
         } else {
             self.scrollRangeToVisible(NSMakeRange(0, 0)) // Scroll to top
-        }
-    }
-
-    // Show placeholder if needed
-    override func draw(_ rect: CGRect) {
-        super.draw(rect)
-
-        if self.text.isEmpty {
-            let xValue = self.textContainerInset.left + self.textContainer.lineFragmentPadding
-            let yValue = self.textContainerInset.top
-            let width = rect.size.width - xValue - self.textContainerInset.right
-            let height = rect.size.height - yValue - self.textContainerInset.bottom
-            let placeholderRect = CGRect(x: xValue, y: yValue, width: width, height: height)
-
-            if let attributedPlaceholder = self.attributedPlaceholder {
-                // Prefer to use attributedPlaceholder
-                attributedPlaceholder.draw(in: placeholderRect)
-            }
         }
     }
 

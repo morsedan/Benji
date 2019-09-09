@@ -12,11 +12,11 @@ class ChannelPurposeViewController: ViewController, KeyboardObservable {
 
     let offset: CGFloat = 20
 
-    let textFieldTitleLabel = RegularSemiBoldLabel()
+    let textFieldTitleLabel = RegularBoldLabel()
     let textField = PurposeTitleTextField()
     let textFieldDescriptionLabel = XSmallLabel()
 
-    let textViewTitleLabel = RegularSemiBoldLabel()
+    let textViewTitleLabel = RegularBoldLabel()
     let textView = PurposeDescriptionTextView()
 
     override func initializeViews() {
@@ -51,7 +51,7 @@ class ChannelPurposeViewController: ViewController, KeyboardObservable {
         let width = self.view.width - (self.offset * 2)
 
         self.textFieldTitleLabel.setSize(withWidth: width)
-        self.textFieldTitleLabel.top = 50
+        self.textFieldTitleLabel.top = 30
         self.textFieldTitleLabel.left = self.offset
 
         self.textField.size = CGSize(width: width, height: 40)

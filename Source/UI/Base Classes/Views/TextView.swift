@@ -10,6 +10,12 @@ import Foundation
 
 class TextView: UITextView {
 
+    private var attributedPlaceholder: NSAttributedString? {
+        didSet {
+            self.setNeedsDisplay()
+        }
+    }
+
     override init(frame: CGRect, textContainer: NSTextContainer?) {
         super.init(frame: frame, textContainer: textContainer)
         self.initialize()
@@ -33,6 +39,12 @@ class TextView: UITextView {
 
         NotificationCenter.default.addObserver(self, selector: #selector(textDidChange), name: UITextView.textDidChangeNotification, object: self)
         NotificationCenter.default.addObserver(self, selector: #selector(textDidEndEditing), name: UITextView.textDidEndEditingNotification, object: self)
+    }
+
+    func set(placeholder: Localized, color: Color = .lightPurple) {
+        let styleAttributes = StringStyle(font: .regular, color: color).attributes
+        let string = NSAttributedString(string: localized(placeholder), attributes: styleAttributes)
+        self.attributedPlaceholder = string
     }
 
     func set(attributed: AttributedString,
@@ -64,4 +76,22 @@ class TextView: UITextView {
 
     @objc func textDidEndEditing(notification: Notification) {}
     @objc func textDidChange(notification: Notification) {}
+
+    // Show placeholder if needed
+    override func draw(_ rect: CGRect) {
+        super.draw(rect)
+
+        if self.text.isEmpty {
+            let xValue = self.textContainerInset.left + self.textContainer.lineFragmentPadding
+            let yValue = self.textContainerInset.top
+            let width = rect.size.width - xValue - self.textContainerInset.right
+            let height = rect.size.height - yValue - self.textContainerInset.bottom
+            let placeholderRect = CGRect(x: xValue, y: yValue, width: width, height: height)
+
+            if let attributedPlaceholder = self.attributedPlaceholder {
+                // Prefer to use attributedPlaceholder
+                attributedPlaceholder.draw(in: placeholderRect)
+            }
+        }
+    }
 }
