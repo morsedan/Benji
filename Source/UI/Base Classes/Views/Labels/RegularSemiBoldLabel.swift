@@ -21,6 +21,6 @@ class RegularSemiBoldLabel: Label {
 
         self.set(attributed: attributed,
                  alignment: alignment,
-                 stringCasing: .lowercase)
+                 stringCasing: stringCasing)
     }
 }

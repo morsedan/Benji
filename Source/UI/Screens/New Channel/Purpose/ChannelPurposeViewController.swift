@@ -10,27 +10,31 @@ import Foundation
 
 class ChannelPurposeViewController: ViewController, KeyboardObservable {
 
+    let offset: CGFloat = 20
+
     let textFieldTitleLabel = RegularSemiBoldLabel()
     let textField = PurposeTitleTextField()
     let textFieldDescriptionLabel = XSmallLabel()
 
     let textViewTitleLabel = RegularSemiBoldLabel()
     let textView = PurposeDescriptionTextView()
-    let textViewDescriptionLabel = XSmallLabel()
 
     override func initializeViews() {
         super.initializeViews()
 
         self.registerKeyboardEvents()
+        self.view.set(backgroundColor: .background3)
 
         self.view.addSubview(self.textFieldTitleLabel)
-        self.textFieldTitleLabel.set(text: "Channel Name")
+        self.textFieldTitleLabel.set(text: "Channel Name", stringCasing: .unchanged)
         self.view.addSubview(self.textField)
+
         self.view.addSubview(self.textFieldDescriptionLabel)
-        self.textFieldDescriptionLabel.set(text: "Names must be lowercase, without spaces or periods, and can't be longer than 80 characters.")
+        self.textFieldDescriptionLabel.set(text: "Names must be lowercase, without spaces or periods, and can't be longer than 80 characters.", color: .lightPurple)
+
         self.view.addSubview(self.textViewTitleLabel)
-        self.view.addSubview(self.textViewDescriptionLabel)
-        self.textViewDescriptionLabel.set(text: "Purpose (Optional)")
+        self.textViewTitleLabel.set(text: "Purpose (Optional)", stringCasing: .unchanged)
+        self.view.addSubview(self.textView)
 
         self.textField.onTextChanged = { [unowned self] in
             self.handleTextChange()
@@ -44,11 +48,28 @@ class ChannelPurposeViewController: ViewController, KeyboardObservable {
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
 
-        self.textField.size = CGSize(width: self.view.width, height: 40)
-        self.textField.left = 0
-        self.textField.bottom = self.view.height - 10
+        let width = self.view.width - (self.offset * 2)
 
+        self.textFieldTitleLabel.setSize(withWidth: width)
+        self.textFieldTitleLabel.top = 50
+        self.textFieldTitleLabel.left = self.offset
+
+        self.textField.size = CGSize(width: width, height: 40)
+        self.textField.left = self.offset
+        self.textField.top = self.textFieldTitleLabel.bottom + 10
         self.textField.setBottomBorder(color: .white)
+
+        self.textFieldDescriptionLabel.setSize(withWidth: width)
+        self.textFieldDescriptionLabel.left = self.offset
+        self.textFieldDescriptionLabel.top = self.textField.bottom + 10
+
+        self.textViewTitleLabel.setSize(withWidth: width)
+        self.textViewTitleLabel.top = self.textFieldDescriptionLabel.bottom + 50
+        self.textViewTitleLabel.left = self.offset
+
+        self.textView.size = CGSize(width: width, height: 200)
+        self.textView.top = self.textViewTitleLabel.bottom + 10
+        self.textView.left = self.offset
     }
 
     private func handleTextChange() {

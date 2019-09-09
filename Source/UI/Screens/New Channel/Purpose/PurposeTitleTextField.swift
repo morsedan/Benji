@@ -17,11 +17,10 @@ class PurposeTitleTextField: TextField {
 
         self.addSubview(self.label)
 
-        let defaultAttributed = AttributedString(" ", fontType: .regularBold, color: .white)
-        self.setPlaceholder(attributed: defaultAttributed)
+
         self.returnKeyType = .done
         self.autocapitalizationType = .none 
-        let attributed = AttributedString("Add Title", fontType: .regularBold, color: .white)
+        let attributed = AttributedString("Name", fontType: .regularBold, color: .white)
         self.setPlaceholder(attributed: attributed)
     }
 
