@@ -9,6 +9,11 @@
 import Foundation
 import Parse
 
+protocol ChannelPurposeViewControllerDelegate: class {
+    func channelPurposeView(_ controller: ChannelPurposeViewController,
+                            didCreate channel: ChannelType)
+}
+
 class ChannelPurposeViewController: ViewController {
 
     let offset: CGFloat = 20
@@ -25,6 +30,17 @@ class ChannelPurposeViewController: ViewController {
     let favoritesLabel = RegularBoldLabel()
     let collectionView = FavoritesCollectionView()
     lazy var favoritesVC = FavoritesViewController(with: self.collectionView)
+
+    unowned let delegate: ChannelPurposeViewControllerDelegate
+
+    init(delegate: ChannelPurposeViewControllerDelegate) {
+        self.delegate = delegate
+        super.init()
+    }
+
+    required init?(coder aDecoder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
 
     override func initializeViews() {
         super.initializeViews()
@@ -50,6 +66,8 @@ class ChannelPurposeViewController: ViewController {
         self.textField.onTextChanged = { [unowned self] in
             self.handleTextChange()
         }
+
+        self.textField.delegate = self
 
         self.view.addSubview(self.createButton)
         self.createButton.set(style: .normal(color: .blue, text: "CREATE")) { [unowned self] in
@@ -108,12 +126,52 @@ class ChannelPurposeViewController: ViewController {
 
     private func handleTextChange() {
         guard let text = self.textField.text else { return }
+        self.textField.text = text.lowercased()
+        self.updateCreateButton()
+    }
 
-        self.createButton.isEnabled = !text.isEmpty
+    private func updateCreateButton() {
+        guard let text = self.textField.text else { return }
+
+        var shouldEnable: Bool = !text.isEmpty
+        shouldEnable = self.favoritesVC.manager.selectedIndexes.value.count > 0
+
+        self.createButton.isEnabled = shouldEnable
     }
 
     private func createTapped() {
+        guard let title = self.textField.text,
+        let description = self.textView.text,
+        let value = self.favoritesVC.manager.selectedIndexes.value.first,
+        let user = self.favoritesVC.manager.items.value[safe: value.row] else { return }
 
+        self.createChannel(with: user.objectId!, title: title, description: description)
+    }
+
+    private func createChannel(with inviteeIdentifier: String,
+                               title: String,
+                               description: String) {
+
+        self.createButton.isLoading = true
+        ChannelManager.createChannel(channelName: title, type: .private, attributes: ["description": description])
+            .joinIfNeeded()
+            .invite(personUserID: inviteeIdentifier)
+            .withProgressBanner("Creating channel")
+            .withErrorBanner()
+            .ignoreUserInteractionEventsUntilDone()
+            .observe { (result) in
+                self.createButton.isLoading = false
+                switch result {
+                case .success(let channel):
+                    self.delegate.channelPurposeView(self, didCreate: .channel(channel))
+                case .failure(let error):
+                    if let tomorrowError = error as? ClientError {
+                        print(tomorrowError.localizedDescription)
+                    } else {
+                        print(error.localizedDescription)
+                    }
+                }
+        }
     }
 }
 
@@ -122,10 +180,28 @@ extension ChannelPurposeViewController: UITextViewDelegate {
     func textView(_ textView: UITextView,
                   shouldChangeTextIn range: NSRange,
                   replacementText text: String) -> Bool {
+
         if text == "\n" {
             textView.resignFirstResponder()
             return false
         }
+        
+        return true
+    }
+}
+
+extension ChannelPurposeViewController: UITextFieldDelegate {
+
+    func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
+
+        if string == " " || string == "." {
+            return false
+        }
+
+        if string.count > 80 {
+            return false
+        }
+
         return true
     }
 }

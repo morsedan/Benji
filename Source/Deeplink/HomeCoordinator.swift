@@ -49,3 +49,11 @@ extension HomeCoordinator: ChannelsViewControllerDelegate {
         self.startChannelFlow(for: channelType)
     }
 }
+
+extension HomeCoordinator: ChannelPurposeViewControllerDelegate {
+    func channelPurposeView(_ controller: ChannelPurposeViewController, didCreate channel: ChannelType) {
+        controller.dismiss(animated: true) {
+            self.startChannelFlow(for: channel)
+        }
+    }
+}

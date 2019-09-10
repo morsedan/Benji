@@ -19,12 +19,12 @@ class HomeViewController: FullScreenViewController {
 
     //move
     lazy var newChannelFlowViewController: NewChannelFlowViewController = {
-        let controller = NewChannelFlowViewController()
+        let controller = NewChannelFlowViewController(delegate: self.delegate)
         return controller
     }()
     lazy var scrolledModal = ScrolledModalViewController(presentable: self.newChannelFlowViewController)
 
-    typealias HomeViewControllerDelegate = ChannelsViewControllerDelegate
+    typealias HomeViewControllerDelegate = ChannelsViewControllerDelegate & ChannelPurposeViewControllerDelegate
 
     lazy var channelsVC = ChannelsViewController(with: self.delegate)
     lazy var feedVC = FeedViewController()

@@ -10,7 +10,17 @@ import Foundation
 
 class NewChannelFlowViewController: ScrolledModalFlowViewController {
 
-    lazy var purposeVC = ChannelPurposeViewController()
+    lazy var purposeVC = ChannelPurposeViewController(delegate: self.delegate)
+    unowned let delegate: ChannelPurposeViewControllerDelegate
+
+    init(delegate: ChannelPurposeViewControllerDelegate) {
+        self.delegate = delegate
+        super.init()
+    }
+
+    required init?(coder aDecoder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
 
     override func initializeViews() {
         super.initializeViews()

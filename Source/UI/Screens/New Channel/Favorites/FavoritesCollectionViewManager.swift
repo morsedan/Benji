@@ -16,9 +16,8 @@ class FavoritesCollectionViewManager: CollectionViewManager<FavoriteCell> {
     override func initialize() {
         super.initialize()
 
-        self.selectedIndexes.producer.on { (selectedReferralIndexes) in
-            let indexPaths = Array(selectedReferralIndexes)
-            self.collectionView.reloadItems(at: indexPaths)
+        self.selectedIndexes.producer.on { (radioIndexes) in
+            self.collectionView.reloadData()
         }.start()
     }
 
@@ -38,6 +37,7 @@ class FavoritesCollectionViewManager: CollectionViewManager<FavoriteCell> {
                 return indexes.remove(selectedIndexPath)
             }
         } else {
+            self.selectedIndexes.value = []
             self.selectedIndexes.modify { (indexes) in
                 return indexes.insert(selectedIndexPath)
             }
