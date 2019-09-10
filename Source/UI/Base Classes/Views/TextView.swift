@@ -10,6 +10,18 @@ import Foundation
 
 class TextView: UITextView {
 
+    // Maximum length of text. 0 means no limit.
+    var maxLength: Int = 250
+
+    // Trim white space and newline characters when end editing. Default is true
+    var trimWhiteSpaceWhenEndEditing: Bool = true
+
+    override var text: String! {
+        didSet {
+            self.setNeedsDisplay()
+        }
+    }
+
     private var attributedPlaceholder: NSAttributedString? {
         didSet {
             self.setNeedsDisplay()
@@ -35,6 +47,13 @@ class TextView: UITextView {
     }
 
     func initialize() {
+
+        let styleAttributes = StringStyle(font: .regularSemiBold, color: .white).attributes
+        self.typingAttributes = styleAttributes
+        self.contentMode = .redraw
+
+        self.keyboardAppearance = .dark
+        
         self.set(backgroundColor: .clear)
 
         NotificationCenter.default.addObserver(self, selector: #selector(textDidChange), name: UITextView.textDidChangeNotification, object: self)
@@ -74,8 +93,36 @@ class TextView: UITextView {
         self.textContainer.lineFragmentPadding = 0
     }
 
-    @objc func textDidEndEditing(notification: Notification) {}
-    @objc func textDidChange(notification: Notification) {}
+    // Trim white space and new line characters when end editing.
+    @objc func textDidEndEditing(notification: Notification) {
+        if let sender = notification.object as? TextView, sender == self {
+            if self.trimWhiteSpaceWhenEndEditing {
+                self.text = self.text?.trimmingCharacters(in: .whitespacesAndNewlines)
+                self.setNeedsDisplay()
+            }
+            self.scrollToCorrectPosition()
+        }
+    }
+
+    // Limit the length of text
+    @objc func textDidChange(notification: Notification) {
+        if let sender = notification.object as? TextView, sender == self {
+            if self.maxLength > 0 && self.text.count > maxLength {
+                let endIndex = self.text.index(self.text.startIndex, offsetBy: maxLength)
+                self.text = String(self.text[..<endIndex])
+                self.undoManager?.removeAllActions()
+            }
+            self.setNeedsDisplay()
+        }
+    }
+
+    func scrollToCorrectPosition() {
+        if self.isFirstResponder {
+            self.scrollRangeToVisible(NSMakeRange(-1, 0)) // Scroll to bottom
+        } else {
+            self.scrollRangeToVisible(NSMakeRange(0, 0)) // Scroll to top
+        }
+    }
 
     // Show placeholder if needed
     override func draw(_ rect: CGRect) {

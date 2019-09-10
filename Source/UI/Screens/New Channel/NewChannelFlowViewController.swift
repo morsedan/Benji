@@ -15,7 +15,13 @@ class NewChannelFlowViewController: ScrolledModalFlowViewController {
     override func initializeViews() {
         super.initializeViews()
 
+        self.topMargin = 100
         self.add(controller: self.purposeVC)
         self.moveForward()
+    }
+
+    override func handleKeyboard(frame: CGRect, with animationDuration: TimeInterval, timingCurve: UIView.AnimationCurve) {
+
+        
     }
 }

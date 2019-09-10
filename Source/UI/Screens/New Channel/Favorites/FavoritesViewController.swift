@@ -7,7 +7,18 @@
 //
 
 import Foundation
+import Parse 
 
 class FavoritesViewController: CollectionViewController<FavoriteCell, FavoritesCollectionViewManager> {
-    
+
+    override func initializeViews() {
+        super.initializeViews()
+
+        let query = PFUser.query()
+        query?.findObjectsInBackground(block: { (allUsers, error) in
+            guard let users = allUsers as? [PFUser] else { return }
+
+            self.manager.set(newItems: users)
+        })
+    }
 }

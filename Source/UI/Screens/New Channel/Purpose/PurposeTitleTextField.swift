@@ -11,20 +11,20 @@ import Foundation
 class PurposeTitleTextField: TextField {
 
     let label = RegularSemiBoldLabel()
-    let padding = UIEdgeInsets(top: 0, left: 20, bottom: 0, right: 0)
+    let padding = UIEdgeInsets(top: 0, left: 30, bottom: 0, right: 10)
 
     override func initialize() {
         super.initialize()
 
         self.addSubview(self.label)
-        self.label.set(text: "#", color: .white, alignment: .left)
+        self.label.set(text: "#", color: .lightPurple, alignment: .left)
 
         self.returnKeyType = .done
         self.autocapitalizationType = .none
 
-        let attributed = AttributedString("Name", fontType: .medium, color: .white)
+        let attributed = AttributedString("Name", fontType: .medium, color: .lightPurple)
         self.setPlaceholder(attributed: attributed)
-        self.setDefaultAttributes(style: StringStyle(font: .medium, color: .white))
+        self.setDefaultAttributes(style: StringStyle(font: .medium, color: .lightPurple))
     }
 
     override func layoutSubviews() {
@@ -32,7 +32,7 @@ class PurposeTitleTextField: TextField {
 
         self.label.setSize(withWidth: self.width)
         self.label.centerOnY()
-        self.label.left = 0
+        self.label.left = 10
     }
 
     override func textRect(forBounds bounds: CGRect) -> CGRect {

@@ -13,9 +13,11 @@ class FavoritesCollectionViewLayout: UICollectionViewFlowLayout {
     override func prepare() {
         super.prepare()
 
-        self.collectionView?.contentInset.left = 20
-        self.collectionView?.contentInset.right = 20
-        self.collectionView?.contentInset.bottom = 80
+        self.scrollDirection = .horizontal
+
+        self.collectionView?.contentInset.left = 10
+        self.collectionView?.contentInset.right = 10
+        self.collectionView?.contentInset.bottom = 10
         self.collectionView?.contentInset.top = 10
     }
 }

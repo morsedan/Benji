@@ -7,14 +7,14 @@
 //
 
 import Foundation
-import Contacts
+import Parse
 
 class FavoriteCell: UICollectionViewCell, DisplayableCell {
-    typealias ItemType = CNContact
+    typealias ItemType = PFUser
 
     let avatarView = AvatarView()
 
-    func configure(with item: CNContact?) {
+    func configure(with item: PFUser?) {
         guard let avatar = item else { return }
 
         self.contentView.addSubview(self.avatarView)

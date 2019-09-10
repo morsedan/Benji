@@ -14,19 +14,7 @@ protocol GrowingTextViewDelegate: UITextViewDelegate {
 
 class GrowingTextView: TextView {
 
-    override open var text: String! {
-        didSet {
-            self.setNeedsDisplay()
-        }
-    }
-
     var currentHeight: CGFloat = 0
-
-    // Maximum length of text. 0 means no limit.
-    var maxLength: Int = 250
-
-    // Trim white space and newline characters when end editing. Default is true
-    var trimWhiteSpaceWhenEndEditing: Bool = true
 
     // Customization
     var minHeight: CGFloat = 34 {
@@ -52,13 +40,7 @@ class GrowingTextView: TextView {
     override func initialize() {
         super.initialize()
 
-        let styleAttributes = StringStyle(font: .regularSemiBold, color: .white).attributes
-        self.typingAttributes = styleAttributes
-        self.contentMode = .redraw
-
-        self.keyboardAppearance = .dark
         self.keyboardType = .twitter
-
         self.tintColor = Color.white.color
     }
 
@@ -95,37 +77,6 @@ class GrowingTextView: TextView {
         } else if self.shouldScrollAfterHeightChanged {
             self.shouldScrollAfterHeightChanged = false
             self.scrollToCorrectPosition()
-        }
-    }
-
-    private func scrollToCorrectPosition() {
-        if self.isFirstResponder {
-            self.scrollRangeToVisible(NSMakeRange(-1, 0)) // Scroll to bottom
-        } else {
-            self.scrollRangeToVisible(NSMakeRange(0, 0)) // Scroll to top
-        }
-    }
-
-    // Trim white space and new line characters when end editing.
-    override func textDidEndEditing(notification: Notification) {
-        if let sender = notification.object as? GrowingTextView, sender == self {
-            if self.trimWhiteSpaceWhenEndEditing {
-                self.text = self.text?.trimmingCharacters(in: .whitespacesAndNewlines)
-                self.setNeedsDisplay()
-            }
-            self.scrollToCorrectPosition()
-        }
-    }
-
-    // Limit the length of text
-    override func textDidChange(notification: Notification) {
-        if let sender = notification.object as? GrowingTextView, sender == self {
-            if self.maxLength > 0 && self.text.count > maxLength {
-                let endIndex = self.text.index(self.text.startIndex, offsetBy: maxLength)
-                self.text = String(self.text[..<endIndex])
-                self.undoManager?.removeAllActions()
-            }
-            self.setNeedsDisplay()
         }
     }
 }

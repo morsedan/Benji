@@ -90,3 +90,14 @@ extension PFUser {
         }
     }
 }
+
+extension PFUser: DisplayableCellItem {
+    
+    var backgroundColor: Color {
+        return .purple
+    }
+
+    func diffIdentifier() -> NSObjectProtocol {
+        return self.objectId! as NSObjectProtocol
+    }
+}
