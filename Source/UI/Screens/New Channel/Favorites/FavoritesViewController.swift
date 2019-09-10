@@ -15,6 +15,7 @@ class FavoritesViewController: CollectionViewController<FavoriteCell, FavoritesC
         super.initializeViews()
 
         let query = PFUser.query()
+        query?.whereKey("objectId", notEqualTo: PFUser.current()!.objectId!)
         query?.findObjectsInBackground(block: { (allUsers, error) in
             guard let users = allUsers as? [PFUser] else { return }
 

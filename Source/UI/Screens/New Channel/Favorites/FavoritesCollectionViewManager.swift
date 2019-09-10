@@ -7,37 +7,40 @@
 //
 
 import Foundation
+import ReactiveSwift
 
 class FavoritesCollectionViewManager: CollectionViewManager<FavoriteCell> {
 
-    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, referenceSizeForHeaderInSection section: Int) -> CGSize {
-        return CGSize(width: collectionView.width, height: 80)
-    }
+    let selectedIndexes = MutableProperty<Set<IndexPath>>([])
+    
+    override func initialize() {
+        super.initialize()
 
-    func collectionView(_ collectionView: UICollectionView,
-                        viewForSupplementaryElementOfKind kind: String,
-                        at indexPath: IndexPath) -> UICollectionReusableView {
-
-        switch kind {
-        case UICollectionView.elementKindSectionHeader:
-            return self.header(for: collectionView, at: indexPath)
-        case UICollectionView.elementKindSectionFooter:
-            fatalError("NO FOOTER")
-        default:
-            fatalError("UNRECOGNIZED SECTION KIND")
-        }
-    }
-
-    private func header(for collectionView: UICollectionView, at indexPath: IndexPath) -> UICollectionReusableView {
-        let header: FavoritesSectionHeader = collectionView.dequeueReusableSupplementaryView(ofKind: UICollectionView.elementKindSectionHeader,
-                                                                                           withReuseIdentifier: "NewChannelSectionHeader",
-                                                                                           for: indexPath) as! FavoritesSectionHeader
-        let text = indexPath.section == 0 ? "Context" : "Favorites"
-        header.label.set(text: text, alignment: .left, stringCasing: .uppercase)
-        return header
+        self.selectedIndexes.producer.on { (selectedReferralIndexes) in
+            let indexPaths = Array(selectedReferralIndexes)
+            self.collectionView.reloadItems(at: indexPaths)
+        }.start()
     }
 
     override func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        return CGSize(width: 50, height: 50)
+        return CGSize(width: 60, height: 60)
+    }
+
+    override func managerWillDisplay(cell: FavoriteCell, for indexPath: IndexPath) -> FavoriteCell {
+        let isChecked = self.selectedIndexes.value.contains(indexPath)
+        cell.set(isChecked: isChecked)
+        return cell
+    }
+
+    func updateRows(with selectedIndexPath: IndexPath) {
+        if self.selectedIndexes.value.contains(selectedIndexPath) {
+            self.selectedIndexes.modify { (indexes) in
+                return indexes.remove(selectedIndexPath)
+            }
+        } else {
+            self.selectedIndexes.modify { (indexes) in
+                return indexes.insert(selectedIndexPath)
+            }
+        }
     }
 }

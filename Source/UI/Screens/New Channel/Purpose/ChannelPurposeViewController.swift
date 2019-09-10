@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import Parse
 
 class ChannelPurposeViewController: ViewController {
 
@@ -61,6 +62,10 @@ class ChannelPurposeViewController: ViewController {
         self.addChild(viewController: self.favoritesVC)
         self.favoritesVC.view.set(backgroundColor: .background2)
         self.favoritesVC.view.roundCorners()
+
+        self.favoritesVC.manager.didSelect = { [unowned self] user, indexPath in
+            self.favoritesVC.manager.updateRows(with: indexPath)
+        }
     }
 
     override func viewDidLayoutSubviews() {
@@ -92,7 +97,7 @@ class ChannelPurposeViewController: ViewController {
         self.favoritesLabel.top = self.textView.bottom + 30
         self.favoritesLabel.left = self.offset
 
-        self.favoritesVC.view.size = CGSize(width: width, height: 150)
+        self.favoritesVC.view.size = CGSize(width: width, height: 80)
         self.favoritesVC.view.top = self.favoritesLabel.bottom + 10
         self.favoritesVC.view.left = self.offset
 
