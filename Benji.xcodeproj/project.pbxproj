@@ -105,6 +105,9 @@
 		D64C6A7A232883FE00DB7257 /* CloudCalls.swift in Sources */ = {isa = PBXBuildFile; fileRef = D64C6A79232883FE00DB7257 /* CloudCalls.swift */; };
 		D64C6A7C23288FB300DB7257 /* SmallSemiBoldLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D64C6A7B23288FB300DB7257 /* SmallSemiBoldLabel.swift */; };
 		D64C6A7E23294A8600DB7257 /* ChannelKey.swift in Sources */ = {isa = PBXBuildFile; fileRef = D64C6A7D23294A8600DB7257 /* ChannelKey.swift */; };
+		D64C6A8223294F0E00DB7257 /* PFQuery+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = D64C6A8123294F0E00DB7257 /* PFQuery+Extensions.swift */; };
+		D64C6A84232950A200DB7257 /* UserKey.swift in Sources */ = {isa = PBXBuildFile; fileRef = D64C6A83232950A200DB7257 /* UserKey.swift */; };
+		D64C6A862329513200DB7257 /* PFObject+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = D64C6A852329513200DB7257 /* PFObject+Extensions.swift */; };
 		D66F0FC722BF004300BA277D /* FeedType.swift in Sources */ = {isa = PBXBuildFile; fileRef = D66F0FC622BF004300BA277D /* FeedType.swift */; };
 		D66F0FC922BF006D00BA277D /* SystemMessage.swift in Sources */ = {isa = PBXBuildFile; fileRef = D66F0FC822BF006D00BA277D /* SystemMessage.swift */; };
 		D66F0FCF22BF060500BA277D /* Deeplinkable.swift in Sources */ = {isa = PBXBuildFile; fileRef = D66F0FCE22BF060500BA277D /* Deeplinkable.swift */; };
@@ -329,6 +332,9 @@
 		D64C6A79232883FE00DB7257 /* CloudCalls.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CloudCalls.swift; sourceTree = "<group>"; };
 		D64C6A7B23288FB300DB7257 /* SmallSemiBoldLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SmallSemiBoldLabel.swift; sourceTree = "<group>"; };
 		D64C6A7D23294A8600DB7257 /* ChannelKey.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChannelKey.swift; sourceTree = "<group>"; };
+		D64C6A8123294F0E00DB7257 /* PFQuery+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "PFQuery+Extensions.swift"; sourceTree = "<group>"; };
+		D64C6A83232950A200DB7257 /* UserKey.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserKey.swift; sourceTree = "<group>"; };
+		D64C6A852329513200DB7257 /* PFObject+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "PFObject+Extensions.swift"; sourceTree = "<group>"; };
 		D66F0FC622BF004300BA277D /* FeedType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedType.swift; sourceTree = "<group>"; };
 		D66F0FC822BF006D00BA277D /* SystemMessage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SystemMessage.swift; sourceTree = "<group>"; };
 		D66F0FCE22BF060500BA277D /* Deeplinkable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Deeplinkable.swift; sourceTree = "<group>"; };
@@ -601,6 +607,7 @@
 		D61EC0D721D30C1400204BEE /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
+				D64C6A8023294EED00DB7257 /* Parse */,
 				8002F37E230CD07F00F8C4E3 /* Authorization+Extensions.swift */,
 				D6D1460621D552B100CD8CE4 /* Character+Extensions.swift */,
 				D66F0FE922C0695E00BA277D /* CNContact+Extensions.swift */,
@@ -614,9 +621,7 @@
 				D6D1502A21D69C3300CD8CE4 /* NSObject+Extensions.swift */,
 				D67896AE22FF62630059BA75 /* PhoneKit.swift */,
 				D61EC0E921D3111600204BEE /* String+Extensions.swift */,
-				D6DADF732207E0E2007D9EB1 /* TCHChannel+Extensions.swift */,
-				D6DADF682207D246007D9EB1 /* TCHMessage+Extensions.swift */,
-				D646DB3D22CFCF330055CC7C /* TwilioChatClient+Extensions.swift */,
+				D64C6A7F23294ED700DB7257 /* Twilio */,
 				D6D1503A21D7F47600CD8CE4 /* UI Extensions */,
 			);
 			path = Extensions;
@@ -764,6 +769,26 @@
 				D6D1500521D5E71E00CD8CE4 /* Channel Collection Views */,
 			);
 			path = Channel;
+			sourceTree = "<group>";
+		};
+		D64C6A7F23294ED700DB7257 /* Twilio */ = {
+			isa = PBXGroup;
+			children = (
+				D6DADF732207E0E2007D9EB1 /* TCHChannel+Extensions.swift */,
+				D6DADF682207D246007D9EB1 /* TCHMessage+Extensions.swift */,
+				D646DB3D22CFCF330055CC7C /* TwilioChatClient+Extensions.swift */,
+			);
+			path = Twilio;
+			sourceTree = "<group>";
+		};
+		D64C6A8023294EED00DB7257 /* Parse */ = {
+			isa = PBXGroup;
+			children = (
+				D66F0FE722C0662300BA277D /* PFUser+Extensions.swift */,
+				D64C6A8123294F0E00DB7257 /* PFQuery+Extensions.swift */,
+				D64C6A852329513200DB7257 /* PFObject+Extensions.swift */,
+			);
+			name = Parse;
 			sourceTree = "<group>";
 		};
 		D66F0FD022BF064700BA277D /* Deeplink */ = {
@@ -1056,12 +1081,12 @@
 				D646DB3922CFCC110055CC7C /* Future.swift */,
 				D642735022C857760088256B /* MessageContext.swift */,
 				D642739C22CAFC930088256B /* MessageType.swift */,
-				D66F0FE722C0662300BA277D /* PFUser+Extensions.swift */,
 				80D4A21B2303A005007CB5F1 /* Routine.swift */,
 				D642735222C85B740088256B /* SystemAvatar.swift */,
 				D66F0FC822BF006D00BA277D /* SystemMessage.swift */,
 				D6B2606922E80AB000143CF0 /* Toast.swift */,
 				D64C6A7D23294A8600DB7257 /* ChannelKey.swift */,
+				D64C6A83232950A200DB7257 /* UserKey.swift */,
 			);
 			path = "Data Models";
 			sourceTree = "<group>";
@@ -1311,6 +1336,7 @@
 				D66F0FD422BF074C00BA277D /* DeeplinkObject.swift in Sources */,
 				D6D1461121D583D200CD8CE4 /* RootNavigationController.swift in Sources */,
 				D67896A522FF48D60059BA75 /* LoginFlowViewController.swift in Sources */,
+				D64C6A862329513200DB7257 /* PFObject+Extensions.swift in Sources */,
 				D61EC0EC21D312B600204BEE /* UIView+Extensions.swift in Sources */,
 				D6D1504021DAFB8300CD8CE4 /* UITextField+Extensions.swift in Sources */,
 				D67896CA23039E680059BA75 /* ScrolledModalControllerPresentable.swift in Sources */,
@@ -1321,6 +1347,7 @@
 				D66F0FEA22C0695E00BA277D /* CNContact+Extensions.swift in Sources */,
 				D6DADF6E2207DF33007D9EB1 /* ChannelsCollectionViewManager.swift in Sources */,
 				D6B2603822E6AB5E00143CF0 /* ChannelDetailBar.swift in Sources */,
+				D64C6A8223294F0E00DB7257 /* PFQuery+Extensions.swift in Sources */,
 				D637531C2316143700214F63 /* FavoritesCollectionView.swift in Sources */,
 				D66F0FCF22BF060500BA277D /* Deeplinkable.swift in Sources */,
 				D6B2607222E80FE000143CF0 /* XSmallLabel.swift in Sources */,
@@ -1331,6 +1358,7 @@
 				D67896B622FF86AB0059BA75 /* FeedViewController+Extensions.swift in Sources */,
 				D6AF0301220154E3002D5C75 /* ChannelManager.swift in Sources */,
 				D642736422C9132A0088256B /* EmptyFeedView.swift in Sources */,
+				D64C6A84232950A200DB7257 /* UserKey.swift in Sources */,
 				D61EC0C021D3071400204BEE /* AppDelegate.swift in Sources */,
 				D646DB4022CFCFDB0055CC7C /* Future+Extensions.swift in Sources */,
 				D642739322C9C0110088256B /* AlertView.swift in Sources */,

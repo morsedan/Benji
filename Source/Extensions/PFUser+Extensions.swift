@@ -29,31 +29,28 @@ extension PFUser: Avatar {
 
     var firstName: String {
         get {
-            return String(optional: self.object(forKey: "firstName") as? String)
+            return self.userObject(for: .firstName) ?? String()
         }
         set {
-
-            self.setObject(newValue, forKey: "firstName")
+            self.setUserObject(for: .firstName, with: newValue)
         }
     }
 
     var lastName: String {
         get {
-            return String(optional: self.object(forKey: "lastName") as? String)
+            return self.userObject(for: .lastName) ?? String()
         }
         set {
-
-            self.setObject(newValue, forKey: "lastName")
+            self.setUserObject(for: .lastName, with: newValue)
         }
     }
 
     var handle: String {
         get {
-            return String(optional: self.object(forKey: "handle") as? String)
+            return self.userObject(for: .handle) ?? String()
         }
         set {
-
-            self.setObject(newValue, forKey: "handle")
+            self.setUserObject(for: .handle, with: newValue)
         }
     }
 
@@ -77,16 +74,35 @@ extension PFUser: Avatar {
         guard let last = self.lastName.first, let id = self.objectId else { return }
         self.handle = self.firstName + String(last) + "_" + id
     }
+
+    static func cachedQuery(for objectID: String, completion: ((PFObject?, Error?) -> Void)?) {
+        guard let query = self.query() else { return }
+        query.cachePolicy = .cacheThenNetwork
+        query.whereKey(UserKey.objectId.rawValue, equalTo: objectID)
+        query.getFirstObjectInBackground(block: completion)
+    }
+
+    func getProfileImage(completion: @escaping (UIImage?) -> Void) {
+        guard let imageFile = self[UserKey.profilePicture.rawValue] as? PFFileObject else { return }
+
+        imageFile.getDataInBackground { (imageData: Data?, error: Error?) in
+            guard let data = imageData else { return }
+            let image = UIImage(data: data)
+            completion(image)
+
+        
+        }
+    }
 }
 
 extension PFUser {
 
     var phoneNumber: String? {
         get {
-            return self.object(forKey: "phoneNumber") as? String
+            return self.userObject(for: .phoneNumber) ?? String()
         }
         set {
-            self.setObject(newValue ?? NSNull(), forKey: "phoneNumber")
+            self.setUserObject(for: .phoneNumber, with: newValue)
         }
     }
 }

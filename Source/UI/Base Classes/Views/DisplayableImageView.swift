@@ -73,9 +73,7 @@ class DisplayableImageView: View {
     }
 
     private func findUser(with objectID: String) {
-        let query = PFUser.query()
-        query?.whereKey("objectId", equalTo: objectID)
-        query?.getFirstObjectInBackground(block: { (object, error) in
+        PFUser.cachedQuery(for: objectID, completion: { (object, error) in
             if let user = object as? PFUser {
                 self.downloadAndSetImage(for: user)
             } else {

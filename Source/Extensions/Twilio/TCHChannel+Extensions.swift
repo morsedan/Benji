@@ -86,10 +86,8 @@ extension Future where Value == TCHChannel {
     func getAuthorAsUser() -> Future<PFUser> {
         return self.then(with: { (channel) in
             let promise = Promise<PFUser>()
-            if let authorID = channel.createdBy,
-                let query = PFUser.query() {
-                query.whereKey("objectId", equalTo: authorID)
-                query.getFirstObjectInBackground(block: { (object, error) in
+            if let authorID = channel.createdBy {
+                PFUser.cachedQuery(for: authorID, completion: { (object, error) in
                     if let error = error {
                         promise.reject(with: error)
                     } else if let user = object as? PFUser {
