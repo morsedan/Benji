@@ -44,6 +44,6 @@ class RoutineInputContentView: View {
         self.timeHump.frame = CGRect(x: 0,
                                      y: self.setRoutineButton.bottom,
                                      width: self.width,
-                                     height: 300)
+                                     height: 200)
     }
 }
