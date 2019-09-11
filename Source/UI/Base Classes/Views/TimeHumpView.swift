@@ -15,13 +15,19 @@ class TimeHumpView: View {
         return self.height * 0.5
     }
 
-    private var startNormalizedX: CGFloat = 0
+    private var startPanPercentage: CGFloat = 0
+
+    var percentage: CGFloat = 0 {
+        didSet {
+            self.setNeedsLayout()
+        }
+    }
 
     override func initialize() {
         super.initialize()
 
         self.sliderView.set(backgroundColor: Color.white)
-        self.sliderView.size = CGSize(width: 44, height: 44)
+        self.sliderView.size = CGSize(width: 30, height: 30)
         self.addSubview(self.sliderView)
 
         self.onPan { [unowned self] (panRecognizer) in
@@ -33,12 +39,11 @@ class TimeHumpView: View {
 
         switch panRecognizer.state {
         case .began:
-            self.startNormalizedX = self.sliderView.centerX/self.width
+            self.startPanPercentage = self.percentage
         case .changed, .ended:
             let translation = panRecognizer.translation(in: self)
             let normalizedTranslationX = translation.x/self.width
-            let sliderCenter = self.getPoint(normalizedX: self.startNormalizedX + normalizedTranslationX)
-            self.sliderView.center = sliderCenter
+            self.percentage = self.startPanPercentage + normalizedTranslationX
 
         case .possible, .cancelled, .failed:
             break
@@ -60,6 +65,15 @@ class TimeHumpView: View {
 
         UIColor.black.setStroke()
         path.stroke()
+    }
+
+    override func layoutSubviews() {
+        super.layoutSubviews()
+
+        let sliderCenter = self.getPoint(normalizedX: clamp(self.percentage,
+                                                            -0.01,
+                                                            1.01))
+        self.sliderView.center = sliderCenter
     }
 
     func getPoint(normalizedX: CGFloat) -> CGPoint {
