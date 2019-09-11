@@ -153,7 +153,9 @@ class ChannelPurposeViewController: ViewController {
                                description: String) {
 
         self.createButton.isLoading = true
-        ChannelManager.createChannel(channelName: title, type: .private, attributes: ["description": description])
+        ChannelManager.createChannel(channelName: title,
+                                     channelDescription: description,
+                                     type: .private)
             .joinIfNeeded()
             .invite(personUserID: inviteeIdentifier)
             .withProgressBanner("Creating channel")

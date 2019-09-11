@@ -33,6 +33,12 @@ extension TCHChannel: Diffable, DisplayableCellItem {
         let promise = Promise<TCHChannel>(value: self)
         return promise.getAuthorAsUser()
     }
+
+    var channelDescription: String {
+        guard let attributes = self.attributes(),
+            let description = attributes[ChannelKey.description.rawValue] as? String else { return String() }
+        return description
+    }
 }
 
 extension Future where Value == TCHChannel {

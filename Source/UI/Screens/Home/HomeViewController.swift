@@ -174,7 +174,9 @@ extension HomeViewController: ContactsViewControllerDelegate {
     }
 
     func createChannel(with inviteeIdentifier: String) {
-        ChannelManager.createChannel(channelName: "TEST CHANNEL", type: .private)
+        ChannelManager.createChannel(channelName: "TEST CHANNEL",
+                                     channelDescription: "",
+                                     type: .private)
             .joinIfNeeded()
             .invite(personUserID: inviteeIdentifier)
             .withProgressBanner("Creating channel with TEST CHANNEL")

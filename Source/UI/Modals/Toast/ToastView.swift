@@ -63,7 +63,7 @@ class ToastView: UIView {
         didSet {
             guard let text = self.title else { return }
             self.titleLabel.set(text: text,
-                                color: .offWhite,
+                                color: .white,
                                 lineBreakMode: .byTruncatingTail)
         }
     }

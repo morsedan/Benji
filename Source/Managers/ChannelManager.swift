@@ -70,6 +70,7 @@ class ChannelManager: NSObject {
     }
 
     static func createChannel(channelName: String,
+                              channelDescription: String,
                               type: TCHChannelType,
                               attributes: NSMutableDictionary = [:]) -> Future<TCHChannel> {
 
@@ -77,6 +78,8 @@ class ChannelManager: NSObject {
             let errorMessage = "Unable to create channel. Twilio client uninitialized"
             return Promise<TCHChannel>(error: ClientError.apiError(detail: errorMessage))
         }
+
+        attributes[ChannelKey.description.rawValue] = channelDescription
 
         return client.createChannel(channelName: channelName,
                                     uniqueName: UUID().uuidString,
