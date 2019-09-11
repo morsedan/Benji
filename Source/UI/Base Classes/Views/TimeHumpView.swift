@@ -35,22 +35,7 @@ class TimeHumpView: View {
         }
     }
 
-    private func handlePan(_ panRecognizer: UIPanGestureRecognizer) {
-
-        switch panRecognizer.state {
-        case .began:
-            self.startPanPercentage = self.percentage
-        case .changed, .ended:
-            let translation = panRecognizer.translation(in: self)
-            let normalizedTranslationX = translation.x/self.width
-            self.percentage = self.startPanPercentage + normalizedTranslationX
-
-        case .possible, .cancelled, .failed:
-            break
-        @unknown default:
-            break
-        }
-    }
+    // MARK: Layout
 
     override func draw(_ rect: CGRect) {
         super.draw(rect)
@@ -70,9 +55,7 @@ class TimeHumpView: View {
     override func layoutSubviews() {
         super.layoutSubviews()
 
-        let sliderCenter = self.getPoint(normalizedX: clamp(self.percentage,
-                                                            -0.01,
-                                                            1.01))
+        let sliderCenter = self.getPoint(normalizedX: clamp(self.percentage, 0, 1))
         self.sliderView.center = sliderCenter
     }
 
@@ -84,6 +67,41 @@ class TimeHumpView: View {
         let y = (self.height * 0.5) - (sin(angle - halfPi) * self.amplitude)
 
         return CGPoint(x: x, y: y)
+    }
+
+    // MARK: Touch Input
+
+    private func handlePan(_ panRecognizer: UIPanGestureRecognizer) {
+
+        switch panRecognizer.state {
+        case .began:
+            self.startPanPercentage = self.percentage
+        case .changed:
+            let translation = panRecognizer.translation(in: self)
+            let normalizedTranslationX = translation.x/self.width
+            self.percentage = self.startPanPercentage + normalizedTranslationX
+        case .ended:
+            let velocity = panRecognizer.velocity(in: self)
+            self.animateToFinalPosition(withCurrentVelocity: velocity.x)
+        case .possible, .cancelled, .failed:
+            break
+        @unknown default:
+            break
+        }
+    }
+
+    private func animateToFinalPosition(withCurrentVelocity velocity: CGFloat) {
+        self.animateToPercentage(percentage: self.percentage + velocity * 0.01)
+    }
+
+    func animateToPercentage(percentage: CGFloat) {
+
+        UIView.animate(withDuration: 0.25,
+                       delay: 0,
+                       options: UIView.AnimationOptions.curveEaseOut,
+                       animations: {
+                        self.percentage = percentage
+        })
     }
 }
 
