@@ -10,8 +10,41 @@ import Foundation
 
 class TimeHumpView: View {
 
+    let sliderView = View()
     var amplitude: CGFloat {
         return self.height * 0.5
+    }
+
+    private var startNormalizedX: CGFloat = 0
+
+    override func initialize() {
+        super.initialize()
+
+        self.sliderView.set(backgroundColor: Color.white)
+        self.sliderView.size = CGSize(width: 44, height: 44)
+        self.addSubview(self.sliderView)
+
+        self.onPan { [unowned self] (panRecognizer) in
+            self.handlePan(panRecognizer)
+        }
+    }
+
+    private func handlePan(_ panRecognizer: UIPanGestureRecognizer) {
+
+        switch panRecognizer.state {
+        case .began:
+            self.startNormalizedX = self.sliderView.centerX/self.width
+        case .changed, .ended:
+            let translation = panRecognizer.translation(in: self)
+            let normalizedTranslationX = translation.x/self.width
+            let sliderCenter = self.getPoint(normalizedX: self.startNormalizedX + normalizedTranslationX)
+            self.sliderView.center = sliderCenter
+
+        case .possible, .cancelled, .failed:
+            break
+        @unknown default:
+            break
+        }
     }
 
     override func draw(_ rect: CGRect) {
@@ -40,7 +73,7 @@ class TimeHumpView: View {
     }
 }
 
-let halfPi: CGFloat = CGFloat.pi * 05
+let halfPi: CGFloat = CGFloat.pi * 0.5
 let twoPi: CGFloat = CGFloat.pi * 2
 
 func sin(degrees: Double) -> Double {
