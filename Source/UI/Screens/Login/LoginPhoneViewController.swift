@@ -62,14 +62,10 @@ class LoginPhoneViewController: LoginTextInputViewController {
 
     private func sendCode(to phone: PhoneNumber) {
         self.didComplete(phone)
-//        SendCode(phone: phone)
-//            .producer
-//            .withErrorBanner()
-//            .on(completed: { [weak self] in
-//                guard let self = `self` else { return }
-//                self.didComplete(phone)
-//            })
-//            .start()
+
+        SendCode.callFunction { (object, error) in
+
+        }
     }
 }
 

@@ -47,22 +47,11 @@ class LoginCodeViewController: LoginTextInputViewController {
             }
         }
 
-//        VerifyCode(phone: self.phoneNumber, code: code).producer
-//            .withErrorBanner()
-//            .startWithResult { result in
-//                switch result {
-//                case .success(let user):
-//                    if let strongUser = user {
-//                        TomorrowAnalytics.reportMarketing(event: .NewRegisteredUser)
-//                        self.didVerifyUser(strongUser)
-//                    } else {
-//                        self.userNeedsPassword()
-//                    }
-//                case .failure(_):
-//                    self.verifying = false
-//                    self.textField.text = String()
-//                }
-//                self.textField.resignFirstResponder()
-//        }
+        VerifyCode.callFunction { (object, error) in
+            if let user = object as? PFUser {
+                self.didVerifyUser(user)
+            }
+            self.textField.resignFirstResponder()
+        }
     }
 }

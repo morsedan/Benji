@@ -102,6 +102,7 @@
 		D646DB4022CFCFDB0055CC7C /* Future+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = D646DB3F22CFCFDB0055CC7C /* Future+Extensions.swift */; };
 		D646DB4222CFDB400055CC7C /* ChannelCollectionViewController+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = D646DB4122CFDB400055CC7C /* ChannelCollectionViewController+Extensions.swift */; };
 		D646DB4422CFDE0C0055CC7C /* LoadingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D646DB4322CFDE0C0055CC7C /* LoadingView.swift */; };
+		D64C6A7A232883FE00DB7257 /* CloudCalls.swift in Sources */ = {isa = PBXBuildFile; fileRef = D64C6A79232883FE00DB7257 /* CloudCalls.swift */; };
 		D66F0FC722BF004300BA277D /* FeedType.swift in Sources */ = {isa = PBXBuildFile; fileRef = D66F0FC622BF004300BA277D /* FeedType.swift */; };
 		D66F0FC922BF006D00BA277D /* SystemMessage.swift in Sources */ = {isa = PBXBuildFile; fileRef = D66F0FC822BF006D00BA277D /* SystemMessage.swift */; };
 		D66F0FCF22BF060500BA277D /* Deeplinkable.swift in Sources */ = {isa = PBXBuildFile; fileRef = D66F0FCE22BF060500BA277D /* Deeplinkable.swift */; };
@@ -323,6 +324,7 @@
 		D646DB3F22CFCFDB0055CC7C /* Future+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Future+Extensions.swift"; sourceTree = "<group>"; };
 		D646DB4122CFDB400055CC7C /* ChannelCollectionViewController+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ChannelCollectionViewController+Extensions.swift"; sourceTree = "<group>"; };
 		D646DB4322CFDE0C0055CC7C /* LoadingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadingView.swift; sourceTree = "<group>"; };
+		D64C6A79232883FE00DB7257 /* CloudCalls.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CloudCalls.swift; sourceTree = "<group>"; };
 		D66F0FC622BF004300BA277D /* FeedType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedType.swift; sourceTree = "<group>"; };
 		D66F0FC822BF006D00BA277D /* SystemMessage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SystemMessage.swift; sourceTree = "<group>"; };
 		D66F0FCE22BF060500BA277D /* Deeplinkable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Deeplinkable.swift; sourceTree = "<group>"; };
@@ -587,6 +589,7 @@
 		D61EC0D621D30C0500204BEE /* API */ = {
 			isa = PBXGroup;
 			children = (
+				D64C6A79232883FE00DB7257 /* CloudCalls.swift */,
 			);
 			path = API;
 			sourceTree = "<group>";
@@ -1259,6 +1262,7 @@
 				D6DADF692207D246007D9EB1 /* TCHMessage+Extensions.swift in Sources */,
 				D61EC0F721D316F100204BEE /* Color.swift in Sources */,
 				D642739D22CAFC930088256B /* MessageType.swift in Sources */,
+				D64C6A7A232883FE00DB7257 /* CloudCalls.swift in Sources */,
 				D6D1503121D6A2B900CD8CE4 /* UITableView+Extensions.swift in Sources */,
 				D646DB3A22CFCC110055CC7C /* Future.swift in Sources */,
 				D66F0FD622BF28A100BA277D /* AppDelegate+Initialization.swift in Sources */,
