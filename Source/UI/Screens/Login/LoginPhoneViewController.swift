@@ -61,10 +61,11 @@ class LoginPhoneViewController: LoginTextInputViewController {
     }
 
     private func sendCode(to phone: PhoneNumber) {
-        self.didComplete(phone)
-
+        
         SendCode.callFunction { (object, error) in
-
+            if error == nil {
+                self.didComplete(phone)
+            }
         }
     }
 }
