@@ -16,40 +16,55 @@
             <rect key="frame" x="0.0" y="0.0" width="369" height="70"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
+                <visualEffectView opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="f0S-QZ-yvA">
+                    <rect key="frame" x="0.0" y="0.0" width="369" height="70"/>
+                    <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="TPP-eR-Qo1">
+                        <rect key="frame" x="0.0" y="0.0" width="369" height="70"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <visualEffectView opaque="NO" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="43C-Gs-OPH">
+                                <rect key="frame" x="0.0" y="0.0" width="369" height="70"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" ambiguous="YES" insetsLayoutMarginsFromSafeArea="NO" id="UGO-JM-lxg">
+                                    <rect key="frame" x="0.0" y="0.0" width="369" height="70"/>
+                                    <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                </view>
+                                <vibrancyEffect>
+                                    <blurEffect style="dark"/>
+                                </vibrancyEffect>
+                            </visualEffectView>
+                        </subviews>
+                    </view>
+                    <blurEffect style="dark"/>
+                </visualEffectView>
                 <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="pUS-K5-DgV" customClass="DisplayableImageView" customModule="Benji" customModuleProvider="target">
                     <rect key="frame" x="5" y="10" width="50" height="50"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                 </view>
-                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="uA1-UW-89j" customClass="XSmallLabel" customModule="Benji" customModuleProvider="target">
-                    <rect key="frame" x="65" y="5" width="200" height="30"/>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="uA1-UW-89j" customClass="SmallSemiBoldLabel" customModule="Benji" customModuleProvider="target">
+                    <rect key="frame" x="84" y="20" width="200" height="30"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                     <nil key="textColor"/>
                     <nil key="highlightedColor"/>
                 </label>
-                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="4rY-LH-3nm">
-                    <rect key="frame" x="284" y="20" width="80" height="30"/>
-                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                    <constraints>
-                        <constraint firstAttribute="height" constant="30" id="avG-Ra-Wn6"/>
-                        <constraint firstAttribute="width" constant="80" id="uPz-Gh-wpl"/>
-                    </constraints>
-                </view>
             </subviews>
-            <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
             <constraints>
-                <constraint firstAttribute="trailing" secondItem="4rY-LH-3nm" secondAttribute="trailing" constant="5" id="rBC-XM-D4c"/>
-                <constraint firstItem="4rY-LH-3nm" firstAttribute="centerY" secondItem="AOd-iL-7aP" secondAttribute="centerY" id="rht-D8-olM"/>
+                <constraint firstItem="f0S-QZ-yvA" firstAttribute="trailing" secondItem="0uy-BS-DST" secondAttribute="trailing" id="82t-4E-r5c"/>
+                <constraint firstItem="f0S-QZ-yvA" firstAttribute="leading" secondItem="0uy-BS-DST" secondAttribute="leading" id="Q2D-Jl-Lrb"/>
+                <constraint firstAttribute="bottom" secondItem="f0S-QZ-yvA" secondAttribute="bottom" id="mgY-k8-B5y"/>
+                <constraint firstItem="f0S-QZ-yvA" firstAttribute="top" secondItem="AOd-iL-7aP" secondAttribute="top" id="o7O-rD-GQ8"/>
             </constraints>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
             <viewLayoutGuide key="safeArea" id="0uy-BS-DST"/>
             <connections>
-                <outlet property="buttonContainer" destination="4rY-LH-3nm" id="n4G-vm-eRP"/>
                 <outlet property="displayableImageView" destination="pUS-K5-DgV" id="A3D-tI-L3U"/>
+                <outlet property="effectView" destination="f0S-QZ-yvA" id="qwf-N4-m2d"/>
                 <outlet property="titleLabel" destination="uA1-UW-89j" id="fsV-9B-Eqd"/>
             </connections>
-            <point key="canvasLocation" x="29.600000000000001" y="-240.17991004497753"/>
+            <point key="canvasLocation" x="28.260869565217394" y="-240.40178571428569"/>
         </view>
     </objects>
 </document>

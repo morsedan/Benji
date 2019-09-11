@@ -63,7 +63,6 @@ class DisplayableImageView: View {
     }
 
     private func downloadAndSetImage(for user: PFUser) {
-        //Possible Parse integration
         guard let imageFile = user["profilePicture"] as? PFFileObject else { return }
         
         imageFile.getDataInBackground { (imageData: Data?, error: Error?) in

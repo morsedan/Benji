@@ -18,9 +18,9 @@ enum ToastState {
 
 class ToastView: UIView {
 
-    @IBOutlet weak var titleLabel: XSmallLabel!
+    @IBOutlet weak var titleLabel: SmallSemiBoldLabel!
     @IBOutlet weak var displayableImageView: DisplayableImageView!
-    @IBOutlet weak var buttonContainer: UIView!
+    @IBOutlet weak var effectView: UIVisualEffectView!
 
     var didDismiss: () -> Void = {}
     var didTap: () -> Void = {}
@@ -78,8 +78,6 @@ class ToastView: UIView {
         guard let superview = UIWindow.topWindow() else { return }
         superview.addSubview(self)
 
-        self.set(backgroundColor: .background3)
-
         self.isUserInteractionEnabled = true
         self.layer.masksToBounds = true
         self.layer.cornerRadius = 10
@@ -88,7 +86,6 @@ class ToastView: UIView {
         self.displayableImageView.layer.cornerRadius = 5
 
         self.titleLabel.alpha = 0
-        self.buttonContainer.alpha = 0
 
         self.addShadow(withOffset: 5)
         self.updateFor(state: self.toastState)
@@ -105,7 +102,6 @@ class ToastView: UIView {
     func configure(toast: Toast) {
         self.toast = toast
         self.title = toast.title
-        self.buttonContainer.addSubview(toast.button)
 
         toast.button.onTap { (tap) in
             //Add any repsone to the button tap here
@@ -227,7 +223,6 @@ class ToastView: UIView {
             }
         case .alphaIn:
             self.titleLabel.alpha = 1
-            self.buttonContainer.alpha = 1
         case .dismiss, .gone:
             if self.position == .top {
                 self.bottom = superView.top + 10
@@ -279,14 +274,13 @@ class ToastView: UIView {
         self.displayableImageView.left = 5
         self.displayableImageView.centerOnY()
 
-        let maxTitleWidth = self.buttonContainer.left - (self.displayableImageView.right + 12)
-        let titleSize = self.titleLabel.getSize(withWidth: maxTitleWidth)
-        self.titleLabel.width = titleSize.width
+        let maxTitleWidth = self.width - (self.displayableImageView.right + 12)
+        self.titleLabel.setSize(withWidth: maxTitleWidth)
         self.titleLabel.left = self.displayableImageView.right + 10
         self.titleLabel.top = self.displayableImageView.top
         self.titleLabel.height = self.displayableImageView.height
         self.titleLabel.centerOnY()
 
-        self.toast?.button.frame = self.buttonContainer.bounds
+        self.effectView.roundCorners()
     }
 }
