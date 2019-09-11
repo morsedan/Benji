@@ -11,7 +11,7 @@ import Foundation
 class SmallSemiBoldLabel: Label {
 
     func set(text: Localized,
-             color: Color = .white,
+             color: Color = .offWhite,
              alignment: NSTextAlignment = .left,
              lineBreakMode: NSLineBreakMode = .byWordWrapping,
              stringCasing: StringCasing = .unchanged) {

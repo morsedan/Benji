@@ -22,6 +22,7 @@ enum Color: String, CaseIterable {
     case green
     case red
     case white
+    case offWhite
     case clear
     case black
 
@@ -49,6 +50,8 @@ enum Color: String, CaseIterable {
             return #colorLiteral(red: 0, green: 1, blue: 0.462745098, alpha: 1)
         case .white:
             return #colorLiteral(red: 1, green: 1, blue: 1, alpha: 1)
+        case .offWhite:
+            return #colorLiteral(red: 0.9176470588, green: 0.9137254902, blue: 0.8274509804, alpha: 1)
         case .clear:
             return #colorLiteral(red: 0, green: 0, blue: 0, alpha: 0)
         case .orange:

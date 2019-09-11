@@ -63,7 +63,7 @@ class ToastView: UIView {
         didSet {
             guard let text = self.title else { return }
             self.titleLabel.set(text: text,
-                                color: .white,
+                                color: .offWhite,
                                 lineBreakMode: .byTruncatingTail)
         }
     }
@@ -274,7 +274,7 @@ class ToastView: UIView {
         self.displayableImageView.left = 5
         self.displayableImageView.centerOnY()
 
-        let maxTitleWidth = self.width - (self.displayableImageView.right + 12)
+        let maxTitleWidth = self.width - (self.displayableImageView.right + 22)
         self.titleLabel.setSize(withWidth: maxTitleWidth)
         self.titleLabel.left = self.displayableImageView.right + 10
         self.titleLabel.top = self.displayableImageView.top
