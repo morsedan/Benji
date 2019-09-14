@@ -11,7 +11,7 @@ import Foundation
 class ChannelCoordinator: PresentableCoordinator<Void> {
 
     let channelType: ChannelType
-    lazy var scrolledModal = ChannelModalViewController(with: self.channelType)
+    lazy var scrolledModal = ChannelModalViewController(with: self.channelType, delegate: self)
 
     init(router: Router, channelType: ChannelType) {
         self.channelType = channelType
@@ -29,5 +29,16 @@ class ChannelCoordinator: PresentableCoordinator<Void> {
         self.scrolledModal.didDismiss = { [unowned self] in
             self.finishFlow(with: ())
         }
+    }
+}
+
+extension ChannelCoordinator: ChannelDetailBarDelegate {
+
+    func channelDetailBarDidTapClose(_ view: ChannelDetailBar) {
+        self.toPresentable().dismiss(animated: true, completion: nil)
+    }
+
+    func channelDetailBarDidTapMenu(_ view: ChannelDetailBar) {
+        //Present channel menu
     }
 }

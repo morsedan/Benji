@@ -108,6 +108,7 @@
 		D64C6A8223294F0E00DB7257 /* PFQuery+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = D64C6A8123294F0E00DB7257 /* PFQuery+Extensions.swift */; };
 		D64C6A84232950A200DB7257 /* UserKey.swift in Sources */ = {isa = PBXBuildFile; fileRef = D64C6A83232950A200DB7257 /* UserKey.swift */; };
 		D64C6A862329513200DB7257 /* PFObject+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = D64C6A852329513200DB7257 /* PFObject+Extensions.swift */; };
+		D64C6A97232D5C0400DB7257 /* TCHMember+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = D64C6A96232D5C0400DB7257 /* TCHMember+Extensions.swift */; };
 		D66F0FC722BF004300BA277D /* FeedType.swift in Sources */ = {isa = PBXBuildFile; fileRef = D66F0FC622BF004300BA277D /* FeedType.swift */; };
 		D66F0FC922BF006D00BA277D /* SystemMessage.swift in Sources */ = {isa = PBXBuildFile; fileRef = D66F0FC822BF006D00BA277D /* SystemMessage.swift */; };
 		D66F0FCF22BF060500BA277D /* Deeplinkable.swift in Sources */ = {isa = PBXBuildFile; fileRef = D66F0FCE22BF060500BA277D /* Deeplinkable.swift */; };
@@ -335,6 +336,7 @@
 		D64C6A8123294F0E00DB7257 /* PFQuery+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "PFQuery+Extensions.swift"; sourceTree = "<group>"; };
 		D64C6A83232950A200DB7257 /* UserKey.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserKey.swift; sourceTree = "<group>"; };
 		D64C6A852329513200DB7257 /* PFObject+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "PFObject+Extensions.swift"; sourceTree = "<group>"; };
+		D64C6A96232D5C0400DB7257 /* TCHMember+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "TCHMember+Extensions.swift"; sourceTree = "<group>"; };
 		D66F0FC622BF004300BA277D /* FeedType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedType.swift; sourceTree = "<group>"; };
 		D66F0FC822BF006D00BA277D /* SystemMessage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SystemMessage.swift; sourceTree = "<group>"; };
 		D66F0FCE22BF060500BA277D /* Deeplinkable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Deeplinkable.swift; sourceTree = "<group>"; };
@@ -777,6 +779,7 @@
 				D6DADF732207E0E2007D9EB1 /* TCHChannel+Extensions.swift */,
 				D6DADF682207D246007D9EB1 /* TCHMessage+Extensions.swift */,
 				D646DB3D22CFCF330055CC7C /* TwilioChatClient+Extensions.swift */,
+				D64C6A96232D5C0400DB7257 /* TCHMember+Extensions.swift */,
 			);
 			path = Twilio;
 			sourceTree = "<group>";
@@ -1306,6 +1309,7 @@
 				D691794222F6418700340AA3 /* Router.swift in Sources */,
 				D6D1501821D5F40F00CD8CE4 /* UICollectionView+Extensions.swift in Sources */,
 				D642737822C99DB50088256B /* ContactsCollectionView.swift in Sources */,
+				D64C6A97232D5C0400DB7257 /* TCHMember+Extensions.swift in Sources */,
 				D6815DBB22EE1F1400E71251 /* FeedCollectionViewManager.swift in Sources */,
 				D642737A22C99DD20088256B /* ContactCell.swift in Sources */,
 				D684D6EB22D0E4F000874B08 /* StackedAvatarView.swift in Sources */,

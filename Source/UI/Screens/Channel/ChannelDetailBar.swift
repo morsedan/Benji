@@ -8,15 +8,27 @@
 
 import Foundation
 import TwilioChatClient
+import Parse
+
+protocol ChannelDetailBarDelegate: class {
+    func channelDetailBarDidTapClose(_ view: ChannelDetailBar)
+    func channelDetailBarDidTapMenu(_ view: ChannelDetailBar)
+}
 
 class ChannelDetailBar: View {
 
-    private(set) var titleLabel = Display2Label()
+    private(set) var titleLabel = RegularBoldLabel()
     private(set) var stackedAvatarView = StackedAvatarView()
+    private let closeButton = Button()
+    private let titleButton = Button()
+    private let selectionFeedback = UIImpactFeedbackGenerator(style: .light)
 
     let channelType: ChannelType
 
-    init(with channelType: ChannelType) {
+    unowned let delegate: ChannelDetailBarDelegate
+
+    init(with channelType: ChannelType, delegate: ChannelDetailBarDelegate) {
+        self.delegate = delegate
         self.channelType = channelType
         super.init()
     }
@@ -29,13 +41,23 @@ class ChannelDetailBar: View {
         super.initialize()
 
         self.addSubview(self.titleLabel)
+        self.addSubview(self.titleButton)
+        self.titleButton.onTap { [unowned self] (tap) in
+            self.delegate.channelDetailBarDidTapMenu(self)
+        }
+
         self.addSubview(self.stackedAvatarView)
+        self.addSubview(self.closeButton)
+        self.closeButton.set(style: .icon(image: #imageLiteral(resourceName: "down_arrow")))
+        self.closeButton.onTap { [unowned self] (tap) in
+            self.delegate.channelDetailBarDidTapClose(self)
+        }
 
         switch self.channelType {
         case .system(let message):
-            break
+            self.setLayout(for: message)
         case .channel(let channel):
-            break
+            self.setLayout(for: channel)
         }
 
         self.subscribeToUpdates()
@@ -44,13 +66,21 @@ class ChannelDetailBar: View {
     override func layoutSubviews() {
         super.layoutSubviews()
 
-        self.stackedAvatarView.right = self.width - 18
+        self.closeButton.size = CGSize(width: 20, height: 20)
+        self.closeButton.right = self.width - 16
+        self.closeButton.centerOnY()
+
+        self.stackedAvatarView.left = 36
         self.stackedAvatarView.centerOnY()
 
-        let titleWidth = self.width - 68
+        let titleWidth = self.width - self.stackedAvatarView.width - self.closeButton.width - 44
         self.titleLabel.setSize(withWidth: titleWidth)
-        self.titleLabel.left = 18
+        self.titleLabel.left = self.stackedAvatarView.right + 10
         self.titleLabel.centerOnY()
+
+        self.titleButton.size = CGSize(width: self.titleLabel.width, height: self.height)
+        self.titleButton.left = self.titleLabel.left
+        self.titleButton.centerOnY()
     }
 
     func setLayout(for system: SystemMessage) {
@@ -59,8 +89,26 @@ class ChannelDetailBar: View {
     }
 
     func setLayout(for channel: TCHChannel) {
-//        self.set(text: channel.)
-//        self.set(avatars: [system.avatar])
+        self.updateFriendlyName(for: channel)
+        self.updateMembers(for: channel)
+    }
+
+    private func updateFriendlyName(for channel: TCHChannel) {
+        if let name = channel.friendlyName {
+            self.set(text: name)
+        }
+    }
+
+    private func updateMembers(for channel: TCHChannel) {
+        if let members = channel.members {
+            members.members { (result, paginator) in
+                guard result.isSuccessful(), let pag = paginator else { return }
+                let membersExcludingCurrent = pag.items().filter({ (member) -> Bool in
+                    return member.identity != PFUser.current.objectId
+                })
+                self.set(avatars: membersExcludingCurrent)
+            }
+        }
     }
 
     private func set(avatars: [Avatar]) {
@@ -73,32 +121,6 @@ class ChannelDetailBar: View {
     }
 
     private func subscribeToUpdates() {
-        ChannelManager.shared.memberUpdate.producer.on { [weak self] (update) in
-            //guard let `self` = self else { return }
-
-            guard let memberUpdate = update, memberUpdate.channel == ChannelManager.shared.selectedChannel else { return }
-
-            //Update collection of Avatars 
-            switch memberUpdate.status {
-            case .joined:
-                break
-            case .left:
-                break
-            case .changed:
-                break
-               // self.loadChannelMessages(with: memberUpdate.channel)
-            case .typingEnded:
-                break
-                //                if let memberID = memberUpdate.member.identity, memberID != User.me?.id {
-                //                    self.hideStatusUpdate()
-            //                }
-            case .typingStarted:
-                break
-                //                if let memberID = memberUpdate.member.identity, memberID != User.me?.id {
-                //                    self.showTyping(for: memberUpdate.member)
-                //                }
-            }
-            }.start()
 
         ChannelManager.shared.channelSyncUpdate.producer.on { [weak self] (update) in
             guard let `self` = self else { return }
@@ -110,19 +132,8 @@ class ChannelDetailBar: View {
             case .none, .identifier, .metadata, .failed:
                 break
             case .all:
-                if let name = channelsUpdate.channel.friendlyName {
-                    self.set(text: name)
-                }
-
-                channelsUpdate.channel.getAuthorAsUser().observe(with: { (result) in
-                    switch result {
-                    case .success(let user):
-                        self.stackedAvatarView.configure(items: [user])
-                    case .failure(let error):
-                        print(error)
-                    }
-                })
-                
+                self.updateMembers(for: channelsUpdate.channel)
+                self.updateFriendlyName(for: channelsUpdate.channel)
             @unknown default:
                 break
             }

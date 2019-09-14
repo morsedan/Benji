@@ -10,11 +10,15 @@ import Foundation
 
 class ChannelModalViewController: ScrolledModalViewController<ChannelViewController> {
 
-    lazy var detailBar = ChannelDetailBar(with: self.channelType)
+    lazy var detailBar = ChannelDetailBar(with: self.channelType, delegate: self.delegate)
 
     private let channelType: ChannelType
 
-    init(with channelType: ChannelType) {
+    typealias ChannelModalViewControllerDelegate = ChannelDetailBarDelegate
+    unowned let delegate: ChannelModalViewControllerDelegate
+
+    init(with channelType: ChannelType, delegate: ChannelModalViewControllerDelegate) {
+        self.delegate = delegate
         self.channelType = channelType
         super.init(presentable: ChannelViewController(channelType: channelType))
     }
