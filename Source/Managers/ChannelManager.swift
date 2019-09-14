@@ -81,7 +81,7 @@ class ChannelManager: NSObject {
 
         attributes[ChannelKey.description.rawValue] = channelDescription
 
-        return client.createChannel(channelName: channelName,
+        return client.createChannel(channelName: "#" + channelName,
                                     uniqueName: UUID().uuidString,
                                     type: type,
                                     attributes: attributes)

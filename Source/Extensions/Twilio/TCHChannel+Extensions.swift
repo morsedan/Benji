@@ -36,8 +36,8 @@ extension TCHChannel: Diffable, DisplayableCellItem {
 
     var channelDescription: String {
         guard let attributes = self.attributes(),
-            let description = attributes[ChannelKey.description.rawValue] as? String else { return String() }
-        return description
+            let text = attributes[ChannelKey.description.rawValue] as? String else { return String() }
+        return text
     }
 }
 

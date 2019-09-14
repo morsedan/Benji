@@ -10,42 +10,17 @@ import Foundation
 
 class ChannelCellContentView: View {
 
-    let moreButton = Button()
-
-    private let contextCircle = View()
     private let headerView = View()
-    private let contextLabel = Label()
-    private let messageLabel = Label()
+    private let titleLabel = RegularBoldLabel()
+    private let messageLabel = RegularSemiBoldLabel()
     private let avatarView = AvatarView()
-
-    var contextText: Localized? {
-        didSet {
-            guard let text = self.contextText else { return }
-            let attributed = AttributedString(text,
-                                              color: .white)
-            self.contextLabel.set(attributed: attributed)
-        }
-    }
-
-    var messageText: Localized? {
-        didSet {
-            guard let text = self.messageText else { return }
-            let attributed = AttributedString(text,
-                                              color: .white)
-            self.messageLabel.set(attributed: attributed)
-        }
-    }
 
     override func initialize() {
 
         self.addSubview(self.headerView)
         self.headerView.set(backgroundColor: .background2)
-        self.headerView.addSubview(self.moreButton)
-        self.moreButton.set(style: .normal(color: .clear, text: "MORE"))
-        self.headerView.addSubview(self.contextCircle)
-        self.contextCircle.makeRound()
-        self.addSubview(self.avatarView)
-        self.headerView.addSubview(self.contextLabel)
+        self.headerView.addSubview(self.avatarView)
+        self.headerView.addSubview(self.titleLabel)
         self.addSubview(self.messageLabel)
         self.roundCorners()
         self.set(backgroundColor: .background2)
@@ -55,20 +30,22 @@ class ChannelCellContentView: View {
 
         switch type {
         case .system(let message):
-            self.contextCircle.layer.borderColor = message.context.color.color.cgColor
-            self.contextCircle.layer.borderWidth = 2
             self.avatarView.set(avatar: message.avatar)
-            self.contextText = message.context.text
-            self.messageText = message.body
+            self.titleLabel.set(text: message.context.text)
+            self.messageLabel.set(text: message.body)
         case .channel(let channel):
             
             guard let channelMessages = channel.messages else { return }
             channelMessages.getLastWithCount(10, completion: { (result, messages) in
-                guard let msgs = messages, let last = msgs.last else { return }
+                guard let msgs = messages, let last = msgs.last, let body = last.body else { return }
 
-                self.messageText = last.body
+                self.messageLabel.set(text: body)
                 self.layoutNow()
             })
+
+            if let name = channel.friendlyName {
+                self.titleLabel.set(text: name)
+            }
 
             channel.getAuthorAsUser().observe(with: { (result) in
                 switch result {
@@ -88,28 +65,19 @@ class ChannelCellContentView: View {
         self.headerView.centerOnX()
         self.headerView.top = 0
 
-        self.contextCircle.size = CGSize(width: 25, height: 25)
-        self.contextCircle.left = Theme.contentOffset
-        self.contextCircle.centerOnY()
-        self.contextCircle.makeRound()
-
-        self.moreButton.size = CGSize(width: 60, height: self.headerView.height)
-        self.moreButton.right = self.width - Theme.contentOffset
-        self.moreButton.centerOnY()
-
-        self.contextLabel.size = CGSize(width: 200, height: self.headerView.height)
-        self.contextLabel.left = self.contextCircle.right + Theme.contentOffset
-        self.contextLabel.centerOnY()
-
-        self.avatarView.size = CGSize(width: 56, height: 56)
-        self.avatarView.top = self.headerView.bottom + 16
+        self.avatarView.size = CGSize(width: 30, height: 30)
         self.avatarView.left = 16
+        self.avatarView.centerOnY()
+
+        self.titleLabel.size = CGSize(width: 200, height: self.headerView.height)
+        self.titleLabel.left = self.avatarView.right + Theme.contentOffset
+        self.titleLabel.centerOnY()
         
         if let attributedText = self.messageLabel.attributedText {
             let maxWidth = self.width - self.avatarView.right - 40
             self.messageLabel.size = attributedText.getSize(withWidth: maxWidth)
-            self.messageLabel.top = self.avatarView.top
-            self.messageLabel.left = self.avatarView.right + 16
+            self.messageLabel.left = 16
+            self.messageLabel.top = self.headerView.bottom + 10
         }
     }
 }
