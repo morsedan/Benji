@@ -122,6 +122,9 @@ UICollectionViewDelegateFlowLayout {
 
         switch kind {
         case UICollectionView.elementKindSectionHeader:
+            if self.isSectionReservedForTypingIndicator(indexPath.section) {
+                return UICollectionReusableView()
+            }
             return self.header(for: collectionView, at: indexPath)
         case UICollectionView.elementKindSectionFooter:
             fatalError("NO FOOTER")
@@ -133,7 +136,9 @@ UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView,
                         layout collectionViewLayout: UICollectionViewLayout,
                         referenceSizeForHeaderInSection section: Int) -> CGSize {
-        guard !self.isSectionReservedForTypingIndicator(section) else { return .zero }
+        if self.isSectionReservedForTypingIndicator(section) {
+            return .zero
+        }
         return CGSize(width: collectionView.width, height: 50)
     }
 

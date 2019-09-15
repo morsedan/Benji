@@ -36,7 +36,7 @@ class ChannelSectionHeader: UICollectionReusableView {
     override func layoutSubviews() {
         super.layoutSubviews()
 
-        self.label.sizeToFit()
+        self.label.setSize(withWidth: self.width)
         self.label.centerOnXAndY()
 
         self.underLineView.height = 1
