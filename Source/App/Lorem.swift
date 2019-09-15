@@ -101,7 +101,8 @@ class Lorem {
                                     body: self.sentence(),
                                     id: String(self.randomString()),
                                     isFromCurrentUser: self.isFromCurrentUserList.random(),
-                                    timeStampAsDate: self.dates.random())
+                                    timeStampAsDate: self.dates.random(),
+                                    status: .unknown)
         return message
     }
 
@@ -112,7 +113,8 @@ class Lorem {
                                     body: self.paragraph(),
                                     id: String(self.randomString()),
                                     isFromCurrentUser: self.isFromCurrentUserList.random(),
-                                    timeStampAsDate: self.dates.random())
+                                    timeStampAsDate: self.dates.random(),
+                                    status: .unknown)
         return message
     }
 

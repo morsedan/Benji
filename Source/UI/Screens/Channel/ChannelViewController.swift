@@ -8,6 +8,7 @@
 
 import Foundation
 import ReactiveSwift
+import Parse
 
 class ChannelViewController: ViewController, ScrolledModalControllerPresentable {
 
@@ -127,7 +128,8 @@ class ChannelViewController: ViewController, ScrolledModalControllerPresentable 
                                           body: message,
                                           id: String(Lorem.randomString()),
                                           isFromCurrentUser: true,
-                                          timeStampAsDate: Date())
+                                          timeStampAsDate: Date(),
+                                          status: .unknown)
         self.channelCollectionVC.channelDataSource.append(item: .system(systemMessage))
         self.reset()
     }
@@ -135,8 +137,17 @@ class ChannelViewController: ViewController, ScrolledModalControllerPresentable 
     func send(message: String) {
         guard let channel = ChannelManager.shared.selectedChannel else { return }
 
-        ChannelManager.shared.sendMessage(to: channel, with: message)
+        let messageType = SystemMessage(avatar: PFUser.current,
+                                    context: .casual,
+                                    body: message,
+                                    id: PFUser.current.objectId!,
+                                    isFromCurrentUser: true,
+                                    timeStampAsDate: Date(),
+                                    status: .sent)
+        let type: MessageType = .user(messageType)
+        self.channelCollectionVC.channelDataSource.append(item: type)
         self.reset()
+        ChannelManager.shared.sendMessage(to: channel, with: message)
     }
 
     private func reset() {

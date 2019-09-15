@@ -56,6 +56,10 @@ extension TCHMessage: Diffable, DisplayableCellItem, Avatar {
     var userObjectID: String? {
         return self.author
     }
+
+    var status: MessageTypeStatus {
+        return .delivered
+    }
 }
 
 extension Future where Value == TCHMessage {

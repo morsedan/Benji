@@ -77,6 +77,30 @@ extension ChannelDataSource {
         }
     }
 
+    func updateLastItem(with item: MessageType) {
+
+        if self.sections.count == 0 {
+            self.append(item: item)
+            return
+        }
+
+        guard let sectionValue = self.sections.last else { return }
+        let section = self.sections.count - 1
+        var indexPath: IndexPath?
+
+        for (index, existingItem) in sectionValue.items.enumerated() {
+            if localized(existingItem.body) == localized(item.body) {
+                indexPath = IndexPath(item: index, section: section)
+                break
+            }
+        }
+
+        guard let ip = indexPath else { return }
+
+        self.sections[section].items[ip.row] = item
+        self.collectionView?.reloadItems(at: [ip])
+    }
+
     func update(item: MessageType, in section: Int = 0) {
         guard let sectionValue = self.sections[safe: section] else { return }
 

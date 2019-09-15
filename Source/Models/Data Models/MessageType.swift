@@ -8,15 +8,25 @@
 
 import Foundation
 import TwilioChatClient
+import Parse
+
+enum MessageTypeStatus {
+    case delivered
+    case sent
+    case read
+    case unknown
+    case error(ClientError)
+}
 
 enum MessageType: DisplayableCellItem {
 
+    case user(SystemMessage)
     case system(SystemMessage)
     case message(TCHMessage)
 
     var createdAt: Date {
         switch self {
-        case .system(let message):
+        case .system(let message), .user(let message):
             return message.timeStampAsDate
         case .message(let message):
             return message.timestampAsDate ?? Date()
@@ -25,7 +35,7 @@ enum MessageType: DisplayableCellItem {
 
     var backgroundColor: Color {
         switch self {
-        case .system(let message):
+        case .system(let message), .user(let message):
             return message.isFromCurrentUser ? .lightPurple : .purple
         case .message(let message):
             return message.isFromCurrentUser ? .lightPurple : .purple
@@ -34,7 +44,7 @@ enum MessageType: DisplayableCellItem {
 
     var body: Localized {
         switch self {
-        case .system(let message):
+        case .system(let message), .user(let message):
             return message.body
         case .message(let message):
             return String(optional: message.body)
@@ -43,7 +53,7 @@ enum MessageType: DisplayableCellItem {
 
     var isFromCurrentUser: Bool {
         switch self {
-        case .system(let message):
+        case .system(let message), .user(let message):
             return message.isFromCurrentUser
         case .message(let message):
             return message.isFromCurrentUser
@@ -53,7 +63,7 @@ enum MessageType: DisplayableCellItem {
 
     var avatar: Avatar {
         switch self {
-        case .system(let message):
+        case .system(let message), .user(let message):
             return message.avatar
         case .message(let message):
             return message
@@ -63,7 +73,7 @@ enum MessageType: DisplayableCellItem {
 
     func diffIdentifier() -> NSObjectProtocol {
         switch self {
-        case .system(let message):
+        case .system(let message), .user(let message):
             return message.diffIdentifier()
         case .message(let message):
             return message.diffIdentifier()
@@ -72,10 +82,23 @@ enum MessageType: DisplayableCellItem {
 
     var author: String {
         switch self {
+        case .user(_):
+            return String(optional: PFUser.current.objectId)
         case .system(_):
             return "system"
         case .message(let message):
             return String(optional: message.author)
+        }
+    }
+
+    var status: MessageTypeStatus {
+        switch self {
+        case .user(let message):
+            return message.status
+        case .system(_):
+            return .unknown
+        case .message(let message):
+            return message.status
         }
     }
 }
