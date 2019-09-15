@@ -47,6 +47,17 @@ UICollectionViewDelegateFlowLayout {
         self.subscribeToUpdates()
     }
 
+    /// A method that by default checks if the section is the last in the
+    /// `messagesCollectionView` and that `isTypingIndicatorViewHidden`
+    /// is FALSE
+    ///
+    /// - Parameter section
+    /// - Returns: A Boolean indicating if the TypingIndicator should be presented at the given section
+    func isSectionReservedForTypingIndicator(_ section: Int) -> Bool {
+        return !self.collectionView.isTypingIndicatorHidden
+            && section == self.numberOfSections(in: self.collectionView) - 1
+    }
+
     func numberOfSections(in collectionView: UICollectionView) -> Int {
         collectionView.backgroundView?.isHidden = self.channelDataSource.sections.value.count > 0
         return self.channelDataSource.sections.value.count
@@ -68,12 +79,15 @@ UICollectionViewDelegateFlowLayout {
             fatalError("Data Source not found")
         }
 
+        if isSectionReservedForTypingIndicator(indexPath.section) {
+            return self.typingIndicator(at: indexPath, in: channelCollectionView)
+        }
+
         guard let message = channelDataSource.item(at: indexPath) else {
             fatalError("Message not found")
         }
 
-        let cell: MessageCell = collectionView.dequeueReusableCell(withReuseIdentifier: "MessageCell",
-                                                                   for: indexPath) as! MessageCell
+        let cell = channelCollectionView.dequeueReusableCell(MessageCell.self, for: indexPath)
 
         cell.configure(with: message, at: indexPath, and: channelCollectionView)
         //Reset all gestures
@@ -113,6 +127,13 @@ UICollectionViewDelegateFlowLayout {
         return CGSize(width: collectionView.width, height: 50)
     }
 
+    func collectionView(_ collectionView: UICollectionView,
+                        willDisplay cell: UICollectionViewCell,
+                        forItemAt indexPath: IndexPath) {
+        guard let cell = cell as? TypingIndicatorCell else { return }
+        cell.typingBubble.startAnimating()
+    }
+
     private func header(for collectionView: UICollectionView, at indexPath: IndexPath) -> UICollectionReusableView {
         let header: ChannelSectionHeader = collectionView.dequeueReusableSupplementaryView(ofKind: UICollectionView.elementKindSectionHeader,
                                                                                             withReuseIdentifier: "ChannelSectionHeader",
@@ -130,5 +151,9 @@ UICollectionViewDelegateFlowLayout {
             return .zero
         }
         return channelLayout.sizeForItem(at: indexPath)
+    }
+
+    func typingIndicator(at indexPath: IndexPath, in collectionView: ChannelCollectionView) -> UICollectionViewCell {
+        return collectionView.dequeueReusableCell(TypingIndicatorCell.self, for: indexPath)
     }
 }

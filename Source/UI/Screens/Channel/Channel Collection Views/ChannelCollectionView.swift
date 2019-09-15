@@ -21,6 +21,10 @@ class ChannelCollectionView: CollectionView {
         return layout
     }
 
+    var isTypingIndicatorHidden: Bool {
+        return self.channelCollectionViewFlowLayout.isTypingIndicatorViewHidden
+    }
+
     init(with flowLayout: ChannelCollectionViewFlowLayout) {
         super.init(flowLayout: flowLayout)
         self.registerReusableViews()
@@ -40,6 +44,7 @@ class ChannelCollectionView: CollectionView {
 
     private func registerReusableViews() {
         self.register(MessageCell.self)
+        self.register(TypingIndicatorCell.self)
         self.register(ChannelSectionHeader.self,
                       forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader)
     }

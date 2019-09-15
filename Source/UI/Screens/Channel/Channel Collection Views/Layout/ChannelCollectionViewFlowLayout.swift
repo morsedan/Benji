@@ -10,6 +10,7 @@ import Foundation
 
 class ChannelCollectionViewFlowLayout: UICollectionViewFlowLayout {
 
+    private(set) var isTypingIndicatorViewHidden: Bool = true
     private var insertingIndexPaths: [IndexPath] = []
 
     override class var layoutAttributesClass: AnyClass {
@@ -139,5 +140,25 @@ class ChannelCollectionViewFlowLayout: UICollectionViewFlowLayout {
     func sizeForItem(at indexPath: IndexPath) -> CGSize {
         let calculator = self.cellSizeCalculatorForItem(at: indexPath)
         return calculator.sizeForItem(at: indexPath)
+    }
+
+    // MARK: - Typing Indicator API
+
+    /// Notifies the layout that the typing indicator will change state
+    ///
+    /// - Parameters:
+    ///   - isHidden: A Boolean value that is to be the new state of the typing indicator
+    func setTypingIndicatorViewHidden(_ isHidden: Bool) {
+        self.isTypingIndicatorViewHidden = isHidden
+    }
+
+    /// A method that by default checks if the section is the last in the
+    /// `messagesCollectionView` and that `isTypingIndicatorViewHidden`
+    /// is FALSE
+    ///
+    /// - Parameter section
+    /// - Returns: A Boolean indicating if the TypingIndicator should be presented at the given section
+    func isSectionReservedForTypingIndicator(_ section: Int) -> Bool {
+        return !isTypingIndicatorViewHidden && section == self.channelCollectionView.numberOfSections - 1
     }
 }

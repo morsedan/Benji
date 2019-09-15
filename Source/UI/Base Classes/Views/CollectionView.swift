@@ -48,10 +48,18 @@ class CollectionView: UICollectionView {
     }
 
     /// Registers a reusable view for a specific SectionKind
-    public func register<T: UICollectionReusableView>(_ reusableViewClass: T.Type,
+    func register<T: UICollectionReusableView>(_ reusableViewClass: T.Type,
                                                       forSupplementaryViewOfKind kind: String) {
         self.register(reusableViewClass,
                       forSupplementaryViewOfKind: kind,
                       withReuseIdentifier: String(describing: T.self))
+    }
+
+    /// Generically dequeues a cell of the correct type allowing you to avoid scattering your code with guard-let-else-fatal
+    func dequeueReusableCell<T: UICollectionViewCell>(_ cellClass: T.Type, for indexPath: IndexPath) -> T {
+        guard let cell = dequeueReusableCell(withReuseIdentifier: String(describing: T.self), for: indexPath) as? T else {
+            fatalError("Unable to dequeue \(String(describing: cellClass)) with reuseId of \(String(describing: T.self))")
+        }
+        return cell
     }
 }
