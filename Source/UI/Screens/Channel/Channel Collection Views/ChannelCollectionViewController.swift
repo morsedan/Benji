@@ -59,13 +59,23 @@ UICollectionViewDelegateFlowLayout {
     }
 
     func numberOfSections(in collectionView: UICollectionView) -> Int {
+        guard let channelCollectionView = collectionView as? ChannelCollectionView else { return 0 }
         collectionView.backgroundView?.isHidden = self.channelDataSource.sections.value.count > 0
-        return self.channelDataSource.sections.value.count
+        var numberOfSections = self.channelDataSource.sections.value.count
+        if channelCollectionView.isTypingIndicatorHidden {
+            numberOfSections += 1
+        }
+        return numberOfSections
     }
 
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        guard let section = self.channelDataSource.sections.value[safe: section] else { return 0 }
-        return section.items.count
+        guard let sectionType = self.channelDataSource.sections.value[safe: section] else { return 0 }
+
+        if self.isSectionReservedForTypingIndicator(section) {
+            return 1
+        }
+
+        return sectionType.items.count
     }
 
     func collectionView(_ collectionView: UICollectionView,
@@ -79,8 +89,8 @@ UICollectionViewDelegateFlowLayout {
             fatalError("Data Source not found")
         }
 
-        if isSectionReservedForTypingIndicator(indexPath.section) {
-            return self.typingIndicator(at: indexPath, in: channelCollectionView)
+        if self.isSectionReservedForTypingIndicator(indexPath.section) {
+            return channelCollectionView.dequeueReusableCell(TypingIndicatorCell.self, for: indexPath)
         }
 
         guard let message = channelDataSource.item(at: indexPath) else {
@@ -123,7 +133,7 @@ UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView,
                         layout collectionViewLayout: UICollectionViewLayout,
                         referenceSizeForHeaderInSection section: Int) -> CGSize {
-
+        guard !self.isSectionReservedForTypingIndicator(section) else { return .zero }
         return CGSize(width: collectionView.width, height: 50)
     }
 
@@ -151,9 +161,5 @@ UICollectionViewDelegateFlowLayout {
             return .zero
         }
         return channelLayout.sizeForItem(at: indexPath)
-    }
-
-    func typingIndicator(at indexPath: IndexPath, in collectionView: ChannelCollectionView) -> UICollectionViewCell {
-        return collectionView.dequeueReusableCell(TypingIndicatorCell.self, for: indexPath)
     }
 }

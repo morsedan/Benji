@@ -10,6 +10,7 @@ import Foundation
 
 protocol GrowingTextViewDelegate: UITextViewDelegate {
     func textViewDidChangeHeight(_ textView: GrowingTextView, height: CGFloat)
+    func textViewTextDidChange(_ textView: GrowingTextView)
 }
 
 class GrowingTextView: TextView {
@@ -78,6 +79,12 @@ class GrowingTextView: TextView {
             self.shouldScrollAfterHeightChanged = false
             self.scrollToCorrectPosition()
         }
+    }
+
+    override func textDidChange(notification: Notification) {
+        super.textDidChange(notification: notification)
+
+        self.growingDelegate?.textViewTextDidChange(self)
     }
 }
 

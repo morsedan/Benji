@@ -8,6 +8,7 @@
 
 import Foundation
 import TwilioChatClient
+import Parse
 
 extension ChannelCollectionViewController {
 
@@ -68,10 +69,13 @@ extension ChannelCollectionViewController {
 
             switch channelUpdate.status {
             case .added:
-                self.channelDataSource.append(item: .message(channelUpdate.message))
-                runMain {
-                    self.collectionView.scrollToBottom()
-                }
+                self.setTypingIndicatorViewHidden(true, performUpdates: { [weak self] in
+                    guard let `self` = self else { return }
+                    self.channelDataSource.append(item: .message(channelUpdate.message))
+                    runMain {
+                        self.collectionView.scrollToBottom()
+                    }
+                })
             // Add check here for last message not from user and its attributes to find quick messsages
             case .changed:
                 self.channelDataSource.update(item: .message(channelUpdate.message))
@@ -95,15 +99,11 @@ extension ChannelCollectionViewController {
             case .changed:
                 self.loadChannelMessages(with: memberUpdate.channel)
             case .typingEnded:
-                break
-//                if let memberID = memberUpdate.member.identity, memberID != User.me?.id {
-//                    self.hideStatusUpdate()
-//                }
+                self.setTypingIndicatorViewHidden(true, animated: true)
             case .typingStarted:
-                break
-//                if let memberID = memberUpdate.member.identity, memberID != User.me?.id {
-//                    self.showTyping(for: memberUpdate.member)
-//                }
+                if let memberID = memberUpdate.member.identity, memberID != PFUser.current.objectId {
+                    self.setTypingIndicatorViewHidden(false, animated: true)
+                }
             }
             }.start()
 
@@ -122,5 +122,60 @@ extension ChannelCollectionViewController {
                 break
             }
             }.start()
+    }
+
+    func setTypingIndicatorViewHidden(_ isHidden: Bool, performUpdates updates: (() -> Void)? = nil) {
+        self.setTypingIndicatorViewHidden(isHidden, animated: true, whilePerforming: updates) { [weak self] success in
+            guard let `self` = self else { return }
+            if success, self.isLastSectionVisible() == true {
+                self.collectionView.scrollToBottom()
+            }
+        }
+    }
+
+    func setTypingIndicatorViewHidden(_ isHidden: Bool,
+                                      animated: Bool,
+                                      whilePerforming updates: (() -> Void)? = nil,
+                                      completion: ((Bool) -> Void)? = nil) {
+
+        guard self.collectionView.isTypingIndicatorHidden != isHidden else {
+            completion?(false)
+            return
+        }
+
+        let section = self.collectionView.numberOfSections
+        self.collectionView.channelCollectionViewFlowLayout.setTypingIndicatorViewHidden(isHidden)
+
+        if animated {
+            self.collectionView.performBatchUpdates({ [weak self] in
+                guard let `self` = self else { return }
+                self.performUpdatesForTypingIndicatorVisability(at: section)
+                updates?()
+                }, completion: completion)
+        } else {
+            self.performUpdatesForTypingIndicatorVisability(at: section)
+            updates?()
+            completion?(true)
+        }
+    }
+
+    /// Performs a delete or insert on the `MessagesCollectionView` on the provided section
+    ///
+    /// - Parameter section: The index to modify
+    private func performUpdatesForTypingIndicatorVisability(at section: Int) {
+        if self.collectionView.isTypingIndicatorHidden {
+            self.collectionView.deleteSections([section - 1])
+        } else {
+            self.collectionView.insertSections([section])
+        }
+    }
+
+    func isLastSectionVisible() -> Bool {
+        let sectionCount = self.channelDataSource.sections.value.count
+
+        guard sectionCount > 0 else { return false }
+
+        let lastIndexPath = IndexPath(item: 0, section: sectionCount - 1)
+        return self.collectionView.indexPathsForVisibleItems.contains(lastIndexPath)
     }
 }

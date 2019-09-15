@@ -147,6 +147,13 @@ class ChannelViewController: ViewController, ScrolledModalControllerPresentable 
 }
 
 extension ChannelViewController: GrowingTextViewDelegate {
+
+    func textViewTextDidChange(_ textView: GrowingTextView) {
+        guard let channel = ChannelManager.shared.selectedChannel, textView.text.count > 0 else { return }
+        channel.typing()
+    }
+
+
     func textViewDidChangeHeight(_ textView: GrowingTextView, height: CGFloat) {
         UIView.animate(withDuration: Theme.animationDuration) {
             self.messageInputView.textView.height = height

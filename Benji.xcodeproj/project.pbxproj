@@ -1072,8 +1072,8 @@
 				D6B2603522E6A97400143CF0 /* Layout */,
 				D684840822CD2E1E00362AC3 /* Cells */,
 				D68483F822CC3DE400362AC3 /* ChannelCollectionViewController.swift */,
-				D6D1502C21D6A08300CD8CE4 /* ChannelCollectionView.swift */,
 				D646DB4122CFDB400055CC7C /* ChannelCollectionViewController+Extensions.swift */,
+				D6D1502C21D6A08300CD8CE4 /* ChannelCollectionView.swift */,
 				D6B2601322E3E31500143CF0 /* ChannelDataSourceManager.swift */,
 				D684D6E822D0E1CB00874B08 /* EmptyChannelView.swift */,
 			);
