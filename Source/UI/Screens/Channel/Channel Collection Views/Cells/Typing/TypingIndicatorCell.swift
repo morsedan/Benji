@@ -13,7 +13,7 @@ class TypingIndicatorCell: UICollectionViewCell {
 
     // MARK: - Subviews
 
-    var insets = UIEdgeInsets(top: 15, left: 0, bottom: 0, right: 0)
+    var insets = UIEdgeInsets(top: 15, left: 16, bottom: 0, right: 0)
     let typingBubble = TypingBubbleView()
 
     // MARK: - Initialization

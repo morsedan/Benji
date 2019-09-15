@@ -69,7 +69,7 @@ class TypingBubbleView: View {
         self.addSubview(self.cornerBubble)
         self.addSubview(self.contentBubble)
         self.contentBubble.addSubview(self.typingIndicator)
-        self.set(backgroundColor: .lightPurple)
+        self.set(backgroundColor: .purple)
     }
 
     // MARK: - Layout
@@ -79,26 +79,26 @@ class TypingBubbleView: View {
 
         // To maintain the iMessage like bubble the width:height ratio of the frame
         // must be close to 1.65
-        let ratio = bounds.width / bounds.height
-        let extraRightInset = bounds.width - 1.65/ratio*bounds.width
+        let ratio = self.bounds.width / self.bounds.height
+        let extraRightInset = self.bounds.width - 1.65/ratio * self.bounds.width
 
-        let tinyBubbleRadius: CGFloat = bounds.height / 6
+        let tinyBubbleRadius: CGFloat = self.bounds.height / 6
         self.tinyBubble.frame = CGRect(x: 0,
-                                  y: bounds.height - tinyBubbleRadius,
-                                  width: tinyBubbleRadius,
-                                  height: tinyBubbleRadius)
+                                       y: self.bounds.height - tinyBubbleRadius,
+                                       width: tinyBubbleRadius,
+                                       height: tinyBubbleRadius)
 
         let cornerBubbleRadius = tinyBubbleRadius * 2
         let offset: CGFloat = tinyBubbleRadius / 6
         self.cornerBubble.frame = CGRect(x: tinyBubbleRadius - offset,
-                                    y: bounds.height - (1.5 * cornerBubbleRadius) + offset,
-                                    width: cornerBubbleRadius,
-                                    height: cornerBubbleRadius)
+                                         y: self.bounds.height - (1.5 * cornerBubbleRadius) + offset,
+                                         width: cornerBubbleRadius,
+                                         height: cornerBubbleRadius)
 
         let contentBubbleFrame = CGRect(x: tinyBubbleRadius + offset,
                                         y: 0,
-                                        width: bounds.width - (tinyBubbleRadius + offset) - extraRightInset,
-                                        height: bounds.height - (tinyBubbleRadius + offset))
+                                        width: self.bounds.width - (tinyBubbleRadius + offset) - extraRightInset,
+                                        height: self.bounds.height - (tinyBubbleRadius + offset))
         let contentBubbleFrameCornerRadius = contentBubbleFrame.height / 2
 
         self.contentBubble.frame = contentBubbleFrame

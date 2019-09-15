@@ -95,6 +95,12 @@ extension ChannelDataSource {
             }
         }
 
+        if indexPath == nil,
+            let channelCollectionView = self.collectionView as? ChannelCollectionView,
+            !channelCollectionView.isTypingIndicatorHidden {
+            indexPath = IndexPath(item: sectionValue.items.count - 1, section: section)
+        }
+
         guard let ip = indexPath else { return }
 
         self.sections[section].items[ip.row] = item

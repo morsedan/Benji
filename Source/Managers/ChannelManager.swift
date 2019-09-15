@@ -167,7 +167,7 @@ class ChannelManager: NSObject {
 
         guard let allMessages = channel.messages else { return }
 
-        allMessages.getLastWithCount(100) { (result, messages) in
+        allMessages.getLastWithCount(30) { (result, messages) in
             guard let strongMessages = messages else { return }
 
             var sections: [ChannelSectionType] = []

@@ -69,12 +69,12 @@ UICollectionViewDelegateFlowLayout {
     }
 
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        guard let sectionType = self.channelDataSource.sections[safe: section] else { return 0 }
 
         if self.isSectionReservedForTypingIndicator(section) {
             return 1
         }
 
+        guard let sectionType = self.channelDataSource.sections[safe: section] else { return 0 }
         return sectionType.items.count
     }
 

@@ -17,10 +17,10 @@ class TypingIndicatorView: View {
     var bounceOffset: CGFloat = 2.5
 
     /// A convenience accessor for the `backgroundColor` of each dot
-    var dotColor: UIColor = UIColor.lightGray {
+    var dotColor: UIColor = Color.lightPurple.color {
         didSet {
             self.dots.forEach { dot in
-                dot.backgroundColor = dotColor
+                dot.backgroundColor = self.dotColor
             }
         }
     }
