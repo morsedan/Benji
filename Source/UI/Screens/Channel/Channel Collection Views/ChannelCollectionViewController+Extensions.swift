@@ -77,7 +77,7 @@ extension ChannelCollectionViewController {
                 } else {
                     self.setTypingIndicatorViewHidden(true, performUpdates: { [weak self] in
                         guard let `self` = self else { return }
-                        self.channelDataSource.updateLastItem(with: .message(channelUpdate.message))
+                        self.channelDataSource.updateLastItem(with: .message(channelUpdate.message), replaceTypingIndicator: true)
                     })
                 }
             // Add check here for last message not from user and its attributes to find quick messsages

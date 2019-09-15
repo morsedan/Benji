@@ -77,7 +77,7 @@ extension ChannelDataSource {
         }
     }
 
-    func updateLastItem(with item: MessageType) {
+    func updateLastItem(with item: MessageType, replaceTypingIndicator: Bool = false) {
 
         if self.sections.count == 0 {
             self.append(item: item)
@@ -95,10 +95,12 @@ extension ChannelDataSource {
             }
         }
 
-        if indexPath == nil,
-            let channelCollectionView = self.collectionView as? ChannelCollectionView,
-            !channelCollectionView.isTypingIndicatorHidden {
-            indexPath = IndexPath(item: sectionValue.items.count - 1, section: section)
+        if indexPath == nil, replaceTypingIndicator {
+            if replaceTypingIndicator {
+                indexPath = IndexPath(item: sectionValue.items.count - 1, section: section)
+            } else {
+                self.append(item: item)
+            }
         }
 
         guard let ip = indexPath else { return }
