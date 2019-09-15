@@ -69,13 +69,17 @@ extension ChannelCollectionViewController {
 
             switch channelUpdate.status {
             case .added:
-                self.setTypingIndicatorViewHidden(true, performUpdates: { [weak self] in
-                    guard let `self` = self else { return }
+                if self.collectionView.isTypingIndicatorHidden {
                     self.channelDataSource.append(item: .message(channelUpdate.message))
                     runMain {
                         self.collectionView.scrollToBottom()
                     }
-                })
+                } else {
+                    self.setTypingIndicatorViewHidden(true, performUpdates: { [weak self] in
+                        guard let `self` = self else { return }
+                        self.channelDataSource.append(item: .message(channelUpdate.message))
+                    })
+                }
             // Add check here for last message not from user and its attributes to find quick messsages
             case .changed:
                 self.channelDataSource.update(item: .message(channelUpdate.message))
@@ -128,7 +132,9 @@ extension ChannelCollectionViewController {
         self.setTypingIndicatorViewHidden(isHidden, animated: true, whilePerforming: updates) { [weak self] success in
             guard let `self` = self else { return }
             if success, self.isLastSectionVisible() == true {
-                self.collectionView.scrollToBottom()
+                runMain {
+                    self.collectionView.scrollToBottom()
+                }
             }
         }
     }

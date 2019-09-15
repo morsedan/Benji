@@ -39,14 +39,14 @@ class LaunchCoordinator: PresentableCoordinator<DeepLinkable?> {
 }
 
 extension LaunchCoordinator: LaunchManagerDelegate {
-    func launchManager(_ launchManager: LaunchManager, didFinishWith options: LaunchOptions) {
+    func launchManager(_ launchManager: LaunchManager, didFinishWith options: LaunchStatus) {
         switch options {
         case .success(let deepLink):
             self.deepLink = deepLink
             runMain {
                 self.runHomeFlow()
             }
-        case .failed:
+        default:
             break
         }
     }

@@ -59,12 +59,12 @@ class MainCoordinator: Coordinator<Void> {
 }
 
 extension MainCoordinator: LaunchManagerDelegate {
-    func launchManager(_ launchManager: LaunchManager, didFinishWith options: LaunchOptions) {
+    func launchManager(_ launchManager: LaunchManager, didFinishWith options: LaunchStatus) {
         switch options {
         case .success(let object):
             guard let deepLink = object else { break }
             self.start(with: deepLink)
-        case .failed:
+        default:
             break
         }
     }

@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import Parse
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -21,6 +22,21 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         self.initializeMainCoordinator(with: rootNavController, withOptions: launchOptions)
 
         return true
+    }
+
+    func applicationDidBecomeActive(_ application: UIApplication) {
+        guard !ChannelManager.shared.isSynced else { return }
+
+        switch LaunchManager.shared.status {
+        case .isLaunching, .failed(_):
+            break
+        case .success(_):
+            if let identity = PFUser.current.objectId {
+                LaunchManager.shared.authenticateChatClient(with: identity)
+            } else {
+                LaunchManager.shared.createAnonymousUser()
+            }
+        }
     }
 }
 

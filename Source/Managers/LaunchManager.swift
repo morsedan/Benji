@@ -9,13 +9,14 @@
 import Foundation
 import Parse
 
-enum LaunchOptions {
+enum LaunchStatus {
+    case isLaunching
     case success(object: DeepLinkable?)
     case failed(error: ClientError?)
 }
 
 protocol LaunchManagerDelegate: class {
-    func launchManager(_ launchManager: LaunchManager, didFinishWith options: LaunchOptions)
+    func launchManager(_ launchManager: LaunchManager, didFinishWith options: LaunchStatus)
 }
 
 class LaunchManager {
@@ -35,6 +36,11 @@ class LaunchManager {
     private let url = "https://benji-ios.herokuapp.com/parse"
     private let appID = "benjamindodgson.Benji"
     private let clientKey = "myMasterKey"
+    private(set) var status: LaunchStatus = .isLaunching {
+        didSet {
+            self.delegate?.launchManager(self, didFinishWith: self.status)
+        }
+    }
 
     func launchApp(with: [UIApplication.LaunchOptionsKey: Any]?) {
 
@@ -52,7 +58,7 @@ class LaunchManager {
         }
     }
 
-    private func createAnonymousUser() {
+    func createAnonymousUser() {
         PFAnonymousUtils.logIn { (user, error) in
             guard let anonymousUser = user, let identifier = anonymousUser.objectId else { return }
             self.authenticateChatClient(with: identifier)
@@ -67,13 +73,12 @@ class LaunchManager {
 
         TokenUtils.retrieveToken(url: urlString) { (token, identity, error) in
             if let token = token {
-                //Setup Access manager with token
                 // Set up Twilio Chat client
                 ChannelManager.initialize(token: token)
                 self.finishedInitialFetch = true
-                self.delegate?.launchManager(self, didFinishWith: .success(object: nil))
+                self.status = .success(object: nil)
             } else {
-                self.delegate?.launchManager(self, didFinishWith: .failed(error: ClientError.apiError(detail: error.debugDescription)))
+                self.status = .failed(error: ClientError.apiError(detail: error.debugDescription))
             }
         }
     }
