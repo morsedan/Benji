@@ -159,7 +159,7 @@ extension ChannelCollectionViewController {
         }
     }
 
-    /// Performs a delete or insert on the `MessagesCollectionView` on the provided section
+    /// Performs a delete or insert on the `ChannelCollectionView` on the provided section
     ///
     /// - Parameter section: The index to modify
     private func performUpdatesForTypingIndicatorVisability(at section: Int) {

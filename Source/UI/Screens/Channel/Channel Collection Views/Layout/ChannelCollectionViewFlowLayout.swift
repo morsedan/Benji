@@ -17,10 +17,8 @@ class ChannelCollectionViewFlowLayout: UICollectionViewFlowLayout {
         return ChannelCollectionViewLayoutAttributes.self
     }
 
-    lazy var messageSizeCalculator: MessageSizeCalculator = {
-        let calculator = MessageSizeCalculator(layout: self)
-        return calculator
-    }()
+    lazy var messageSizeCalculator = MessageSizeCalculator(layout: self)
+    lazy var typingIndicatorSizeCalculator = TypingCellSizeCalculator(layout: self)
 
     var channelCollectionView: ChannelCollectionView {
         guard let channelCollectionView = self.collectionView as? ChannelCollectionView else {
@@ -120,7 +118,7 @@ class ChannelCollectionViewFlowLayout: UICollectionViewFlowLayout {
     // MARK: - Layout Invalidation
 
     override func shouldInvalidateLayout(forBoundsChange newBounds: CGRect) -> Bool {
-        return collectionView?.bounds.width != newBounds.width
+        return self.collectionView?.bounds.width != newBounds.width
     }
 
     override func invalidationContext(forBoundsChange newBounds: CGRect) -> UICollectionViewLayoutInvalidationContext {
@@ -131,6 +129,9 @@ class ChannelCollectionViewFlowLayout: UICollectionViewFlowLayout {
     }
 
     private func cellSizeCalculatorForItem(at indexPath: IndexPath) -> CellSizeCalculator {
+        if self.isSectionReservedForTypingIndicator(indexPath.section) {
+            return self.typingIndicatorSizeCalculator
+        }
         //Can eventually extended this to switch over different message types and size calculators
         return self.messageSizeCalculator
     }

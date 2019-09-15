@@ -113,6 +113,8 @@
 		D64C6A9C232D6C9200DB7257 /* BubbleCircleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D64C6A9B232D6C9200DB7257 /* BubbleCircleView.swift */; };
 		D64C6A9E232D6DD500DB7257 /* TypingIndicatorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D64C6A9D232D6DD500DB7257 /* TypingIndicatorView.swift */; };
 		D64C6AA0232DC2B700DB7257 /* TypingIndicatorCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D64C6A9F232DC2B700DB7257 /* TypingIndicatorCell.swift */; };
+		D64C6AA2232EA06800DB7257 /* TypingCellSizeCalculator.swift in Sources */ = {isa = PBXBuildFile; fileRef = D64C6AA1232EA06800DB7257 /* TypingCellSizeCalculator.swift */; };
+		D64C6AA4232EA13300DB7257 /* UIEdgeInsets+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = D64C6AA3232EA13300DB7257 /* UIEdgeInsets+Extensions.swift */; };
 		D66F0FC722BF004300BA277D /* FeedType.swift in Sources */ = {isa = PBXBuildFile; fileRef = D66F0FC622BF004300BA277D /* FeedType.swift */; };
 		D66F0FC922BF006D00BA277D /* SystemMessage.swift in Sources */ = {isa = PBXBuildFile; fileRef = D66F0FC822BF006D00BA277D /* SystemMessage.swift */; };
 		D66F0FCF22BF060500BA277D /* Deeplinkable.swift in Sources */ = {isa = PBXBuildFile; fileRef = D66F0FCE22BF060500BA277D /* Deeplinkable.swift */; };
@@ -345,6 +347,8 @@
 		D64C6A9B232D6C9200DB7257 /* BubbleCircleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BubbleCircleView.swift; sourceTree = "<group>"; };
 		D64C6A9D232D6DD500DB7257 /* TypingIndicatorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TypingIndicatorView.swift; sourceTree = "<group>"; };
 		D64C6A9F232DC2B700DB7257 /* TypingIndicatorCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TypingIndicatorCell.swift; sourceTree = "<group>"; };
+		D64C6AA1232EA06800DB7257 /* TypingCellSizeCalculator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TypingCellSizeCalculator.swift; sourceTree = "<group>"; };
+		D64C6AA3232EA13300DB7257 /* UIEdgeInsets+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIEdgeInsets+Extensions.swift"; sourceTree = "<group>"; };
 		D66F0FC622BF004300BA277D /* FeedType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedType.swift; sourceTree = "<group>"; };
 		D66F0FC822BF006D00BA277D /* SystemMessage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SystemMessage.swift; sourceTree = "<group>"; };
 		D66F0FCE22BF060500BA277D /* Deeplinkable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Deeplinkable.swift; sourceTree = "<group>"; };
@@ -933,6 +937,7 @@
 		D6B2603522E6A97400143CF0 /* Layout */ = {
 			isa = PBXGroup;
 			children = (
+				D64C6AA1232EA06800DB7257 /* TypingCellSizeCalculator.swift */,
 				D6432BF822D837A30016001A /* MessageSizeCaluculator.swift */,
 				D6432BF622D837340016001A /* CellSizeCalculator.swift */,
 				D6432BF422D82CDC0016001A /* ChannelCollectionViewFlowLayout.swift */,
@@ -1129,6 +1134,7 @@
 				D635551A21E5B3D400530602 /* UIScrollView+Extensions.swift */,
 				D60C81472209314200A127A3 /* UIImage+Extensions.swift */,
 				D642739822CA79B60088256B /* UIWindow+Extensions.swift */,
+				D64C6AA3232EA13300DB7257 /* UIEdgeInsets+Extensions.swift */,
 			);
 			path = "UI Extensions";
 			sourceTree = "<group>";
@@ -1296,6 +1302,7 @@
 				D6D1460721D552B100CD8CE4 /* Character+Extensions.swift in Sources */,
 				D6B2606C22E80B6A00143CF0 /* ToastScheduler.swift in Sources */,
 				D66F0FF222C1D86800BA277D /* ChannelsType.swift in Sources */,
+				D64C6AA2232EA06800DB7257 /* TypingCellSizeCalculator.swift in Sources */,
 				D64273A522CC05DD0088256B /* InputTextView.swift in Sources */,
 				D642739F22CAFD680088256B /* MessageTextView.swift in Sources */,
 				D642739922CA79B60088256B /* UIWindow+Extensions.swift in Sources */,
@@ -1334,6 +1341,7 @@
 				D64C6A97232D5C0400DB7257 /* TCHMember+Extensions.swift in Sources */,
 				D6815DBB22EE1F1400E71251 /* FeedCollectionViewManager.swift in Sources */,
 				D642737A22C99DD20088256B /* ContactCell.swift in Sources */,
+				D64C6AA4232EA13300DB7257 /* UIEdgeInsets+Extensions.swift in Sources */,
 				D684D6EB22D0E4F000874B08 /* StackedAvatarView.swift in Sources */,
 				D6D1460B21D5547000CD8CE4 /* FontType.swift in Sources */,
 				D6D1461321D583E500CD8CE4 /* NavigationController.swift in Sources */,
