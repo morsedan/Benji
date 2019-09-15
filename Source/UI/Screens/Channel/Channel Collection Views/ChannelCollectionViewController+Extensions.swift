@@ -171,7 +171,7 @@ extension ChannelCollectionViewController {
     }
 
     func isLastSectionVisible() -> Bool {
-        let sectionCount = self.channelDataSource.sections.value.count
+        let sectionCount = self.channelDataSource.sections.count
 
         guard sectionCount > 0 else { return false }
 

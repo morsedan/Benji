@@ -10,7 +10,6 @@ import Foundation
 import ReactiveSwift
 
 class ChannelDataSourceManager: ChannelDataSource {
-    var sections: MutableProperty<[ChannelSectionType]> = MutableProperty([])
-    var previousSections: [ChannelSectionType]?
+    var sections: [ChannelSectionType] = []
     var collectionView: CollectionView?
 }

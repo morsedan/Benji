@@ -22,6 +22,6 @@ class TypingCellSizeCalculator: CellSizeCalculator {
         let collectionViewWidth = layout.collectionView?.bounds.width ?? 0
         let contentInset = layout.collectionView?.contentInset ?? .zero
         let inset = layout.sectionInset.horizontal + contentInset.horizontal
-        return CGSize(width: collectionViewWidth - inset, height: height)
+        return CGSize(width: collectionViewWidth - inset, height: self.height)
     }
 }

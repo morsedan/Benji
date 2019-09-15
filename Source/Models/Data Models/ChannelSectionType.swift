@@ -9,12 +9,6 @@
 import Foundation
 import ReactiveSwift
 
-extension Date: Diffable {
-    func diffIdentifier() -> NSObjectProtocol {
-        return String(self.hashValue) as NSObjectProtocol
-    }
-}
-
 class ChannelSectionType {
 
     var date: Date

@@ -60,16 +60,16 @@ UICollectionViewDelegateFlowLayout {
 
     func numberOfSections(in collectionView: UICollectionView) -> Int {
         guard let channelCollectionView = collectionView as? ChannelCollectionView else { return 0 }
-        collectionView.backgroundView?.isHidden = self.channelDataSource.sections.value.count > 0
-        var numberOfSections = self.channelDataSource.sections.value.count
-        if channelCollectionView.isTypingIndicatorHidden {
+        collectionView.backgroundView?.isHidden = self.channelDataSource.sections.count > 0
+        var numberOfSections = self.channelDataSource.sections.count
+        if !channelCollectionView.isTypingIndicatorHidden {
             numberOfSections += 1
         }
         return numberOfSections
     }
 
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        guard let sectionType = self.channelDataSource.sections.value[safe: section] else { return 0 }
+        guard let sectionType = self.channelDataSource.sections[safe: section] else { return 0 }
 
         if self.isSectionReservedForTypingIndicator(section) {
             return 1
@@ -150,9 +150,16 @@ UICollectionViewDelegateFlowLayout {
     }
 
     private func header(for collectionView: UICollectionView, at indexPath: IndexPath) -> UICollectionReusableView {
-        guard let channelCollectionView = collectionView as? ChannelCollectionView,
-        let section = self.channelDataSource.sections.value[safe: indexPath.section] else {
+        guard let channelCollectionView = collectionView as? ChannelCollectionView else {
             fatalError("Error setting header")
+        }
+
+        if self.isSectionReservedForTypingIndicator(indexPath.section) {
+            return UICollectionReusableView()
+        }
+
+        guard let section = self.channelDataSource.sections[safe: indexPath.section] else {
+            fatalError("No model was found for section header")
         }
 
         let header = channelCollectionView.dequeueReusableHeaderView(ChannelSectionHeader.self, for: indexPath)
