@@ -62,4 +62,22 @@ class CollectionView: UICollectionView {
         }
         return cell
     }
+
+    /// Generically dequeues a header of the correct type allowing you to avoid scattering your code with guard-let-else-fatal
+    func dequeueReusableHeaderView<T: UICollectionReusableView>(_ viewClass: T.Type, for indexPath: IndexPath) -> T {
+        let view = dequeueReusableSupplementaryView(ofKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: String(describing: T.self), for: indexPath)
+        guard let viewType = view as? T else {
+            fatalError("Unable to dequeue \(String(describing: viewClass)) with reuseId of \(String(describing: T.self))")
+        }
+        return viewType
+    }
+
+    /// Generically dequeues a footer of the correct type allowing you to avoid scattering your code with guard-let-else-fatal
+    func dequeueReusableFooterView<T: UICollectionReusableView>(_ viewClass: T.Type, for indexPath: IndexPath) -> T {
+        let view = dequeueReusableSupplementaryView(ofKind: UICollectionView.elementKindSectionFooter, withReuseIdentifier: String(describing: T.self), for: indexPath)
+        guard let viewType = view as? T else {
+            fatalError("Unable to dequeue \(String(describing: viewClass)) with reuseId of \(String(describing: T.self))")
+        }
+        return viewType
+    }
 }

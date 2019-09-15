@@ -150,11 +150,12 @@ UICollectionViewDelegateFlowLayout {
     }
 
     private func header(for collectionView: UICollectionView, at indexPath: IndexPath) -> UICollectionReusableView {
-        let header: ChannelSectionHeader = collectionView.dequeueReusableSupplementaryView(ofKind: UICollectionView.elementKindSectionHeader,
-                                                                                            withReuseIdentifier: "ChannelSectionHeader",
-                                                                                            for: indexPath) as! ChannelSectionHeader
+        guard let channelCollectionView = collectionView as? ChannelCollectionView,
+        let section = self.channelDataSource.sections.value[safe: indexPath.section] else {
+            fatalError("Error setting header")
+        }
 
-        guard let section = self.channelDataSource.sections.value[safe: indexPath.section] else { return header }
+        let header = channelCollectionView.dequeueReusableHeaderView(ChannelSectionHeader.self, for: indexPath)
         header.configure(with: section.date)
         return header
     }
