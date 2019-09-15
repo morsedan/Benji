@@ -112,6 +112,7 @@
 		D64C6A99232D6C0200DB7257 /* TypingBubbleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D64C6A98232D6C0200DB7257 /* TypingBubbleView.swift */; };
 		D64C6A9C232D6C9200DB7257 /* BubbleCircleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D64C6A9B232D6C9200DB7257 /* BubbleCircleView.swift */; };
 		D64C6A9E232D6DD500DB7257 /* TypingIndicatorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D64C6A9D232D6DD500DB7257 /* TypingIndicatorView.swift */; };
+		D64C6AA0232DC2B700DB7257 /* TypingIndicatorCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D64C6A9F232DC2B700DB7257 /* TypingIndicatorCell.swift */; };
 		D66F0FC722BF004300BA277D /* FeedType.swift in Sources */ = {isa = PBXBuildFile; fileRef = D66F0FC622BF004300BA277D /* FeedType.swift */; };
 		D66F0FC922BF006D00BA277D /* SystemMessage.swift in Sources */ = {isa = PBXBuildFile; fileRef = D66F0FC822BF006D00BA277D /* SystemMessage.swift */; };
 		D66F0FCF22BF060500BA277D /* Deeplinkable.swift in Sources */ = {isa = PBXBuildFile; fileRef = D66F0FCE22BF060500BA277D /* Deeplinkable.swift */; };
@@ -343,6 +344,7 @@
 		D64C6A98232D6C0200DB7257 /* TypingBubbleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TypingBubbleView.swift; sourceTree = "<group>"; };
 		D64C6A9B232D6C9200DB7257 /* BubbleCircleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BubbleCircleView.swift; sourceTree = "<group>"; };
 		D64C6A9D232D6DD500DB7257 /* TypingIndicatorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TypingIndicatorView.swift; sourceTree = "<group>"; };
+		D64C6A9F232DC2B700DB7257 /* TypingIndicatorCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TypingIndicatorCell.swift; sourceTree = "<group>"; };
 		D66F0FC622BF004300BA277D /* FeedType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedType.swift; sourceTree = "<group>"; };
 		D66F0FC822BF006D00BA277D /* SystemMessage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SystemMessage.swift; sourceTree = "<group>"; };
 		D66F0FCE22BF060500BA277D /* Deeplinkable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Deeplinkable.swift; sourceTree = "<group>"; };
@@ -803,6 +805,7 @@
 		D64C6A9A232D6C3B00DB7257 /* Typing */ = {
 			isa = PBXGroup;
 			children = (
+				D64C6A9F232DC2B700DB7257 /* TypingIndicatorCell.swift */,
 				D64C6A98232D6C0200DB7257 /* TypingBubbleView.swift */,
 				D64C6A9B232D6C9200DB7257 /* BubbleCircleView.swift */,
 				D64C6A9D232D6DD500DB7257 /* TypingIndicatorView.swift */,
@@ -1315,6 +1318,7 @@
 				D61EC0F721D316F100204BEE /* Color.swift in Sources */,
 				D642739D22CAFC930088256B /* MessageType.swift in Sources */,
 				D64C6A7A232883FE00DB7257 /* CloudCalls.swift in Sources */,
+				D64C6AA0232DC2B700DB7257 /* TypingIndicatorCell.swift in Sources */,
 				D6D1503121D6A2B900CD8CE4 /* UITableView+Extensions.swift in Sources */,
 				D646DB3A22CFCC110055CC7C /* Future.swift in Sources */,
 				D66F0FD622BF28A100BA277D /* AppDelegate+Initialization.swift in Sources */,
