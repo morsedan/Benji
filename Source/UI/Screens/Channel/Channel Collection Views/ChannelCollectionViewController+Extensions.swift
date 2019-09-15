@@ -131,7 +131,7 @@ extension ChannelCollectionViewController {
     func setTypingIndicatorViewHidden(_ isHidden: Bool, performUpdates updates: (() -> Void)? = nil) {
         self.setTypingIndicatorViewHidden(isHidden, animated: true, whilePerforming: updates) { [weak self] success in
             guard let `self` = self else { return }
-            if success, self.isLastSectionVisible() == true {
+            if success, self.isLastMessageVisible() == true {
                 runMain {
                     self.collectionView.scrollToBottom()
                 }
@@ -176,12 +176,12 @@ extension ChannelCollectionViewController {
         }
     }
 
-    func isLastSectionVisible() -> Bool {
+    func isLastMessageVisible() -> Bool {
         let sectionCount = self.channelDataSource.sections.count
 
-        guard sectionCount > 0 else { return false }
+        guard sectionCount > 0, let sectionValue = self.channelDataSource.sections.last else { return false }
 
-        let lastIndexPath = IndexPath(item: 0, section: sectionCount - 1)
+        let lastIndexPath = IndexPath(item: sectionValue.items.count - 1, section: sectionCount - 1)
         return self.collectionView.indexPathsForVisibleItems.contains(lastIndexPath)
     }
 }
