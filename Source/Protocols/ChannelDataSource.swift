@@ -95,7 +95,7 @@ extension ChannelDataSource {
             }
         }
 
-        if indexPath == nil, replaceTypingIndicator {
+        if indexPath == nil {
             if replaceTypingIndicator {
                 indexPath = IndexPath(item: sectionValue.items.count - 1, section: section)
             } else {

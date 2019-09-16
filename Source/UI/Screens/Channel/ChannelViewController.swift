@@ -97,6 +97,10 @@ class ChannelViewController: ViewController, ScrolledModalControllerPresentable 
 
         self.loadMessages(for: self.channelType)
     }
+
+    deinit {
+        ChannelManager.shared.selectedChannel = nil 
+    }
     
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
