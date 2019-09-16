@@ -91,7 +91,7 @@ class TimeHumpView: View {
     }
 
     private func animateToFinalPosition(withCurrentVelocity velocity: CGFloat) {
-        self.animateToPercentage(percentage: self.percentage + velocity * 0.01)
+        self.animateToPercentage(percentage: self.percentage + (velocity/1000.0) * 0.05)
     }
 
     func animateToPercentage(percentage: CGFloat) {
@@ -101,21 +101,7 @@ class TimeHumpView: View {
                        options: UIView.AnimationOptions.curveEaseOut,
                        animations: {
                         self.percentage = percentage
+                        self.layoutIfNeeded()
         })
     }
-}
-
-let halfPi: CGFloat = CGFloat.pi * 0.5
-let twoPi: CGFloat = CGFloat.pi * 2
-
-func sin(degrees: Double) -> Double {
-    return __sinpi(degrees/180.0)
-}
-
-func sin(degrees: Float) -> Float {
-    return __sinpif(degrees/180.0)
-}
-
-func sin(degrees: CGFloat) -> CGFloat {
-    return CGFloat(sin(degrees: degrees.native))
 }
