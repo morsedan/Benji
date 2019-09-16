@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import ReactiveSwift
 
 class TimeHumpView: View {
 
@@ -15,16 +16,12 @@ class TimeHumpView: View {
         return self.height * 0.5
     }
 
-    private var startPanPercentage: CGFloat = 0
-
-    var percentage: CGFloat = 0 {
-        didSet {
-            self.setNeedsLayout()
-        }
-    }
+    let percentage = MutableProperty<CGFloat>(0)
 
     override func initialize() {
         super.initialize()
+
+        self.set(backgroundColor: .green)
 
         self.sliderView.set(backgroundColor: Color.white)
         self.sliderView.size = CGSize(width: 30, height: 30)
@@ -33,6 +30,10 @@ class TimeHumpView: View {
         self.onPan { [unowned self] (panRecognizer) in
             self.handlePan(panRecognizer)
         }
+
+        self.percentage.producer.on { [unowned self] (percentage) in
+            self.setNeedsLayout()
+        }.start()
     }
 
     // MARK: Layout
@@ -55,7 +56,7 @@ class TimeHumpView: View {
     override func layoutSubviews() {
         super.layoutSubviews()
 
-        let sliderCenter = self.getPoint(normalizedX: clamp(self.percentage, 0, 1))
+        let sliderCenter = self.getPoint(normalizedX: clamp(self.percentage.value, 0, 1))
         self.sliderView.center = sliderCenter
     }
 
@@ -71,15 +72,17 @@ class TimeHumpView: View {
 
     // MARK: Touch Input
 
+    private var startPanPercentage: CGFloat = 0
+
     private func handlePan(_ panRecognizer: UIPanGestureRecognizer) {
 
         switch panRecognizer.state {
         case .began:
-            self.startPanPercentage = self.percentage
+            self.startPanPercentage = self.percentage.value
         case .changed:
             let translation = panRecognizer.translation(in: self)
             let normalizedTranslationX = translation.x/self.width
-            self.percentage = self.startPanPercentage + normalizedTranslationX
+            self.percentage.value = clamp(self.startPanPercentage + normalizedTranslationX, 0, 1)
         case .ended:
             let velocity = panRecognizer.velocity(in: self)
             self.animateToFinalPosition(withCurrentVelocity: velocity.x)
@@ -91,7 +94,7 @@ class TimeHumpView: View {
     }
 
     private func animateToFinalPosition(withCurrentVelocity velocity: CGFloat) {
-        self.animateToPercentage(percentage: self.percentage + (velocity/1000.0) * 0.05)
+        self.animateToPercentage(percentage: self.percentage.value + (velocity/1000.0) * 0.05)
     }
 
     func animateToPercentage(percentage: CGFloat) {
@@ -100,7 +103,7 @@ class TimeHumpView: View {
                        delay: 0,
                        options: UIView.AnimationOptions.curveEaseOut,
                        animations: {
-                        self.percentage = percentage
+                        self.percentage.value = clamp(percentage, 0, 1)
                         self.layoutIfNeeded()
         })
     }

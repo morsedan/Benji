@@ -15,19 +15,21 @@ class RoutineInputContentView: View {
     let timeHump = TimeHumpView()
 
     override func initialize() {
+
         self.addSubview(self.timePicker)
+        // Don't allow the user to directly interact with the date picker
+        self.timePicker.isUserInteractionEnabled = false
         self.timePicker.datePickerMode = UIDatePicker.Mode.time
         self.timePicker.minuteInterval = 30
         self.timePicker.setValue(Color.white.color, forKey: "textColor")
 
         self.addSubview(self.setRoutineButton)
-        self.setRoutineButton.set(style: .rounded(color: Color.blue,
-                                                  text: "Set Routine"),
+        self.setRoutineButton.set(style: .rounded(color: Color.blue, text: "Set Routine"),
                                   shouldRound: true,
                                   casingType: StringCasing.uppercase)
 
+
         self.addSubview(self.timeHump)
-        self.timeHump.set(backgroundColor: .green)
     }
 
     override func layoutSubviews() {
