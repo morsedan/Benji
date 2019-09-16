@@ -76,8 +76,7 @@ class HomeViewController: FullScreenViewController {
         self.contentContainer.addSubview(self.addButton)
 
         self.addButton.onTap { [unowned self] (tap) in
-            ToastScheduler.shared.schedule(toastType: .systemMessage(Lorem.systemMessage()))
-            //self.presentNewChannel()
+            self.presentNewChannel()
         }
     }
 
