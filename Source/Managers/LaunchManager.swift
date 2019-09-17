@@ -28,6 +28,10 @@ class LaunchManager {
     private(set) var finishedInitialFetch = false
     var onLoggedOut: (() -> Void)?
 
+    //Temp Twilio Funciton to register for push notifications
+    private var serverURL = "https://topaz-booby-6355.twil.io"
+    private var path = "/register-binding"
+
     // Important - update this URL with your Twilio Function URL
     private let tokenURL = "https://topaz-booby-6355.twil.io/chat-token"
 
@@ -88,6 +92,52 @@ class LaunchManager {
             client.delegate = nil
             client.shutdown()
         }
+    }
+
+    func registerDevice(_ identity: String, deviceToken: String) {
+
+        // Create a POST request to the /register endpoint with device variables to register for Twilio Notifications
+        let session = URLSession.shared
+
+        let url = URL(string: self.serverURL + self.path)
+        var request = URLRequest(url: url!, cachePolicy: .useProtocolCachePolicy, timeoutInterval: 30.0)
+        request.httpMethod = "POST"
+
+        request.addValue("application/json", forHTTPHeaderField: "Accept")
+        request.addValue("application/json", forHTTPHeaderField: "Content-Type")
+
+        let params = ["identity": identity,
+                      "BindingType" : "apn",
+                      "Address" : deviceToken]
+
+        let jsonData = try! JSONSerialization.data(withJSONObject: params, options: [])
+        request.httpBody = jsonData
+
+        let requestBody = NSString(data: jsonData, encoding: String.Encoding.utf8.rawValue)
+        print("Request Body: \(requestBody ?? "")")
+
+        let task = session.dataTask(with: request, completionHandler: {
+            (responseData, response, error) in
+
+            if let responseData = responseData {
+                let responseString = String(data: responseData, encoding: String.Encoding.utf8)
+
+                print("Response Body: \(responseString ?? "")")
+                do {
+                    let responseObject = try JSONSerialization.jsonObject(with: responseData, options: [])
+                    if let responseDictionary = responseObject as? [String: Any] {
+                        if let message = responseDictionary["message"] as? String {
+                            print("Message: \(message)")
+                        }
+                    }
+                    print("JSON: \(responseObject)")
+                } catch let error {
+                    print("Error: \(error)")
+                }
+            }
+        })
+
+        task.resume()
     }
 }
 

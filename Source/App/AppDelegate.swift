@@ -38,5 +38,23 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             }
         }
     }
+
+    func application(_ application: UIApplication,
+                     didRegisterForRemoteNotificationsWithDeviceToken deviceToken: Data) {
+        guard let currentID = PFUser.current.objectId else { return }
+        let token = self.createToken(fromDeviceToken: deviceToken)
+        LaunchManager.shared.registerDevice(currentID, deviceToken: token)
+    }
+
+    private func createToken(fromDeviceToken deviceToken: Data) -> String {
+        let tokenParts = deviceToken.map { data -> String in
+            return String(format: "%02.2hhx", data)
+        }
+
+        let token = tokenParts.joined()
+        print("Device Token: \(token)")
+
+        return token
+    }
 }
 

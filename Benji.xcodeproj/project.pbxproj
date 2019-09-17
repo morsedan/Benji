@@ -349,6 +349,7 @@
 		D64C6A9F232DC2B700DB7257 /* TypingIndicatorCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TypingIndicatorCell.swift; sourceTree = "<group>"; };
 		D64C6AA1232EA06800DB7257 /* TypingCellSizeCalculator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TypingCellSizeCalculator.swift; sourceTree = "<group>"; };
 		D64C6AA3232EA13300DB7257 /* UIEdgeInsets+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIEdgeInsets+Extensions.swift"; sourceTree = "<group>"; };
+		D64C6AA523307DB300DB7257 /* Benji.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Benji.entitlements; sourceTree = "<group>"; };
 		D66F0FC622BF004300BA277D /* FeedType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedType.swift; sourceTree = "<group>"; };
 		D66F0FC822BF006D00BA277D /* SystemMessage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SystemMessage.swift; sourceTree = "<group>"; };
 		D66F0FCE22BF060500BA277D /* Deeplinkable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Deeplinkable.swift; sourceTree = "<group>"; };
@@ -523,6 +524,7 @@
 				D61EC0BD21D3071400204BEE /* Products */,
 				856FD9BFAD8BA46208226C85 /* Pods */,
 				AB1A79B62F263B1E788E3AB0 /* Frameworks */,
+				D64C6AA523307DB300DB7257 /* Benji.entitlements */,
 			);
 			sourceTree = "<group>";
 		};
@@ -1188,6 +1190,11 @@
 					D61EC0BB21D3071400204BEE = {
 						CreatedOnToolsVersion = 10.1;
 						LastSwiftMigration = 1020;
+						SystemCapabilities = {
+							com.apple.Push = {
+								enabled = 1;
+							};
+						};
 					};
 				};
 			};
@@ -1624,6 +1631,7 @@
 			baseConfigurationReference = 8D57EE102F30EFF6827543EB /* Pods-Benji.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = Benji.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = LSXDX8B86V;
 				INFOPLIST_FILE = Source/Info.plist;
@@ -1644,6 +1652,7 @@
 			baseConfigurationReference = B8144E2A6499F243C0C3F7C9 /* Pods-Benji.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = Benji.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = LSXDX8B86V;
 				INFOPLIST_FILE = Source/Info.plist;
