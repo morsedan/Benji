@@ -122,9 +122,9 @@ extension ChannelViewController: KeyboardObservable, UIGestureRecognizerDelegate
         case .possible:
             break
         case .began:
-            break
+            self.messageInputView.alertProgressView.size = CGSize(width: 0, height: self.messageInputView.height)
         case .changed:
-            break
+            break 
         case .ended:
             break
         case .cancelled:
