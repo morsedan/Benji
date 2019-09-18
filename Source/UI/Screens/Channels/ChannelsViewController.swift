@@ -17,11 +17,25 @@ class ChannelsViewController: CollectionViewController<ChannelCell, ChannelsColl
 
     unowned let delegate: ChannelsViewControllerDelegate
 
+    let channels: [ChannelType] = {
+        var items: [ChannelType] = []
+        for _ in 0...10 {
+            items.append(.system(Lorem.systemMessage()))
+        }
+        return items
+    }()
+
+    var channelFilter: String? {
+        didSet {
+            self.loadChannels()
+        }
+    }
+
     init(with delegate: ChannelsViewControllerDelegate) {
         self.delegate = delegate
         let collectionView = ChannelsCollectionView()
         super.init(with: collectionView)
-        self.view.set(backgroundColor: .clear)
+        self.view.set(backgroundColor: .red)
         self.subscribeToUpdates()
     }
 
@@ -30,6 +44,7 @@ class ChannelsViewController: CollectionViewController<ChannelCell, ChannelsColl
     }
 
     override func didSelect(item: ChannelType, at indexPath: IndexPath) {
+        super.didSelect(item: item, at: indexPath)
         self.delegate.channelsView(self, didSelect: item)
     }
 
@@ -62,5 +77,70 @@ class ChannelsViewController: CollectionViewController<ChannelCell, ChannelsColl
         }
 
         animator.startAnimation()
+    }
+
+    func subscribeToUpdates() {
+        ChannelManager.shared.channelUpdate.producer.on { [weak self] (update) in
+            guard let `self` = self else { return }
+
+            guard let channelsUpdate = update else { return }
+
+            switch channelsUpdate.status {
+            case .added:
+                self.manager.append(item: .channel(channelsUpdate.channel))
+            case .changed:
+                self.manager.update(item: .channel(channelsUpdate.channel))
+            case .deleted:
+                self.manager.delete(item: .channel(channelsUpdate.channel))
+            }
+            }.start()
+
+        ChannelManager.shared.clientSyncUpdate.producer.on { [weak self] (update) in
+            guard let `self` = self else { return }
+
+            guard let clientUpdate = update else { return }
+
+            switch clientUpdate {
+            case .started:
+                break
+            case .channelsListCompleted:
+                break
+            case .completed:
+                //self.loadTestChannels()
+                self.loadChannels()
+            case .failed:
+                break
+            @unknown default:
+                break
+            }
+            }.start()
+    }
+
+    private func loadChannels() {
+
+        let allChannels = self.channels // ChannelManager.shared.channelTypes
+        if let channelFilter = self.channelFilter {
+
+            let filteredChannels = allChannels.filter { (channelType) in
+                switch channelType {
+                case .system(let systemMessage):
+                    return systemMessage.avatar.firstName.contains(channelFilter)
+                case .channel(let channel):
+                    return channel.friendlyName?.contains(channelFilter) ?? false
+                }
+            }
+
+            self.manager.set(newItems: filteredChannels)
+        } else {
+            self.manager.set(newItems: allChannels)
+        }
+    }
+
+    private func loadTestChannels() {
+        var items: [ChannelType] = []
+        for _ in 0...10 {
+            items.append(.system(Lorem.systemMessage()))
+        }
+        self.manager.set(newItems: items)
     }
 }
