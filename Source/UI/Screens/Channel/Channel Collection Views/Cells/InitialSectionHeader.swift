@@ -12,7 +12,7 @@ import TwilioChatClient
 class InitialSectionHeader: UICollectionReusableView {
 
     private let dateLabel = XSmallLabel()
-    private let descriptionLabel = RegularSemiBoldLabel()
+    private let descriptionLabel = SmallSemiBoldLabel()
 
     override init(frame: CGRect) {
         super.init(frame: frame)

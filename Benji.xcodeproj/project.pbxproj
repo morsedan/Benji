@@ -58,6 +58,8 @@
 		D637533023161C2500214F63 /* FavoritesCollectionViewManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = D637532F23161C2400214F63 /* FavoritesCollectionViewManager.swift */; };
 		D63826D22274C8C0001D4B8B /* ChannelManager+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = D63826D12274C8C0001D4B8B /* ChannelManager+Extensions.swift */; };
 		D63844092336BE540072227B /* InitialSectionHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = D63844082336BE540072227B /* InitialSectionHeader.swift */; };
+		D638440B2336E1A80072227B /* HeaderSizeCalculator.swift in Sources */ = {isa = PBXBuildFile; fileRef = D638440A2336E1A80072227B /* HeaderSizeCalculator.swift */; };
+		D638440F2336E25F0072227B /* InitialHeaderSizeCalculator.swift in Sources */ = {isa = PBXBuildFile; fileRef = D638440E2336E25F0072227B /* InitialHeaderSizeCalculator.swift */; };
 		D642735122C857760088256B /* MessageContext.swift in Sources */ = {isa = PBXBuildFile; fileRef = D642735022C857760088256B /* MessageContext.swift */; };
 		D642735322C85B740088256B /* SystemAvatar.swift in Sources */ = {isa = PBXBuildFile; fileRef = D642735222C85B740088256B /* SystemAvatar.swift */; };
 		D642735522C87CCA0088256B /* HomeAddButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = D642735422C87CCA0088256B /* HomeAddButton.swift */; };
@@ -295,6 +297,8 @@
 		D637532F23161C2400214F63 /* FavoritesCollectionViewManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoritesCollectionViewManager.swift; sourceTree = "<group>"; };
 		D63826D12274C8C0001D4B8B /* ChannelManager+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ChannelManager+Extensions.swift"; sourceTree = "<group>"; };
 		D63844082336BE540072227B /* InitialSectionHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InitialSectionHeader.swift; sourceTree = "<group>"; };
+		D638440A2336E1A80072227B /* HeaderSizeCalculator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeaderSizeCalculator.swift; sourceTree = "<group>"; };
+		D638440E2336E25F0072227B /* InitialHeaderSizeCalculator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InitialHeaderSizeCalculator.swift; sourceTree = "<group>"; };
 		D642735022C857760088256B /* MessageContext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageContext.swift; sourceTree = "<group>"; };
 		D642735222C85B740088256B /* SystemAvatar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SystemAvatar.swift; sourceTree = "<group>"; };
 		D642735422C87CCA0088256B /* HomeAddButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeAddButton.swift; sourceTree = "<group>"; };
@@ -711,6 +715,25 @@
 			path = "New Channel";
 			sourceTree = "<group>";
 		};
+		D638440C2336E1FA0072227B /* Cell Calculators */ = {
+			isa = PBXGroup;
+			children = (
+				D6432BF622D837340016001A /* CellSizeCalculator.swift */,
+				D64C6AA1232EA06800DB7257 /* TypingCellSizeCalculator.swift */,
+				D6432BF822D837A30016001A /* MessageSizeCaluculator.swift */,
+			);
+			path = "Cell Calculators";
+			sourceTree = "<group>";
+		};
+		D638440D2336E2160072227B /* Header Calculators */ = {
+			isa = PBXGroup;
+			children = (
+				D638440A2336E1A80072227B /* HeaderSizeCalculator.swift */,
+				D638440E2336E25F0072227B /* InitialHeaderSizeCalculator.swift */,
+			);
+			path = "Header Calculators";
+			sourceTree = "<group>";
+		};
 		D642735C22C90C640088256B /* Math Extensions */ = {
 			isa = PBXGroup;
 			children = (
@@ -947,9 +970,8 @@
 		D6B2603522E6A97400143CF0 /* Layout */ = {
 			isa = PBXGroup;
 			children = (
-				D64C6AA1232EA06800DB7257 /* TypingCellSizeCalculator.swift */,
-				D6432BF822D837A30016001A /* MessageSizeCaluculator.swift */,
-				D6432BF622D837340016001A /* CellSizeCalculator.swift */,
+				D638440C2336E1FA0072227B /* Cell Calculators */,
+				D638440D2336E2160072227B /* Header Calculators */,
 				D6432BF422D82CDC0016001A /* ChannelCollectionViewFlowLayout.swift */,
 				D6432BEF22D824BA0016001A /* ChannelCollectionViewLayoutAttributes.swift */,
 			);
@@ -1363,6 +1385,7 @@
 				D6D1461321D583E500CD8CE4 /* NavigationController.swift in Sources */,
 				D67896B8230096620059BA75 /* KeyboardObservable.swift in Sources */,
 				D642735E22C90C820088256B /* CGPoint+Extensions.swift in Sources */,
+				D638440B2336E1A80072227B /* HeaderSizeCalculator.swift in Sources */,
 				D61EC0DE21D30DAC00204BEE /* Array+Extensions.swift in Sources */,
 				D61EC0F121D313F500204BEE /* ScreenSize.swift in Sources */,
 				D64C6A9E232D6DD500DB7257 /* TypingIndicatorView.swift in Sources */,
@@ -1390,6 +1413,7 @@
 				D67896A522FF48D60059BA75 /* LoginFlowViewController.swift in Sources */,
 				D64C6A862329513200DB7257 /* PFObject+Extensions.swift in Sources */,
 				D61EC0EC21D312B600204BEE /* UIView+Extensions.swift in Sources */,
+				D638440F2336E25F0072227B /* InitialHeaderSizeCalculator.swift in Sources */,
 				D6D1504021DAFB8300CD8CE4 /* UITextField+Extensions.swift in Sources */,
 				D67896CA23039E680059BA75 /* ScrolledModalControllerPresentable.swift in Sources */,
 				D60C814622092F6B00A127A3 /* Button.swift in Sources */,

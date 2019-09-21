@@ -19,6 +19,7 @@ class ChannelCollectionViewFlowLayout: UICollectionViewFlowLayout {
 
     lazy var messageSizeCalculator = MessageSizeCalculator(layout: self)
     lazy var typingIndicatorSizeCalculator = TypingCellSizeCalculator(layout: self)
+    lazy var initialHeaderSizeCalculator = InitialHeaderSizeCalculator(layout: self)
 
     var channelCollectionView: ChannelCollectionView {
         guard let channelCollectionView = self.collectionView as? ChannelCollectionView else {
@@ -136,11 +137,21 @@ class ChannelCollectionViewFlowLayout: UICollectionViewFlowLayout {
         return self.messageSizeCalculator
     }
 
+    private func headerSizeCalculator(for section:  Int) -> HeaderSizeCalculator {
+        //Can eventually extended this to switch over different message types and size calculators
+        return self.initialHeaderSizeCalculator
+    }
+
     // MARK: - PUBLIC
 
     func sizeForItem(at indexPath: IndexPath) -> CGSize {
         let calculator = self.cellSizeCalculatorForItem(at: indexPath)
         return calculator.sizeForItem(at: indexPath)
+    }
+
+    func sizeForHeader(at section: Int) -> CGSize {
+        let calculator = self.headerSizeCalculator(for: section)
+        return calculator.sizeForHeader(at: section)
     }
 
     // MARK: - Typing Indicator API
