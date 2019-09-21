@@ -136,7 +136,7 @@ UICollectionViewDelegateFlowLayout {
                         referenceSizeForHeaderInSection section: Int) -> CGSize {
 
         if section == 0 {
-            return  CGSize(width: collectionView.width, height: 50)
+            return  CGSize(width: collectionView.width, height: 150)
         }
 
         if self.isSectionReservedForTypingIndicator(section) {
@@ -168,6 +168,7 @@ UICollectionViewDelegateFlowLayout {
 
         if indexPath.section == 0 {
             let header = channelCollectionView.dequeueReusableHeaderView(InitialSectionHeader.self, for: indexPath)
+            header.configure(with: section)
             return header
         }
 

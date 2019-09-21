@@ -11,7 +11,8 @@ import TwilioChatClient
 
 class InitialSectionHeader: UICollectionReusableView {
 
-    let label = RegularBoldLabel()
+    private let dateLabel = XSmallLabel()
+    private let descriptionLabel = RegularSemiBoldLabel()
 
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -25,15 +26,22 @@ class InitialSectionHeader: UICollectionReusableView {
 
     private func initializeViews() {
 
-        self.label.set(text: "LOAD MORE", color: .white, alignment: .center, stringCasing: .uppercase)
-        self.set(backgroundColor: .red)
+        self.addSubview(self.dateLabel)
+        self.addSubview(self.descriptionLabel)
+
+        self.set(backgroundColor: .clear)
     }
 
     override func layoutSubviews() {
         super.layoutSubviews()
 
-        self.label.setSize(withWidth: self.width)
-        self.label.centerOnXAndY()
+        self.descriptionLabel.setSize(withWidth: self.width * 0.8)
+        self.descriptionLabel.top = 10
+        self.descriptionLabel.centerOnX()
+
+        self.dateLabel.setSize(withWidth: self.width * 0.8)
+        self.dateLabel.top = self.descriptionLabel.bottom + 10
+        self.dateLabel.centerOnX()
     }
 
     func configure(with sectionType: ChannelSectionType) {
@@ -48,6 +56,18 @@ class InitialSectionHeader: UICollectionReusableView {
     }
 
     private func layout(channel: TCHChannel) {
+        guard let createdAt = channel.dateCreatedAsDate else { return }
+        let dateString = Date.standard.string(from: createdAt)
+        let text = LocalizedString(id: "",
+                                   arguments: [dateString],
+                                   default: "Created On: @1")
+        self.dateLabel.set(text: text,
+                       color: .lightPurple,
+                       alignment: .center,
+                       stringCasing: .unchanged)
 
+        self.descriptionLabel.set(text: channel.channelDescription,
+                                  color: .white,
+                                  alignment: .center)
     }
 }

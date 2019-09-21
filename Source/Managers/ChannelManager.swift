@@ -118,9 +118,9 @@ class ChannelManager: NSObject {
                         batchAmount: UInt = 30,
                         completion: @escaping ([ChannelSectionType]) -> Void) {
 
-        guard let allMessages = channel.messages else { return }
+        guard let messagesObject = channel.messages else { return }
 
-        allMessages.getLastWithCount(batchAmount) { (result, messages) in
+        messagesObject.getLastWithCount(batchAmount) { (result, messages) in
             guard let strongMessages = messages, let date = channel.dateCreatedAsDate else { return }
 
             let firstSection = ChannelSectionType(date: date, items: [], channelType: .channel(channel))
