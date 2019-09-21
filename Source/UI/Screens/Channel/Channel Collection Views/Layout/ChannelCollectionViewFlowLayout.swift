@@ -138,7 +138,6 @@ class ChannelCollectionViewFlowLayout: UICollectionViewFlowLayout {
     }
 
     private func headerSizeCalculator(for section:  Int) -> HeaderSizeCalculator {
-        //Can eventually extended this to switch over different message types and size calculators
         return self.initialHeaderSizeCalculator
     }
 
@@ -150,8 +149,16 @@ class ChannelCollectionViewFlowLayout: UICollectionViewFlowLayout {
     }
 
     func sizeForHeader(at section: Int) -> CGSize {
-        let calculator = self.headerSizeCalculator(for: section)
-        return calculator.sizeForHeader(at: section)
+        if self.isSectionReservedForTypingIndicator(section) {
+            return .zero
+        }
+
+        if section == 0 {
+            let calculator = self.headerSizeCalculator(for: section)
+            return calculator.sizeForHeader(at: section)
+        }
+
+        return CGSize(width: self.channelCollectionView.width, height: 50)
     }
 
     // MARK: - Typing Indicator API

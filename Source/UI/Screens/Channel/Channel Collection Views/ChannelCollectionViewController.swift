@@ -135,14 +135,11 @@ UICollectionViewDelegateFlowLayout {
                         layout collectionViewLayout: UICollectionViewLayout,
                         referenceSizeForHeaderInSection section: Int) -> CGSize {
 
-        if section == 0 {
-            return  CGSize(width: collectionView.width, height: 150)
-        }
-
-        if self.isSectionReservedForTypingIndicator(section) {
+        guard let channelLayout = collectionViewLayout as? ChannelCollectionViewFlowLayout else {
             return .zero
         }
-        return CGSize(width: collectionView.width, height: 50)
+
+        return channelLayout.sizeForHeader(at: section)
     }
 
     func collectionView(_ collectionView: UICollectionView,
