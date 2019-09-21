@@ -10,7 +10,7 @@ import Foundation
 
 class TableView: UITableView {
 
-    let activityIndicator = UIActivityIndicatorView(style: .whiteLarge)
+    let activityIndicator = UIActivityIndicatorView(style: .large)
 
     override init(frame: CGRect, style: UITableView.Style) {
         super.init(frame: frame, style: style)
@@ -34,7 +34,7 @@ class TableView: UITableView {
 
     override func layoutSubviews() {
         super.layoutSubviews()
-
+    
         self.activityIndicator.centerOnXAndY()
     }
 }

@@ -10,7 +10,7 @@ import Foundation
 
 class LoadingButton: Button {
 
-    private let loadingIndicator = UIActivityIndicatorView(style: .white)
+    private let loadingIndicator = UIActivityIndicatorView(style: .medium)
 
     private let alphaOutAnimator = UIViewPropertyAnimator(duration: Theme.animationDuration,
                                                           curve: .linear,

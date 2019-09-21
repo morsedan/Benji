@@ -10,7 +10,7 @@ import Foundation
 
 class CollectionView: UICollectionView {
 
-    let activityIndicator = UIActivityIndicatorView(style: .whiteLarge)
+    let activityIndicator = UIActivityIndicatorView(style: .large)
 
     init(flowLayout: UICollectionViewFlowLayout) {
         super.init(frame: .zero, collectionViewLayout: flowLayout)
