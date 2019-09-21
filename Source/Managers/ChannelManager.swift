@@ -114,14 +114,17 @@ class ChannelManager: NSObject {
 
     //MARK: MAPPING
 
-    func getAllMessages(for channel: TCHChannel, completion: @escaping ([ChannelSectionType]) -> Void) {
+    func getAllMessages(for channel: TCHChannel,
+                        batchAmount: UInt = 30,
+                        completion: @escaping ([ChannelSectionType]) -> Void) {
 
         guard let allMessages = channel.messages else { return }
 
-        allMessages.getLastWithCount(30) { (result, messages) in
-            guard let strongMessages = messages else { return }
+        allMessages.getLastWithCount(batchAmount) { (result, messages) in
+            guard let strongMessages = messages, let date = channel.dateCreatedAsDate else { return }
 
-            var sections: [ChannelSectionType] = []
+            let firstSection = ChannelSectionType(date: date, items: [], channelType: .channel(channel))
+            var sections: [ChannelSectionType] = [firstSection]
 
             strongMessages.forEach { (message) in
 

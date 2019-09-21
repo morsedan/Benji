@@ -47,6 +47,8 @@ class ChannelCollectionView: CollectionView {
         self.register(TypingIndicatorCell.self)
         self.register(ChannelSectionHeader.self,
                       forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader)
+        self.register(InitialSectionHeader.self,
+                      forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader)
     }
 
     override func layoutSubviews() {

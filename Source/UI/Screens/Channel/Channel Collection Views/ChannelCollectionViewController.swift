@@ -62,6 +62,7 @@ UICollectionViewDelegateFlowLayout {
         guard let channelCollectionView = collectionView as? ChannelCollectionView else { return 0 }
         collectionView.backgroundView?.isHidden = self.channelDataSource.sections.count > 0
         var numberOfSections = self.channelDataSource.sections.count
+
         if !channelCollectionView.isTypingIndicatorHidden {
             numberOfSections += 1
         }
@@ -122,9 +123,6 @@ UICollectionViewDelegateFlowLayout {
 
         switch kind {
         case UICollectionView.elementKindSectionHeader:
-            if self.isSectionReservedForTypingIndicator(indexPath.section) {
-                return UICollectionReusableView()
-            }
             return self.header(for: collectionView, at: indexPath)
         case UICollectionView.elementKindSectionFooter:
             fatalError("NO FOOTER")
@@ -136,6 +134,11 @@ UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView,
                         layout collectionViewLayout: UICollectionViewLayout,
                         referenceSizeForHeaderInSection section: Int) -> CGSize {
+
+        if section == 0 {
+            return  CGSize(width: collectionView.width, height: 50)
+        }
+
         if self.isSectionReservedForTypingIndicator(section) {
             return .zero
         }
@@ -150,6 +153,7 @@ UICollectionViewDelegateFlowLayout {
     }
 
     private func header(for collectionView: UICollectionView, at indexPath: IndexPath) -> UICollectionReusableView {
+
         guard let channelCollectionView = collectionView as? ChannelCollectionView else {
             fatalError("Error setting header")
         }
@@ -160,6 +164,11 @@ UICollectionViewDelegateFlowLayout {
 
         guard let section = self.channelDataSource.sections[safe: indexPath.section] else {
             fatalError("No model was found for section header")
+        }
+
+        if indexPath.section == 0 {
+            let header = channelCollectionView.dequeueReusableHeaderView(InitialSectionHeader.self, for: indexPath)
+            return header
         }
 
         let header = channelCollectionView.dequeueReusableHeaderView(ChannelSectionHeader.self, for: indexPath)
