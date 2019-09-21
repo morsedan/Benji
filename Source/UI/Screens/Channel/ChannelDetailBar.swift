@@ -18,7 +18,6 @@ protocol ChannelDetailBarDelegate: class {
 class ChannelDetailBar: View {
 
     private(set) var titleLabel = RegularBoldLabel()
-    private(set) var stackedAvatarView = StackedAvatarView()
     private let closeButton = Button()
     private let titleButton = Button()
     private let selectionFeedback = UIImpactFeedbackGenerator(style: .light)
@@ -46,7 +45,6 @@ class ChannelDetailBar: View {
             self.delegate.channelDetailBarDidTapMenu(self)
         }
 
-        self.addSubview(self.stackedAvatarView)
         self.addSubview(self.closeButton)
         self.closeButton.set(style: .icon(image: #imageLiteral(resourceName: "down_arrow")))
         self.closeButton.onTap { [unowned self] (tap) in
@@ -70,12 +68,9 @@ class ChannelDetailBar: View {
         self.closeButton.right = self.width - 16
         self.closeButton.centerOnY()
 
-        self.stackedAvatarView.left = 36
-        self.stackedAvatarView.centerOnY()
-
-        let titleWidth = self.width - self.stackedAvatarView.width - self.closeButton.width - 44
+        let titleWidth = self.width - self.closeButton.width - 44
         self.titleLabel.setSize(withWidth: titleWidth)
-        self.titleLabel.left = self.stackedAvatarView.right + 10
+        self.titleLabel.left = 16
         self.titleLabel.centerOnY()
 
         self.titleButton.size = CGSize(width: self.titleLabel.width, height: self.height)
@@ -85,34 +80,16 @@ class ChannelDetailBar: View {
 
     func setLayout(for system: SystemMessage) {
         self.set(text: system.context.text)
-        self.set(avatars: [system.avatar])
     }
 
     func setLayout(for channel: TCHChannel) {
         self.updateFriendlyName(for: channel)
-        self.updateMembers(for: channel)
     }
 
     private func updateFriendlyName(for channel: TCHChannel) {
         if let name = channel.friendlyName {
             self.set(text: name)
         }
-    }
-
-    private func updateMembers(for channel: TCHChannel) {
-        if let members = channel.members {
-            members.members { (result, paginator) in
-                guard result.isSuccessful(), let pag = paginator else { return }
-                let membersExcludingCurrent = pag.items().filter({ (member) -> Bool in
-                    return member.identity != PFUser.current.objectId
-                })
-                self.set(avatars: membersExcludingCurrent)
-            }
-        }
-    }
-
-    private func set(avatars: [Avatar]) {
-        self.stackedAvatarView.configure(items: avatars)
     }
 
     private func set(text: Localized) {
@@ -129,14 +106,11 @@ class ChannelDetailBar: View {
                 else { return }
 
             switch channelsUpdate.status {
-            case .none, .identifier, .metadata, .failed:
-                break
             case .all:
-                self.updateMembers(for: channelsUpdate.channel)
                 self.updateFriendlyName(for: channelsUpdate.channel)
-            @unknown default:
+            default:
                 break
             }
-            }.start()
+        }.start()
     }
 }
