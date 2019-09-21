@@ -135,16 +135,10 @@ class UserNotificationManager: NSObject {
         let jsonData = try! JSONSerialization.data(withJSONObject: params, options: [])
         request.httpBody = jsonData
 
-        let requestBody = NSString(data: jsonData, encoding: String.Encoding.utf8.rawValue)
-        print("Request Body: \(requestBody ?? "")")
-
         let task = session.dataTask(with: request, completionHandler: {
             (responseData, response, error) in
 
             if let responseData = responseData {
-                let responseString = String(data: responseData, encoding: String.Encoding.utf8)
-
-                print("Response Body: \(responseString ?? "")")
                 do {
                     let responseObject = try JSONSerialization.jsonObject(with: responseData, options: [])
                     if let responseDictionary = responseObject as? [String: Any] {
@@ -152,7 +146,6 @@ class UserNotificationManager: NSObject {
                             print("Message: \(message)")
                         }
                     }
-                    print("JSON: \(responseObject)")
                 } catch let error {
                     print("Error: \(error)")
                 }

@@ -93,30 +93,12 @@ class ChannelManager: NSObject {
         }
     }
 
-    func joinChannel(sid: String, completion: @escaping ClientCompletion) {
-        guard let client = self.client, let channels = client.channelsList() else { return }
-
-        channels.channel(withSidOrUniqueName: sid, completion: { (result, channel) in
-            guard let strongChannel = channel else {
-                completion(client, result.error)
-                return
-            }
-
-            if result.isSuccessful(), strongChannel.status != .joined {
-                strongChannel.join(completion: { (result) in
-                    completion(client, result.error)
-                })
-            } else {
-                completion(client, result.error)
-            }
-        })
-    }
-
     //MARK: MESSAGE HELPERS
 
     func sendMessage(to channel: TCHChannel,
                      with body: String,
                      attributes: Dictionary<String, Any> = [:]) {
+
         let message = body.extraWhitespaceRemoved()
 
         guard !message.isEmpty, channel.status == .joined else { return }
@@ -127,37 +109,6 @@ class ChannelManager: NSObject {
             messages.sendMessage(with: messageOptions, completion: { (result, message) in
                 
             })
-        }
-    }
-
-    func getLatestMessages(channel: TCHChannel, count: Int) {
-        guard let messages = channel.messages else { return }
-
-        messages.getLastWithCount(UInt(count), completion: { (result, newMessages) in
-
-        })
-    }
-
-    func sendInvite(channel: TCHChannel, identity: String, completion: ((TCHResult) -> Void)?) {
-        guard let members = channel.members else { return }
-
-        members.invite(byIdentity: identity) { result in
-            completion?(result)
-        }
-    }
-
-    func update(channel: TCHChannel, withAttributes: Any) {
-
-    }
-
-    func hasChannel(with name: String, completion: @escaping (TCHChannel?) -> Void) {
-        guard let client = self.client, let channels = client.channelsList() else {
-            completion(nil)
-            return
-        }
-
-        channels.channel(withSidOrUniqueName: name) { (result, channel) in
-            completion(channel)
         }
     }
 
@@ -189,22 +140,6 @@ class ChannelManager: NSObject {
             }
 
             completion(sections)
-        }
-    }
-
-    private func deleteAllChannels() {
-
-        for type in ChannelManager.shared.channelTypes {
-            switch type {
-            case .channel(let channel):
-                channel.destroy(completion: { (result) in
-                    if result.isSuccessful() {
-                        print("Channel deleted")
-                    }
-                })
-            default:
-                break
-            }
         }
     }
 }
