@@ -17,17 +17,10 @@ class MessageSizeCalculator: CellSizeCalculator {
     var bubbleViewHorizontalPadding: CGFloat = 14
     private let widthRatio: CGFloat = 0.8
 
-    init(layout: ChannelCollectionViewFlowLayout? = nil) {
-        super.init()
-
-        self.channelLayout = layout
-    }
-
     override func configure(attributes: UICollectionViewLayoutAttributes) {
-        guard let attributes = attributes as? ChannelCollectionViewLayoutAttributes,
-        let layout = self.channelLayout else { return }
+        guard let attributes = attributes as? ChannelCollectionViewLayoutAttributes else { return }
 
-        let dataSource = layout.dataSource
+        let dataSource = self.channelLayout.dataSource
         let indexPath = attributes.indexPath
         guard let message = dataSource.item(at: indexPath) else { return }
 
@@ -39,7 +32,7 @@ class MessageSizeCalculator: CellSizeCalculator {
         let textViewSize = self.getMessageTextViewSize(for: message)
         attributes.messageTextViewSize = textViewSize
         attributes.messageTextViewVerticalPadding = self.messageTextViewVerticalPadding
-        attributes.messageTextViewMaxWidth = layout.itemWidth * self.widthRatio
+        attributes.messageTextViewMaxWidth = self.channelLayout.itemWidth * self.widthRatio
 
         let leadingPaddingForIncoming = self.avatarSize.width + self.avatarLeadingPadding + self.messageTextViewHorizontalPadding
         let leadingPadding = message.isFromCurrentUser ? self.messageTextViewHorizontalPadding + self.avatarLeadingPadding : leadingPaddingForIncoming
@@ -69,11 +62,10 @@ class MessageSizeCalculator: CellSizeCalculator {
     }
 
     override func sizeForItem(at indexPath: IndexPath) -> CGSize {
-        guard let layout = self.channelLayout,
-            let message = layout.dataSource.item(at: indexPath) else { return .zero }
+        guard let message = self.channelLayout.dataSource.item(at: indexPath) else { return .zero }
         
         let itemHeight = self.cellContentHeight(for: message)
-        return CGSize(width: layout.itemWidth, height: itemHeight)
+        return CGSize(width: self.channelLayout.itemWidth, height: itemHeight)
     }
 
     private func cellContentHeight(for message: MessageType) -> CGFloat {
@@ -81,14 +73,13 @@ class MessageSizeCalculator: CellSizeCalculator {
     }
 
     private func getMessageTextViewSize(for message: MessageType) -> CGSize {
-        guard let layout = self.channelLayout else { return .zero }
 
         let attributed = AttributedString(message.body,
                                           fontType: .regular,
                                           color: .white)
 
         let attributedString = attributed.string
-        let maxWidth = (layout.itemWidth * self.widthRatio) - self.avatarLeadingPadding - self.avatarSize.width
+        let maxWidth = (self.channelLayout.itemWidth * self.widthRatio) - self.avatarLeadingPadding - self.avatarSize.width
         let size = attributedString.getSize(withWidth: maxWidth)
         return size
     }

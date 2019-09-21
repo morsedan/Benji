@@ -13,7 +13,7 @@ import Foundation
 class CellSizeCalculator {
 
     /// The layout object for which the cell size calculator is used.
-    weak var channelLayout: ChannelCollectionViewFlowLayout?
+    unowned let channelLayout: ChannelCollectionViewFlowLayout
 
     /// Used to configure the layout attributes for a given cell.
     ///
@@ -29,5 +29,7 @@ class CellSizeCalculator {
     /// The default return .zero
     func sizeForItem(at indexPath: IndexPath) -> CGSize { return .zero }
 
-    init() {}
+    init(layout: ChannelCollectionViewFlowLayout) {
+        self.channelLayout = layout
+    }
 }
