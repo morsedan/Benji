@@ -10,15 +10,15 @@ import Foundation
 
 class HeaderSizeCalculator {
 
-    /// The layout object for which the cell size calculator is used.
+    /// The layout object for which the header size calculator is used.
     unowned let channelLayout: ChannelCollectionViewFlowLayout
 
-    /// Used to configure the layout attributes for a given cell.
+    /// Used to configure the layout attributes for a given header.
     ///
     /// - Parameters:
-    /// - attributes: The attributes of the cell.
+    /// - attributes: The attributes of the header.
     /// The default does nothing
-    func configure(attributes: UICollectionViewLayoutAttributes) {}
+    func configure(attributes: ChannelCollectionViewLayoutAttributes) {}
 
     /// Used to size an item at a given `IndexPath`.
     ///

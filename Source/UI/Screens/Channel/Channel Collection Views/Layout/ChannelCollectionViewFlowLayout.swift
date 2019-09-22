@@ -98,10 +98,17 @@ class ChannelCollectionViewFlowLayout: UICollectionViewFlowLayout {
         guard let attributesArray = super.layoutAttributesForElements(in: rect) as? [ChannelCollectionViewLayoutAttributes] else {
             return nil
         }
+
         for attributes in attributesArray where attributes.representedElementCategory == .cell {
             let cellSizeCalculator = self.cellSizeCalculatorForItem(at: attributes.indexPath)
             cellSizeCalculator.configure(attributes: attributes)
         }
+
+        for attributes in attributesArray where attributes.representedElementCategory == .supplementaryView {
+            let headerSizeCalculator = self.headerSizeCalculator(for: attributes.indexPath.section)
+            headerSizeCalculator.configure(attributes: attributes)
+        }
+
         return attributesArray
     }
 
@@ -109,10 +116,15 @@ class ChannelCollectionViewFlowLayout: UICollectionViewFlowLayout {
         guard let attributes = super.layoutAttributesForItem(at: indexPath) as? ChannelCollectionViewLayoutAttributes else {
             return nil
         }
+
         if attributes.representedElementCategory == .cell {
             let cellSizeCalculator = self.cellSizeCalculatorForItem(at: attributes.indexPath)
             cellSizeCalculator.configure(attributes: attributes)
+        }else if attributes.representedElementCategory == .supplementaryView {
+            let headerSizeCalculator = self.headerSizeCalculator(for: attributes.indexPath.section)
+            headerSizeCalculator.configure(attributes: attributes)
         }
+
         return attributes
     }
 

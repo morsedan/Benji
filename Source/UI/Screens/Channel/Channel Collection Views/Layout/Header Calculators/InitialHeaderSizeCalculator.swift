@@ -11,6 +11,27 @@ import TwilioChatClient
 
 class InitialHeaderSizeCalculator: HeaderSizeCalculator {
 
+    var dateLabelHeight: CGFloat = .zero
+    var descriptionLabelHeight: CGFloat = .zero
+    var topOffset: CGFloat = 10
+    var dateOffset: CGFloat = 10
+
+    override func configure(attributes: ChannelCollectionViewLayoutAttributes) {
+
+        let dataSource = self.channelLayout.dataSource
+        guard let channelType = dataSource.sections.first?.channelType else { return }
+
+        switch channelType {
+        case .channel(let channel):
+            attributes.headerTopOffset = self.topOffset
+            attributes.headerDateOffset = self.dateOffset
+            attributes.headerDateLabelSize = self.getDateLabelSize(for: self.getLocalizedDateText(for: channel))
+            attributes.headerDescriptionLabelSize = self.getDescriptionLabelSize(for: channel.channelDescription)
+        default:
+            break
+        }
+    }
+
     override func sizeForHeader(at section: Int) -> CGSize {
         let dataSource = self.channelLayout.dataSource
         guard let channelType = dataSource.sections.first?.channelType else { return .zero }
@@ -26,19 +47,24 @@ class InitialHeaderSizeCalculator: HeaderSizeCalculator {
     }
 
     private func getHeight(for channel: TCHChannel) -> CGSize {
-        guard let createdAt = channel.dateCreatedAsDate else { return .zero }
+
+        let dateText = self.getLocalizedDateText(for: channel)
+        let descriptionHeight = self.getDescriptionLabelSize(for: channel.channelDescription).height
+        let dateHeight = self.getDateLabelSize(for: dateText).height
+
+        let height = self.topOffset + descriptionHeight + self.dateOffset + dateHeight + 20
+        
+        return CGSize(width: self.channelLayout.channelCollectionView.width, height: height)
+    }
+
+    private func getLocalizedDateText(for channel: TCHChannel) -> Localized {
+        guard let createdAt = channel.dateCreatedAsDate else { return LocalizedString.empty }
 
         let dateString = Date.standard.string(from: createdAt)
         let text = LocalizedString(id: "",
                                    arguments: [dateString],
                                    default: "Created On: @1")
-
-        let descriptionHeight = self.getDescriptionLabelSize(for: channel.channelDescription).height
-        let dateHeight = self.getDateLabelSize(for: text).height
-
-        let height = 10 + descriptionHeight + 10 + dateHeight + 20
-        
-        return CGSize(width: self.channelLayout.channelCollectionView.width, height: height)
+        return text
     }
 
     private func getDescriptionLabelSize(for description: Localized) -> CGSize {

@@ -20,7 +20,7 @@ class CellSizeCalculator {
     /// - Parameters:
     /// - attributes: The attributes of the cell.
     /// The default does nothing
-    func configure(attributes: UICollectionViewLayoutAttributes) {}
+    func configure(attributes: ChannelCollectionViewLayoutAttributes) {}
 
     /// Used to size an item at a given `IndexPath`.
     ///

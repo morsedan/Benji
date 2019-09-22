@@ -32,18 +32,6 @@ class InitialSectionHeader: UICollectionReusableView {
         self.set(backgroundColor: .clear)
     }
 
-    override func layoutSubviews() {
-        super.layoutSubviews()
-
-        self.descriptionLabel.setSize(withWidth: self.width * 0.8)
-        self.descriptionLabel.top = 10
-        self.descriptionLabel.centerOnX()
-
-        self.dateLabel.setSize(withWidth: self.width * 0.8)
-        self.dateLabel.top = self.descriptionLabel.bottom + 10
-        self.dateLabel.centerOnX()
-    }
-
     func configure(with sectionType: ChannelSectionType) {
         guard let channelType = sectionType.channelType else { return }
 
@@ -69,5 +57,24 @@ class InitialSectionHeader: UICollectionReusableView {
         self.descriptionLabel.set(text: channel.channelDescription,
                                   color: .white,
                                   alignment: .center)
+    }
+
+    override func apply(_ layoutAttributes: UICollectionViewLayoutAttributes) {
+         super.apply(layoutAttributes)
+
+         guard let attributes = layoutAttributes as? ChannelCollectionViewLayoutAttributes else { return }
+
+         self.layoutContent(with: attributes)
+     }
+
+    private func layoutContent(with attributes: ChannelCollectionViewLayoutAttributes) {
+
+        self.descriptionLabel.size = attributes.headerDescriptionLabelSize
+        self.descriptionLabel.top = attributes.headerTopOffset
+        self.descriptionLabel.centerOnX()
+
+        self.dateLabel.size = attributes.headerDateLabelSize
+        self.dateLabel.top = self.descriptionLabel.bottom + attributes.headerDateOffset
+        self.dateLabel.centerOnX()
     }
 }

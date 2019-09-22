@@ -17,8 +17,7 @@ class MessageSizeCalculator: CellSizeCalculator {
     var bubbleViewHorizontalPadding: CGFloat = 14
     private let widthRatio: CGFloat = 0.8
 
-    override func configure(attributes: UICollectionViewLayoutAttributes) {
-        guard let attributes = attributes as? ChannelCollectionViewLayoutAttributes else { return }
+    override func configure(attributes: ChannelCollectionViewLayoutAttributes) {
 
         let dataSource = self.channelLayout.dataSource
         let indexPath = attributes.indexPath
