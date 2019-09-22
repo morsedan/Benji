@@ -11,7 +11,7 @@ import Foundation
 class ChannelCoordinator: PresentableCoordinator<Void> {
 
     let channelType: ChannelType
-    lazy var scrolledModal = ChannelModalViewController(with: self.channelType, delegate: self)
+    lazy var channelVC = ChannelViewController(channelType: self.channelType, delegate: self)
 
     init(router: Router, channelType: ChannelType) {
         self.channelType = channelType
@@ -22,11 +22,11 @@ class ChannelCoordinator: PresentableCoordinator<Void> {
     }
 
     override func toPresentable() -> DismissableVC {
-        return self.scrolledModal
+        return self.channelVC
     }
 
     override func start() {
-        self.scrolledModal.didDismiss = { [unowned self] in
+        self.channelVC.didDismiss = { [unowned self] in
             self.finishFlow(with: ())
         }
     }
