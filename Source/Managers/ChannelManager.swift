@@ -115,7 +115,7 @@ class ChannelManager: NSObject {
     //MARK: MAPPING
 
     func getAllMessages(for channel: TCHChannel,
-                        batchAmount: UInt = 30,
+                        batchAmount: UInt = 10,
                         completion: @escaping ([ChannelSectionType]) -> Void) {
 
         guard let messagesObject = channel.messages else { return }
@@ -123,7 +123,12 @@ class ChannelManager: NSObject {
         messagesObject.getLastWithCount(batchAmount) { (result, messages) in
             guard let strongMessages = messages, let date = channel.dateCreatedAsDate else { return }
 
-            let firstSection = ChannelSectionType(date: date, items: [], channelType: .channel(channel))
+            var items: [MessageType] = []
+            if let firstMessage = strongMessages.first {
+                items.append(.message(firstMessage))
+            }
+
+            let firstSection = ChannelSectionType(date: date, items: items, channelType: .channel(channel))
             var sections: [ChannelSectionType] = [firstSection]
 
             strongMessages.forEach { (message) in
