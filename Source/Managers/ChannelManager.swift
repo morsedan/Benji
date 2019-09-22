@@ -33,6 +33,7 @@ class ChannelManager: NSObject {
     }
 
     var selectedChannel: TCHChannel?
+    private(set) var currentSections: [ChannelSectionType] = []
 
     var isSynced: Bool {
         guard let client = self.client else { return false }
@@ -130,16 +131,21 @@ class ChannelManager: NSObject {
 
     func getMessages(before index: UInt,
                      batchAmount: UInt = 10,
+                     extending currentSections: [ChannelSectionType],
                      for channel: TCHChannel,
                      completion: @escaping ([ChannelSectionType]) -> Void) {
 
         guard let messagesObject = channel.messages else { return }
+        var current = currentSections
+        //Remove the first section
+        current.remove(at: 0)
 
         messagesObject.getBefore(index - 1, withCount: batchAmount) { (result, messages) in
             guard let strongMessages = messages else { return }
 
-            let sections = self.mapToSections(for: strongMessages, in: channel)
-            completion(sections)
+            let new = self.mapToSections(for: strongMessages, in: channel)
+            current.insert(contentsOf: new, at: 0)
+            completion(current)
         }
     }
 
@@ -156,6 +162,7 @@ class ChannelManager: NSObject {
 
         let firstSection = ChannelSectionType(date: date, items: items, channelType: .channel(channel))
         var sections: [ChannelSectionType] = [firstSection]
+        
 
         messages.forEach { (message) in
 

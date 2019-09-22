@@ -186,9 +186,7 @@ UICollectionViewDelegateFlowLayout {
             moreHeader.button.onTap { [weak self] (tap) in
                 guard let `self` = self else { return }
                 moreHeader.button.isLoading = true
-                self.didSelectLoadMore {
-                    moreHeader.button.isLoading = false
-                }
+                self.didSelectLoadMore(for: index)
             }
             return moreHeader
         }
