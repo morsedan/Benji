@@ -28,35 +28,14 @@ class LoadMoreSectionHeader: UICollectionReusableView {
         self.addSubview(self.descriptionLabel)
 
         self.set(backgroundColor: .clear)
+        self.descriptionLabel.set(text: "LOAD MORE",
+                                  alignment: .center)
     }
 
-    func configure(with sectionType: ChannelSectionType) {
-        guard let channelType = sectionType.channelType else { return }
+    override func layoutSubviews() {
+        super.layoutSubviews()
 
-        switch channelType {
-        case .system(_):
-            return
-        case .channel(let channel):
-            self.layout(channel: channel)
-        }
-    }
-
-    private func layout(channel: TCHChannel) {
-
-    }
-
-    override func apply(_ layoutAttributes: UICollectionViewLayoutAttributes) {
-         super.apply(layoutAttributes)
-
-         guard let attributes = layoutAttributes as? ChannelCollectionViewLayoutAttributes else { return }
-
-         self.layoutContent(with: attributes)
-     }
-
-    private func layoutContent(with attributes: ChannelCollectionViewLayoutAttributes) {
-
-        self.descriptionLabel.size = attributes.headerDescriptionLabelSize
-        self.descriptionLabel.top = attributes.headerTopOffset
-        self.descriptionLabel.centerOnX()
+        self.descriptionLabel.setSize(withWidth: self.width)
+        self.descriptionLabel.centerOnXAndY()
     }
 }
