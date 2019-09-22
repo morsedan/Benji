@@ -11,7 +11,7 @@ import TwilioChatClient
 
 class LoadMoreSectionHeader: UICollectionReusableView {
 
-    private let descriptionLabel = XSmallLabel()
+    private(set) var button = LoadingButton()
 
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -25,17 +25,16 @@ class LoadMoreSectionHeader: UICollectionReusableView {
 
     private func initializeViews() {
 
-        self.addSubview(self.descriptionLabel)
+        self.addSubview(self.button)
 
         self.set(backgroundColor: .clear)
-        self.descriptionLabel.set(text: "LOAD MORE",
-                                  alignment: .center)
+        self.button.set(style: .rounded(color: .orange, text: "LOAD MORE"))
     }
 
     override func layoutSubviews() {
         super.layoutSubviews()
 
-        self.descriptionLabel.setSize(withWidth: self.width)
-        self.descriptionLabel.centerOnXAndY()
+        self.button.size = CGSize(width: self.width * 0.6, height: 40)
+        self.button.centerOnXAndY()
     }
 }

@@ -164,13 +164,37 @@ UICollectionViewDelegateFlowLayout {
         }
 
         if indexPath.section == 0 {
-            let header = channelCollectionView.dequeueReusableHeaderView(InitialSectionHeader.self, for: indexPath)
-            header.configure(with: section)
-            return header
+            return self.getTopHeader(for: section, at: indexPath, in: channelCollectionView)
         }
 
         let header = channelCollectionView.dequeueReusableHeaderView(ChannelSectionHeader.self, for: indexPath)
         header.configure(with: section.date)
+        return header
+    }
+
+    private func getTopHeader(for section: ChannelSectionType,
+                              at indexPath: IndexPath,
+                              in collectionView: ChannelCollectionView) -> UICollectionReusableView {
+
+        if let index = section.firstMessageIndex, index > 0 {
+            let moreHeader = collectionView.dequeueReusableHeaderView(LoadMoreSectionHeader.self, for: indexPath)
+            //Reset all gestures
+            moreHeader.gestureRecognizers?.forEach({ (recognizer) in
+                moreHeader.removeGestureRecognizer(recognizer)
+            })
+
+            moreHeader.button.onTap { [weak self] (tap) in
+                guard let `self` = self else { return }
+                moreHeader.button.isLoading = true
+                self.didSelectLoadMore {
+                    moreHeader.button.isLoading = false
+                }
+            }
+            return moreHeader
+        }
+
+        let header = collectionView.dequeueReusableHeaderView(InitialSectionHeader.self, for: indexPath)
+        header.configure(with: section)
         return header
     }
 

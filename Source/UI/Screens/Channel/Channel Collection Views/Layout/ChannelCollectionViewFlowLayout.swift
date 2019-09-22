@@ -166,8 +166,12 @@ class ChannelCollectionViewFlowLayout: UICollectionViewFlowLayout {
         }
 
         if section == 0 {
-            let calculator = self.headerSizeCalculator(for: section)
-            return calculator.sizeForHeader(at: section)
+            if let sectionType = self.dataSource.sections[safe: section], let index = sectionType.firstMessageIndex, index > 0 {
+                return CGSize(width: self.channelCollectionView.width, height: 50)
+            } else {
+                let calculator = self.headerSizeCalculator(for: section)
+                return calculator.sizeForHeader(at: section)
+            }
         }
 
         return CGSize(width: self.channelCollectionView.width, height: 50)

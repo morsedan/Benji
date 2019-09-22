@@ -15,6 +15,17 @@ class ChannelSectionType {
     var items: [MessageType] = []
     var channelType: ChannelType?
 
+    var firstMessageIndex: Int? {
+        guard let firstType = self.items.first else { return nil }
+
+        switch firstType {
+        case .message(let message):
+            return message.index?.intValue
+        default:
+            return nil
+        }
+    }
+
     init(date: Date,
          items: [MessageType],
          channelType: ChannelType? = nil) {

@@ -184,4 +184,14 @@ extension ChannelCollectionViewController {
         let lastIndexPath = IndexPath(item: sectionValue.items.count - 1, section: sectionCount - 1)
         return self.collectionView.indexPathsForVisibleItems.contains(lastIndexPath)
     }
+
+    func didSelectLoadMore(for messageIndex: Int, completion: () -> Void) {
+        completion()
+        guard let messagesObject = ChannelManager.shared.selectedChannel?.messages else { return }
+
+//        messagesObject.getBefore(UInt(messageIndex) - 1, withCount: 30) { (result, messages) in
+//          self.messages.append(contentsOf: messages!)
+//          // << consume the latest items in your UI >>
+//        }
+    }
 }

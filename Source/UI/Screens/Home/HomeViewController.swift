@@ -112,12 +112,6 @@ class HomeViewController: FullScreenViewController {
         self.present(self.scrolledModal, animated: true, completion: nil)
     }
 
-    func presentContactPicker() {
-        let contactController = ContactsScrolledModalController()
-        contactController.presentable.delegate = self
-        self.present(contactController, animated: true, completion: nil)
-    }
-
     private func resetContent(currentView: UIView, newView: UIView) {
         currentView.removeFromSuperview()
         self.contentContainer.insertSubview(newView, belowSubview: self.headerContainer)
@@ -150,49 +144,5 @@ class HomeViewController: FullScreenViewController {
         }
 
         self.currentType = newType
-    }
-}
-
-extension HomeViewController: ContactsViewControllerDelegate {
-
-    func contactsViewController(_ controller: ContactsViewController, didSelect contact: CNContact) {
-        self.dismiss(animated: true) {
-            guard let phoneNumber = contact.primaryPhoneNumber, let query = PFUser.query() else { return }
-
-            query.whereKey("phoneNumber", equalTo: phoneNumber)
-
-            query.findObjectsInBackground(block: { (objects, error) in
-                if let error = error {
-                    print(error)
-                }
-
-                guard let user = objects?.first, let identifier = user.objectId else { return }
-                self.createChannel(with: identifier)
-            })
-        }
-    }
-
-    func createChannel(with inviteeIdentifier: String) {
-        ChannelManager.createChannel(channelName: "TEST CHANNEL",
-                                     channelDescription: "",
-                                     type: .private)
-            .joinIfNeeded()
-            .invite(personUserID: inviteeIdentifier)
-            .withProgressBanner("Creating channel with TEST CHANNEL")
-            .withErrorBanner()
-            .ignoreUserInteractionEventsUntilDone()
-            .observe { (result) in
-                switch result {
-                case .success(let channel):
-                    let channelVC = ChannelViewController(channelType: .channel(channel))
-                    self.present(channelVC, animated: true)
-                case .failure(let error):
-                    if let tomorrowError = error as? ClientError {
-                        print(tomorrowError.localizedDescription)
-                    } else {
-                        print(error.localizedDescription)
-                    }
-                }
-        }
     }
 }

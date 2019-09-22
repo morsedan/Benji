@@ -49,6 +49,8 @@ class ChannelCollectionView: CollectionView {
                       forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader)
         self.register(InitialSectionHeader.self,
                       forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader)
+        self.register(LoadMoreSectionHeader.self,
+                      forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader)
     }
 
     override func layoutSubviews() {
@@ -60,7 +62,7 @@ class ChannelCollectionView: CollectionView {
     func reloadDataAndKeepOffset() {
         // stop scrolling
         self.setContentOffset(self.contentOffset, animated: false)
-
+        
         // calculate the offset and reloadData
         let beforeContentSize = self.contentSize
         self.reloadData()
