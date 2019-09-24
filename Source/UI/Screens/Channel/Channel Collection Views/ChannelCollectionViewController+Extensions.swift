@@ -25,7 +25,7 @@ extension ChannelCollectionViewController {
     private func loadChannelMessages(with channel: TCHChannel) {
         self.channelDataSource.reset()
         ChannelManager.shared.selectedChannel = channel
-        ChannelManager.shared.getAllMessages(for: channel) { [unowned self] (sections) in
+        ChannelManager.shared.getLastMessages(for: channel) { [unowned self] (sections) in
             self.channelDataSource.set(newSections: sections)
             delay(0.5, { [weak self] in
                 guard let `self` = self else { return }

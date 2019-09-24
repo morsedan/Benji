@@ -71,6 +71,10 @@ UICollectionViewDelegateFlowLayout {
 
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
 
+        if section == 0 {
+            return 0
+        }
+
         if self.isSectionReservedForTypingIndicator(section) {
             return 1
         }
