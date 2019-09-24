@@ -13,7 +13,7 @@ class ChannelsCollectionViewManager: CollectionViewManager<ChannelCell> {
 
     override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         collectionView.backgroundView?.isHidden = self.items.value.count > 0
-        return self.items.value.count + 1
+        return self.items.value.count
     }
 
     override func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
