@@ -104,10 +104,4 @@ class MessageCell: UICollectionViewCell {
         self.bubbleView.layer.maskedCorners = attributes.maskedCorners
         self.bubbleView.roundCorners()
     }
-
-    override func layoutSubviews() {
-        super.layoutSubviews()
-
-        self.contentView.set(backgroundColor: .clear)
-    }
 }
