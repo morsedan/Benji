@@ -17,26 +17,21 @@ class ChannelsViewController: CollectionViewController<ChannelCell, ChannelsColl
 
     unowned let delegate: ChannelsViewControllerDelegate
 
-    let channels: [ChannelType] = {
-        // TODO: DELETE THESE FAKE MESSAGES
-        var items: [ChannelType] = []
-        for _ in 0...10 {
-            items.append(.system(Lorem.systemMessage()))
-        }
-        return items
-    }()
-
+    // A cache of the all the user's current channels and system messages,
+    // sorted by date updated, with newer channels at the beginning.
+    lazy var channelTypeCache: [ChannelType] = []
     var channelFilter: String? {
         didSet {
-            self.loadChannels()
+            self.loadFilteredChannels()
         }
     }
 
     init(with delegate: ChannelsViewControllerDelegate) {
         self.delegate = delegate
         let collectionView = ChannelsCollectionView()
+
         super.init(with: collectionView)
-        self.view.set(backgroundColor: .red)
+
         self.subscribeToUpdates()
     }
 
@@ -88,12 +83,16 @@ class ChannelsViewController: CollectionViewController<ChannelCell, ChannelsColl
 
             switch channelsUpdate.status {
             case .added:
-                self.manager.append(item: .channel(channelsUpdate.channel))
+                // Do nothing. We only want to show channels that are being searched for.
+                break
             case .changed:
                 self.manager.update(item: .channel(channelsUpdate.channel))
             case .deleted:
                 self.manager.delete(item: .channel(channelsUpdate.channel))
             }
+
+            // Reload the cache because changes to the channel list have occurred.
+            self.channelTypeCache = self.getChannelsSortedByUpdateDate()
             }.start()
 
         ChannelManager.shared.clientSyncUpdate.producer.on { [weak self] (update) in
@@ -107,8 +106,8 @@ class ChannelsViewController: CollectionViewController<ChannelCell, ChannelsColl
             case .channelsListCompleted:
                 break
             case .completed:
-                //self.loadTestChannels()
-                self.loadChannels()
+                self.channelTypeCache = self.getChannelsSortedByUpdateDate()
+                self.loadFilteredChannels()
             case .failed:
                 break
             @unknown default:
@@ -117,10 +116,17 @@ class ChannelsViewController: CollectionViewController<ChannelCell, ChannelsColl
             }.start()
     }
 
-    private func loadChannels() {
+    private func getChannelsSortedByUpdateDate() -> [ChannelType] {
+        let channelTypes = ChannelManager.shared.channelTypes
+        return channelTypes.sorted { (channel1, channel2) -> Bool in
+            channel1.dateUpdated > channel2.dateUpdated
+        }
+    }
 
-        let allChannels = self.channels // ChannelManager.shared.channelTypes
-        if let channelFilter = self.channelFilter {
+    private func loadFilteredChannels() {
+        let allChannels = self.channelTypeCache
+
+        if let channelFilter = self.channelFilter, !channelFilter.isEmpty {
 
             let filteredChannels = allChannels.filter { (channelType) in
                 switch channelType {
@@ -133,15 +139,9 @@ class ChannelsViewController: CollectionViewController<ChannelCell, ChannelsColl
 
             self.manager.set(newItems: filteredChannels)
         } else {
-            self.manager.set(newItems: allChannels)
+            // If no filter, get the first three most recently updated channels.
+            let filteredChannels: [ChannelType] = Array(allChannels.prefix(3))
+            self.manager.set(newItems: filteredChannels)
         }
-    }
-
-    private func loadTestChannels() {
-        var items: [ChannelType] = []
-        for _ in 0...10 {
-            items.append(.system(Lorem.systemMessage()))
-        }
-        self.manager.set(newItems: items)
     }
 }

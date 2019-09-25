@@ -23,6 +23,15 @@ class ChannelManager: NSObject {
     var messageUpdate = MutableProperty<MessageUpdate?>(nil)
     var memberUpdate = MutableProperty<ChannelMemberUpdate?>(nil)
 
+//    lazy var channelTypes: [ChannelType] = {
+//        // TODO: DELETE THESE FAKE MESSAGES
+//        var items: [ChannelType] = []
+//        for _ in 0...10 {
+//            items.append(.system(Lorem.systemMessage()))
+//        }
+//        return items
+//    }()
+
     var channelTypes: [ChannelType] {
         get {
             guard let client = self.client, let channels = client.channelsList() else { return [] }

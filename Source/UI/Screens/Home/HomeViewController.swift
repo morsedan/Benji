@@ -79,7 +79,6 @@ class HomeViewController: FullScreenViewController {
         self.headerContainer.addSubview(self.searchBar)
         self.searchBar.delegate = self
         self.searchBar.barStyle = .black
-        self.searchBar.set(backgroundColor: .clear)
 
         self.contentContainer.addSubview(self.addButton)
 
