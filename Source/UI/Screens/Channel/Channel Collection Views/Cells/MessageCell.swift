@@ -31,6 +31,10 @@ class MessageCell: UICollectionViewCell {
         self.contentView.addSubview(self.avatarView)
         self.contentView.addSubview(self.bubbleView)
         self.contentView.addSubview(self.textView)
+
+        let view = UIView(frame: bounds)
+        view.set(backgroundColor: .background1)
+        self.backgroundView = view 
     }
 
     override func apply(_ layoutAttributes: UICollectionViewLayoutAttributes) {
@@ -99,5 +103,11 @@ class MessageCell: UICollectionViewCell {
         self.bubbleView.right = self.textView.right + attributes.bubbleViewHorizontalPadding
         self.bubbleView.layer.maskedCorners = attributes.maskedCorners
         self.bubbleView.roundCorners()
+    }
+
+    override func layoutSubviews() {
+        super.layoutSubviews()
+
+        self.contentView.set(backgroundColor: .clear)
     }
 }
