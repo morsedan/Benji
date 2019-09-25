@@ -41,8 +41,15 @@ class ChannelManager: NSObject {
         }
     }
 
-    var selectedChannel: TCHChannel?
-    private(set) var currentSections: [ChannelSectionType] = []
+    var selectedChannel: TCHChannel? {
+        didSet {
+            if self.selectedChannel == nil {
+                self.allMessages = []
+            }
+        }
+    }
+
+    private(set) var allMessages: [TCHMessage] = []
 
     var isSynced: Bool {
         guard let client = self.client else { return false }
@@ -124,7 +131,7 @@ class ChannelManager: NSObject {
 
     //MARK: GET MESSAGES
 
-    func getAllMessages(for channel: TCHChannel,
+    func getLastMessages(for channel: TCHChannel,
                         batchAmount: UInt = 10,
                         completion: @escaping ([ChannelSectionType]) -> Void) {
 
@@ -133,8 +140,8 @@ class ChannelManager: NSObject {
         messagesObject.getLastWithCount(batchAmount) { (result, messages) in
             guard let strongMessages = messages else { return }
 
-            let sections = self.mapToSections(for: strongMessages, in: channel)
-            completion(sections)
+            self.allMessages = strongMessages
+            completion(self.mapMessagesToSections())
         }
     }
 
@@ -152,28 +159,26 @@ class ChannelManager: NSObject {
         messagesObject.getBefore(index - 1, withCount: batchAmount) { (result, messages) in
             guard let strongMessages = messages else { return }
 
-            let new = self.mapToSections(for: strongMessages, in: channel)
-            current.insert(contentsOf: new, at: 0)
-            completion(current)
+            self.allMessages.insert(contentsOf: strongMessages, at: 0)
+            completion(self.mapMessagesToSections())
         }
     }
 
     //MARK: MAPPING
 
-    private func mapToSections(for messages: [TCHMessage], in channel: TCHChannel) -> [ChannelSectionType] {
+    private func mapMessagesToSections() -> [ChannelSectionType] {
 
-        guard let date = channel.dateCreatedAsDate else { return [] }
+        guard let channel = self.selectedChannel, let date = channel.dateCreatedAsDate else { return [] }
 
         var items: [MessageType] = []
-        if let firstMessage = messages.first {
+        if let firstMessage = self.allMessages.first {
             items.append(.message(firstMessage))
         }
 
         let firstSection = ChannelSectionType(date: date, items: items, channelType: .channel(channel))
         var sections: [ChannelSectionType] = [firstSection]
         
-
-        messages.forEach { (message) in
+        self.allMessages.forEach { (message) in
 
             // Determine if the message is a part of the latest channel section
             let messageCreatedAt = message.timestampAsDate ?? Date.distantPast

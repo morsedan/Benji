@@ -21,7 +21,6 @@ class ChannelDetailBar: View {
     private let closeButton = Button()
     private let titleButton = Button()
     private let selectionFeedback = UIImpactFeedbackGenerator(style: .light)
-
     let channelType: ChannelType
 
     unowned let delegate: ChannelDetailBarDelegate
@@ -38,6 +37,8 @@ class ChannelDetailBar: View {
 
     override func initialize() {
         super.initialize()
+
+        self.backgroundColor = Color.background1.color.withAlphaComponent(0.95)
 
         self.addSubview(self.titleLabel)
         self.addSubview(self.titleButton)

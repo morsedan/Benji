@@ -10,22 +10,15 @@ import Foundation
 import ReactiveSwift
 import Parse
 
-class ChannelViewController: ViewController, ScrolledModalControllerPresentable {
+class ChannelViewController: ViewController {
+
+    lazy var detailBar = ChannelDetailBar(with: self.channelType, delegate: self.delegate)
 
     // A Boolean value that determines whether the `MessagesCollectionView`
     /// maintains it's current position when the height of the `MessageInputBar` changes.
     ///
     /// The default value of this property is `false`.
     var maintainPositionOnKeyboardFrameChanged: Bool = false
-
-    var topMargin: CGFloat {
-        guard let topInset = UIWindow.topWindow()?.safeAreaInsets.top else { return 0 }
-        return topInset + 60
-    }
-
-    var scrollView: UIScrollView? {
-        return self.channelCollectionVC.collectionView
-    }
 
     var scrollingEnabled: Bool = true
     var didUpdateHeight: ((CGRect, TimeInterval, UIView.AnimationCurve) -> ())?
@@ -48,8 +41,10 @@ class ChannelViewController: ViewController, ScrolledModalControllerPresentable 
     var previewAnimator: UIViewPropertyAnimator?
     var previewView: PreviewMessageView?
     var interactiveStartingPoint: CGPoint?
+    unowned let delegate: ChannelDetailBarDelegate
 
-    init(channelType: ChannelType) {
+    init(channelType: ChannelType, delegate: ChannelDetailBarDelegate) {
+        self.delegate = delegate
         self.channelType = channelType
         super.init()
     }
@@ -66,9 +61,9 @@ class ChannelViewController: ViewController, ScrolledModalControllerPresentable 
         super.initializeViews()
 
         self.registerKeyboardEvents()
-        self.view.set(backgroundColor: .background2)
-
+        self.view.set(backgroundColor: .background1)
         self.addChild(viewController: self.channelCollectionVC)
+        self.view.addSubview(self.detailBar)
         self.view.addSubview(self.bottomGradientView)
 
         self.view.addSubview(self.messageInputView)
@@ -96,6 +91,8 @@ class ChannelViewController: ViewController, ScrolledModalControllerPresentable 
         }
 
         self.loadMessages(for: self.channelType)
+
+        
     }
 
     deinit {
@@ -106,6 +103,10 @@ class ChannelViewController: ViewController, ScrolledModalControllerPresentable 
         super.viewDidLayoutSubviews()
 
         guard let handler = self.keyboardHandler else { return }
+
+        self.detailBar.size = CGSize(width: self.view.width, height: 60)
+        self.detailBar.top = 0
+        self.detailBar.centerOnX()
 
         self.channelCollectionVC.view.size = CGSize(width: self.view.width,
                                                     height: self.view.height - handler.currentKeyboardHeight)
