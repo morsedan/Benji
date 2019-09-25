@@ -78,6 +78,8 @@ class HomeViewController: FullScreenViewController {
 
         self.headerContainer.addSubview(self.searchBar)
         self.searchBar.delegate = self
+        self.searchBar.barStyle = .black
+        self.searchBar.set(backgroundColor: .clear)
 
         self.contentContainer.addSubview(self.addButton)
 
@@ -132,19 +134,15 @@ class HomeViewController: FullScreenViewController {
         switch currentType {
         case .feed:
             self.channelsVC.animateOut { (completed, error) in
-                if completed {
-                    self.resetContent(currentView: self.channelsVC.view, newView: self.feedVC.view)
-                    self.feedVC.animateIn(completion: { (completed, error) in })
-                }
+                guard completed else { return }
+                self.resetContent(currentView: self.channelsVC.view, newView: self.feedVC.view)
+                self.feedVC.animateIn(completion: { (completed, error) in })
             }
         case .list:
             self.feedVC.animateOut { (completed, error) in
-                if completed {
-                    self.resetContent(currentView: self.feedVC.view, newView: self.channelsVC.view)
-                    self.channelsVC.animateIn(completion: { (completed, error) in
-
-                    })
-                }
+                guard completed else { return }
+                self.resetContent(currentView: self.feedVC.view, newView: self.channelsVC.view)
+                self.channelsVC.animateIn(completion: { (completed, error) in })
             }
         }
     }

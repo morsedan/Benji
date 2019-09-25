@@ -18,6 +18,7 @@ class ChannelsViewController: CollectionViewController<ChannelCell, ChannelsColl
     unowned let delegate: ChannelsViewControllerDelegate
 
     let channels: [ChannelType] = {
+        // TODO: DELETE THESE FAKE MESSAGES
         var items: [ChannelType] = []
         for _ in 0...10 {
             items.append(.system(Lorem.systemMessage()))
