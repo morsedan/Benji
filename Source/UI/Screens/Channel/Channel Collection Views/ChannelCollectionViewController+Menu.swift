@@ -28,27 +28,32 @@ extension ChannelCollectionViewController {
 
     private func makeContextMenu(for messageType: MessageType, at indexPath: IndexPath) -> UIMenu {
 
-         // Create a UIAction for sharing
-         let share = UIAction(title: "Share", image: UIImage(systemName: "square.and.arrow.up")) { action in
-             // Show system share sheet
-         }
+        // Create a UIAction for sharing
+        let share = UIAction(title: "Share", image: UIImage(systemName: "square.and.arrow.up")) { action in
+            let items = [localized(messageType.body)]
+            let ac = UIActivityViewController(activityItems: items, applicationActivities: nil)
+            self.present(ac, animated: true)
+        }
 
-         let editMessage = UIAction(title: "Edit", image: UIImage(systemName: "square.and.pencil")) { action in
-             // Show rename UI
-         }
+        let editMessage = UIAction(title: "Edit", image: UIImage(systemName: "square.and.pencil")) { action in
+            // Show rename UI
+        }
 
-         // Here we specify the "destructive" attribute to show that it’s destructive in nature
-         let delete = UIAction(title: "Delete", image: UIImage(systemName: "trash"), attributes: .destructive) { action in
-            self.showDeleteAlert(for: messageType, at: indexPath)
-         }
+        // Here we specify the "destructive" attribute to show that it’s destructive in nature
+        let neverMind = UIAction(title: "Never Mind", image: UIImage(systemName: "nosign")) { action in
 
-         // Create and return a UIMenu with the share action
-         return UIMenu(title: "Menu", children: [share, editMessage, delete])
-     }
+        }
 
-    private func showDeleteAlert(for messageType: MessageType, at indexPath: IndexPath) {
-        self.channelDataSource.delete(item: messageType, in: indexPath.section)
+        let confirm = UIAction(title: "Confirm", image: UIImage(systemName: "trash"), attributes: .destructive) { action in
+            self.channelDataSource.delete(item: messageType, in: indexPath.section)
+        }
+
+        let deleteMenu = UIMenu(title: "Delete", image: UIImage(systemName: "trash"), options: .destructive, children: [confirm, neverMind])
+
+        // Create and return a UIMenu with the share action
+        return UIMenu(title: "Menu", children: [share, editMessage, deleteMenu])
     }
+
 }
 
 private class MessagePreviewViewController: ViewController {
