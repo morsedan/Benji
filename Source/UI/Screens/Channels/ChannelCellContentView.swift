@@ -36,7 +36,7 @@ class ChannelCellContentView: View {
         case .channel(let channel):
             
             guard let channelMessages = channel.messages else { return }
-            channelMessages.getLastWithCount(10, completion: { (result, messages) in
+            channelMessages.getLastWithCount(1, completion: { (result, messages) in
                 guard let msgs = messages, let last = msgs.last, let body = last.body else { return }
 
                 self.messageLabel.set(text: body)

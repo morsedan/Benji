@@ -90,10 +90,10 @@ class ChannelViewController: ViewController, ScrolledModalControllerPresentable 
             self.handle(pan: pan)
         }
 
-//        self.messageInputView.overlayButton.onLongPress { [unowned self] (longPress) in
-//            longPress.delegate = self
-//            self.handle(longPress: longPress)
-//        }
+        self.messageInputView.overlayButton.onLongPress { [unowned self] (longPress) in
+            longPress.delegate = self
+            self.handle(longPress: longPress)
+        }
 
         self.loadMessages(for: self.channelType)
     }

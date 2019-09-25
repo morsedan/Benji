@@ -19,7 +19,7 @@ protocol ChannelDataSource: AnyObject {
     func numberOfItems(inSection section: Int) -> Int
 
     func reset()
-    func set(newSections: [ChannelSectionType])
+    func set(newSections: [ChannelSectionType], keepOffset: Bool)
     func append(item: MessageType)
     func update(item: MessageType, in section: Int)
     func delete(item: MessageType, in section: Int)
@@ -48,9 +48,14 @@ extension ChannelDataSource {
         self.collectionView?.reloadData()
     }
 
-    func set(newSections: [ChannelSectionType]) {
+    func set(newSections: [ChannelSectionType], keepOffset: Bool = false) {
         self.sections = newSections
-        self.collectionView?.reloadData()
+
+        if keepOffset {
+            self.collectionView?.reloadDataAndKeepOffset()
+        } else {
+            self.collectionView?.reloadData()
+        }
     }
 
     func append(item: MessageType) {

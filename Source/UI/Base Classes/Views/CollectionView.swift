@@ -10,7 +10,7 @@ import Foundation
 
 class CollectionView: UICollectionView {
 
-    let activityIndicator = UIActivityIndicatorView(style: .whiteLarge)
+    let activityIndicator = UIActivityIndicatorView(style: .large)
 
     init(flowLayout: UICollectionViewFlowLayout) {
         super.init(frame: .zero, collectionViewLayout: flowLayout)
@@ -41,6 +41,23 @@ class CollectionView: UICollectionView {
         super.layoutSubviews()
 
         self.activityIndicator.centerOnXAndY()
+    }
+
+    func reloadDataAndKeepOffset() {
+        // stop scrolling
+        self.setContentOffset(self.contentOffset, animated: false)
+
+        // calculate the offset and reloadData
+        let beforeContentSize = self.contentSize
+        self.reloadData()
+        self.layoutIfNeeded()
+        let afterContentSize = self.contentSize
+
+        // reset the contentOffset after data is updated
+        let newOffset = CGPoint(
+            x: self.contentOffset.x + (afterContentSize.width - beforeContentSize.width),
+            y: self.contentOffset.y + (afterContentSize.height - beforeContentSize.height))
+        self.setContentOffset(newOffset, animated: false)
     }
 
     func register<T: UICollectionViewCell>(_ cellClass: T.Type) {

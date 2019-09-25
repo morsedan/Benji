@@ -62,6 +62,7 @@ UICollectionViewDelegateFlowLayout {
         guard let channelCollectionView = collectionView as? ChannelCollectionView else { return 0 }
         collectionView.backgroundView?.isHidden = self.channelDataSource.sections.count > 0
         var numberOfSections = self.channelDataSource.sections.count
+
         if !channelCollectionView.isTypingIndicatorHidden {
             numberOfSections += 1
         }
@@ -122,9 +123,6 @@ UICollectionViewDelegateFlowLayout {
 
         switch kind {
         case UICollectionView.elementKindSectionHeader:
-            if self.isSectionReservedForTypingIndicator(indexPath.section) {
-                return UICollectionReusableView()
-            }
             return self.header(for: collectionView, at: indexPath)
         case UICollectionView.elementKindSectionFooter:
             fatalError("NO FOOTER")
@@ -136,10 +134,12 @@ UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView,
                         layout collectionViewLayout: UICollectionViewLayout,
                         referenceSizeForHeaderInSection section: Int) -> CGSize {
-        if self.isSectionReservedForTypingIndicator(section) {
+
+        guard let channelLayout = collectionViewLayout as? ChannelCollectionViewFlowLayout else {
             return .zero
         }
-        return CGSize(width: collectionView.width, height: 50)
+
+        return channelLayout.sizeForHeader(at: section)
     }
 
     func collectionView(_ collectionView: UICollectionView,
@@ -150,6 +150,7 @@ UICollectionViewDelegateFlowLayout {
     }
 
     private func header(for collectionView: UICollectionView, at indexPath: IndexPath) -> UICollectionReusableView {
+
         guard let channelCollectionView = collectionView as? ChannelCollectionView else {
             fatalError("Error setting header")
         }
@@ -162,8 +163,36 @@ UICollectionViewDelegateFlowLayout {
             fatalError("No model was found for section header")
         }
 
+        if indexPath.section == 0 {
+            return self.getTopHeader(for: section, at: indexPath, in: channelCollectionView)
+        }
+
         let header = channelCollectionView.dequeueReusableHeaderView(ChannelSectionHeader.self, for: indexPath)
         header.configure(with: section.date)
+        return header
+    }
+
+    private func getTopHeader(for section: ChannelSectionType,
+                              at indexPath: IndexPath,
+                              in collectionView: ChannelCollectionView) -> UICollectionReusableView {
+
+        if let index = section.firstMessageIndex, index > 0 {
+            let moreHeader = collectionView.dequeueReusableHeaderView(LoadMoreSectionHeader.self, for: indexPath)
+            //Reset all gestures
+            moreHeader.gestureRecognizers?.forEach({ (recognizer) in
+                moreHeader.removeGestureRecognizer(recognizer)
+            })
+
+            moreHeader.button.onTap { [weak self] (tap) in
+                guard let `self` = self else { return }
+                moreHeader.button.isLoading = true
+                self.didSelectLoadMore(for: index)
+            }
+            return moreHeader
+        }
+
+        let header = collectionView.dequeueReusableHeaderView(InitialSectionHeader.self, for: indexPath)
+        header.configure(with: section)
         return header
     }
 

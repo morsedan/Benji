@@ -15,6 +15,7 @@ class MessageInputView: View, UIGestureRecognizerDelegate {
     let contextButton = ContextButton()
     let textView = InputTextView()
     let overlayButton = UIButton()
+    let alertProgressView = UIView()
 
     override func initialize() {
         super.initialize()
@@ -22,9 +23,11 @@ class MessageInputView: View, UIGestureRecognizerDelegate {
         self.set(backgroundColor: .backgroundWithAlpha)
 
         self.addSubview(self.contextButton)
+        self.addSubview(self.alertProgressView)
+        self.alertProgressView.set(backgroundColor: .red)
+        self.alertProgressView.size = .zero 
         self.addSubview(self.textView)
         self.textView.minHeight = self.minHeight
-
         self.addSubview(self.overlayButton)
 
         self.overlayButton.onTap { [unowned self] (tap) in

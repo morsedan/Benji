@@ -184,4 +184,14 @@ extension ChannelCollectionViewController {
         let lastIndexPath = IndexPath(item: sectionValue.items.count - 1, section: sectionCount - 1)
         return self.collectionView.indexPathsForVisibleItems.contains(lastIndexPath)
     }
+
+    func didSelectLoadMore(for messageIndex: Int) {
+        guard let channel = ChannelManager.shared.selectedChannel else { return }
+
+        ChannelManager.shared.getMessages(before: UInt(messageIndex),
+                                          extending: self.channelDataSource.sections,
+                                          for: channel) { (sections) in
+            self.channelDataSource.set(newSections: sections, keepOffset: true)
+        }
+    }
 }

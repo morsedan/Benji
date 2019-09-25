@@ -10,6 +10,13 @@ import Foundation
 
 class ChannelCollectionViewLayoutAttributes: UICollectionViewLayoutAttributes {
 
+    //Header
+    var headerTopOffset: CGFloat = .zero
+    var headerDateOffset: CGFloat = .zero
+    var headerDateLabelSize: CGSize = .zero
+    var headerDescriptionLabelSize: CGSize = .zero
+
+    //Cell
     var avatarSize: CGSize = .zero
     var avatarLeadingPadding: CGFloat = .zero
     var bubbleViewSize: CGSize = .zero
@@ -24,6 +31,10 @@ class ChannelCollectionViewLayoutAttributes: UICollectionViewLayoutAttributes {
 
     override func copy(with zone: NSZone? = nil) -> Any {
         let copy = super.copy(with: zone) as! ChannelCollectionViewLayoutAttributes
+        copy.headerTopOffset = self.headerTopOffset
+        copy.headerDateOffset = self.headerDateOffset
+        copy.headerDateLabelSize = self.headerDateLabelSize
+        copy.headerDescriptionLabelSize = self.headerDescriptionLabelSize
         copy.avatarSize = self.avatarSize
         copy.avatarLeadingPadding = self.avatarLeadingPadding
         copy.bubbleViewSize = self.bubbleViewSize
@@ -40,17 +51,21 @@ class ChannelCollectionViewLayoutAttributes: UICollectionViewLayoutAttributes {
 
     override func isEqual(_ object: Any?) -> Bool {
         if let attributes = object as? ChannelCollectionViewLayoutAttributes {
-            return super.isEqual(object) && attributes.avatarSize == self.avatarSize
-            && attributes.avatarLeadingPadding == self.avatarLeadingPadding
-            && attributes.bubbleViewSize == self.bubbleViewSize
-            && attributes.messageTextViewSize == self.messageTextViewSize
-            && attributes.messageTextViewVerticalPadding == self.messageTextViewVerticalPadding
-            && attributes.messageTextViewMaxWidth == self.messageTextViewMaxWidth
-            && attributes.messageFontType == self.messageFontType
-            && attributes.messageTextViewHorizontalPadding == self.messageTextViewHorizontalPadding
-            && attributes.isFromCurrentUser == self.isFromCurrentUser
-            && attributes.bubbleViewHorizontalPadding == self.bubbleViewHorizontalPadding
-            && attributes.maskedCorners == self.maskedCorners
+            return super.isEqual(object) && attributes.headerTopOffset == self.headerDateOffset
+                && attributes.headerTopOffset == self.headerTopOffset
+                && attributes.headerDateLabelSize == self.headerDateLabelSize
+                && attributes.headerDescriptionLabelSize == self.headerDescriptionLabelSize
+                && attributes.avatarSize == self.avatarSize
+                && attributes.avatarLeadingPadding == self.avatarLeadingPadding
+                && attributes.bubbleViewSize == self.bubbleViewSize
+                && attributes.messageTextViewSize == self.messageTextViewSize
+                && attributes.messageTextViewVerticalPadding == self.messageTextViewVerticalPadding
+                && attributes.messageTextViewMaxWidth == self.messageTextViewMaxWidth
+                && attributes.messageFontType == self.messageFontType
+                && attributes.messageTextViewHorizontalPadding == self.messageTextViewHorizontalPadding
+                && attributes.isFromCurrentUser == self.isFromCurrentUser
+                && attributes.bubbleViewHorizontalPadding == self.bubbleViewHorizontalPadding
+                && attributes.maskedCorners == self.maskedCorners
         }
 
         return false

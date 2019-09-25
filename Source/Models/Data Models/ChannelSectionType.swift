@@ -13,21 +13,25 @@ class ChannelSectionType {
 
     var date: Date
     var items: [MessageType] = []
+    var channelType: ChannelType?
 
-    init(date: Date, items: [MessageType]) {
+    var firstMessageIndex: Int? {
+        guard let firstType = self.items.first else { return nil }
+
+        switch firstType {
+        case .message(let message):
+            return message.index?.intValue
+        default:
+            return nil
+        }
+    }
+
+    init(date: Date,
+         items: [MessageType],
+         channelType: ChannelType? = nil) {
+
         self.date = date
         self.items = items
-    }
-
-    func diffIdentifier() -> NSObjectProtocol {
-        return self.date.diffIdentifier()
-    }
-
-    static func == (lhs: ChannelSectionType, rhs: ChannelSectionType) -> Bool {
-        return lhs.date == rhs.date
-    }
-
-    func hash(into hasher: inout Hasher) {
-        hasher.combine(self.date)
+        self.channelType = channelType
     }
 }

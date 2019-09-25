@@ -10,7 +10,7 @@ import Foundation
 
 class LoadingView: UIView {
 
-    private var activityIndicator = UIActivityIndicatorView(style: .whiteLarge)
+    private var activityIndicator = UIActivityIndicatorView(style: .large)
 
     init() {
         super.init(frame: CGRect())

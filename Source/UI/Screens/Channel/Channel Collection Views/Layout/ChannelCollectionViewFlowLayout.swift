@@ -19,6 +19,7 @@ class ChannelCollectionViewFlowLayout: UICollectionViewFlowLayout {
 
     lazy var messageSizeCalculator = MessageSizeCalculator(layout: self)
     lazy var typingIndicatorSizeCalculator = TypingCellSizeCalculator(layout: self)
+    lazy var initialHeaderSizeCalculator = InitialHeaderSizeCalculator(layout: self)
 
     var channelCollectionView: ChannelCollectionView {
         guard let channelCollectionView = self.collectionView as? ChannelCollectionView else {
@@ -97,10 +98,17 @@ class ChannelCollectionViewFlowLayout: UICollectionViewFlowLayout {
         guard let attributesArray = super.layoutAttributesForElements(in: rect) as? [ChannelCollectionViewLayoutAttributes] else {
             return nil
         }
+
         for attributes in attributesArray where attributes.representedElementCategory == .cell {
             let cellSizeCalculator = self.cellSizeCalculatorForItem(at: attributes.indexPath)
             cellSizeCalculator.configure(attributes: attributes)
         }
+
+        for attributes in attributesArray where attributes.representedElementCategory == .supplementaryView {
+            let headerSizeCalculator = self.headerSizeCalculator(for: attributes.indexPath.section)
+            headerSizeCalculator.configure(attributes: attributes)
+        }
+
         return attributesArray
     }
 
@@ -108,10 +116,15 @@ class ChannelCollectionViewFlowLayout: UICollectionViewFlowLayout {
         guard let attributes = super.layoutAttributesForItem(at: indexPath) as? ChannelCollectionViewLayoutAttributes else {
             return nil
         }
+
         if attributes.representedElementCategory == .cell {
             let cellSizeCalculator = self.cellSizeCalculatorForItem(at: attributes.indexPath)
             cellSizeCalculator.configure(attributes: attributes)
+        }else if attributes.representedElementCategory == .supplementaryView {
+            let headerSizeCalculator = self.headerSizeCalculator(for: attributes.indexPath.section)
+            headerSizeCalculator.configure(attributes: attributes)
         }
+
         return attributes
     }
 
@@ -136,11 +149,32 @@ class ChannelCollectionViewFlowLayout: UICollectionViewFlowLayout {
         return self.messageSizeCalculator
     }
 
+    private func headerSizeCalculator(for section:  Int) -> HeaderSizeCalculator {
+        return self.initialHeaderSizeCalculator
+    }
+
     // MARK: - PUBLIC
 
     func sizeForItem(at indexPath: IndexPath) -> CGSize {
         let calculator = self.cellSizeCalculatorForItem(at: indexPath)
         return calculator.sizeForItem(at: indexPath)
+    }
+
+    func sizeForHeader(at section: Int) -> CGSize {
+        if self.isSectionReservedForTypingIndicator(section) {
+            return .zero
+        }
+
+        if section == 0 {
+            if let sectionType = self.dataSource.sections[safe: section], let index = sectionType.firstMessageIndex, index > 0 {
+                return CGSize(width: self.channelCollectionView.width, height: 50)
+            } else {
+                let calculator = self.headerSizeCalculator(for: section)
+                return calculator.sizeForHeader(at: section)
+            }
+        }
+
+        return CGSize(width: self.channelCollectionView.width, height: 50)
     }
 
     // MARK: - Typing Indicator API

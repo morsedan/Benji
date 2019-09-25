@@ -33,6 +33,7 @@ class ChannelManager: NSObject {
     }
 
     var selectedChannel: TCHChannel?
+    private(set) var currentSections: [ChannelSectionType] = []
 
     var isSynced: Bool {
         guard let client = self.client else { return false }
@@ -93,30 +94,12 @@ class ChannelManager: NSObject {
         }
     }
 
-    func joinChannel(sid: String, completion: @escaping ClientCompletion) {
-        guard let client = self.client, let channels = client.channelsList() else { return }
-
-        channels.channel(withSidOrUniqueName: sid, completion: { (result, channel) in
-            guard let strongChannel = channel else {
-                completion(client, result.error)
-                return
-            }
-
-            if result.isSuccessful(), strongChannel.status != .joined {
-                strongChannel.join(completion: { (result) in
-                    completion(client, result.error)
-                })
-            } else {
-                completion(client, result.error)
-            }
-        })
-    }
-
-    //MARK: MESSAGE HELPERS
+    //MARK: SEND MESSAGE
 
     func sendMessage(to channel: TCHChannel,
                      with body: String,
                      attributes: Dictionary<String, Any> = [:]) {
+
         let message = body.extraWhitespaceRemoved()
 
         guard !message.isEmpty, channel.status == .joined else { return }
@@ -130,81 +113,73 @@ class ChannelManager: NSObject {
         }
     }
 
-    func getLatestMessages(channel: TCHChannel, count: Int) {
-        guard let messages = channel.messages else { return }
+    //MARK: GET MESSAGES
 
-        messages.getLastWithCount(UInt(count), completion: { (result, newMessages) in
+    func getAllMessages(for channel: TCHChannel,
+                        batchAmount: UInt = 10,
+                        completion: @escaping ([ChannelSectionType]) -> Void) {
 
-        })
-    }
+        guard let messagesObject = channel.messages else { return }
 
-    func sendInvite(channel: TCHChannel, identity: String, completion: ((TCHResult) -> Void)?) {
-        guard let members = channel.members else { return }
+        messagesObject.getLastWithCount(batchAmount) { (result, messages) in
+            guard let strongMessages = messages else { return }
 
-        members.invite(byIdentity: identity) { result in
-            completion?(result)
+            let sections = self.mapToSections(for: strongMessages, in: channel)
+            completion(sections)
         }
     }
 
-    func update(channel: TCHChannel, withAttributes: Any) {
+    func getMessages(before index: UInt,
+                     batchAmount: UInt = 10,
+                     extending currentSections: [ChannelSectionType],
+                     for channel: TCHChannel,
+                     completion: @escaping ([ChannelSectionType]) -> Void) {
 
-    }
+        guard let messagesObject = channel.messages else { return }
+        var current = currentSections
+        //Remove the first section
+        current.remove(at: 0)
 
-    func hasChannel(with name: String, completion: @escaping (TCHChannel?) -> Void) {
-        guard let client = self.client, let channels = client.channelsList() else {
-            completion(nil)
-            return
-        }
+        messagesObject.getBefore(index - 1, withCount: batchAmount) { (result, messages) in
+            guard let strongMessages = messages else { return }
 
-        channels.channel(withSidOrUniqueName: name) { (result, channel) in
-            completion(channel)
+            let new = self.mapToSections(for: strongMessages, in: channel)
+            current.insert(contentsOf: new, at: 0)
+            completion(current)
         }
     }
 
     //MARK: MAPPING
 
-    func getAllMessages(for channel: TCHChannel, completion: @escaping ([ChannelSectionType]) -> Void) {
+    private func mapToSections(for messages: [TCHMessage], in channel: TCHChannel) -> [ChannelSectionType] {
 
-        guard let allMessages = channel.messages else { return }
+        guard let date = channel.dateCreatedAsDate else { return [] }
 
-        allMessages.getLastWithCount(30) { (result, messages) in
-            guard let strongMessages = messages else { return }
-
-            var sections: [ChannelSectionType] = []
-
-            strongMessages.forEach { (message) in
-
-                // Determine if the message is a part of the latest channel section
-                let messageCreatedAt = message.timestampAsDate ?? Date.distantPast
-
-                if let latestSection = sections.last, latestSection.date.isSameDay(as: messageCreatedAt) {
-                    // If the message fits into the latest section, then just append it
-                    latestSection.items.append(.message(message))
-                } else {
-                    // Otherwise, create a new section with the date of this message
-                    let section = ChannelSectionType(date: messageCreatedAt.beginningOfDay,
-                                                     items: [.message(message)])
-                    sections.append(section)
-                }
-            }
-
-            completion(sections)
+        var items: [MessageType] = []
+        if let firstMessage = messages.first {
+            items.append(.message(firstMessage))
         }
-    }
 
-    private func deleteAllChannels() {
+        let firstSection = ChannelSectionType(date: date, items: items, channelType: .channel(channel))
+        var sections: [ChannelSectionType] = [firstSection]
+        
 
-        for type in ChannelManager.shared.channelTypes {
-            switch type {
-            case .channel(let channel):
-                channel.destroy(completion: { (result) in
-                    if result.isSuccessful() {
-                        print("Channel deleted")
-                    }
-                })
-            default:
-                break
+        messages.forEach { (message) in
+
+            // Determine if the message is a part of the latest channel section
+            let messageCreatedAt = message.timestampAsDate ?? Date.distantPast
+
+            if let latestSection = sections.last, latestSection.date.isSameDay(as: messageCreatedAt) {
+                // If the message fits into the latest section, then just append it
+                latestSection.items.append(.message(message))
+            } else {
+                // Otherwise, create a new section with the date of this message
+                let section = ChannelSectionType(date: messageCreatedAt.beginningOfDay,
+                                                 items: [.message(message)])
+                sections.append(section)
             }
         }
+
+        return sections
     }
 }

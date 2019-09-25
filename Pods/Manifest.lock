@@ -14,9 +14,9 @@ PODS:
   - PhoneNumberKit/UIKit (3.0.0):
     - PhoneNumberKit/PhoneNumberKitCore
   - pop (1.0.12)
-  - ReactiveSwift (6.0.0)
+  - ReactiveSwift (6.1.0)
   - TwilioAccessManager (1.1.2)
-  - TwilioChatClient (2.6.0)
+  - TwilioChatClient (2.6.1)
 
 DEPENDENCIES:
   - GestureRecognizerClosures
@@ -46,9 +46,9 @@ SPEC CHECKSUMS:
   Parse: 3b31a3dd1777b07ee7f0caee32fafbff544483a5
   PhoneNumberKit: 86019c972ef6904bcad11b46a6b8a91184d51117
   pop: d582054913807fd11fd50bfe6a539d91c7e1a55a
-  ReactiveSwift: 24b7ed245617bbfd30ee0c87779b6c64ac1b4518
+  ReactiveSwift: b78c7259f8ca46368238c895ae33a6a3bf9f811c
   TwilioAccessManager: f3b0d9edd2eb5a044e50ff78057ab13611a0baa1
-  TwilioChatClient: ce41a128970a747bc82b2546ad5449276eff3b67
+  TwilioChatClient: 50c9701d0217fe63112aaf75a2a4faa1932dc468
 
 PODFILE CHECKSUM: c74560ec73ce55666fe590af87a23916c5c8abdc
 

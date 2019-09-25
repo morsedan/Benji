@@ -37,7 +37,7 @@ class ChannelModalViewController: ScrolledModalViewController<ChannelViewControl
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
 
-        self.detailBar.size = CGSize(width: self.view.width, height: 60)
+        self.detailBar.size = CGSize(width: self.view.width, height: 40)
         self.detailBar.bottom = self.modalContainerView.top 
         self.detailBar.centerOnX()
     }

@@ -52,8 +52,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         }
 
         let token = tokenParts.joined()
-        print("Device Token: \(token)")
-
         return token
     }
 }

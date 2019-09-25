@@ -52,7 +52,7 @@ class ProfileViewController: FullScreenViewController {
         self.routineInputVC.view.frame = CGRect(x: 0,
                                                 y: self.avatarView.bottom + 20,
                                                 width: self.view.width,
-                                                height: 250)
+                                                height: self.view.height - self.avatarView.bottom + 20)
     }
 
     func set(avatar: Avatar) {
