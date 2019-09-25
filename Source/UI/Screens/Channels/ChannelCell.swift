@@ -12,6 +12,7 @@ import TwilioChatClient
 class ChannelCell: UICollectionViewCell, DisplayableCell {
 
     typealias ItemType = ChannelType
+    
     let content = ChannelCellContentView()
     private let selectionFeedback = UIImpactFeedbackGenerator(style: .light)
 

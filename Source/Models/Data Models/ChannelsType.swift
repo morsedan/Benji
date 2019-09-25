@@ -23,6 +23,15 @@ enum ChannelType: DisplayableCellItem {
         }
     }
 
+    var dateUpdated: Date {
+        switch self {
+        case .system(let systemMessage):
+            return systemMessage.timeStampAsDate
+        case .channel(let channel):
+            return channel.dateUpdatedAsDate ?? Date.distantPast
+        }
+    }
+
     func diffIdentifier() -> NSObjectProtocol {
         switch self {
         case .system(let message):

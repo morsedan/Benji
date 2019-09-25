@@ -9,6 +9,7 @@
 import Foundation
 import Contacts
 import Parse
+import ReactiveSwift
 
 enum HomeContentType: Int {
     case feed
@@ -17,6 +18,9 @@ enum HomeContentType: Int {
 
 class HomeViewController: FullScreenViewController {
 
+    typealias HomeViewControllerDelegate = ChannelsViewControllerDelegate & ChannelPurposeViewControllerDelegate
+    unowned let delegate: HomeViewControllerDelegate
+
     //move
     lazy var newChannelFlowViewController: NewChannelFlowViewController = {
         let controller = NewChannelFlowViewController(delegate: self.delegate)
@@ -24,11 +28,7 @@ class HomeViewController: FullScreenViewController {
     }()
     lazy var scrolledModal = ScrolledModalViewController(presentable: self.newChannelFlowViewController)
 
-    typealias HomeViewControllerDelegate = ChannelsViewControllerDelegate & ChannelPurposeViewControllerDelegate
-
-    lazy var channelsVC = ChannelsViewController(with: self.delegate)
-    lazy var feedVC = FeedViewController()
-    lazy var segmentControl = HomeSegmentControl(items: ["FEED", "LIST"])
+    private let headerContainer = View()
     lazy var avatarView: ProfileAvatarView = {
         let avatarView = ProfileAvatarView()
         if let current = PFUser.current() {
@@ -36,15 +36,21 @@ class HomeViewController: FullScreenViewController {
         }
         return avatarView
     }()
-
-    private let headerContainer = View()
+    private let searchBar = UISearchBar()
     private let addButton = HomeAddButton()
-    private var currentType: HomeContentType = .feed
-    unowned let delegate: HomeViewControllerDelegate
+
+    lazy var feedVC = FeedViewController()
+    lazy var channelsVC = ChannelsViewController(with: self.delegate)
+
+    private let currentType = MutableProperty<HomeContentType>(.feed)
 
     init(with delegate: HomeViewControllerDelegate) {
         self.delegate = delegate
         super.init()
+
+        self.currentType.producer.skipRepeats().on { [unowned self] (contentType) in
+            self.updateContent()
+        }.start()
     }
 
     required init?(coder aDecoder: NSCoder) {
@@ -70,8 +76,9 @@ class HomeViewController: FullScreenViewController {
             })
         }
 
-        self.headerContainer.addSubview(self.segmentControl)
-        self.segmentControl.addTarget(self, action: #selector(updateContent), for: .valueChanged)
+        self.headerContainer.addSubview(self.searchBar)
+        self.searchBar.delegate = self
+        self.searchBar.barStyle = .black
 
         self.contentContainer.addSubview(self.addButton)
 
@@ -84,27 +91,27 @@ class HomeViewController: FullScreenViewController {
         super.viewDidLayoutSubviews()
 
         self.headerContainer.size = CGSize(width: self.contentContainer.width, height: 40)
-        self.headerContainer.top = Theme.contentOffset
+        self.headerContainer.top = self.view.safeAreaInsets.top
         self.headerContainer.centerOnX()
-
-        self.segmentControl.size = CGSize(width: 120, height: 40)
-        self.segmentControl.centerOnXAndY()
 
         self.avatarView.size = CGSize(width: 40, height: 40)
         self.avatarView.left = 20
-        self.avatarView.centerY = self.segmentControl.centerY
+        self.avatarView.centerOnY()
+
+        self.searchBar.size = CGSize(width: self.headerContainer.width - 120, height: 40)
+        self.searchBar.left = self.avatarView.right + 20
 
         self.addButton.size = CGSize(width: 60, height: 60)
         self.addButton.centerOnX()
         self.addButton.bottom = self.contentContainer.height - 25 - self.view.safeAreaInsets.bottom
 
-        let feedHeight = (self.contentContainer.height * 0.8) - self.segmentControl.height - 30
+        let feedHeight = self.contentContainer.height * 0.8
         self.feedVC.view.size = CGSize(width: self.contentContainer.width * 0.85, height: feedHeight)
-        self.feedVC.view.top = self.segmentControl.bottom + 30
-        self.feedVC.view.left = self.contentContainer.width * 0.075
+        self.feedVC.view.centerOnXAndY()
 
-        self.channelsVC.view.size = self.contentContainer.size
-        self.channelsVC.view.top = 0
+        self.channelsVC.view.width = self.contentContainer.width
+        self.channelsVC.view.top = self.headerContainer.bottom
+        self.channelsVC.view.height = self.contentContainer.height
         self.channelsVC.view.centerOnX()
     }
 
@@ -120,29 +127,44 @@ class HomeViewController: FullScreenViewController {
         newView.alpha = 0
     }
 
-    @objc func updateContent() {
-        guard let newType = HomeContentType(rawValue: self.segmentControl.selectedSegmentIndex),
-            self.currentType != newType else { return }
+    func updateContent() {
+        let currentType = self.currentType.value
 
-        switch newType {
+        switch currentType {
         case .feed:
             self.channelsVC.animateOut { (completed, error) in
-                if completed {
-                    self.resetContent(currentView: self.channelsVC.view, newView: self.feedVC.view)
-                    self.feedVC.animateIn(completion: { (completed, error) in })
-                }
+                guard completed else { return }
+                self.resetContent(currentView: self.channelsVC.view, newView: self.feedVC.view)
+                self.feedVC.animateIn(completion: { (completed, error) in })
             }
         case .list:
             self.feedVC.animateOut { (completed, error) in
-                if completed {
-                    self.resetContent(currentView: self.feedVC.view, newView: self.channelsVC.view)
-                    self.channelsVC.animateIn(completion: { (completed, error) in
-
-                    })
-                }
+                guard completed else { return }
+                self.resetContent(currentView: self.feedVC.view, newView: self.channelsVC.view)
+                self.channelsVC.animateIn(completion: { (completed, error) in })
             }
         }
+    }
+}
 
-        self.currentType = newType
+extension HomeViewController: UISearchBarDelegate {
+
+    func searchBarTextDidBeginEditing(_ searchBar: UISearchBar) {
+        self.searchBar.showsCancelButton = true
+        self.currentType.value = .list
+        self.channelsVC.channelFilter = String()
+    }
+
+    func searchBarTextDidEndEditing(_ searchBar: UISearchBar) {
+        self.searchBar.showsCancelButton = false
+        self.currentType.value = .feed
+    }
+
+    func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
+        self.channelsVC.channelFilter = searchText
+    }
+
+    func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
+        searchBar.resignFirstResponder()
     }
 }
