@@ -64,7 +64,7 @@ enum MessageType: DisplayableCellItem {
     var avatar: Avatar {
         switch self {
         case .system(let message), .user(let message):
-            return message.avatar
+            return message.avatars.first!
         case .message(let message):
             return message
 

@@ -23,6 +23,15 @@ enum ChannelType: DisplayableCellItem {
         }
     }
 
+    var friendlyName: String {
+        switch self {
+        case .system(_):
+            return Lorem.friendlyName()
+        case .channel(let channel):
+            return String(optional: channel.friendlyName)
+        }
+    }
+
     var dateUpdated: Date {
         switch self {
         case .system(let systemMessage):

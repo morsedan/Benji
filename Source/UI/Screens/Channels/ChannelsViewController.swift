@@ -129,12 +129,7 @@ class ChannelsViewController: CollectionViewController<ChannelCell, ChannelsColl
         if let channelFilter = self.channelFilter, !channelFilter.isEmpty {
 
             let filteredChannels = allChannels.filter { (channelType) in
-                switch channelType {
-                case .system(let systemMessage):
-                    return systemMessage.avatar.firstName.contains(channelFilter)
-                case .channel(let channel):
-                    return channel.friendlyName?.contains(channelFilter) ?? false
-                }
+                channelType.friendlyName.contains(channelFilter)
             }
 
             self.manager.set(newItems: filteredChannels)

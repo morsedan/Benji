@@ -25,14 +25,8 @@ class ChannelCellContentView: View {
 
         switch type {
         case .system(let message):
-            self.stackedAvatarView.set(items: [message.avatar])
-            self.titleLabel.set(text: message.context.text)
+            self.stackedAvatarView.set(items: message.avatars)
         case .channel(let channel):
-
-            if let name = channel.friendlyName {
-                self.titleLabel.set(text: name)
-            }
-
             channel.getMembersAsUsers().observe { (result) in
                 switch result {
                 case .success(let users):
@@ -42,6 +36,8 @@ class ChannelCellContentView: View {
                 }
             }
         }
+
+        self.titleLabel.set(text: type.friendlyName)
     }
 
     override func layoutSubviews() {

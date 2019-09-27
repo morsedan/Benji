@@ -64,6 +64,7 @@ class Lorem {
 
     private static let isFromCurrentUserList = [true, false]
 
+
     class func avatar() -> SystemAvatar {
         return SystemAvatar(photo: self.image())
     }
@@ -96,7 +97,12 @@ class Lorem {
     }
 
     class func systemMessage() -> SystemMessage {
-        let message = SystemMessage(avatar: self.avatar(),
+        var avatars: [Avatar] = []
+        for _ in 0...3 {
+            avatars.append(self.avatar())
+        }
+
+        let message = SystemMessage(avatars: avatars,
                                     context: self.context(),
                                     body: self.sentence(),
                                     id: String(self.randomString()),
@@ -107,8 +113,11 @@ class Lorem {
     }
 
     class func systemParagraph() -> SystemMessage {
-        let avatar = SystemAvatar(photo: self.image())
-        let message = SystemMessage(avatar: avatar,
+        var avatars: [Avatar] = []
+        for _ in 0...3 {
+            avatars.append(self.avatar())
+        }
+        let message = SystemMessage(avatars: avatars,
                                     context: self.context(),
                                     body: self.paragraph(),
                                     id: String(self.randomString()),
@@ -121,6 +130,10 @@ class Lorem {
     class func randomString(length: Int = 10) -> String {
         let letters = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789"
         return String((0..<length).map{ _ in letters.randomElement()! })
+    }
+
+    class func friendlyName() -> String {
+        return "#" + self.wordList.random()
     }
 
     class func name() -> String {

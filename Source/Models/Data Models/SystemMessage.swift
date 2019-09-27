@@ -10,7 +10,7 @@ import Foundation
 
 struct SystemMessage: Diffable, Hashable {
 
-    var avatar: Avatar
+    var avatars: [Avatar]
     var context: MessageContext
     var body: String
     var id: String

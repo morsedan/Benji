@@ -47,7 +47,7 @@ class ToastScheduler {
                      priority: 1,
                      title: systemMessage.body,
                      button: button,
-                     displayable: systemMessage.avatar)
+                     displayable: UIImage())
     }
 
     private func createMessageToast(for message: TCHMessage) -> Toast? {

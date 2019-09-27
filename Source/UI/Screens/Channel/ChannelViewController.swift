@@ -127,28 +127,28 @@ class ChannelViewController: ViewController {
         self.channelCollectionVC.loadMessages(for: type)
     }
 
-    func sendSystem(message: String) {
-        let systemMessage = SystemMessage(avatar: Lorem.avatar(),
-                                          context: Lorem.context(),
-                                          body: message,
-                                          id: String(Lorem.randomString()),
-                                          isFromCurrentUser: true,
-                                          timeStampAsDate: Date(),
-                                          status: .unknown)
-        self.channelCollectionVC.channelDataSource.append(item: .system(systemMessage))
-        self.reset()
-    }
+//    func sendSystem(message: String) {
+//        let systemMessage = SystemMessage(avatar: Lorem.avatar(),
+//                                          context: Lorem.context(),
+//                                          body: message,
+//                                          id: String(Lorem.randomString()),
+//                                          isFromCurrentUser: true,
+//                                          timeStampAsDate: Date(),
+//                                          status: .unknown)
+//        self.channelCollectionVC.channelDataSource.append(item: .system(systemMessage))
+//        self.reset()
+//    }
 
     func send(message: String) {
         guard let channel = ChannelManager.shared.selectedChannel else { return }
 
-        let messageType = SystemMessage(avatar: PFUser.current,
-                                    context: .casual,
-                                    body: message,
-                                    id: PFUser.current.objectId!,
-                                    isFromCurrentUser: true,
-                                    timeStampAsDate: Date(),
-                                    status: .sent)
+        let messageType = SystemMessage(avatars: [PFUser.current],
+                                        context: .casual,
+                                        body: message,
+                                        id: PFUser.current.objectId!,
+                                        isFromCurrentUser: true,
+                                        timeStampAsDate: Date(),
+                                        status: .sent)
         let type: MessageType = .user(messageType)
         self.channelCollectionVC.channelDataSource.append(item: type)
         self.reset()
