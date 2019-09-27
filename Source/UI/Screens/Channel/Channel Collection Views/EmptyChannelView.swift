@@ -65,7 +65,7 @@ class EmptyChannelView: View {
         let avatar2 = Lorem.avatar()
         self.stackedAvatarView.itemSize = 72
         self.stackedAvatarView.offsetMultiplier = 0.8
-        self.stackedAvatarView.configure(items: [avatar1, avatar2])
+        self.stackedAvatarView.set(items: [avatar1, avatar2])
     }
 
     override func layoutSubviews() {

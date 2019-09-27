@@ -15,7 +15,7 @@ class StackedAvatarView: View {
     var itemSize: CGFloat = 30
     var offsetMultiplier: CGFloat = 0.5
 
-    func configure(items: [Avatar]) {
+    func set(items: [Avatar]) {
         self.imageViews.removeAllFromSuperview(andRemoveAll: true)
 
         let max: Int = min(items.count, self.maxItems)

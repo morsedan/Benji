@@ -34,6 +34,11 @@ extension TCHChannel: Diffable, DisplayableCellItem {
         return promise.getAuthorAsUser()
     }
 
+    func getMembersAsUsers() -> Future<[PFUser]> {
+        let promise = Promise<TCHChannel>(value: self)
+        return promise.getUsers()
+    }
+
     var channelDescription: String {
         guard let attributes = self.attributes(),
             let text = attributes[ChannelKey.description.rawValue] as? String else { return String() }
@@ -102,6 +107,41 @@ extension Future where Value == TCHChannel {
 
             return promise
         })
+    }
+
+    func getUsers() -> Future<[PFUser]> {
+        return self.then { (channel) in
+            let promise = Promise<[PFUser]>()
+            if let members = channel.members {
+                members.members { (result, paginator) in
+                    if result.isSuccessful(), let pag = paginator {
+                        var identifiers: [String] = []
+                        pag.items().forEach { (member) in
+                            if let identifier = member.identity {
+                                identifiers.append(identifier)
+                            }
+                        }
+
+                        let query = PFUser.query()
+                        query?.cachePolicy = .cacheThenNetwork
+                        query?.whereKey(UserKey.objectId.rawValue, containedIn: identifiers)
+                        query?.findObjectsInBackground(block: { (objects, error) in
+                            if let error = error {
+                                promise.reject(with: error)
+                            } else if let users = objects as? [PFUser] {
+                                promise.resolve(with: users)
+                            } else {
+                                promise.reject(with: ClientError.generic)
+                            }
+                        })
+                    } else {
+                        return promise.reject(with: ClientError.generic)
+                    }
+                }
+            }
+
+            return promise
+        }
     }
 }
 
