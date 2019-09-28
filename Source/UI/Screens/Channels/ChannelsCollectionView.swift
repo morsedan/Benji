@@ -16,6 +16,8 @@ class ChannelsCollectionView: CollectionView {
         flowLayout.minimumLineSpacing = 16
         flowLayout.sectionInset = UIEdgeInsets(top: 20, left: 0, bottom: 0, right: 0)
         super.init(flowLayout: flowLayout)
+
+        self.bounces = true 
     }
     
     required init?(coder aDecoder: NSCoder) {

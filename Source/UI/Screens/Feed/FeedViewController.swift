@@ -42,7 +42,7 @@ class FeedViewController: ViewController {
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
 
-        let feedHeight = self.view.height * 0.9
+        let feedHeight = self.view.height * 0.7
         self.kolodaView.size = CGSize(width: self.view.width * 0.85, height: feedHeight)
         self.kolodaView.centerOnXAndY()
     }
@@ -50,7 +50,6 @@ class FeedViewController: ViewController {
     func animateIn(completion: @escaping CompletionHandler) {
         let animator = UIViewPropertyAnimator(duration: Theme.animationDuration,
                                               curve: .easeInOut) {
-                                                //self.view.transform = CGAffineTransform.identity
                                                 self.view.alpha = 1
                                                 self.view.setNeedsLayout()
         }
@@ -66,7 +65,6 @@ class FeedViewController: ViewController {
     func animateOut(completion: @escaping CompletionHandler) {
         let animator = UIViewPropertyAnimator(duration: Theme.animationDuration,
                                               curve: .easeInOut) {
-                                                //self.view.transform = CGAffineTransform(scaleX: 0.9, y: 0.9)
                                                 self.view.alpha = 0
                                                 self.view.setNeedsLayout()
         }

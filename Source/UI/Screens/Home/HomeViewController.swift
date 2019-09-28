@@ -107,8 +107,8 @@ class HomeViewController: FullScreenViewController {
 
     private func resetContent(currentView: UIView, newView: UIView) {
         currentView.removeFromSuperview()
-        self.centerContainer.insertSubview(newView, belowSubview: self.headerView)
-        newView.transform = CGAffineTransform(scaleX: 0.9, y: 0.9)
+        self.centerContainer.addSubview(newView)
+       // newView.transform = CGAffineTransform(scaleX: 0.9, y: 0.9)
         newView.alpha = 0
         self.view.layoutNow()
     }
@@ -134,6 +134,8 @@ class HomeViewController: FullScreenViewController {
                 })
             }
         }
+
+        self.view.layoutNow()
     }
 }
 

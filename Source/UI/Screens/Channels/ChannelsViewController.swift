@@ -47,7 +47,6 @@ class ChannelsViewController: CollectionViewController<ChannelCell, ChannelsColl
     func animateIn(completion: @escaping CompletionHandler) {
         let animator = UIViewPropertyAnimator(duration: Theme.animationDuration,
                                               curve: .easeInOut) {
-                                               // self.view.transform = CGAffineTransform.identity
                                                 self.view.alpha = 1
         }
         animator.addCompletion { (position) in
@@ -62,7 +61,6 @@ class ChannelsViewController: CollectionViewController<ChannelCell, ChannelsColl
     func animateOut(completion: @escaping CompletionHandler) {
         let animator = UIViewPropertyAnimator(duration: Theme.animationDuration,
                                               curve: .easeInOut) {
-                                                //self.view.transform = CGAffineTransform(scaleX: 0.9, y: 0.9)
                                                 self.view.alpha = 0
                                                 self.view.setNeedsLayout()
         }

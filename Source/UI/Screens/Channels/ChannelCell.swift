@@ -28,7 +28,8 @@ class ChannelCell: UICollectionViewCell, DisplayableCell {
     override func layoutSubviews() {
         super.layoutSubviews()
 
-        self.content.frame = self.contentView.bounds
+        self.content.size = CGSize(width: self.contentView.width * 0.9, height: self.contentView.height)
+        self.content.centerOnXAndY()
     }
 
     override open func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
