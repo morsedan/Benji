@@ -108,9 +108,7 @@ class HomeViewController: FullScreenViewController {
     private func resetContent(currentView: UIView, newView: UIView) {
         currentView.removeFromSuperview()
         self.centerContainer.addSubview(newView)
-       // newView.transform = CGAffineTransform(scaleX: 0.9, y: 0.9)
         newView.alpha = 0
-        self.view.layoutNow()
     }
 
     func updateContent() {
@@ -121,21 +119,15 @@ class HomeViewController: FullScreenViewController {
             self.channelsVC.animateOut { (completed, error) in
                 guard completed else { return }
                 self.resetContent(currentView: self.channelsVC.view, newView: self.feedVC.view)
-                self.feedVC.animateIn(completion: { (completed, error) in
-                    self.feedVC.view.layoutNow()
-                })
+                self.feedVC.animateIn(completion: { (completed, error) in })
             }
         case .list:
             self.feedVC.animateOut { (completed, error) in
                 guard completed else { return }
                 self.resetContent(currentView: self.feedVC.view, newView: self.channelsVC.view)
-                self.channelsVC.animateIn(completion: { (completed, error) in
-                    self.channelsVC.view.layoutNow()
-                })
+                self.channelsVC.animateIn(completion: { (completed, error) in })
             }
         }
-
-        self.view.layoutNow()
     }
 }
 
