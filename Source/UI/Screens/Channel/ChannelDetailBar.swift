@@ -53,8 +53,8 @@ class ChannelDetailBar: View {
         }
 
         switch self.channelType {
-        case .system(let message):
-            self.setLayout(for: message)
+        case .system(let channel):
+            self.setLayout(for: channel)
         case .channel(let channel):
             self.setLayout(for: channel)
         }
@@ -79,8 +79,8 @@ class ChannelDetailBar: View {
         self.titleButton.centerOnY()
     }
 
-    func setLayout(for system: SystemMessage) {
-        self.set(text: system.context.text)
+    func setLayout(for system: SystemChannel) {
+        self.set(text: system.friendlyName)
     }
 
     func setLayout(for channel: TCHChannel) {

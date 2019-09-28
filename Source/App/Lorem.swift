@@ -96,13 +96,30 @@ class Lorem {
         return sorted
     }
 
-    class func systemMessage() -> SystemMessage {
+    class func systemChannel() -> SystemChannel {
         var avatars: [Avatar] = []
         for _ in 0...3 {
             avatars.append(self.avatar())
         }
 
-        let message = SystemMessage(avatars: avatars,
+        var messages: [SystemMessage] = []
+        for _ in 0...50 {
+            messages.append(self.systemMessage())
+        }
+
+        let channel = SystemChannel(avatars: avatars,
+                                    context: self.context(),
+                                    id: String(self.randomString()),
+                                    timeStampAsDate: self.dates.random(),
+                                    visibilityType: .directMessage,
+                                    messages: messages)
+
+        return channel 
+    }
+
+    class func systemMessage() -> SystemMessage {
+        
+        let message = SystemMessage(avatar: self.avatar(),
                                     context: self.context(),
                                     body: self.sentence(),
                                     id: String(self.randomString()),
@@ -113,11 +130,7 @@ class Lorem {
     }
 
     class func systemParagraph() -> SystemMessage {
-        var avatars: [Avatar] = []
-        for _ in 0...3 {
-            avatars.append(self.avatar())
-        }
-        let message = SystemMessage(avatars: avatars,
+        let message = SystemMessage(avatar: self.avatar(),
                                     context: self.context(),
                                     body: self.paragraph(),
                                     id: String(self.randomString()),
@@ -130,6 +143,10 @@ class Lorem {
     class func randomString(length: Int = 10) -> String {
         let letters = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789"
         return String((0..<length).map{ _ in letters.randomElement()! })
+    }
+
+    class func channelName() -> String {
+        return self.word()
     }
 
     class func friendlyName() -> String {

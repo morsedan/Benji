@@ -9,6 +9,10 @@
 import Foundation
 import TwilioChatClient
 
+enum FilterCategory: String {
+    case channels = "#"
+}
+
 protocol ChannelsViewControllerDelegate: class {
     func channelsView(_ controller: ChannelsViewController, didSelect channelType: ChannelType)
 }
@@ -20,6 +24,7 @@ class ChannelsViewController: CollectionViewController<ChannelCell, ChannelsColl
     // A cache of the all the user's current channels and system messages,
     // sorted by date updated, with newer channels at the beginning.
     lazy var channelTypeCache: [ChannelType] = []
+    var filterCategory: FilterCategory = .channels
     var channelFilter: String? {
         didSet {
             self.loadFilteredChannels()
@@ -125,9 +130,9 @@ class ChannelsViewController: CollectionViewController<ChannelCell, ChannelsColl
         let allChannels = self.channelTypeCache
 
         if let channelFilter = self.channelFilter, !channelFilter.isEmpty {
-
+            let filter = self.filterCategory.rawValue + channelFilter
             let filteredChannels = allChannels.filter { (channelType) in
-                channelType.friendlyName.contains(channelFilter)
+                return channelType.displayName.contains(filter)
             }
 
             self.manager.set(newItems: filteredChannels)

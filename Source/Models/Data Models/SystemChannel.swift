@@ -1,28 +1,30 @@
 //
-//  SystemMessage.swift
+//  SystemChannel.swift
 //  Benji
 //
-//  Created by Benji Dodgson on 6/22/19.
+//  Created by Benji Dodgson on 9/28/19.
 //  Copyright © 2019 Benjamin Dodgson. All rights reserved.
 //
 
 import Foundation
 
-struct SystemMessage: Diffable, Hashable {
+struct SystemChannel: Diffable, Hashable {
 
-    var avatar: Avatar
+    var avatars: [Avatar]
     var context: MessageContext
-    var body: String
     var id: String
-    var isFromCurrentUser: Bool = false
     var timeStampAsDate: Date
-    var status: MessageTypeStatus = .sent
+    var visibilityType: ChannelVisibilityType
+    var messages: [SystemMessage] 
+    var friendlyName: String {
+        return self.visibilityType.rawValue + self.id
+    }
 
     func diffIdentifier() -> NSObjectProtocol {
         return self.id as NSObjectProtocol
     }
 
-    static func == (lhs: SystemMessage, rhs: SystemMessage) -> Bool {
+    static func == (lhs: SystemChannel, rhs: SystemChannel) -> Bool {
         return lhs.id == rhs.id
     }
 

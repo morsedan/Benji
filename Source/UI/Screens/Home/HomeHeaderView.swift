@@ -19,13 +19,10 @@ class HomeHeaderView: View {
         return avatarView
     }()
 
-    private(set) var searchBar = UISearchBar()
+    private(set) var searchBar = HomeSearchBar()
 
     override func initializeSubviews() {
         super.initializeSubviews()
-
-        self.searchBar.keyboardType = .twitter
-        self.searchBar.barStyle = .black
 
         self.addSubview(self.avatarView)
         self.addSubview(self.searchBar)

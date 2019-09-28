@@ -38,7 +38,7 @@ class ChannelCellContentView: View {
             }
         }
 
-        self.titleLabel.set(text: type.friendlyName)
+        self.titleLabel.set(text: type.displayName)
     }
 
     override func layoutSubviews() {

@@ -15,6 +15,8 @@
 		80D4A21C2303A005007CB5F1 /* Routine.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80D4A21B2303A005007CB5F1 /* Routine.swift */; };
 		D6073FD0233AFC1D009633EB /* ChannelCollectionViewController+Menu.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6073FCF233AFC1D009633EB /* ChannelCollectionViewController+Menu.swift */; };
 		D607400A233FCF3E009633EB /* HomeHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6074009233FCF3E009633EB /* HomeHeaderView.swift */; };
+		D607400C23400FA6009633EB /* HomeSearchBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = D607400B23400FA6009633EB /* HomeSearchBar.swift */; };
+		D607400E23401B3E009633EB /* SystemChannel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D607400D23401B3E009633EB /* SystemChannel.swift */; };
 		D60C814222092D5300A127A3 /* PagingCollectionViewFlowLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = D60C814122092D5300A127A3 /* PagingCollectionViewFlowLayout.swift */; };
 		D60C814422092E4700A127A3 /* PagingCollectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D60C814322092E4700A127A3 /* PagingCollectionView.swift */; };
 		D60C814622092F6B00A127A3 /* Button.swift in Sources */ = {isa = PBXBuildFile; fileRef = D60C814522092F6B00A127A3 /* Button.swift */; };
@@ -253,6 +255,8 @@
 		B8144E2A6499F243C0C3F7C9 /* Pods-Benji.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Benji.release.xcconfig"; path = "Pods/Target Support Files/Pods-Benji/Pods-Benji.release.xcconfig"; sourceTree = "<group>"; };
 		D6073FCF233AFC1D009633EB /* ChannelCollectionViewController+Menu.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ChannelCollectionViewController+Menu.swift"; sourceTree = "<group>"; };
 		D6074009233FCF3E009633EB /* HomeHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeHeaderView.swift; sourceTree = "<group>"; };
+		D607400B23400FA6009633EB /* HomeSearchBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeSearchBar.swift; sourceTree = "<group>"; };
+		D607400D23401B3E009633EB /* SystemChannel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SystemChannel.swift; sourceTree = "<group>"; };
 		D60C814122092D5300A127A3 /* PagingCollectionViewFlowLayout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PagingCollectionViewFlowLayout.swift; sourceTree = "<group>"; };
 		D60C814322092E4700A127A3 /* PagingCollectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PagingCollectionView.swift; sourceTree = "<group>"; };
 		D60C814522092F6B00A127A3 /* Button.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Button.swift; sourceTree = "<group>"; };
@@ -1062,6 +1066,7 @@
 				D66F0FDD22BF2C5D00BA277D /* HomeSegmentControl.swift */,
 				D642735422C87CCA0088256B /* HomeAddButton.swift */,
 				D6074009233FCF3E009633EB /* HomeHeaderView.swift */,
+				D607400B23400FA6009633EB /* HomeSearchBar.swift */,
 			);
 			path = Home;
 			sourceTree = "<group>";
@@ -1163,6 +1168,7 @@
 				D6B2606922E80AB000143CF0 /* Toast.swift */,
 				D64C6A7D23294A8600DB7257 /* ChannelKey.swift */,
 				D64C6A83232950A200DB7257 /* UserKey.swift */,
+				D607400D23401B3E009633EB /* SystemChannel.swift */,
 			);
 			path = "Data Models";
 			sourceTree = "<group>";
@@ -1341,6 +1347,7 @@
 				D66F0FE622C0640E00BA277D /* Avatar.swift in Sources */,
 				D67896BD23025FEC0059BA75 /* LoginNameViewController.swift in Sources */,
 				D6D14FFB21D5893700CD8CE4 /* DiffableBox.swift in Sources */,
+				D607400E23401B3E009633EB /* SystemChannel.swift in Sources */,
 				D6A82B6F2325BEA2003E0A8B /* FavoritesViewController.swift in Sources */,
 				D6D1501621D5F08700CD8CE4 /* DisplyableCell.swift in Sources */,
 				D66F0FE222C041AF00BA277D /* AvatarView.swift in Sources */,
@@ -1478,6 +1485,7 @@
 				D6375322231614DF00214F63 /* NewContextCell.swift in Sources */,
 				D6DADF722207DF83007D9EB1 /* ChannelsCollectionView.swift in Sources */,
 				D6D1502B21D69C3300CD8CE4 /* NSObject+Extensions.swift in Sources */,
+				D607400C23400FA6009633EB /* HomeSearchBar.swift in Sources */,
 				8002F37F230CD07F00F8C4E3 /* Authorization+Extensions.swift in Sources */,
 				D6815DB122ECAEC700E71251 /* MediumLabel.swift in Sources */,
 				D6D1460321D551B100CD8CE4 /* StringLibrary.swift in Sources */,

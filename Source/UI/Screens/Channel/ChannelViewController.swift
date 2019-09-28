@@ -142,7 +142,7 @@ class ChannelViewController: ViewController {
     func send(message: String) {
         guard let channel = ChannelManager.shared.selectedChannel else { return }
 
-        let messageType = SystemMessage(avatars: [PFUser.current],
+        let messageType = SystemMessage(avatar: PFUser.current,
                                         context: .casual,
                                         body: message,
                                         id: PFUser.current.objectId!,

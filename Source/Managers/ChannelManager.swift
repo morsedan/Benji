@@ -27,7 +27,7 @@ class ChannelManager: NSObject {
         // TODO: DELETE THESE FAKE MESSAGES
         var items: [ChannelType] = []
         for _ in 0...100 {
-            items.append(.system(Lorem.systemMessage()))
+            items.append(.system(Lorem.systemChannel()))
         }
         return items
     }()

@@ -9,9 +9,14 @@
 import Foundation
 import TwilioChatClient
 
+enum ChannelVisibilityType: String {
+    case directMessage = "@"
+    case group = "#"
+}
+
 enum ChannelType: DisplayableCellItem {
 
-    case system(SystemMessage)
+    case system(SystemChannel)
     case channel(TCHChannel)
 
     var backgroundColor: Color {
@@ -23,7 +28,7 @@ enum ChannelType: DisplayableCellItem {
         }
     }
 
-    var friendlyName: String {
+    var displayName: String {
         switch self {
         case .system(_):
             return Lorem.friendlyName()
