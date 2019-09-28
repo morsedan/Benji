@@ -27,17 +27,24 @@ class FeedViewController: ViewController {
         return manager
     }()
 
-    override func loadView() {
-        self.view = self.kolodaView
-    }
-
     override func initializeViews() {
         super.initializeViews()
+
+        self.view.addSubview(self.kolodaView)
 
         self.kolodaView.dataSource = self.manager
         self.kolodaView.delegate = self.manager
 
         self.subscribeToUpdates()
+    }
+
+    override func viewDidLayoutSubviews() {
+        super.viewDidLayoutSubviews()
+
+        let feedHeight = self.view.height * 0.9
+        self.kolodaView.size = CGSize(width: self.view.width * 0.85, height: feedHeight)
+        self.kolodaView.top = 0
+        self.kolodaView.centerOnX()
     }
 
     func animateIn(completion: @escaping CompletionHandler) {

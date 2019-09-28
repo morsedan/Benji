@@ -47,7 +47,8 @@ class FullScreenViewController: ViewController {
 
         self.contentContainer.top = self.view.safeAreaInsets.top
         self.contentContainer.width = self.view.width
-        self.contentContainer.height = self.view.height - self.view.safeAreaInsets.top 
+        let height = self.view.height - self.view.safeAreaInsets.top - self.view.safeAreaInsets.bottom
+        self.contentContainer.height = height
         self.contentContainer.centerOnX()
     }
 

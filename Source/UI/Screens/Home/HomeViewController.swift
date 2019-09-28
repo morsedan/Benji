@@ -28,16 +28,9 @@ class HomeViewController: FullScreenViewController {
     }()
     lazy var scrolledModal = ScrolledModalViewController(presentable: self.newChannelFlowViewController)
 
-    private let headerContainer = View()
-    lazy var avatarView: ProfileAvatarView = {
-        let avatarView = ProfileAvatarView()
-        if let current = PFUser.current() {
-            avatarView.set(avatar: current)
-        }
-        return avatarView
-    }()
+    private let headerView = HomeHeaderView()
+
     private let centerContainer = View()
-    private let searchBar = UISearchBar()
     private let addButton = HomeAddButton()
 
     lazy var feedVC = FeedViewController()
@@ -65,25 +58,22 @@ class HomeViewController: FullScreenViewController {
     override func initializeViews() {
         super.initializeViews()
 
-        self.searchBar.keyboardType = .twitter
-
-        self.contentContainer.addSubview(self.headerContainer)
+        self.contentContainer.addSubview(self.headerView)
         self.contentContainer.addSubview(self.centerContainer)
+        self.contentContainer.set(backgroundColor: .blue)
+        self.centerContainer.set(backgroundColor: .red)
 
         self.addChild(viewController: self.feedVC, toView: self.centerContainer)
         self.addChild(self.channelsVC)
 
-        self.headerContainer.addSubview(self.avatarView)
-        self.avatarView.onTap { [unowned self] (tap) in
+        self.headerView.avatarView.onTap { [unowned self] (tap) in
             let vc = ProfileViewController()
             self.present(vc, animated: true, completion: {
                 vc.set(avatar: PFUser.current)
             })
         }
 
-        self.headerContainer.addSubview(self.searchBar)
-        self.searchBar.delegate = self
-        self.searchBar.barStyle = .black
+        self.headerView.searchBar.delegate = self
 
         self.contentContainer.addSubview(self.addButton)
 
@@ -95,29 +85,22 @@ class HomeViewController: FullScreenViewController {
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
 
-        self.headerContainer.size = CGSize(width: self.contentContainer.width, height: 40)
-        self.headerContainer.top = self.view.safeAreaInsets.top
-        self.headerContainer.centerOnX()
+        self.headerView.size = CGSize(width: self.contentContainer.width, height: 40)
+        self.headerView.top = 0
+        self.headerView.centerOnX()
 
-        self.avatarView.size = CGSize(width: 40, height: 40)
-        self.avatarView.left = 20
-        self.avatarView.centerOnY()
-
-        self.searchBar.size = CGSize(width: self.headerContainer.width - 120, height: 40)
-        self.searchBar.left = self.avatarView.right + 20
+        let centerHeight = self.contentContainer.height - self.headerView.height
+        self.centerContainer.size = CGSize(width: self.contentContainer.width,
+                                           height: centerHeight)
+        self.centerContainer.top = self.headerView.bottom
+        self.centerContainer.centerOnX()
 
         self.addButton.size = CGSize(width: 60, height: 60)
         self.addButton.centerOnX()
-        self.addButton.bottom = self.contentContainer.height - 25 - self.view.safeAreaInsets.bottom
+        self.addButton.bottom = self.contentContainer.height - 10
 
-        let feedHeight = self.contentContainer.height * 0.8
-        self.feedVC.view.size = CGSize(width: self.contentContainer.width * 0.85, height: feedHeight)
-        self.feedVC.view.centerOnXAndY()
-
-        self.channelsVC.view.width = self.contentContainer.width
-        self.channelsVC.view.top = self.headerContainer.bottom
-        self.channelsVC.view.height = self.contentContainer.height
-        self.channelsVC.view.centerOnX()
+        self.feedVC.view.frame = self.centerContainer.bounds
+        self.channelsVC.view.frame = self.centerContainer.bounds
     }
 
     func presentNewChannel() {
@@ -126,8 +109,7 @@ class HomeViewController: FullScreenViewController {
 
     private func resetContent(currentView: UIView, newView: UIView) {
         currentView.removeFromSuperview()
-        self.contentContainer.insertSubview(newView, belowSubview: self.headerContainer)
-        self.contentContainer.layoutNow()
+        self.centerContainer.insertSubview(newView, belowSubview: self.headerView)
         newView.transform = CGAffineTransform(scaleX: 0.9, y: 0.9)
         newView.alpha = 0
         self.view.layoutNow()
@@ -160,13 +142,13 @@ class HomeViewController: FullScreenViewController {
 extension HomeViewController: UISearchBarDelegate {
 
     func searchBarTextDidBeginEditing(_ searchBar: UISearchBar) {
-        self.searchBar.showsCancelButton = true
+        self.headerView.searchBar.showsCancelButton = true
         self.currentType.value = .list
         self.channelsVC.channelFilter = String()
     }
 
     func searchBarTextDidEndEditing(_ searchBar: UISearchBar) {
-        self.searchBar.showsCancelButton = false
+        self.headerView.searchBar.showsCancelButton = false
         self.currentType.value = .feed
     }
 
