@@ -31,6 +31,7 @@ class FeedViewController: ViewController {
         super.initializeViews()
 
         self.view.addSubview(self.kolodaView)
+        self.kolodaView.set(backgroundColor: .red)
 
         self.kolodaView.dataSource = self.manager
         self.kolodaView.delegate = self.manager
@@ -43,16 +44,15 @@ class FeedViewController: ViewController {
 
         let feedHeight = self.view.height * 0.9
         self.kolodaView.size = CGSize(width: self.view.width * 0.85, height: feedHeight)
-        self.kolodaView.top = 0
-        self.kolodaView.centerOnX()
+        self.kolodaView.centerOnXAndY()
     }
 
     func animateIn(completion: @escaping CompletionHandler) {
         let animator = UIViewPropertyAnimator(duration: Theme.animationDuration,
                                               curve: .easeInOut) {
-                                                self.view.transform = CGAffineTransform.identity
+                                                //self.view.transform = CGAffineTransform.identity
                                                 self.view.alpha = 1
-                                                self.view.layoutNow()
+                                                self.view.setNeedsLayout()
         }
         animator.addCompletion { (position) in
             if position == .end {
@@ -66,9 +66,9 @@ class FeedViewController: ViewController {
     func animateOut(completion: @escaping CompletionHandler) {
         let animator = UIViewPropertyAnimator(duration: Theme.animationDuration,
                                               curve: .easeInOut) {
-                                                self.view.transform = CGAffineTransform(scaleX: 0.9, y: 0.9)
+                                                //self.view.transform = CGAffineTransform(scaleX: 0.9, y: 0.9)
                                                 self.view.alpha = 0
-                                                self.view.layoutNow()
+                                                self.view.setNeedsLayout()
         }
         animator.addCompletion { (position) in
             if position == .end {

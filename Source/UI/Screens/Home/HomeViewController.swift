@@ -60,8 +60,6 @@ class HomeViewController: FullScreenViewController {
 
         self.contentContainer.addSubview(self.headerView)
         self.contentContainer.addSubview(self.centerContainer)
-        self.contentContainer.set(backgroundColor: .blue)
-        self.centerContainer.set(backgroundColor: .red)
 
         self.addChild(viewController: self.feedVC, toView: self.centerContainer)
         self.addChild(self.channelsVC)

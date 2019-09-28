@@ -22,7 +22,9 @@ class ViewController: UIViewController, Dismissable {
         self.initializeViews()
     }
 
-    func initializeViews() {}
+    func initializeViews() {
+        self.view.translatesAutoresizingMaskIntoConstraints = false 
+    }
 
     override func viewDidDisappear(_ animated: Bool) {
         super.viewDidDisappear(animated)
