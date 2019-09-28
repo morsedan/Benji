@@ -62,6 +62,9 @@ class HomeViewController: FullScreenViewController {
     }
 
     override func initializeViews() {
+        super.initializeViews()
+
+        self.searchBar.keyboardType = .twitter
 
         self.addChild(viewController: self.feedVC, toView: self.contentContainer)
         self.addChild(self.channelsVC)
@@ -125,6 +128,7 @@ class HomeViewController: FullScreenViewController {
         self.contentContainer.layoutNow()
         newView.transform = CGAffineTransform(scaleX: 0.9, y: 0.9)
         newView.alpha = 0
+        self.view.layoutNow()
     }
 
     func updateContent() {
@@ -135,13 +139,17 @@ class HomeViewController: FullScreenViewController {
             self.channelsVC.animateOut { (completed, error) in
                 guard completed else { return }
                 self.resetContent(currentView: self.channelsVC.view, newView: self.feedVC.view)
-                self.feedVC.animateIn(completion: { (completed, error) in })
+                self.feedVC.animateIn(completion: { (completed, error) in
+                    self.feedVC.view.layoutNow()
+                })
             }
         case .list:
             self.feedVC.animateOut { (completed, error) in
                 guard completed else { return }
                 self.resetContent(currentView: self.feedVC.view, newView: self.channelsVC.view)
-                self.channelsVC.animateIn(completion: { (completed, error) in })
+                self.channelsVC.animateIn(completion: { (completed, error) in
+                    self.channelsVC.view.layoutNow()
+                })
             }
         }
     }
