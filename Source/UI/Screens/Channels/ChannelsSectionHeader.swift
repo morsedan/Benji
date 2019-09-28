@@ -10,7 +10,7 @@ import Foundation
 
 class ChannelsSectionHeader: UICollectionReusableView {
 
-    private let label = Display1Label()
+    private let label = Display2Label()
 
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -28,9 +28,8 @@ class ChannelsSectionHeader: UICollectionReusableView {
     override func layoutSubviews() {
         super.layoutSubviews()
 
-        self.label.setSize(withWidth: self.width * 0.8)
-        self.label.left = Theme.contentOffset
-        self.label.centerOnY()
+        self.label.setSize(withWidth: self.width * 0.9)
+        self.label.centerOnXAndY()
     }
 
     func configure(with text: Localized) {

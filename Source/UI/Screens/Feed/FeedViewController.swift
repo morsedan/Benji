@@ -31,7 +31,6 @@ class FeedViewController: ViewController {
         super.initializeViews()
 
         self.view.addSubview(self.kolodaView)
-        self.kolodaView.set(backgroundColor: .red)
 
         self.kolodaView.dataSource = self.manager
         self.kolodaView.delegate = self.manager
