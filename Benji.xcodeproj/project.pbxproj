@@ -15,6 +15,7 @@
 		80D4A21C2303A005007CB5F1 /* Routine.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80D4A21B2303A005007CB5F1 /* Routine.swift */; };
 		D6073FD0233AFC1D009633EB /* ChannelCollectionViewController+Menu.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6073FCF233AFC1D009633EB /* ChannelCollectionViewController+Menu.swift */; };
 		D6074008233FC98D009633EB /* ChannelsSectionHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6074007233FC98D009633EB /* ChannelsSectionHeader.swift */; };
+		D607400A233FCF3E009633EB /* HomeHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6074009233FCF3E009633EB /* HomeHeaderView.swift */; };
 		D60C814222092D5300A127A3 /* PagingCollectionViewFlowLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = D60C814122092D5300A127A3 /* PagingCollectionViewFlowLayout.swift */; };
 		D60C814422092E4700A127A3 /* PagingCollectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D60C814322092E4700A127A3 /* PagingCollectionView.swift */; };
 		D60C814622092F6B00A127A3 /* Button.swift in Sources */ = {isa = PBXBuildFile; fileRef = D60C814522092F6B00A127A3 /* Button.swift */; };
@@ -253,6 +254,7 @@
 		B8144E2A6499F243C0C3F7C9 /* Pods-Benji.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Benji.release.xcconfig"; path = "Pods/Target Support Files/Pods-Benji/Pods-Benji.release.xcconfig"; sourceTree = "<group>"; };
 		D6073FCF233AFC1D009633EB /* ChannelCollectionViewController+Menu.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ChannelCollectionViewController+Menu.swift"; sourceTree = "<group>"; };
 		D6074007233FC98D009633EB /* ChannelsSectionHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChannelsSectionHeader.swift; sourceTree = "<group>"; };
+		D6074009233FCF3E009633EB /* HomeHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeHeaderView.swift; sourceTree = "<group>"; };
 		D60C814122092D5300A127A3 /* PagingCollectionViewFlowLayout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PagingCollectionViewFlowLayout.swift; sourceTree = "<group>"; };
 		D60C814322092E4700A127A3 /* PagingCollectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PagingCollectionView.swift; sourceTree = "<group>"; };
 		D60C814522092F6B00A127A3 /* Button.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Button.swift; sourceTree = "<group>"; };
@@ -1061,6 +1063,7 @@
 				D6D1461021D583D200CD8CE4 /* RootNavigationController.swift */,
 				D66F0FDD22BF2C5D00BA277D /* HomeSegmentControl.swift */,
 				D642735422C87CCA0088256B /* HomeAddButton.swift */,
+				D6074009233FCF3E009633EB /* HomeHeaderView.swift */,
 			);
 			path = Home;
 			sourceTree = "<group>";
@@ -1387,6 +1390,7 @@
 				D67896AD22FF60190059BA75 /* LoginTextInputViewController.swift in Sources */,
 				D6D1502921D6085200CD8CE4 /* ResourceObject.swift in Sources */,
 				D6D145FF21D5510400CD8CE4 /* StringStyle.swift in Sources */,
+				D607400A233FCF3E009633EB /* HomeHeaderView.swift in Sources */,
 				D68483F922CC3DE400362AC3 /* ChannelCollectionViewController.swift in Sources */,
 				D64C6A9C232D6C9200DB7257 /* BubbleCircleView.swift in Sources */,
 				D691794222F6418700340AA3 /* Router.swift in Sources */,

@@ -16,8 +16,9 @@ class ContextButton: View {
     private let contextCircleCenter = ContextCircleView()
     private let contextCircleBottom = ContextCircleView()
 
-    override func initialize() {
-        
+    override func initializeSubviews() {
+        super.initializeSubviews()
+
         self.addSubview(self.contextCircleTop)
         self.addSubview(self.contextCircleBottom)
         self.addSubview(self.contextCircleLeft)
@@ -56,7 +57,9 @@ class ContextButton: View {
 
 private class ContextCircleView: View {
 
-    override func initialize() {
+    override func initializeSubviews() {
+        super.initializeSubviews()
+        
         self.set(backgroundColor: .white)
     }
 

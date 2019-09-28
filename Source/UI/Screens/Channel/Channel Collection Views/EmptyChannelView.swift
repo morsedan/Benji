@@ -51,7 +51,9 @@ class EmptyChannelView: View {
         }
     }
 
-    override func initialize() {
+    override func initializeSubviews() {
+        super.initializeSubviews()
+        
         self.addSubview(self.titleLabel)
         self.addSubview(self.descriptionLabel)
         self.addSubview(self.actionLabel)

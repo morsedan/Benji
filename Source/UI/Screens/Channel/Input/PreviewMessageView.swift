@@ -15,8 +15,8 @@ class PreviewMessageView: View {
     let textView = InputTextView()
     let backgroundView = View()
 
-    override func initialize() {
-        super.initialize()
+    override func initializeSubviews() {
+        super.initializeSubviews()
 
         self.addSubview(self.backgroundView)
         self.backgroundView.set(backgroundColor: .lightPurple)

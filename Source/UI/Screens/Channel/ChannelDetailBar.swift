@@ -35,8 +35,8 @@ class ChannelDetailBar: View {
         fatalError("init(coder:) has not been implemented")
     }
 
-    override func initialize() {
-        super.initialize()
+    override func initializeSubviews() {
+        super.initializeSubviews()
 
         self.backgroundColor = Color.background1.color.withAlphaComponent(0.95)
 

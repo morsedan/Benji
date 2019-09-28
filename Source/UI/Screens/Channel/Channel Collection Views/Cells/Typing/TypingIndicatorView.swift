@@ -83,8 +83,8 @@ class TypingIndicatorView: View {
 
     // MARK: - Initialization
 
-    override func initialize() {
-        super.initialize()
+    override func initializeSubviews() {
+        super.initializeSubviews()
 
         self.dots.forEach { dot in
             dot.backgroundColor = self.dotColor

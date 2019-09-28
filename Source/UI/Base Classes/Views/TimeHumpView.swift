@@ -18,8 +18,8 @@ class TimeHumpView: View {
 
     let percentage = MutableProperty<CGFloat>(0)
 
-    override func initialize() {
-        super.initialize()
+    override func initializeSubviews() {
+        super.initializeSubviews()
 
         self.set(backgroundColor: .green)
 

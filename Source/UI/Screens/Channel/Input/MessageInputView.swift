@@ -17,8 +17,8 @@ class MessageInputView: View, UIGestureRecognizerDelegate {
     let overlayButton = UIButton()
     let alertProgressView = UIView()
 
-    override func initialize() {
-        super.initialize()
+    override func initializeSubviews() {
+        super.initializeSubviews()
 
         self.set(backgroundColor: .backgroundWithAlpha)
 

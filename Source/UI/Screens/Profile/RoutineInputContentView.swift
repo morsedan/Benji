@@ -14,8 +14,9 @@ class RoutineInputContentView: View {
     let setRoutineButton = Button()
     let timeHump = TimeHumpView()
 
-    override func initialize() {
-
+    override func initializeSubviews() {
+        super.initializeSubviews()
+        
         self.addSubview(self.timePicker)
         // Don't allow the user to directly interact with the date picker
         self.timePicker.isUserInteractionEnabled = false

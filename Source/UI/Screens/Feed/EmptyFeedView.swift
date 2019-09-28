@@ -12,8 +12,9 @@ class EmptyFeedView: View {
 
     let label = MediumLabel()
 
-    override func initialize() {
-
+    override func initializeSubviews() {
+        super.initializeSubviews()
+        
         self.addSubview(self.label)
         self.set(backgroundColor: .clear)
         self.addShadow(withOffset: 20)

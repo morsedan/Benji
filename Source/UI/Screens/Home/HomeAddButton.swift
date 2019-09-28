@@ -13,7 +13,9 @@ class HomeAddButton: View {
     let imageView = UIImageView(image: #imageLiteral(resourceName: "add"))
     private let selectionFeedback = UIImpactFeedbackGenerator(style: .light)
 
-    override func initialize() {
+    override func initializeSubviews() {
+        super.initializeSubviews()
+        
         self.set(backgroundColor: .purple)
         self.addSubview(self.imageView)
 

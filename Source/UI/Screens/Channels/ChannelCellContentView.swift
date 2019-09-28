@@ -13,8 +13,9 @@ class ChannelCellContentView: View {
     private let titleLabel = RegularBoldLabel()
     private let stackedAvatarView = StackedAvatarView()
 
-    override func initialize() {
-
+    override func initializeSubviews() {
+        super.initializeSubviews()
+        
         self.addSubview(self.stackedAvatarView)
         self.addSubview(self.titleLabel)
         self.roundCorners()

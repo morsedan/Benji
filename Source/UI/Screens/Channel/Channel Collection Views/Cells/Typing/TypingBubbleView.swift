@@ -62,8 +62,8 @@ class TypingBubbleView: View {
         return animation
     }
 
-    override func initialize() {
-        super.initialize()
+    override func initializeSubviews() {
+        super.initializeSubviews()
 
         self.addSubview(self.tinyBubble)
         self.addSubview(self.cornerBubble)

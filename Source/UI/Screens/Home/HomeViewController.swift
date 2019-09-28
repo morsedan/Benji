@@ -36,6 +36,7 @@ class HomeViewController: FullScreenViewController {
         }
         return avatarView
     }()
+    private let centerContainer = View()
     private let searchBar = UISearchBar()
     private let addButton = HomeAddButton()
 
@@ -66,10 +67,11 @@ class HomeViewController: FullScreenViewController {
 
         self.searchBar.keyboardType = .twitter
 
-        self.addChild(viewController: self.feedVC, toView: self.contentContainer)
-        self.addChild(self.channelsVC)
-
         self.contentContainer.addSubview(self.headerContainer)
+        self.contentContainer.addSubview(self.centerContainer)
+
+        self.addChild(viewController: self.feedVC, toView: self.centerContainer)
+        self.addChild(self.channelsVC)
 
         self.headerContainer.addSubview(self.avatarView)
         self.avatarView.onTap { [unowned self] (tap) in

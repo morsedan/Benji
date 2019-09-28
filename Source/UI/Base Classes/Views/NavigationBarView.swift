@@ -22,8 +22,9 @@ class NavigationBarView: View {
     private(set) var rightItem: UIView?
     private var rightTapHandler: (() -> Void)?
 
-    override func initialize() {
-
+    override func initializeSubviews() {
+        super.initializeSubviews()
+        
         self.set(backgroundColor: .clear)
 
         self.addSubview(self.titleLabel)

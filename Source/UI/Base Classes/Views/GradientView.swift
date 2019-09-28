@@ -13,7 +13,9 @@ class GradientView: PassThroughView {
     
     private let gradient = CAGradientLayer()
 
-    override func initialize() {
+    override func initializeSubviews() {
+        super.initializeSubviews()
+        
         self.set(backgroundColor: .clear)
 
         self.gradient.colors = [Color.background1.color.cgColor,

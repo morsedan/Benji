@@ -16,8 +16,8 @@ class ProfileAvatarView: AvatarView {
 
     private var identifier: String?
 
-    override func initialize() {
-        super.initialize()
+    override func initializeSubviews() {
+        super.initializeSubviews()
 
         self.subscribeToUpdates()
     }

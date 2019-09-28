@@ -37,8 +37,8 @@ class DisplayableImageView: View {
         super.init(coder: aDecoder)
     }
 
-    override func initialize() {
-        super.initialize()
+    override func initializeSubviews() {
+        super.initializeSubviews()
 
         self.set(backgroundColor: .clear)
         self.addSubview(self.imageView)

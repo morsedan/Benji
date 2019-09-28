@@ -12,15 +12,15 @@ class View: UIView {
 
     init() {
         super.init(frame: .zero)
-        self.initialize()
+        self.initializeSubviews()
     }
 
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
-        self.initialize()
+        self.initializeSubviews()
     }
 
-    func initialize() { }
+    func initializeSubviews() { }
 
     func showShadow(withOffset offset: CGFloat) {
         self.layer.shadowColor = UIColor.black.cgColor
