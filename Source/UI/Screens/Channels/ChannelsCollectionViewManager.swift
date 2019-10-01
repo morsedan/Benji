@@ -40,11 +40,13 @@ class ChannelsCollectionViewManager: CollectionViewManager<ChannelCell> {
                 return channelType.uniqueName.contains(filter)
             }
 
-            self.set(newItems: filteredChannels)
+            self.items.value = filteredChannels
+            self.collectionView.reloadData()
         } else {
             // If no filter, get the first three most recently updated channels.
             let filteredChannels: [ChannelType] = Array(allChannels.prefix(3))
-            self.set(newItems: filteredChannels)
+            self.items.value = filteredChannels
+            self.collectionView.reloadData()
         }
     }
 }
