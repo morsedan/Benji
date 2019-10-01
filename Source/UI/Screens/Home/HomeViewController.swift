@@ -136,7 +136,7 @@ extension HomeViewController: UISearchBarDelegate {
     func searchBarTextDidBeginEditing(_ searchBar: UISearchBar) {
         self.headerView.searchBar.showsCancelButton = true
         self.currentType.value = .list
-        self.channelsVC.channelFilter = String()
+        self.channelsVC.manager.channelFilter = String()
     }
 
     func searchBarTextDidEndEditing(_ searchBar: UISearchBar) {
@@ -145,7 +145,7 @@ extension HomeViewController: UISearchBarDelegate {
     }
 
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
-        self.channelsVC.channelFilter = searchText
+        self.channelsVC.manager.channelFilter = searchText
     }
 
     func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {

@@ -21,15 +21,6 @@ class ChannelsViewController: CollectionViewController<ChannelCell, ChannelsColl
 
     unowned let delegate: ChannelsViewControllerDelegate
 
-    // A cache of the all the user's current channels and system messages,
-    // sorted by date updated, with newer channels at the beginning.
-    lazy var channelTypeCache: [ChannelType] = []
-    var channelFilter: String? {
-        didSet {
-            self.loadFilteredChannels()
-        }
-    }
-
     init(with delegate: ChannelsViewControllerDelegate) {
         self.delegate = delegate
         let collectionView = ChannelsCollectionView()
@@ -94,7 +85,7 @@ class ChannelsViewController: CollectionViewController<ChannelCell, ChannelsColl
             }
 
             // Reload the cache because changes to the channel list have occurred.
-            self.channelTypeCache = self.getChannelsSortedByUpdateDate()
+            self.manager.channelTypeCache = self.getChannelsSortedByUpdateDate()
             }.start()
 
         ChannelManager.shared.clientSyncUpdate.producer.on { [weak self] (update) in
@@ -108,8 +99,8 @@ class ChannelsViewController: CollectionViewController<ChannelCell, ChannelsColl
             case .channelsListCompleted:
                 break
             case .completed:
-                self.channelTypeCache = self.getChannelsSortedByUpdateDate()
-                self.loadFilteredChannels()
+                self.manager.channelTypeCache = self.getChannelsSortedByUpdateDate()
+                self.manager.loadFilteredChannels()
             case .failed:
                 break
             @unknown default:
@@ -122,22 +113,6 @@ class ChannelsViewController: CollectionViewController<ChannelCell, ChannelsColl
         let channelTypes = ChannelManager.shared.channelTypes
         return channelTypes.sorted { (channel1, channel2) -> Bool in
             channel1.dateUpdated > channel2.dateUpdated
-        }
-    }
-
-    private func loadFilteredChannels() {
-        let allChannels = self.channelTypeCache
-
-        if let channelFilter = self.channelFilter, !channelFilter.isEmpty {
-            let filteredChannels = allChannels.filter { (channelType) in
-                return channelType.uniqueName.contains(channelFilter)
-            }
-
-            self.manager.set(newItems: filteredChannels)
-        } else {
-            // If no filter, get the first three most recently updated channels.
-            let filteredChannels: [ChannelType] = Array(allChannels.prefix(3))
-            self.manager.set(newItems: filteredChannels)
         }
     }
 }

@@ -25,6 +25,10 @@ class ChannelCell: UICollectionViewCell, DisplayableCell {
         self.content.configure(with: type)
     }
 
+    func highlight(filteredText: String) {
+        
+    }
+
     override func layoutSubviews() {
         super.layoutSubviews()
 
