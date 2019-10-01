@@ -85,6 +85,12 @@ extension String {
     }
 }
 
+extension StringProtocol {
+    func nsRange(from range: Range<Index>) -> NSRange {
+        return .init(range, in: self)
+    }
+}
+
 extension Range where Bound == String.Index {
     func nsRange(_ string: String) -> NSRange {
         return NSRange(location: self.lowerBound.utf16Offset(in: string),

@@ -31,7 +31,7 @@ enum ChannelType: DisplayableCellItem {
     var uniqueName: String {
         switch self {
         case .system(let channel):
-            return channel.id
+            return channel.uniqueName
         case .channel(let channel):
             return String(optional: channel.uniqueName)
         }
@@ -39,8 +39,8 @@ enum ChannelType: DisplayableCellItem {
 
     var displayName: String {
         switch self {
-        case .system(_):
-            return Lorem.friendlyName()
+        case .system(let channel):
+            return channel.displayName
         case .channel(let channel):
             return String(optional: channel.friendlyName)
         }

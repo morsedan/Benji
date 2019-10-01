@@ -25,5 +25,6 @@ class HomeSearchBar: UISearchBar {
         self.barStyle = .black
         self.searchBarStyle = .prominent
         self.placeholder = "Search"
+        self
     }
 }

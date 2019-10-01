@@ -145,7 +145,9 @@ extension HomeViewController: UISearchBarDelegate {
     }
 
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
-        self.channelsVC.manager.channelFilter = searchText
+        let lowercaseString = searchText.lowercased()
+        self.headerView.searchBar.text = lowercaseString
+        self.channelsVC.manager.channelFilter = lowercaseString
     }
 
     func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {

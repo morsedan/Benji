@@ -80,7 +80,7 @@ class ChannelDetailBar: View {
     }
 
     func setLayout(for system: SystemChannel) {
-        self.set(text: system.friendlyName)
+        self.set(text: system.displayName)
     }
 
     func setLayout(for channel: TCHChannel) {

@@ -9,10 +9,6 @@
 import Foundation
 import TwilioChatClient
 
-enum FilterCategory: String {
-    case channels = "#"
-}
-
 protocol ChannelsViewControllerDelegate: class {
     func channelsView(_ controller: ChannelsViewController, didSelect channelType: ChannelType)
 }

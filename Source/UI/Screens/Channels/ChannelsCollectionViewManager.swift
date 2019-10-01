@@ -14,6 +14,7 @@ class ChannelsCollectionViewManager: CollectionViewManager<ChannelCell> {
     // A cache of the all the user's current channels and system messages,
     // sorted by date updated, with newer channels at the beginning.
     lazy var channelTypeCache: [ChannelType] = []
+    
     var channelFilter: String? {
         didSet {
             self.loadFilteredChannels()
@@ -34,9 +35,9 @@ class ChannelsCollectionViewManager: CollectionViewManager<ChannelCell> {
     func loadFilteredChannels() {
         let allChannels = self.channelTypeCache
 
-        if let channelFilter = self.channelFilter, !channelFilter.isEmpty {
+        if let filter = self.channelFilter, !filter.isEmpty {
             let filteredChannels = allChannels.filter { (channelType) in
-                return channelType.uniqueName.contains(channelFilter)
+                return channelType.uniqueName.contains(filter)
             }
 
             self.set(newItems: filteredChannels)
