@@ -25,6 +25,9 @@ class HomeSearchBar: UISearchBar {
         self.barStyle = .black
         self.searchBarStyle = .prominent
         self.placeholder = "Search"
-        self
+        self.tintColor = Color.lightPurple.color
+        self.showsCancelButton = false 
+
+        self.setImage(UIImage(systemName: "xmark.circle.fill"), for: .clear, state: .normal)
     }
 }

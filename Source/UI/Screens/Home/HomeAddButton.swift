@@ -10,7 +10,7 @@ import Foundation
 
 class HomeAddButton: View {
 
-    let imageView = UIImageView(image: #imageLiteral(resourceName: "add"))
+    let imageView = UIImageView(image: UIImage(systemName: "square.and.pencil"))
     private let selectionFeedback = UIImpactFeedbackGenerator(style: .light)
 
     override func initializeSubviews() {
@@ -18,6 +18,7 @@ class HomeAddButton: View {
         
         self.set(backgroundColor: .purple)
         self.addSubview(self.imageView)
+        self.imageView.tintColor = Color.white.color
 
         self.layer.shadowColor = Color.black.color.cgColor
         self.layer.shadowOpacity = 0.3
@@ -31,8 +32,9 @@ class HomeAddButton: View {
 
         self.makeRound()
 
-        self.imageView.size = CGSize(width: self.width * 0.5, height: self.height * 0.5)
-        self.imageView.centerOnXAndY()
+        self.imageView.size = CGSize(width: self.width * 0.55, height: self.height * 0.55)
+        self.imageView.centerX = self.halfWidth + 2
+        self.imageView.centerY = self.halfHeight - 2
     }
 
     override open func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {

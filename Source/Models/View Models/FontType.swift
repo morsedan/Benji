@@ -25,27 +25,27 @@ enum FontType {
     var font: UIFont {
         switch self {
         case .display1:
-            return UIFont(name: "AvenirNext-Bold", size: self.size)!
+            return UIFont.systemFont(ofSize: self.size, weight: .black)
         case .display2:
-            return UIFont(name: "AvenirNext-Bold", size: self.size)!
+            return UIFont.systemFont(ofSize: self.size, weight: .black)
         case .medium:
-            return UIFont(name: "AvenirNext-Regular", size: self.size)!
+            return UIFont.systemFont(ofSize: self.size, weight: .medium)
         case .regular:
-            return UIFont(name: "AvenirNext-Regular", size: self.size)!
+            return UIFont.systemFont(ofSize: self.size, weight: .regular)
         case .regularSemiBold:
-            return UIFont(name: "AvenirNext-Medium", size: self.size)!
+            return UIFont.systemFont(ofSize: self.size, weight: .semibold)
         case .regularBold:
-            return UIFont(name: "AvenirNext-Bold", size: self.size)!
+            return UIFont.systemFont(ofSize: self.size, weight: .bold)
         case .small:
-            return UIFont(name: "AvenirNext-Regular", size: self.size)!
+            return UIFont.systemFont(ofSize: self.size, weight: .light)
         case .smallSemiBold:
-            return UIFont(name: "AvenirNext-Medium", size: self.size)!
+            return UIFont.systemFont(ofSize: self.size, weight: .semibold)
         case .xSmall:
-            return UIFont(name: "AvenirNext-Regular", size: self.size)!
+            return UIFont.systemFont(ofSize: self.size, weight: .thin)
         case .xxSmall:
-             return UIFont(name: "AvenirNext-Regular", size: self.size)!
+             return UIFont.systemFont(ofSize: self.size, weight: .thin)
         case .xxSmallSemiBold:
-             return UIFont(name: "AvenirNext-Bold", size: self.size)!
+             return UIFont.systemFont(ofSize: self.size, weight: .semibold)
         }
 
 //        guard let customFont = UIFont(name: "CustomFont-Light", size: UIFont.labelFontSize) else {
