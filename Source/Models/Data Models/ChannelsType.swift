@@ -28,6 +28,15 @@ enum ChannelType: DisplayableCellItem {
         }
     }
 
+    var uniqueName: String {
+        switch self {
+        case .system(let channel):
+            return channel.id
+        case .channel(let channel):
+            return String(optional: channel.uniqueName)
+        }
+    }
+
     var displayName: String {
         switch self {
         case .system(_):

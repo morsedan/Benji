@@ -25,8 +25,8 @@ class ChannelCellContentView: View {
     func configure(with type: ChannelType) {
 
         switch type {
-        case .system(let message):
-            self.stackedAvatarView.set(items: message.avatars)
+        case .system(let channel):
+            self.stackedAvatarView.set(items: channel.avatars)
         case .channel(let channel):
             channel.getMembersAsUsers().observe { (result) in
                 switch result {

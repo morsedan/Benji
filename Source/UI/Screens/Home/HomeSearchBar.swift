@@ -24,6 +24,6 @@ class HomeSearchBar: UISearchBar {
         self.keyboardType = .twitter
         self.barStyle = .black
         self.searchBarStyle = .prominent
-        self.placeholder = "#"
+        self.placeholder = "Search"
     }
 }
