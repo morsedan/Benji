@@ -10,8 +10,8 @@ import Foundation
 
 class ChannelCellContentView: View {
 
-    private let titleLabel = RegularBoldLabel()
-    private let stackedAvatarView = StackedAvatarView()
+    private(set) var titleLabel = RegularBoldLabel()
+    private(set) var stackedAvatarView = StackedAvatarView()
 
     override func initializeSubviews() {
         super.initializeSubviews()

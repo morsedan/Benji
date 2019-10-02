@@ -11,7 +11,7 @@ import Parse
 
 class HomeCoordinator: PresentableCoordinator<Void> {
 
-    lazy var homeVC = HomeViewController(with: self)
+    lazy var homeVC = ChannelsViewController(with: self)
 
     override func toPresentable() -> DismissableVC {
         return self.homeVC
@@ -20,11 +20,11 @@ class HomeCoordinator: PresentableCoordinator<Void> {
     override func start() {
         super.start()
 
-        if PFAnonymousUtils.isLinked(with: PFUser.current()) {
-            delay(1.0) {
-                self.startLoginFlow()
-            }
-        }
+//        if PFAnonymousUtils.isLinked(with: PFUser.current()) {
+//            delay(1.0) {
+//                self.startLoginFlow()
+//            }
+//        }
     }
 
     func startLoginFlow() {

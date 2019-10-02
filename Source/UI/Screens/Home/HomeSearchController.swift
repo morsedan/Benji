@@ -9,7 +9,6 @@
 import Foundation
 
 enum SearchScope: String, CaseIterable {
-    case recents = "Recents"
     case all = "All"
     case channels = "#"
     case dms = "@"

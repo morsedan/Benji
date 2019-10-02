@@ -69,6 +69,11 @@ class HomeViewController: FullScreenViewController {
 //            })
 //        }
 
+        let avatarView = ProfileAvatarView()
+        avatarView.frame = CGRect(x: 0, y: 0, width: 40, height: 40)
+        let item = UIBarButtonItem(customView: avatarView)
+        self.navigationItem.setRightBarButton(item, animated: false)
+
         self.title = "Feed"
         self.navigationItem.searchController = self.searchVC
         self.searchVC.searchBar.delegate = self
@@ -111,20 +116,20 @@ class HomeViewController: FullScreenViewController {
     func updateContent() {
         let currentType = self.currentType.value
 
-        switch currentType {
-        case .feed:
-            self.channelsVC.animateOut { (completed, error) in
-                guard completed else { return }
-               // self.resetContent(currentView: self.channelsVC.view, newView: self.feedVC.view)
-                self.feedVC.animateIn(completion: { (completed, error) in })
-            }
-        case .list:
-            self.feedVC.animateOut { (completed, error) in
-                guard completed else { return }
-               // self.resetContent(currentView: self.feedVC.view, newView: self.channelsVC.view)
-                self.channelsVC.animateIn(completion: { (completed, error) in })
-            }
-        }
+//        switch currentType {
+//        case .feed:
+//            self.channelsVC.animateOut { (completed, error) in
+//                guard completed else { return }
+//               // self.resetContent(currentView: self.channelsVC.view, newView: self.feedVC.view)
+//                self.feedVC.animateIn(completion: { (completed, error) in })
+//            }
+//        case .list:
+//            self.feedVC.animateOut { (completed, error) in
+//                guard completed else { return }
+//               // self.resetContent(currentView: self.feedVC.view, newView: self.channelsVC.view)
+//                self.channelsVC.animateIn(completion: { (completed, error) in })
+//            }
+//        }
     }
 }
 

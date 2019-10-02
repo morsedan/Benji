@@ -38,25 +38,40 @@ class ChannelsCollectionViewManager: CollectionViewManager<ChannelCell> {
     }
 
     func loadFilteredChannels() {
+        guard let filter = self.channelFilter else { return }
+
         let allChannels = self.channelTypeCache
+        var filteredChannels: [ChannelType] = []
 
-
-
-
-
-        if let filter = self.channelFilter, !filter.text.isEmpty, filter.scope != .recents {
-            let filteredChannels = allChannels.filter { (channelType) in
-                let doesCategoryMatch = (filter.scope == .all) || (channelType.scope == filter.scope)
-                return doesCategoryMatch && channelType.uniqueName.contains(filter.text)
+        switch filter.scope {
+        case .all:
+            if filter.text.isEmpty {
+                filteredChannels = Array(allChannels.prefix(3))
+            } else {
+                filteredChannels = allChannels.filter { (channelType) in
+                    if channelType.uniqueName.contains(filter.text) {
+                        print("TEXT: \(filter.text)  UNIQUE: \(channelType.uniqueName)")
+                        return true
+                    } else {
+                        return false
+                    }
+                }
             }
 
-            self.items.value = filteredChannels
-            self.collectionView.reloadData()
-        } else {
-            // If no filter, get the first three most recently updated channels.
-            let filteredChannels: [ChannelType] = Array(allChannels.prefix(3))
-            self.items.value = filteredChannels
-            self.collectionView.reloadData()
+        case .channels, .dms:
+            filteredChannels = allChannels.filter { (channelType) in
+
+                let doesCategoryMatch = channelType.scope == filter.scope
+
+                if filter.text.isEmpty {
+                    return doesCategoryMatch
+                } else {
+                    return doesCategoryMatch && channelType.uniqueName.contains(filter.text)
+                }
+            }
         }
+
+        self.items.value = filteredChannels
+        self.collectionView.reloadData()
     }
 }

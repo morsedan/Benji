@@ -29,10 +29,17 @@ class ChannelCell: UICollectionViewCell, DisplayableCell {
         self.content.highlight(text: filteredText)
     }
 
+    override func prepareForReuse() {
+        super.prepareForReuse()
+
+        self.content.titleLabel.text = String()
+        self.content.stackedAvatarView.set(items: [])
+    }
+
     override func layoutSubviews() {
         super.layoutSubviews()
 
-        self.content.size = CGSize(width: self.contentView.width * 0.9, height: self.contentView.height)
+        self.content.size = CGSize(width: self.contentView.width - (Theme.contentOffset * 2), height: self.contentView.height)
         self.content.centerOnXAndY()
     }
 
