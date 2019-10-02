@@ -15,17 +15,12 @@ class RootNavigationController: NavigationController, UINavigationControllerDele
 
         self.view.set(backgroundColor: .background1)
         self.delegate = self
-        self.setNavigationBarHidden(true, animated: false)
+        self.navigationBar.prefersLargeTitles = true
         NotificationCenter.default.addObserver(self,
                                                selector: #selector(rotationDidChange),
                                                name: UIDevice.orientationDidChangeNotification,
                                                object: nil)
 
-    }
-
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-        self.setNavigationBarHidden(true, animated: false)
     }
 
     @objc func rotationDidChange() { }

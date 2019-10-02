@@ -28,6 +28,11 @@ enum ChannelType: DisplayableCellItem {
         }
     }
 
+    var scope: SearchScope {
+        //Update to show channels and dms
+        return .dms
+    }
+
     var uniqueName: String {
         switch self {
         case .system(let channel):
