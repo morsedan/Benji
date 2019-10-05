@@ -8,6 +8,12 @@
 
 import Foundation
 
+enum SearchScope: String, CaseIterable {
+    case all = "All"
+    case channels = "#"
+    case dms = "@"
+}
+
 class HomeSearchBar: UISearchBar {
 
     override init(frame: CGRect) {
@@ -26,8 +32,14 @@ class HomeSearchBar: UISearchBar {
         self.searchBarStyle = .prominent
         self.placeholder = "Search"
         self.tintColor = Color.lightPurple.color
-        self.showsCancelButton = false 
+        self.showsCancelButton = false
+        self.backgroundImage = UIImage()
+        self.searchTextField.set(backgroundColor: .background2)
 
         self.setImage(UIImage(systemName: "xmark.circle.fill"), for: .clear, state: .normal)
+
+        self.scopeButtonTitles = SearchScope.allCases.map({ (scope) -> String in
+            return scope.rawValue
+        })
     }
 }

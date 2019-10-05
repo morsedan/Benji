@@ -8,11 +8,6 @@
 
 import Foundation
 
-enum SearchScope: String, CaseIterable {
-    case all = "All"
-    case channels = "#"
-    case dms = "@"
-}
 
 class HomeSearchController: UISearchController {
 
@@ -28,8 +23,6 @@ class HomeSearchController: UISearchController {
     func initializeSubviews() {
 
         self.obscuresBackgroundDuringPresentation = true
-        self.searchBar.scopeButtonTitles = SearchScope.allCases.map({ (scope) -> String in
-            return scope.rawValue
-        })
+        
     }
 }

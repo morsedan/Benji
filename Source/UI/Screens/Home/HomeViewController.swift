@@ -63,16 +63,16 @@ class HomeViewController: FullScreenViewController {
         super.viewDidLayoutSubviews()
 
         self.headerView.frame = CGRect(x: 0,
-                                       y: 0,
+                                       y: 50,
                                        width: self.view.width,
-                                       height: 100)
+                                       height: 120)
 
         self.addButton.size = CGSize(width: 60, height: 60)
         self.addButton.centerOnX()
         self.addButton.bottom = self.contentContainer.height - 10
 
         self.feedVC.view.size = CGSize(width: self.contentContainer.width,
-                                       height: self.contentContainer.height - self.headerView.height)
+                                       height: self.contentContainer.height - self.headerView.bottom)
         self.feedVC.view.top = self.headerView.bottom
         self.feedVC.view.centerOnX()
     }
