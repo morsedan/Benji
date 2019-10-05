@@ -21,14 +21,11 @@ protocol HomeViewControllerDelegate: class {
     func homeView(_ controller: HomeViewController, didSelect option: HomeOptionType)
 }
 
-
 class HomeViewController: FullScreenViewController {
 
     unowned let delegate: HomeViewControllerDelegate
 
-    private let centerContainer = View()
     private let addButton = HomeAddButton()
-
     lazy var feedVC = FeedViewController()
     let headerView = HomeHeaderView()
 
@@ -48,8 +45,9 @@ class HomeViewController: FullScreenViewController {
     override func initializeViews() {
         super.initializeViews()
 
-        self.contentContainer.addSubview(self.centerContainer)
-        self.addChild(viewController: self.feedVC, toView: self.centerContainer)
+        self.contentContainer.addSubview(self.headerView)
+
+        self.addChild(viewController: self.feedVC, toView: self.contentContainer)
 
         self.headerView.avatarView.onTap { [unowned self] (tap) in
             self.delegate.homeView(self, didSelect: .profile)
@@ -65,19 +63,17 @@ class HomeViewController: FullScreenViewController {
         super.viewDidLayoutSubviews()
 
         self.headerView.frame = CGRect(x: 0,
-                                       y: self.view.safeAreaInsets.top,
+                                       y: 0,
                                        width: self.view.width,
                                        height: 44)
-
-        self.centerContainer.size = CGSize(width: self.contentContainer.width,
-                                           height: self.contentContainer.height)
-        self.centerContainer.top = self.headerView.bottom
-        self.centerContainer.centerOnX()
 
         self.addButton.size = CGSize(width: 60, height: 60)
         self.addButton.centerOnX()
         self.addButton.bottom = self.contentContainer.height - 10
 
-        self.feedVC.view.frame = self.centerContainer.bounds
+        self.feedVC.view.size = CGSize(width: self.contentContainer.width,
+                                       height: self.contentContainer.height - self.headerView.height)
+        self.feedVC.view.top = self.headerView.bottom
+        self.feedVC.view.centerOnX()
     }
 }
