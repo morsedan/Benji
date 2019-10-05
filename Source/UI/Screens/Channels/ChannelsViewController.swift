@@ -34,33 +34,36 @@ class ChannelsViewController: CollectionViewController<ChannelCell, ChannelsColl
         super.didSelect(item: item, at: indexPath)
         self.delegate.channelsView(self, didSelect: item)
     }
+}
 
-    func animateIn(completion: @escaping CompletionHandler) {
-        let animator = UIViewPropertyAnimator(duration: Theme.animationDuration,
-                                              curve: .easeInOut) {
-                                                self.view.alpha = 1
-        }
-        animator.addCompletion { (position) in
-            if position == .end {
-                completion(true, nil)
-            }
-        }
+extension ChannelsViewController: UISearchResultsUpdating {
+    func updateSearchResults(for searchController: UISearchController) {
+        let searchBar = searchController.searchBar
 
-        animator.startAnimation()
+        guard let text = searchBar.text,
+            let scopeString = searchBar.scopeButtonTitles?[searchBar.selectedScopeButtonIndex],
+            let scope = SearchScope(rawValue: scopeString) else { return }
+
+        self.manager.channelFilter = SearchFilter(text: text.lowercased(), scope: scope)
+    }
+}
+
+extension ChannelsViewController: UISearchBarDelegate {
+
+    func searchBarTextDidBeginEditing(_ searchBar: UISearchBar) {
+        //self.searchVC.searchBar.showsCancelButton = true
     }
 
-    func animateOut(completion: @escaping CompletionHandler) {
-        let animator = UIViewPropertyAnimator(duration: Theme.animationDuration,
-                                              curve: .easeInOut) {
-                                                self.view.alpha = 0
-                                                self.view.setNeedsLayout()
-        }
-        animator.addCompletion { (position) in
-            if position == .end {
-                completion(true, nil)
-            }
-        }
+    func searchBarTextDidEndEditing(_ searchBar: UISearchBar) {
+        //self.searchVC.searchBar.showsCancelButton = false
+    }
 
-        animator.startAnimation()
+    func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
+        //let lowercaseString = searchText.lowercased()
+        //self.searchVC.searchBar.text = lowercaseString
+    }
+
+    func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
+        searchBar.resignFirstResponder()
     }
 }

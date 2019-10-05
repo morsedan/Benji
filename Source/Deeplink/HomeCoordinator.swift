@@ -11,7 +11,7 @@ import Parse
 
 class HomeCoordinator: PresentableCoordinator<Void> {
 
-    lazy var homeVC = ChannelsViewController(with: self)
+    lazy var homeVC = HomeViewController(with: self)
 
     override func toPresentable() -> DismissableVC {
         return self.homeVC
@@ -35,25 +35,13 @@ class HomeCoordinator: PresentableCoordinator<Void> {
         })
     }
 
-    func startChannelFlow(for type: ChannelType) {
-        let coordinator = ChannelCoordinator(router: self.router, channelType: type)
-        self.router.present(coordinator, animated: true)
-        self.addChildAndStart(coordinator, finishedHandler: { (_) in
-            self.router.dismiss(animated: true, completion: nil)
-        })
-    }
-}
 
-extension HomeCoordinator: ChannelsViewControllerDelegate {
-    func channelsView(_ controller: ChannelsViewController, didSelect channelType: ChannelType) {
-        self.startChannelFlow(for: channelType)
-    }
 }
 
 extension HomeCoordinator: ChannelPurposeViewControllerDelegate {
     func channelPurposeView(_ controller: ChannelPurposeViewController, didCreate channel: ChannelType) {
         controller.dismiss(animated: true) {
-            self.startChannelFlow(for: channel)
+            //self.startChannelFlow(for: channel)
         }
     }
 }

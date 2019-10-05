@@ -19,7 +19,7 @@ extension ChannelViewController: KeyboardObservable, UIGestureRecognizerDelegate
         }
 
         animator.startAnimation()
-        self.channelCollectionVC.collectionView.scrollToBottom(animated: true)
+        self.channelCollectionVC.collectionView.scrollToBottom()
     }
     
     func handle(pan: UIPanGestureRecognizer) {

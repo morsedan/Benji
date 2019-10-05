@@ -16,6 +16,7 @@ class RootNavigationController: NavigationController, UINavigationControllerDele
         self.view.set(backgroundColor: .background1)
         self.delegate = self
         self.navigationBar.prefersLargeTitles = true
+
         NotificationCenter.default.addObserver(self,
                                                selector: #selector(rotationDidChange),
                                                name: UIDevice.orientationDidChangeNotification,

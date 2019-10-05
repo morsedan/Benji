@@ -19,23 +19,25 @@ class HomeHeaderView: View {
         return avatarView
     }()
 
-    private(set) var searchBar = HomeSearchBar()
+    let label = Display1Label()
 
     override func initializeSubviews() {
         super.initializeSubviews()
 
         self.addSubview(self.avatarView)
-        self.addSubview(self.searchBar)
+        self.addSubview(self.label)
+
+        self.label.set(text: "Feed")
     }
 
     override func layoutSubviews() {
         super.layoutSubviews()
 
         self.avatarView.size = CGSize(width: 40, height: 40)
-        self.avatarView.left = 20
+        self.avatarView.right = self.width
         self.avatarView.centerOnY()
 
-        self.searchBar.size = CGSize(width: self.width - 120, height: 40)
-        self.searchBar.left = self.avatarView.right + 20
+        self.label.setSize(withWidth: 200)
+        self.label.left = 0
     }
 }

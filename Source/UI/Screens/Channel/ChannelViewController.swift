@@ -91,8 +91,6 @@ class ChannelViewController: ViewController {
         }
 
         self.loadMessages(for: self.channelType)
-
-        
     }
 
     deinit {
