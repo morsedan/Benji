@@ -65,7 +65,7 @@ class HomeViewController: FullScreenViewController {
         self.headerView.frame = CGRect(x: 0,
                                        y: 0,
                                        width: self.view.width,
-                                       height: 44)
+                                       height: 100)
 
         self.addButton.size = CGSize(width: 60, height: 60)
         self.addButton.centerOnX()

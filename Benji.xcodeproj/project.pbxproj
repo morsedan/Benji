@@ -166,6 +166,7 @@
 		D6815DB122ECAEC700E71251 /* MediumLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6815DB022ECAEC700E71251 /* MediumLabel.swift */; };
 		D6815DB922EE1CAC00E71251 /* FeedView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6815DB822EE1CAC00E71251 /* FeedView.swift */; };
 		D6815DBB22EE1F1400E71251 /* FeedCollectionViewManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6815DBA22EE1F1400E71251 /* FeedCollectionViewManager.swift */; };
+		D68302202349371D006145FE /* HomeHeaderDateLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D683021F2349371D006145FE /* HomeHeaderDateLabel.swift */; };
 		D68483F922CC3DE400362AC3 /* ChannelCollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D68483F822CC3DE400362AC3 /* ChannelCollectionViewController.swift */; };
 		D68483FB22CD050D00362AC3 /* TableViewManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = D68483FA22CD050C00362AC3 /* TableViewManager.swift */; };
 		D68483FD22CD09C800362AC3 /* ListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D68483FC22CD09C800362AC3 /* ListViewController.swift */; };
@@ -415,6 +416,7 @@
 		D6815DB022ECAEC700E71251 /* MediumLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MediumLabel.swift; sourceTree = "<group>"; };
 		D6815DB822EE1CAC00E71251 /* FeedView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedView.swift; sourceTree = "<group>"; };
 		D6815DBA22EE1F1400E71251 /* FeedCollectionViewManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedCollectionViewManager.swift; sourceTree = "<group>"; };
+		D683021F2349371D006145FE /* HomeHeaderDateLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeHeaderDateLabel.swift; sourceTree = "<group>"; };
 		D68483F822CC3DE400362AC3 /* ChannelCollectionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChannelCollectionViewController.swift; sourceTree = "<group>"; };
 		D68483FA22CD050C00362AC3 /* TableViewManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableViewManager.swift; sourceTree = "<group>"; };
 		D68483FC22CD09C800362AC3 /* ListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListViewController.swift; sourceTree = "<group>"; };
@@ -1080,6 +1082,7 @@
 				D6074009233FCF3E009633EB /* HomeHeaderView.swift */,
 				D607400B23400FA6009633EB /* HomeSearchBar.swift */,
 				D65B0CCB23440B300041A176 /* HomeSearchController.swift */,
+				D683021F2349371D006145FE /* HomeHeaderDateLabel.swift */,
 			);
 			path = Home;
 			sourceTree = "<group>";
@@ -1442,6 +1445,7 @@
 				D66F0FE822C0662300BA277D /* PFUser+Extensions.swift in Sources */,
 				D635551B21E5B3D400530602 /* UIScrollView+Extensions.swift in Sources */,
 				D6432BF322D828480016001A /* ChannelDataSource.swift in Sources */,
+				D68302202349371D006145FE /* HomeHeaderDateLabel.swift in Sources */,
 				D61EC0C221D3071400204BEE /* ViewController.swift in Sources */,
 				D6D14D9021D5893600CD8CE4 /* IGListMoveIndex.m in Sources */,
 				D66F0FD822BF295A00BA277D /* Coordinator.swift in Sources */,

@@ -30,6 +30,12 @@ extension Date {
         return formatter
     }
 
+    static var weekdayMonthDayYear: DateFormatter {
+        let formatter = DateFormatter()
+        formatter.dateFormat = "EEEE, MMM d, yyyy"
+        return formatter
+    }
+
     static func add(component: Calendar.Component,
                     amount: Int,
                     toDate: Date) -> Date? {

@@ -19,25 +19,33 @@ class HomeHeaderView: View {
         return avatarView
     }()
 
-    let label = Display1Label()
+    private let label = Display1Label()
+    private let dateLabel = HomeHeaderDateLabel()
 
     override func initializeSubviews() {
         super.initializeSubviews()
 
-        self.addSubview(self.avatarView)
         self.addSubview(self.label)
+        self.addSubview(self.avatarView)
+        self.addSubview(self.dateLabel)
 
         self.label.set(text: "Feed")
+        self.dateLabel.set(date: Date.today)
     }
 
     override func layoutSubviews() {
         super.layoutSubviews()
 
-        self.avatarView.size = CGSize(width: 40, height: 40)
-        self.avatarView.right = self.width
-        self.avatarView.centerOnY()
+        self.dateLabel.setSize(withWidth: self.width * 0.8)
+        self.dateLabel.left = Theme.contentOffset
+        self.dateLabel.bottom = self.height
 
-        self.label.setSize(withWidth: 200)
-        self.label.left = 0
+        self.label.setSize(withWidth: self.width * 0.8)
+        self.label.left = Theme.contentOffset
+        self.label.bottom = self.dateLabel.top - 5
+
+        self.avatarView.size = CGSize(width: 60, height: 60)
+        self.avatarView.right = self.width - Theme.contentOffset
+        self.avatarView.bottom = self.height
     }
 }
