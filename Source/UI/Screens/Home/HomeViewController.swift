@@ -11,22 +11,20 @@ import Contacts
 import Parse
 import ReactiveSwift
 
-enum HomeContentType: Int {
-    case feed
-    case list
+enum HomeOptionType {
+    case profile
+    case search
+    case add
 }
+
+protocol HomeViewControllerDelegate: class {
+    func homeView(_ controller: HomeViewController, didSelect option: HomeOptionType)
+}
+
 
 class HomeViewController: FullScreenViewController {
 
-    typealias HomeViewControllerDelegate = ChannelPurposeViewControllerDelegate
     unowned let delegate: HomeViewControllerDelegate
-
-    //move
-    lazy var newChannelFlowViewController: NewChannelFlowViewController = {
-        let controller = NewChannelFlowViewController(delegate: self.delegate)
-        return controller
-    }()
-    lazy var scrolledModal = ScrolledModalViewController(presentable: self.newChannelFlowViewController)
 
     private let centerContainer = View()
     private let addButton = HomeAddButton()
@@ -51,20 +49,15 @@ class HomeViewController: FullScreenViewController {
         super.initializeViews()
 
         self.contentContainer.addSubview(self.centerContainer)
-
         self.addChild(viewController: self.feedVC, toView: self.centerContainer)
 
-//        self.headerView.avatarView.onTap { [unowned self] (tap) in
-//            let vc = ProfileViewController()
-//            self.present(vc, animated: true, completion: {
-//                vc.set(avatar: PFUser.current)
-//            })
-//        }
+        self.headerView.avatarView.onTap { [unowned self] (tap) in
+            self.delegate.homeView(self, didSelect: .profile)
+        }
 
         self.contentContainer.addSubview(self.addButton)
-
         self.addButton.onTap { [unowned self] (tap) in
-            self.presentNewChannel()
+            self.delegate.homeView(self, didSelect: .add)
         }
     }
 
@@ -86,9 +79,5 @@ class HomeViewController: FullScreenViewController {
         self.addButton.bottom = self.contentContainer.height - 10
 
         self.feedVC.view.frame = self.centerContainer.bounds
-    }
-
-    func presentNewChannel() {
-        self.present(self.scrolledModal, animated: true, completion: nil)
     }
 }

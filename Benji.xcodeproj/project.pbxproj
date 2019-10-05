@@ -128,6 +128,8 @@
 		D65B0CCC23440B300041A176 /* HomeSearchController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D65B0CCB23440B300041A176 /* HomeSearchController.swift */; };
 		D65B0CCE2344AE390041A176 /* ChannelsViewController+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = D65B0CCD2344AE390041A176 /* ChannelsViewController+Extensions.swift */; };
 		D65B0CE3234913120041A176 /* ChannelsCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = D65B0CE2234913120041A176 /* ChannelsCoordinator.swift */; };
+		D65B0CE5234928620041A176 /* ProfileCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = D65B0CE4234928620041A176 /* ProfileCoordinator.swift */; };
+		D65B0CE7234929440041A176 /* NewChannelCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = D65B0CE6234929440041A176 /* NewChannelCoordinator.swift */; };
 		D66F0FC722BF004300BA277D /* FeedType.swift in Sources */ = {isa = PBXBuildFile; fileRef = D66F0FC622BF004300BA277D /* FeedType.swift */; };
 		D66F0FC922BF006D00BA277D /* SystemMessage.swift in Sources */ = {isa = PBXBuildFile; fileRef = D66F0FC822BF006D00BA277D /* SystemMessage.swift */; };
 		D66F0FCF22BF060500BA277D /* Deeplinkable.swift in Sources */ = {isa = PBXBuildFile; fileRef = D66F0FCE22BF060500BA277D /* Deeplinkable.swift */; };
@@ -375,6 +377,8 @@
 		D65B0CCB23440B300041A176 /* HomeSearchController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeSearchController.swift; sourceTree = "<group>"; };
 		D65B0CCD2344AE390041A176 /* ChannelsViewController+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ChannelsViewController+Extensions.swift"; sourceTree = "<group>"; };
 		D65B0CE2234913120041A176 /* ChannelsCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChannelsCoordinator.swift; sourceTree = "<group>"; };
+		D65B0CE4234928620041A176 /* ProfileCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileCoordinator.swift; sourceTree = "<group>"; };
+		D65B0CE6234929440041A176 /* NewChannelCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewChannelCoordinator.swift; sourceTree = "<group>"; };
 		D66F0FC622BF004300BA277D /* FeedType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedType.swift; sourceTree = "<group>"; };
 		D66F0FC822BF006D00BA277D /* SystemMessage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SystemMessage.swift; sourceTree = "<group>"; };
 		D66F0FCE22BF060500BA277D /* Deeplinkable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Deeplinkable.swift; sourceTree = "<group>"; };
@@ -720,6 +724,7 @@
 		D63753182316112E00214F63 /* New Channel */ = {
 			isa = PBXGroup;
 			children = (
+				D65B0CE6234929440041A176 /* NewChannelCoordinator.swift */,
 				D63753192316115700214F63 /* NewChannelFlowViewController.swift */,
 				D6A82B712325C2DA003E0A8B /* Purpose */,
 				D6A82B702325C105003E0A8B /* Favorites */,
@@ -832,6 +837,7 @@
 		D6432BF122D8282E0016001A /* Channel */ = {
 			isa = PBXGroup;
 			children = (
+				D67896CB2304524C0059BA75 /* ChannelCoordinator.swift */,
 				D6D1500621D5E73D00CD8CE4 /* ChannelViewController.swift */,
 				D64273A622CC2D280088256B /* ChannelViewController+Extensions.swift */,
 				D6B2603722E6AB5E00143CF0 /* ChannelDetailBar.swift */,
@@ -881,11 +887,7 @@
 				D66F0FD722BF295A00BA277D /* Coordinator.swift */,
 				D66F0FD922BF297F00BA277D /* MainCoordinator.swift */,
 				D6C65E9D230CD07400259F7A /* LaunchCoordinator.swift */,
-				D66F0FDB22BF2ADC00BA277D /* HomeCoordinator.swift */,
-				D67896B322FF75640059BA75 /* LoginCoordinator.swift */,
-				D67896CB2304524C0059BA75 /* ChannelCoordinator.swift */,
 				D691794122F6418700340AA3 /* Router.swift */,
-				D65B0CE2234913120041A176 /* ChannelsCoordinator.swift */,
 			);
 			path = Deeplink;
 			sourceTree = "<group>";
@@ -930,6 +932,7 @@
 		D67896A122FF40AB0059BA75 /* Login */ = {
 			isa = PBXGroup;
 			children = (
+				D67896B322FF75640059BA75 /* LoginCoordinator.swift */,
 				D67896A422FF48D60059BA75 /* LoginFlowViewController.swift */,
 				D696A8F4230BA06A00DAFED4 /* LoginEndingViewController.swift */,
 				D67896A822FF51170059BA75 /* LoginPhoneViewController.swift */,
@@ -1016,6 +1019,7 @@
 		D6B2603B22E6B8CD00143CF0 /* Profile */ = {
 			isa = PBXGroup;
 			children = (
+				D65B0CE4234928620041A176 /* ProfileCoordinator.swift */,
 				D63752F82313833B00214F63 /* ProfileAvatarView.swift */,
 				D6B2603C22E6B8EA00143CF0 /* ProfileViewController.swift */,
 				80D4A21723039B82007CB5F1 /* RoutineInputContentView.swift */,
@@ -1068,6 +1072,7 @@
 		D6D145F521D549A300CD8CE4 /* Home */ = {
 			isa = PBXGroup;
 			children = (
+				D66F0FDB22BF2ADC00BA277D /* HomeCoordinator.swift */,
 				D6D145F321D5493000CD8CE4 /* HomeViewController.swift */,
 				D6D1461021D583D200CD8CE4 /* RootNavigationController.swift */,
 				D66F0FDD22BF2C5D00BA277D /* HomeSegmentControl.swift */,
@@ -1204,6 +1209,7 @@
 		D6DADF6A2207DC90007D9EB1 /* Channels */ = {
 			isa = PBXGroup;
 			children = (
+				D65B0CE2234913120041A176 /* ChannelsCoordinator.swift */,
 				D6DADF6B2207DCA8007D9EB1 /* ChannelsViewController.swift */,
 				D65B0CCD2344AE390041A176 /* ChannelsViewController+Extensions.swift */,
 				D6DADF6D2207DF33007D9EB1 /* ChannelsCollectionViewManager.swift */,
@@ -1363,6 +1369,7 @@
 				D642738622C9AF1C0088256B /* PagingModalController.swift in Sources */,
 				D6D1501C21D5F8AD00CD8CE4 /* MessageCell.swift in Sources */,
 				D684D6E922D0E1CB00874B08 /* EmptyChannelView.swift in Sources */,
+				D65B0CE7234929440041A176 /* NewChannelCoordinator.swift in Sources */,
 				D6D1460121D5514300CD8CE4 /* Localized.swift in Sources */,
 				D6D1504F21E304D800CD8CE4 /* BouncyCollectionViewLayout.swift in Sources */,
 				D6815DB922EE1CAC00E71251 /* FeedView.swift in Sources */,
@@ -1464,6 +1471,7 @@
 				D642737F22C9A7EC0088256B /* ContactsManager.swift in Sources */,
 				D642738A22C9B0170088256B /* ModalControllerAnimatedTransitioning.swift in Sources */,
 				D637531E2316146A00214F63 /* ContextCell.swift in Sources */,
+				D65B0CE5234928620041A176 /* ProfileCoordinator.swift in Sources */,
 				D68483FF22CD0A1A00362AC3 /* TableView.swift in Sources */,
 				D67896B622FF86AB0059BA75 /* FeedViewController+Extensions.swift in Sources */,
 				D65B0CE3234913120041A176 /* ChannelsCoordinator.swift in Sources */,
