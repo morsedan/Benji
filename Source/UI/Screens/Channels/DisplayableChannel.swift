@@ -35,7 +35,6 @@ class DisplayableChannel: DisplayableCellItem, Hashable, Comparable {
     }
 
     static func == (lhs: DisplayableChannel, rhs: DisplayableChannel) -> Bool {
-        print("LHS: \(lhs.channelType.uniqueName): HIGHLIGHT: \(lhs.highlightText), RHS: \(rhs.channelType.uniqueName): HIGHLIGHT: \(rhs.highlightText)")
         return lhs.channelType.uniqueName == rhs.channelType.uniqueName
             && lhs.highlightText == rhs.highlightText
     }

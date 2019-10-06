@@ -119,6 +119,7 @@ class HomeViewController: FullScreenViewController {
 extension HomeViewController: UISearchBarDelegate {
 
     func searchBarTextDidBeginEditing(_ searchBar: UISearchBar) {
+        self.channelsVC.manager.channelFilter = SearchFilter(text: String(), scope: .all)
         self.currentType.value = .channels
     }
 
