@@ -11,18 +11,18 @@ import TwilioChatClient
 
 class ChannelCell: UICollectionViewCell, DisplayableCell {
 
-    typealias ItemType = ChannelType
+    typealias ItemType = DisplayableChannel
     
     let content = ChannelCellContentView()
     private let selectionFeedback = UIImpactFeedbackGenerator(style: .light)
 
-    func configure(with item: ChannelType?) {
-        guard let type = item else { return }
+    func configure(with item: DisplayableChannel?) {
+        guard let displayable = item else { return }
 
         self.contentView.removeAllSubviews()
         self.contentView.addSubview(self.content)
 
-        self.content.configure(with: type)
+        self.content.configure(with: displayable.channelType)
     }
 
     func highlight(filteredText: String) {
@@ -39,7 +39,7 @@ class ChannelCell: UICollectionViewCell, DisplayableCell {
     override func layoutSubviews() {
         super.layoutSubviews()
 
-        self.content.size = CGSize(width: self.contentView.width - (Theme.contentOffset * 2), height: self.contentView.height)
+        self.content.size = CGSize(width: self.contentView.width - (8 * 2), height: self.contentView.height)
         self.content.centerOnXAndY()
     }
 

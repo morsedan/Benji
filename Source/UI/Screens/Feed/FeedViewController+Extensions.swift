@@ -31,19 +31,19 @@ extension FeedViewController {
 
     func addItems() {
 
-        var items: [FeedType] = []
-
-        ChannelManager.shared.channelTypes.forEach { (type) in
-            switch type {
-            case .channel(let channel):
-                if channel.status == .invited {
-                    items.append(.channelInvite(channel))
-                }
-            default:
-                break
-            }
-        }
-
-        self.manager.set(items: items)
+//        var items: [FeedType] = []
+//
+//        ChannelManager.shared.channelTypes.forEach { (type) in
+//            switch type {
+//            case .channel(let channel):
+//                if channel.status == .invited {
+//                    items.append(.channelInvite(channel))
+//                }
+//            default:
+//                break
+//            }
+//        }
+//
+//        self.manager.set(items: items)
     }
 }

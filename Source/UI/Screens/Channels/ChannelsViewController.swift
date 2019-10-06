@@ -30,9 +30,9 @@ class ChannelsViewController: CollectionViewController<ChannelCell, ChannelsColl
         fatalError("init(coder:) has not been implemented")
     }
 
-    override func didSelect(item: ChannelType, at indexPath: IndexPath) {
+    override func didSelect(item: DisplayableChannel, at indexPath: IndexPath) {
         super.didSelect(item: item, at: indexPath)
-        self.delegate.channelsView(self, didSelect: item)
+        self.delegate.channelsView(self, didSelect: item.channelType)
     }
 
     func animateIn(completion: @escaping CompletionHandler) {

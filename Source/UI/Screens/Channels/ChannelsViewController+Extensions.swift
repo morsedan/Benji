@@ -21,13 +21,15 @@ extension ChannelsViewController {
                 // Do nothing. We only want to show channels that are being searched for.
                 break
             case .changed:
-                self.manager.update(item: .channel(channelsUpdate.channel))
+                let displayable = DisplayableChannel(channelType: .channel(channelsUpdate.channel))
+                self.manager.update(item: displayable)
             case .deleted:
-                self.manager.delete(item: .channel(channelsUpdate.channel))
+                let displayable = DisplayableChannel(channelType: .channel(channelsUpdate.channel))
+                self.manager.delete(item: displayable)
             }
 
             // Reload the cache because changes to the channel list have occurred.
-            self.manager.channelTypeCache = self.getChannelsSortedByUpdateDate()
+            self.manager.channelCache = self.getChannelsSortedByUpdateDate()
             }.start()
 
         ChannelManager.shared.clientSyncUpdate.producer.on { [weak self] (update) in
@@ -41,7 +43,7 @@ extension ChannelsViewController {
             case .channelsListCompleted:
                 break
             case .completed:
-                self.manager.channelTypeCache = self.getChannelsSortedByUpdateDate()
+                self.manager.channelCache = self.getChannelsSortedByUpdateDate()
                 self.manager.loadFilteredChannels()
             case .failed:
                 break
@@ -51,10 +53,10 @@ extension ChannelsViewController {
             }.start()
     }
 
-    private func getChannelsSortedByUpdateDate() -> [ChannelType] {
+    private func getChannelsSortedByUpdateDate() -> [DisplayableChannel] {
         let channelTypes = ChannelManager.shared.channelTypes
         return channelTypes.sorted { (channel1, channel2) -> Bool in
-            channel1.dateUpdated > channel2.dateUpdated
+            channel1.channelType.dateUpdated > channel2.channelType.dateUpdated
         }
     }
 }

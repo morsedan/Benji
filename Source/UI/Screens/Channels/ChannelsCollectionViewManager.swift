@@ -14,11 +14,42 @@ struct SearchFilter {
     var scope: SearchScope
 }
 
+class DisplayableChannel: DisplayableCellItem, Hashable, Comparable {
+
+    var backgroundColor: Color {
+        self.channelType.backgroundColor
+    }
+
+    var highlightText = String()
+    var channelType: ChannelType
+
+    init(channelType: ChannelType) {
+        self.channelType = channelType
+    }
+
+    func diffIdentifier() -> NSObjectProtocol {
+        self.channelType.diffIdentifier()
+    }
+
+    static func == (lhs: DisplayableChannel, rhs: DisplayableChannel) -> Bool {
+        return lhs.channelType.uniqueName == rhs.channelType.uniqueName
+            && lhs.highlightText == rhs.highlightText
+    }
+
+    func hash(into hasher: inout Hasher) {
+        hasher.combine(self.channelType.uniqueName)
+    }
+
+    static func < (lhs: DisplayableChannel, rhs: DisplayableChannel) -> Bool {
+        return lhs.highlightText < rhs.highlightText
+    }
+}
+
 class ChannelsCollectionViewManager: CollectionViewManager<ChannelCell> {
 
     // A cache of the all the user's current channels and system messages,
     // sorted by date updated, with newer channels at the beginning.
-    lazy var channelTypeCache: [ChannelType] = []
+    lazy var channelCache: [DisplayableChannel] = []
     
     var channelFilter: SearchFilter? {
         didSet {
@@ -40,17 +71,16 @@ class ChannelsCollectionViewManager: CollectionViewManager<ChannelCell> {
     func loadFilteredChannels() {
         guard let filter = self.channelFilter else { return }
 
-        let allChannels = self.channelTypeCache
-        var filteredChannels: [ChannelType] = []
+        let allChannels = self.channelCache
+        var filteredChannels: [DisplayableChannel] = []
 
         switch filter.scope {
         case .all:
             if filter.text.isEmpty {
                 filteredChannels = Array(allChannels.prefix(3))
             } else {
-                filteredChannels = allChannels.filter { (channelType) in
-                    if channelType.uniqueName.contains(filter.text) {
-                        print("TEXT: \(filter.text)  UNIQUE: \(channelType.uniqueName)")
+                filteredChannels = allChannels.filter { (channel) in
+                    if channel.channelType.uniqueName.contains(filter.text) {
                         return true
                     } else {
                         return false
@@ -59,19 +89,20 @@ class ChannelsCollectionViewManager: CollectionViewManager<ChannelCell> {
             }
 
         case .channels, .dms:
-            filteredChannels = allChannels.filter { (channelType) in
+            filteredChannels = allChannels.filter { (channel) in
 
-                let doesCategoryMatch = channelType.scope == filter.scope
+                let doesCategoryMatch = channel.channelType.scope == filter.scope
 
                 if filter.text.isEmpty {
                     return doesCategoryMatch
                 } else {
-                    return doesCategoryMatch && channelType.uniqueName.contains(filter.text)
+                    return doesCategoryMatch && channel.channelType.uniqueName.contains(filter.text)
                 }
             }
         }
 
-        self.items.value = filteredChannels
-        self.collectionView.reloadData()
+        let sortedChannels = filteredChannels.sorted()
+
+        self.set(newItems: sortedChannels)
     }
 }
