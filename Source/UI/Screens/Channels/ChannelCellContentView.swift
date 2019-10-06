@@ -39,6 +39,7 @@ class ChannelCellContentView: View {
         }
 
         self.titleLabel.set(text: type.displayName)
+        self.layoutNow()
     }
 
     func highlight(text: String) {
@@ -52,6 +53,7 @@ class ChannelCellContentView: View {
         }
 
         self.titleLabel.attributedText = newString
+        self.layoutNow()
     }
 
     override func layoutSubviews() {

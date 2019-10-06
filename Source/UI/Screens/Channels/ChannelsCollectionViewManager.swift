@@ -14,37 +14,6 @@ struct SearchFilter {
     var scope: SearchScope
 }
 
-class DisplayableChannel: DisplayableCellItem, Hashable, Comparable {
-
-    var backgroundColor: Color {
-        self.channelType.backgroundColor
-    }
-
-    var highlightText = String()
-    var channelType: ChannelType
-
-    init(channelType: ChannelType) {
-        self.channelType = channelType
-    }
-
-    func diffIdentifier() -> NSObjectProtocol {
-        self.channelType.diffIdentifier()
-    }
-
-    static func == (lhs: DisplayableChannel, rhs: DisplayableChannel) -> Bool {
-        return lhs.channelType.uniqueName == rhs.channelType.uniqueName
-            && lhs.highlightText == rhs.highlightText
-    }
-
-    func hash(into hasher: inout Hasher) {
-        hasher.combine(self.channelType.uniqueName)
-    }
-
-    static func < (lhs: DisplayableChannel, rhs: DisplayableChannel) -> Bool {
-        return lhs.highlightText < rhs.highlightText
-    }
-}
-
 class ChannelsCollectionViewManager: CollectionViewManager<ChannelCell> {
 
     // A cache of the all the user's current channels and system messages,
@@ -55,13 +24,6 @@ class ChannelsCollectionViewManager: CollectionViewManager<ChannelCell> {
         didSet {
             self.loadFilteredChannels()
         }
-    }
-
-    override func managerWillDisplay(cell: ChannelCell, for indexPath: IndexPath) -> ChannelCell {
-        if let filter = self.channelFilter {
-            cell.highlight(filteredText: filter.text)
-        }
-        return cell
     }
 
     override func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
@@ -101,7 +63,13 @@ class ChannelsCollectionViewManager: CollectionViewManager<ChannelCell> {
             }
         }
 
-        let sortedChannels = filteredChannels.sorted()
+        let highlightedChannels = filteredChannels.map { (channel) -> DisplayableChannel in
+            let displayable = DisplayableChannel(channelType: channel.channelType)
+            displayable.highlightText = filter.text
+            return displayable
+        }
+
+        let sortedChannels = highlightedChannels.sorted()
 
         self.set(newItems: sortedChannels)
     }
