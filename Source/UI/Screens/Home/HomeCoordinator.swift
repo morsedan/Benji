@@ -43,8 +43,6 @@ extension HomeCoordinator: HomeViewControllerDelegate {
         switch option {
         case .profile:
             self.presentProfile()
-        case .search:
-            self.presentChannels()
         case .add:
             self.presentNewChannel()
         }
@@ -60,12 +58,23 @@ extension HomeCoordinator: HomeViewControllerDelegate {
         self.present(coordinator: coordinator)
     }
 
-    private func presentChannels() {
-        let coordinator = ChannelsCoordinator(router: self.router, deepLink: self.deepLink)
-        self.present(coordinator: coordinator)
+    private func present(coordinator: PresentableCoordinator<Void>) {
+        self.router.present(coordinator, animated: true)
+        self.addChildAndStart(coordinator, finishedHandler: { (_) in
+            self.router.dismiss(animated: true, completion: nil)
+        })
+    }
+}
+
+extension HomeCoordinator: ChannelsViewControllerDelegate {
+
+    func channelsView(_ controller: ChannelsViewController, didSelect channelType: ChannelType) {
+        self.startChannelFlow(for: channelType)
     }
 
-    private func present(coordinator: PresentableCoordinator<Void>) {
+    func startChannelFlow(for type: ChannelType) {
+
+        let coordinator = ChannelCoordinator(router: self.router, channelType: type)
         self.router.present(coordinator, animated: true)
         self.addChildAndStart(coordinator, finishedHandler: { (_) in
             self.router.dismiss(animated: true, completion: nil)

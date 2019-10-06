@@ -41,5 +41,10 @@ class HomeSearchBar: UISearchBar {
         self.scopeButtonTitles = SearchScope.allCases.map({ (scope) -> String in
             return scope.rawValue
         })
+
+        self.scopeBarBackgroundImage = UIImage()
+
+        let styleAttributes = StringStyle(font: .regularSemiBold, color: .lightPurple).attributes
+        self.searchTextField.typingAttributes = styleAttributes
     }
 }

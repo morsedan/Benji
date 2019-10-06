@@ -13,7 +13,6 @@ import ReactiveSwift
 
 enum HomeOptionType {
     case profile
-    case search
     case add
 }
 
@@ -28,14 +27,16 @@ protocol HomeViewControllerDelegate: class {
 
 class HomeViewController: FullScreenViewController {
 
-    unowned let delegate: HomeViewControllerDelegate
+    unowned let delegate: HomeViewControllerDelegate & ChannelsViewControllerDelegate
 
     private let addButton = HomeAddButton()
     lazy var feedVC = FeedViewController()
+    lazy var channelsVC = ChannelsViewController(with: self.delegate)
+    let centerContainer = View()
     let headerView = HomeHeaderView()
     private let currentType = MutableProperty<HomeContentType>(.feed)
 
-    init(with delegate: HomeViewControllerDelegate) {
+    init(with delegate: HomeViewControllerDelegate & ChannelsViewControllerDelegate) {
         self.delegate = delegate
         super.init()
     }
@@ -52,8 +53,10 @@ class HomeViewController: FullScreenViewController {
         super.initializeViews()
 
         self.contentContainer.addSubview(self.headerView)
+        self.contentContainer.addSubview(self.centerContainer)
 
-        self.addChild(viewController: self.feedVC, toView: self.contentContainer)
+        self.addChild(viewController: self.channelsVC, toView: self.centerContainer)
+        self.addChild(viewController: self.feedVC, toView: self.centerContainer)
 
         self.headerView.avatarView.onTap { [unowned self] (tap) in
             self.delegate.homeView(self, didSelect: .profile)
@@ -83,32 +86,34 @@ class HomeViewController: FullScreenViewController {
         self.addButton.centerOnX()
         self.addButton.bottom = self.contentContainer.height - 10
 
-        self.feedVC.view.size = CGSize(width: self.contentContainer.width,
-                                       height: self.contentContainer.height - self.headerView.bottom)
-        self.feedVC.view.top = self.headerView.bottom
-        self.feedVC.view.centerOnX()
+        self.centerContainer.size = CGSize(width: self.contentContainer.width,
+                                           height: self.contentContainer.height - self.headerView.bottom)
+        self.centerContainer.top = self.headerView.bottom
+        self.centerContainer.centerOnX()
+
+        self.feedVC.view.frame = self.centerContainer.bounds
+        self.channelsVC.view.frame = self.centerContainer.bounds
     }
 
-        func updateContent() {
-            let currentType = self.currentType.value
-            self.headerView.updateContent(for: currentType)
+    func updateContent() {
+        let currentType = self.currentType.value
+        self.headerView.updateContent(for: currentType)
 
-    //        switch currentType {
-    //        case .feed:
-    //            self.channelsVC.animateOut { (completed, error) in
-    //                guard completed else { return }
-    //               // self.resetContent(currentView: self.channelsVC.view, newView: self.feedVC.view)
-    //                self.feedVC.animateIn(completion: { (completed, error) in })
-    //            }
-    //        case .list:
-    //            self.feedVC.animateOut { (completed, error) in
-    //                guard completed else { return }
-    //               // self.resetContent(currentView: self.feedVC.view, newView: self.channelsVC.view)
-    //                self.channelsVC.animateIn(completion: { (completed, error) in })
-    //            }
-    //        }
+        switch currentType {
+        case .feed:
+            self.channelsVC.animateOut { (completed, error) in
+                guard completed else { return }
+                self.centerContainer.sendSubviewToBack(self.channelsVC.view)
+                self.feedVC.animateIn(completion: { (completed, error) in })
+            }
+        case .channels:
+            self.feedVC.animateOut { (completed, error) in
+                guard completed else { return }
+                self.centerContainer.sendSubviewToBack(self.feedVC.view)
+                self.channelsVC.animateIn(completion: { (completed, error) in })
+            }
         }
-
+    }
 }
 
 extension HomeViewController: UISearchBarDelegate {
@@ -125,12 +130,13 @@ extension HomeViewController: UISearchBarDelegate {
         guard let scopeString = searchBar.scopeButtonTitles?[searchBar.selectedScopeButtonIndex],
             let scope = SearchScope(rawValue: scopeString) else { return }
         
-        //let lowercaseString = searchText.lowercased()
-        //self.searchVC.searchBar.text = lowercaseString
-        //self.channelsVC.manager.channelFilter = SearchFilter(text: text.lowercased(), scope: scope)
+        let lowercaseString = searchText.lowercased()
+        self.headerView.searchBar.text = lowercaseString
+        self.channelsVC.manager.channelFilter = SearchFilter(text: lowercaseString, scope: scope)
     }
 
     func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
+        searchBar.searchTextField.text = String()
         searchBar.resignFirstResponder()
     }
 }
