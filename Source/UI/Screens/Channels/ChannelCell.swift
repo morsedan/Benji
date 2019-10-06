@@ -23,7 +23,6 @@ class ChannelCell: UICollectionViewCell, DisplayableCell {
         self.contentView.addSubview(self.content)
 
         self.content.configure(with: displayable.channelType)
-        self.content.highlight(text: displayable.highlightText)
     }
 
     override func prepareForReuse() {

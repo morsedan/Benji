@@ -36,7 +36,6 @@ class DisplayableChannel: DisplayableCellItem, Hashable, Comparable {
 
     static func == (lhs: DisplayableChannel, rhs: DisplayableChannel) -> Bool {
         return lhs.channelType.uniqueName == rhs.channelType.uniqueName
-            && lhs.highlightText == rhs.highlightText
     }
 
     func hash(into hasher: inout Hasher) {

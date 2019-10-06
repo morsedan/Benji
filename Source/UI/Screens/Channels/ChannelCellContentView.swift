@@ -42,20 +42,6 @@ class ChannelCellContentView: View {
         self.layoutNow()
     }
 
-    func highlight(text: String) {
-        guard let attributedText = self.titleLabel.attributedText, attributedText.string.contains(text) else { return }
-
-        let newString = NSMutableAttributedString(attributedString: attributedText)
-
-        if let range = attributedText.string.range(of: text) {
-            let nsRange = text.nsRange(from: range)
-            newString.addAttributes([NSAttributedString.Key.foregroundColor: Color.lightPurple.color], range: nsRange)
-        }
-
-        self.titleLabel.attributedText = newString
-        self.layoutNow()
-    }
-
     override func layoutSubviews() {
         super.layoutSubviews()
 
