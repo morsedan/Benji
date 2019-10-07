@@ -17,8 +17,5 @@ class PurposeDescriptionTextView: TextView {
 
         self.set(placeholder: "Briefly describe the purpose of this channel.", color: .white)
         self.returnKeyType = .done
-
-        let styleAttributes = StringStyle(font: .xSmall, color: .white).attributes
-        self.typingAttributes = styleAttributes
     }
 }

@@ -48,7 +48,7 @@ class TextView: UITextView {
 
     func initialize() {
 
-        let styleAttributes = StringStyle(font: .regularSemiBold, color: .white).attributes
+        let styleAttributes = StringStyle(font: .smallSemiBold, color: .white).attributes
         self.typingAttributes = styleAttributes
         self.contentMode = .redraw
 
@@ -66,8 +66,8 @@ class TextView: UITextView {
                                                object: self)
     }
 
-    func set(placeholder: Localized, color: Color = .white) {
-        let styleAttributes = StringStyle(font: .regular, color: color).attributes
+    func set(placeholder: Localized, color: Color = .background4) {
+        let styleAttributes = StringStyle(font: .smallSemiBold, color: color).attributes
         let string = NSAttributedString(string: localized(placeholder), attributes: styleAttributes)
         self.attributedPlaceholder = string
     }

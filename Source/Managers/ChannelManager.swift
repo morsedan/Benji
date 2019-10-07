@@ -26,7 +26,7 @@ class ChannelManager: NSObject {
     lazy var channelTypes: [DisplayableChannel] = {
         // TODO: DELETE THESE FAKE MESSAGES
         var items: [DisplayableChannel] = []
-        for _ in 0...10 {
+        for _ in 0...100 {
             let displayable = DisplayableChannel(channelType: .system(Lorem.systemChannel()))
             items.append(displayable)
         }

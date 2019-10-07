@@ -17,6 +17,7 @@ protocol ChannelDetailBarDelegate: class {
 
 class ChannelDetailBar: View {
 
+    private let blurView = UIVisualEffectView(effect: UIBlurEffect(style: .dark))
     private(set) var titleLabel = RegularBoldLabel()
     private let closeButton = Button()
     private let titleButton = Button()
@@ -38,6 +39,7 @@ class ChannelDetailBar: View {
     override func initializeSubviews() {
         super.initializeSubviews()
 
+        self.addSubview(self.blurView)
         self.addSubview(self.titleLabel)
         self.addSubview(self.titleButton)
         self.titleButton.onTap { [unowned self] (tap) in
@@ -62,6 +64,8 @@ class ChannelDetailBar: View {
 
     override func layoutSubviews() {
         super.layoutSubviews()
+
+        self.blurView.frame = self.bounds
 
         self.closeButton.size = CGSize(width: 20, height: 20)
         self.closeButton.right = self.width - 16

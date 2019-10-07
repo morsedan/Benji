@@ -66,11 +66,6 @@ class ChannelViewController: FullScreenViewController {
         self.view.addSubview(self.messageInputView)
         self.messageInputView.textView.growingDelegate = self
 
-        self.messageInputView.contextButton.onTap { [unowned self] (tap) in
-            guard let text = self.messageInputView.textView.text, !text.isEmpty else { return }
-            self.send(message: text)
-        }
-
         self.channelCollectionVC.collectionView.onDoubleTap { [unowned self] (doubleTap) in
             if self.messageInputView.textView.isFirstResponder {
                 self.messageInputView.textView.resignFirstResponder()

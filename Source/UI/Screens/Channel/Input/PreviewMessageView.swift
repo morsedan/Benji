@@ -22,7 +22,8 @@ class PreviewMessageView: View {
         self.backgroundView.set(backgroundColor: .lightPurple)
         self.addSubview(self.textView)
         self.layer.masksToBounds = true
-        self.layer.cornerRadius = self.minHeight * 0.5
+        self.layer.cornerRadius = Theme.cornerRadius
+        self.layer.maskedCorners = [.layerMinXMaxYCorner, .layerMaxXMinYCorner, .layerMinXMinYCorner]
     }
 
     override func layoutSubviews() {
@@ -30,9 +31,8 @@ class PreviewMessageView: View {
 
         self.backgroundView.frame = self.bounds
 
-        let textViewWidth = self.width - 20
-        self.textView.size = CGSize(width: textViewWidth, height: self.height)
-        self.textView.left = 10
+        self.textView.size = CGSize(width: self.width, height: self.height)
+        self.textView.left = 0
         self.textView.top = 0
     }
 }

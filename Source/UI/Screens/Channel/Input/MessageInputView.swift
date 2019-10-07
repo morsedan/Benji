@@ -10,19 +10,19 @@ import Foundation
 
 class MessageInputView: View, UIGestureRecognizerDelegate {
 
-    let minHeight: CGFloat = 52
+    let minHeight: CGFloat = 38
 
-    let contextButton = ContextButton()
     let textView = InputTextView()
     let overlayButton = UIButton()
     let alertProgressView = UIView()
+    let blurView = UIVisualEffectView(effect: UIBlurEffect(style: .systemChromeMaterial))
 
     override func initializeSubviews() {
         super.initializeSubviews()
 
         self.set(backgroundColor: .backgroundWithAlpha)
 
-        self.addSubview(self.contextButton)
+        self.addSubview(self.blurView)
         self.addSubview(self.alertProgressView)
         self.alertProgressView.set(backgroundColor: .red)
         self.alertProgressView.size = .zero 
@@ -39,22 +39,19 @@ class MessageInputView: View, UIGestureRecognizerDelegate {
         self.layer.masksToBounds = true
         self.layer.borderColor = Color.lightPurple.color.cgColor
         self.layer.borderWidth = Theme.borderWidth
+        self.layer.maskedCorners = [.layerMinXMaxYCorner, .layerMaxXMinYCorner, .layerMinXMinYCorner]
+        self.layer.cornerRadius = Theme.cornerRadius
     }
 
     override func layoutSubviews() {
         super.layoutSubviews()
 
-        self.contextButton.size = CGSize(width: 0, height: 0)
-        self.contextButton.left = 0
-        self.contextButton.bottom = self.height
-
-        let textViewWidth = self.width - self.contextButton.right - 20
+        let textViewWidth = self.width
         self.textView.size = CGSize(width: textViewWidth, height: self.textView.currentHeight)
-        self.textView.left = self.contextButton.right + 10
+        self.textView.left = 0
         self.textView.top = 0
 
-        self.layer.cornerRadius = self.minHeight * 0.5
-
         self.overlayButton.frame = self.bounds
+        self.blurView.frame = self.bounds
     }
 }

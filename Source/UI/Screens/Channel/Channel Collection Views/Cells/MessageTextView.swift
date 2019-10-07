@@ -22,7 +22,7 @@ class MessageTextView: TextView {
         let textColor: Color  = .white
 
         let attributedString = AttributedString(text,
-                                                fontType: .regular,
+                                                fontType: .smallSemiBold,
                                                 color: textColor)
 
         self.set(attributed: attributedString,

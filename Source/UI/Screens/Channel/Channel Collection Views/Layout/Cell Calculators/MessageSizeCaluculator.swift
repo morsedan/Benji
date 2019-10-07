@@ -74,7 +74,7 @@ class MessageSizeCalculator: CellSizeCalculator {
     private func getMessageTextViewSize(for message: MessageType) -> CGSize {
 
         let attributed = AttributedString(message.body,
-                                          fontType: .regular,
+                                          fontType: .smallSemiBold,
                                           color: .white)
 
         let attributedString = attributed.string

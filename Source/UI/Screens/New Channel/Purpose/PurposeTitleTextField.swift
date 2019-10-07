@@ -22,9 +22,9 @@ class PurposeTitleTextField: TextField {
         self.returnKeyType = .done
         self.autocapitalizationType = .none
 
-        let attributed = AttributedString("Name", fontType: .regular, color: .white)
+        let attributed = AttributedString("Name", fontType: .smallSemiBold, color: .background4)
         self.setPlaceholder(attributed: attributed)
-        self.setDefaultAttributes(style: StringStyle(font: .regular, color: .white))
+        self.setDefaultAttributes(style: StringStyle(font: .smallSemiBold, color: .white))
     }
 
     override func layoutSubviews() {
