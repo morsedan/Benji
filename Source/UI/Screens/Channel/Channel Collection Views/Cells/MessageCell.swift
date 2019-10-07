@@ -32,7 +32,8 @@ class MessageCell: UICollectionViewCell {
         self.contentView.addSubview(self.bubbleView)
         self.contentView.addSubview(self.textView)
 
-        let view = UIView(frame: bounds)
+        let view = UIView(frame: self.bounds)
+        view.set(backgroundColor: .background2)
         self.backgroundView = view 
     }
 

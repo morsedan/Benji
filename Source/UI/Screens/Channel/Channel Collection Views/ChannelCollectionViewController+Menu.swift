@@ -84,18 +84,17 @@ private class MessagePreviewViewController: ViewController {
         super.initializeViews()
 
         switch self.messageType {
-
         case .user(_):
             break
-        case .system(_):
-            break
+        case .system(let message):
+            self.messageTextView.set(text: message.body)
         case .message(let message):
             if let text = message.body {
                 self.messageTextView.set(text: text)
             }
         }
 
-        self.bubbleView.set(backgroundColor: .lightPurple)
+        self.bubbleView.set(backgroundColor: self.messageType.backgroundColor)
         self.view.addSubview(self.messageTextView)
         self.messageTextView.setSize(withWidth: self.cellWidth - 20)
 
