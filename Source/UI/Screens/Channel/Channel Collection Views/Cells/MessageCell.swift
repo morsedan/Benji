@@ -33,7 +33,6 @@ class MessageCell: UICollectionViewCell {
         self.contentView.addSubview(self.textView)
 
         let view = UIView(frame: bounds)
-        view.set(backgroundColor: .background1)
         self.backgroundView = view 
     }
 

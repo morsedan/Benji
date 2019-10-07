@@ -10,7 +10,7 @@ import Foundation
 import ReactiveSwift
 import Parse
 
-class ChannelViewController: ViewController {
+class ChannelViewController: FullScreenViewController {
 
     lazy var detailBar = ChannelDetailBar(with: self.channelType, delegate: self.delegate)
 
@@ -28,7 +28,6 @@ class ChannelViewController: ViewController {
     lazy var channelCollectionVC = ChannelCollectionViewController()
 
     private(set) var messageInputView = MessageInputView()
-    private(set) var bottomGradientView = GradientView()
 
     private var bottomOffset: CGFloat {
         var offset: CGFloat = 6
@@ -61,10 +60,8 @@ class ChannelViewController: ViewController {
         super.initializeViews()
 
         self.registerKeyboardEvents()
-        self.view.set(backgroundColor: .background1)
         self.addChild(viewController: self.channelCollectionVC)
         self.view.addSubview(self.detailBar)
-        self.view.addSubview(self.bottomGradientView)
 
         self.view.addSubview(self.messageInputView)
         self.messageInputView.textView.growingDelegate = self
@@ -114,11 +111,6 @@ class ChannelViewController: ViewController {
         self.messageInputView.size = CGSize(width: self.view.width - 32, height: self.messageInputView.textView.currentHeight)
         self.messageInputView.centerOnX()
         self.messageInputView.bottom = self.channelCollectionVC.view.bottom - self.bottomOffset
-
-        let gradientHeight = self.channelCollectionVC.view.height - self.messageInputView.top
-        self.bottomGradientView.size = CGSize(width: self.view.width, height: gradientHeight)
-        self.bottomGradientView.bottom = self.channelCollectionVC.view.bottom
-        self.bottomGradientView.centerOnX()
     }
 
     func loadMessages(for type: ChannelType) {

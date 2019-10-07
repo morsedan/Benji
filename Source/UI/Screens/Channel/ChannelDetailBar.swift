@@ -38,8 +38,6 @@ class ChannelDetailBar: View {
     override func initializeSubviews() {
         super.initializeSubviews()
 
-        self.backgroundColor = Color.background1.color.withAlphaComponent(0.95)
-
         self.addSubview(self.titleLabel)
         self.addSubview(self.titleButton)
         self.titleButton.onTap { [unowned self] (tap) in

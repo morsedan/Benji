@@ -72,7 +72,7 @@ class Lorem {
     class func systemSections() -> [ChannelSectionType] {
         var sections: [ChannelSectionType] = []
         var messages: [MessageType] = []
-        for _ in 0...5 {
+        for _ in 0...10 {
             let message = self.systemMessage()
             let type = MessageType.system(message)
             messages.append(type)
