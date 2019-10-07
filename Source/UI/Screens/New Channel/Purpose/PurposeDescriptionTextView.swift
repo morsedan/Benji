@@ -15,10 +15,10 @@ class PurposeDescriptionTextView: TextView {
 
         self.textContainerInset = UIEdgeInsets(top: 10, left: 5, bottom: 10, right: 5)
 
-        self.set(placeholder: "Briefly describe the purpose of this channel.", color: .lightPurple)
+        self.set(placeholder: "Briefly describe the purpose of this channel.", color: .white)
         self.returnKeyType = .done
 
-        let styleAttributes = StringStyle(font: .regularSemiBold, color: .lightPurple).attributes
+        let styleAttributes = StringStyle(font: .xSmall, color: .white).attributes
         self.typingAttributes = styleAttributes
     }
 }

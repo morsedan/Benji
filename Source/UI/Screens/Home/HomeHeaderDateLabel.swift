@@ -8,16 +8,10 @@
 
 import Foundation
 
-class HomeHeaderDateLabel: Label {
+class HomeHeaderDateLabel: XXSmallSemiBoldLabel {
 
     func set(date: Date) {
-        let attributed = AttributedString(self.getString(for: date),
-                                          fontType: .xxSmallSemiBold,
-                                          color: .white)
-        self.set(attributed: attributed,
-                 alignment: .left,
-                 lineCount: 1,
-                 stringCasing: .unchanged)
+        self.set(text: self.getString(for: date))
     }
 
     private func getString(for date: Date) -> String {

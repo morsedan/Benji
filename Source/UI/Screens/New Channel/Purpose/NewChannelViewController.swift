@@ -9,18 +9,18 @@
 import Foundation
 import Parse
 
-protocol ChannelPurposeViewControllerDelegate: class {
-    func channelPurposeView(_ controller: ChannelPurposeViewController,
-                            didCreate channel: ChannelType)
+protocol NewChannelViewControllerDelegate: class {
+    func newChannelView(_ controller: NewChannelViewController,
+                        didCreate channel: ChannelType)
 }
 
-class ChannelPurposeViewController: ViewController {
+class NewChannelViewController: FullScreenViewController {
 
     let offset: CGFloat = 20
 
     let textFieldTitleLabel = RegularBoldLabel()
     let textField = PurposeTitleTextField()
-    let textFieldDescriptionLabel = XSmallLabel()
+    let textFieldDescriptionLabel = XXSmallSemiBoldLabel()
 
     let textViewTitleLabel = RegularBoldLabel()
     let textView = PurposeDescriptionTextView()
@@ -31,9 +31,9 @@ class ChannelPurposeViewController: ViewController {
     let collectionView = FavoritesCollectionView()
     lazy var favoritesVC = FavoritesViewController(with: self.collectionView)
 
-    unowned let delegate: ChannelPurposeViewControllerDelegate
+    unowned let delegate: NewChannelViewControllerDelegate
 
-    init(delegate: ChannelPurposeViewControllerDelegate) {
+    init(delegate: NewChannelViewControllerDelegate) {
         self.delegate = delegate
         super.init()
     }
@@ -42,24 +42,26 @@ class ChannelPurposeViewController: ViewController {
         fatalError("init(coder:) has not been implemented")
     }
 
+    required init?(withObject object: DeepLinkable) {
+        fatalError("init(withObject:) has not been implemented")
+    }
+
     override func initializeViews() {
         super.initializeViews()
 
-        self.view.set(backgroundColor: .background3)
-
-        self.view.addSubview(self.textFieldTitleLabel)
+        self.contentContainer.addSubview(self.textFieldTitleLabel)
         self.textFieldTitleLabel.set(text: "Channel Name", stringCasing: .unchanged)
-        self.view.addSubview(self.textField)
-        self.textField.set(backgroundColor: .background2)
+        self.contentContainer.addSubview(self.textField)
+        self.textField.set(backgroundColor: .background3)
         self.textField.roundCorners()
 
-        self.view.addSubview(self.textFieldDescriptionLabel)
-        self.textFieldDescriptionLabel.set(text: "Names must be lowercase, without spaces or periods, and can't be longer than 80 characters.", color: .lightPurple)
+        self.contentContainer.addSubview(self.textFieldDescriptionLabel)
+        self.textFieldDescriptionLabel.set(text: "Names must be lowercase, without spaces or periods, and can't be longer than 80 characters.")
 
-        self.view.addSubview(self.textViewTitleLabel)
+        self.contentContainer.addSubview(self.textViewTitleLabel)
         self.textViewTitleLabel.set(text: "Purpose (Optional)", stringCasing: .unchanged)
-        self.view.addSubview(self.textView)
-        self.textView.set(backgroundColor: .background2)
+        self.contentContainer.addSubview(self.textView)
+        self.textView.set(backgroundColor: .background3)
         self.textView.roundCorners()
         self.textView.delegate = self
 
@@ -69,16 +71,16 @@ class ChannelPurposeViewController: ViewController {
 
         self.textField.delegate = self
 
-        self.view.addSubview(self.createButton)
-        self.createButton.set(style: .normal(color: .blue, text: "CREATE")) { [unowned self] in
+        self.contentContainer.addSubview(self.createButton)
+        self.createButton.set(style: .normal(color: .purple, text: "CREATE")) { [unowned self] in
             self.createTapped()
         }
         self.createButton.isEnabled = false
 
-        self.view.addSubview(self.favoritesLabel)
+        self.contentContainer.addSubview(self.favoritesLabel)
         self.favoritesLabel.set(text: "Favorites", stringCasing: .unchanged)
         self.addChild(viewController: self.favoritesVC)
-        self.favoritesVC.view.set(backgroundColor: .background2)
+        self.favoritesVC.view.set(backgroundColor: .background3)
         self.favoritesVC.view.roundCorners()
 
         self.favoritesVC.manager.didSelect = { [unowned self] user, indexPath in
@@ -89,7 +91,7 @@ class ChannelPurposeViewController: ViewController {
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
 
-        let width = self.view.width - (self.offset * 2)
+        let width = self.contentContainer.width - (self.offset * 2)
 
         self.textFieldTitleLabel.setSize(withWidth: width)
         self.textFieldTitleLabel.top = 30
@@ -141,9 +143,9 @@ class ChannelPurposeViewController: ViewController {
 
     private func createTapped() {
         guard let title = self.textField.text,
-        let description = self.textView.text,
-        let value = self.favoritesVC.manager.selectedIndexes.value.first,
-        let user = self.favoritesVC.manager.items.value[safe: value.row] else { return }
+            let description = self.textView.text,
+            let value = self.favoritesVC.manager.selectedIndexes.value.first,
+            let user = self.favoritesVC.manager.items.value[safe: value.row] else { return }
 
         self.createChannel(with: user.objectId!, title: title, description: description)
     }
@@ -165,7 +167,7 @@ class ChannelPurposeViewController: ViewController {
                 self.createButton.isLoading = false
                 switch result {
                 case .success(let channel):
-                    self.delegate.channelPurposeView(self, didCreate: .channel(channel))
+                    self.delegate.newChannelView(self, didCreate: .channel(channel))
                 case .failure(let error):
                     if let tomorrowError = error as? ClientError {
                         print(tomorrowError.localizedDescription)
@@ -177,7 +179,7 @@ class ChannelPurposeViewController: ViewController {
     }
 }
 
-extension ChannelPurposeViewController: UITextViewDelegate {
+extension NewChannelViewController: UITextViewDelegate {
 
     func textView(_ textView: UITextView,
                   shouldChangeTextIn range: NSRange,
@@ -192,7 +194,7 @@ extension ChannelPurposeViewController: UITextViewDelegate {
     }
 }
 
-extension ChannelPurposeViewController: UITextFieldDelegate {
+extension NewChannelViewController: UITextFieldDelegate {
 
     func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
 

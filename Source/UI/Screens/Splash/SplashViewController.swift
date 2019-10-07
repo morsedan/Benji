@@ -16,6 +16,8 @@ class SplashViewController: FullScreenViewController {
     override func initializeViews() {
         super.initializeViews()
 
+        self.view.set(backgroundColor: .background1)
+
         self.contentContainer.addSubview(self.loadingIndicator)
         self.contentContainer.addSubview(self.label)
 

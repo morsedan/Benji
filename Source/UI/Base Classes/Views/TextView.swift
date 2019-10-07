@@ -66,7 +66,7 @@ class TextView: UITextView {
                                                object: self)
     }
 
-    func set(placeholder: Localized, color: Color = .lightPurple) {
+    func set(placeholder: Localized, color: Color = .white) {
         let styleAttributes = StringStyle(font: .regular, color: color).attributes
         let string = NSAttributedString(string: localized(placeholder), attributes: styleAttributes)
         self.attributedPlaceholder = string

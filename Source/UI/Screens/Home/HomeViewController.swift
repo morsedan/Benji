@@ -52,6 +52,8 @@ class HomeViewController: FullScreenViewController {
     override func initializeViews() {
         super.initializeViews()
 
+        self.view.set(backgroundColor: .background1)
+
         self.contentContainer.addSubview(self.headerView)
         self.contentContainer.addSubview(self.centerContainer)
 
