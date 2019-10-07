@@ -13,8 +13,8 @@ class FavoritesCollectionViewManager: CollectionViewManager<FavoriteCell> {
 
     let selectedIndexes = MutableProperty<Set<IndexPath>>([])
     
-    override func initialize() {
-        super.initialize()
+    override func initializeCollectionView() {
+        super.initializeCollectionView()
 
         self.selectedIndexes.producer.on { (radioIndexes) in
             self.collectionView.reloadData()

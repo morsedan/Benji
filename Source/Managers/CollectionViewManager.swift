@@ -23,10 +23,10 @@ class CollectionViewManager<CellType: DisplayableCell & UICollectionViewCell>: N
 
         self.collectionView = collectionView
         super.init()
-        self.initialize()
+        self.initializeCollectionView()
     }
 
-    func initialize() {
+    func initializeCollectionView() {
         self.collectionView.register(CellType.self, forCellWithReuseIdentifier: CellType.reuseID)
     }
 
