@@ -15,9 +15,11 @@ extension UICollectionView {
                              equalityOption: IGListDiffOption,
                              modify: @escaping () -> Swift.Void,
                              completion: ((Bool) -> Swift.Void)? = nil) {
+
         let previousBoxItems: [ListDiffable] = previousItems.map { (item) -> ListDiffable in
             return DiffableBox<T>(value: item, equal: ==)
         }
+
         let newBoxItems: [ListDiffable] = newItems.map { (item) -> ListDiffable in
             return DiffableBox<T>(value: item, equal: ==)
         }
@@ -51,7 +53,10 @@ extension UICollectionView {
                              completion: ((Bool) -> Swift.Void)? = nil) {
 
         // Don't reload the collection view if no changes have been made to the items array
-        guard diffResult.hasChanges else { return }
+        guard diffResult.hasChanges else {
+            completion?(false)
+            return
+        }
 
         let sanitizedResults: ListIndexPathResult = diffResult.forBatchUpdates()
 

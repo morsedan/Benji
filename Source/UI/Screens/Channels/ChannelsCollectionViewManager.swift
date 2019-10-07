@@ -26,6 +26,13 @@ class ChannelsCollectionViewManager: CollectionViewManager<ChannelCell> {
         }
     }
 
+    override func managerWillDisplay(cell: ChannelCell, for indexPath: IndexPath) -> ChannelCell {
+        if let filter = self.channelFilter {
+            cell.content.highlight(text: filter.text)
+        }
+        return cell
+    }
+
     override func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         return CGSize(width: collectionView.width, height: 60)
     }
@@ -71,6 +78,8 @@ class ChannelsCollectionViewManager: CollectionViewManager<ChannelCell> {
 
         let sortedChannels = highlightedChannels.sorted()
 
-        self.set(newItems: sortedChannels)
+        self.set(newItems: sortedChannels) { (_) in
+            self.collectionView.reloadData()
+        }
     }
 }

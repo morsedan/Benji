@@ -35,11 +35,11 @@ class CollectionViewManager<CellType: DisplayableCell & UICollectionViewCell>: N
         self.collectionView.reloadData()
     }
 
-    func set(newItems: [CellType.ItemType]) {
+    func set(newItems: [CellType.ItemType], completion: ((Bool) -> Swift.Void)? = nil) {
         self.updateCollectionView(items: newItems, modify: { [weak self] in
             guard let `self` = self else { return }
             self.items.value = newItems
-        })
+        }, completion: completion)
     }
 
     func append(item: CellType.ItemType, in section: Int = 0) {
@@ -130,22 +130,26 @@ class CollectionViewManager<CellType: DisplayableCell & UICollectionViewCell>: N
         return cell
     }
 
-    private func updateCollectionView(items: [CellType.ItemType], modify: @escaping () -> Void) {
+    private func updateCollectionView(items: [CellType.ItemType],
+                                      modify: @escaping () -> Void,
+                                      completion: ((Bool) -> Swift.Void)? = nil) {
 
         self.reloadCollectionView(previousItems: self.items.value,
                                   newItems: items,
-                                  modify: modify)
+                                  modify: modify,
+                                  completion: completion)
     }
 
     private func reloadCollectionView(previousItems: [CellType.ItemType],
                                       newItems: [CellType.ItemType],
-                                      modify: @escaping () -> Void) {
+                                      modify: @escaping () -> Void,
+                                      completion: ((Bool) -> Swift.Void)? = nil) {
 
         self.collectionView.reload(previousItems: previousItems,
                                    newItems: newItems,
                                    equalityOption: .equality,
                                    modify: modify,
-                                   completion: nil)
+                                   completion: completion)
     }
 
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
