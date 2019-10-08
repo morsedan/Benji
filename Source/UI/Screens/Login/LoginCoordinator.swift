@@ -18,8 +18,6 @@ class LoginCoordinator: PresentableCoordinator<Void> {
         return controller
     }()
 
-    lazy var scrolledModal = ScrolledModalViewController(presentable: self.loginFlowController)
-
     init(router: Router, userExists: Bool) {
         self.userExists = userExists
 
@@ -27,11 +25,11 @@ class LoginCoordinator: PresentableCoordinator<Void> {
     }
 
     override func toPresentable() -> DismissableVC {
-        return self.scrolledModal
+        return self.loginFlowController
     }
 
     override func start() {
-        self.scrolledModal.didDismiss = { [unowned self] in
+        self.loginFlowController.didDismiss = { [unowned self] in
             self.finishFlow(with: ())
         }
     }
@@ -41,7 +39,7 @@ extension LoginCoordinator: LoginFlowViewControllerDelegate {
     func loginFlowViewController(_ controller: LoginFlowViewController, finishedWith result: LoginFlowResult) {
         switch result {
         case .loggedIn:
-            self.scrolledModal.dismiss(animated: true, completion: nil)
+            self.loginFlowController.dismiss(animated: true, completion: nil)
         case .cancelled:
             break 
         }

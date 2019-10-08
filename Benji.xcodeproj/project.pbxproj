@@ -71,8 +71,6 @@
 		D642735E22C90C820088256B /* CGPoint+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = D642735D22C90C820088256B /* CGPoint+Extensions.swift */; };
 		D642736422C9132A0088256B /* EmptyFeedView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D642736322C9132A0088256B /* EmptyFeedView.swift */; };
 		D642736622C971FD0088256B /* FeedTextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D642736522C971FD0088256B /* FeedTextView.swift */; };
-		D642736822C98E5D0088256B /* ScrolledModalViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D642736722C98E5D0088256B /* ScrolledModalViewController.swift */; };
-		D642736A22C98EB40088256B /* ScrolledModalContainerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D642736922C98EB40088256B /* ScrolledModalContainerView.swift */; };
 		D642736C22C98FA00088256B /* MathFunctions.swift in Sources */ = {isa = PBXBuildFile; fileRef = D642736B22C98FA00088256B /* MathFunctions.swift */; };
 		D642737122C991A60088256B /* ClosedRange+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = D642737022C991A60088256B /* ClosedRange+Extensions.swift */; };
 		D642737422C99D6A0088256B /* ContactsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D642737322C99D6A0088256B /* ContactsViewController.swift */; };
@@ -81,7 +79,6 @@
 		D642737A22C99DD20088256B /* ContactCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D642737922C99DD20088256B /* ContactCell.swift */; };
 		D642737D22C9A2D70088256B /* NameLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D642737C22C9A2D70088256B /* NameLabel.swift */; };
 		D642737F22C9A7EC0088256B /* ContactsManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = D642737E22C9A7EC0088256B /* ContactsManager.swift */; };
-		D642738122C9AB290088256B /* ContactsScrolledModalController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D642738022C9AB290088256B /* ContactsScrolledModalController.swift */; };
 		D642738322C9AEA30088256B /* ContactAuthorizationAlertController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D642738222C9AEA30088256B /* ContactAuthorizationAlertController.swift */; };
 		D642738622C9AF1C0088256B /* PagingModalController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D642738522C9AF1C0088256B /* PagingModalController.swift */; };
 		D642738822C9AF690088256B /* ModalViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D642738722C9AF690088256B /* ModalViewController.swift */; };
@@ -144,7 +141,6 @@
 		D66F0FF222C1D86800BA277D /* ChannelsType.swift in Sources */ = {isa = PBXBuildFile; fileRef = D66F0FF122C1D86800BA277D /* ChannelsType.swift */; };
 		D66F102622C7C6A900BA277D /* Lorem.swift in Sources */ = {isa = PBXBuildFile; fileRef = D66F102522C7C6A900BA277D /* Lorem.swift */; };
 		D66F102822C7D1D200BA277D /* ChannelCellContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D66F102722C7D1D200BA277D /* ChannelCellContentView.swift */; };
-		D67896A322FF443C0059BA75 /* ScrolledModalFlowViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D67896A222FF443C0059BA75 /* ScrolledModalFlowViewController.swift */; };
 		D67896A522FF48D60059BA75 /* LoginFlowViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D67896A422FF48D60059BA75 /* LoginFlowViewController.swift */; };
 		D67896A722FF4D9B0059BA75 /* NavigationBarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D67896A622FF4D9B0059BA75 /* NavigationBarView.swift */; };
 		D67896A922FF51170059BA75 /* LoginPhoneViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D67896A822FF51170059BA75 /* LoginPhoneViewController.swift */; };
@@ -319,8 +315,6 @@
 		D642735D22C90C820088256B /* CGPoint+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CGPoint+Extensions.swift"; sourceTree = "<group>"; };
 		D642736322C9132A0088256B /* EmptyFeedView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmptyFeedView.swift; sourceTree = "<group>"; };
 		D642736522C971FD0088256B /* FeedTextView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedTextView.swift; sourceTree = "<group>"; };
-		D642736722C98E5D0088256B /* ScrolledModalViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScrolledModalViewController.swift; sourceTree = "<group>"; };
-		D642736922C98EB40088256B /* ScrolledModalContainerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScrolledModalContainerView.swift; sourceTree = "<group>"; };
 		D642736B22C98FA00088256B /* MathFunctions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MathFunctions.swift; sourceTree = "<group>"; };
 		D642737022C991A60088256B /* ClosedRange+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ClosedRange+Extensions.swift"; sourceTree = "<group>"; };
 		D642737322C99D6A0088256B /* ContactsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactsViewController.swift; sourceTree = "<group>"; };
@@ -329,7 +323,6 @@
 		D642737922C99DD20088256B /* ContactCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactCell.swift; sourceTree = "<group>"; };
 		D642737C22C9A2D70088256B /* NameLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NameLabel.swift; sourceTree = "<group>"; };
 		D642737E22C9A7EC0088256B /* ContactsManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactsManager.swift; sourceTree = "<group>"; };
-		D642738022C9AB290088256B /* ContactsScrolledModalController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactsScrolledModalController.swift; sourceTree = "<group>"; };
 		D642738222C9AEA30088256B /* ContactAuthorizationAlertController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactAuthorizationAlertController.swift; sourceTree = "<group>"; };
 		D642738522C9AF1C0088256B /* PagingModalController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PagingModalController.swift; sourceTree = "<group>"; };
 		D642738722C9AF690088256B /* ModalViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModalViewController.swift; sourceTree = "<group>"; };
@@ -393,7 +386,6 @@
 		D66F0FF122C1D86800BA277D /* ChannelsType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChannelsType.swift; sourceTree = "<group>"; };
 		D66F102522C7C6A900BA277D /* Lorem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Lorem.swift; sourceTree = "<group>"; };
 		D66F102722C7D1D200BA277D /* ChannelCellContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChannelCellContentView.swift; sourceTree = "<group>"; };
-		D67896A222FF443C0059BA75 /* ScrolledModalFlowViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScrolledModalFlowViewController.swift; sourceTree = "<group>"; };
 		D67896A422FF48D60059BA75 /* LoginFlowViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginFlowViewController.swift; sourceTree = "<group>"; };
 		D67896A622FF4D9B0059BA75 /* NavigationBarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavigationBarView.swift; sourceTree = "<group>"; };
 		D67896A822FF51170059BA75 /* LoginPhoneViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginPhoneViewController.swift; sourceTree = "<group>"; };
@@ -785,7 +777,6 @@
 		D642737222C99D540088256B /* Contacts */ = {
 			isa = PBXGroup;
 			children = (
-				D642738022C9AB290088256B /* ContactsScrolledModalController.swift */,
 				D642737322C99D6A0088256B /* ContactsViewController.swift */,
 				D642737522C99D9F0088256B /* ContactsCollectionViewManager.swift */,
 				D642737722C99DB50088256B /* ContactsCollectionView.swift */,
@@ -1062,9 +1053,6 @@
 				D642738722C9AF690088256B /* ModalViewController.swift */,
 				D642738422C9AEAB0088256B /* Alerts */,
 				D642737222C99D540088256B /* Contacts */,
-				D642736722C98E5D0088256B /* ScrolledModalViewController.swift */,
-				D642736922C98EB40088256B /* ScrolledModalContainerView.swift */,
-				D67896A222FF443C0059BA75 /* ScrolledModalFlowViewController.swift */,
 			);
 			path = Modals;
 			sourceTree = "<group>";
@@ -1357,7 +1345,6 @@
 				D6D14FF821D5893700CD8CE4 /* IGListMoveIndexPath.m in Sources */,
 				D6D14D9121D5893600CD8CE4 /* IGListIndexSetResult.m in Sources */,
 				D6B2603F22E6B92900143CF0 /* CloseButton.swift in Sources */,
-				D67896A322FF443C0059BA75 /* ScrolledModalFlowViewController.swift in Sources */,
 				D642735522C87CCA0088256B /* HomeAddButton.swift in Sources */,
 				D66F0FE622C0640E00BA277D /* Avatar.swift in Sources */,
 				D67896BD23025FEC0059BA75 /* LoginNameViewController.swift in Sources */,
@@ -1530,7 +1517,6 @@
 				D6DADF702207DF60007D9EB1 /* ChannelCell.swift in Sources */,
 				D6D1460D21D5693100CD8CE4 /* NSMutableAttributedString+Extensions.swift in Sources */,
 				D67896AB22FF5C470059BA75 /* DoneToolBar.swift in Sources */,
-				D642736822C98E5D0088256B /* ScrolledModalViewController.swift in Sources */,
 				D66F102622C7C6A900BA277D /* Lorem.swift in Sources */,
 				D66F0FC922BF006D00BA277D /* SystemMessage.swift in Sources */,
 				D67896B422FF75640059BA75 /* LoginCoordinator.swift in Sources */,
@@ -1541,7 +1527,6 @@
 				D6D1500C21D5E7C200CD8CE4 /* CollectionViewManager.swift in Sources */,
 				D6432BF722D837340016001A /* CellSizeCalculator.swift in Sources */,
 				D64C6A7C23288FB300DB7257 /* SmallSemiBoldLabel.swift in Sources */,
-				D642736A22C98EB40088256B /* ScrolledModalContainerView.swift in Sources */,
 				D6432BFB22DB923C0016001A /* ChannelSectionType.swift in Sources */,
 				D66F0FDA22BF297F00BA277D /* MainCoordinator.swift in Sources */,
 				D6D14FFA21D5893700CD8CE4 /* IGListDiff.mm in Sources */,
@@ -1554,7 +1539,6 @@
 				D642736C22C98FA00088256B /* MathFunctions.swift in Sources */,
 				80D4A21C2303A005007CB5F1 /* Routine.swift in Sources */,
 				D62C635422BE9CBB00F4D097 /* FeedViewController.swift in Sources */,
-				D642738122C9AB290088256B /* ContactsScrolledModalController.swift in Sources */,
 				D6D14FF921D5893700CD8CE4 /* NSString+IGListDiffable.m in Sources */,
 				D63826D22274C8C0001D4B8B /* ChannelManager+Extensions.swift in Sources */,
 				D63752F92313833B00214F63 /* ProfileAvatarView.swift in Sources */,

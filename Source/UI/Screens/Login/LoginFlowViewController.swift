@@ -37,9 +37,8 @@ protocol LoginFlowViewControllerDelegate: class {
                                  finishedWith result: LoginFlowResult)
 }
 
-class LoginFlowViewController: ScrolledModalFlowViewController {
+class LoginFlowViewController: FullScreenViewController {
 
-    private let navigationBar = NavigationBarView()
     private var userExists: Bool
 
     // A view that covers up the other view controllers when loading
@@ -50,18 +49,19 @@ class LoginFlowViewController: ScrolledModalFlowViewController {
     init(userExists: Bool) {
         self.userExists = userExists
         super.init()
-
-        self.topMargin = 500
     }
 
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
 
+    required init?(withObject object: DeepLinkable) {
+        fatalError("init(withObject:) has not been implemented")
+    }
+
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        self.view.addSubview(self.navigationBar)
         self.view.addSubview(self.loadingView)
 
         self.handle(step: .phone)
@@ -69,10 +69,6 @@ class LoginFlowViewController: ScrolledModalFlowViewController {
 
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
-
-        self.navigationBar.size = CGSize(width: self.view.width, height: 44)
-        self.navigationBar.top = 10
-        self.navigationBar.centerOnX()
 
         self.loadingView.size = CGSize(width: self.view.width, height: self.view.height)
         self.loadingView.bottom = self.view.height
@@ -86,29 +82,14 @@ class LoginFlowViewController: ScrolledModalFlowViewController {
 
         switch step {
         case .phone:
-            if self.userExists == true {
-                self.navigationBar.titleLabel.set(text: loginTitle, alignment: .center)
-            } else {
-                self.navigationBar.titleLabel.set(text: signUpTitle, alignment: .center)
-            }
-            self.navigationBar.setLeft(UIView()) { }
             self.configurePhone()
         case .verifyCode(let phoneNumber):
-            if self.userExists == true {
-                self.navigationBar.titleLabel.set(text: loginTitle, alignment: .center)
-            } else {
-                self.navigationBar.titleLabel.set(text: signUpTitle, alignment: .center)
-            }
             self.configureVerifyCode(with: phoneNumber)
         case .name:
-            self.navigationBar.titleLabel.set(text: "Add Name", alignment: .center)
             self.configureNameController()
         case .profilePicture:
-            self.navigationBar.titleLabel.set(text: "Add Photo", alignment: .center)
             self.configureProfilePictureController()
         case .last:
-            self.navigationBar.titleLabel.set(text: "Congrats", alignment: .center)
-            self.navigationBar.setLeft(UIView()) { }
             self.configureLast()
         }
     }
@@ -119,30 +100,30 @@ class LoginFlowViewController: ScrolledModalFlowViewController {
             return
         }
 
-        self.topMargin = UIScreen.main.bounds.height * 0.7
+        //self.topMargin = UIScreen.main.bounds.height * 0.7
         let vc = LoginPhoneViewController()
         vc.didComplete = { [unowned self] phone in
             if let phoneNumber = phone {
                 self.handle(step: .verifyCode(phoneNumber))
             }
         }
-        self.add(controller: vc)
-        self.moveForward()
+        //self.add(controller: vc)
+        //self.moveForward()
         delay(0.5) {
             vc.textField.becomeFirstResponder()
         }
     }
 
     private func configureVerifyCode(with phoneNumber: PhoneNumber) {
-        self.topMargin = UIScreen.main.bounds.height * 0.7
+        //self.topMargin = UIScreen.main.bounds.height * 0.7
         let vc = LoginCodeViewController(phoneNumber: phoneNumber)
         vc.didVerifyUser = { [weak self] user in
             guard let `self` = self else { return }
             //show the last vc or the loading screen if there isnt one
             self.handle(step: .name)
         }
-        self.add(controller: vc)
-        self.moveForward()
+        //self.add(controller: vc)
+        //self.moveForward()
         delay(0.5) {
             vc.textField.becomeFirstResponder()
         }
@@ -150,15 +131,15 @@ class LoginFlowViewController: ScrolledModalFlowViewController {
 
     private func configureNameController() {
 
-        self.topMargin = UIScreen.main.bounds.height * 0.7
+        //self.topMargin = UIScreen.main.bounds.height * 0.7
         let vc = LoginNameViewController()
         vc.didAddName = { [weak self] in
             guard let `self` = self else { return }
             vc.textField.resignFirstResponder()
             self.handle(step: .profilePicture)
         }
-        self.add(controller: vc)
-        self.moveForward()
+        //self.add(controller: vc)
+        //self.moveForward()
         delay(0.5) {
             vc.textField.becomeFirstResponder()
         }
@@ -166,28 +147,27 @@ class LoginFlowViewController: ScrolledModalFlowViewController {
 
     func configureProfilePictureController() {
 
-        self.topMargin = 300
         let vc = LoginProfilePhotoViewController()
         vc.didSavePhoto = { [weak self] in
             guard let `self` = self else { return }
             //show the last vc or the loading screen if there isnt one
             self.handle(step: .last)
         }
-        self.add(controller: vc)
-        self.moveForward()
+        //self.add(controller: vc)
+        //self.moveForward()
         delay(0.25) {
-            self.didUpdateHeight?(.zero, 0.25, .easeInOut)
+            //self.didUpdateHeight?(.zero, 0.25, .easeInOut)
         }
     }
 
     private func configureLast() {
-        self.topMargin = 500
+        //self.topMargin = 500
         let controller = LoginEndingViewController()
         controller.didComplete = {
             self.fetchAllData()
         }
-        self.add(controller: controller)
-        self.moveForward()
+        //self.add(controller: controller)
+        //self.moveForward()
     }
 
     private func fetchAllData() {
@@ -207,6 +187,6 @@ class LoginFlowViewController: ScrolledModalFlowViewController {
 
     func finishFlow(with result: LoginFlowResult) {
         self.delegate?.loginFlowViewController(self, finishedWith: result)
-        self.didExit?()
+        //self.didExit?()
     }
 }
