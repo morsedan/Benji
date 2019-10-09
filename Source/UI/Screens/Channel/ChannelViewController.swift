@@ -70,6 +70,10 @@ class ChannelViewController: FullScreenViewController {
             self.handle(pan: panRecognizer)
         }
 
+        self.messageInputView.onAlertMessageInitiated = { [unowned self] in
+            print("alert!!!!!!!!!!!!")
+        }
+
         self.channelCollectionVC.collectionView.onDoubleTap { [unowned self] (doubleTap) in
             if self.messageInputView.textView.isFirstResponder {
                 self.messageInputView.textView.resignFirstResponder()

@@ -11,7 +11,7 @@ import Foundation
 class MessageInputView: View {
 
     var onPanned: ((UIPanGestureRecognizer) -> Void)?
-    var onAlertInitiated: (() -> Void)?
+    var onAlertMessageInitiated: (() -> Void)?
 
     private let minHeight: CGFloat = 38
 
@@ -19,6 +19,8 @@ class MessageInputView: View {
     let overlayButton = UIButton()
     private let alertProgressView = UIView()
     let blurView = UIVisualEffectView(effect: UIBlurEffect(style: .systemChromeMaterial))
+
+    private var alertAnimator: UIViewPropertyAnimator?
 
     override func initializeSubviews() {
         super.initializeSubviews()
@@ -66,6 +68,8 @@ class MessageInputView: View {
         self.textView.left = 0
         self.textView.top = 0
 
+        self.alertProgressView.height = self.height
+
         self.overlayButton.frame = self.bounds
         self.blurView.frame = self.bounds
     }
@@ -76,15 +80,28 @@ class MessageInputView: View {
         case .possible:
             break
         case .began:
-            self.alertProgressView.size = CGSize(width: 0, height: self.height)
+            self.alertAnimator?.stopAnimation(true)
+
+            self.alertAnimator = UIViewPropertyAnimator(duration: 1,
+                                                        curve: .linear,
+                                                        animations: { [unowned self] in
+                self.alertProgressView.size = CGSize(width: self.width, height: self.height)
+            })
+            self.alertAnimator?.addCompletion({ [unowned self] (position) in
+                self.onAlertMessageInitiated?()
+            })
+            self.alertAnimator?.startAnimation()
         case .changed:
             break
-        case .ended:
-            break
-        case .cancelled:
-            break
-        case .failed:
-            break
+        case .ended, .cancelled, .failed:
+            self.alertAnimator?.stopAnimation(true)
+
+            self.alertAnimator = UIViewPropertyAnimator(duration: 1,
+                                                        curve: .linear,
+                                                        animations: { [unowned self] in
+                self.alertProgressView.size = CGSize(width: 0, height: self.height)
+            })
+            self.alertAnimator?.startAnimation()
         @unknown default:
             break
         }
