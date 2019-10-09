@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import Parse
 
 // Presents the splash view controller and tells the launch manager to start retrieving
 // user data. Once the data is retrieved, it checks if the app needs to be updated, and presents the
@@ -44,7 +45,11 @@ extension LaunchCoordinator: LaunchManagerDelegate {
         case .success(let deepLink):
             self.deepLink = deepLink
             runMain {
-                self.runHomeFlow()
+                if PFAnonymousUtils.isLinked(with: PFUser.current()) {
+                    self.runLoginFlow()
+                } else {
+                    self.runHomeFlow()
+                }
             }
         default:
             break
@@ -52,10 +57,18 @@ extension LaunchCoordinator: LaunchManagerDelegate {
     }
 
     private func runHomeFlow() {
-        let homeCoordinator = HomeCoordinator(router: self.router, deepLink: self.deepLink)
-        self.router.setRootModule(homeCoordinator, animated: true)
-        self.addChildAndStart(homeCoordinator, finishedHandler: { _ in
+        let coordinator = HomeCoordinator(router: self.router, deepLink: self.deepLink)
+        self.router.setRootModule(coordinator, animated: true)
+        self.addChildAndStart(coordinator, finishedHandler: { _ in
             // If the home coordinator ever finishes, put handling logic here.
+        })
+    }
+
+    private func runLoginFlow() {
+        let coordinator = LoginCoordinator(router: self.router, userExists: false)
+        self.router.setRootModule(coordinator, animated: true)
+        self.addChildAndStart(coordinator, finishedHandler: { (_) in
+            self.router.dismiss(animated: true, completion: nil)
         })
     }
 }

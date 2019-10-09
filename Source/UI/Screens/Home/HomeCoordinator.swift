@@ -16,24 +16,6 @@ class HomeCoordinator: PresentableCoordinator<Void> {
     override func toPresentable() -> DismissableVC {
         return self.homeVC
     }
-
-    override func start() {
-        super.start()
-
-//        if PFAnonymousUtils.isLinked(with: PFUser.current()) {
-//            delay(1.0) {
-//                self.startLoginFlow()
-//            }
-//        }
-    }
-
-    func startLoginFlow() {
-        let coordinator = LoginCoordinator(router: self.router, userExists: false)
-        self.router.present(coordinator, animated: true)
-        self.addChildAndStart(coordinator, finishedHandler: { (_) in
-            self.router.dismiss(animated: true, completion: nil)
-        })
-    }
 }
 
 extension HomeCoordinator: HomeViewControllerDelegate {
@@ -59,10 +41,10 @@ extension HomeCoordinator: HomeViewControllerDelegate {
     }
 
     private func present(coordinator: PresentableCoordinator<Void>) {
-        self.router.present(coordinator, animated: true)
         self.addChildAndStart(coordinator, finishedHandler: { (_) in
             self.router.dismiss(animated: true, completion: nil)
         })
+        self.router.present(coordinator, animated: true)
     }
 }
 
@@ -75,9 +57,9 @@ extension HomeCoordinator: ChannelsViewControllerDelegate {
     func startChannelFlow(for type: ChannelType) {
 
         let coordinator = ChannelCoordinator(router: self.router, channelType: type)
-        self.router.present(coordinator, animated: true)
         self.addChildAndStart(coordinator, finishedHandler: { (_) in
             self.router.dismiss(animated: true, completion: nil)
         })
+        self.router.present(coordinator, animated: true)
     }
 }
