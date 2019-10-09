@@ -7,7 +7,6 @@
 //
 
 import Foundation
-import ReactiveSwift
 
 protocol ChannelDataSource: AnyObject {
 

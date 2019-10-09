@@ -76,10 +76,6 @@ class LoginFlowViewController: FullScreenViewController {
     }
 
     func handle(step: LoginStep) {
-
-        let loginTitle = LocalizedString(id: "", default: "Login")
-        let signUpTitle = LocalizedString(id: "", default: "Sign-up")
-
         switch step {
         case .phone:
             self.configurePhone()
@@ -100,7 +96,6 @@ class LoginFlowViewController: FullScreenViewController {
             return
         }
 
-        //self.topMargin = UIScreen.main.bounds.height * 0.7
         let vc = LoginPhoneViewController()
         vc.didComplete = { [unowned self] phone in
             if let phoneNumber = phone {
@@ -115,7 +110,7 @@ class LoginFlowViewController: FullScreenViewController {
     }
 
     private func configureVerifyCode(with phoneNumber: PhoneNumber) {
-        //self.topMargin = UIScreen.main.bounds.height * 0.7
+
         let vc = LoginCodeViewController(phoneNumber: phoneNumber)
         vc.didVerifyUser = { [weak self] user in
             guard let `self` = self else { return }
@@ -131,7 +126,6 @@ class LoginFlowViewController: FullScreenViewController {
 
     private func configureNameController() {
 
-        //self.topMargin = UIScreen.main.bounds.height * 0.7
         let vc = LoginNameViewController()
         vc.didAddName = { [weak self] in
             guard let `self` = self else { return }
@@ -155,13 +149,10 @@ class LoginFlowViewController: FullScreenViewController {
         }
         //self.add(controller: vc)
         //self.moveForward()
-        delay(0.25) {
-            //self.didUpdateHeight?(.zero, 0.25, .easeInOut)
-        }
     }
 
     private func configureLast() {
-        //self.topMargin = 500
+
         let controller = LoginEndingViewController()
         controller.didComplete = {
             self.fetchAllData()
@@ -173,8 +164,8 @@ class LoginFlowViewController: FullScreenViewController {
     private func fetchAllData() {
         guard let _ = PFUser.current() else { return }
 
-        let notificationCenter = UNUserNotificationCenter.current()
-        _ = notificationCenter.requestAuthorization()
+    
+        UserNotificationManager.shared.requestAuthorization()
 
         PFAnonymousUtils.logIn { (user, error) in
             if error != nil || user == nil {
@@ -187,6 +178,5 @@ class LoginFlowViewController: FullScreenViewController {
 
     func finishFlow(with result: LoginFlowResult) {
         self.delegate?.loginFlowViewController(self, finishedWith: result)
-        //self.didExit?()
     }
 }

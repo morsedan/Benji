@@ -86,6 +86,22 @@ class UserNotificationManager: NSObject {
         }
     }
 
+    @discardableResult
+    func requestAuthorization() -> Future<Bool> {
+        let isGrantedPromise = Promise<Bool>()
+
+        let options: UNAuthorizationOptions = [.alert, .sound, .badge]
+        self.center.requestAuthorization(options: options) { (granted, error) in
+            if let error = error {
+                isGrantedPromise.reject(with: error)
+            } else {
+                isGrantedPromise.resolve(with: granted)
+            }
+        }
+
+        return isGrantedPromise
+    }
+
     func register(with options: UNAuthorizationOptions,
                   application: UIApplication,
                   completion: @escaping ((Bool, Error?) -> Void)) {
