@@ -80,35 +80,52 @@ class MessageInputView: View {
         case .possible:
             break
         case .began:
-            self.alertAnimator?.stopAnimation(true)
-
-            self.alertAnimator = UIViewPropertyAnimator(duration: 1,
-                                                        curve: .linear,
-                                                        animations: { [unowned self] in
-                self.alertProgressView.size = CGSize(width: self.width, height: self.height)
-            })
-            self.alertAnimator?.addCompletion({ [unowned self] (position) in
-                self.onAlertMessageInitiated?()
-            })
-            self.alertAnimator?.startAnimation()
+            self.startAlertAnimation()
         case .changed:
             break
         case .ended, .cancelled, .failed:
-            self.alertAnimator?.stopAnimation(true)
-
-            self.alertAnimator = UIViewPropertyAnimator(duration: 1,
-                                                        curve: .linear,
-                                                        animations: { [unowned self] in
-                self.alertProgressView.size = CGSize(width: 0, height: self.height)
-            })
-            self.alertAnimator?.startAnimation()
+            self.endAlertAnimation()
         @unknown default:
             break
         }
     }
+
+    private func startAlertAnimation() {
+        self.alertAnimator?.stopAnimation(true)
+
+        self.alertAnimator = UIViewPropertyAnimator(duration: 1.5,
+                                                    curve: .linear,
+                                                    animations: { [unowned self] in
+            self.alertProgressView.size = CGSize(width: self.width, height: self.height)
+        })
+        self.alertAnimator?.addCompletion({ [unowned self] (position) in
+            self.onAlertMessageInitiated?()
+            self.alertAnimator = nil
+        })
+        self.alertAnimator?.startAnimation()
+    }
+    
+    private func endAlertAnimation() {
+        self.alertAnimator?.stopAnimation(true)
+        
+        self.alertAnimator = UIViewPropertyAnimator(duration: 0.5,
+                                                    curve: .linear,
+                                                    animations: { [unowned self] in
+                                                        self.alertProgressView.size = CGSize(width: 0, height: self.height)
+        })
+        self.alertAnimator?.startAnimation()
+    }
 }
 
 extension MessageInputView: UIGestureRecognizerDelegate {
+
+    override func gestureRecognizerShouldBegin(_ gestureRecognizer: UIGestureRecognizer) -> Bool {
+        if gestureRecognizer is UILongPressGestureRecognizer {
+            return self.textView.isFirstResponder
+        }
+
+        return true
+    }
 
     func gestureRecognizer(_ gestureRecognizer: UIGestureRecognizer, shouldRecognizeSimultaneouslyWith otherGestureRecognizer: UIGestureRecognizer) -> Bool {
         return true
