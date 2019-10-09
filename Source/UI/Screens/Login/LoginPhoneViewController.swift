@@ -10,11 +10,18 @@ import Foundation
 import PhoneNumberKit
 import Parse
 
+protocol LoginPhoneViewControllerDelegate: class {
+    func loginPhoneView(_ controller: LoginPhoneViewController, didCompleteWith phone: PhoneNumber)
+}
+
 class LoginPhoneViewController: LoginTextInputViewController {
 
     var didComplete: (_ phone: PhoneNumber?) -> Void = { _ in }
 
-    init() {
+    unowned let delegate: LoginPhoneViewControllerDelegate
+
+    init(with delegate: LoginPhoneViewControllerDelegate) {
+        self.delegate = delegate
         let phoneField = PhoneNumberTextField.init()
 
         super.init(textField: phoneField,

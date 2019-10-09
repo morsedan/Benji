@@ -11,6 +11,7 @@ import Foundation
 enum DeepLinkTarget : String, CaseIterable, Diffable {
     
     case home
+    case login 
 
     func diffIdentifier() -> NSObjectProtocol {
         return self.rawValue as NSObjectProtocol

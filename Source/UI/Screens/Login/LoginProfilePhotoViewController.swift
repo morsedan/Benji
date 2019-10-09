@@ -9,12 +9,26 @@
 import Foundation
 import Parse
 
+protocol LoginProfilePhotoViewControllerDelegate: class {
+    func loginProfilePhotoViewControllerDidUpdatePhoto(_ controller: LoginProfilePhotoViewController)
+}
+
 class LoginProfilePhotoViewController: ViewController {
 
-    var didSavePhoto: () -> Void = {}
     private let avatarView = AvatarView()
     private let imagePickerVC = UIImagePickerController()
     private let doneButton = LoadingButton()
+
+    unowned let delegate: LoginProfilePhotoViewControllerDelegate
+
+    init(with delegate: LoginProfilePhotoViewControllerDelegate) {
+        self.delegate = delegate
+        super.init()
+    }
+
+    required init?(coder aDecoder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
 
     override func initializeViews() {
         super.initializeViews()
@@ -72,7 +86,7 @@ class LoginProfilePhotoViewController: ViewController {
         self.doneButton.isLoading = true
         current.saveInBackground { (success, error) in
             guard success else { return }
-            self.didSavePhoto()
+            self.delegate.loginProfilePhotoViewControllerDidUpdatePhoto(self)
             self.doneButton.isLoading = false
         }
     }

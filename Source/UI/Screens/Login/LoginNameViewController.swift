@@ -9,13 +9,19 @@
 import Foundation
 import Parse
 
-class LoginNameViewController: LoginTextInputViewController {
+protocol LoginNameViewControllerDelegate: class {
+    func loginNameViewControllerDidComplete(_ controller: LoginNameViewController)
+}
 
-    var didAddName: () -> Void = {}
+class LoginNameViewController: LoginTextInputViewController {
 
     private let doneButton = LoadingButton()
 
-    init() {
+    unowned let delegate: LoginNameViewControllerDelegate
+
+    init(with delegate: LoginNameViewControllerDelegate) {
+
+        self.delegate = delegate
         super.init(textField: TextField(),
                    textFieldTitle: LocalizedString(id: "", default: "NAME"),
                    textFieldPlaceholder: LocalizedString(id: "", default: "FIRST LAST"))
@@ -66,7 +72,7 @@ class LoginNameViewController: LoginTextInputViewController {
         self.doneButton.isLoading = true
         current.saveInBackground { (success, error) in
             guard success else { return }
-            self.didAddName()
+            self.delegate.loginNameViewControllerDidComplete(self)
             self.doneButton.isLoading = false
         }
     }

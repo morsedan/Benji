@@ -11,12 +11,18 @@ import PhoneNumberKit
 import ReactiveSwift
 import Parse
 
+protocol LoginCodeViewControllerDelegate: class {
+    func loginCodeView(_ controller: LoginCodeViewController, didVerify user: PFUser)
+}
+
 class LoginCodeViewController: LoginTextInputViewController {
 
-    var didVerifyUser: (_ user: PFUser) -> Void = { _ in }
     let phoneNumber: PhoneNumber
 
-    init(phoneNumber: PhoneNumber) {
+    unowned let delegate: LoginCodeViewControllerDelegate
+
+    init(with delegate: LoginCodeViewControllerDelegate, phoneNumber: PhoneNumber) {
+        self.delegate = delegate
         self.phoneNumber = phoneNumber
         super.init(textField: TextField(),
                    textFieldTitle: LocalizedString(id: "", default: "CODE"),
@@ -41,7 +47,7 @@ class LoginCodeViewController: LoginTextInputViewController {
 
         VerifyCode.callFunction { (object, error) in
             if let user = object as? PFUser {
-                self.didVerifyUser(user)
+                self.delegate.loginCodeView(self, didVerify: user)
             }
             self.textField.resignFirstResponder()
         }

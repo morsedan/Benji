@@ -40,12 +40,14 @@ class LaunchCoordinator: PresentableCoordinator<DeepLinkable?> {
 }
 
 extension LaunchCoordinator: LaunchManagerDelegate {
+
     func launchManager(_ launchManager: LaunchManager, didFinishWith options: LaunchStatus) {
         switch options {
         case .success(let deepLink):
             self.deepLink = deepLink
             runMain {
                 if PFAnonymousUtils.isLinked(with: PFUser.current()) {
+                    self.fini
                     self.runLoginFlow()
                 } else {
                     self.runHomeFlow()
