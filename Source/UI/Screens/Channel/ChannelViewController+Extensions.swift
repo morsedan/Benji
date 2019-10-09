@@ -115,28 +115,4 @@ extension ChannelViewController: KeyboardObservable, UIGestureRecognizerDelegate
             break
         }
     }
-
-    func handle(longPress: UILongPressGestureRecognizer) {
-
-        switch longPress.state {
-        case .possible:
-            break
-        case .began:
-            self.messageInputView.alertProgressView.size = CGSize(width: 0, height: self.messageInputView.height)
-        case .changed:
-            break 
-        case .ended:
-            break
-        case .cancelled:
-            break
-        case .failed:
-            break
-        @unknown default:
-            break
-        }
-    }
-
-    func gestureRecognizer(_ gestureRecognizer: UIGestureRecognizer, shouldRecognizeSimultaneouslyWith otherGestureRecognizer: UIGestureRecognizer) -> Bool {
-        return true
-    }
 }
