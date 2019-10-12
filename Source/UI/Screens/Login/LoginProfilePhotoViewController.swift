@@ -16,7 +16,7 @@ protocol LoginProfilePhotoViewControllerDelegate: class {
 class LoginProfilePhotoViewController: ViewController {
 
     private let cameraVC = CameraViewController()
-    private let doneButton = LoadingButton()
+    private let cameraButton = CameraButton()
 
     unowned let delegate: LoginProfilePhotoViewControllerDelegate
 
@@ -35,9 +35,9 @@ class LoginProfilePhotoViewController: ViewController {
         self.view.set(backgroundColor: .background1)
         self.addChild(viewController: self.cameraVC)
 
-        self.view.addSubview(self.doneButton)
+        self.view.addSubview(self.cameraButton)
 
-        self.doneButton.set(style: .normal(color: .blue, text: "DONE")) {
+        self.cameraButton.onTap { [unowned self] (tap) in
             self.captureImage()
         }
 
@@ -46,8 +46,6 @@ class LoginProfilePhotoViewController: ViewController {
             if let error = error {
                 print(error)
             }
-
-            try? self.cameraVC.displayPreview(on: self.cameraVC.view)
         }
     }
 
@@ -59,11 +57,11 @@ class LoginProfilePhotoViewController: ViewController {
         self.cameraVC.view.centerY = self.view.centerY * 0.8
         self.cameraVC.view.centerOnX()
         self.cameraVC.view.roundCorners()
-        self.cameraVC.previewLayer?.frame = self.cameraVC.view.frame
+        self.cameraVC.displayPreview(on: self.cameraVC.view)
 
-        self.doneButton.size = CGSize(width: self.view.width - 28, height: 40)
-        self.doneButton.bottom = self.view.height - self.view.safeAreaInsets.bottom - 40
-        self.doneButton.centerOnX()
+        self.cameraButton.size = CGSize(width: 60, height: 60)
+        self.cameraButton.bottom = self.view.height - self.view.safeAreaInsets.bottom - 40
+        self.cameraButton.centerOnX()
     }
 
 //    func pixelate(image: UIImage) {
@@ -97,13 +95,36 @@ class LoginProfilePhotoViewController: ViewController {
     func saveProfilePicture(image: UIImage) {
         guard let imageData = image.pngData(), let current = PFUser.current() else { return }
 
-        let imageFile = PFFileObject(name:"image.png", data: imageData)
-        current["profilePicture"] = imageFile
-        self.doneButton.isLoading = true
-        current.saveInBackground { (success, error) in
-            guard success else { return }
-            self.delegate.loginProfilePhotoViewControllerDidUpdatePhoto(self)
-            self.doneButton.isLoading = false
+        // NOTE: Remember, we're in points not pixels. Max image size will
+        // depend on image pixel density. It's okay for now.
+        let maxAllowedDimension: CGFloat = 50.0
+        let longSide = max(image.size.width, image.size.height)
+
+        var scaledImage: UIImage
+        if longSide > maxAllowedDimension {
+            let scaleFactor: CGFloat = maxAllowedDimension / longSide
+            scaledImage = image.scaled(by: scaleFactor)
+        } else {
+            scaledImage = image
+        }
+
+        let largeImageFile = PFFileObject(name:"image.png", data: imageData)
+
+        if let scaledData = scaledImage.pngData() {
+            let scaledImageFile = PFFileObject(name:"scaled_image.png", data: scaledData)
+            current["scaledProfilePicture"] = scaledImageFile
+        }
+
+        current["profilePicuter"] = largeImageFile
+
+        current.saveObject()
+            .observe { (result) in
+                switch result {
+                case .success(_):
+                    self.delegate.loginProfilePhotoViewControllerDidUpdatePhoto(self)
+                case .failure(let error):
+                    print(error)
+                }
         }
     }
 }

@@ -125,16 +125,20 @@ class CameraViewController: ViewController {
         }
     }
 
-    func displayPreview(on view: UIView) throws {
+    func displayPreview(on view: UIView) {
 
-        guard let captureSession = self.captureSession, captureSession.isRunning else { throw CameraControllerError.captureSessionIsMissing }
+        guard let captureSession = self.captureSession,
+            captureSession.isRunning,
+            self.previewLayer == nil else {
+                self.previewLayer?.frame = view.frame
+                return
+        }
 
         self.previewLayer = AVCaptureVideoPreviewLayer(session: captureSession)
         self.previewLayer?.videoGravity = AVLayerVideoGravity.resizeAspectFill
         self.previewLayer?.connection?.videoOrientation = .portrait
 
         view.layer.insertSublayer(self.previewLayer!, at: 0)
-        self.previewLayer?.frame = view.frame
     }
 
     func switchCameras() throws {

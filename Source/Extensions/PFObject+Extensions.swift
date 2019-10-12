@@ -18,4 +18,19 @@ extension PFObject {
     func setUserObject<Type>(for key: UserKey, with newValue: Type) {
         self.setObject(newValue, forKey: key.rawValue)
     }
+
+    func saveObject() -> Future<PFObject> {
+
+        let promise = Promise<PFObject>()
+
+        self.saveInBackground { (success, error) in
+            if let error = error {
+                promise.reject(with: error)
+            } else {
+                promise.resolve(with: self)
+            }
+        }
+
+        return promise
+    }
 }
