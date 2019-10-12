@@ -15,16 +15,14 @@ protocol LoginNameViewControllerDelegate: class {
 
 class LoginNameViewController: LoginTextInputViewController {
 
-    private let doneButton = LoadingButton()
-
     unowned let delegate: LoginNameViewControllerDelegate
 
     init(with delegate: LoginNameViewControllerDelegate) {
 
         self.delegate = delegate
         super.init(textField: TextField(),
-                   textFieldTitle: LocalizedString(id: "", default: "NAME"),
-                   textFieldPlaceholder: LocalizedString(id: "", default: "FIRST LAST"))
+                   textFieldTitle: LocalizedString(id: "", default: "FULL NAME"),
+                   textFieldPlaceholder: LocalizedString(id: "", default: "First Last"))
     }
 
     required public init?(coder aDecoder: NSCoder) {
@@ -34,32 +32,14 @@ class LoginNameViewController: LoginTextInputViewController {
     override func initializeViews() {
         super.initializeViews()
 
-        self.view.addSubview(self.doneButton)
-        self.doneButton.set(style: .rounded(color: .blue, text: "DONE"))
-        self.doneButton.onTap { [unowned self] (tap) in
-            self.updateUserName()
-        }
-
         self.textField.autocapitalizationType = .words
         self.textField.keyboardType = .default
         self.textField.textContentType = .name
+        self.textField.enablesReturnKeyAutomatically = true
     }
 
-    override func viewDidLayoutSubviews() {
-        super.viewDidLayoutSubviews()
-
-        self.doneButton.size = CGSize(width: self.textField.width, height: 40)
-        self.doneButton.top = self.textField.bottom + 20
-        self.doneButton.centerOnX()
-    }
-
-    override func textFieldDidChange() {
-        guard let text = self.textField.text,
-            !text.isEmpty else {
-                self.doneButton.isEnabled = false
-                return
-        }
-        self.doneButton.isEnabled = true
+    override func textFieldDidEndEditing(_ textField: UITextField) {
+        self.updateUserName()
     }
 
     private func updateUserName() {
@@ -69,11 +49,9 @@ class LoginNameViewController: LoginTextInputViewController {
 
         current.parseName(from: text)
         current.createHandle()
-        self.doneButton.isLoading = true
         current.saveInBackground { (success, error) in
             guard success else { return }
             self.delegate.loginNameViewControllerDidComplete(self)
-            self.doneButton.isLoading = false
         }
     }
 }

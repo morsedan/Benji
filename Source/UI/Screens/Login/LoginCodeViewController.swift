@@ -45,11 +45,21 @@ class LoginCodeViewController: LoginTextInputViewController {
 
         self.verifying = true
 
-        VerifyCode.callFunction { (object, error) in
-            if let user = object as? PFUser {
-                self.delegate.loginCodeView(self, didVerify: user)
+        //Temp
+        guard let current = PFUser.current() else { return }
+        current.phoneNumber = self.phoneNumber.numberString.formatPhoneNumber()
+        current.saveInBackground { (completed, error) in
+            if completed {
+                self.delegate.loginCodeView(self, didVerify: current)
             }
             self.textField.resignFirstResponder()
         }
+
+//        VerifyCode.callFunction { (object, error) in
+//            if let user = object as? PFUser {
+//                self.delegate.loginCodeView(self, didVerify: user)
+//            }
+//            self.textField.resignFirstResponder()
+//        }
     }
 }

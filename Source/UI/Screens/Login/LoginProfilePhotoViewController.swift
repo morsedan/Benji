@@ -33,7 +33,7 @@ class LoginProfilePhotoViewController: ViewController {
     override func initializeViews() {
         super.initializeViews()
 
-        self.view.set(backgroundColor: .background3)
+        self.view.set(backgroundColor: .background1)
         self.view.addSubview(self.avatarView)
         self.avatarView.onTap { [unowned self] (tap) in
             self.present(self.imagePickerVC, animated: true, completion: nil)

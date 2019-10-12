@@ -73,12 +73,19 @@ class LoginTextInputViewController: ViewController {
 
         self.textField.height = 50
         self.textField.width = self.view.width * 0.8
-        self.textField.centerOnXAndY()
+        self.textField.centerOnX()
+        self.textField.centerY = self.view.halfHeight * 0.8
         self.textField.setBottomBorder(color: .background2)
 
         self.textFieldLabel.setSize(withWidth: self.textField.width)
         self.textFieldLabel.left = self.textField.left
         self.textFieldLabel.bottom = self.textField.top - 5
+    }
+
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+
+        self.textField.becomeFirstResponder()
     }
 }
 
