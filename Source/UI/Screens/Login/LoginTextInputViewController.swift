@@ -69,8 +69,6 @@ class LoginTextInputViewController: ViewController {
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
 
-        self.view.round(corners: [.topLeft, .topRight], size: CGSize(width: 10, height: 10))
-
         self.textField.height = 50
         self.textField.width = self.view.width * 0.8
         self.textField.centerOnX()

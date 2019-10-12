@@ -47,10 +47,14 @@ class LoginNameViewController: LoginTextInputViewController {
             let text = self.textField.text,
             !text.isEmpty else { return }
 
+        let tf = self.textField as? TextField
+        tf?.activityIndicator.startAnimating()
+
         current.parseName(from: text)
         current.createHandle()
         current.saveInBackground { (success, error) in
             guard success else { return }
+            tf?.activityIndicator.stopAnimating()
             self.delegate.loginNameViewControllerDidComplete(self)
         }
     }

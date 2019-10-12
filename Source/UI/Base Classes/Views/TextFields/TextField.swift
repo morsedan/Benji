@@ -10,6 +10,8 @@ import Foundation
 
 class TextField: UITextField {
 
+    let activityIndicator = UIActivityIndicatorView(style: .medium)
+
     override var text: String? {
         get {
             return super.text
@@ -46,6 +48,8 @@ class TextField: UITextField {
         self.addTarget(self,
                        action: #selector(handleEditingEnded),
                        for: [.editingDidEnd, .editingDidEndOnExit])
+
+        self.addSubview(self.activityIndicator)
     }
 
     @objc private func handleTextChanged() {
@@ -60,5 +64,12 @@ class TextField: UITextField {
         //APPLE BUG: Trying to set both the attributed text AND the defaultAttributes will cause a memory crash
         self.text = attributed.string.string
         self.setDefaultAttributes(style: attributed.style, alignment: alignment)
+    }
+
+    override func layoutSubviews() {
+        super.layoutSubviews()
+
+        self.activityIndicator.right = self.width
+        self.activityIndicator.centerOnY()
     }
 }

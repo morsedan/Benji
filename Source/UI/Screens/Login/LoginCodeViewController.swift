@@ -45,6 +45,8 @@ class LoginCodeViewController: LoginTextInputViewController {
 
         self.verifying = true
 
+        let tf = self.textField as? TextField
+        tf?.activityIndicator.startAnimating()
         //Temp
         guard let current = PFUser.current() else { return }
         current.phoneNumber = self.phoneNumber.numberString.formatPhoneNumber()
@@ -52,6 +54,7 @@ class LoginCodeViewController: LoginTextInputViewController {
             if completed {
                 self.delegate.loginCodeView(self, didVerify: current)
             }
+            tf?.activityIndicator.stopAnimating()
             self.textField.resignFirstResponder()
         }
 
