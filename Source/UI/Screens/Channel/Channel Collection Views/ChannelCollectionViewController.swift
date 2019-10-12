@@ -104,7 +104,7 @@ UICollectionViewDelegateFlowLayout {
 
         let cell = channelCollectionView.dequeueReusableCell(MessageCell.self, for: indexPath)
 
-        cell.configure(with: message, at: indexPath, and: channelCollectionView)
+        cell.configure(with: message)
         //Reset all gestures
         cell.contentView.gestureRecognizers?.forEach({ (recognizer) in
             cell.contentView.removeGestureRecognizer(recognizer)

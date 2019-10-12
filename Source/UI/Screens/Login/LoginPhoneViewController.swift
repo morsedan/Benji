@@ -44,6 +44,12 @@ class LoginPhoneViewController: LoginTextInputViewController {
         self.textField.addTarget(self, action: #selector(editingDidEnd), for: .editingDidEnd)
     }
 
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+
+        self.textField.becomeFirstResponder()
+    }
+
     override func textFieldDidChange() {
         if self.isPhoneNumberValid() {
             // End editing because we have a valid phone number and we're ready to request a code with it
@@ -68,12 +74,12 @@ class LoginPhoneViewController: LoginTextInputViewController {
     }
 
     private func sendCode(to phone: PhoneNumber) {
-        
-        SendCode.callFunction { (object, error) in
-            if error == nil {
-                self.didComplete(phone)
-            }
-        }
+
+//        SendCode.callFunction { (object, error) in
+//            if error == nil {
+//                self.didComplete(phone)
+//            }
+//        }
     }
 }
 

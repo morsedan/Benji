@@ -96,57 +96,57 @@ class LoginFlowViewController: FullScreenViewController {
             return
         }
 
-        let vc = LoginPhoneViewController()
-        vc.didComplete = { [unowned self] phone in
-            if let phoneNumber = phone {
-                self.handle(step: .verifyCode(phoneNumber))
-            }
-        }
-        //self.add(controller: vc)
-        //self.moveForward()
-        delay(0.5) {
-            vc.textField.becomeFirstResponder()
-        }
+//        let vc = LoginPhoneViewController()
+//        vc.didComplete = { [unowned self] phone in
+//            if let phoneNumber = phone {
+//                self.handle(step: .verifyCode(phoneNumber))
+//            }
+//        }
+//        //self.add(controller: vc)
+//        //self.moveForward()
+//        delay(0.5) {
+//            vc.textField.becomeFirstResponder()
+//        }
     }
 
     private func configureVerifyCode(with phoneNumber: PhoneNumber) {
 
-        let vc = LoginCodeViewController(phoneNumber: phoneNumber)
-        vc.didVerifyUser = { [weak self] user in
-            guard let `self` = self else { return }
-            //show the last vc or the loading screen if there isnt one
-            self.handle(step: .name)
-        }
-        //self.add(controller: vc)
-        //self.moveForward()
-        delay(0.5) {
-            vc.textField.becomeFirstResponder()
-        }
+//        let vc = LoginCodeViewController(phoneNumber: phoneNumber)
+//        vc.didVerifyUser = { [weak self] user in
+//            guard let `self` = self else { return }
+//            //show the last vc or the loading screen if there isnt one
+//            self.handle(step: .name)
+//        }
+//        //self.add(controller: vc)
+//        //self.moveForward()
+//        delay(0.5) {
+//            vc.textField.becomeFirstResponder()
+//        }
     }
 
     private func configureNameController() {
 
-        let vc = LoginNameViewController()
-        vc.didAddName = { [weak self] in
-            guard let `self` = self else { return }
-            vc.textField.resignFirstResponder()
-            self.handle(step: .profilePicture)
-        }
-        //self.add(controller: vc)
-        //self.moveForward()
-        delay(0.5) {
-            vc.textField.becomeFirstResponder()
-        }
+//        let vc = LoginNameViewController()
+//        vc.didAddName = { [weak self] in
+//            guard let `self` = self else { return }
+//            vc.textField.resignFirstResponder()
+//            self.handle(step: .profilePicture)
+//        }
+//        //self.add(controller: vc)
+//        //self.moveForward()
+//        delay(0.5) {
+//            vc.textField.becomeFirstResponder()
+//        }
     }
 
     func configureProfilePictureController() {
 
-        let vc = LoginProfilePhotoViewController()
-        vc.didSavePhoto = { [weak self] in
-            guard let `self` = self else { return }
-            //show the last vc or the loading screen if there isnt one
-            self.handle(step: .last)
-        }
+//        let vc = LoginProfilePhotoViewController()
+//        vc.didSavePhoto = { [weak self] in
+//            guard let `self` = self else { return }
+//            //show the last vc or the loading screen if there isnt one
+//            self.handle(step: .last)
+//        }
         //self.add(controller: vc)
         //self.moveForward()
     }

@@ -34,7 +34,7 @@ class LoginTextInputViewController: ViewController {
     override func initializeViews() {
         super.initializeViews()
 
-        self.view.set(backgroundColor: .background3)
+        self.view.set(backgroundColor: .background1)
         let attributed = AttributedString(self.textFieldTitle,
                                           fontType: .xxSmallSemiBold,
                                           color: .white)
@@ -71,14 +71,14 @@ class LoginTextInputViewController: ViewController {
 
         self.view.round(corners: [.topLeft, .topRight], size: CGSize(width: 10, height: 10))
 
-        self.textFieldLabel.size = CGSize(width: 200, height: 20)
-        self.textFieldLabel.left = 14
-        self.textFieldLabel.top = 80
-
         self.textField.height = 50
-        self.textField.width = self.view.width - 28
-        self.textField.top = self.textFieldLabel.bottom + 5
-        self.textField.left = self.textFieldLabel.left
+        self.textField.width = self.view.width * 0.8
+        self.textField.centerOnXAndY()
+        self.textField.setBottomBorder(color: .background2)
+
+        self.textFieldLabel.setSize(withWidth: self.textField.width)
+        self.textFieldLabel.left = self.textField.left
+        self.textFieldLabel.bottom = self.textField.top - 5
     }
 }
 

@@ -24,40 +24,37 @@ enum Color: String, CaseIterable {
     case red
     case white
     case clear
-    case black
 
     var color: UIColor {
         switch self {
         case .background1:
-            return #colorLiteral(red: 0, green: 0, blue: 0, alpha: 1)
+            return UIColor(named: "Background1")!
         case .background2:
-            return #colorLiteral(red: 0.09803921569, green: 0.09803921569, blue: 0.09803921569, alpha: 1)
+            return UIColor(named: "Background2")!
         case .background3:
-            return #colorLiteral(red: 0.1960784314, green: 0.1960784314, blue: 0.1960784314, alpha: 1)
+            return UIColor(named: "Background3")!
         case .background4:
-            return #colorLiteral(red: 0.8980392157, green: 0.8980392157, blue: 0.8980392157, alpha: 1)
+            return UIColor(named: "Background4")!
         case .backgroundWithAlpha:
-            return #colorLiteral(red: 0.05882352941, green: 0.06666666667, blue: 0.1294117647, alpha: 0.7)
+            return UIColor(named: "BackgroundWithAlpha")!
         case .blue:
-            return #colorLiteral(red: 0, green: 0.4784313725, blue: 1, alpha: 1)
+            return UIColor(named: "Blue")!
         case .purple:
-            return #colorLiteral(red: 0.4078431373, green: 0.2666666667, blue: 1, alpha: 1)
+            return UIColor(named: "Purple")!
         case .lightPurple:
-            return #colorLiteral(red: 0.6156862745, green: 0.6352941176, blue: 0.9607843137, alpha: 1)
+            return UIColor(named: "LightPurple")!
         case .red:
-            return #colorLiteral(red: 1, green: 0.09019607843, blue: 0.2666666667, alpha: 1)
+            return UIColor(named: "Red")!
         case .teal:
-            return #colorLiteral(red: 0, green: 0.9450980392, blue: 1, alpha: 1)
+            return UIColor(named: "Teal")!
         case .green:
-            return #colorLiteral(red: 0, green: 1, blue: 0.462745098, alpha: 1)
+            return UIColor(named: "Green")!
         case .white:
-            return #colorLiteral(red: 0.9647058824, green: 0.9647058824, blue: 0.9647058824, alpha: 1)
+            return UIColor(named: "White")!
         case .clear:
-            return #colorLiteral(red: 0, green: 0, blue: 0, alpha: 0)
+            return UIColor(named: "Clear")!
         case .orange:
-            return #colorLiteral(red: 1, green: 0.5960784314, blue: 0, alpha: 1)
-        case .black:
-            return #colorLiteral(red: 0, green: 0, blue: 0, alpha: 1)
+            return UIColor(named: "Orange")!
         }
     }
 

@@ -47,7 +47,6 @@ extension LaunchCoordinator: LaunchManagerDelegate {
             self.deepLink = deepLink
             runMain {
                 if PFAnonymousUtils.isLinked(with: PFUser.current()) {
-                    self.fini
                     self.runLoginFlow()
                 } else {
                     self.runHomeFlow()
@@ -67,7 +66,7 @@ extension LaunchCoordinator: LaunchManagerDelegate {
     }
 
     private func runLoginFlow() {
-        let coordinator = LoginCoordinator(router: self.router, userExists: false)
+        let coordinator = LoginCoordinator(router: self.router, deepLink: self.deepLink)
         self.router.setRootModule(coordinator, animated: true)
         self.addChildAndStart(coordinator, finishedHandler: { (_) in
             self.router.dismiss(animated: true, completion: nil)

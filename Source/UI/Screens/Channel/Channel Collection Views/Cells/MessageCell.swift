@@ -51,17 +51,13 @@ class MessageCell: UICollectionViewCell {
         self.textView.text = nil
     }
 
-    func configure(with message: MessageType,
-                   at indexPath: IndexPath,
-                   and collectionView: ChannelCollectionView) {
+    func configure(with message: MessageType) {
 
-        guard let messageType = collectionView.channelDataSource?.item(at: indexPath) else { return }
-
-        if !messageType.isFromCurrentUser {
-            self.avatarView.set(avatar: messageType.avatar)
+        if !message.isFromCurrentUser {
+            self.avatarView.set(avatar: message.avatar)
         }
-        self.textView.set(text: messageType.body)
-        self.bubbleView.set(backgroundColor: messageType.backgroundColor)
+        self.textView.set(text: message.body)
+        self.bubbleView.set(backgroundColor: message.backgroundColor)
     }
 
     private func layoutContent(with attributes: ChannelCollectionViewLayoutAttributes) {

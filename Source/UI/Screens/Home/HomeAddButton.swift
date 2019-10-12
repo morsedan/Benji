@@ -20,7 +20,7 @@ class HomeAddButton: View {
         self.addSubview(self.imageView)
         self.imageView.tintColor = Color.white.color
 
-        self.layer.shadowColor = Color.black.color.cgColor
+        self.layer.shadowColor = Color.background1.color.cgColor
         self.layer.shadowOpacity = 0.3
         self.layer.shadowOffset = CGSize(width: 0, height: 5)
         self.layer.shadowRadius = 5
