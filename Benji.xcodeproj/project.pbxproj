@@ -143,7 +143,6 @@
 		D66F0FF222C1D86800BA277D /* ChannelsType.swift in Sources */ = {isa = PBXBuildFile; fileRef = D66F0FF122C1D86800BA277D /* ChannelsType.swift */; };
 		D66F102622C7C6A900BA277D /* Lorem.swift in Sources */ = {isa = PBXBuildFile; fileRef = D66F102522C7C6A900BA277D /* Lorem.swift */; };
 		D66F102822C7D1D200BA277D /* ChannelCellContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D66F102722C7D1D200BA277D /* ChannelCellContentView.swift */; };
-		D67896A522FF48D60059BA75 /* LoginFlowViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D67896A422FF48D60059BA75 /* LoginFlowViewController.swift */; };
 		D67896A722FF4D9B0059BA75 /* NavigationBarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D67896A622FF4D9B0059BA75 /* NavigationBarView.swift */; };
 		D67896A922FF51170059BA75 /* LoginPhoneViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D67896A822FF51170059BA75 /* LoginPhoneViewController.swift */; };
 		D67896AB22FF5C470059BA75 /* DoneToolBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = D67896AA22FF5C470059BA75 /* DoneToolBar.swift */; };
@@ -390,7 +389,6 @@
 		D66F0FF122C1D86800BA277D /* ChannelsType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChannelsType.swift; sourceTree = "<group>"; };
 		D66F102522C7C6A900BA277D /* Lorem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Lorem.swift; sourceTree = "<group>"; };
 		D66F102722C7D1D200BA277D /* ChannelCellContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChannelCellContentView.swift; sourceTree = "<group>"; };
-		D67896A422FF48D60059BA75 /* LoginFlowViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginFlowViewController.swift; sourceTree = "<group>"; };
 		D67896A622FF4D9B0059BA75 /* NavigationBarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavigationBarView.swift; sourceTree = "<group>"; };
 		D67896A822FF51170059BA75 /* LoginPhoneViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginPhoneViewController.swift; sourceTree = "<group>"; };
 		D67896AA22FF5C470059BA75 /* DoneToolBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DoneToolBar.swift; sourceTree = "<group>"; };
@@ -946,7 +944,6 @@
 			isa = PBXGroup;
 			children = (
 				D67896B322FF75640059BA75 /* LoginCoordinator.swift */,
-				D67896A422FF48D60059BA75 /* LoginFlowViewController.swift */,
 				D696A8F4230BA06A00DAFED4 /* LoginEndingViewController.swift */,
 				D67896A822FF51170059BA75 /* LoginPhoneViewController.swift */,
 				D67896AC22FF60190059BA75 /* LoginTextInputViewController.swift */,
@@ -1461,7 +1458,6 @@
 				D66F0FD422BF074C00BA277D /* DeeplinkObject.swift in Sources */,
 				D63844092336BE540072227B /* InitialSectionHeader.swift in Sources */,
 				D6D1461121D583D200CD8CE4 /* RootNavigationController.swift in Sources */,
-				D67896A522FF48D60059BA75 /* LoginFlowViewController.swift in Sources */,
 				D6073FD0233AFC1D009633EB /* ChannelCollectionViewController+Menu.swift in Sources */,
 				D64C6A862329513200DB7257 /* PFObject+Extensions.swift in Sources */,
 				D61EC0EC21D312B600204BEE /* UIView+Extensions.swift in Sources */,

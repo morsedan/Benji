@@ -9,37 +9,60 @@
 import Foundation
 import Parse
 
-class LoginEndingViewController: LoginFlowableViewController {
+protocol LoginEndingViewControllerDelegate: class {
+    func loginEndingViewControllerDidComplete(_ controller: LoginEndingViewController)
+}
 
-    var didComplete: (() -> Void)?
-    var didClose: (() -> Void)?
+class LoginEndingViewController: ViewController {
 
     let displayLabel = RegularSemiBoldLabel()
 
-    override func viewDidLoad() {
-        super.viewDidLoad()
+    unowned let delegate: LoginEndingViewControllerDelegate
 
-        self.view.set(backgroundColor: .background3)
+    init(with delegate: LoginEndingViewControllerDelegate) {
+        self.delegate = delegate
+        super.init()
+    }
+
+    required init?(coder aDecoder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+
+    override func initializeViews() {
+        super.initializeViews()
+
+        self.view.set(backgroundColor: .background1)
         self.view.addSubview(self.displayLabel)
-
-        delay(3.0) {
-            self.didComplete?()
-        }
 
         guard let current = PFUser.current() else { return }
 
         let text = LocalizedString(id: "",
                                    arguments: [current.firstName],
-                                   default: "@1 I made this for you.\n ~Benji")
+                                   default: "@1, I made this for you.\n\n ~Benji")
         self.displayLabel.set(text: text,
                               alignment: .center,
                               stringCasing: .capitalized)
+
+        self.fetchAllData()
+    }
+
+    private func fetchAllData() {
+        PFAnonymousUtils.logIn { (user, error) in
+            if error != nil || user == nil {
+                print("Anonymous login failed.")
+            } else {
+                delay(3.0) {
+                    self.delegate.loginEndingViewControllerDidComplete(self)
+                }
+            }
+        }
     }
 
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
 
         self.displayLabel.setSize(withWidth: self.view.proportionalWidth)
-        self.displayLabel.centerOnXAndY()
+        self.displayLabel.centerY = self.view.centerY * 0.8
+        self.displayLabel.centerOnX()
     }
 }

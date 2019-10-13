@@ -16,6 +16,12 @@ class HomeCoordinator: PresentableCoordinator<Void> {
     override func toPresentable() -> DismissableVC {
         return self.homeVC
     }
+
+    override func start() {
+        super.start()
+
+        UserNotificationManager.shared.requestAuthorization()
+    }
 }
 
 extension HomeCoordinator: HomeViewControllerDelegate {

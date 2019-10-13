@@ -8,6 +8,7 @@
 
 import Foundation
 import Parse
+import CameraManager
 
 protocol LoginProfilePhotoViewControllerDelegate: class {
     func loginProfilePhotoViewControllerDidUpdatePhoto(_ controller: LoginProfilePhotoViewController)
@@ -15,7 +16,9 @@ protocol LoginProfilePhotoViewControllerDelegate: class {
 
 class LoginProfilePhotoViewController: ViewController {
 
-    //private let cameraVC = CameraViewController()
+    private let cameraManager = CameraManager()
+    private let cameraView = View()
+    private let avatarView = AvatarView()
     private let cameraButton = CameraButton()
     private let label = RegularSemiBoldLabel()
 
@@ -34,7 +37,13 @@ class LoginProfilePhotoViewController: ViewController {
         super.initializeViews()
 
         self.view.set(backgroundColor: .background1)
-        //self.addChild(viewController: self.cameraVC)
+        self.view.addSubview(self.cameraView)
+        self.cameraView.layer.borderColor = Color.purple.color.cgColor
+        self.cameraView.layer.borderWidth = 4
+
+        self.view.addSubview(self.avatarView)
+        self.avatarView.isHidden = true
+
         self.view.addSubview(self.label)
         self.label.set(text: "Take a picture. 😀",
                        color: .white,
@@ -43,10 +52,10 @@ class LoginProfilePhotoViewController: ViewController {
 
         self.view.addSubview(self.cameraButton)
 
-        //self.cameraVC.currentCameraPosition = .front
+        self.cameraManager.cameraDevice = .front
+        self.cameraManager.addPreviewLayerToView(self.cameraView)
         self.cameraButton.onTap { [unowned self] (tap) in
-           // try? self.cameraVC.switchToFrontCamera()
-           // self.captureImage()
+            self.captureImage()
         }
     }
 
@@ -54,46 +63,35 @@ class LoginProfilePhotoViewController: ViewController {
         super.viewDidLayoutSubviews()
 
         let width = self.view.width * 0.8
-//        self.cameraVC.view.size = CGSize(width: width, height: width)
-//        self.cameraVC.view.centerY = self.view.centerY * 0.8
-//        self.cameraVC.view.centerOnX()
-//        self.cameraVC.view.roundCorners()
+        self.cameraView.size = CGSize(width: width, height: width)
+        self.cameraView.centerY = self.view.centerY * 0.8
+        self.cameraView.centerOnX()
+        self.cameraView.roundCorners()
+
+        self.avatarView.frame = self.cameraView.frame
+        self.avatarView.roundCorners()
 
         self.cameraButton.size = CGSize(width: 60, height: 60)
         self.cameraButton.bottom = self.view.height - self.view.safeAreaInsets.bottom - 40
         self.cameraButton.centerOnX()
 
         self.label.setSize(withWidth: self.view.width * 0.8)
-       // self.label.top = self.cameraVC.view.bottom + 20
+        self.label.top = self.cameraView.bottom + 20
         self.label.centerOnX()
     }
 
-    //    func pixelate(image: UIImage) {
-    //        guard let currentCGImage = image.cgImage else { return }
-    //        let currentCIImage = CIImage(cgImage: currentCGImage)
-    //
-    //        let filter = CIFilter(name: "CIPixellate")
-    //        filter?.setValue(currentCIImage, forKey: kCIInputImageKey)
-    //        filter?.setValue(50, forKey: kCIInputScaleKey)
-    //        guard let outputImage = filter?.outputImage else { return }
-    //
-    //        let context = CIContext()
-    //
-    //        if let cgimg = context.createCGImage(outputImage, from: outputImage.extent) {
-    //            let processedImage = UIImage(cgImage: cgimg)
-    //            self.avatarView.set(avatar: processedImage)
-    //        }
-    //    }
-
     func captureImage() {
-//        self.cameraVC.captureImage {(image, error) in
-//            guard let strongImage = image else {
-//                print(error ?? "Image capture error")
-//                return
-//            }
-//
-//            self.saveProfilePicture(image: strongImage)
-//        }
+        self.cameraManager.capturePictureWithCompletion({ result in
+            switch result {
+                case .failure:
+                    break
+                case .success(let content):
+                    guard let image = content.asImage else { return }
+                    self.avatarView.isHidden = false
+                    self.avatarView.set(avatar: image)
+                    self.saveProfilePicture(image: image)
+            }
+        })
     }
 
     func saveProfilePicture(image: UIImage) {
@@ -112,14 +110,13 @@ class LoginProfilePhotoViewController: ViewController {
             scaledImage = image
         }
 
-        let largeImageFile = PFFileObject(name:"image.png", data: imageData)
-
         if let scaledData = scaledImage.pngData() {
-            let scaledImageFile = PFFileObject(name:"scaled_image.png", data: scaledData)
-            current["scaledProfilePicture"] = scaledImageFile
+            let scaledImageFile = PFFileObject(name:"small_image.png", data: scaledData)
+            current.smallProfileImageFile = scaledImageFile
         }
 
-        current["profilePicuter"] = largeImageFile
+        let largeImageFile = PFFileObject(name:"image.png", data: imageData)
+        current.largeProfileImageFile = largeImageFile
 
         current.saveObject()
             .ignoreUserInteractionEventsUntilDone()

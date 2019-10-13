@@ -39,18 +39,6 @@ class LoginCoordinator: PresentableCoordinator<Void> {
     }
 }
 
-extension LoginCoordinator: LoginFlowViewControllerDelegate {
-    func loginFlowViewController(_ controller: LoginFlowViewController, finishedWith result: LoginFlowResult) {
-        switch result {
-        case .loggedIn:
-            break 
-            //self.loginFlowController.dismiss(animated: true, completion: nil)
-        case .cancelled:
-            break 
-        }
-    }
-}
-
 extension LoginCoordinator: LoginPhoneViewControllerDelegate {
     func loginPhoneView(_ controller: LoginPhoneViewController, didCompleteWith phone: PhoneNumber) {
         let controller = LoginCodeViewController(with: self, phoneNumber: phone)
@@ -74,6 +62,13 @@ extension LoginCoordinator: LoginNameViewControllerDelegate {
 
 extension LoginCoordinator: LoginProfilePhotoViewControllerDelegate {
     func loginProfilePhotoViewControllerDidUpdatePhoto(_ controller: LoginProfilePhotoViewController) {
-        self.runHomeFlow()
+        let controller = LoginEndingViewController(with: self)
+        self.router.push(controller)
+    }
+}
+
+extension LoginCoordinator: LoginEndingViewControllerDelegate {
+    func loginEndingViewControllerDidComplete(_ controller: LoginEndingViewController) {
+        self.finishFlow(with: ())
     }
 }

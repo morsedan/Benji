@@ -14,5 +14,6 @@ enum UserKey: String {
     case handle
     case phoneNumber
     case objectId
-    case profilePicture
+    case largeProfileImageFile
+    case smallProfileImageFile
 }

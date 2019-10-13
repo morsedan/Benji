@@ -63,7 +63,7 @@ class DisplayableImageView: View {
     }
 
     private func downloadAndSetImage(for user: PFUser) {
-        guard let imageFile = user["profilePicture"] as? PFFileObject else { return }
+        guard let imageFile = user.smallProfileImageFile else { return }
         
         imageFile.getDataInBackground { (imageData: Data?, error: Error?) in
             guard let data = imageData else { return }

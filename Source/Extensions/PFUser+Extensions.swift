@@ -21,6 +21,24 @@ extension PFUser: Avatar {
         return nil
     }
 
+    var largeProfileImageFile: PFFileObject? {
+        get {
+            return self.userObject(for: .largeProfileImageFile)
+        }
+        set {
+            self.setUserObject(for: .largeProfileImageFile, with: newValue)
+        }
+    }
+
+    var smallProfileImageFile: PFFileObject? {
+        get {
+            return self.userObject(for: .smallProfileImageFile)
+        }
+        set {
+            self.setUserObject(for: .smallProfileImageFile, with: newValue)
+        }
+    }
+
     var initials: String {
         let firstInitial = String(optional: self.firstName.first?.uppercased())
         let lastInitial = String(optional: self.lastName.first?.uppercased())
@@ -83,7 +101,7 @@ extension PFUser: Avatar {
     }
 
     func getProfileImage(completion: @escaping (UIImage?) -> Void) {
-        guard let imageFile = self[UserKey.profilePicture.rawValue] as? PFFileObject else { return }
+        guard let imageFile = self[UserKey.smallProfileImageFile.rawValue] as? PFFileObject else { return }
 
         imageFile.getDataInBackground { (imageData: Data?, error: Error?) in
             guard let data = imageData else { return }
