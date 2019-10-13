@@ -885,6 +885,15 @@
 			path = Helpers;
 			sourceTree = "<group>";
 		};
+		D66A0B9D2352AD8400A0FFEA /* Camera */ = {
+			isa = PBXGroup;
+			children = (
+				D66A0B9523522C7700A0FFEA /* CameraViewController.swift */,
+				D66A0B9723526A4E00A0FFEA /* CarmeraButton.swift */,
+			);
+			path = Camera;
+			sourceTree = "<group>";
+		};
 		D66F0FD022BF064700BA277D /* Deeplink */ = {
 			isa = PBXGroup;
 			children = (
@@ -946,8 +955,6 @@
 				D67896B122FF67650059BA75 /* LoginCodeViewController.swift */,
 				D67896BC23025FEC0059BA75 /* LoginNameViewController.swift */,
 				D67896BE2302683C0059BA75 /* LoginProfilePhotoViewController.swift */,
-				D66A0B9523522C7700A0FFEA /* CameraViewController.swift */,
-				D66A0B9723526A4E00A0FFEA /* CarmeraButton.swift */,
 			);
 			path = Login;
 			sourceTree = "<group>";
@@ -1050,6 +1057,7 @@
 		D6D145F121D548F600CD8CE4 /* Screens */ = {
 			isa = PBXGroup;
 			children = (
+				D66A0B9D2352AD8400A0FFEA /* Camera */,
 				D6432BF122D8282E0016001A /* Channel */,
 				D6DADF6A2207DC90007D9EB1 /* Channels */,
 				D62C634F22BE9C4600F4D097 /* Feed */,

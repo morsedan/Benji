@@ -51,7 +51,7 @@ class LoginTextInputViewController: ViewController {
         self.textField.returnKeyType = .done
         self.textField.adjustsFontSizeToFitWidth = true
         if let placeholder = self.textFieldPlaceholder {
-            let attributed = AttributedString(placeholder, fontType: .medium, color: .white)
+            let attributed = AttributedString(placeholder, fontType: .medium, color: .background3)
             self.textField.setPlaceholder(attributed: attributed)
             self.textField.setDefaultAttributes(style: StringStyle(font: .medium, color: .white))
         }
@@ -73,7 +73,7 @@ class LoginTextInputViewController: ViewController {
         self.textField.width = self.view.width * 0.8
         self.textField.centerOnX()
         self.textField.centerY = self.view.halfHeight * 0.8
-        self.textField.setBottomBorder(color: .background2)
+        self.textField.setBottomBorder(color: .background3)
 
         self.textFieldLabel.setSize(withWidth: self.textField.width)
         self.textFieldLabel.left = self.textField.left

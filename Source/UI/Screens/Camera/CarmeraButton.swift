@@ -10,25 +10,29 @@ import Foundation
 
 class CameraButton: View {
 
+    private let darkCircle = View()
     private let innerCircle = View()
     private let selectionFeedback = UIImpactFeedbackGenerator(style: .light)
 
     override func initializeSubviews() {
         super.initializeSubviews()
 
+        self.addSubview(self.darkCircle)
         self.addSubview(self.innerCircle)
-
-        self.innerCircle.layer.borderColor = Color.background1.color.cgColor
-        self.innerCircle.layer.borderWidth = 4
 
         self.set(backgroundColor: .white)
         self.innerCircle.set(backgroundColor: .white)
+        self.darkCircle.set(backgroundColor: .background1)
     }
 
     override func layoutSubviews() {
         super.layoutSubviews()
 
-        self.innerCircle.size = CGSize(width: self.width - 10, height: self.height - 10)
+        self.darkCircle.size = CGSize(width: self.width - 6, height: self.height - 6)
+        self.darkCircle.centerOnXAndY()
+        self.darkCircle.makeRound()
+
+        self.innerCircle.size = CGSize(width: self.width - 12, height: self.height - 12)
         self.innerCircle.centerOnXAndY()
         self.innerCircle.makeRound()
 

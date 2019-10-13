@@ -17,6 +17,7 @@ class LoginProfilePhotoViewController: ViewController {
 
     private let cameraVC = CameraViewController()
     private let cameraButton = CameraButton()
+    private let label = RegularSemiBoldLabel()
 
     unowned let delegate: LoginProfilePhotoViewControllerDelegate
 
@@ -34,18 +35,17 @@ class LoginProfilePhotoViewController: ViewController {
 
         self.view.set(backgroundColor: .background1)
         self.addChild(viewController: self.cameraVC)
+        self.view.addSubview(self.label)
+        self.label.set(text: "Take a picture. 😀",
+                       color: .white,
+                       alignment: .center,
+                       stringCasing: .unchanged)
 
         self.view.addSubview(self.cameraButton)
 
+        self.cameraVC.currentCameraPosition = .rear
         self.cameraButton.onTap { [unowned self] (tap) in
             self.captureImage()
-        }
-
-        self.cameraVC.prepare {(error) in
-
-            if let error = error {
-                print(error)
-            }
         }
     }
 
@@ -57,29 +57,32 @@ class LoginProfilePhotoViewController: ViewController {
         self.cameraVC.view.centerY = self.view.centerY * 0.8
         self.cameraVC.view.centerOnX()
         self.cameraVC.view.roundCorners()
-        self.cameraVC.displayPreview(on: self.cameraVC.view)
 
         self.cameraButton.size = CGSize(width: 60, height: 60)
         self.cameraButton.bottom = self.view.height - self.view.safeAreaInsets.bottom - 40
         self.cameraButton.centerOnX()
+
+        self.label.setSize(withWidth: self.view.width * 0.8)
+        self.label.top = self.cameraVC.view.bottom + 20
+        self.label.centerOnX()
     }
 
-//    func pixelate(image: UIImage) {
-//        guard let currentCGImage = image.cgImage else { return }
-//        let currentCIImage = CIImage(cgImage: currentCGImage)
-//
-//        let filter = CIFilter(name: "CIPixellate")
-//        filter?.setValue(currentCIImage, forKey: kCIInputImageKey)
-//        filter?.setValue(50, forKey: kCIInputScaleKey)
-//        guard let outputImage = filter?.outputImage else { return }
-//
-//        let context = CIContext()
-//
-//        if let cgimg = context.createCGImage(outputImage, from: outputImage.extent) {
-//            let processedImage = UIImage(cgImage: cgimg)
-//            self.avatarView.set(avatar: processedImage)
-//        }
-//    }
+    //    func pixelate(image: UIImage) {
+    //        guard let currentCGImage = image.cgImage else { return }
+    //        let currentCIImage = CIImage(cgImage: currentCGImage)
+    //
+    //        let filter = CIFilter(name: "CIPixellate")
+    //        filter?.setValue(currentCIImage, forKey: kCIInputImageKey)
+    //        filter?.setValue(50, forKey: kCIInputScaleKey)
+    //        guard let outputImage = filter?.outputImage else { return }
+    //
+    //        let context = CIContext()
+    //
+    //        if let cgimg = context.createCGImage(outputImage, from: outputImage.extent) {
+    //            let processedImage = UIImage(cgImage: cgimg)
+    //            self.avatarView.set(avatar: processedImage)
+    //        }
+    //    }
 
     func captureImage() {
         self.cameraVC.captureImage {(image, error) in
@@ -118,6 +121,7 @@ class LoginProfilePhotoViewController: ViewController {
         current["profilePicuter"] = largeImageFile
 
         current.saveObject()
+            .ignoreUserInteractionEventsUntilDone()
             .observe { (result) in
                 switch result {
                 case .success(_):
