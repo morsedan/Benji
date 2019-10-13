@@ -15,7 +15,7 @@ protocol LoginProfilePhotoViewControllerDelegate: class {
 
 class LoginProfilePhotoViewController: ViewController {
 
-    private let cameraVC = CameraViewController()
+    //private let cameraVC = CameraViewController()
     private let cameraButton = CameraButton()
     private let label = RegularSemiBoldLabel()
 
@@ -34,7 +34,7 @@ class LoginProfilePhotoViewController: ViewController {
         super.initializeViews()
 
         self.view.set(backgroundColor: .background1)
-        self.addChild(viewController: self.cameraVC)
+        //self.addChild(viewController: self.cameraVC)
         self.view.addSubview(self.label)
         self.label.set(text: "Take a picture. 😀",
                        color: .white,
@@ -43,9 +43,10 @@ class LoginProfilePhotoViewController: ViewController {
 
         self.view.addSubview(self.cameraButton)
 
-        self.cameraVC.currentCameraPosition = .rear
+        self.cameraVC.currentCameraPosition = .front
         self.cameraButton.onTap { [unowned self] (tap) in
-            self.captureImage()
+           // try? self.cameraVC.switchToFrontCamera()
+           // self.captureImage()
         }
     }
 
@@ -53,17 +54,17 @@ class LoginProfilePhotoViewController: ViewController {
         super.viewDidLayoutSubviews()
 
         let width = self.view.width * 0.8
-        self.cameraVC.view.size = CGSize(width: width, height: width)
-        self.cameraVC.view.centerY = self.view.centerY * 0.8
-        self.cameraVC.view.centerOnX()
-        self.cameraVC.view.roundCorners()
+//        self.cameraVC.view.size = CGSize(width: width, height: width)
+//        self.cameraVC.view.centerY = self.view.centerY * 0.8
+//        self.cameraVC.view.centerOnX()
+//        self.cameraVC.view.roundCorners()
 
         self.cameraButton.size = CGSize(width: 60, height: 60)
         self.cameraButton.bottom = self.view.height - self.view.safeAreaInsets.bottom - 40
         self.cameraButton.centerOnX()
 
         self.label.setSize(withWidth: self.view.width * 0.8)
-        self.label.top = self.cameraVC.view.bottom + 20
+       // self.label.top = self.cameraVC.view.bottom + 20
         self.label.centerOnX()
     }
 

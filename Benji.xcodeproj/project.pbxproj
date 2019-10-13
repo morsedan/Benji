@@ -125,7 +125,6 @@
 		D65B0CE5234928620041A176 /* ProfileCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = D65B0CE4234928620041A176 /* ProfileCoordinator.swift */; };
 		D65B0CE7234929440041A176 /* NewChannelCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = D65B0CE6234929440041A176 /* NewChannelCoordinator.swift */; };
 		D66A0B942351821200A0FFEA /* Completeable.swift in Sources */ = {isa = PBXBuildFile; fileRef = D66A0B932351821200A0FFEA /* Completeable.swift */; };
-		D66A0B9623522C7700A0FFEA /* CameraViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D66A0B9523522C7700A0FFEA /* CameraViewController.swift */; };
 		D66A0B9823526A4E00A0FFEA /* CarmeraButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = D66A0B9723526A4E00A0FFEA /* CarmeraButton.swift */; };
 		D66F0FC722BF004300BA277D /* FeedType.swift in Sources */ = {isa = PBXBuildFile; fileRef = D66F0FC622BF004300BA277D /* FeedType.swift */; };
 		D66F0FC922BF006D00BA277D /* SystemMessage.swift in Sources */ = {isa = PBXBuildFile; fileRef = D66F0FC822BF006D00BA277D /* SystemMessage.swift */; };
@@ -373,7 +372,6 @@
 		D65B0CE4234928620041A176 /* ProfileCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileCoordinator.swift; sourceTree = "<group>"; };
 		D65B0CE6234929440041A176 /* NewChannelCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewChannelCoordinator.swift; sourceTree = "<group>"; };
 		D66A0B932351821200A0FFEA /* Completeable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Completeable.swift; sourceTree = "<group>"; };
-		D66A0B9523522C7700A0FFEA /* CameraViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CameraViewController.swift; sourceTree = "<group>"; };
 		D66A0B9723526A4E00A0FFEA /* CarmeraButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CarmeraButton.swift; sourceTree = "<group>"; };
 		D66F0FC622BF004300BA277D /* FeedType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedType.swift; sourceTree = "<group>"; };
 		D66F0FC822BF006D00BA277D /* SystemMessage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SystemMessage.swift; sourceTree = "<group>"; };
@@ -585,6 +583,7 @@
 		D61EC0D121D30B5700204BEE /* UI */ = {
 			isa = PBXGroup;
 			children = (
+				D64E43692352B59400BA0619 /* Shared */,
 				D61EC0D221D30B8800204BEE /* Base Classes */,
 				D6D145F221D5490500CD8CE4 /* Modals */,
 				D6D145F121D548F600CD8CE4 /* Screens */,
@@ -877,21 +876,20 @@
 			path = Typing;
 			sourceTree = "<group>";
 		};
+		D64E43692352B59400BA0619 /* Shared */ = {
+			isa = PBXGroup;
+			children = (
+				D66A0B9723526A4E00A0FFEA /* CarmeraButton.swift */,
+			);
+			path = Shared;
+			sourceTree = "<group>";
+		};
 		D66A0B92235181F400A0FFEA /* Helpers */ = {
 			isa = PBXGroup;
 			children = (
 				D66A0B932351821200A0FFEA /* Completeable.swift */,
 			);
 			path = Helpers;
-			sourceTree = "<group>";
-		};
-		D66A0B9D2352AD8400A0FFEA /* Camera */ = {
-			isa = PBXGroup;
-			children = (
-				D66A0B9523522C7700A0FFEA /* CameraViewController.swift */,
-				D66A0B9723526A4E00A0FFEA /* CarmeraButton.swift */,
-			);
-			path = Camera;
 			sourceTree = "<group>";
 		};
 		D66F0FD022BF064700BA277D /* Deeplink */ = {
@@ -1057,7 +1055,6 @@
 		D6D145F121D548F600CD8CE4 /* Screens */ = {
 			isa = PBXGroup;
 			children = (
-				D66A0B9D2352AD8400A0FFEA /* Camera */,
 				D6432BF122D8282E0016001A /* Channel */,
 				D6DADF6A2207DC90007D9EB1 /* Channels */,
 				D62C634F22BE9C4600F4D097 /* Feed */,
@@ -1524,7 +1521,6 @@
 				D6815DB122ECAEC700E71251 /* MediumLabel.swift in Sources */,
 				D6D1460321D551B100CD8CE4 /* StringLibrary.swift in Sources */,
 				D642739122C9BFA10088256B /* AlertViewController.swift in Sources */,
-				D66A0B9623522C7700A0FFEA /* CameraViewController.swift in Sources */,
 				D61EC0E621D30EB300204BEE /* View.swift in Sources */,
 				D642738F22C9BE330088256B /* TextAlertViewController.swift in Sources */,
 				D66F0FC722BF004300BA277D /* FeedType.swift in Sources */,
