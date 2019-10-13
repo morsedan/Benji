@@ -1,11 +1,12 @@
 PODS:
   - Bolts/Tasks (1.9.0)
+  - CameraManager (4.4.0)
   - GestureRecognizerClosures (5.0.0)
   - Koloda (5.0):
     - pop (~> 1.0)
-  - Parse (1.17.2):
-    - Parse/Core (= 1.17.2)
-  - Parse/Core (1.17.2):
+  - Parse (1.17.3):
+    - Parse/Core (= 1.17.3)
+  - Parse/Core (1.17.3):
     - Bolts/Tasks (~> 1.9)
   - PhoneNumberKit (3.0.0):
     - PhoneNumberKit/PhoneNumberKitCore (= 3.0.0)
@@ -16,9 +17,10 @@ PODS:
   - pop (1.0.12)
   - ReactiveSwift (6.1.0)
   - TwilioAccessManager (1.1.2)
-  - TwilioChatClient (2.6.1)
+  - TwilioChatClient (2.6.3)
 
 DEPENDENCIES:
+  - CameraManager
   - GestureRecognizerClosures
   - Koloda
   - Parse
@@ -28,8 +30,9 @@ DEPENDENCIES:
   - TwilioChatClient
 
 SPEC REPOS:
-  https://github.com/cocoapods/specs.git:
+  trunk:
     - Bolts
+    - CameraManager
     - GestureRecognizerClosures
     - Koloda
     - Parse
@@ -41,15 +44,16 @@ SPEC REPOS:
 
 SPEC CHECKSUMS:
   Bolts: ac6567323eac61e203f6a9763667d0f711be34c8
+  CameraManager: 583710502c42178d12ef046d9d4f7893feff8354
   GestureRecognizerClosures: 0dcafb45e669e7a775c840383e54b3d16983037b
   Koloda: 75302d21882cc3e274c1561b1155805ea5919dab
-  Parse: 3b31a3dd1777b07ee7f0caee32fafbff544483a5
+  Parse: c1ad2a04d2cab2b54b6fb7da05f741abf2cf57d1
   PhoneNumberKit: 86019c972ef6904bcad11b46a6b8a91184d51117
   pop: d582054913807fd11fd50bfe6a539d91c7e1a55a
   ReactiveSwift: b78c7259f8ca46368238c895ae33a6a3bf9f811c
   TwilioAccessManager: f3b0d9edd2eb5a044e50ff78057ab13611a0baa1
-  TwilioChatClient: 50c9701d0217fe63112aaf75a2a4faa1932dc468
+  TwilioChatClient: e716b8d60dda9e4d723b4f0839706b630d910357
 
-PODFILE CHECKSUM: c74560ec73ce55666fe590af87a23916c5c8abdc
+PODFILE CHECKSUM: 5349a49ea463bfaae3a4e127a1e010cf72f37783
 
-COCOAPODS: 1.7.5
+COCOAPODS: 1.8.3

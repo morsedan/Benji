@@ -43,7 +43,7 @@ class LoginProfilePhotoViewController: ViewController {
 
         self.view.addSubview(self.cameraButton)
 
-        self.cameraVC.currentCameraPosition = .front
+        //self.cameraVC.currentCameraPosition = .front
         self.cameraButton.onTap { [unowned self] (tap) in
            // try? self.cameraVC.switchToFrontCamera()
            // self.captureImage()
@@ -86,14 +86,14 @@ class LoginProfilePhotoViewController: ViewController {
     //    }
 
     func captureImage() {
-        self.cameraVC.captureImage {(image, error) in
-            guard let strongImage = image else {
-                print(error ?? "Image capture error")
-                return
-            }
-
-            self.saveProfilePicture(image: strongImage)
-        }
+//        self.cameraVC.captureImage {(image, error) in
+//            guard let strongImage = image else {
+//                print(error ?? "Image capture error")
+//                return
+//            }
+//
+//            self.saveProfilePicture(image: strongImage)
+//        }
     }
 
     func saveProfilePicture(image: UIImage) {
