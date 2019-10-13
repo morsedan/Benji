@@ -9,7 +9,7 @@
 import Foundation
 
 protocol Dismissable {
-    var didDismiss: (() -> Void)? { get set }
+    var dismissHandlers: [() -> Void] { get set }
 }
 
 extension Dismissable where Self: UIViewController {

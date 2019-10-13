@@ -24,7 +24,7 @@ extension NewChannelCoordinator: NewChannelViewControllerDelegate {
         let coordinator = ChannelCoordinator(router: self.router, channelType: channel)
         self.router.present(coordinator, animated: true)
         self.addChildAndStart(coordinator, finishedHandler: { (_) in
-            self.router.dismiss(animated: true, completion: nil)
+            self.router.dismiss(source: controller)
         })
     }
 }

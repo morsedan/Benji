@@ -11,13 +11,12 @@ import Foundation
 protocol Presentable {
     typealias DismissableVC = UIViewController & Dismissable
 
-    var isFinished: Bool { get }
     func toPresentable() -> DismissableVC
+    func removeFromParent()
 }
 
 extension ViewController: Presentable {
 
-    var isFinished: Bool { return true }
     func toPresentable() -> DismissableVC {
         return self
     }
@@ -27,6 +26,8 @@ class Router: NSObject, UINavigationControllerDelegate {
 
     private var completions: [UIViewController : () -> Void]
     unowned let navController: UINavigationController
+    // True if the router is currently in the process of dismissing a module.
+    private var isDismissing = false
 
     init(navController: UINavigationController) {
         self.navController = navController
@@ -37,14 +38,45 @@ class Router: NSObject, UINavigationControllerDelegate {
         self.navController.delegate = self
     }
 
+    // The cancel handler is called when the presented module is dimissed
+    // by something other than this router.
+    func present(_ module: Presentable,
+                 source: UIViewController,
+                 cancelHandler: (() -> Void)? = nil,
+                 animated: Bool = true,
+                 completion: (() -> Void)? = nil) {
+
+        var viewController = module.toPresentable()
+
+        viewController.dismissHandlers.append { [unowned self] in
+            module.removeFromParent()
+
+            // If this router didn't trigger the dismiss, then the module was cancelled.
+            if !self.isDismissing {
+                cancelHandler?()
+            }
+        }
+
+        source.present(viewController,
+                       animated: animated,
+                       completion: completion)
+    }
+
     func present(_ module: Presentable, animated: Bool) {
         self.navController.present(module.toPresentable(),
                                    animated: animated,
                                    completion: nil)
     }
 
-    func dismiss(animated: Bool, completion: (() -> Void)?) {
-        self.navController.dismiss(animated: animated, completion: completion)
+    func dismiss(source: UIViewController,
+                 animated: Bool = true,
+                 completion: (() -> Void)? = nil) {
+
+        self.isDismissing = true
+        source.dismiss(animated: animated) {
+            self.isDismissing = false
+            completion?()
+        }
     }
 
     func push(_ module: Presentable,

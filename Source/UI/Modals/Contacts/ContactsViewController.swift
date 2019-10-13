@@ -14,6 +14,8 @@ protocol ContactsViewControllerDelegate: class {
 }
 
 class ContactsViewController: CollectionViewController<ContactCell, ContactsCollectionViewManager>, ScrolledModalControllerPresentable, KeyboardObservable {
+    
+    var didDismiss: (() -> Void)?
 
     var didUpdateHeight: ((CGRect, TimeInterval, UIView.AnimationCurve) -> ())?
 

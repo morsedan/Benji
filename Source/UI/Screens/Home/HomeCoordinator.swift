@@ -48,7 +48,7 @@ extension HomeCoordinator: HomeViewControllerDelegate {
 
     private func present(coordinator: PresentableCoordinator<Void>) {
         self.addChildAndStart(coordinator, finishedHandler: { (_) in
-            self.router.dismiss(animated: true, completion: nil)
+            self.router.dismiss(source: coordinator.toPresentable())
         })
         self.router.present(coordinator, animated: true)
     }
@@ -64,7 +64,7 @@ extension HomeCoordinator: ChannelsViewControllerDelegate {
 
         let coordinator = ChannelCoordinator(router: self.router, channelType: type)
         self.addChildAndStart(coordinator, finishedHandler: { (_) in
-            self.router.dismiss(animated: true, completion: nil)
+            self.router.dismiss(source: coordinator.toPresentable())
         })
         self.router.present(coordinator, animated: true)
     }

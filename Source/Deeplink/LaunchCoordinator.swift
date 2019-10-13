@@ -69,7 +69,7 @@ extension LaunchCoordinator: LaunchManagerDelegate {
         let coordinator = LoginCoordinator(router: self.router, deepLink: self.deepLink)
         self.router.setRootModule(coordinator, animated: true)
         self.addChildAndStart(coordinator, finishedHandler: { (_) in
-            self.router.dismiss(animated: true) {
+            self.router.dismiss(source: coordinator.toPresentable(), animated: true) {
                 self.runHomeFlow()
             }
         })

@@ -24,18 +24,12 @@ class ChannelCoordinator: PresentableCoordinator<Void> {
     override func toPresentable() -> DismissableVC {
         return self.channelVC
     }
-
-    override func start() {
-        self.channelVC.didDismiss = { [unowned self] in
-            self.finishFlow(with: ())
-        }
-    }
 }
 
 extension ChannelCoordinator: ChannelDetailBarDelegate {
 
     func channelDetailBarDidTapClose(_ view: ChannelDetailBar) {
-        self.toPresentable().dismiss(animated: true, completion: nil)
+        self.finishFlow(with: ())
     }
 
     func channelDetailBarDidTapMenu(_ view: ChannelDetailBar) {

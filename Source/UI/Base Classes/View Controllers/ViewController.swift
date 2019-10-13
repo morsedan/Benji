@@ -10,7 +10,7 @@ import UIKit
 
 class ViewController: UIViewController, Dismissable {
 
-    var didDismiss: (() -> Void)?
+    var dismissHandlers: [() -> Void] = []
 
     init() {
         super.init(nibName: nil, bundle: nil)
@@ -31,7 +31,9 @@ class ViewController: UIViewController, Dismissable {
 
         if self.isBeingClosed {
             self.viewWasDismissed()
-            self.didDismiss?()
+            self.dismissHandlers.forEach { (dismissHandler) in
+                dismissHandler()
+            }
         }
     }
 
