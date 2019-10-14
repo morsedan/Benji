@@ -9,21 +9,21 @@
 import Foundation
 import Parse
 
-protocol DisplayableDelegate {
-    func didSet(displayable: ImageDisplayable)
-}
-
 class DisplayableImageView: View {
 
-    var delegate: DisplayableDelegate?
-
     private(set) var imageView = UIImageView()
+
+    var showLargeImage: Bool = false {
+        didSet {
+            self.updateImageView()
+            self.setNeedsLayout()
+        }
+    }
 
     var displayable: ImageDisplayable {
         didSet {
             self.updateImageView()
             self.setNeedsLayout()
-            self.delegate?.didSet(displayable: self.displayable)
         }
     }
 
@@ -63,9 +63,8 @@ class DisplayableImageView: View {
     }
 
     private func downloadAndSetImage(for user: PFUser) {
-        guard let imageFile = user.smallProfileImageFile else { return }
-        
-        imageFile.getDataInBackground { (imageData: Data?, error: Error?) in
+        let imageFile = self.showLargeImage ? user.largeProfileImageFile : user.smallProfileImageFile
+        imageFile?.getDataInBackground { (imageData: Data?, error: Error?) in
             guard let data = imageData else { return }
             let image = UIImage(data: data)
             self.imageView.image = image

@@ -12,5 +12,12 @@ protocol Avatar: ImageDisplayable {
     var initials: String { get }
     var firstName: String { get }
     var lastName: String { get }
+    var fullName: String { get }
     var handle: String { get }
+}
+
+extension Avatar {
+    var fullName: String {
+        return self.firstName + " " + self.lastName
+    }
 }

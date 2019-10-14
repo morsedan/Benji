@@ -95,7 +95,9 @@ class LoginProfilePhotoViewController: ViewController {
     }
 
     func saveProfilePicture(image: UIImage) {
-        guard let imageData = image.pngData(), let current = PFUser.current() else { return }
+        guard let blackWhiteImage = self.createBlackAndWhite(from: image),
+            let imageData = blackWhiteImage.pngData(),
+            let current = PFUser.current() else { return }
 
         // NOTE: Remember, we're in points not pixels. Max image size will
         // depend on image pixel density. It's okay for now.
@@ -128,5 +130,27 @@ class LoginProfilePhotoViewController: ViewController {
                     print(error)
                 }
         }
+    }
+
+    func createBlackAndWhite(from image: UIImage) -> UIImage? {
+        guard let currentCGImage = image.cgImage else { return nil }
+        let currentCIImage = CIImage(cgImage: currentCGImage)
+
+        let filter = CIFilter(name: "CIColorMonochrome")
+        filter?.setValue(currentCIImage, forKey: "inputImage")
+
+        // set a gray value for the tint color
+        filter?.setValue(CIColor(red: 0.7, green: 0.7, blue: 0.7), forKey: "inputColor")
+
+        filter?.setValue(1.0, forKey: "inputIntensity")
+        guard let outputImage = filter?.outputImage else { return nil }
+
+        let context = CIContext()
+
+        if let cgimg = context.createCGImage(outputImage, from: outputImage.extent) {
+            return UIImage(cgImage: cgimg)
+        }
+
+        return nil
     }
 }

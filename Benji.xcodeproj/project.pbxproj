@@ -187,7 +187,6 @@
 		D6B2603822E6AB5E00143CF0 /* ChannelDetailBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6B2603722E6AB5E00143CF0 /* ChannelDetailBar.swift */; };
 		D6B2603A22E6ABCA00143CF0 /* Display1Label.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6B2603922E6ABCA00143CF0 /* Display1Label.swift */; };
 		D6B2603D22E6B8EA00143CF0 /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6B2603C22E6B8EA00143CF0 /* ProfileViewController.swift */; };
-		D6B2603F22E6B92900143CF0 /* CloseButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6B2603E22E6B92900143CF0 /* CloseButton.swift */; };
 		D6B2604122E6B9C600143CF0 /* Display2Label.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6B2604022E6B9C600143CF0 /* Display2Label.swift */; };
 		D6B2604322E6BAE400143CF0 /* RegularBoldLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6B2604222E6BAE400143CF0 /* RegularBoldLabel.swift */; };
 		D6B2604522E6C09700143CF0 /* RegularSemiBoldLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6B2604422E6C09700143CF0 /* RegularSemiBoldLabel.swift */; };
@@ -433,7 +432,6 @@
 		D6B2603722E6AB5E00143CF0 /* ChannelDetailBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChannelDetailBar.swift; sourceTree = "<group>"; };
 		D6B2603922E6ABCA00143CF0 /* Display1Label.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Display1Label.swift; sourceTree = "<group>"; };
 		D6B2603C22E6B8EA00143CF0 /* ProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
-		D6B2603E22E6B92900143CF0 /* CloseButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CloseButton.swift; sourceTree = "<group>"; };
 		D6B2604022E6B9C600143CF0 /* Display2Label.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Display2Label.swift; sourceTree = "<group>"; };
 		D6B2604222E6BAE400143CF0 /* RegularBoldLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegularBoldLabel.swift; sourceTree = "<group>"; };
 		D6B2604422E6C09700143CF0 /* RegularSemiBoldLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegularSemiBoldLabel.swift; sourceTree = "<group>"; };
@@ -824,7 +822,6 @@
 			children = (
 				D60C814522092F6B00A127A3 /* Button.swift */,
 				D642738B22C9B24E0088256B /* LoadingButton.swift */,
-				D6B2603E22E6B92900143CF0 /* CloseButton.swift */,
 			);
 			path = Buttons;
 			sourceTree = "<group>";
@@ -1363,7 +1360,6 @@
 				D642735322C85B740088256B /* SystemAvatar.swift in Sources */,
 				D6D14FF821D5893700CD8CE4 /* IGListMoveIndexPath.m in Sources */,
 				D6D14D9121D5893600CD8CE4 /* IGListIndexSetResult.m in Sources */,
-				D6B2603F22E6B92900143CF0 /* CloseButton.swift in Sources */,
 				D642735522C87CCA0088256B /* HomeAddButton.swift in Sources */,
 				D66F0FE622C0640E00BA277D /* Avatar.swift in Sources */,
 				D67896BD23025FEC0059BA75 /* LoginNameViewController.swift in Sources */,

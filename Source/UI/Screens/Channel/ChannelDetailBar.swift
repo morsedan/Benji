@@ -19,7 +19,6 @@ class ChannelDetailBar: View {
 
     private let blurView = UIVisualEffectView(effect: UIBlurEffect(style: .dark))
     private(set) var titleLabel = RegularBoldLabel()
-    private let closeButton = Button()
     private let titleButton = Button()
     private let selectionFeedback = UIImpactFeedbackGenerator(style: .light)
     let channelType: ChannelType
@@ -46,12 +45,6 @@ class ChannelDetailBar: View {
             self.delegate.channelDetailBarDidTapMenu(self)
         }
 
-        self.addSubview(self.closeButton)
-        self.closeButton.set(style: .icon(image: #imageLiteral(resourceName: "down_arrow")))
-        self.closeButton.onTap { [unowned self] (tap) in
-            self.delegate.channelDetailBarDidTapClose(self)
-        }
-
         switch self.channelType {
         case .system(let channel):
             self.setLayout(for: channel)
@@ -67,11 +60,7 @@ class ChannelDetailBar: View {
 
         self.blurView.frame = self.bounds
 
-        self.closeButton.size = CGSize(width: 20, height: 20)
-        self.closeButton.right = self.width - 16
-        self.closeButton.centerOnY()
-
-        let titleWidth = self.width - self.closeButton.width - 44
+        let titleWidth = self.width - 44
         self.titleLabel.setSize(withWidth: titleWidth)
         self.titleLabel.left = 16
         self.titleLabel.centerOnY()

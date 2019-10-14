@@ -15,30 +15,21 @@ class FullScreenViewController: ViewController {
 
     // A view to insert content. Takes up the space below the custom nav bar
     let contentContainer = View()
+    let topBar = View()
 
-    var isNavBarHidden: Bool = false {
+    var showTopBar: Bool = true {
         didSet {
-            self.view.setNeedsLayout()
+            self.view.layoutNow()
         }
     }
 
-    override init() {
-        super.init()
-    }
-
-    required init?(withObject object: DeepLinkable) {
-        super.init()
-    }
-
-    required init?(coder aDecoder: NSCoder) {
-        super.init(coder: aDecoder)
-    }
-
-    override func viewDidLoad() {
-        super.viewDidLoad()
+    override func initializeViews() {
+        super.initializeViews()
 
         self.view.set(backgroundColor: .background2)
         self.view.addSubview(self.contentContainer)
+        self.view.addSubview(self.topBar)
+        self.topBar.set(backgroundColor: .background3)
     }
 
     override func viewDidLayoutSubviews() {
@@ -49,6 +40,12 @@ class FullScreenViewController: ViewController {
         let height = self.view.height - self.view.safeAreaInsets.top - self.view.safeAreaInsets.bottom
         self.contentContainer.height = height
         self.contentContainer.centerOnX()
+
+        self.topBar.size = CGSize(width: 30, height: 4)
+        self.topBar.top = 8
+        self.topBar.centerOnX()
+        self.topBar.layer.cornerRadius = 2
+        self.topBar.isHidden = !self.showTopBar
     }
 
     override func viewWillDisappear(_ animated: Bool) {

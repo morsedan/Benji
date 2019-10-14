@@ -16,6 +16,7 @@ class SplashViewController: FullScreenViewController {
     override func initializeViews() {
         super.initializeViews()
 
+        self.showTopBar = false 
         self.view.set(backgroundColor: .background1)
 
         self.contentContainer.addSubview(self.loadingIndicator)
