@@ -17,7 +17,6 @@
 		D607400A233FCF3E009633EB /* HomeHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6074009233FCF3E009633EB /* HomeHeaderView.swift */; };
 		D607400C23400FA6009633EB /* HomeSearchBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = D607400B23400FA6009633EB /* HomeSearchBar.swift */; };
 		D607400E23401B3E009633EB /* SystemChannel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D607400D23401B3E009633EB /* SystemChannel.swift */; };
-		D608BF06235407E100AC08D8 /* CameraManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = D608BF05235407E100AC08D8 /* CameraManager.swift */; };
 		D60C814222092D5300A127A3 /* PagingCollectionViewFlowLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = D60C814122092D5300A127A3 /* PagingCollectionViewFlowLayout.swift */; };
 		D60C814422092E4700A127A3 /* PagingCollectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D60C814322092E4700A127A3 /* PagingCollectionView.swift */; };
 		D60C814622092F6B00A127A3 /* Button.swift in Sources */ = {isa = PBXBuildFile; fileRef = D60C814522092F6B00A127A3 /* Button.swift */; };
@@ -259,7 +258,6 @@
 		D6074009233FCF3E009633EB /* HomeHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeHeaderView.swift; sourceTree = "<group>"; };
 		D607400B23400FA6009633EB /* HomeSearchBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeSearchBar.swift; sourceTree = "<group>"; };
 		D607400D23401B3E009633EB /* SystemChannel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SystemChannel.swift; sourceTree = "<group>"; };
-		D608BF05235407E100AC08D8 /* CameraManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CameraManager.swift; sourceTree = "<group>"; };
 		D60C814122092D5300A127A3 /* PagingCollectionViewFlowLayout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PagingCollectionViewFlowLayout.swift; sourceTree = "<group>"; };
 		D60C814322092E4700A127A3 /* PagingCollectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PagingCollectionView.swift; sourceTree = "<group>"; };
 		D60C814522092F6B00A127A3 /* Button.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Button.swift; sourceTree = "<group>"; };
@@ -1167,7 +1165,6 @@
 				80D4A21923039FA5007CB5F1 /* RoutineManager.swift */,
 				D68483FA22CD050C00362AC3 /* TableViewManager.swift */,
 				D685E9262331177100CC1BAB /* UserNotificationManager.swift */,
-				D608BF05235407E100AC08D8 /* CameraManager.swift */,
 			);
 			path = Managers;
 			sourceTree = "<group>";
@@ -1395,7 +1392,6 @@
 				D6DADF6C2207DCA8007D9EB1 /* ChannelsViewController.swift in Sources */,
 				D6D1503321D7E5F800CD8CE4 /* UIDynamicAnimator+Extensions.swift in Sources */,
 				D66F0FD222BF065F00BA277D /* DeeplinkTarget.swift in Sources */,
-				D608BF06235407E100AC08D8 /* CameraManager.swift in Sources */,
 				D696A8E92308D5C900DAFED4 /* MessageInputView.swift in Sources */,
 				D6D1501A21D5F5D100CD8CE4 /* CollectionView.swift in Sources */,
 				D63753262316156800214F63 /* FavoritesCollectionViewLayout.swift in Sources */,

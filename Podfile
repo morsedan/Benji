@@ -12,6 +12,7 @@ target 'Benji' do
   pod 'ReactiveSwift'
   pod 'Koloda'
   pod 'PhoneNumberKit'
+  pod 'CameraKit-iOS'
 
 end
 
