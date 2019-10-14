@@ -35,7 +35,7 @@ class CameraViewController: ViewController {
         self.photoSession.stop()
     }
 
-    func capturePhoto(completion: (UIImage) -> Void) {
+    func capturePhoto(completion: @escaping (UIImage) -> Void) {
         self.photoSession.capture({ (image, settings) in
             completion(image)
         }) { (error) in

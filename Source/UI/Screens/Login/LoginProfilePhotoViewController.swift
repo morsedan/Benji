@@ -15,8 +15,7 @@ protocol LoginProfilePhotoViewControllerDelegate: class {
 
 class LoginProfilePhotoViewController: ViewController {
 
-    private let cameraManager = CameraManager()
-    private let cameraView = View()
+    private let cameraVC = CameraViewController()
     private let avatarView = AvatarView()
     private let cameraButton = CameraButton()
     private let label = RegularSemiBoldLabel()
@@ -36,9 +35,9 @@ class LoginProfilePhotoViewController: ViewController {
         super.initializeViews()
 
         self.view.set(backgroundColor: .background1)
-        self.view.addSubview(self.cameraView)
-        self.cameraView.layer.borderColor = Color.purple.color.cgColor
-        self.cameraView.layer.borderWidth = 4
+        self.addChild(viewController: self.cameraVC)
+        self.cameraVC.view.layer.borderColor = Color.purple.color.cgColor
+        self.cameraVC.view.layer.borderWidth = 4
 
         self.view.addSubview(self.avatarView)
         self.avatarView.isHidden = true
@@ -51,10 +50,10 @@ class LoginProfilePhotoViewController: ViewController {
 
         self.view.addSubview(self.cameraButton)
 
-        self.cameraManager.cameraDevice = .front
-        self.cameraManager.addPreviewLayerToView(self.cameraView)
         self.cameraButton.onTap { [unowned self] (tap) in
-            self.captureImage()
+            self.cameraVC.capturePhoto { [unowned self] (image) in
+                self.update(image: image)
+            }
         }
     }
 
@@ -62,12 +61,12 @@ class LoginProfilePhotoViewController: ViewController {
         super.viewDidLayoutSubviews()
 
         let width = self.view.width * 0.8
-        self.cameraView.size = CGSize(width: width, height: width)
-        self.cameraView.centerY = self.view.centerY * 0.8
-        self.cameraView.centerOnX()
-        self.cameraView.roundCorners()
+        self.cameraVC.view.size = CGSize(width: width, height: width)
+        self.cameraVC.view.centerY = self.view.centerY * 0.8
+        self.cameraVC.view.centerOnX()
+        self.cameraVC.view.roundCorners()
 
-        self.avatarView.frame = self.cameraView.frame
+        self.avatarView.frame = self.cameraVC.view.frame
         self.avatarView.roundCorners()
 
         self.cameraButton.size = CGSize(width: 60, height: 60)
@@ -75,22 +74,14 @@ class LoginProfilePhotoViewController: ViewController {
         self.cameraButton.centerOnX()
 
         self.label.setSize(withWidth: self.view.width * 0.8)
-        self.label.top = self.cameraView.bottom + 20
+        self.label.top = self.cameraVC.view.bottom + 20
         self.label.centerOnX()
     }
 
-    func captureImage() {
-        self.cameraManager.capturePictureWithCompletion({ result in
-            switch result {
-                case .failure:
-                    break
-                case .success(let content):
-                    guard let image = content.asImage else { return }
-                    self.avatarView.isHidden = false
-                    self.avatarView.set(avatar: image)
-                    self.saveProfilePicture(image: image)
-            }
-        })
+    func update(image: UIImage) {
+        self.avatarView.isHidden = false
+        self.avatarView.set(avatar: image)
+        self.saveProfilePicture(image: image)
     }
 
     func saveProfilePicture(image: UIImage) {
