@@ -14,9 +14,9 @@
             buildForArchiving = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "FDC1B0BDCEC6B4AC4EE9879BA5F978BF"
-               BuildableName = "Pods-Benji.framework"
-               BlueprintName = "Pods-Benji"
+               BlueprintIdentifier = "B4EF47FEED3C3CEAF89306D1AE3851CB"
+               BuildableName = "CameraKit-iOS.framework"
+               BlueprintName = "CameraKit-iOS"
                ReferencedContainer = "container:Pods.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
