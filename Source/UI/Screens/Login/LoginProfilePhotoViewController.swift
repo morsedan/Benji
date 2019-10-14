@@ -8,7 +8,6 @@
 
 import Foundation
 import Parse
-import CameraManager
 
 protocol LoginProfilePhotoViewControllerDelegate: class {
     func loginProfilePhotoViewControllerDidUpdatePhoto(_ controller: LoginProfilePhotoViewController)

@@ -1,7 +1,12 @@
 PODS:
+  - Bolts/Tasks (1.9.0)
   - GestureRecognizerClosures (5.0.0)
   - Koloda (5.0):
     - pop (~> 1.0)
+  - Parse (1.17.3):
+    - Parse/Core (= 1.17.3)
+  - Parse/Core (1.17.3):
+    - Bolts/Tasks (~> 1.9)
   - PhoneNumberKit (3.0.0):
     - PhoneNumberKit/PhoneNumberKitCore (= 3.0.0)
     - PhoneNumberKit/UIKit (= 3.0.0)
@@ -16,6 +21,7 @@ PODS:
 DEPENDENCIES:
   - GestureRecognizerClosures
   - Koloda
+  - Parse
   - PhoneNumberKit
   - ReactiveSwift
   - TwilioAccessManager
@@ -23,8 +29,10 @@ DEPENDENCIES:
 
 SPEC REPOS:
   trunk:
+    - Bolts
     - GestureRecognizerClosures
     - Koloda
+    - Parse
     - PhoneNumberKit
     - pop
     - ReactiveSwift
@@ -32,14 +40,16 @@ SPEC REPOS:
     - TwilioChatClient
 
 SPEC CHECKSUMS:
+  Bolts: ac6567323eac61e203f6a9763667d0f711be34c8
   GestureRecognizerClosures: 0dcafb45e669e7a775c840383e54b3d16983037b
   Koloda: 75302d21882cc3e274c1561b1155805ea5919dab
+  Parse: c1ad2a04d2cab2b54b6fb7da05f741abf2cf57d1
   PhoneNumberKit: 86019c972ef6904bcad11b46a6b8a91184d51117
   pop: d582054913807fd11fd50bfe6a539d91c7e1a55a
   ReactiveSwift: b78c7259f8ca46368238c895ae33a6a3bf9f811c
   TwilioAccessManager: f3b0d9edd2eb5a044e50ff78057ab13611a0baa1
   TwilioChatClient: e716b8d60dda9e4d723b4f0839706b630d910357
 
-PODFILE CHECKSUM: b6adbd103f5ecdc63a9e3a5739fff8e8ff646641
+PODFILE CHECKSUM: 661700fe6eb5645d8e257b1cf47109f072686510
 
 COCOAPODS: 1.8.3
