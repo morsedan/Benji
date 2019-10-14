@@ -14,13 +14,16 @@ class CameraViewController: ViewController {
     lazy var photoSession = CKFPhotoSession()
     lazy var previewView = CKFPreviewView(frame: self.view.bounds)
 
-    override func initializeViews() {
-        super.initializeViews()
+    override func viewDidLoad() {
+        super.viewDidLoad()
 
         self.previewView.session = self.photoSession
         self.photoSession.cameraPosition = .front
         self.photoSession.cameraDetection = .faces
+        self.photoSession.resolution = CGSize(width: 300, height: 300)
         self.photoSession.zoom = 1.5
+
+        self.view.addSubview(self.previewView)
     }
 
     override func viewWillAppear(_ animated: Bool) {
@@ -33,6 +36,13 @@ class CameraViewController: ViewController {
         super.viewWillDisappear(animated)
 
         self.photoSession.stop()
+    }
+
+    override func viewDidLayoutSubviews() {
+        super.viewDidLayoutSubviews()
+
+        self.previewView.frame = self.view.bounds
+        self.previewView.previewLayer?.frame = self.previewView.bounds
     }
 
     func capturePhoto(completion: @escaping (UIImage) -> Void) {

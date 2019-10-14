@@ -97,9 +97,9 @@ class LoginProfilePhotoViewController: ViewController {
         var scaledImage: UIImage
         if longSide > maxAllowedDimension {
             let scaleFactor: CGFloat = maxAllowedDimension / longSide
-            scaledImage = image.scaled(by: scaleFactor)
+            scaledImage = blackWhiteImage.scaled(by: scaleFactor)
         } else {
-            scaledImage = image
+            scaledImage = blackWhiteImage
         }
 
         if let scaledData = scaledImage.pngData() {
