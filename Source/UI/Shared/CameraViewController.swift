@@ -19,10 +19,6 @@ class CameraViewController: ViewController {
 
         self.previewView.session = self.photoSession
         self.photoSession.cameraPosition = .front
-        self.photoSession.cameraDetection = .faces
-        self.photoSession.resolution = CGSize(width: 300, height: 300)
-        self.photoSession.zoom = 1.5
-
         self.view.addSubview(self.previewView)
     }
 
@@ -43,11 +39,13 @@ class CameraViewController: ViewController {
 
         self.previewView.frame = self.view.bounds
         self.previewView.previewLayer?.frame = self.previewView.bounds
+        self.previewView.previewLayer?.contentsGravity = .resize
     }
 
     func capturePhoto(completion: @escaping (UIImage) -> Void) {
         self.photoSession.capture({ (image, settings) in
-            completion(image)
+            guard let rotatedImage = image.fixedOrientation() else { return }
+            completion(rotatedImage)
         }) { (error) in
             print(error)
         }
