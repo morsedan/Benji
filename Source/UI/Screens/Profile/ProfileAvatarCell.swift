@@ -33,7 +33,7 @@ class ProfileAvatarCell: UICollectionViewCell {
         self.avatarView.setBorder(color: .clear)
         self.avatarView.showLargeImage = true
         self.avatarView.set(avatar: avatar)
-        self.displayLabel.set(text: avatar.fullName)
+        self.displayLabel.set(text: avatar.fullName, stringCasing: .capitalized)
     }
 
     override func layoutSubviews() {

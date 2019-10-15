@@ -65,7 +65,8 @@ extension PFUser: Avatar {
 
     var handle: String {
         get {
-            return self.userObject(for: .handle) ?? String()
+            let handle = self.userObject(for: .handle) ?? String()
+            return "@" + handle.lowercased()
         }
         set {
             self.setUserObject(for: .handle, with: newValue)

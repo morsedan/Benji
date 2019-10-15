@@ -59,7 +59,7 @@ class ProfileViewController: FullScreenViewController {
         items.append(avatarItem)
 
         let handleItem = ProfileItem(avatar: nil,
-                                     title: "@handle",
+                                     title: "Handle",
                                      text: self.user.handle,
                                      hasDetail: false)
         items.append(handleItem)
