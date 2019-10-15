@@ -8,13 +8,65 @@
 
 import Foundation
 
+protocol ProfileDisplayable {
+    var avatar: Avatar? { get set }
+    var title: String { get set }
+    var text: String { get set }
+    var hasDetail: Bool { get set }
+}
+
+extension ProfileDisplayable {
+    var avatar: Avatar? {
+        return nil
+    }
+
+    var hasDetail: Bool {
+        return false
+    }
+}
+
 class ProfileCollectionViewManager: NSObject, UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
 
+    let collectionView: CollectionView
+
+    var items: [ProfileDisplayable] = []
+
+    init(with collectionView: CollectionView) {
+        self.collectionView = collectionView
+        super.init()
+    }
+
+    func numberOfSections(in collectionView: UICollectionView) -> Int {
+        return 1
+    }
+
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return 0
+        return self.items.count
     }
 
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        return UICollectionViewCell()
+        guard let cv = collectionView as? ProfileCollectionView else { fatalError() }
+
+        if indexPath.row == 0 {
+            return self.avatarCell(for: cv, at: indexPath)
+        }
+
+        return self.detailCell(for: cv, at: indexPath)
+    }
+
+    private func avatarCell(for collectionView: ProfileCollectionView, at indexPath: IndexPath) -> UICollectionViewCell {
+        let cell = collectionView.dequeueReusableCell(ProfileAvatarCell.self, for: indexPath)
+        if let item = self.items[safe: indexPath.row] {
+            cell.configure(with: item)
+        }
+        return cell
+    }
+
+    private func detailCell(for collectionView: ProfileCollectionView, at indexPath: IndexPath) -> UICollectionViewCell {
+        let cell = collectionView.dequeueReusableCell(ProfileDetailCell.self, for: indexPath)
+        if let item = self.items[safe: indexPath.row] {
+            cell.configure(with: item)
+        }
+        return cell
     }
 }

@@ -18,6 +18,9 @@ class ProfileViewController: FullScreenViewController {
     private let routineInputVC = RoutineInputViewController()
     private let user: PFUser
 
+    lazy var collectionView = ProfileCollectionView()
+    lazy var manager = ProfileCollectionViewManager(with: self.collectionView)
+
     init(with user: PFUser) {
         self.user = user
         super.init()
@@ -27,8 +30,15 @@ class ProfileViewController: FullScreenViewController {
         fatalError("init(coder:) has not been implemented")
     }
 
+    override func loadView() {
+        self.view = self.collectionView
+    }
+
     override func initializeViews() {
         super.initializeViews()
+
+        self.collectionView.delegate = self.manager
+        self.collectionView.dataSource = self.manager
 
         self.contentContainer.addSubview(self.avatarView)
         self.contentContainer.addSubview(self.displayLabel)

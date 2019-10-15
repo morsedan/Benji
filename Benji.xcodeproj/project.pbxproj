@@ -243,7 +243,7 @@
 		D6DADF742207E0E2007D9EB1 /* TCHChannel+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6DADF732207E0E2007D9EB1 /* TCHChannel+Extensions.swift */; };
 		D6EB4DF023540E48005BF3B4 /* CameraViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6EB4DEF23540E48005BF3B4 /* CameraViewController.swift */; };
 		D6EDD1952355DB9B00FDA5D6 /* ProfileCollectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6EDD1942355DB9B00FDA5D6 /* ProfileCollectionView.swift */; };
-		D6EDD1972355DBC500FDA5D6 /* ProfileHeaderCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6EDD1962355DBC500FDA5D6 /* ProfileHeaderCell.swift */; };
+		D6EDD1972355DBC500FDA5D6 /* ProfileAvatarCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6EDD1962355DBC500FDA5D6 /* ProfileAvatarCell.swift */; };
 		D6EDD1992355DBFA00FDA5D6 /* ProfileDetailCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6EDD1982355DBFA00FDA5D6 /* ProfileDetailCell.swift */; };
 		D6EDD19B2355DC2900FDA5D6 /* ProfileCollectionViewManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6EDD19A2355DC2900FDA5D6 /* ProfileCollectionViewManager.swift */; };
 		D6FB009F234AB7EB008ED2D6 /* XXSmallSemiBoldLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6FB009E234AB7EB008ED2D6 /* XXSmallSemiBoldLabel.swift */; };
@@ -511,7 +511,7 @@
 		D6DADF732207E0E2007D9EB1 /* TCHChannel+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "TCHChannel+Extensions.swift"; sourceTree = "<group>"; };
 		D6EB4DEF23540E48005BF3B4 /* CameraViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CameraViewController.swift; sourceTree = "<group>"; };
 		D6EDD1942355DB9B00FDA5D6 /* ProfileCollectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileCollectionView.swift; sourceTree = "<group>"; };
-		D6EDD1962355DBC500FDA5D6 /* ProfileHeaderCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileHeaderCell.swift; sourceTree = "<group>"; };
+		D6EDD1962355DBC500FDA5D6 /* ProfileAvatarCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileAvatarCell.swift; sourceTree = "<group>"; };
 		D6EDD1982355DBFA00FDA5D6 /* ProfileDetailCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileDetailCell.swift; sourceTree = "<group>"; };
 		D6EDD19A2355DC2900FDA5D6 /* ProfileCollectionViewManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileCollectionViewManager.swift; sourceTree = "<group>"; };
 		D6FB009E234AB7EB008ED2D6 /* XXSmallSemiBoldLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = XXSmallSemiBoldLabel.swift; sourceTree = "<group>"; };
@@ -1042,7 +1042,7 @@
 				D6B2603C22E6B8EA00143CF0 /* ProfileViewController.swift */,
 				D6EDD19A2355DC2900FDA5D6 /* ProfileCollectionViewManager.swift */,
 				D6EDD1942355DB9B00FDA5D6 /* ProfileCollectionView.swift */,
-				D6EDD1962355DBC500FDA5D6 /* ProfileHeaderCell.swift */,
+				D6EDD1962355DBC500FDA5D6 /* ProfileAvatarCell.swift */,
 				D6EDD1982355DBFA00FDA5D6 /* ProfileDetailCell.swift */,
 			);
 			path = Profile;
@@ -1425,7 +1425,7 @@
 				D64C6A7E23294A8600DB7257 /* ChannelKey.swift in Sources */,
 				D6384414233834380072227B /* Symbols.swift in Sources */,
 				D6DADF692207D246007D9EB1 /* TCHMessage+Extensions.swift in Sources */,
-				D6EDD1972355DBC500FDA5D6 /* ProfileHeaderCell.swift in Sources */,
+				D6EDD1972355DBC500FDA5D6 /* ProfileAvatarCell.swift in Sources */,
 				D61EC0F721D316F100204BEE /* Color.swift in Sources */,
 				D642739D22CAFC930088256B /* MessageType.swift in Sources */,
 				D64C6A7A232883FE00DB7257 /* CloudCalls.swift in Sources */,
