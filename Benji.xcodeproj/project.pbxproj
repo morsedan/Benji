@@ -242,6 +242,10 @@
 		D6DADF722207DF83007D9EB1 /* ChannelsCollectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6DADF712207DF83007D9EB1 /* ChannelsCollectionView.swift */; };
 		D6DADF742207E0E2007D9EB1 /* TCHChannel+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6DADF732207E0E2007D9EB1 /* TCHChannel+Extensions.swift */; };
 		D6EB4DF023540E48005BF3B4 /* CameraViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6EB4DEF23540E48005BF3B4 /* CameraViewController.swift */; };
+		D6EDD1952355DB9B00FDA5D6 /* ProfileCollectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6EDD1942355DB9B00FDA5D6 /* ProfileCollectionView.swift */; };
+		D6EDD1972355DBC500FDA5D6 /* ProfileHeaderCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6EDD1962355DBC500FDA5D6 /* ProfileHeaderCell.swift */; };
+		D6EDD1992355DBFA00FDA5D6 /* ProfileDetailCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6EDD1982355DBFA00FDA5D6 /* ProfileDetailCell.swift */; };
+		D6EDD19B2355DC2900FDA5D6 /* ProfileCollectionViewManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6EDD19A2355DC2900FDA5D6 /* ProfileCollectionViewManager.swift */; };
 		D6FB009F234AB7EB008ED2D6 /* XXSmallSemiBoldLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6FB009E234AB7EB008ED2D6 /* XXSmallSemiBoldLabel.swift */; };
 /* End PBXBuildFile section */
 
@@ -506,6 +510,10 @@
 		D6DADF712207DF83007D9EB1 /* ChannelsCollectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChannelsCollectionView.swift; sourceTree = "<group>"; };
 		D6DADF732207E0E2007D9EB1 /* TCHChannel+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "TCHChannel+Extensions.swift"; sourceTree = "<group>"; };
 		D6EB4DEF23540E48005BF3B4 /* CameraViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CameraViewController.swift; sourceTree = "<group>"; };
+		D6EDD1942355DB9B00FDA5D6 /* ProfileCollectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileCollectionView.swift; sourceTree = "<group>"; };
+		D6EDD1962355DBC500FDA5D6 /* ProfileHeaderCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileHeaderCell.swift; sourceTree = "<group>"; };
+		D6EDD1982355DBFA00FDA5D6 /* ProfileDetailCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileDetailCell.swift; sourceTree = "<group>"; };
+		D6EDD19A2355DC2900FDA5D6 /* ProfileCollectionViewManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileCollectionViewManager.swift; sourceTree = "<group>"; };
 		D6FB009E234AB7EB008ED2D6 /* XXSmallSemiBoldLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = XXSmallSemiBoldLabel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -1032,8 +1040,10 @@
 				D65B0CE4234928620041A176 /* ProfileCoordinator.swift */,
 				D63752F82313833B00214F63 /* ProfileAvatarView.swift */,
 				D6B2603C22E6B8EA00143CF0 /* ProfileViewController.swift */,
-				80D4A21723039B82007CB5F1 /* RoutineInputContentView.swift */,
-				80D4A21523039B22007CB5F1 /* RoutineInputViewController.swift */,
+				D6EDD19A2355DC2900FDA5D6 /* ProfileCollectionViewManager.swift */,
+				D6EDD1942355DB9B00FDA5D6 /* ProfileCollectionView.swift */,
+				D6EDD1962355DBC500FDA5D6 /* ProfileHeaderCell.swift */,
+				D6EDD1982355DBFA00FDA5D6 /* ProfileDetailCell.swift */,
 			);
 			path = Profile;
 			sourceTree = "<group>";
@@ -1059,6 +1069,7 @@
 				D67896A122FF40AB0059BA75 /* Login */,
 				D63753182316112E00214F63 /* New Channel */,
 				D6B2603B22E6B8CD00143CF0 /* Profile */,
+				D6EDD1932355DB6000FDA5D6 /* Routine */,
 				D67A82D9230CCE290076152B /* Splash */,
 			);
 			path = Screens;
@@ -1226,6 +1237,15 @@
 				D6830221234AA35C006145FE /* DisplayableChannel.swift */,
 			);
 			path = Channels;
+			sourceTree = "<group>";
+		};
+		D6EDD1932355DB6000FDA5D6 /* Routine */ = {
+			isa = PBXGroup;
+			children = (
+				80D4A21723039B82007CB5F1 /* RoutineInputContentView.swift */,
+				80D4A21523039B22007CB5F1 /* RoutineInputViewController.swift */,
+			);
+			path = Routine;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -1405,6 +1425,7 @@
 				D64C6A7E23294A8600DB7257 /* ChannelKey.swift in Sources */,
 				D6384414233834380072227B /* Symbols.swift in Sources */,
 				D6DADF692207D246007D9EB1 /* TCHMessage+Extensions.swift in Sources */,
+				D6EDD1972355DBC500FDA5D6 /* ProfileHeaderCell.swift in Sources */,
 				D61EC0F721D316F100204BEE /* Color.swift in Sources */,
 				D642739D22CAFC930088256B /* MessageType.swift in Sources */,
 				D64C6A7A232883FE00DB7257 /* CloudCalls.swift in Sources */,
@@ -1524,9 +1545,11 @@
 				D684840A22CD48D000362AC3 /* GradientView.swift in Sources */,
 				D642737D22C9A2D70088256B /* NameLabel.swift in Sources */,
 				D646DB3E22CFCF330055CC7C /* TwilioChatClient+Extensions.swift in Sources */,
+				D6EDD19B2355DC2900FDA5D6 /* ProfileCollectionViewManager.swift in Sources */,
 				D6D1503E21DAF98500CD8CE4 /* TextField.swift in Sources */,
 				D685E9272331177100CC1BAB /* UserNotificationManager.swift in Sources */,
 				D646DB4422CFDE0C0055CC7C /* LoadingView.swift in Sources */,
+				D6EDD1992355DBFA00FDA5D6 /* ProfileDetailCell.swift in Sources */,
 				D6830222234AA35C006145FE /* DisplayableChannel.swift in Sources */,
 				D6A82B772325C48F003E0A8B /* PurposeDescriptionTextView.swift in Sources */,
 				D61EC0EE21D313BA00204BEE /* UIScreen+Extensions.swift in Sources */,
@@ -1574,6 +1597,7 @@
 				D6A82B752325C39A003E0A8B /* PurposeTitleTextField.swift in Sources */,
 				D66F0FDC22BF2ADC00BA277D /* HomeCoordinator.swift in Sources */,
 				D6D14FFC21D5893700CD8CE4 /* IGListBatchUpdateData.mm in Sources */,
+				D6EDD1952355DB9B00FDA5D6 /* ProfileCollectionView.swift in Sources */,
 				D6B2606A22E80AB000143CF0 /* Toast.swift in Sources */,
 				D6D1500721D5E73D00CD8CE4 /* ChannelViewController.swift in Sources */,
 				D6D14FFD21D5893700CD8CE4 /* IGListIndexPathResult.m in Sources */,
