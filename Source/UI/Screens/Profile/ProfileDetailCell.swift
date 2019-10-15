@@ -50,4 +50,11 @@ class ProfileDetailCell: UICollectionViewCell {
         self.lineView.left = self.titleLabel.left
         self.lineView.top = self.label.bottom + 5
     }
+
+    override func prepareForReuse() {
+        super.prepareForReuse()
+
+        self.titleLabel.text = nil
+        self.label.text = nil 
+    }
 }

@@ -1037,13 +1037,13 @@
 		D6B2603B22E6B8CD00143CF0 /* Profile */ = {
 			isa = PBXGroup;
 			children = (
-				D65B0CE4234928620041A176 /* ProfileCoordinator.swift */,
-				D63752F82313833B00214F63 /* ProfileAvatarView.swift */,
-				D6B2603C22E6B8EA00143CF0 /* ProfileViewController.swift */,
-				D6EDD19A2355DC2900FDA5D6 /* ProfileCollectionViewManager.swift */,
-				D6EDD1942355DB9B00FDA5D6 /* ProfileCollectionView.swift */,
 				D6EDD1962355DBC500FDA5D6 /* ProfileAvatarCell.swift */,
+				D63752F82313833B00214F63 /* ProfileAvatarView.swift */,
+				D6EDD1942355DB9B00FDA5D6 /* ProfileCollectionView.swift */,
+				D6EDD19A2355DC2900FDA5D6 /* ProfileCollectionViewManager.swift */,
+				D65B0CE4234928620041A176 /* ProfileCoordinator.swift */,
 				D6EDD1982355DBFA00FDA5D6 /* ProfileDetailCell.swift */,
+				D6B2603C22E6B8EA00143CF0 /* ProfileViewController.swift */,
 			);
 			path = Profile;
 			sourceTree = "<group>";

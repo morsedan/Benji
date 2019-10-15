@@ -69,4 +69,13 @@ class ProfileCollectionViewManager: NSObject, UICollectionViewDelegate, UICollec
         }
         return cell
     }
+
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+
+        if indexPath.row == 0 {
+            return CGSize(width: collectionView.width, height: collectionView.width)
+        }
+
+        return CGSize(width: collectionView.width, height: 50)
+    }
 }
