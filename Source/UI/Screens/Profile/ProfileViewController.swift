@@ -24,7 +24,7 @@ protocol ProfileViewControllerDelegate: class {
 class ProfileViewController: ViewController {
 
     private let user: PFUser
-
+    let topBar = View()
     lazy var collectionView = ProfileCollectionView()
     lazy var manager = ProfileCollectionViewManager(with: self.collectionView)
     unowned let delegate: ProfileViewControllerDelegate
@@ -55,6 +55,9 @@ class ProfileViewController: ViewController {
             self.delegate.profileView(self, didSelectRoutineFor: self.user)
         }
 
+        self.view.addSubview(self.topBar)
+        self.topBar.set(backgroundColor: .background3)
+
         self.createItems()
     }
 
@@ -82,5 +85,14 @@ class ProfileViewController: ViewController {
 
         self.manager.items = items
         self.collectionView.reloadData()
+    }
+
+    override func viewDidLayoutSubviews() {
+        super.viewDidLayoutSubviews()
+
+        self.topBar.size = CGSize(width: 30, height: 4)
+        self.topBar.top = 8
+        self.topBar.centerOnX()
+        self.topBar.layer.cornerRadius = 2
     }
 }

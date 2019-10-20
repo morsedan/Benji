@@ -8,40 +8,31 @@
 
 import Foundation
 
-class RoutineViewController: FullScreenViewController {
+class RoutineViewController: NavigationBarViewController {
 
-    let backButton = Button()
-    let titleLabel = Display1Label()
-    let descriptionLabel = RegularSemiBoldLabel()
     let routineInputVC = RoutineInputViewController()
 
     override func initializeViews() {
         super.initializeViews()
 
-        self.contentContainer.addSubview(self.backButton)
-        self.contentContainer.addSubview(self.titleLabel)
-        self.contentContainer.addSubview(self.descriptionLabel)
-
         self.addChild(viewController: self.routineInputVC)
+    }
+
+    override func getTitle() -> Localized {
+        return "DAILY ROUTINE"
+    }
+
+    override func getDescription() -> Localized {
+        return "Get a daily reminder to follow up and and connect with people."
     }
 
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
 
-        self.backButton.size = CGSize(width:40, height: 40)
-        self.backButton.left = Theme.contentOffset
-        self.backButton.top = 0
-
-        self.titleLabel.setSize(withWidth: 200)
-        self.titleLabel.top = 0
-        self.titleLabel.centerOnX()
-
-        self.descriptionLabel.setSize(withWidth: self.contentContainer.width * 0.8)
-        self.descriptionLabel.top = self.titleLabel.bottom + 20
-        self.descriptionLabel.centerOnX()
-
-        self.routineInputVC.view.size = CGSize(width: self.contentContainer.width, height: 300)
+        self.routineInputVC.view.size = CGSize(width: self.view.width, height: 300)
         self.routineInputVC.view.centerOnX()
-        self.routineInputVC.view.bottom = self.contentContainer.height
+        self.routineInputVC.view.top = self.lineView.bottom + 40
+
+        self.scrollView.contentSize = CGSize(width: self.view.width, height: self.routineInputVC.view.bottom + 20)
     }
 }
