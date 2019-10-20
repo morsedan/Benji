@@ -11,15 +11,29 @@ import Parse
 
 class ProfileCoordinator: PresentableCoordinator<Void> {
 
-    lazy var profileVC = ProfileViewController(with: self.user)
+    lazy var profileVC = ProfileViewController(with: self.user, delegate: self)
+    let navController: NavigationController
     let user: PFUser
 
     init(with user: PFUser, router: Router, deepLink: DeepLinkable?) {
         self.user = user
+        let navController = NavigationController()
+        let router = Router(navController: navController)
+        self.navController = navController
+
         super.init(router: router, deepLink: deepLink)
     }
 
     override func toPresentable() -> DismissableVC {
-        return self.profileVC
+        self.navController.setViewControllers([self.profileVC], animated: false)
+        return self.navController
+    }
+}
+
+extension ProfileCoordinator: ProfileViewControllerDelegate {
+    
+    func profileView(_ controller: ProfileViewController, didSelectRoutineFor user: PFUser) {
+        let vc = RoutineViewController()
+        self.router.push(vc, animated: true, completion: nil)
     }
 }

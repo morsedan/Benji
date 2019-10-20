@@ -31,7 +31,7 @@ class ProfileCollectionViewManager: NSObject, UICollectionViewDelegate, UICollec
 
     var items: [ProfileDisplayable] = []
 
-    var didSelectItemAt: (IndexPath) -> Void = {}
+    var didSelectItemAt: (IndexPath) -> Void = {_ in }
 
     init(with collectionView: CollectionView) {
         self.collectionView = collectionView

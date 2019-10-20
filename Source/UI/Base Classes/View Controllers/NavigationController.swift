@@ -8,6 +8,26 @@
 
 import Foundation
 
-class NavigationController: UINavigationController {
-    
+class NavigationController: UINavigationController, Dismissable {
+    var dismissHandlers: [() -> Void] = []
+
+    override func viewDidLoad() {
+        super.viewDidLoad()
+
+        self.view.set(backgroundColor: .background1)
+        self.setNavigationBarHidden(true, animated: false)
+    }
+
+    override func viewDidDisappear(_ animated: Bool) {
+        super.viewDidDisappear(animated)
+
+        if self.isBeingClosed {
+            self.viewWasDismissed()
+            self.dismissHandlers.forEach { (dismissHandler) in
+                dismissHandler()
+            }
+        }
+    }
+
+    func viewWasDismissed() { }
 }

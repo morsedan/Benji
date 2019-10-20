@@ -17,15 +17,21 @@ struct ProfileItem: ProfileDisplayable {
     var hasDetail: Bool = false
 }
 
-class ProfileViewController: FullScreenViewController {
+protocol ProfileViewControllerDelegate: class {
+    func profileView(_ controller: ProfileViewController, didSelectRoutineFor user: PFUser)
+}
+
+class ProfileViewController: ViewController {
 
     private let user: PFUser
 
     lazy var collectionView = ProfileCollectionView()
     lazy var manager = ProfileCollectionViewManager(with: self.collectionView)
+    unowned let delegate: ProfileViewControllerDelegate
 
-    init(with user: PFUser) {
+    init(with user: PFUser, delegate: ProfileViewControllerDelegate) {
         self.user = user
+        self.delegate = delegate
         super.init()
     }
 
@@ -44,6 +50,10 @@ class ProfileViewController: FullScreenViewController {
 
         self.collectionView.delegate = self.manager
         self.collectionView.dataSource = self.manager
+
+        self.manager.didSelectItemAt = { [unowned self] indexPath in
+            self.delegate.profileView(self, didSelectRoutineFor: self.user)
+        }
 
         self.createItems()
     }
