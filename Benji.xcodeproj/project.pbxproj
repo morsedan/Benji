@@ -121,6 +121,7 @@
 		D64C6AA0232DC2B700DB7257 /* TypingIndicatorCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D64C6A9F232DC2B700DB7257 /* TypingIndicatorCell.swift */; };
 		D64C6AA2232EA06800DB7257 /* TypingCellSizeCalculator.swift in Sources */ = {isa = PBXBuildFile; fileRef = D64C6AA1232EA06800DB7257 /* TypingCellSizeCalculator.swift */; };
 		D64C6AA4232EA13300DB7257 /* UIEdgeInsets+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = D64C6AA3232EA13300DB7257 /* UIEdgeInsets+Extensions.swift */; };
+		D653F6B023588F8E00A03EEE /* RoutineViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D653F6AF23588F8E00A03EEE /* RoutineViewController.swift */; };
 		D65B0CCE2344AE390041A176 /* ChannelsViewController+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = D65B0CCD2344AE390041A176 /* ChannelsViewController+Extensions.swift */; };
 		D65B0CE5234928620041A176 /* ProfileCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = D65B0CE4234928620041A176 /* ProfileCoordinator.swift */; };
 		D65B0CE7234929440041A176 /* NewChannelCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = D65B0CE6234929440041A176 /* NewChannelCoordinator.swift */; };
@@ -371,6 +372,7 @@
 		D64C6AA1232EA06800DB7257 /* TypingCellSizeCalculator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TypingCellSizeCalculator.swift; sourceTree = "<group>"; };
 		D64C6AA3232EA13300DB7257 /* UIEdgeInsets+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIEdgeInsets+Extensions.swift"; sourceTree = "<group>"; };
 		D64C6AA523307DB300DB7257 /* Benji.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Benji.entitlements; sourceTree = "<group>"; };
+		D653F6AF23588F8E00A03EEE /* RoutineViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoutineViewController.swift; sourceTree = "<group>"; };
 		D65B0CCD2344AE390041A176 /* ChannelsViewController+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ChannelsViewController+Extensions.swift"; sourceTree = "<group>"; };
 		D65B0CE4234928620041A176 /* ProfileCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileCoordinator.swift; sourceTree = "<group>"; };
 		D65B0CE6234929440041A176 /* NewChannelCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewChannelCoordinator.swift; sourceTree = "<group>"; };
@@ -1244,6 +1246,7 @@
 			children = (
 				80D4A21723039B82007CB5F1 /* RoutineInputContentView.swift */,
 				80D4A21523039B22007CB5F1 /* RoutineInputViewController.swift */,
+				D653F6AF23588F8E00A03EEE /* RoutineViewController.swift */,
 			);
 			path = Routine;
 			sourceTree = "<group>";
@@ -1473,6 +1476,7 @@
 				D6432BF322D828480016001A /* ChannelDataSource.swift in Sources */,
 				D68302202349371D006145FE /* HomeHeaderDateLabel.swift in Sources */,
 				D61EC0C221D3071400204BEE /* ViewController.swift in Sources */,
+				D653F6B023588F8E00A03EEE /* RoutineViewController.swift in Sources */,
 				D6D14D9021D5893600CD8CE4 /* IGListMoveIndex.m in Sources */,
 				D66F0FD822BF295A00BA277D /* Coordinator.swift in Sources */,
 				D642738322C9AEA30088256B /* ContactAuthorizationAlertController.swift in Sources */,

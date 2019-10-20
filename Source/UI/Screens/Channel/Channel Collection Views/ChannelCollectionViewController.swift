@@ -123,7 +123,7 @@ UICollectionViewDelegateFlowLayout {
         return cell
     }
 
-    open func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
+    func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
 
         switch kind {
         case UICollectionView.elementKindSectionHeader:

@@ -31,6 +31,8 @@ class ProfileCollectionViewManager: NSObject, UICollectionViewDelegate, UICollec
 
     var items: [ProfileDisplayable] = []
 
+    var didSelectItemAt: (IndexPath) -> Void = {}
+
     init(with collectionView: CollectionView) {
         self.collectionView = collectionView
         super.init()
@@ -42,6 +44,10 @@ class ProfileCollectionViewManager: NSObject, UICollectionViewDelegate, UICollec
 
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return self.items.count
+    }
+
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        self.didSelectItemAt(indexPath)
     }
 
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {

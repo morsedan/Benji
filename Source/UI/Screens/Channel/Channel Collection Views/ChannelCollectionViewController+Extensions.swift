@@ -80,7 +80,6 @@ extension ChannelCollectionViewController {
                         self.channelDataSource.updateLastItem(with: .message(channelUpdate.message), replaceTypingIndicator: true)
                     })
                 }
-            // Add check here for last message not from user and its attributes to find quick messsages
             case .changed:
                 self.channelDataSource.update(item: .message(channelUpdate.message))
             case .deleted:

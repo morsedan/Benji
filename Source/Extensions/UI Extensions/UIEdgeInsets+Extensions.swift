@@ -8,7 +8,6 @@
 
 import Foundation
 
-
 extension UIEdgeInsets {
 
     var vertical: CGFloat {
