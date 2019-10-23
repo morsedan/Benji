@@ -9,11 +9,11 @@
 import Foundation
 
 class SuggestionCell: UICollectionViewCell, DisplayableCell {
-    typealias ItemType = Suggestion
+    typealias ItemType = SuggestionType
 
     var backgroundStyle: UIKeyboardAppearance = .light
 
-    func configure(with item: Suggestion?) {
+    func configure(with item: SuggestionType?) {
 
     }
 

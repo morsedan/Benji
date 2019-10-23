@@ -174,9 +174,12 @@
 		D68540CF235FDE35006F666C /* SuggestionCollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D68540CE235FDE35006F666C /* SuggestionCollectionViewController.swift */; };
 		D68540D1235FDE69006F666C /* SuggestionCollectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D68540D0235FDE69006F666C /* SuggestionCollectionView.swift */; };
 		D68540D3235FDE96006F666C /* SuggestionCollectionViewManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = D68540D2235FDE96006F666C /* SuggestionCollectionViewManager.swift */; };
-		D68540D5235FDECC006F666C /* SuggestionCollectionViewLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = D68540D4235FDECC006F666C /* SuggestionCollectionViewLayout.swift */; };
+		D68540D5235FDECC006F666C /* SuggestionCollectionViewFlowLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = D68540D4235FDECC006F666C /* SuggestionCollectionViewFlowLayout.swift */; };
 		D68540D7235FE050006F666C /* SuggestionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D68540D6235FE050006F666C /* SuggestionCell.swift */; };
 		D68540D9235FE089006F666C /* Suggestion.swift in Sources */ = {isa = PBXBuildFile; fileRef = D68540D8235FE089006F666C /* Suggestion.swift */; };
+		D68540DC235FED41006F666C /* SuggestionCollectionViewLayoutAttributes.swift in Sources */ = {isa = PBXBuildFile; fileRef = D68540DB235FED41006F666C /* SuggestionCollectionViewLayoutAttributes.swift */; };
+		D68540DE235FEE96006F666C /* SuggestionCellAttributesConfigurer.swift in Sources */ = {isa = PBXBuildFile; fileRef = D68540DD235FEE96006F666C /* SuggestionCellAttributesConfigurer.swift */; };
+		D68540E1235FF056006F666C /* TextSuggestionCellAttributesConfigurer.swift in Sources */ = {isa = PBXBuildFile; fileRef = D68540E0235FF056006F666C /* TextSuggestionCellAttributesConfigurer.swift */; };
 		D685E9272331177100CC1BAB /* UserNotificationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = D685E9262331177100CC1BAB /* UserNotificationManager.swift */; };
 		D68DC7FC22EE5D9000BEAF80 /* FeedOverlayView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D68DC7FB22EE5D9000BEAF80 /* FeedOverlayView.swift */; };
 		D691794222F6418700340AA3 /* Router.swift in Sources */ = {isa = PBXBuildFile; fileRef = D691794122F6418700340AA3 /* Router.swift */; };
@@ -432,9 +435,12 @@
 		D68540CE235FDE35006F666C /* SuggestionCollectionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SuggestionCollectionViewController.swift; sourceTree = "<group>"; };
 		D68540D0235FDE69006F666C /* SuggestionCollectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SuggestionCollectionView.swift; sourceTree = "<group>"; };
 		D68540D2235FDE96006F666C /* SuggestionCollectionViewManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SuggestionCollectionViewManager.swift; sourceTree = "<group>"; };
-		D68540D4235FDECC006F666C /* SuggestionCollectionViewLayout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SuggestionCollectionViewLayout.swift; sourceTree = "<group>"; };
+		D68540D4235FDECC006F666C /* SuggestionCollectionViewFlowLayout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SuggestionCollectionViewFlowLayout.swift; sourceTree = "<group>"; };
 		D68540D6235FE050006F666C /* SuggestionCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SuggestionCell.swift; sourceTree = "<group>"; };
 		D68540D8235FE089006F666C /* Suggestion.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Suggestion.swift; sourceTree = "<group>"; };
+		D68540DB235FED41006F666C /* SuggestionCollectionViewLayoutAttributes.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SuggestionCollectionViewLayoutAttributes.swift; sourceTree = "<group>"; };
+		D68540DD235FEE96006F666C /* SuggestionCellAttributesConfigurer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SuggestionCellAttributesConfigurer.swift; sourceTree = "<group>"; };
+		D68540E0235FF056006F666C /* TextSuggestionCellAttributesConfigurer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextSuggestionCellAttributesConfigurer.swift; sourceTree = "<group>"; };
 		D685E9262331177100CC1BAB /* UserNotificationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserNotificationManager.swift; sourceTree = "<group>"; };
 		D68DC7FB22EE5D9000BEAF80 /* FeedOverlayView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedOverlayView.swift; sourceTree = "<group>"; };
 		D691794122F6418700340AA3 /* Router.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Router.swift; sourceTree = "<group>"; };
@@ -1009,14 +1015,33 @@
 		D68540CD235FDE18006F666C /* Autocomplete */ = {
 			isa = PBXGroup;
 			children = (
+				D68540DA235FECD5006F666C /* Layout */,
 				D68540CE235FDE35006F666C /* SuggestionCollectionViewController.swift */,
 				D68540D0235FDE69006F666C /* SuggestionCollectionView.swift */,
 				D68540D2235FDE96006F666C /* SuggestionCollectionViewManager.swift */,
-				D68540D4235FDECC006F666C /* SuggestionCollectionViewLayout.swift */,
 				D68540D6235FE050006F666C /* SuggestionCell.swift */,
 				D68540D8235FE089006F666C /* Suggestion.swift */,
 			);
 			path = Autocomplete;
+			sourceTree = "<group>";
+		};
+		D68540DA235FECD5006F666C /* Layout */ = {
+			isa = PBXGroup;
+			children = (
+				D68540D4235FDECC006F666C /* SuggestionCollectionViewFlowLayout.swift */,
+				D68540DB235FED41006F666C /* SuggestionCollectionViewLayoutAttributes.swift */,
+				D68540DF235FEF0C006F666C /* Configurer */,
+			);
+			path = Layout;
+			sourceTree = "<group>";
+		};
+		D68540DF235FEF0C006F666C /* Configurer */ = {
+			isa = PBXGroup;
+			children = (
+				D68540DD235FEE96006F666C /* SuggestionCellAttributesConfigurer.swift */,
+				D68540E0235FF056006F666C /* TextSuggestionCellAttributesConfigurer.swift */,
+			);
+			path = Configurer;
 			sourceTree = "<group>";
 		};
 		D6A82B702325C105003E0A8B /* Favorites */ = {
@@ -1496,6 +1521,7 @@
 				D61EC0E821D3107A00204BEE /* Date+Extensions.swift in Sources */,
 				D637532E23161B9B00214F63 /* FavoritesSectionHeader.swift in Sources */,
 				D6C65E9E230CD07400259F7A /* LaunchCoordinator.swift in Sources */,
+				D68540E1235FF056006F666C /* TextSuggestionCellAttributesConfigurer.swift in Sources */,
 				D64273A122CBDC870088256B /* ContextButton.swift in Sources */,
 				D6432BF522D82CDC0016001A /* ChannelCollectionViewFlowLayout.swift in Sources */,
 				D6B2601622E41BE700143CF0 /* ChannelSectionHeader.swift in Sources */,
@@ -1557,6 +1583,7 @@
 				D66F0FDE22BF2C5D00BA277D /* HomeSegmentControl.swift in Sources */,
 				D6B2603D22E6B8EA00143CF0 /* ProfileViewController.swift in Sources */,
 				D6D1460521D5524C00CD8CE4 /* StringCasing.swift in Sources */,
+				D68540DE235FEE96006F666C /* SuggestionCellAttributesConfigurer.swift in Sources */,
 				D6D8A48C235D154500F0CC4B /* NavigationBarViewController.swift in Sources */,
 				D6D1501221D5EA0400CD8CE4 /* ImageDisplayable.swift in Sources */,
 				D6B2604122E6B9C600143CF0 /* Display2Label.swift in Sources */,
@@ -1609,6 +1636,7 @@
 				D6432BF722D837340016001A /* CellSizeCalculator.swift in Sources */,
 				D64C6A7C23288FB300DB7257 /* SmallSemiBoldLabel.swift in Sources */,
 				D6432BFB22DB923C0016001A /* ChannelSectionType.swift in Sources */,
+				D68540DC235FED41006F666C /* SuggestionCollectionViewLayoutAttributes.swift in Sources */,
 				D66F0FDA22BF297F00BA277D /* MainCoordinator.swift in Sources */,
 				D68540D7235FE050006F666C /* SuggestionCell.swift in Sources */,
 				D6D14FFA21D5893700CD8CE4 /* IGListDiff.mm in Sources */,
@@ -1625,7 +1653,7 @@
 				D63826D22274C8C0001D4B8B /* ChannelManager+Extensions.swift in Sources */,
 				D63752F92313833B00214F63 /* ProfileAvatarView.swift in Sources */,
 				D61EC0E221D30E6000204BEE /* Label.swift in Sources */,
-				D68540D5235FDECC006F666C /* SuggestionCollectionViewLayout.swift in Sources */,
+				D68540D5235FDECC006F666C /* SuggestionCollectionViewFlowLayout.swift in Sources */,
 				D61EC0E021D30E3F00204BEE /* FullScreenViewController.swift in Sources */,
 				D6D1502D21D6A08300CD8CE4 /* ChannelCollectionView.swift in Sources */,
 				D637533023161C2500214F63 /* FavoritesCollectionViewManager.swift in Sources */,

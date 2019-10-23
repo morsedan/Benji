@@ -11,7 +11,7 @@ import Foundation
 class SuggestionCollectionView: CollectionView {
 
     init() {
-        let flowLayout = SuggestionCollectionViewLayout()
+        let flowLayout = SuggestionCollectionViewFlowLayout()
         super.init(flowLayout: flowLayout)
     }
 

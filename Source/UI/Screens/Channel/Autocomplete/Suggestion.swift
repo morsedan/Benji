@@ -8,22 +8,18 @@
 
 import Foundation
 
-struct Suggestion: DisplayableCellItem {
+enum SuggestionType: DisplayableCellItem {
 
-    enum SuggestionType {
-        case foo
-        case boo
-    }
+    case text(String)
 
     var backgroundColor: Color {
         return .clear
     }
 
-    var identifier: String
-
     func diffIdentifier() -> NSObjectProtocol {
-        return self.identifier as NSObjectProtocol
+        switch self {
+        case .text(let text):
+            return text as NSObjectProtocol
+        }
     }
-
-
 }
