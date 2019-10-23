@@ -10,35 +10,26 @@ import Foundation
 import UserNotifications
 
 class RoutineInputViewController: ViewController {
-
+    static let height: CGFloat = 500
     let content = RoutineInputContentView()
 
     var selectedDate: Date {
-        return self.content.timePicker.date
+        return Date()
     }
 
     override func loadView() {
         self.view = self.content
-
-        self.content.setRoutineButton.addTarget(self,
-                                                action: #selector(setRoutineTapped(_:)),
-                                                for: .touchUpInside)
     }
 
-    @objc func setRoutineTapped(_ sender: UIButton) {
-        let routine = Routine(messageCheckTime: self.selectedDate)
-        RoutineManager.shared.scheduleNotification(for: routine)
-    }
-
-    override func viewDidLoad() {
-        super.viewDidLoad()
+    override func initializeViews() {
+        super.initializeViews()
 
         self.content.timeHump.percentage.signal.observeValues { [unowned self] (percentage) in
             let calendar = Calendar.current
             var components = DateComponents()
             components.second = Int(percentage * 86400)
 
-            self.content.timePicker.setDate(calendar.date(from: components)!, animated: false)
+           // self.content.timePicker.setDate(calendar.date(from: components)!, animated: false)
         }
 
         RoutineManager.shared.getRoutineNotifications().observe { (result) in
@@ -59,6 +50,19 @@ class RoutineInputViewController: ViewController {
                     break
                 }
             }
+        }
+
+        self.content.setRoutineButton.onTap { [unowned self] (tap) in
+            let routine = Routine(messageCheckTime: self.selectedDate)
+            RoutineManager.shared.scheduleNotification(for: routine)
+        }
+
+        self.content.minusButton.onTap { [unowned self] (tap) in
+
+        }
+
+        self.content.plusButton.onTap { [unowned self] (tap) in
+            
         }
     }
 }

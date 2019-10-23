@@ -193,7 +193,7 @@ extension UIView {
 
     func makeRound(masksToBounds: Bool = true) {
         self.layer.masksToBounds = masksToBounds
-        self.layer.cornerRadius = self.halfWidth
+        self.layer.cornerRadius = self.halfHeight
     }
 
     func roundCorners() {

@@ -10,13 +10,17 @@ import Foundation
 
 class Display1Label: Label {
 
-    func set(text: Localized) {
+    func set(text: Localized,
+             color: Color = .white,
+             alignment: NSTextAlignment = .left,
+             stringCasing: StringCasing = .unchanged) {
+
         let attributed = AttributedString(text,
                                           fontType: .display1,
-                                          color: .white)
+                                          color: color)
 
         self.set(attributed: attributed,
-                 alignment: .left,
-                 stringCasing: .capitalized)
+                 alignment: alignment,
+                 stringCasing: stringCasing)
     }
 }

@@ -29,9 +29,9 @@ class RoutineViewController: NavigationBarViewController {
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
 
-        self.routineInputVC.view.size = CGSize(width: self.view.width, height: 300)
+        self.routineInputVC.view.size = CGSize(width: self.view.width, height: RoutineInputViewController.height)
         self.routineInputVC.view.centerOnX()
-        self.routineInputVC.view.top = self.lineView.bottom + 40
+        self.routineInputVC.view.bottom = self.view.height - self.view.safeAreaInsets.bottom
 
         self.scrollView.contentSize = CGSize(width: self.view.width, height: self.routineInputVC.view.bottom + 20)
     }

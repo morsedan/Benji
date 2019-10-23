@@ -10,10 +10,12 @@ import Foundation
 
 class Display2Label: Label {
 
-    func set(text: Localized, alignment: NSTextAlignment = .left) {
+    func set(text: Localized,
+             color: Color = .white,
+             alignment: NSTextAlignment = .left) {
         let attributed = AttributedString(text,
                                           fontType: .display2,
-                                          color: .white)
+                                          color: color)
 
         self.set(attributed: attributed,
                  alignment: alignment,

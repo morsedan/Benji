@@ -21,10 +21,12 @@ class TimeHumpView: View {
     override func initializeSubviews() {
         super.initializeSubviews()
 
-        self.set(backgroundColor: .green)
+        self.set(backgroundColor: .clear)
 
-        self.sliderView.set(backgroundColor: Color.white)
-        self.sliderView.size = CGSize(width: 30, height: 30)
+        self.sliderView.set(backgroundColor: .background1)
+        self.sliderView.size = CGSize(width: 26, height: 26)
+        self.sliderView.layer.borderColor = Color.lightPurple.color.cgColor
+        self.sliderView.layer.borderWidth = 2
         self.addSubview(self.sliderView)
 
         self.onPan { [unowned self] (panRecognizer) in
@@ -42,14 +44,16 @@ class TimeHumpView: View {
         super.draw(rect)
 
         let path = UIBezierPath()
-        path.move(to: CGPoint())
+        path.lineWidth = 2
+        let startingPoint = CGPoint(x: 0, y: self.height - 2)
+        path.move(to: startingPoint)
 
         for percentage in stride(from: 0, through: 1.0, by: 0.01) {
             let point = self.getPoint(normalizedX: CGFloat(percentage))
             path.addLine(to: point)
         }
 
-        UIColor.black.setStroke()
+        UIColor.white.setStroke()
         path.stroke()
     }
 
@@ -58,6 +62,7 @@ class TimeHumpView: View {
 
         let sliderCenter = self.getPoint(normalizedX: clamp(self.percentage.value, 0, 1))
         self.sliderView.center = sliderCenter
+        self.sliderView.makeRound()
     }
 
     func getPoint(normalizedX: CGFloat) -> CGPoint {
@@ -65,7 +70,7 @@ class TimeHumpView: View {
         let angle = normalizedX * twoPi
 
         let x = self.width * normalizedX
-        let y = (self.height * 0.5) - (sin(angle - halfPi) * self.amplitude)
+        let y = ((self.height + 2) * 0.5) - (sin(angle - halfPi) * self.amplitude)
 
         return CGPoint(x: x, y: y)
     }
