@@ -171,6 +171,12 @@
 		D684840C22CD48FA00362AC3 /* PassThroughView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D684840B22CD48FA00362AC3 /* PassThroughView.swift */; };
 		D684D6E922D0E1CB00874B08 /* EmptyChannelView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D684D6E822D0E1CB00874B08 /* EmptyChannelView.swift */; };
 		D684D6EB22D0E4F000874B08 /* StackedAvatarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D684D6EA22D0E4F000874B08 /* StackedAvatarView.swift */; };
+		D68540CF235FDE35006F666C /* SuggestionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D68540CE235FDE35006F666C /* SuggestionViewController.swift */; };
+		D68540D1235FDE69006F666C /* SuggestionCollectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D68540D0235FDE69006F666C /* SuggestionCollectionView.swift */; };
+		D68540D3235FDE96006F666C /* SuggestionCollectionViewManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = D68540D2235FDE96006F666C /* SuggestionCollectionViewManager.swift */; };
+		D68540D5235FDECC006F666C /* SuggestionCollectionViewLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = D68540D4235FDECC006F666C /* SuggestionCollectionViewLayout.swift */; };
+		D68540D7235FE050006F666C /* SuggestionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D68540D6235FE050006F666C /* SuggestionCell.swift */; };
+		D68540D9235FE089006F666C /* Suggestion.swift in Sources */ = {isa = PBXBuildFile; fileRef = D68540D8235FE089006F666C /* Suggestion.swift */; };
 		D685E9272331177100CC1BAB /* UserNotificationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = D685E9262331177100CC1BAB /* UserNotificationManager.swift */; };
 		D68DC7FC22EE5D9000BEAF80 /* FeedOverlayView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D68DC7FB22EE5D9000BEAF80 /* FeedOverlayView.swift */; };
 		D691794222F6418700340AA3 /* Router.swift in Sources */ = {isa = PBXBuildFile; fileRef = D691794122F6418700340AA3 /* Router.swift */; };
@@ -423,6 +429,12 @@
 		D684840B22CD48FA00362AC3 /* PassThroughView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PassThroughView.swift; sourceTree = "<group>"; };
 		D684D6E822D0E1CB00874B08 /* EmptyChannelView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmptyChannelView.swift; sourceTree = "<group>"; };
 		D684D6EA22D0E4F000874B08 /* StackedAvatarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StackedAvatarView.swift; sourceTree = "<group>"; };
+		D68540CE235FDE35006F666C /* SuggestionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SuggestionViewController.swift; sourceTree = "<group>"; };
+		D68540D0235FDE69006F666C /* SuggestionCollectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SuggestionCollectionView.swift; sourceTree = "<group>"; };
+		D68540D2235FDE96006F666C /* SuggestionCollectionViewManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SuggestionCollectionViewManager.swift; sourceTree = "<group>"; };
+		D68540D4235FDECC006F666C /* SuggestionCollectionViewLayout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SuggestionCollectionViewLayout.swift; sourceTree = "<group>"; };
+		D68540D6235FE050006F666C /* SuggestionCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SuggestionCell.swift; sourceTree = "<group>"; };
+		D68540D8235FE089006F666C /* Suggestion.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Suggestion.swift; sourceTree = "<group>"; };
 		D685E9262331177100CC1BAB /* UserNotificationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserNotificationManager.swift; sourceTree = "<group>"; };
 		D68DC7FB22EE5D9000BEAF80 /* FeedOverlayView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedOverlayView.swift; sourceTree = "<group>"; };
 		D691794122F6418700340AA3 /* Router.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Router.swift; sourceTree = "<group>"; };
@@ -843,6 +855,7 @@
 		D6432BF122D8282E0016001A /* Channel */ = {
 			isa = PBXGroup;
 			children = (
+				D68540CD235FDE18006F666C /* Autocomplete */,
 				D67896CB2304524C0059BA75 /* ChannelCoordinator.swift */,
 				D6D1500621D5E73D00CD8CE4 /* ChannelViewController.swift */,
 				D64273A622CC2D280088256B /* ChannelViewController+Extensions.swift */,
@@ -991,6 +1004,19 @@
 				D64C6A9A232D6C3B00DB7257 /* Typing */,
 			);
 			path = Cells;
+			sourceTree = "<group>";
+		};
+		D68540CD235FDE18006F666C /* Autocomplete */ = {
+			isa = PBXGroup;
+			children = (
+				D68540CE235FDE35006F666C /* SuggestionViewController.swift */,
+				D68540D0235FDE69006F666C /* SuggestionCollectionView.swift */,
+				D68540D2235FDE96006F666C /* SuggestionCollectionViewManager.swift */,
+				D68540D4235FDECC006F666C /* SuggestionCollectionViewLayout.swift */,
+				D68540D6235FE050006F666C /* SuggestionCell.swift */,
+				D68540D8235FE089006F666C /* Suggestion.swift */,
+			);
+			path = Autocomplete;
 			sourceTree = "<group>";
 		};
 		D6A82B702325C105003E0A8B /* Favorites */ = {
@@ -1428,6 +1454,7 @@
 				D61EC0E421D30E9100204BEE /* TextView.swift in Sources */,
 				D6AF02FD220153F5002D5C75 /* LaunchManager.swift in Sources */,
 				D64273A322CC040B0088256B /* GrowingTextView.swift in Sources */,
+				D68540D3235FDE96006F666C /* SuggestionCollectionViewManager.swift in Sources */,
 				D64C6A7E23294A8600DB7257 /* ChannelKey.swift in Sources */,
 				D6384414233834380072227B /* Symbols.swift in Sources */,
 				D6DADF692207D246007D9EB1 /* TCHMessage+Extensions.swift in Sources */,
@@ -1504,6 +1531,7 @@
 				D66F0FCF22BF060500BA277D /* Deeplinkable.swift in Sources */,
 				D6B2607222E80FE000143CF0 /* XSmallLabel.swift in Sources */,
 				D63844122337C3CD0072227B /* LoadMoreSectionHeader.swift in Sources */,
+				D68540CF235FDE35006F666C /* SuggestionViewController.swift in Sources */,
 				D642737F22C9A7EC0088256B /* ContactsManager.swift in Sources */,
 				D642738A22C9B0170088256B /* ModalControllerAnimatedTransitioning.swift in Sources */,
 				D637531E2316146A00214F63 /* ContextCell.swift in Sources */,
@@ -1552,6 +1580,7 @@
 				D6DADF742207E0E2007D9EB1 /* TCHChannel+Extensions.swift in Sources */,
 				D684840A22CD48D000362AC3 /* GradientView.swift in Sources */,
 				D642737D22C9A2D70088256B /* NameLabel.swift in Sources */,
+				D68540D9235FE089006F666C /* Suggestion.swift in Sources */,
 				D646DB3E22CFCF330055CC7C /* TwilioChatClient+Extensions.swift in Sources */,
 				D6EDD19B2355DC2900FDA5D6 /* ProfileCollectionViewManager.swift in Sources */,
 				D6D1503E21DAF98500CD8CE4 /* TextField.swift in Sources */,
@@ -1562,6 +1591,7 @@
 				D6A82B772325C48F003E0A8B /* PurposeDescriptionTextView.swift in Sources */,
 				D61EC0EE21D313BA00204BEE /* UIScreen+Extensions.swift in Sources */,
 				D68483FD22CD09C800362AC3 /* ListViewController.swift in Sources */,
+				D68540D1235FDE69006F666C /* SuggestionCollectionView.swift in Sources */,
 				80C7C6062316112400643A14 /* TimeHumpView.swift in Sources */,
 				D61EC0D921D30C8E00204BEE /* DispatchQue+Extensions.swift in Sources */,
 				D6D1503921D7F46F00CD8CE4 /* UITextView+Extensions.swift in Sources */,
@@ -1580,6 +1610,7 @@
 				D64C6A7C23288FB300DB7257 /* SmallSemiBoldLabel.swift in Sources */,
 				D6432BFB22DB923C0016001A /* ChannelSectionType.swift in Sources */,
 				D66F0FDA22BF297F00BA277D /* MainCoordinator.swift in Sources */,
+				D68540D7235FE050006F666C /* SuggestionCell.swift in Sources */,
 				D6D14FFA21D5893700CD8CE4 /* IGListDiff.mm in Sources */,
 				D61EC0F321D3146600204BEE /* UINib+Extensions.swift in Sources */,
 				D67896A922FF51170059BA75 /* LoginPhoneViewController.swift in Sources */,
@@ -1594,6 +1625,7 @@
 				D63826D22274C8C0001D4B8B /* ChannelManager+Extensions.swift in Sources */,
 				D63752F92313833B00214F63 /* ProfileAvatarView.swift in Sources */,
 				D61EC0E221D30E6000204BEE /* Label.swift in Sources */,
+				D68540D5235FDECC006F666C /* SuggestionCollectionViewLayout.swift in Sources */,
 				D61EC0E021D30E3F00204BEE /* FullScreenViewController.swift in Sources */,
 				D6D1502D21D6A08300CD8CE4 /* ChannelCollectionView.swift in Sources */,
 				D637533023161C2500214F63 /* FavoritesCollectionViewManager.swift in Sources */,
