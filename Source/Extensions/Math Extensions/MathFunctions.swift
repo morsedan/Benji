@@ -54,3 +54,17 @@ func sin(degrees: Float) -> Float {
 func sin(degrees: CGFloat) -> CGFloat {
     return CGFloat(sin(degrees: degrees.native))
 }
+
+// MARK: Rounding
+
+func round(_ value: Int, toNearest: Int) -> Int {
+    let fValue = Float(value)
+    let fToNearest = Float(toNearest)
+
+    let fResult = round(fValue / fToNearest) * fToNearest
+    return Int(fResult.rounded(.toNearestOrAwayFromZero))
+}
+
+func round(_ value: Float, toNearest: Float) -> Float {
+    return round(value / toNearest) * toNearest
+}

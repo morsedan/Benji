@@ -10,9 +10,9 @@ import Foundation
 
 class RoutineInputContentView: View {
 
-    let timeLabel = Display1Label()
-    let timeOfDayLabel = XSmallLabel()
-    let everyDayLabel = XXSmallSemiBoldLabel()
+    let timeLabel = Display1Label() // Displays the clock time. e.g. 6:34
+    let timePeriodLabel = XSmallLabel() // AM/PM label
+    let everyDayLabel = XXSmallSemiBoldLabel() // Displays the frequency of the routine
 
     let plusButton = Button()
     let minusButton = Button()
@@ -26,8 +26,8 @@ class RoutineInputContentView: View {
         self.timeLabel.set(text: "6:00",
                            color: .lightPurple,
                            alignment: .center)
-        self.addSubview(self.timeOfDayLabel)
-        self.timeOfDayLabel.set(text: "PM",
+        self.addSubview(self.timePeriodLabel)
+        self.timePeriodLabel.set(text: "PM",
                                 color: .lightPurple,
                                 alignment: .left,
                                 stringCasing: .uppercase)
@@ -70,9 +70,9 @@ class RoutineInputContentView: View {
         self.timeLabel.centerOnX()
         self.timeLabel.bottom = self.timeHump.top - 140
 
-        self.timeOfDayLabel.setSize(withWidth: 40)
-        self.timeOfDayLabel.left = self.timeLabel.right + 4
-        self.timeOfDayLabel.centerY = self.timeLabel.centerY
+        self.timePeriodLabel.setSize(withWidth: 40)
+        self.timePeriodLabel.left = self.timeLabel.right + 4
+        self.timePeriodLabel.centerY = self.timeLabel.centerY
 
         self.minusButton.size = CGSize(width: 50, height: 50)
         self.minusButton.centerY = self.timeLabel.centerY

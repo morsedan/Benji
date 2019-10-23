@@ -24,6 +24,8 @@ class NavigationBarViewController: ViewController {
     override func initializeViews() {
         super.initializeViews()
 
+        self.view.set(backgroundColor: .background1)
+
         self.view.addSubview(self.backButton)
         self.backButton.setImage(UIImage(systemName: "arrow.left"), for: .normal)
         self.backButton.tintColor = Color.lightPurple.color

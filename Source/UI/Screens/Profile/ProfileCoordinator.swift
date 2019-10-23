@@ -33,7 +33,14 @@ class ProfileCoordinator: PresentableCoordinator<Void> {
 extension ProfileCoordinator: ProfileViewControllerDelegate {
     
     func profileView(_ controller: ProfileViewController, didSelectRoutineFor user: PFUser) {
-        let vc = RoutineViewController()
+        let vc = RoutineViewController(delegate: self)
         self.router.push(vc, animated: true, completion: nil)
+    }
+}
+
+extension ProfileCoordinator: RoutineInputViewControllerDelegate {
+
+    func routineInputViewControllerSetRoutine(_ controller: RoutineInputViewController) {
+        self.router.popModule(animated: true)
     }
 }

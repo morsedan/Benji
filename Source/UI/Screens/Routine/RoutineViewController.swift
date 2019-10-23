@@ -10,11 +10,21 @@ import Foundation
 
 class RoutineViewController: NavigationBarViewController {
 
-    let routineInputVC = RoutineInputViewController()
+    private static let inputVCHeight: CGFloat = 500
+
+    private let routineInputVC: RoutineInputViewController
+
+    init(delegate: RoutineInputViewControllerDelegate) {
+        self.routineInputVC = RoutineInputViewController(delegate: delegate)
+        super.init()
+    }
+
+    required init?(coder aDecoder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
 
     override func initializeViews() {
         super.initializeViews()
-
         self.addChild(viewController: self.routineInputVC)
     }
 
@@ -29,10 +39,12 @@ class RoutineViewController: NavigationBarViewController {
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
 
-        self.routineInputVC.view.size = CGSize(width: self.view.width, height: RoutineInputViewController.height)
+        self.routineInputVC.view.size = CGSize(width: self.view.width,
+                                               height: RoutineViewController.inputVCHeight)
         self.routineInputVC.view.centerOnX()
         self.routineInputVC.view.bottom = self.view.height - self.view.safeAreaInsets.bottom
 
-        self.scrollView.contentSize = CGSize(width: self.view.width, height: self.routineInputVC.view.bottom + 20)
+        self.scrollView.contentSize = CGSize(width: self.view.width,
+                                             height: self.routineInputVC.view.bottom + 20)
     }
 }

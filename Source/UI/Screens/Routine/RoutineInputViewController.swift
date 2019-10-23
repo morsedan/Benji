@@ -9,12 +9,23 @@
 import Foundation
 import UserNotifications
 
-class RoutineInputViewController: ViewController {
-    static let height: CGFloat = 500
-    let content = RoutineInputContentView()
+protocol RoutineInputViewControllerDelegate: class {
+    func routineInputViewControllerSetRoutine(_ controller: RoutineInputViewController)
+}
 
-    var selectedDate: Date {
-        return Date()
+class RoutineInputViewController: ViewController {
+
+    private let content = RoutineInputContentView()
+
+    private unowned let delegate: RoutineInputViewControllerDelegate
+
+    init(delegate: RoutineInputViewControllerDelegate) {
+        self.delegate = delegate
+        super.init()
+    }
+
+    required init?(coder aDecoder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
     }
 
     override func loadView() {
@@ -23,14 +34,6 @@ class RoutineInputViewController: ViewController {
 
     override func initializeViews() {
         super.initializeViews()
-
-        self.content.timeHump.percentage.signal.observeValues { [unowned self] (percentage) in
-            let calendar = Calendar.current
-            var components = DateComponents()
-            components.second = Int(percentage * 86400)
-
-           // self.content.timePicker.setDate(calendar.date(from: components)!, animated: false)
-        }
 
         RoutineManager.shared.getRoutineNotifications().observe { (result) in
             runMain {
@@ -52,9 +55,19 @@ class RoutineInputViewController: ViewController {
             }
         }
 
+        // React to updates to the
+        self.content.timeHump.percentage.signal.observeValues { [unowned self] (percentage) in
+            var components = DateComponents(percentageOfDay: Float(percentage))
+            components.minute = round(components.minute ?? 0, toNearest: 15)
+
+            self.content.timeLabel.set(text: "\(components.hour!):\(components.minute!)",
+                                       color: .lightPurple,
+                                       alignment: .right)
+        }
+
         self.content.setRoutineButton.onTap { [unowned self] (tap) in
-            let routine = Routine(messageCheckTime: self.selectedDate)
-            RoutineManager.shared.scheduleNotification(for: routine)
+//            let routine = Routine(messageCheckTime: self.selectedDate)
+//            RoutineManager.shared.scheduleNotification(for: routine)
         }
 
         self.content.minusButton.onTap { [unowned self] (tap) in

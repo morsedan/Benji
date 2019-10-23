@@ -115,6 +115,7 @@ extension Date {
 }
 
 extension Date: Diffable {
+
     func diffIdentifier() -> NSObjectProtocol {
         return String(self.hashValue) as NSObjectProtocol
     }
