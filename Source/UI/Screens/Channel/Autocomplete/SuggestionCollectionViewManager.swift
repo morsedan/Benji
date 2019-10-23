@@ -8,6 +8,6 @@
 
 import Foundation
 
-class SuggestionCollectionViewManager: NSObject {
-    
+class SuggestionCollectionViewManager: CollectionViewManager<SuggestionCell> {
+
 }

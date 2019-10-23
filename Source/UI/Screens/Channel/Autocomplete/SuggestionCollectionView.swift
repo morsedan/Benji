@@ -9,5 +9,13 @@
 import Foundation
 
 class SuggestionCollectionView: CollectionView {
-    
+
+    init() {
+        let flowLayout = SuggestionCollectionViewLayout()
+        super.init(flowLayout: flowLayout)
+    }
+
+    required init?(coder aDecoder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
 }

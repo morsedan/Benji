@@ -8,6 +8,6 @@
 
 import Foundation
 
-class SuggestionViewController: ViewController {
+class SuggestionCollectionViewController: CollectionViewController<SuggestionCell, SuggestionCollectionViewManager> {
     
 }
