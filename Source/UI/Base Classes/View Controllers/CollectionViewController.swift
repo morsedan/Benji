@@ -18,7 +18,8 @@ class CollectionViewController<CellType: DisplayableCell & UICollectionViewCell,
         return manager
     }()
 
-    let collectionView: CollectionView
+    unowned let collectionView: CollectionView
+    
 
     init(with collectionView: CollectionView) {
         self.collectionView = collectionView

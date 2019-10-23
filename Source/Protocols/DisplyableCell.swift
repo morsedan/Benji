@@ -17,16 +17,22 @@ protocol DisplayableCell: class {
 
     static var reuseID: String { get }
     func configure(with item: ItemType?)
+    /// Called with a managing objects selectedIndexPaths is set
+    func update(isSelected: Bool)
 }
 
 extension DisplayableCell where Self: UICollectionViewCell {
     static var reuseID: String {
         return String(describing: self)
     }
+
+    func update(isSelected: Bool) {}
 }
 
 extension DisplayableCell where Self: UITableViewCell {
     static var reuseID: String {
         return String(describing: self)
     }
+
+    func update(isSelected: Bool) {}
 }

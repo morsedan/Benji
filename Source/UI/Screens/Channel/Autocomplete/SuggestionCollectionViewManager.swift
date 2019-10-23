@@ -10,4 +10,12 @@ import Foundation
 
 class SuggestionCollectionViewManager: CollectionViewManager<SuggestionCell> {
 
+    /// holds keyboard appearance state for current textfield.
+    var keyboardAppearance: UIKeyboardAppearance = .light
+
+    override func managerWillDisplay(cell: SuggestionCell, for indexPath: IndexPath) {
+        super.managerWillDisplay(cell: cell, for: indexPath)
+
+        cell.backgroundStyle = self.keyboardAppearance
+    }
 }

@@ -12,12 +12,35 @@ import GestureRecognizerClosures
 
 class CollectionViewManager<CellType: DisplayableCell & UICollectionViewCell>: NSObject, UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout {
     
-    var collectionView: UICollectionView
+    unowned let collectionView: UICollectionView
 
     var items = MutableProperty<[CellType.ItemType]>([])
 
+    // MARK: Selection
+    var allowMultipleSelection: Bool = false
+    private(set) var selectedIndexPaths: Set<IndexPath> = [] {
+        didSet {
+            self.updateSelected(indexPaths: self.selectedIndexPaths, and: oldValue)
+        }
+    }
+    var selectedItems: [CellType.ItemType] {
+        var items: [CellType.ItemType] = []
+        for indexPath in self.selectedIndexPaths {
+            if let item = self.items.value[safe: indexPath.row] {
+                items.append(item)
+            }
+        }
+        return items
+    }
+
+    // MARK: Events
+
+     lazy var onSelectedItem = Property(self._onSelectedItem)
+     private let _onSelectedItem = MutableProperty<(item: CellType.ItemType, indexPath: IndexPath)?>(nil)
+     var didLongPress: ((CellType.ItemType, IndexPath) -> Void)?
+     var willDisplayCell: ((CellType.ItemType, IndexPath) -> Void)?
+
     var didSelect: (_ item: CellType.ItemType, _ indexPath: IndexPath) -> Void = { _, _ in }
-    var didLongPress: (_ item: CellType.ItemType, _ indexPath: IndexPath) -> Void = { _, _ in }
 
     required init(with collectionView: UICollectionView) {
 
@@ -28,6 +51,22 @@ class CollectionViewManager<CellType: DisplayableCell & UICollectionViewCell>: N
 
     func initializeCollectionView() {
         self.collectionView.register(CellType.self, forCellWithReuseIdentifier: CellType.reuseID)
+    }
+
+    private func updateSelected(indexPaths: Set<IndexPath>, and oldIndexPaths: Set<IndexPath>) {
+        // Reset all the old indexPaths if they are not also in the new array
+        oldIndexPaths.forEach { (indexPath) in
+            if !indexPaths.contains(indexPath),
+                let cell = self.collectionView.cellForItem(at: indexPath) as? CellType {
+                cell.update(isSelected: self.allowMultipleSelection)
+            }
+        }
+
+        indexPaths.forEach { (indexPath) in
+            if let cell = self.collectionView.cellForItem(at: indexPath) as? CellType {
+                cell.update(isSelected: true)
+            }
+        }
     }
 
     func reset() {
@@ -120,15 +159,14 @@ class CollectionViewManager<CellType: DisplayableCell & UICollectionViewCell>: N
 
         cell.contentView.onLongPress { [weak self] (longPress) in
             guard let `self` = self, let item = self.items.value[safe: indexPath.row] else { return }
-            self.didLongPress(item, indexPath)
+            self.didLongPress?(item, indexPath)
         }
 
-        return self.managerWillDisplay(cell: cell, for: indexPath)
-    }
-
-    func managerWillDisplay(cell: CellType, for indexPath: IndexPath) -> CellType {
+        self.managerWillDisplay(cell: cell, for: indexPath)
         return cell
     }
+
+    func managerWillDisplay(cell: CellType, for indexPath: IndexPath) { }
 
     private func updateCollectionView(items: [CellType.ItemType],
                                       modify: @escaping () -> Void,

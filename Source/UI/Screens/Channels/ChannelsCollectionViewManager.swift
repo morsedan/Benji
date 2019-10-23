@@ -26,11 +26,12 @@ class ChannelsCollectionViewManager: CollectionViewManager<ChannelCell> {
         }
     }
 
-    override func managerWillDisplay(cell: ChannelCell, for indexPath: IndexPath) -> ChannelCell {
+    override func managerWillDisplay(cell: ChannelCell, for indexPath: IndexPath) {
+        super.managerWillDisplay(cell: cell, for: indexPath)
+
         if let filter = self.channelFilter {
             cell.content.highlight(text: filter.text)
         }
-        return cell
     }
 
     override func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {

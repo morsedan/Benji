@@ -82,10 +82,6 @@ class NewChannelViewController: FullScreenViewController {
         self.addChild(viewController: self.favoritesVC)
         self.favoritesVC.view.set(backgroundColor: .background3)
         self.favoritesVC.view.roundCorners()
-
-        self.favoritesVC.manager.didSelect = { [unowned self] user, indexPath in
-            self.favoritesVC.manager.updateRows(with: indexPath)
-        }
     }
 
     override func viewDidLayoutSubviews() {
@@ -136,7 +132,7 @@ class NewChannelViewController: FullScreenViewController {
         guard let text = self.textField.text else { return }
 
         var shouldEnable: Bool = !text.isEmpty
-        shouldEnable = self.favoritesVC.manager.selectedIndexes.value.count > 0
+        shouldEnable = self.favoritesVC.manager.selectedIndexPaths.count > 0
 
         self.createButton.isEnabled = shouldEnable
     }
@@ -144,8 +140,7 @@ class NewChannelViewController: FullScreenViewController {
     private func createTapped() {
         guard let title = self.textField.text,
             let description = self.textView.text,
-            let value = self.favoritesVC.manager.selectedIndexes.value.first,
-            let user = self.favoritesVC.manager.items.value[safe: value.row] else { return }
+            let user = self.favoritesVC.manager.selectedItems.first else { return }
 
         self.createChannel(with: user.objectId!, title: title, description: description)
     }

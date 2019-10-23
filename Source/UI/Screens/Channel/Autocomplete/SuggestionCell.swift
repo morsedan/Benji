@@ -11,7 +11,30 @@ import Foundation
 class SuggestionCell: UICollectionViewCell, DisplayableCell {
     typealias ItemType = Suggestion
 
+    var backgroundStyle: UIKeyboardAppearance = .light
+
     func configure(with item: Suggestion?) {
 
     }
+
+    override func layoutSubviews() {
+        super.layoutSubviews()
+
+
+    }
+
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+         super.touchesBegan(touches, with: event)
+        self.contentView.scaleDown()
+     }
+
+     override func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {
+         super.touchesEnded(touches, with: event)
+        self.contentView.scaleUp()
+     }
+
+     override func touchesCancelled(_ touches: Set<UITouch>, with event: UIEvent?) {
+         super.touchesCancelled(touches, with: event)
+        self.contentView.scaleUp()
+     }
 }

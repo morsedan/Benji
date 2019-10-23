@@ -21,8 +21,8 @@ class FavoriteCell: UICollectionViewCell, DisplayableCell {
         self.avatarView.set(avatar: avatar)
     }
 
-    func set(isChecked: Bool) {
-        self.avatarView.alpha = isChecked ? 1 : 0.5
+    func update(isSelected: Bool) {
+        self.avatarView.alpha = isSelected ? 1 : 0.5
     }
 
     override func layoutSubviews() {
