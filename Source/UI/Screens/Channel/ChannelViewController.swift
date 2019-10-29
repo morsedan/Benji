@@ -66,20 +66,18 @@ class ChannelViewController: FullScreenViewController {
         self.view.addSubview(self.messageInputView)
         self.messageInputView.textView.growingDelegate = self
 
+        self.messageInputView.onPanned = { [unowned self] (panRecognizer) in
+            self.handle(pan: panRecognizer)
+        }
+
+        self.messageInputView.onAlertMessageInitiated = { [unowned self] in
+            print("alert!!!!!!!!!!!!")
+        }
+
         self.channelCollectionVC.collectionView.onDoubleTap { [unowned self] (doubleTap) in
             if self.messageInputView.textView.isFirstResponder {
                 self.messageInputView.textView.resignFirstResponder()
             }
-        }
-
-        self.messageInputView.overlayButton.onPan { [unowned self] (pan) in
-            pan.delegate = self
-            self.handle(pan: pan)
-        }
-
-        self.messageInputView.overlayButton.onLongPress { [unowned self] (longPress) in
-            longPress.delegate = self
-            self.handle(longPress: longPress)
         }
 
         self.loadMessages(for: self.channelType)
