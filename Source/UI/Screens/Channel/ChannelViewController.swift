@@ -26,7 +26,11 @@ class ChannelViewController: FullScreenViewController {
     let channelType: ChannelType
 
     lazy var channelCollectionVC = ChannelCollectionViewController()
-
+//    lazy var contactsVC = ContactsCollectionViewController(parentController: self,
+//    textField: self.textField,
+//    delegate: self)
+    lazy var suggestionCollectionVC = SuggestionCollectionViewController(parentController: <#T##UIViewController#>,
+                                                                         textField: <#T##TextField#>)
     private(set) var messageInputView = MessageInputView()
 
     private var bottomOffset: CGFloat {

@@ -19,26 +19,17 @@ class SuggestionCollectionViewController: CollectionViewController<SuggestionCel
         return self.collectionView as? SuggestionCollectionView
     }
 
-    weak var textField: TextField?
-    weak var textView: TextView?
+    unowned let textField: TextField
 
-    init(parentController: UIViewController) {
+    init(parentController: UIViewController,
+         textField: TextField) {
 
-        let collectionView = ContactsCollectionView()
-        super.init(with: collectionView)
-        parentController.addChild(self)
-    }
-
-    convenience init(with parentController: UIViewController,
-                     textField: TextField) {
         self.textField = textField
-        self.init(parentController: parentController)
-    }
+        let collectionView = ContactsCollectionView()
 
-    convenience init(with parentController: UIViewController,
-                     textView: TextView) {
-        self.textView = textView
-        self.init(parentController: parentController)
+        super.init(with: collectionView)
+
+        parentController.addChild(self)
     }
 
     required init?(coder aDecoder: NSCoder) {
@@ -51,12 +42,9 @@ class SuggestionCollectionViewController: CollectionViewController<SuggestionCel
         self.view.addSubview(self.blurView)
         self.view.addSubview(self.collectionView)
 
-        self.textField?.onTextChanged = { [unowned self] in
-            guard let tf = self.textField else { return }
-            self.textDidChange(with: tf.text)
+        self.textField.onTextChanged = { [unowned self] in
+            self.textFieldDidChange()
         }
-
-        self.textView?.textDidChange(notification: <#T##Notification#>)
 
         self.showAccessoryView()
     }
@@ -81,16 +69,14 @@ class SuggestionCollectionViewController: CollectionViewController<SuggestionCel
             self.blurView.effect = UIBlurEffect(style: .prominent)
         case .dark, .default:
             self.blurView.effect = UIBlurEffect(style: .dark)
-        @unknown default:
-            break
         }
 
         self.collectionView.reloadData()
     }
 
-    func textDidChange(with text: String?) {
+    func textFieldDidChange() {
         self.showAccessoryView()
-        self.loadSuggestions(for: text)
+        self.loadSuggestions(for: self.textField.text)
     }
 
     func showAccessoryView() {
