@@ -26,11 +26,7 @@ class ChannelViewController: FullScreenViewController {
     let channelType: ChannelType
 
     lazy var channelCollectionVC = ChannelCollectionViewController()
-//    lazy var contactsVC = ContactsCollectionViewController(parentController: self,
-//    textField: self.textField,
-//    delegate: self)
-//    lazy var suggestionCollectionVC = SuggestionCollectionViewController(parentController: <#T##UIViewController#>,
-//                                                                         textField: <#T##TextField#>)
+
     private(set) var messageInputView = MessageInputView()
 
     private var bottomOffset: CGFloat {
@@ -72,6 +68,10 @@ class ChannelViewController: FullScreenViewController {
 
         self.messageInputView.onPanned = { [unowned self] (panRecognizer) in
             self.handle(pan: panRecognizer)
+        }
+
+        self.messageInputView.onAlertMessageConfirmed = { [unowned self] in
+            self.send(message: self.messageInputView.textView.text, context: .emergency)
         }
 
         self.channelCollectionVC.collectionView.onDoubleTap { [unowned self] (doubleTap) in
@@ -122,11 +122,11 @@ class ChannelViewController: FullScreenViewController {
     //        self.reset()
     //    }
 
-    func send(message: String) {
+    func send(message: String, context: MessageContext = .casual) {
         guard let channel = ChannelManager.shared.selectedChannel else { return }
 
         let messageType = SystemMessage(avatar: PFUser.current,
-                                        context: .casual,
+                                        context: context,
                                         body: message,
                                         id: PFUser.current.objectId!,
                                         isFromCurrentUser: true,
@@ -142,6 +142,7 @@ class ChannelViewController: FullScreenViewController {
         self.channelCollectionVC.collectionView.scrollToBottom()
         self.messageInputView.textView.text = String()
         self.messageInputView.textView.alpha = 1
+        self.messageInputView.resetInputViews()
     }
 }
 
