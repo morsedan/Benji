@@ -29,8 +29,8 @@ class ChannelViewController: FullScreenViewController {
 //    lazy var contactsVC = ContactsCollectionViewController(parentController: self,
 //    textField: self.textField,
 //    delegate: self)
-    lazy var suggestionCollectionVC = SuggestionCollectionViewController(parentController: <#T##UIViewController#>,
-                                                                         textField: <#T##TextField#>)
+//    lazy var suggestionCollectionVC = SuggestionCollectionViewController(parentController: <#T##UIViewController#>,
+//                                                                         textField: <#T##TextField#>)
     private(set) var messageInputView = MessageInputView()
 
     private var bottomOffset: CGFloat {
@@ -74,10 +74,6 @@ class ChannelViewController: FullScreenViewController {
             self.handle(pan: panRecognizer)
         }
 
-        self.messageInputView.onAlertMessageInitiated = { [unowned self] in
-            print("alert!!!!!!!!!!!!")
-        }
-
         self.channelCollectionVC.collectionView.onDoubleTap { [unowned self] (doubleTap) in
             if self.messageInputView.textView.isFirstResponder {
                 self.messageInputView.textView.resignFirstResponder()
@@ -114,17 +110,17 @@ class ChannelViewController: FullScreenViewController {
         self.channelCollectionVC.loadMessages(for: type)
     }
 
-//    func sendSystem(message: String) {
-//        let systemMessage = SystemMessage(avatar: Lorem.avatar(),
-//                                          context: Lorem.context(),
-//                                          body: message,
-//                                          id: String(Lorem.randomString()),
-//                                          isFromCurrentUser: true,
-//                                          timeStampAsDate: Date(),
-//                                          status: .unknown)
-//        self.channelCollectionVC.channelDataSource.append(item: .system(systemMessage))
-//        self.reset()
-//    }
+    //    func sendSystem(message: String) {
+    //        let systemMessage = SystemMessage(avatar: Lorem.avatar(),
+    //                                          context: Lorem.context(),
+    //                                          body: message,
+    //                                          id: String(Lorem.randomString()),
+    //                                          isFromCurrentUser: true,
+    //                                          timeStampAsDate: Date(),
+    //                                          status: .unknown)
+    //        self.channelCollectionVC.channelDataSource.append(item: .system(systemMessage))
+    //        self.reset()
+    //    }
 
     func send(message: String) {
         guard let channel = ChannelManager.shared.selectedChannel else { return }

@@ -11,7 +11,6 @@ import Foundation
 class MessageInputView: View {
 
     var onPanned: ((UIPanGestureRecognizer) -> Void)?
-    var onAlertMessageInitiated: (() -> Void)?
 
     private let minHeight: CGFloat = 38
 
@@ -19,6 +18,7 @@ class MessageInputView: View {
     let overlayButton = UIButton()
     private let alertProgressView = UIView()
     let blurView = UIVisualEffectView(effect: UIBlurEffect(style: .systemChromeMaterial))
+    private lazy var alertConfirmation = AlertConfirmationView()
 
     private var alertAnimator: UIViewPropertyAnimator?
 
@@ -58,6 +58,10 @@ class MessageInputView: View {
         self.layer.borderWidth = Theme.borderWidth
         self.layer.maskedCorners = [.layerMinXMaxYCorner, .layerMaxXMinYCorner, .layerMinXMinYCorner]
         self.layer.cornerRadius = Theme.cornerRadius
+
+        self.alertConfirmation.didConfirm = { [unowned self] success, error in
+            //
+        }
     }
 
     override func layoutSubviews() {
@@ -99,7 +103,7 @@ class MessageInputView: View {
             self.alertProgressView.size = CGSize(width: self.width, height: self.height)
         })
         self.alertAnimator?.addCompletion({ [unowned self] (position) in
-            self.onAlertMessageInitiated?()
+            self.showAlertConfirmation()
             self.alertAnimator = nil
         })
         self.alertAnimator?.startAnimation()
@@ -114,6 +118,20 @@ class MessageInputView: View {
                                                         self.alertProgressView.size = CGSize(width: 0, height: self.height)
         })
         self.alertAnimator?.startAnimation()
+    }
+
+    private func showAlertConfirmation() {
+
+        self.textView.inputAccessoryView = nil
+        self.textView.reloadInputViews()
+
+        self.alertConfirmation.frame = CGRect(x: 0,
+                                              y: 0,
+                                              width: UIScreen.main.bounds.width,
+                                              height: 60)
+        self.alertConfirmation.keyboardAppearance = self.textView.keyboardAppearance
+        self.textView.inputAccessoryView = self.alertConfirmation
+        self.textView.reloadInputViews()
     }
 }
 

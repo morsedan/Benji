@@ -24,6 +24,7 @@ enum Color: String, CaseIterable {
     case red
     case white
     case clear
+    case keyboardBackground
 
     var color: UIColor {
         switch self {
@@ -55,6 +56,8 @@ enum Color: String, CaseIterable {
             return UIColor(named: "Clear")!
         case .orange:
             return UIColor(named: "Orange")!
+        case .keyboardBackground:
+            return UIColor(named: "Keyboard")!
         }
     }
 

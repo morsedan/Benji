@@ -65,6 +65,7 @@
 		D638440F2336E25F0072227B /* InitialHeaderSizeCalculator.swift in Sources */ = {isa = PBXBuildFile; fileRef = D638440E2336E25F0072227B /* InitialHeaderSizeCalculator.swift */; };
 		D63844122337C3CD0072227B /* LoadMoreSectionHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = D63844112337C3CD0072227B /* LoadMoreSectionHeader.swift */; };
 		D6384414233834380072227B /* Symbols.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6384413233834380072227B /* Symbols.swift */; };
+		D6405B5E236BCB4D00FAA06B /* AlertConfirmationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6405B5D236BCB4D00FAA06B /* AlertConfirmationView.swift */; };
 		D642735122C857760088256B /* MessageContext.swift in Sources */ = {isa = PBXBuildFile; fileRef = D642735022C857760088256B /* MessageContext.swift */; };
 		D642735322C85B740088256B /* SystemAvatar.swift in Sources */ = {isa = PBXBuildFile; fileRef = D642735222C85B740088256B /* SystemAvatar.swift */; };
 		D642735522C87CCA0088256B /* HomeAddButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = D642735422C87CCA0088256B /* HomeAddButton.swift */; };
@@ -325,6 +326,7 @@
 		D638440E2336E25F0072227B /* InitialHeaderSizeCalculator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InitialHeaderSizeCalculator.swift; sourceTree = "<group>"; };
 		D63844112337C3CD0072227B /* LoadMoreSectionHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadMoreSectionHeader.swift; sourceTree = "<group>"; };
 		D6384413233834380072227B /* Symbols.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Symbols.swift; sourceTree = "<group>"; };
+		D6405B5D236BCB4D00FAA06B /* AlertConfirmationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertConfirmationView.swift; sourceTree = "<group>"; };
 		D642735022C857760088256B /* MessageContext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageContext.swift; sourceTree = "<group>"; };
 		D642735222C85B740088256B /* SystemAvatar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SystemAvatar.swift; sourceTree = "<group>"; };
 		D642735422C87CCA0088256B /* HomeAddButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeAddButton.swift; sourceTree = "<group>"; };
@@ -1086,6 +1088,7 @@
 				D64273A022CBDC870088256B /* ContextButton.swift */,
 				D64273A222CC040A0088256B /* GrowingTextView.swift */,
 				D63752C5231258DA00214F63 /* PreviewMessageView.swift */,
+				D6405B5D236BCB4D00FAA06B /* AlertConfirmationView.swift */,
 			);
 			path = Input;
 			sourceTree = "<group>";
@@ -1524,6 +1527,7 @@
 				D68540E1235FF056006F666C /* TextSuggestionCellAttributesConfigurer.swift in Sources */,
 				D64273A122CBDC870088256B /* ContextButton.swift in Sources */,
 				D6432BF522D82CDC0016001A /* ChannelCollectionViewFlowLayout.swift in Sources */,
+				D6405B5E236BCB4D00FAA06B /* AlertConfirmationView.swift in Sources */,
 				D6B2601622E41BE700143CF0 /* ChannelSectionHeader.swift in Sources */,
 				D6A82B732325C2FD003E0A8B /* NewChannelViewController.swift in Sources */,
 				D61EC0F921D317AB00204BEE /* Theme.swift in Sources */,

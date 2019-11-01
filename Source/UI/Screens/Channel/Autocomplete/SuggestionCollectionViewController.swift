@@ -31,14 +31,14 @@ class SuggestionCollectionViewController: CollectionViewController<SuggestionCel
 
     convenience init(with parentController: UIViewController,
                      textField: TextField) {
-        self.textField = textField
         self.init(parentController: parentController)
+        self.textField = textField
     }
 
     convenience init(with parentController: UIViewController,
                      textView: TextView) {
-        self.textView = textView
         self.init(parentController: parentController)
+        self.textView = textView
     }
 
     required init?(coder aDecoder: NSCoder) {
@@ -55,8 +55,6 @@ class SuggestionCollectionViewController: CollectionViewController<SuggestionCel
             guard let tf = self.textField else { return }
             self.textDidChange(with: tf.text)
         }
-
-        self.textView?.textDidChange(notification: <#T##Notification#>)
 
         self.showAccessoryView()
     }
@@ -94,15 +92,15 @@ class SuggestionCollectionViewController: CollectionViewController<SuggestionCel
     }
 
     func showAccessoryView() {
-        guard self.textField.inputAccessoryView == nil else { return }
-        self.configure(with: self.textField.keyboardAppearance)
-        self.textField.inputAccessoryView = self.view
-        self.textField.reloadInputViews()
+        guard self.textField?.inputAccessoryView == nil else { return }
+        self.configure(with: self.textField?.keyboardAppearance ?? .dark)
+        self.textField?.inputAccessoryView = self.view
+        self.textField?.reloadInputViews()
     }
 
     private func hideAccessoryView() {
-        self.textField.inputAccessoryView = nil
-        self.textField.reloadInputViews()
+        self.textField?.inputAccessoryView = nil
+        self.textField?.reloadInputViews()
     }
 
 }
