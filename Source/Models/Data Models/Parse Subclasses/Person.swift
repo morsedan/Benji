@@ -85,7 +85,7 @@ class Person: Object {
         }
     }
 
-    var connection: PFRelation<PFObject>? {
+    var connection: PFRelation<Conneciton>? {
         get {
             return self.getObject(for: .connection)
         }
