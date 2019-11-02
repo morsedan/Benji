@@ -9,15 +9,23 @@
 import Foundation
 import Parse
 
+protocol Subclassing: PFSubclassing {}
+
+extension Subclassing {
+    static func parseClassName() -> String {
+        return String(describing: self)
+    }
+}
+
+protocol Objectable: class {
+    associatedtype KeyType
+
+    func getObject<Type>(for key: KeyType) -> Type?
+    func setObject<Type>(for key: KeyType, with newValue: Type)
+    func saveObject() -> Future<PFObject>
+}
+
 extension PFObject {
-
-    func userObject<Type>(for key: UserKey) -> Type? {
-        return self.object(forKey: key.rawValue) as? Type
-    }
-
-    func setUserObject<Type>(for key: UserKey, with newValue: Type) {
-        self.setObject(newValue, forKey: key.rawValue)
-    }
 
     func saveObject() -> Future<PFObject> {
 
