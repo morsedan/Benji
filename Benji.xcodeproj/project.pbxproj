@@ -20,6 +20,7 @@
 		D609AE36236F3F81004FA89A /* User+Objectable.swift in Sources */ = {isa = PBXBuildFile; fileRef = D609AE35236F3F81004FA89A /* User+Objectable.swift */; };
 		D609AE38236F3FC6004FA89A /* Person+Objectable.swift in Sources */ = {isa = PBXBuildFile; fileRef = D609AE37236F3FC6004FA89A /* Person+Objectable.swift */; };
 		D609AE3A236F44A8004FA89A /* User+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = D609AE39236F44A8004FA89A /* User+Extensions.swift */; };
+		D609AE3C236F913F004FA89A /* Objectable.swift in Sources */ = {isa = PBXBuildFile; fileRef = D609AE3B236F913F004FA89A /* Objectable.swift */; };
 		D60C814222092D5300A127A3 /* PagingCollectionViewFlowLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = D60C814122092D5300A127A3 /* PagingCollectionViewFlowLayout.swift */; };
 		D60C814422092E4700A127A3 /* PagingCollectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D60C814322092E4700A127A3 /* PagingCollectionView.swift */; };
 		D60C814622092F6B00A127A3 /* Button.swift in Sources */ = {isa = PBXBuildFile; fileRef = D60C814522092F6B00A127A3 /* Button.swift */; };
@@ -119,7 +120,6 @@
 		D64C6A7A232883FE00DB7257 /* CloudCalls.swift in Sources */ = {isa = PBXBuildFile; fileRef = D64C6A79232883FE00DB7257 /* CloudCalls.swift */; };
 		D64C6A7C23288FB300DB7257 /* SmallSemiBoldLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D64C6A7B23288FB300DB7257 /* SmallSemiBoldLabel.swift */; };
 		D64C6A7E23294A8600DB7257 /* ChannelKey.swift in Sources */ = {isa = PBXBuildFile; fileRef = D64C6A7D23294A8600DB7257 /* ChannelKey.swift */; };
-		D64C6A862329513200DB7257 /* PFObject+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = D64C6A852329513200DB7257 /* PFObject+Extensions.swift */; };
 		D64C6A97232D5C0400DB7257 /* TCHMember+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = D64C6A96232D5C0400DB7257 /* TCHMember+Extensions.swift */; };
 		D64C6A99232D6C0200DB7257 /* TypingBubbleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D64C6A98232D6C0200DB7257 /* TypingBubbleView.swift */; };
 		D64C6A9C232D6C9200DB7257 /* BubbleCircleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D64C6A9B232D6C9200DB7257 /* BubbleCircleView.swift */; };
@@ -282,6 +282,7 @@
 		D609AE35236F3F81004FA89A /* User+Objectable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "User+Objectable.swift"; sourceTree = "<group>"; };
 		D609AE37236F3FC6004FA89A /* Person+Objectable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Person+Objectable.swift"; sourceTree = "<group>"; };
 		D609AE39236F44A8004FA89A /* User+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "User+Extensions.swift"; sourceTree = "<group>"; };
+		D609AE3B236F913F004FA89A /* Objectable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Objectable.swift; sourceTree = "<group>"; };
 		D60C814122092D5300A127A3 /* PagingCollectionViewFlowLayout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PagingCollectionViewFlowLayout.swift; sourceTree = "<group>"; };
 		D60C814322092E4700A127A3 /* PagingCollectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PagingCollectionView.swift; sourceTree = "<group>"; };
 		D60C814522092F6B00A127A3 /* Button.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Button.swift; sourceTree = "<group>"; };
@@ -384,7 +385,6 @@
 		D64C6A79232883FE00DB7257 /* CloudCalls.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CloudCalls.swift; sourceTree = "<group>"; };
 		D64C6A7B23288FB300DB7257 /* SmallSemiBoldLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SmallSemiBoldLabel.swift; sourceTree = "<group>"; };
 		D64C6A7D23294A8600DB7257 /* ChannelKey.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChannelKey.swift; sourceTree = "<group>"; };
-		D64C6A852329513200DB7257 /* PFObject+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "PFObject+Extensions.swift"; sourceTree = "<group>"; };
 		D64C6A96232D5C0400DB7257 /* TCHMember+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "TCHMember+Extensions.swift"; sourceTree = "<group>"; };
 		D64C6A98232D6C0200DB7257 /* TypingBubbleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TypingBubbleView.swift; sourceTree = "<group>"; };
 		D64C6A9B232D6C9200DB7257 /* BubbleCircleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BubbleCircleView.swift; sourceTree = "<group>"; };
@@ -662,15 +662,16 @@
 		D61EC0D521D30BF900204BEE /* Protocols */ = {
 			isa = PBXGroup;
 			children = (
-				D6432BF222D828480016001A /* ChannelDataSource.swift */,
-				D61EC0DA21D30CB300204BEE /* Dismissable.swift */,
-				D6D1460021D5514300CD8CE4 /* Localized.swift */,
-				D6D1501121D5EA0400CD8CE4 /* ImageDisplayable.swift */,
-				D6D1501521D5F08700CD8CE4 /* DisplyableCell.swift */,
-				D6D1502821D6085200CD8CE4 /* ResourceObject.swift */,
-				D66F0FCE22BF060500BA277D /* Deeplinkable.swift */,
 				D66F0FE522C0640E00BA277D /* Avatar.swift */,
+				D6432BF222D828480016001A /* ChannelDataSource.swift */,
+				D66F0FCE22BF060500BA277D /* Deeplinkable.swift */,
+				D61EC0DA21D30CB300204BEE /* Dismissable.swift */,
+				D6D1501521D5F08700CD8CE4 /* DisplyableCell.swift */,
+				D6D1501121D5EA0400CD8CE4 /* ImageDisplayable.swift */,
 				D67896B7230096620059BA75 /* KeyboardObservable.swift */,
+				D6D1460021D5514300CD8CE4 /* Localized.swift */,
+				D609AE3B236F913F004FA89A /* Objectable.swift */,
+				D6D1502821D6085200CD8CE4 /* ResourceObject.swift */,
 				D67896C923039E680059BA75 /* ScrolledModalControllerPresentable.swift */,
 			);
 			path = Protocols;
@@ -687,7 +688,6 @@
 		D61EC0D721D30C1400204BEE /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
-				D64C6A8023294EED00DB7257 /* Parse */,
 				8002F37E230CD07F00F8C4E3 /* Authorization+Extensions.swift */,
 				D6D1460621D552B100CD8CE4 /* Character+Extensions.swift */,
 				D66F0FE922C0695E00BA277D /* CNContact+Extensions.swift */,
@@ -905,14 +905,6 @@
 				D64C6A96232D5C0400DB7257 /* TCHMember+Extensions.swift */,
 			);
 			path = Twilio;
-			sourceTree = "<group>";
-		};
-		D64C6A8023294EED00DB7257 /* Parse */ = {
-			isa = PBXGroup;
-			children = (
-				D64C6A852329513200DB7257 /* PFObject+Extensions.swift */,
-			);
-			name = Parse;
 			sourceTree = "<group>";
 		};
 		D64C6A9A232D6C3B00DB7257 /* Typing */ = {
@@ -1503,6 +1495,7 @@
 				D6AF02FD220153F5002D5C75 /* LaunchManager.swift in Sources */,
 				D64273A322CC040B0088256B /* GrowingTextView.swift in Sources */,
 				D68540D3235FDE96006F666C /* SuggestionCollectionViewManager.swift in Sources */,
+				D609AE3C236F913F004FA89A /* Objectable.swift in Sources */,
 				D64C6A7E23294A8600DB7257 /* ChannelKey.swift in Sources */,
 				D6384414233834380072227B /* Symbols.swift in Sources */,
 				D6DADF692207D246007D9EB1 /* TCHMessage+Extensions.swift in Sources */,
@@ -1563,7 +1556,6 @@
 				D63844092336BE540072227B /* InitialSectionHeader.swift in Sources */,
 				D6D1461121D583D200CD8CE4 /* RootNavigationController.swift in Sources */,
 				D6073FD0233AFC1D009633EB /* ChannelCollectionViewController+Menu.swift in Sources */,
-				D64C6A862329513200DB7257 /* PFObject+Extensions.swift in Sources */,
 				D61EC0EC21D312B600204BEE /* UIView+Extensions.swift in Sources */,
 				D638440F2336E25F0072227B /* InitialHeaderSizeCalculator.swift in Sources */,
 				D6D1504021DAFB8300CD8CE4 /* UITextField+Extensions.swift in Sources */,

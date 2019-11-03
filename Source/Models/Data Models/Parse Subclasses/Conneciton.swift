@@ -21,12 +21,19 @@ final class Conneciton: PFObject, PFSubclassing {
         return String(describing: self)
     }
 
-    var status: String? {
+    enum Status: String {
+        case pending
+        case accepted
+        case declined
+    }
+
+    var status: Status? {
         get {
-            return self.getObject(for: .status)
+            guard let string: String = self.getObject(for: .status) else { return nil }
+            return Status(rawValue: string)
         }
         set {
-            self.setObject(for: .status, with: newValue)
+            self.setObject(for: .status, with: newValue?.rawValue)
         }
     }
 
