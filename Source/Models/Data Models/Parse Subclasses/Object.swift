@@ -14,10 +14,3 @@ enum ObjectKey: String {
     case createAt
     case updatedAt
 }
-
-class Object: PFObject, PFSubclassing {
-    
-    static func parseClassName() -> String {
-        return String(describing: self)
-    }
-}

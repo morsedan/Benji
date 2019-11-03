@@ -7,12 +7,18 @@
 //
 
 import Foundation
+import Parse
 
 enum ReservationKeys: String {
     case position
 }
 
-final class Reservation: Object {
+final class Reservation: PFObject, PFSubclassing {
+
+    static func parseClassName() -> String {
+        return String(describing: self)
+    }
+
     private(set) var position: Int? {
         get {
             return self.getObject(for: .position)

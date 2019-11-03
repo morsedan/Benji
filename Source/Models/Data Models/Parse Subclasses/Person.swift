@@ -19,7 +19,11 @@ enum PersonKey: String {
     case connection
 }
 
-final class Person: Object {
+final class Person: PFObject, PFSubclassing {
+
+    static func parseClassName() -> String {
+        return String(describing: self)
+    }
 
     var givenName: String {
         get {

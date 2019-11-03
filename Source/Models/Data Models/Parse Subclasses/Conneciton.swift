@@ -15,7 +15,11 @@ enum ConnectionKey: String {
     case channels
 }
 
-final class Conneciton: Object {
+final class Conneciton: PFObject, PFSubclassing {
+
+    static func parseClassName() -> String {
+        return String(describing: self)
+    }
 
     var status: String? {
         get {
