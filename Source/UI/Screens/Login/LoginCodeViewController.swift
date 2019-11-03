@@ -48,14 +48,17 @@ class LoginCodeViewController: LoginTextInputViewController {
         let tf = self.textField as? TextField
         tf?.activityIndicator.startAnimating()
         //Temp
-        guard let current = PFUser.current() else { return }
-        current.phoneNumber = self.phoneNumber.numberString.formatPhoneNumber()
-        current.saveInBackground { (completed, error) in
-            if completed {
-                self.delegate.loginCodeView(self, didVerify: current)
-            }
-            tf?.activityIndicator.stopAnimating()
-            self.textField.resignFirstResponder()
+        User.current.phoneNumber = self.phoneNumber.numberString.formatPhoneNumber()
+        User.current.saveObject()
+            .observe { (result) in
+                switch result {
+                case .success(_):
+                    self.delegate.loginCodeView(self, didVerify: User.current)
+                case .failure(_):
+                    break 
+                }
+                tf?.activityIndicator.stopAnimating()
+                self.textField.resignFirstResponder()
         }
 
 //        VerifyCode.callFunction { (object, error) in

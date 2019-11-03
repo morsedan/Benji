@@ -88,19 +88,23 @@ extension Future where Value == TCHChannel {
         })
     }
 
-    func getAuthorAsUser() -> Future<PFUser> {
+    func getAuthorAsUser() -> Future<User> {
         return self.then(with: { (channel) in
-            let promise = Promise<PFUser>()
+            let promise = Promise<User>()
             if let authorID = channel.createdBy {
-                PFUser.cachedQuery(for: authorID, completion: { (object, error) in
-                    if let error = error {
-                        promise.reject(with: error)
-                    } else if let user = object as? PFUser {
-                        promise.resolve(with: user)
-                    } else {
-                        promise.reject(with: ClientError.generic)
-                    }
-                })
+                User.cachedQuery(for: authorID)
+                    .observe { (result) in
+                        switch result {
+                        case .success(let object):
+                            if let user = object as? User {
+                                promise.resolve(with: user)
+                            } else {
+                                promise.reject(with: ClientError.generic)
+                            }
+                        case .failure(let error):
+                            promise.reject(with: error)
+                        }
+                }
             } else {
                 promise.reject(with: ClientError.generic)
             }
@@ -109,9 +113,9 @@ extension Future where Value == TCHChannel {
         })
     }
 
-    func getUsers() -> Future<[PFUser]> {
+    func getUsers() -> Future<[User]> {
         return self.then { (channel) in
-            let promise = Promise<[PFUser]>()
+            let promise = Promise<[User]>()
             if let members = channel.members {
                 members.members { (result, paginator) in
                     if result.isSuccessful(), let pag = paginator {
@@ -122,18 +126,19 @@ extension Future where Value == TCHChannel {
                             }
                         }
 
-                        let query = PFUser.query()
-                        query?.cachePolicy = .cacheThenNetwork
-                        query?.whereKey(UserKey.objectId.rawValue, containedIn: identifiers)
-                        query?.findObjectsInBackground(block: { (objects, error) in
-                            if let error = error {
-                                promise.reject(with: error)
-                            } else if let users = objects as? [PFUser] {
-                                promise.resolve(with: users)
-                            } else {
-                                promise.reject(with: ClientError.generic)
-                            }
-                        })
+                        User.cachedArrayQuery(with: identifiers)
+                            .observe { (result) in
+                                switch result {
+                                case .success(let objects):
+                                    if let users = objects as? [User] {
+                                        promise.resolve(with: users)
+                                    } else {
+                                        promise.reject(with: ClientError.generic)
+                                    }
+                                case .failure(let error):
+                                    promise.reject(with: error)
+                                }
+                        }
                     } else {
                         return promise.reject(with: ClientError.generic)
                     }

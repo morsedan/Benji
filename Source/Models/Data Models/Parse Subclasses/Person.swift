@@ -121,13 +121,6 @@ extension Person {
         }
     }
 
-    static func cachedQuery(for objectID: String, completion: ((PFObject?, Error?) -> Void)?) {
-        guard let query = self.query() else { return }
-        query.cachePolicy = .cacheThenNetwork
-        query.whereKey(ObjectKey.objectId.rawValue, equalTo: objectID)
-        query.getFirstObjectInBackground(block: completion)
-    }
-
     func getProfileImage(completion: @escaping (UIImage?) -> Void) {
 //        guard let imageFile = self[UserKey.smallProfileImageFile.rawValue] as? PFFileObject else { return }
 //

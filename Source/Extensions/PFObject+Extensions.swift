@@ -42,4 +42,44 @@ extension PFObject {
 
         return promise
     }
+
+    static func cachedQuery(for objectID: String) -> Future<PFObject> {
+        let promise = Promise<PFObject>()
+
+        if let query = self.query() {
+            query.cachePolicy = .cacheThenNetwork
+            query.whereKey(ObjectKey.objectId.rawValue, equalTo: objectID)
+            query.getFirstObjectInBackground { (object, error) in
+                if let obj = object {
+                    promise.resolve(with: obj)
+                } else if let error = error {
+                    promise.reject(with: error)
+                } else {
+                    promise.reject(with: ClientError.generic)
+                }
+            }
+        }
+
+        return promise
+    }
+
+    static func cachedArrayQuery(with identifiers: [String]) -> Future<[PFObject]> {
+        let promise = Promise<[PFObject]>()
+
+        if let query = self.query() {
+            query.cachePolicy = .cacheThenNetwork
+            query.whereKey(ObjectKey.objectId.rawValue, containedIn: identifiers)
+            query.findObjectsInBackground { (objects, error) in
+                if let objs = objects {
+                    promise.resolve(with: objs)
+                } else if let error = error {
+                    promise.reject(with: error)
+                } else {
+                    promise.reject(with: ClientError.generic)
+                }
+            }
+        }
+
+        return promise
+    }
 }
