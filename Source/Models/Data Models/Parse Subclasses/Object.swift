@@ -9,6 +9,12 @@
 import Foundation
 import Parse
 
+enum ObjectKey: String {
+    case objectId
+    case createAt
+    case updatedAt
+}
+
 class Object: PFObject, PFSubclassing {
     
     static func parseClassName() -> String {

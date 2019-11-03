@@ -21,6 +21,7 @@ protocol Objectable: class {
     associatedtype KeyType
 
     func getObject<Type>(for key: KeyType) -> Type?
+    func getRelationalObject<PFRelation>(for key: KeyType) -> PFRelation?
     func setObject<Type>(for key: KeyType, with newValue: Type)
     func saveObject() -> Future<PFObject>
 }

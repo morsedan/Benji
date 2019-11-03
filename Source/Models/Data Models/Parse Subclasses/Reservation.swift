@@ -13,8 +13,7 @@ enum ReservationKeys: String {
 }
 
 class Reservation: Object {
-
-    var position: Int? {
+    private(set) var position: Int? {
         get {
             return self.getObject(for: .position)
         }
@@ -33,5 +32,9 @@ extension Reservation: Objectable {
 
     func setObject<Type>(for key: ReservationKeys, with newValue: Type) {
         self.setObject(newValue, forKey: key.rawValue)
+    }
+
+    func getRelationalObject<PFRelation>(for key: ReservationKeys) -> PFRelation? {
+        return self.relation(forKey: key.rawValue) as? PFRelation
     }
 }

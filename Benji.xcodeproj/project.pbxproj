@@ -118,7 +118,6 @@
 		D64C6A7C23288FB300DB7257 /* SmallSemiBoldLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D64C6A7B23288FB300DB7257 /* SmallSemiBoldLabel.swift */; };
 		D64C6A7E23294A8600DB7257 /* ChannelKey.swift in Sources */ = {isa = PBXBuildFile; fileRef = D64C6A7D23294A8600DB7257 /* ChannelKey.swift */; };
 		D64C6A8223294F0E00DB7257 /* PFQuery+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = D64C6A8123294F0E00DB7257 /* PFQuery+Extensions.swift */; };
-		D64C6A84232950A200DB7257 /* UserKey.swift in Sources */ = {isa = PBXBuildFile; fileRef = D64C6A83232950A200DB7257 /* UserKey.swift */; };
 		D64C6A862329513200DB7257 /* PFObject+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = D64C6A852329513200DB7257 /* PFObject+Extensions.swift */; };
 		D64C6A97232D5C0400DB7257 /* TCHMember+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = D64C6A96232D5C0400DB7257 /* TCHMember+Extensions.swift */; };
 		D64C6A99232D6C0200DB7257 /* TypingBubbleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D64C6A98232D6C0200DB7257 /* TypingBubbleView.swift */; };
@@ -383,7 +382,6 @@
 		D64C6A7B23288FB300DB7257 /* SmallSemiBoldLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SmallSemiBoldLabel.swift; sourceTree = "<group>"; };
 		D64C6A7D23294A8600DB7257 /* ChannelKey.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChannelKey.swift; sourceTree = "<group>"; };
 		D64C6A8123294F0E00DB7257 /* PFQuery+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "PFQuery+Extensions.swift"; sourceTree = "<group>"; };
-		D64C6A83232950A200DB7257 /* UserKey.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserKey.swift; sourceTree = "<group>"; };
 		D64C6A852329513200DB7257 /* PFObject+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "PFObject+Extensions.swift"; sourceTree = "<group>"; };
 		D64C6A96232D5C0400DB7257 /* TCHMember+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "TCHMember+Extensions.swift"; sourceTree = "<group>"; };
 		D64C6A98232D6C0200DB7257 /* TypingBubbleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TypingBubbleView.swift; sourceTree = "<group>"; };
@@ -1277,7 +1275,6 @@
 				D66F0FC822BF006D00BA277D /* SystemMessage.swift */,
 				D6B2606922E80AB000143CF0 /* Toast.swift */,
 				D64C6A7D23294A8600DB7257 /* ChannelKey.swift */,
-				D64C6A83232950A200DB7257 /* UserKey.swift */,
 				D607400D23401B3E009633EB /* SystemChannel.swift */,
 			);
 			path = "Data Models";
@@ -1591,7 +1588,6 @@
 				D6AF0301220154E3002D5C75 /* ChannelManager.swift in Sources */,
 				D642736422C9132A0088256B /* EmptyFeedView.swift in Sources */,
 				D64C6A99232D6C0200DB7257 /* TypingBubbleView.swift in Sources */,
-				D64C6A84232950A200DB7257 /* UserKey.swift in Sources */,
 				D61EC0C021D3071400204BEE /* AppDelegate.swift in Sources */,
 				D646DB4022CFCFDB0055CC7C /* Future+Extensions.swift in Sources */,
 				D65B0CCE2344AE390041A176 /* ChannelsViewController+Extensions.swift in Sources */,

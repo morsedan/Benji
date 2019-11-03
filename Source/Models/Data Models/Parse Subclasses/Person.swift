@@ -14,7 +14,6 @@ enum PersonKey: String {
     case familyName
     case email
     case phoneNumber
-    case handle
     case smallImage
     case largeImage
     case connection
@@ -58,15 +57,6 @@ class Person: Object {
         }
     }
 
-    var handle: String? {
-        get {
-            return self.getObject(for: .handle)
-        }
-        set {
-            self.setObject(for: .handle, with: newValue)
-        }
-    }
-
     var smallImage: PFFileObject? {
         get {
             return self.getObject(for: .smallImage)
@@ -95,14 +85,56 @@ class Person: Object {
     }
 }
 
-extension Person: Objectable {
+extension Person {
     typealias KeyType = PersonKey
 
     func getObject<Type>(for key: PersonKey) -> Type? {
         return self.object(forKey: key.rawValue) as? Type
     }
 
+    func getRelationalObject<Type>(for key: PersonKey) -> Type? {
+        return self.relation(forKey: key.rawValue) as? Type
+    }
+
     func setObject<Type>(for key: PersonKey, with newValue: Type) {
         self.setObject(newValue, forKey: key.rawValue)
+    }
+}
+
+extension Person {
+
+    var initials: String {
+        let firstInitial = String(optional: self.givenName?.first?.uppercased())
+        let lastInitial = String(optional: self.familyName?.first?.uppercased())
+        return firstInitial + lastInitial
+    }
+
+    func formatName(from text: String) {
+        let components = text.components(separatedBy: " ").filter { (component) -> Bool in
+            return !component.isEmpty
+        }
+        if let first = components.first {
+            self.givenName = first
+        }
+        if let last = components.last {
+            self.familyName = last
+        }
+    }
+
+    static func cachedQuery(for objectID: String, completion: ((PFObject?, Error?) -> Void)?) {
+        guard let query = self.query() else { return }
+        query.cachePolicy = .cacheThenNetwork
+        query.whereKey(ObjectKey.objectId.rawValue, equalTo: objectID)
+        query.getFirstObjectInBackground(block: completion)
+    }
+
+    func getProfileImage(completion: @escaping (UIImage?) -> Void) {
+//        guard let imageFile = self[UserKey.smallProfileImageFile.rawValue] as? PFFileObject else { return }
+//
+//        imageFile.getDataInBackground { (imageData: Data?, error: Error?) in
+//            guard let data = imageData else { return }
+//            let image = UIImage(data: data)
+//            completion(image)
+//        }
     }
 }

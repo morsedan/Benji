@@ -46,6 +46,7 @@ class Conneciton: Object {
 }
 
 extension Conneciton: Objectable {
+
     typealias KeyType = ConnectionKey
 
     func getObject<Type>(for key: ConnectionKey) -> Type? {
@@ -54,5 +55,9 @@ extension Conneciton: Objectable {
 
     func setObject<Type>(for key: ConnectionKey, with newValue: Type) {
         self.setObject(newValue, forKey: key.rawValue)
+    }
+
+    func getRelationalObject<PFRelation>(for key: ConnectionKey) -> PFRelation? {
+        return self.relation(forKey: key.rawValue) as? PFRelation
     }
 }
