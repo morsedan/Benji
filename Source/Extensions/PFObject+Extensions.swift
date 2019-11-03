@@ -9,14 +9,6 @@
 import Foundation
 import Parse
 
-protocol Subclassing: PFSubclassing {}
-
-extension Subclassing {
-    static func parseClassName() -> String {
-        return String(describing: self)
-    }
-}
-
 protocol Objectable: class {
     associatedtype KeyType
 

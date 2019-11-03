@@ -9,6 +9,12 @@
 import Foundation
 import Parse
 
+enum ObjectKey: String {
+    case objectId
+    case createAt
+    case updatedAt
+}
+
 enum UserKey: String {
     case email
     case reservation
