@@ -19,7 +19,7 @@ enum PersonKey: String {
     case connection
 }
 
-class Person: Object {
+final class Person: Object {
 
     var givenName: String? {
         get {
@@ -82,22 +82,6 @@ class Person: Object {
         set {
             self.setObject(for: .connection, with: newValue)
         }
-    }
-}
-
-extension Person {
-    typealias KeyType = PersonKey
-
-    func getObject<Type>(for key: PersonKey) -> Type? {
-        return self.object(forKey: key.rawValue) as? Type
-    }
-
-    func getRelationalObject<Type>(for key: PersonKey) -> Type? {
-        return self.relation(forKey: key.rawValue) as? Type
-    }
-
-    func setObject<Type>(for key: PersonKey, with newValue: Type) {
-        self.setObject(newValue, forKey: key.rawValue)
     }
 }
 

@@ -13,18 +13,26 @@ enum UserKey: String {
     case email
     case reservation
     case connections
+    case person
     case people
     case handle
     case me
     case phoneNumber
 }
 
-class User: PFUser {
+final class User: PFUser {
 
     static var current = User.current()!
-    static var me = User.current.meObject
+    static var me = User.current.person
 
-    private var meObject: Person?
+    var person: Person? {
+        get {
+            return self.getObject(for: .person)
+        }
+        set {
+            self.setObject(for: .person, with: newValue)
+        }
+    }
 
     var handle: String? {
         get {
@@ -70,33 +78,5 @@ class User: PFUser {
         set {
             self.setObject(for: .people, with: newValue)
         }
-    }
-}
-
-extension User: Objectable {
-    typealias KeyType = UserKey
-
-    func getObject<Type>(for key: UserKey) -> Type? {
-        return self.object(forKey: key.rawValue) as? Type
-    }
-
-    func setObject<Type>(for key: UserKey, with newValue: Type) {
-        self.setObject(newValue, forKey: key.rawValue)
-    }
-
-    func getRelationalObject<PFRelation>(for key: UserKey) -> PFRelation? {
-        return self.relation(forKey: key.rawValue) as? PFRelation
-    }
-}
-
-extension User {
-
-    func createHandle() {
-        guard let me = User.me,
-            let first = me.givenName?.first,
-            let last = me.familyName?.first,
-            let position = self.reservation?.position else { return } //Change to reservation count
-
-        self.handle = String(first) + String(last) + "_" + String(position)
     }
 }

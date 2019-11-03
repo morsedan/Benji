@@ -23,63 +23,24 @@ protocol Objectable: class {
     func getObject<Type>(for key: KeyType) -> Type?
     func getRelationalObject<PFRelation>(for key: KeyType) -> PFRelation?
     func setObject<Type>(for key: KeyType, with newValue: Type)
-    func saveObject() -> Future<PFObject>
+    func saveObject() -> Future<Self>
+
+    static func cachedQuery(for objectID: String) -> Future<Self>
+    static func cachedArrayQuery(with identifiers: [String]) -> Future<[Self]>
+    static func cachedArrayQuery(notEqualTo identifier: String) -> Future<[Self]>
 }
 
-extension PFObject {
+extension Objectable {
 
-    func saveObject() -> Future<PFObject> {
-
-        let promise = Promise<PFObject>()
-
-        self.saveInBackground { (success, error) in
-            if let error = error {
-                promise.reject(with: error)
-            } else {
-                promise.resolve(with: self)
-            }
-        }
-
-        return promise
+    static func cachedQuery(for objectID: String) -> Future<Self> {
+        return Promise<Self>()
     }
 
-    static func cachedQuery(for objectID: String) -> Future<PFObject> {
-        let promise = Promise<PFObject>()
-
-        if let query = self.query() {
-            query.cachePolicy = .cacheThenNetwork
-            query.whereKey(ObjectKey.objectId.rawValue, equalTo: objectID)
-            query.getFirstObjectInBackground { (object, error) in
-                if let obj = object {
-                    promise.resolve(with: obj)
-                } else if let error = error {
-                    promise.reject(with: error)
-                } else {
-                    promise.reject(with: ClientError.generic)
-                }
-            }
-        }
-
-        return promise
+    static func cachedArrayQuery(with identifiers: [String]) -> Future<[Self]> {
+        return Promise<[Self]>()
     }
 
-    static func cachedArrayQuery(with identifiers: [String]) -> Future<[PFObject]> {
-        let promise = Promise<[PFObject]>()
-
-        if let query = self.query() {
-            query.cachePolicy = .cacheThenNetwork
-            query.whereKey(ObjectKey.objectId.rawValue, containedIn: identifiers)
-            query.findObjectsInBackground { (objects, error) in
-                if let objs = objects {
-                    promise.resolve(with: objs)
-                } else if let error = error {
-                    promise.reject(with: error)
-                } else {
-                    promise.reject(with: ClientError.generic)
-                }
-            }
-        }
-
-        return promise
+    static func cachedArrayQuery(notEqualTo identifier: String) -> Future<[Self]> {
+        return Promise<[Self]>()
     }
 }

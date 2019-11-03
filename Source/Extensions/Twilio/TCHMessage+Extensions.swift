@@ -28,28 +28,23 @@ extension TCHMessage: Diffable, DisplayableCellItem, Avatar {
         return author == identity
     }
 
-    //TODO: Fill these in
-    var handle: String {
-        return "@handle"
-    }
-
-    var firstName: String {
-        return String()
-    }
-
-    var lastName: String {
-        return String()
-    }
-    
-    var initials: String {
-        return String()
-    }
-
-    var user: PFUser? {
+    var givenName: String? {
         return nil
     }
 
-    var photo: UIImage? {
+    var familyName: String? {
+        return nil
+    }
+
+    var handle: String? {
+        return nil
+    }
+
+    var person: Person? {
+        return nil
+    }
+
+    var image: UIImage? {
         return nil
     }
 
@@ -62,26 +57,28 @@ extension TCHMessage: Diffable, DisplayableCellItem, Avatar {
     }
 }
 
-extension Future where Value == TCHMessage {
+extension TCHMessage {
 
-    func getAuthorAsUser() -> Future<PFUser> {
-        return self.then(with: { (message) in
-            let promise = Promise<PFUser>()
-            if let authorID = message.author {
-                PFUser.cachedQuery(for: authorID, completion: { (object, error) in
-                    if let error = error {
+    func getAuthorAsUser() -> Future<User> {
+        let promise = Promise<User>()
+        if let authorID = self.author {
+            User.cachedQuery(for: authorID)
+                .observe { (result) in
+                    switch result {
+                    case .success(let object):
+                        if let user = object as? User {
+                            promise.resolve(with: user)
+                        } else {
+                            promise.reject(with: ClientError.generic)
+                        }
+                    case .failure(let error):
                         promise.reject(with: error)
-                    } else if let user = object as? PFUser {
-                        promise.resolve(with: user)
-                    } else {
-                        promise.reject(with: ClientError.generic)
                     }
-                })
-            } else {
-                promise.reject(with: ClientError.generic)
             }
+        } else {
+            promise.reject(with: ClientError.generic)
+        }
 
-            return promise
-        })
+        return promise
     }
 }

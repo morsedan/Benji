@@ -15,7 +15,7 @@ enum ConnectionKey: String {
     case channels
 }
 
-class Conneciton: Object {
+final class Conneciton: Object {
 
     var status: String? {
         get {

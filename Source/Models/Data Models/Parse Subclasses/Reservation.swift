@@ -12,7 +12,7 @@ enum ReservationKeys: String {
     case position
 }
 
-class Reservation: Object {
+final class Reservation: Object {
     private(set) var position: Int? {
         get {
             return self.getObject(for: .position)
@@ -36,5 +36,19 @@ extension Reservation: Objectable {
 
     func getRelationalObject<PFRelation>(for key: ReservationKeys) -> PFRelation? {
         return self.relation(forKey: key.rawValue) as? PFRelation
+    }
+
+    func saveObject() -> Future<Reservation> {
+        let promise = Promise<Reservation>()
+
+        self.saveInBackground { (success, error) in
+            if let error = error {
+                promise.reject(with: error)
+            } else {
+                promise.resolve(with: self)
+            }
+        }
+
+        return promise
     }
 }

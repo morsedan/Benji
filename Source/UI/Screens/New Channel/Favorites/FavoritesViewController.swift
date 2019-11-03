@@ -14,12 +14,14 @@ class FavoritesViewController: CollectionViewController<FavoriteCell, FavoritesC
     override func initializeViews() {
         super.initializeViews()
 
-        let query = User.query()
-        query?.whereKey(ObjectKey.objectId.rawValue, notEqualTo: User.current.objectId!)
-        query?.findObjectsInBackground(block: { (allUsers, error) in
-            guard let users = allUsers as? [PFUser] else { return }
-
-            self.manager.set(newItems: users)
-        })
+        User.cachedArrayQuery(notEqualTo: User.current.objectId!)
+            .observe { (result) in
+                switch result {
+                case .success(let users):
+                    self.manager.set(newItems: users)
+                case .failure(_):
+                    break
+                }
+        }
     }
 }

@@ -82,7 +82,7 @@ enum MessageType: DisplayableCellItem {
     var author: String {
         switch self {
         case .user(_):
-            return String(optional: PFUser.current.objectId)
+            return String(optional: User.current.objectId)
         case .system(_):
             return "system"
         case .message(let message):
