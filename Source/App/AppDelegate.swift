@@ -31,7 +31,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         case .isLaunching, .failed(_):
             break
         case .success(_):
-            if let identity = PFUser.current.objectId {
+            if let identity = User.current.objectId {
                 LaunchManager.shared.authenticateChatClient(with: identity)
             } else {
                 LaunchManager.shared.createAnonymousUser()
@@ -41,7 +41,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func application(_ application: UIApplication,
                      didRegisterForRemoteNotificationsWithDeviceToken deviceToken: Data) {
-        guard let currentID = PFUser.current.objectId else { return }
+        guard let currentID = User.current.objectId else { return }
         let token = self.createToken(fromDeviceToken: deviceToken)
         UserNotificationManager.shared.registerDevice(currentID, deviceToken: token)
     }

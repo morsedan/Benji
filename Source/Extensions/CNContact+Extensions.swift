@@ -15,10 +15,6 @@ infix operator !~: ComparisonPrecedence
 
 extension CNContact {
 
-    var fullName: String {
-        return self.givenName + " " + self.familyName
-    }
-
     static func ~~(lhs: CNContact, rhs: CNContact) -> Bool {
         return
             lhs.namePrefix == rhs.namePrefix &&
@@ -71,39 +67,23 @@ extension CNContact: DisplayableCellItem {
 
 extension CNContact: Avatar {
 
-    var initials: String {
-        guard let first = self.givenName.first,
-            let last = self.familyName.first else { return "?" }
-
-        return String(first) + String(last)
-    }
-
-    var user: PFUser? {
+    var person: Person? {
         return nil
     }
 
-    var photo: UIImage? {
+    var image: UIImage? {
         if let imageData = self.thumbnailImageData {
             return UIImage(data: imageData)
         }
         return nil
     }
-
-    var firstName: String {
-        return self.givenName
-    }
-
-    var lastName: String {
-        return self.familyName
-    }
-
-    var handle: String {
-        return "@\(self.firstName)"
-    }
-
+    
     var userObjectID: String? {
         return nil
     }
+}
+
+extension CNContact {
 
     var primaryPhoneNumber: String? {
         guard let prioritizedNumber = self.findBestPhoneNumber(self.phoneNumbers).phone else { return nil }

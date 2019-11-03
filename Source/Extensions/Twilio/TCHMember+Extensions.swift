@@ -11,57 +11,51 @@ import TwilioChatClient
 import Parse
 
 extension TCHMember: Avatar {
-    
-    var initials: String {
-        return String(optional: self.user?.initials)
+
+    var givenName: String {
+        return String()
     }
 
-    var firstName: String {
-        return String(optional: self.user?.firstName)
+    var familyName: String {
+        return String()
     }
 
-    var lastName: String {
-        return String(optional: self.user?.lastName)
+    var handle: String? {
+        return nil
     }
 
-    var handle: String {
-        return String(optional: self.user?.handle)
+    var person: Person? {
+        return nil
+    }
+
+    var image: UIImage? {
+        return nil
     }
 
     var userObjectID: String? {
         return self.identity
     }
-
-    var user: PFUser? {
-        return nil 
-    }
-
-    var photo: UIImage? {
-        return self.user?.photo
-    }
 }
 
-extension Future where Value == TCHMember {
+extension TCHMember {
+    func getMemberAsUser() -> Future<User> {
 
-    func getMemberAsUser() -> Future<PFUser> {
-        return self.then(with: { (member) in
-            let promise = Promise<PFUser>()
-            if let authorID = member.identity {
-                PFUser.cachedQuery(for: authorID, completion: { (object, error) in
-                    if let error = error {
-                        promise.reject(with: error)
-                    } else if let user = object as? PFUser {
+        let promise = Promise<User>()
+        if let authorID = self.identity {
+            User.cachedQuery(for: authorID)
+                .observe { (result) in
+                    switch result {
+                    case .success(let user):
                         promise.resolve(with: user)
-                    } else {
-                        promise.reject(with: ClientError.generic)
+                    case .failure(let error):
+                        promise.reject(with: error)
                     }
-                })
-            } else {
-                promise.reject(with: ClientError.generic)
             }
+        } else {
+            promise.reject(with: ClientError.generic)
+        }
 
-            return promise
-        })
+        return promise
     }
 }
 

@@ -21,18 +21,18 @@ enum PersonKey: String {
 
 final class Person: Object {
 
-    var givenName: String? {
+    var givenName: String {
         get {
-            return self.getObject(for: .givenName)
+            return String(optional: self.getObject(for: .givenName))
         }
         set {
             self.setObject(for: .givenName, with: newValue)
         }
     }
 
-    var familyName: String? {
+    var familyName: String {
         get {
-            return self.getObject(for: .familyName)
+            return String(optional: self.getObject(for: .familyName))
         }
         set {
             self.setObject(for: .familyName, with: newValue)

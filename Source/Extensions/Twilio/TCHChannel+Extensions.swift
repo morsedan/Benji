@@ -95,12 +95,8 @@ extension Future where Value == TCHChannel {
                 User.cachedQuery(for: authorID)
                     .observe { (result) in
                         switch result {
-                        case .success(let object):
-                            if let user = object as? User {
-                                promise.resolve(with: user)
-                            } else {
-                                promise.reject(with: ClientError.generic)
-                            }
+                        case .success(let user):
+                            promise.resolve(with: user)
                         case .failure(let error):
                             promise.reject(with: error)
                         }
@@ -129,12 +125,8 @@ extension Future where Value == TCHChannel {
                         User.cachedArrayQuery(with: identifiers)
                             .observe { (result) in
                                 switch result {
-                                case .success(let objects):
-                                    if let users = objects as? [User] {
-                                        promise.resolve(with: users)
-                                    } else {
-                                        promise.reject(with: ClientError.generic)
-                                    }
+                                case .success(let users):
+                                    promise.resolve(with: users)
                                 case .failure(let error):
                                     promise.reject(with: error)
                                 }

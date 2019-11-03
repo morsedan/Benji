@@ -10,12 +10,12 @@ import Foundation
 
 extension User: Avatar {
 
-    var givenName: String? {
-        return self.person?.givenName
+    var givenName: String {
+        return String(optional: self.person?.givenName)
     }
 
-    var familyName: String? {
-        return self.person?.familyName
+    var familyName: String {
+        return String(optional: self.person?.familyName)
     }
 
     var userObjectID: String? {
@@ -31,8 +31,8 @@ extension User {
 
     func createHandle() {
         guard let me = User.me,
-            let first = me.givenName?.first,
-            let last = me.familyName?.first,
+            let first = me.givenName.first,
+            let last = me.familyName.first,
             let position = self.reservation?.position else { return } //Change to reservation count
 
         self.handle = String(first) + String(last) + "_" + String(position)
@@ -40,12 +40,12 @@ extension User {
 }
 
 extension User: DisplayableCellItem {
-    
+
     var backgroundColor: Color {
         return .red
     }
 
     func diffIdentifier() -> NSObjectProtocol {
-        return self.objectId as NSObjectProtocol
+        return self.objectId! as NSObjectProtocol
     }
 }

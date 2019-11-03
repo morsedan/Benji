@@ -104,7 +104,7 @@ extension ChannelCollectionViewController {
             case .typingEnded:
                 self.setTypingIndicatorViewHidden(true, animated: true)
             case .typingStarted:
-                if let memberID = memberUpdate.member.identity, memberID != PFUser.current.objectId {
+                if let memberID = memberUpdate.member.identity, memberID != User.current.objectId {
                     self.setTypingIndicatorViewHidden(false, performUpdates: nil)
                 }
             }

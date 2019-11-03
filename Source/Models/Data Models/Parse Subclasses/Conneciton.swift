@@ -46,7 +46,6 @@ final class Conneciton: Object {
 }
 
 extension Conneciton: Objectable {
-
     typealias KeyType = ConnectionKey
 
     func getObject<Type>(for key: ConnectionKey) -> Type? {
@@ -59,5 +58,19 @@ extension Conneciton: Objectable {
 
     func getRelationalObject<PFRelation>(for key: ConnectionKey) -> PFRelation? {
         return self.relation(forKey: key.rawValue) as? PFRelation
+    }
+
+    func saveObject() -> Future<Conneciton> {
+        let promise = Promise<Conneciton>()
+
+        self.saveInBackground { (success, error) in
+            if let error = error {
+                promise.reject(with: error)
+            } else {
+                promise.resolve(with: self)
+            }
+        }
+
+        return promise
     }
 }

@@ -125,10 +125,10 @@ class ChannelViewController: FullScreenViewController {
     func send(message: String, context: MessageContext = .casual) {
         guard let channel = ChannelManager.shared.selectedChannel else { return }
 
-        let messageType = SystemMessage(avatar: PFUser.current,
+        let messageType = SystemMessage(avatar: User.current,
                                         context: context,
                                         body: message,
-                                        id: PFUser.current.objectId!,
+                                        id: User.current.objectId!,
                                         isFromCurrentUser: true,
                                         timeStampAsDate: Date(),
                                         status: .sent)

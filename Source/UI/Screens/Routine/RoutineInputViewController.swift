@@ -57,12 +57,12 @@ class RoutineInputViewController: ViewController {
             RoutineManager.shared.scheduleNotification(for: routine)
         }
 
-        self.content.minusButton.onTap { [unowned self] (tap) in
-
-        }
-
-        self.content.plusButton.onTap { [unowned self] (tap) in
-            
-        }
+//        self.content.minusButton.onTap { [unowned self] (tap) in
+//
+//        }
+//
+//        self.content.plusButton.onTap { [unowned self] (tap) in
+//            
+//        }
     }
 }

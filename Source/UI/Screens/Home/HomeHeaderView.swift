@@ -16,9 +16,7 @@ class HomeHeaderView: View {
 
     lazy var avatarView: ProfileAvatarView = {
         let avatarView = ProfileAvatarView()
-        if let current = PFUser.current() {
-            avatarView.set(avatar: current)
-        }
+        avatarView.set(avatar: User.current)
         return avatarView
     }()
 

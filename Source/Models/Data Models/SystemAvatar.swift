@@ -11,15 +11,17 @@ import Parse
 
 struct SystemAvatar: Avatar {
 
-    var person: Person?
     var image: UIImage?
-    var handle: String?
+    
+    var person: Person? {
+        return nil
+    }
 
-    var givenName: String? {
+    var givenName: String {
         return "Benji"
     }
 
-    var familyName: String? {
+    var familyName: String {
         return "Dodgson"
     }
 

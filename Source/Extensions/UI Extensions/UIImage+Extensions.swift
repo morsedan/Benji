@@ -123,11 +123,11 @@ extension UIImage: ImageDisplayable {
 
 extension UIImage: Avatar {
 
-    var givenName: String? {
+    var givenName: String {
         return "First"
     }
 
-    var familyName: String? {
+    var familyName: String {
         return "Last"
     }
 

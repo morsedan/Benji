@@ -13,9 +13,9 @@ class ProfileCoordinator: PresentableCoordinator<Void> {
 
     lazy var profileVC = ProfileViewController(with: self.user, delegate: self)
     let navController: NavigationController
-    let user: PFUser
+    let user: User
 
-    init(with user: PFUser, router: Router, deepLink: DeepLinkable?) {
+    init(with user: User, router: Router, deepLink: DeepLinkable?) {
         self.user = user
         let navController = NavigationController()
         let router = Router(navController: navController)

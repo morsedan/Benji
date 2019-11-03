@@ -28,16 +28,12 @@ extension TCHMessage: Diffable, DisplayableCellItem, Avatar {
         return author == identity
     }
 
-    var givenName: String? {
-        return nil
+    var givenName: String {
+        return String()
     }
 
-    var familyName: String? {
-        return nil
-    }
-
-    var handle: String? {
-        return nil
+    var familyName: String {
+        return String()
     }
 
     var person: Person? {
@@ -65,12 +61,8 @@ extension TCHMessage {
             User.cachedQuery(for: authorID)
                 .observe { (result) in
                     switch result {
-                    case .success(let object):
-                        if let user = object as? User {
-                            promise.resolve(with: user)
-                        } else {
-                            promise.reject(with: ClientError.generic)
-                        }
+                    case .success(let user):
+                        promise.resolve(with: user)
                     case .failure(let error):
                         promise.reject(with: error)
                     }

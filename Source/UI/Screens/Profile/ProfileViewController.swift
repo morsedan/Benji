@@ -23,13 +23,13 @@ protocol ProfileViewControllerDelegate: class {
 
 class ProfileViewController: ViewController {
 
-    private let user: PFUser
+    private let user: User
     let topBar = View()
     lazy var collectionView = ProfileCollectionView()
     lazy var manager = ProfileCollectionViewManager(with: self.collectionView)
     unowned let delegate: ProfileViewControllerDelegate
 
-    init(with user: PFUser, delegate: ProfileViewControllerDelegate) {
+    init(with user: User, delegate: ProfileViewControllerDelegate) {
         self.user = user
         self.delegate = delegate
         super.init()
@@ -72,7 +72,7 @@ class ProfileViewController: ViewController {
 
         let handleItem = ProfileItem(avatar: nil,
                                      title: "Handle",
-                                     text: self.user.handle,
+                                     text: String(optional: self.user.handle),
                                      hasDetail: false)
         items.append(handleItem)
 
