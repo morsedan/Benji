@@ -103,12 +103,6 @@ extension Person {
 
 extension Person {
 
-    var initials: String {
-        let firstInitial = String(optional: self.givenName?.first?.uppercased())
-        let lastInitial = String(optional: self.familyName?.first?.uppercased())
-        return firstInitial + lastInitial
-    }
-
     func formatName(from text: String) {
         let components = text.components(separatedBy: " ").filter { (component) -> Bool in
             return !component.isEmpty
@@ -129,5 +123,20 @@ extension Person {
 //            let image = UIImage(data: data)
 //            completion(image)
 //        }
+    }
+}
+
+extension Person: Avatar {
+
+    var person: Person? {
+        return self
+    }
+
+    var image: UIImage? {
+        return nil
+    }
+
+    var userObjectID: String? {
+        self.objectId
     }
 }

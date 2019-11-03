@@ -22,8 +22,9 @@ enum UserKey: String {
 class User: PFUser {
 
     static var current = User.current()!
+    static var me = User.current.meObject
 
-    private(set) var me: Person?
+    private var meObject: Person?
 
     var handle: String? {
         get {
@@ -91,7 +92,7 @@ extension User: Objectable {
 extension User {
 
     func createHandle() {
-        guard let me = self.me,
+        guard let me = User.me,
             let first = me.givenName?.first,
             let last = me.familyName?.first,
             let position = self.reservation?.position else { return } //Change to reservation count

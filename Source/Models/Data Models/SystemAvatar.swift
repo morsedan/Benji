@@ -11,30 +11,19 @@ import Parse
 
 struct SystemAvatar: Avatar {
 
-    var handle: String {
-        return "@benji"
-    }
-    
-    var initials: String {
-        return "BD"
-    }
+    var person: Person?
+    var image: UIImage?
+    var handle: String?
 
-    var firstName: String {
+    var givenName: String? {
         return "Benji"
     }
 
-    var lastName: String {
+    var familyName: String? {
         return "Dodgson"
-    }
-
-    var user: PFUser? {
-        return nil
     }
 
     var userObjectID: String? {
         return nil 
     }
-    
-    var photo: UIImage?
-
 }

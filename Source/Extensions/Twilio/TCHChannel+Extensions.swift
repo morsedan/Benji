@@ -29,12 +29,12 @@ extension TCHChannel: Diffable, DisplayableCellItem {
         })
     }
 
-    func getAuthorAsUser() -> Future<PFUser> {
+    func getAuthorAsUser() -> Future<User> {
         let promise = Promise<TCHChannel>(value: self)
         return promise.getAuthorAsUser()
     }
 
-    func getMembersAsUsers() -> Future<[PFUser]> {
+    func getMembersAsUsers() -> Future<[User]> {
         let promise = Promise<TCHChannel>(value: self)
         return promise.getUsers()
     }
@@ -151,33 +151,17 @@ extension Future where Value == TCHChannel {
 }
 
 extension TCHChannel: ImageDisplayable {
-    
-    var initials: String {
-        return String()
+
+    var person: Person? {
+        return nil
     }
 
-    var firstName: String {
-        return String()
-    }
-
-    var lastName: String {
-        return String()
-    }
-
-    var handle: String {
-        return String()
+    var image: UIImage? {
+        return nil 
     }
 
     var userObjectID: String? {
         return self.createdBy
-    }
-
-    var user: PFUser? {
-        return nil
-    }
-
-    var photo: UIImage? {
-        return nil
     }
 
     var context: MessageContext? {

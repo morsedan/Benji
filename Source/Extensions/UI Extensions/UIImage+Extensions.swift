@@ -108,11 +108,11 @@ extension UIImage {
 
 extension UIImage: ImageDisplayable {
 
-    var user: PFUser? {
+    var person: Person? {
         return nil
     }
 
-    var photo: UIImage? {
+    var image: UIImage? {
         return self
     }
 
@@ -122,20 +122,16 @@ extension UIImage: ImageDisplayable {
 }
 
 extension UIImage: Avatar {
-    
-    var initials: String {
-        return String()
+
+    var givenName: String? {
+        return "First"
     }
 
-    var firstName: String {
-        return String()
+    var familyName: String? {
+        return "Last"
     }
 
-    var lastName: String {
-        return String()
-    }
-
-    var handle: String {
-        return String()
+    var handle: String? {
+        return nil
     }
 }

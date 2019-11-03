@@ -10,11 +10,11 @@ import Foundation
 import Parse
 
 class FavoriteCell: UICollectionViewCell, DisplayableCell {
-    typealias ItemType = PFUser
+    typealias ItemType = User
 
     let avatarView = AvatarView()
 
-    func configure(with item: PFUser?) {
+    func configure(with item: User?) {
         guard let avatar = item else { return }
 
         self.contentView.addSubview(self.avatarView)
