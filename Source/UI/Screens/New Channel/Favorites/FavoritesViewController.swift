@@ -14,7 +14,9 @@ class FavoritesViewController: CollectionViewController<FavoriteCell, FavoritesC
     override func initializeViews() {
         super.initializeViews()
 
-        User.cachedArrayQuery(notEqualTo: User.current.objectId!)
+        guard let objectId = User.current()?.objectId else { return }
+
+        User.cachedArrayQuery(notEqualTo: objectId)
             .observe { (result) in
                 switch result {
                 case .success(let users):

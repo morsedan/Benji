@@ -48,12 +48,12 @@ class LoginCodeViewController: LoginTextInputViewController {
         let tf = self.textField as? TextField
         tf?.activityIndicator.startAnimating()
         //Temp
-        User.current.phoneNumber = self.phoneNumber.numberString.formatPhoneNumber()
-        User.current.saveObject()
+        User.current()?.phoneNumber = self.phoneNumber.numberString.formatPhoneNumber()
+        User.current()?.saveObject()
             .observe { (result) in
                 switch result {
-                case .success(_):
-                    self.delegate.loginCodeView(self, didVerify: User.current)
+                case .success(let user):
+                    self.delegate.loginCodeView(self, didVerify: user)
                 case .failure(_):
                     break 
                 }

@@ -86,9 +86,9 @@ class LoginProfilePhotoViewController: ViewController {
 
     func saveProfilePicture(image: UIImage) {
         guard let blackWhiteImage = self.createBlackAndWhite(from: image),
-            let imageData = blackWhiteImage.pngData() else { return }
+            let imageData = blackWhiteImage.pngData(),
+            let current = User.current() else { return }
 
-        let current = User.current
         // NOTE: Remember, we're in points not pixels. Max image size will
         // depend on image pixel density. It's okay for now.
         let maxAllowedDimension: CGFloat = 50.0

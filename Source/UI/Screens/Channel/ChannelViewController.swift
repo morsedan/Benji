@@ -123,12 +123,14 @@ class ChannelViewController: FullScreenViewController {
     //    }
 
     func send(message: String, context: MessageContext = .casual) {
-        guard let channel = ChannelManager.shared.selectedChannel else { return }
+        guard let channel = ChannelManager.shared.selectedChannel,
+            let current = User.current(),
+            let objectId = current.objectId else { return }
 
-        let messageType = SystemMessage(avatar: User.current,
+        let messageType = SystemMessage(avatar: current,
                                         context: context,
                                         body: message,
-                                        id: User.current.objectId!,
+                                        id: objectId,
                                         isFromCurrentUser: true,
                                         timeStampAsDate: Date(),
                                         status: .sent)

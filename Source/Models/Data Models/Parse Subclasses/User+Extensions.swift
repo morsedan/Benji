@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import Parse
 
 extension User: Avatar {
 
@@ -36,6 +37,43 @@ extension User {
             let position = self.reservation?.position else { return } //Change to reservation count
 
         self.handle = String(first) + String(last) + "_" + String(position)
+    }
+
+    static func anonymousLogin() -> Future<User> {
+        let promise = Promise<User>()
+        PFAnonymousUtils.logIn { (user, error) in
+            if let anonymousUser = user as? User {
+                self.createMePerson(for: anonymousUser)
+                    .observe { (result) in
+                        switch result {
+                        case .success:
+                            promise.resolve(with: anonymousUser)
+                        case .failure(let error):
+                            promise.reject(with: error)
+                        }
+                }
+            } else if let error = error {
+                promise.reject(with: error)
+            } else {
+                promise.reject(with: ClientError.generic)
+            }
+        }
+        return promise 
+    }
+
+    private static func createMePerson(for user: User) -> Future<Void> {
+        let promise = Promise<Void>()
+        user.person = Person()
+        user.saveObject()
+            .observe { (result) in
+                switch result {
+                case .success(_):
+                    promise.resolve(with: ())
+                case .failure(let error):
+                    promise.reject(with: error)
+                }
+        }
+        return promise
     }
 }
 

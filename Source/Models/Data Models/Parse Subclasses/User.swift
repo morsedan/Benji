@@ -28,8 +28,7 @@ enum UserKey: String {
 
 final class User: PFUser {
 
-    static var current = User.current()!
-    static var me = User.current.person
+    static var me = User.current()?.person
 
     var person: Person? {
         get {

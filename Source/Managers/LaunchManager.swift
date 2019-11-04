@@ -51,7 +51,7 @@ class LaunchManager {
             configuration.applicationId = self.appID
         }))
 
-        if let user = PFUser.current(), let identity = user.objectId {
+        if let user = User.current(), let identity = user.objectId {
             self.authenticateChatClient(with: identity)
         } else {
             self.createAnonymousUser()
@@ -59,9 +59,16 @@ class LaunchManager {
     }
 
     func createAnonymousUser() {
-        PFAnonymousUtils.logIn { (user, error) in
-            guard let anonymousUser = user, let identifier = anonymousUser.objectId else { return }
-            self.authenticateChatClient(with: identifier)
+        User.anonymousLogin()
+            .observe { (result) in
+                switch result {
+                case .success(let user):
+                    if let identifier = user.objectId {
+                        self.authenticateChatClient(with: identifier)
+                    }
+                case .failure(let error):
+                    print(error)
+                }
         }
     }
 

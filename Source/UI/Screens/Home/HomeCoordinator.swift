@@ -36,7 +36,8 @@ extension HomeCoordinator: HomeViewControllerDelegate {
     }
 
     private func presentProfile() {
-        let coordinator = ProfileCoordinator(with: User.current, router: self.router, deepLink: self.deepLink)
+        guard let current = User.current() else { return }
+        let coordinator = ProfileCoordinator(with: current, router: self.router, deepLink: self.deepLink)
         self.present(coordinator: coordinator)
     }
 
