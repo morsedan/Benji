@@ -27,6 +27,24 @@ final class Reservation: PFObject, PFSubclassing {
             self.setObject(for: .position, with: newValue)
         }
     }
+
+    static func create() -> Future<Reservation> {
+        let promise = Promise<Reservation>()
+
+        let currentCount = PFObject.init(className: "ReservationCount")
+        currentCount.incrementKey("currentCount", byAmount: 1)
+        currentCount.saveInBackground { (success, error) in
+            if success {
+
+            } else if let error = error {
+                promise.reject(with: error)
+            } else {
+                promise.reject(with: ClientError.generic)
+            }
+        }
+
+        return promise
+    }
 }
 
 extension Reservation: Objectable {

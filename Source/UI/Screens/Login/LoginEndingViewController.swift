@@ -44,18 +44,49 @@ class LoginEndingViewController: ViewController {
                               stringCasing: .capitalized)
 
         self.fetchAllData()
+            .observe { (result) in
+                switch result {
+                case .success:
+                    delay(3.0) {
+                        self.delegate.loginEndingViewControllerDidComplete(self)
+                    }
+                case .failure(let error):
+                    print(error)
+                }
+        }
     }
 
-    private func fetchAllData() {
-        PFAnonymousUtils.logIn { (user, error) in
-            if error != nil || user == nil {
-                print("Anonymous login failed.")
-            } else {
-                delay(3.0) {
-                    self.delegate.loginEndingViewControllerDidComplete(self)
+    private func fetchAllData() -> Future<Void> {
+        let promise = Promise<Void>()
+        User.anonymousLogin()
+            .observe { (result) in
+                switch result {
+                case .success(let user):
+                    Reservation.create()
+                        .observe { (result) in
+                            switch result {
+                            case .success(let reservation):
+                                user.reservation = reservation
+                                user.createHandle()
+                                user.saveObject()
+                                    .observe { (userResult) in
+                                        switch userResult {
+                                        case .success(_):
+                                            promise.resolve(with: ())
+                                        case .failure(let error):
+                                            promise.reject(with: error)
+                                        }
+                                }
+                            case .failure(let error):
+                                promise.reject(with: error)
+                            }
+                    }
+                case .failure(let error):
+                    promise.reject(with: error)
                 }
-            }
         }
+
+        return promise
     }
 
     override func viewDidLayoutSubviews() {

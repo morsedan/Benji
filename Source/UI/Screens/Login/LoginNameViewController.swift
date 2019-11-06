@@ -50,7 +50,6 @@ class LoginNameViewController: LoginTextInputViewController {
         tf?.activityIndicator.startAnimating()
 
         User.current()?.formatName(from: text)
-        User.current()?.createHandle()
         User.current()?.saveObject()
             .observe { (result) in
                 tf?.activityIndicator.stopAnimating()

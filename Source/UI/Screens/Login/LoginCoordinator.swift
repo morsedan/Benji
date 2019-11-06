@@ -21,12 +21,14 @@ class LoginCoordinator: PresentableCoordinator<Void> {
     private func fetchAllData() {
         UserNotificationManager.shared.requestAuthorization()
 
-        PFAnonymousUtils.logIn { (user, error) in
-            if error != nil || user == nil {
-                print("Anonymous login failed.")
-            } else {
-                self.runHomeFlow()
-            }
+        User.anonymousLogin()
+            .observe { (result) in
+                switch result {
+                case .success(_):
+                    self.runHomeFlow()
+                case .failure(let error):
+                    print(error)
+                }
         }
     }
 

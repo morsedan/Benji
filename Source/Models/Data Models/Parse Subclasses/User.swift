@@ -48,7 +48,7 @@ final class User: PFUser {
         }
     }
 
-    private(set) var reservation: Reservation? {
+    var reservation: Reservation? {
         get {
             return self.getObject(for: .reservation)
         }
