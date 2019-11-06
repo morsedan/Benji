@@ -144,7 +144,7 @@ extension Future where Value == TCHChannel {
 
 extension TCHChannel: ImageDisplayable {
 
-    var person: Person? {
+    var user: User? {
         return nil
     }
 

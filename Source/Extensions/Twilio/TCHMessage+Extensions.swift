@@ -36,10 +36,6 @@ extension TCHMessage: Diffable, DisplayableCellItem, Avatar {
         return String()
     }
 
-    var person: Person? {
-        return nil
-    }
-
     var image: UIImage? {
         return nil
     }

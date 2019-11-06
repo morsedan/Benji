@@ -12,10 +12,6 @@ import Parse
 struct SystemAvatar: Avatar {
 
     var image: UIImage?
-    
-    var person: Person? {
-        return nil
-    }
 
     var givenName: String {
         return "Benji"

@@ -104,11 +104,11 @@ class LoginProfilePhotoViewController: ViewController {
 
         if let scaledData = scaledImage.pngData() {
             let scaledImageFile = PFFileObject(name:"small_image.png", data: scaledData)
-            current.person?.smallImage = scaledImageFile
+            current.smallImage = scaledImageFile
         }
 
         let largeImageFile = PFFileObject(name:"image.png", data: imageData)
-        current.person?.largeImage = largeImageFile
+        current.largeImage = largeImageFile
 
         current.saveObject()
             .ignoreUserInteractionEventsUntilDone()

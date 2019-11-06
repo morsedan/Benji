@@ -55,29 +55,31 @@ class DisplayableImageView: View {
     private func updateImageView() {
         if let photo = self.displayable.image {
             self.imageView.image = photo
-        } else if let person = self.displayable.person {
+        } else if let person = self.displayable.user {
             self.downloadAndSetImage(for: person)
         } else if let objectID = self.displayable.userObjectID {
             self.findUser(with: objectID)
         }
     }
 
-    private func downloadAndSetImage(for person: Person) {
-//        let imageFile = self.showLargeImage ? user.largeProfileImageFile : user.smallProfileImageFile
-//        imageFile?.getDataInBackground { (imageData: Data?, error: Error?) in
-//            guard let data = imageData else { return }
-//            let image = UIImage(data: data)
-//            self.imageView.image = image
-//        }
+    private func downloadAndSetImage(for user: User) {
+        let imageFile = self.showLargeImage ? user.largeImage : user.smallImage
+        imageFile?.getDataInBackground { (imageData: Data?, error: Error?) in
+            guard let data = imageData else { return }
+            let image = UIImage(data: data)
+            self.imageView.image = image
+        }
     }
 
     private func findUser(with objectID: String) {
-//        PFUser.cachedQuery(for: objectID, completion: { (object, error) in
-//            if let user = object as? PFUser {
-//                self.downloadAndSetImage(for: user)
-//            } else {
-//                print(ClientError.message(detail: "FAILED TO FIND USER"))
-//            }
-//        })
+        User.cachedQuery(for: objectID)
+            .observe { (result) in
+                switch result {
+                case .success(let user):
+                    self.downloadAndSetImage(for: user)
+                case .failure(let error):
+                    print(error)
+                }
+        }
     }
 }

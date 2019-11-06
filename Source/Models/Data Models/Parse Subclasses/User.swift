@@ -19,25 +19,15 @@ enum UserKey: String {
     case email
     case reservation
     case connections
-    case person
-    case people
     case handle
-    case me
     case phoneNumber
+    case givenName
+    case familyName
+    case smallImage
+    case largeImage
 }
 
 final class User: PFUser {
-
-    static var me = User.current()?.person
-
-    var person: Person? {
-        get {
-            return self.getObject(for: .person)
-        }
-        set {
-            self.setObject(for: .person, with: newValue)
-        }
-    }
 
     var handle: String? {
         get {
@@ -76,12 +66,39 @@ final class User: PFUser {
         }
     }
 
-    var people: [Person] {
+    var givenName: String {
         get {
-            return self.getObject(for: .people) ?? []
+            return String(optional: self.getObject(for: .givenName))
         }
         set {
-            self.setObject(for: .people, with: newValue)
+            self.setObject(for: .givenName, with: newValue)
+        }
+    }
+
+    var familyName: String {
+        get {
+            return String(optional: self.getObject(for: .familyName))
+        }
+        set {
+            self.setObject(for: .familyName, with: newValue)
+        }
+    }
+
+    var smallImage: PFFileObject? {
+        get {
+            return self.getObject(for: .smallImage)
+        }
+        set {
+            self.setObject(for: .smallImage, with: newValue)
+        }
+    }
+
+    var largeImage: PFFileObject? {
+        get {
+            return self.getObject(for: .largeImage)
+        }
+        set {
+            self.setObject(for: .largeImage, with: newValue)
         }
     }
 }

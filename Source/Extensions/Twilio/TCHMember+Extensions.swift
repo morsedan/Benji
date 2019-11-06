@@ -24,10 +24,6 @@ extension TCHMember: Avatar {
         return nil
     }
 
-    var person: Person? {
-        return nil
-    }
-
     var image: UIImage? {
         return nil
     }

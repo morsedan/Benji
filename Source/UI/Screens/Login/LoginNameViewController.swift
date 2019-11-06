@@ -43,14 +43,13 @@ class LoginNameViewController: LoginTextInputViewController {
     }
 
     private func updateUserName() {
-        guard let me = User.me,
-            let text = self.textField.text,
+        guard let text = self.textField.text,
             !text.isEmpty else { return }
 
         let tf = self.textField as? TextField
         tf?.activityIndicator.startAnimating()
 
-        me.formatName(from: text)
+        User.current()?.formatName(from: text)
         User.current()?.createHandle()
         User.current()?.saveObject()
             .observe { (result) in

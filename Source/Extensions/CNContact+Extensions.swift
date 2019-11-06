@@ -67,10 +67,6 @@ extension CNContact: DisplayableCellItem {
 
 extension CNContact: Avatar {
 
-    var person: Person? {
-        return nil
-    }
-
     var image: UIImage? {
         if let imageData = self.thumbnailImageData {
             return UIImage(data: imageData)

@@ -34,10 +34,10 @@ class LoginEndingViewController: ViewController {
         self.view.set(backgroundColor: .background1)
         self.view.addSubview(self.displayLabel)
 
-        guard let me = User.current()?.person else { return }
+        guard let current = User.current() else { return }
 
         let text = LocalizedString(id: "",
-                                   arguments: [me.givenName],
+                                   arguments: [current.givenName],
                                    default: "@1, I made this for you.\n\n ~Benji")
         self.displayLabel.set(text: text,
                               alignment: .center,

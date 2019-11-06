@@ -176,7 +176,7 @@ class AvatarView: DisplayableImageView {
 
     func set(avatar: Avatar) {
         self.displayable = avatar
-        guard avatar.image == nil, avatar.person == nil else { return }
+        guard avatar.image == nil, avatar.user == nil else { return }
         self.initials = avatar.initials
     }
 

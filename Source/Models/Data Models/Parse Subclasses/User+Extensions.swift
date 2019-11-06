@@ -11,12 +11,8 @@ import Parse
 
 extension User: Avatar {
 
-    var givenName: String {
-        return String(optional: self.person?.givenName)
-    }
-
-    var familyName: String {
-        return String(optional: self.person?.familyName)
+    var user: User? {
+        return User.current()
     }
 
     var userObjectID: String? {
@@ -31,9 +27,9 @@ extension User: Avatar {
 extension User {
 
     func createHandle() {
-        guard let me = User.me,
-            let first = me.givenName.first,
-            let last = me.familyName.first,
+        guard let current = User.current(),
+            let first = current.givenName.first,
+            let last = current.familyName.first,
             let position = self.reservation?.position else { return } //Change to reservation count
 
         self.handle = String(first) + String(last) + "_" + String(position)
@@ -43,15 +39,7 @@ extension User {
         let promise = Promise<User>()
         PFAnonymousUtils.logIn { (user, error) in
             if let anonymousUser = user as? User {
-                self.createMePerson(for: anonymousUser)
-                    .observe { (result) in
-                        switch result {
-                        case .success:
-                            promise.resolve(with: anonymousUser)
-                        case .failure(let error):
-                            promise.reject(with: error)
-                        }
-                }
+                promise.resolve(with: anonymousUser)
             } else if let error = error {
                 promise.reject(with: error)
             } else {
@@ -59,21 +47,6 @@ extension User {
             }
         }
         return promise 
-    }
-
-    private static func createMePerson(for user: User) -> Future<Void> {
-        let promise = Promise<Void>()
-        user.person = Person()
-        user.saveObject()
-            .observe { (result) in
-                switch result {
-                case .success(_):
-                    promise.resolve(with: ())
-                case .failure(let error):
-                    promise.reject(with: error)
-                }
-        }
-        return promise
     }
 }
 
@@ -85,5 +58,20 @@ extension User: DisplayableCellItem {
 
     func diffIdentifier() -> NSObjectProtocol {
         return self.objectId! as NSObjectProtocol
+    }
+}
+
+extension User {
+    
+    func formatName(from text: String) {
+        let components = text.components(separatedBy: " ").filter { (component) -> Bool in
+            return !component.isEmpty
+        }
+        if let first = components.first {
+            self.givenName = first
+        }
+        if let last = components.last {
+            self.familyName = last
+        }
     }
 }

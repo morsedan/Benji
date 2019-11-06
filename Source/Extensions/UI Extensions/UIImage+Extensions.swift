@@ -106,21 +106,6 @@ extension UIImage {
     }
 }
 
-extension UIImage: ImageDisplayable {
-
-    var person: Person? {
-        return nil
-    }
-
-    var image: UIImage? {
-        return self
-    }
-
-    var userObjectID: String? {
-        return nil
-    }
-}
-
 extension UIImage: Avatar {
 
     var givenName: String {
@@ -132,6 +117,14 @@ extension UIImage: Avatar {
     }
 
     var handle: String? {
+        return nil
+    }
+
+    var image: UIImage? {
+        return self
+    }
+
+    var userObjectID: String? {
         return nil
     }
 }
