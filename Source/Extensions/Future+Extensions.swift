@@ -7,17 +7,11 @@
 //
 
 import Foundation
+import TMROFutures
 
 extension Future {
 
-    // Converts this future into a void future. Can be used to combine futures of differing types.
-    // FIX: THIS DOESN'T COMPILE
-    //    func asVoid() -> Future<Void> {
-    //        return then(with: { _ in
-    //            return ()
-    //        })
-    //    }
-
+    @discardableResult
     // Executes the passed in callback after this future receives its result.
     func then<NextValue>(with callback: @escaping (Value) -> Future<NextValue>) -> Future<NextValue> {
 
@@ -47,17 +41,6 @@ extension Future {
 
         return promise
     }
-
-    // After a future is fulfilled, the transformation closure is applied to the resulting value.
-    // The newly transformed value can then be use as input for another future operation.
-    func transform<NextValue>(with closure: @escaping (Value) -> NextValue) -> Future<NextValue> {
-        return self.then(with: { (value) in
-            return Promise(value: closure(value))
-        })
-    }
-}
-
-extension Future {
 
     func ignoreUserInteractionEventsUntilDone() -> Future<Value> {
         UIApplication.shared.beginIgnoringInteractionEvents()

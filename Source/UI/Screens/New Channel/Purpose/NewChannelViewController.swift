@@ -8,6 +8,7 @@
 
 import Foundation
 import Parse
+import TMROFutures
 
 protocol NewChannelViewControllerDelegate: class {
     func newChannelView(_ controller: NewChannelViewController,

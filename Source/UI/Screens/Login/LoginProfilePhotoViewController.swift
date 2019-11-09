@@ -8,6 +8,7 @@
 
 import Foundation
 import Parse
+import TMROFutures
 
 protocol LoginProfilePhotoViewControllerDelegate: class {
     func loginProfilePhotoViewControllerDidUpdatePhoto(_ controller: LoginProfilePhotoViewController)

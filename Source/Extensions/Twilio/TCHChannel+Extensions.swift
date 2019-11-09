@@ -9,6 +9,7 @@
 import Foundation
 import TwilioChatClient
 import Parse
+import TMROFutures
 
 extension TCHChannel: Diffable, DisplayableCellItem {
     
