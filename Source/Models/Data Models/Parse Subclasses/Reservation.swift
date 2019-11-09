@@ -19,7 +19,7 @@ final class Reservation: PFObject, PFSubclassing {
         return String(describing: self)
     }
 
-    private(set) var position: Int? {
+    private(set) var position: Double? {
         get {
             return self.getObject(for: .position)
         }
@@ -31,18 +31,36 @@ final class Reservation: PFObject, PFSubclassing {
     static func create() -> Future<Reservation> {
         let promise = Promise<Reservation>()
 
-        let currentCount = PFObject.init(className: "ReservationCount")
-        currentCount.incrementKey("currentCount", byAmount: 1)
-        currentCount.saveInBackground { (success, error) in
-            if success {
-
-            } else if let error = error {
-                promise.reject(with: error)
+        let query = PFQuery.init(className: "ReservationCount")
+        query.getObjectInBackground(withId: "DVfDrd0gWq") { (object, error) in
+            if let current = object {
+                current.incrementKey(ReservationCountKeys.currentCount.rawValue, byAmount: 1)
+                current.saveInBackground { (success, error) in
+                    if success {
+                        let reservation = Reservation()
+                        let count = current["currentCount"] as! NSNumber
+                        let cap = current["cap"] as! NSNumber
+                        let position: Double = Double(truncating: count) / Double(truncating: cap)
+                        reservation.position = position.rounded(by: cap.intValue)
+                        reservation.saveObject()
+                            .observe { (result) in
+                                switch result {
+                                case .success(let updatedReservation):
+                                    promise.resolve(with: updatedReservation)
+                                case .failure(let error):
+                                    promise.reject(with: error)
+                                }
+                        }
+                    } else if let error = error {
+                        promise.reject(with: error)
+                    } else {
+                        promise.reject(with: ClientError.generic)
+                    }
+                }
             } else {
                 promise.reject(with: ClientError.generic)
             }
         }
-
         return promise
     }
 }
@@ -74,5 +92,17 @@ extension Reservation: Objectable {
         }
 
         return promise
+    }
+}
+
+extension Double {
+    /// Rounds the double to decimal places value
+    func rounded(toPlaces places:Int) -> Double {
+        let divisor = pow(10.0, Double(places))
+        return (self * divisor).rounded() / divisor
+    }
+
+    func rounded(by value: Int) -> Double {
+        return (self * Double(value)).rounded() / Double(value)
     }
 }

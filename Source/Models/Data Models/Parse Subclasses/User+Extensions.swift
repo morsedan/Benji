@@ -28,11 +28,15 @@ extension User {
 
     func createHandle() {
         guard let current = User.current(),
-            let first = current.givenName.first,
+            !current.givenName.isEmpty,
             let last = current.familyName.first,
-            let position = self.reservation?.position else { return } //Change to reservation count
-
-        self.handle = String(first) + String(last) + "_" + String(position)
+            let position = self.reservation?.position else { return } 
+        var positionString = String(position)
+        let start = positionString.startIndex
+        let end = positionString.index(positionString.startIndex, offsetBy: 1)
+        positionString = positionString.replacingCharacters(in: start...end, with: "")
+        let handleString = String(current.givenName) + String(last) + "_" + positionString
+        self.handle = handleString.lowercased()
     }
 
     static func anonymousLogin() -> Future<User> {
