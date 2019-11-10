@@ -27,11 +27,11 @@ extension ChannelCollectionViewController {
         })
     }
 
-    private func makeContextMenu(for messageType: MessageType, at indexPath: IndexPath) -> UIMenu {
+    private func makeContextMenu(for message: Messageable, at indexPath: IndexPath) -> UIMenu {
 
         // Create a UIAction for sharing
         let share = UIAction(title: "Share", image: UIImage(systemName: "square.and.arrow.up")) { action in
-            let items = [localized(messageType.body)]
+            let items = [localized(message.text)]
             let ac = UIActivityViewController(activityItems: items, applicationActivities: nil)
             self.present(ac, animated: true)
         }
@@ -46,7 +46,7 @@ extension ChannelCollectionViewController {
         }
 
         let confirm = UIAction(title: "Confirm", image: UIImage(systemName: "trash"), attributes: .destructive) { action in
-            self.channelDataSource.delete(item: messageType, in: indexPath.section)
+            self.channelDataSource.delete(item: message, in: indexPath.section)
         }
 
         let deleteMenu = UIMenu(title: "Delete", image: UIImage(systemName: "trash"), options: .destructive, children: [confirm, neverMind])

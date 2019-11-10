@@ -70,12 +70,12 @@ class InitialSectionHeader: UICollectionReusableView {
 
     private func layoutContent(with attributes: ChannelCollectionViewLayoutAttributes) {
 
-        self.descriptionLabel.size = attributes.headerDescriptionLabelSize
-        self.descriptionLabel.top = attributes.headerTopOffset
+        self.descriptionLabel.size = attributes.attributes.headerDescriptionLabelSize
+        self.descriptionLabel.top = attributes.attributes.headerTopOffset
         self.descriptionLabel.centerOnX()
 
-        self.dateLabel.size = attributes.headerDateLabelSize
-        self.dateLabel.top = self.descriptionLabel.bottom + attributes.headerDateOffset
+        self.dateLabel.size = attributes.attributes.headerDateLabelSize
+        self.dateLabel.top = self.descriptionLabel.bottom + attributes.attributes.headerDateOffset
         self.dateLabel.centerOnX()
     }
 }

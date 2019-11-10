@@ -143,7 +143,7 @@ UICollectionViewDelegateFlowLayout {
             return .zero
         }
 
-        return channelLayout.sizeForHeader(at: section)
+        return channelLayout.sizeForHeader(at: section, with: collectionView)
     }
 
     func collectionView(_ collectionView: UICollectionView,
@@ -203,9 +203,10 @@ UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView,
                         layout collectionViewLayout: UICollectionViewLayout,
                         sizeForItemAt indexPath: IndexPath) -> CGSize {
-        guard let channelLayout = collectionViewLayout as? ChannelCollectionViewFlowLayout else {
+        guard let channelLayout = collectionViewLayout as? ChannelCollectionViewFlowLayout,
+            let message = self.channelDataSource.item(at: indexPath) else {
             return .zero
         }
-        return channelLayout.sizeForItem(at: indexPath)
+        return channelLayout.sizeForItem(at: indexPath, with: message)
     }
 }
