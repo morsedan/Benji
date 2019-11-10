@@ -44,7 +44,7 @@ extension TCHMessage: ManageableCellItem, Avatar {
         return self.author
     }
 
-    var status: MessageTypeStatus {
+    var status: MessageStatus {
         return .delivered
     }
 }

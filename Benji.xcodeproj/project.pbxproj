@@ -17,6 +17,7 @@
 		D607400A233FCF3E009633EB /* HomeHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6074009233FCF3E009633EB /* HomeHeaderView.swift */; };
 		D607400C23400FA6009633EB /* HomeSearchBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = D607400B23400FA6009633EB /* HomeSearchBar.swift */; };
 		D607400E23401B3E009633EB /* SystemChannel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D607400D23401B3E009633EB /* SystemChannel.swift */; };
+		D6090E562377CB2F00833DA7 /* Messageable.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6090E552377CB2F00833DA7 /* Messageable.swift */; };
 		D609AE36236F3F81004FA89A /* User+Objectable.swift in Sources */ = {isa = PBXBuildFile; fileRef = D609AE35236F3F81004FA89A /* User+Objectable.swift */; };
 		D609AE3A236F44A8004FA89A /* User+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = D609AE39236F44A8004FA89A /* User+Extensions.swift */; };
 		D609AE3C236F913F004FA89A /* Objectable.swift in Sources */ = {isa = PBXBuildFile; fileRef = D609AE3B236F913F004FA89A /* Objectable.swift */; };
@@ -273,6 +274,7 @@
 		D6074009233FCF3E009633EB /* HomeHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeHeaderView.swift; sourceTree = "<group>"; };
 		D607400B23400FA6009633EB /* HomeSearchBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeSearchBar.swift; sourceTree = "<group>"; };
 		D607400D23401B3E009633EB /* SystemChannel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SystemChannel.swift; sourceTree = "<group>"; };
+		D6090E552377CB2F00833DA7 /* Messageable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Messageable.swift; sourceTree = "<group>"; };
 		D609AE35236F3F81004FA89A /* User+Objectable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "User+Objectable.swift"; sourceTree = "<group>"; };
 		D609AE39236F44A8004FA89A /* User+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "User+Extensions.swift"; sourceTree = "<group>"; };
 		D609AE3B236F913F004FA89A /* Objectable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Objectable.swift; sourceTree = "<group>"; };
@@ -567,6 +569,14 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
+		D6090E542377CB0F00833DA7 /* Manager */ = {
+			isa = PBXGroup;
+			children = (
+				D6090E552377CB2F00833DA7 /* Messageable.swift */,
+			);
+			path = Manager;
+			sourceTree = "<group>";
+		};
 		D61EC0B321D3071400204BEE = {
 			isa = PBXGroup;
 			children = (
@@ -755,14 +765,14 @@
 			path = "New Channel";
 			sourceTree = "<group>";
 		};
-		D638440C2336E1FA0072227B /* Cell Calculators */ = {
+		D638440C2336E1FA0072227B /* Cell Configurers */ = {
 			isa = PBXGroup;
 			children = (
 				D6432BF622D837340016001A /* CellSizeCalculator.swift */,
 				D64C6AA1232EA06800DB7257 /* TypingCellSizeCalculator.swift */,
 				D6432BF822D837A30016001A /* MessageSizeCaluculator.swift */,
 			);
-			path = "Cell Calculators";
+			path = "Cell Configurers";
 			sourceTree = "<group>";
 		};
 		D638440D2336E2160072227B /* Header Calculators */ = {
@@ -869,6 +879,7 @@
 		D6432BF122D8282E0016001A /* Channel */ = {
 			isa = PBXGroup;
 			children = (
+				D6090E542377CB0F00833DA7 /* Manager */,
 				D68540CD235FDE18006F666C /* Autocomplete */,
 				D67896CB2304524C0059BA75 /* ChannelCoordinator.swift */,
 				D6D1500621D5E73D00CD8CE4 /* ChannelViewController.swift */,
@@ -1066,7 +1077,7 @@
 		D6B2603522E6A97400143CF0 /* Layout */ = {
 			isa = PBXGroup;
 			children = (
-				D638440C2336E1FA0072227B /* Cell Calculators */,
+				D638440C2336E1FA0072227B /* Cell Configurers */,
 				D638440D2336E2160072227B /* Header Calculators */,
 				D6432BF422D82CDC0016001A /* ChannelCollectionViewFlowLayout.swift */,
 				D6432BEF22D824BA0016001A /* ChannelCollectionViewLayoutAttributes.swift */,
@@ -1648,6 +1659,7 @@
 				D642738822C9AF690088256B /* ModalViewController.swift in Sources */,
 				D642737422C99D6A0088256B /* ContactsViewController.swift in Sources */,
 				D6D145F421D5493000CD8CE4 /* HomeViewController.swift in Sources */,
+				D6090E562377CB2F00833DA7 /* Messageable.swift in Sources */,
 				D642739722CA6E1F0088256B /* CommonWord.swift in Sources */,
 				D642736C22C98FA00088256B /* MathFunctions.swift in Sources */,
 				80D4A21C2303A005007CB5F1 /* Routine.swift in Sources */,

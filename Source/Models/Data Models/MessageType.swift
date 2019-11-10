@@ -11,7 +11,7 @@ import TwilioChatClient
 import Parse
 import TMROLocalization
 
-enum MessageTypeStatus {
+enum MessageStatus {
     case delivered
     case sent
     case read
@@ -93,7 +93,7 @@ enum MessageType: ManageableCellItem {
         }
     }
 
-    var status: MessageTypeStatus {
+    var status: MessageStatus {
         switch self {
         case .user(let message):
             return message.status

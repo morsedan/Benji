@@ -16,7 +16,7 @@ struct SystemMessage: Diffable, Hashable {
     var id: String
     var isFromCurrentUser: Bool = false
     var timeStampAsDate: Date
-    var status: MessageTypeStatus = .sent
+    var status: MessageStatus = .sent
 
     func diffIdentifier() -> NSObjectProtocol {
         return self.id as NSObjectProtocol
