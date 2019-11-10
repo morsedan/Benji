@@ -11,15 +11,15 @@ import TMROLocalization
 
 protocol ChannelDataSource: AnyObject {
 
-    var sections: [ChannelSectionType] { get set }
-    var collectionView: CollectionView? { get set }
+    var sections: [ChannelSectionable] { get set }
+    var collectionView: ChannelCollectionView { get set }
 
     func item(at indexPath: IndexPath) -> Messageable?
     func numberOfSections() -> Int
     func numberOfItems(inSection section: Int) -> Int
 
     func reset()
-    func set(newSections: [ChannelSectionType], keepOffset: Bool)
+    func set(newSections: [ChannelSectionable], keepOffset: Bool)
     func append(item: Messageable)
     func update(item: Messageable, in section: Int)
     func delete(item: Messageable, in section: Int)
@@ -45,16 +45,16 @@ extension ChannelDataSource {
 
     func reset() {
         self.sections = []
-        self.collectionView?.reloadData()
+        self.collectionView.reloadData()
     }
 
-    func set(newSections: [ChannelSectionType], keepOffset: Bool = false) {
+    func set(newSections: [ChannelSectionable], keepOffset: Bool = false) {
         self.sections = newSections
 
         if keepOffset {
-            self.collectionView?.reloadDataAndKeepOffset()
+            self.collectionView.reloadDataAndKeepOffset()
         } else {
-            self.collectionView?.reloadData()
+            self.collectionView.reloadData()
         }
     }
 
@@ -73,12 +73,12 @@ extension ChannelDataSource {
             let indexPath = IndexPath(item: count, section: section)
 
             self.sections[section].items.append(item)
-            self.collectionView?.insertItems(at: [indexPath])
+            self.collectionView.insertItems(at: [indexPath])
         } else {
             //Create new section
-            let newSection = ChannelSectionType(date: item.createdAt, items: [item])
+            let newSection = ChannelSectionable(date: item.createdAt, items: [item])
             self.sections.append(newSection)
-            self.collectionView?.reloadData()
+            self.collectionView.reloadData()
         }
     }
 
@@ -111,7 +111,7 @@ extension ChannelDataSource {
         guard let ip = indexPath else { return }
 
         self.sections[section].items[ip.row] = item
-        self.collectionView?.reloadItems(at: [ip])
+        self.collectionView.reloadItems(at: [ip])
     }
 
     func update(item: Messageable, in section: Int = 0) {
@@ -129,7 +129,7 @@ extension ChannelDataSource {
         guard let ip = indexPath else { return }
 
         self.sections[section].items[ip.row] = item
-        self.collectionView?.reloadItems(at: [ip])
+        self.collectionView.reloadItems(at: [ip])
     }
 
     func delete(item: Messageable, in section: Int = 0) {
@@ -148,6 +148,6 @@ extension ChannelDataSource {
         guard let ip = indexPath else { return }
 
         self.sections[section].items.remove(at: ip.row)
-        self.collectionView?.deleteItems(at: [ip])
+        self.collectionView.deleteItems(at: [ip])
     }
 }

@@ -1,0 +1,162 @@
+//
+//  ChannelCollectionViewManager.swift
+//  Benji
+//
+//  Created by Benji Dodgson on 11/10/19.
+//  Copyright © 2019 Benjamin Dodgson. All rights reserved.
+//
+
+import Foundation
+import ReactiveSwift
+import TwilioChatClient
+
+class ChannelCollectionViewManager: NSObject, UITextViewDelegate, ChannelDataSource,
+UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
+
+
+    var sections: [ChannelSectionable] = [] {
+        didSet {
+            self.updateLayoutDataSource()
+        }
+    }
+
+    var collectionView: ChannelCollectionView
+    var didSelectURL: ((URL) -> Void)?
+    var willDisplayCell: ((Messageable, IndexPath) -> Void)?
+
+    init(with collectionView: ChannelCollectionView) {
+        self.collectionView = collectionView
+        super.init()
+        self.updateLayoutDataSource()
+    }
+
+    private func updateLayoutDataSource() {
+        self.collectionView.channelLayout.dataSource = self
+    }
+
+    // MARK: DATA SOURCE
+
+    func numberOfSections(in collectionView: UICollectionView) -> Int {
+        guard let channelCollectionView = collectionView as? ChannelCollectionView else { return 0 }
+        var numberOfSections = self.numberOfSections()
+
+        if !channelCollectionView.isTypingIndicatorHidden {
+            numberOfSections += 1
+        }
+
+        return numberOfSections
+    }
+
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+
+        if self.isSectionReservedForTypingIndicator(section) {
+            return 1
+        }
+
+        return self.numberOfItems(inSection: section)
+    }
+
+    // MARK: DELEGATE
+
+    func collectionView(_ collectionView: UICollectionView,
+                        cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+
+        guard let channelCollectionView = collectionView as? ChannelCollectionView else { fatalError() }
+
+        if self.isSectionReservedForTypingIndicator(indexPath.section) {
+            return channelCollectionView.dequeueReusableCell(TypingIndicatorCell.self, for: indexPath)
+        }
+
+        guard let message = self.item(at: indexPath) else { fatalError("No message found for cell") }
+
+        let cell = channelCollectionView.dequeueReusableCell(MessageCell.self, for: indexPath)
+
+        cell.configure(with: message)
+        cell.textView.delegate = self
+
+        return cell
+    }
+
+    func collectionView(_ collectionView: UICollectionView,
+                        viewForSupplementaryElementOfKind kind: String,
+                        at indexPath: IndexPath) -> UICollectionReusableView {
+
+        switch kind {
+        case UICollectionView.elementKindSectionHeader:
+            return self.header(for: collectionView, at: indexPath)
+        case UICollectionView.elementKindSectionFooter:
+            fatalError("UNRECOGNIZED SECTION KIND")
+        default:
+            fatalError("UNRECOGNIZED SECTION KIND")
+        }
+    }
+
+    private func header(for collectionView: UICollectionView, at indexPath: IndexPath) -> UICollectionReusableView {
+        guard let channelCollectionView = collectionView as? ChannelCollectionView else { fatalError() }
+
+        if self.isSectionReservedForTypingIndicator(indexPath.section) {
+            return UICollectionReusableView()
+        }
+
+        guard let section = self.sections[safe: indexPath.section] else { fatalError() }
+
+        let header = channelCollectionView.dequeueReusableHeaderView(ChannelSectionHeader.self, for: indexPath)
+        header.configure(with: section.date)
+        return header
+    }
+
+    func collectionView(_ collectionView: UICollectionView,
+                        willDisplay cell: UICollectionViewCell,
+                        forItemAt indexPath: IndexPath) {
+        if let cell = cell as? TypingIndicatorCell {
+            cell.typingBubble.startAnimating()
+        } else if let message = self.item(at: indexPath){
+            self.willDisplayCell?(message, indexPath)
+        }
+    }
+
+    // MARK: FLOW LAYOUT
+
+    func collectionView(_ collectionView: UICollectionView,
+                        layout collectionViewLayout: UICollectionViewLayout,
+                        sizeForItemAt indexPath: IndexPath) -> CGSize {
+
+        guard let channelLayout = collectionViewLayout as? ChannelCollectionViewFlowLayout else { return .zero }
+
+        /// May not have a message because of the typing indicator
+        let message = self.item(at: indexPath)
+        return channelLayout.sizeForItem(at: indexPath, with: message)
+    }
+
+    func collectionView(_ collectionView: UICollectionView,
+                        layout collectionViewLayout: UICollectionViewLayout,
+                        referenceSizeForHeaderInSection section: Int) -> CGSize {
+
+        guard let channelLayout = collectionViewLayout as? ChannelCollectionViewFlowLayout else {
+            return .zero
+        }
+
+        return channelLayout.sizeForHeader(at: section, with: collectionView)
+    }
+
+    // MARK: TEXT VIEW DELEGATE
+
+    func textView(_ textView: UITextView,
+                  shouldInteractWith URL: URL,
+                  in characterRange: NSRange,
+                  interaction: UITextItemInteraction) -> Bool {
+        self.didSelectURL?(URL)
+        return false
+    }
+
+    /// A method that by default checks if the section is the last in the
+    /// `messagesCollectionView` and that `isTypingIndicatorViewHidden`
+    /// is FALSE
+    ///
+    /// - Parameter section
+    /// - Returns: A Boolean indicating if the TypingIndicator should be presented at the given section
+    func isSectionReservedForTypingIndicator(_ section: Int) -> Bool {
+        return !self.collectionView.isTypingIndicatorHidden
+            && section == self.numberOfSections(in: self.collectionView) - 1
+    }
+}

@@ -69,8 +69,8 @@ class Lorem {
         return SystemAvatar(image: self.image())
     }
 
-    class func systemSections() -> [ChannelSectionType] {
-        var sections: [ChannelSectionType] = []
+    class func systemSections() -> [ChannelSectionable] {
+        var sections: [ChannelSectionable] = []
         var messages: [Messageable] = []
         for _ in 0...10 {
             let message = self.systemMessage()
@@ -83,7 +83,7 @@ class Lorem {
 
         for key in grouped.keys {
             if let value = grouped[key] {
-                let section = ChannelSectionType.init(date: key, items: value)
+                let section = ChannelSectionable.init(date: key, items: value)
                 sections.append(section)
             }
         }
