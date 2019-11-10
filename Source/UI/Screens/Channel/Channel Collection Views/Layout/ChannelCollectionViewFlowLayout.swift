@@ -17,22 +17,11 @@ class ChannelCollectionViewFlowLayout: UICollectionViewFlowLayout {
         return ChannelCollectionViewLayoutAttributes.self
     }
 
-    lazy var messageSizeCalculator = MessageSizeCalculator(layout: self)
-    lazy var typingIndicatorSizeCalculator = TypingCellSizeCalculator(layout: self)
-    lazy var initialHeaderSizeCalculator = InitialHeaderSizeCalculator(layout: self)
-
-    var channelCollectionView: ChannelCollectionView {
-        guard let channelCollectionView = self.collectionView as? ChannelCollectionView else {
-            fatalError("ChannelCollectionView NOT FOUND")
+    weak var dataSource: ChannelDataSource? {
+        didSet {
+            self.invalidateLayout()
+            self.collectionView?.reloadData()
         }
-        return channelCollectionView
-    }
-
-    var dataSource: ChannelDataSource {
-        guard let dataSource = self.channelCollectionView.channelDataSource else {
-            fatalError("ChannelDataSource is nil")
-        }
-        return dataSource
     }
 
     var itemWidth: CGFloat {
@@ -100,8 +89,12 @@ class ChannelCollectionViewFlowLayout: UICollectionViewFlowLayout {
         }
 
         for attributes in attributesArray where attributes.representedElementCategory == .cell {
-            let cellSizeCalculator = self.cellSizeCalculatorForItem(at: attributes.indexPath)
-            cellSizeCalculator.configure(attributes: attributes)
+            let message = self.dataSource?.item(at: attributes.indexPath)
+            let configurer = self.configurer(for: message, at: attributes.indexPath)
+
+            if let msg = message {
+                configurer.configure(with: msg, for: self, attributes: attributes)
+            }
         }
 
         for attributes in attributesArray where attributes.representedElementCategory == .supplementaryView {
@@ -117,10 +110,10 @@ class ChannelCollectionViewFlowLayout: UICollectionViewFlowLayout {
             return nil
         }
 
-        if attributes.representedElementCategory == .cell {
-            let cellSizeCalculator = self.cellSizeCalculatorForItem(at: attributes.indexPath)
-            cellSizeCalculator.configure(attributes: attributes)
-        }else if attributes.representedElementCategory == .supplementaryView {
+        if attributes.representedElementCategory == .cell, let message = self.dataSource?.item(at: indexPath) {
+            let configurer = self.configurer(for: message, at: indexPath)
+            configurer.configure(with: message, for: self, attributes: attributes)
+        } else if attributes.representedElementCategory == .supplementaryView {
             let headerSizeCalculator = self.headerSizeCalculator(for: attributes.indexPath.section)
             headerSizeCalculator.configure(attributes: attributes)
         }
@@ -141,12 +134,14 @@ class ChannelCollectionViewFlowLayout: UICollectionViewFlowLayout {
         return flowLayoutContext
     }
 
-    private func cellSizeCalculatorForItem(at indexPath: IndexPath) -> CellSizeCalculator {
+    private func configurer(for message: Messageable?, at indexPath: IndexPath) -> ChannelCellAttributesConfigurer {
+        // Can eventually extended this to switch over different message types
+
         if self.isSectionReservedForTypingIndicator(indexPath.section) {
-            return self.typingIndicatorSizeCalculator
+            return TypingCellAttributesConfigurer()
         }
-        //Can eventually extended this to switch over different message types and size calculators
-        return self.messageSizeCalculator
+
+        return MessageCellAttributesConfigurer()
     }
 
     private func headerSizeCalculator(for section:  Int) -> HeaderSizeCalculator {
@@ -155,26 +150,27 @@ class ChannelCollectionViewFlowLayout: UICollectionViewFlowLayout {
 
     // MARK: - PUBLIC
 
-    func sizeForItem(at indexPath: IndexPath) -> CGSize {
-        let calculator = self.cellSizeCalculatorForItem(at: indexPath)
-        return calculator.sizeForItem(at: indexPath)
+    func sizeForItem(at indexPath: IndexPath, with message: Messageable?) -> CGSize {
+        return self.configurer(for: message, at: indexPath).size(with: message, for: self)
     }
 
-    func sizeForHeader(at section: Int) -> CGSize {
+    func sizeForHeader(at section: Int, with collectionView: UICollectionView) -> CGSize {
+
         if self.isSectionReservedForTypingIndicator(section) {
             return .zero
         }
 
         if section == 0 {
-            if let sectionType = self.dataSource.sections[safe: section], let index = sectionType.firstMessageIndex, index > 0 {
-                return CGSize(width: self.channelCollectionView.width, height: 50)
-            } else {
-                let calculator = self.headerSizeCalculator(for: section)
-                return calculator.sizeForHeader(at: section)
-            }
-        }
+             if let sectionType = self.dataSource?.sections[safe: section],
+                let index = sectionType.firstMessageIndex, index > 0 {
+                 return CGSize(width: collectionView.width, height: 50)
+             } else {
+                 let calculator = self.headerSizeCalculator(for: section)
+                 return calculator.sizeForHeader(at: section)
+             }
+         }
 
-        return CGSize(width: self.channelCollectionView.width, height: 50)
+        return CGSize(width: collectionView.width, height: 50)
     }
 
     // MARK: - Typing Indicator API
@@ -194,6 +190,7 @@ class ChannelCollectionViewFlowLayout: UICollectionViewFlowLayout {
     /// - Parameter section
     /// - Returns: A Boolean indicating if the TypingIndicator should be presented at the given section
     func isSectionReservedForTypingIndicator(_ section: Int) -> Bool {
-        return !isTypingIndicatorViewHidden && section == self.channelCollectionView.numberOfSections - 1
+        guard let collectionView = self.collectionView else { return false }
+        return !self.isTypingIndicatorViewHidden && section == collectionView.numberOfSections - 1
     }
 }

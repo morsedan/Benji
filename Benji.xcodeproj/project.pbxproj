@@ -109,8 +109,6 @@
 		D6432BF022D824BA0016001A /* ChannelCollectionViewLayoutAttributes.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6432BEF22D824BA0016001A /* ChannelCollectionViewLayoutAttributes.swift */; };
 		D6432BF322D828480016001A /* ChannelDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6432BF222D828480016001A /* ChannelDataSource.swift */; };
 		D6432BF522D82CDC0016001A /* ChannelCollectionViewFlowLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6432BF422D82CDC0016001A /* ChannelCollectionViewFlowLayout.swift */; };
-		D6432BF722D837340016001A /* CellSizeCalculator.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6432BF622D837340016001A /* CellSizeCalculator.swift */; };
-		D6432BF922D837A30016001A /* MessageSizeCaluculator.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6432BF822D837A30016001A /* MessageSizeCaluculator.swift */; };
 		D6432BFB22DB923C0016001A /* ChannelSectionType.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6432BFA22DB923C0016001A /* ChannelSectionType.swift */; };
 		D646DB3A22CFCC110055CC7C /* Future.swift in Sources */ = {isa = PBXBuildFile; fileRef = D646DB3922CFCC110055CC7C /* Future.swift */; };
 		D646DB3C22CFCCD80055CC7C /* ClientError.swift in Sources */ = {isa = PBXBuildFile; fileRef = D646DB3B22CFCCD80055CC7C /* ClientError.swift */; };
@@ -126,9 +124,10 @@
 		D64C6A9C232D6C9200DB7257 /* BubbleCircleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D64C6A9B232D6C9200DB7257 /* BubbleCircleView.swift */; };
 		D64C6A9E232D6DD500DB7257 /* TypingIndicatorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D64C6A9D232D6DD500DB7257 /* TypingIndicatorView.swift */; };
 		D64C6AA0232DC2B700DB7257 /* TypingIndicatorCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D64C6A9F232DC2B700DB7257 /* TypingIndicatorCell.swift */; };
-		D64C6AA2232EA06800DB7257 /* TypingCellSizeCalculator.swift in Sources */ = {isa = PBXBuildFile; fileRef = D64C6AA1232EA06800DB7257 /* TypingCellSizeCalculator.swift */; };
+		D64C6AA2232EA06800DB7257 /* TypingCellAttributesConfigurer.swift in Sources */ = {isa = PBXBuildFile; fileRef = D64C6AA1232EA06800DB7257 /* TypingCellAttributesConfigurer.swift */; };
 		D64C6AA4232EA13300DB7257 /* UIEdgeInsets+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = D64C6AA3232EA13300DB7257 /* UIEdgeInsets+Extensions.swift */; };
 		D653F6B023588F8E00A03EEE /* RoutineViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D653F6AF23588F8E00A03EEE /* RoutineViewController.swift */; };
+		D657175C2378C78500F8F96C /* MessageCellAttributesConfigurer.swift in Sources */ = {isa = PBXBuildFile; fileRef = D657175B2378C78500F8F96C /* MessageCellAttributesConfigurer.swift */; };
 		D65B0CCE2344AE390041A176 /* ChannelsViewController+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = D65B0CCD2344AE390041A176 /* ChannelsViewController+Extensions.swift */; };
 		D65B0CE5234928620041A176 /* ProfileCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = D65B0CE4234928620041A176 /* ProfileCoordinator.swift */; };
 		D65B0CE7234929440041A176 /* NewChannelCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = D65B0CE6234929440041A176 /* NewChannelCoordinator.swift */; };
@@ -370,8 +369,6 @@
 		D6432BEF22D824BA0016001A /* ChannelCollectionViewLayoutAttributes.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChannelCollectionViewLayoutAttributes.swift; sourceTree = "<group>"; };
 		D6432BF222D828480016001A /* ChannelDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChannelDataSource.swift; sourceTree = "<group>"; };
 		D6432BF422D82CDC0016001A /* ChannelCollectionViewFlowLayout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChannelCollectionViewFlowLayout.swift; sourceTree = "<group>"; };
-		D6432BF622D837340016001A /* CellSizeCalculator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CellSizeCalculator.swift; sourceTree = "<group>"; };
-		D6432BF822D837A30016001A /* MessageSizeCaluculator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageSizeCaluculator.swift; sourceTree = "<group>"; };
 		D6432BFA22DB923C0016001A /* ChannelSectionType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChannelSectionType.swift; sourceTree = "<group>"; };
 		D646DB3922CFCC110055CC7C /* Future.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Future.swift; sourceTree = "<group>"; };
 		D646DB3B22CFCCD80055CC7C /* ClientError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClientError.swift; sourceTree = "<group>"; };
@@ -387,10 +384,11 @@
 		D64C6A9B232D6C9200DB7257 /* BubbleCircleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BubbleCircleView.swift; sourceTree = "<group>"; };
 		D64C6A9D232D6DD500DB7257 /* TypingIndicatorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TypingIndicatorView.swift; sourceTree = "<group>"; };
 		D64C6A9F232DC2B700DB7257 /* TypingIndicatorCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TypingIndicatorCell.swift; sourceTree = "<group>"; };
-		D64C6AA1232EA06800DB7257 /* TypingCellSizeCalculator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TypingCellSizeCalculator.swift; sourceTree = "<group>"; };
+		D64C6AA1232EA06800DB7257 /* TypingCellAttributesConfigurer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TypingCellAttributesConfigurer.swift; sourceTree = "<group>"; };
 		D64C6AA3232EA13300DB7257 /* UIEdgeInsets+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIEdgeInsets+Extensions.swift"; sourceTree = "<group>"; };
 		D64C6AA523307DB300DB7257 /* Benji.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Benji.entitlements; sourceTree = "<group>"; };
 		D653F6AF23588F8E00A03EEE /* RoutineViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoutineViewController.swift; sourceTree = "<group>"; };
+		D657175B2378C78500F8F96C /* MessageCellAttributesConfigurer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageCellAttributesConfigurer.swift; sourceTree = "<group>"; };
 		D65B0CCD2344AE390041A176 /* ChannelsViewController+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ChannelsViewController+Extensions.swift"; sourceTree = "<group>"; };
 		D65B0CE4234928620041A176 /* ProfileCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileCoordinator.swift; sourceTree = "<group>"; };
 		D65B0CE6234929440041A176 /* NewChannelCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewChannelCoordinator.swift; sourceTree = "<group>"; };
@@ -771,10 +769,10 @@
 		D638440C2336E1FA0072227B /* Cell Configurers */ = {
 			isa = PBXGroup;
 			children = (
+				D6432BEF22D824BA0016001A /* ChannelCollectionViewLayoutAttributes.swift */,
 				D6090E592377D5CF00833DA7 /* ChannelCellAttributesConfigurer.swift */,
-				D6432BF622D837340016001A /* CellSizeCalculator.swift */,
-				D64C6AA1232EA06800DB7257 /* TypingCellSizeCalculator.swift */,
-				D6432BF822D837A30016001A /* MessageSizeCaluculator.swift */,
+				D64C6AA1232EA06800DB7257 /* TypingCellAttributesConfigurer.swift */,
+				D657175B2378C78500F8F96C /* MessageCellAttributesConfigurer.swift */,
 			);
 			path = "Cell Configurers";
 			sourceTree = "<group>";
@@ -1084,7 +1082,6 @@
 				D638440C2336E1FA0072227B /* Cell Configurers */,
 				D638440D2336E2160072227B /* Header Calculators */,
 				D6432BF422D82CDC0016001A /* ChannelCollectionViewFlowLayout.swift */,
-				D6432BEF22D824BA0016001A /* ChannelCollectionViewLayoutAttributes.swift */,
 			);
 			path = Layout;
 			sourceTree = "<group>";
@@ -1445,10 +1442,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				D6432BF922D837A30016001A /* MessageSizeCaluculator.swift in Sources */,
 				D62C635622BE9E5C00F4D097 /* CollectionViewController.swift in Sources */,
 				D67896AF22FF62630059BA75 /* PhoneKit.swift in Sources */,
 				D6E65F19237791650061AA67 /* ManageableCell.swift in Sources */,
+				D657175C2378C78500F8F96C /* MessageCellAttributesConfigurer.swift in Sources */,
 				D63752C6231258DA00214F63 /* PreviewMessageView.swift in Sources */,
 				D6B2601822E4208900143CF0 /* ChannelHeaderDateLabel.swift in Sources */,
 				D67A82DB230CCE3D0076152B /* SplashViewController.swift in Sources */,
@@ -1478,7 +1475,7 @@
 				D6B2606C22E80B6A00143CF0 /* ToastScheduler.swift in Sources */,
 				D66F0FF222C1D86800BA277D /* ChannelsType.swift in Sources */,
 				D66A0B942351821200A0FFEA /* Completeable.swift in Sources */,
-				D64C6AA2232EA06800DB7257 /* TypingCellSizeCalculator.swift in Sources */,
+				D64C6AA2232EA06800DB7257 /* TypingCellAttributesConfigurer.swift in Sources */,
 				D64273A522CC05DD0088256B /* InputTextView.swift in Sources */,
 				D642739F22CAFD680088256B /* MessageTextView.swift in Sources */,
 				D642739922CA79B60088256B /* UIWindow+Extensions.swift in Sources */,
@@ -1650,7 +1647,6 @@
 				80D4A21A23039FA5007CB5F1 /* RoutineManager.swift in Sources */,
 				D67896BF2302683C0059BA75 /* LoginProfilePhotoViewController.swift in Sources */,
 				D6D1500C21D5E7C200CD8CE4 /* CollectionViewManager.swift in Sources */,
-				D6432BF722D837340016001A /* CellSizeCalculator.swift in Sources */,
 				D64C6A7C23288FB300DB7257 /* SmallSemiBoldLabel.swift in Sources */,
 				D6432BFB22DB923C0016001A /* ChannelSectionType.swift in Sources */,
 				D68540DC235FED41006F666C /* SuggestionCollectionViewLayoutAttributes.swift in Sources */,
