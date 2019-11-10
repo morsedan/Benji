@@ -9,6 +9,7 @@
 import Foundation
 import PhoneNumberKit
 import Parse
+import TMROLocalization
 
 protocol LoginPhoneViewControllerDelegate: class {
     func loginPhoneView(_ controller: LoginPhoneViewController, didCompleteWith phone: PhoneNumber)

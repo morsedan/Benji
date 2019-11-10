@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import TMROLocalization
 
 struct Toast: Equatable {
     var id: String

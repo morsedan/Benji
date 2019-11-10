@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import TMROLocalization
 
 class NavigationBarViewController: ViewController {
 
@@ -71,5 +72,4 @@ class NavigationBarViewController: ViewController {
     func getDescription() -> Localized {
         return LocalizedString.empty
     }
-
 }

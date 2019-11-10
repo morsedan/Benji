@@ -8,6 +8,7 @@
 
 import Foundation
 import Parse
+import TMROLocalization
 
 protocol LoginNameViewControllerDelegate: class {
     func loginNameViewControllerDidComplete(_ controller: LoginNameViewController)

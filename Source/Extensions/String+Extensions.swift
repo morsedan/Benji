@@ -8,6 +8,7 @@
 
 import Foundation
 import PhoneNumberKit
+import TMROLocalization
 
 extension String {
 

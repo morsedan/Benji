@@ -8,6 +8,7 @@
 
 import Foundation
 import Parse
+import TMROLocalization
 
 protocol LoginEndingViewControllerDelegate: class {
     func loginEndingViewControllerDidComplete(_ controller: LoginEndingViewController)

@@ -9,6 +9,7 @@
 import Foundation
 import TwilioChatClient
 import Parse
+import TMROLocalization
 
 enum MessageTypeStatus {
     case delivered

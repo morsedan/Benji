@@ -8,6 +8,7 @@
 
 import Foundation
 import ReactiveSwift
+import TMROLocalization
 
 class LoginTextInputViewController: ViewController {
 

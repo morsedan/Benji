@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import TMROLocalization
 
 class RegularBoldLabel: Label {
 

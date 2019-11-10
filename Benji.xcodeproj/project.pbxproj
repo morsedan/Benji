@@ -214,11 +214,8 @@
 		D6D145F421D5493000CD8CE4 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6D145F321D5493000CD8CE4 /* HomeViewController.swift */; };
 		D6D145FD21D550E400CD8CE4 /* AttributedString.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6D145FC21D550E400CD8CE4 /* AttributedString.swift */; };
 		D6D145FF21D5510400CD8CE4 /* StringStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6D145FE21D5510400CD8CE4 /* StringStyle.swift */; };
-		D6D1460121D5514300CD8CE4 /* Localized.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6D1460021D5514300CD8CE4 /* Localized.swift */; };
-		D6D1460321D551B100CD8CE4 /* StringLibrary.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6D1460221D551B100CD8CE4 /* StringLibrary.swift */; };
 		D6D1460521D5524C00CD8CE4 /* StringCasing.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6D1460421D5524C00CD8CE4 /* StringCasing.swift */; };
 		D6D1460721D552B100CD8CE4 /* Character+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6D1460621D552B100CD8CE4 /* Character+Extensions.swift */; };
-		D6D1460921D5531D00CD8CE4 /* LocalString.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6D1460821D5531D00CD8CE4 /* LocalString.swift */; };
 		D6D1460B21D5547000CD8CE4 /* FontType.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6D1460A21D5547000CD8CE4 /* FontType.swift */; };
 		D6D1460D21D5693100CD8CE4 /* NSMutableAttributedString+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6D1460C21D5693100CD8CE4 /* NSMutableAttributedString+Extensions.swift */; };
 		D6D1461121D583D200CD8CE4 /* RootNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6D1461021D583D200CD8CE4 /* RootNavigationController.swift */; };
@@ -479,11 +476,8 @@
 		D6D145F321D5493000CD8CE4 /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
 		D6D145FC21D550E400CD8CE4 /* AttributedString.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AttributedString.swift; sourceTree = "<group>"; };
 		D6D145FE21D5510400CD8CE4 /* StringStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StringStyle.swift; sourceTree = "<group>"; };
-		D6D1460021D5514300CD8CE4 /* Localized.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Localized.swift; sourceTree = "<group>"; };
-		D6D1460221D551B100CD8CE4 /* StringLibrary.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StringLibrary.swift; sourceTree = "<group>"; };
 		D6D1460421D5524C00CD8CE4 /* StringCasing.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StringCasing.swift; sourceTree = "<group>"; };
 		D6D1460621D552B100CD8CE4 /* Character+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Character+Extensions.swift"; sourceTree = "<group>"; };
-		D6D1460821D5531D00CD8CE4 /* LocalString.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocalString.swift; sourceTree = "<group>"; };
 		D6D1460A21D5547000CD8CE4 /* FontType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FontType.swift; sourceTree = "<group>"; };
 		D6D1460C21D5693100CD8CE4 /* NSMutableAttributedString+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NSMutableAttributedString+Extensions.swift"; sourceTree = "<group>"; };
 		D6D1461021D583D200CD8CE4 /* RootNavigationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RootNavigationController.swift; sourceTree = "<group>"; };
@@ -667,7 +661,6 @@
 				D6D1501521D5F08700CD8CE4 /* DisplyableCell.swift */,
 				D6D1501121D5EA0400CD8CE4 /* ImageDisplayable.swift */,
 				D67896B7230096620059BA75 /* KeyboardObservable.swift */,
-				D6D1460021D5514300CD8CE4 /* Localized.swift */,
 				D609AE3B236F913F004FA89A /* Objectable.swift */,
 				D6D1502821D6085200CD8CE4 /* ResourceObject.swift */,
 				D67896C923039E680059BA75 /* ScrolledModalControllerPresentable.swift */,
@@ -711,10 +704,8 @@
 				D6D145FC21D550E400CD8CE4 /* AttributedString.swift */,
 				D61EC0F621D316F100204BEE /* Color.swift */,
 				D6D1460A21D5547000CD8CE4 /* FontType.swift */,
-				D6D1460821D5531D00CD8CE4 /* LocalString.swift */,
 				D61EC0F021D313F500204BEE /* ScreenSize.swift */,
 				D6D1460421D5524C00CD8CE4 /* StringCasing.swift */,
-				D6D1460221D551B100CD8CE4 /* StringLibrary.swift */,
 				D6D145FE21D5510400CD8CE4 /* StringStyle.swift */,
 				D642739622CA6E1F0088256B /* CommonWord.swift */,
 				D6384413233834380072227B /* Symbols.swift */,
@@ -1464,7 +1455,6 @@
 				D6D1501C21D5F8AD00CD8CE4 /* MessageCell.swift in Sources */,
 				D684D6E922D0E1CB00874B08 /* EmptyChannelView.swift in Sources */,
 				D65B0CE7234929440041A176 /* NewChannelCoordinator.swift in Sources */,
-				D6D1460121D5514300CD8CE4 /* Localized.swift in Sources */,
 				D6D1504F21E304D800CD8CE4 /* BouncyCollectionViewLayout.swift in Sources */,
 				D6815DB922EE1CAC00E71251 /* FeedView.swift in Sources */,
 				D61EC0F521D3151400204BEE /* NSAttributedString+Extensions.swift in Sources */,
@@ -1600,7 +1590,6 @@
 				D6B2604122E6B9C600143CF0 /* Display2Label.swift in Sources */,
 				D6B2604322E6BAE400143CF0 /* RegularBoldLabel.swift in Sources */,
 				D67896B222FF67650059BA75 /* LoginCodeViewController.swift in Sources */,
-				D6D1460921D5531D00CD8CE4 /* LocalString.swift in Sources */,
 				D60C814222092D5300A127A3 /* PagingCollectionViewFlowLayout.swift in Sources */,
 				D642737122C991A60088256B /* ClosedRange+Extensions.swift in Sources */,
 				D6375322231614DF00214F63 /* NewContextCell.swift in Sources */,
@@ -1610,7 +1599,6 @@
 				8002F37F230CD07F00F8C4E3 /* Authorization+Extensions.swift in Sources */,
 				D66A0B9823526A4E00A0FFEA /* CarmeraButton.swift in Sources */,
 				D6815DB122ECAEC700E71251 /* MediumLabel.swift in Sources */,
-				D6D1460321D551B100CD8CE4 /* StringLibrary.swift in Sources */,
 				D642739122C9BFA10088256B /* AlertViewController.swift in Sources */,
 				D61EC0E621D30EB300204BEE /* View.swift in Sources */,
 				D642738F22C9BE330088256B /* TextAlertViewController.swift in Sources */,

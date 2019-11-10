@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import TMROLocalization
 
 enum ToastPosition {
     case top, bottom

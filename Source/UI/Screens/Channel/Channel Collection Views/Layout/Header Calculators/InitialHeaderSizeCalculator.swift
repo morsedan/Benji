@@ -8,6 +8,7 @@
 
 import Foundation
 import TwilioChatClient
+import TMROLocalization
 
 class InitialHeaderSizeCalculator: HeaderSizeCalculator {
 

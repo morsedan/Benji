@@ -10,6 +10,7 @@ import Foundation
 import PhoneNumberKit
 import ReactiveSwift
 import Parse
+import TMROLocalization
 
 protocol LoginCodeViewControllerDelegate: class {
     func loginCodeView(_ controller: LoginCodeViewController, didVerify user: PFUser)

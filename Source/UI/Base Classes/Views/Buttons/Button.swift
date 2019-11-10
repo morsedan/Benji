@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import TMROLocalization
 
 enum ButtonStyle {
     case rounded(color: Color, text: Localized)
