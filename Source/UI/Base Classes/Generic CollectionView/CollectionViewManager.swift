@@ -50,19 +50,21 @@ UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFl
 
     // MARK: Data Source Updating
 
-    func set(newItems: [CellType.ItemType]) {
+    func set(newItems: [CellType.ItemType], completion: ((Bool) -> Swift.Void)? = nil) {
         self.updateCollectionView(items: newItems, modify: { [weak self] in
             guard let `self` = self else { return }
             self.items.value = newItems
-        })
+        }, completion: completion)
     }
 
-    private func updateCollectionView(items: [CellType.ItemType], modify: @escaping () -> Void) {
+    private func updateCollectionView(items: [CellType.ItemType],
+                                      modify: @escaping () -> Void,
+                                      completion: ((Bool) -> Swift.Void)? = nil) {
         self.collectionView.reloadWithModify(previousItems: self.items.value,
                                              newItems: items,
                                              equalityOption: .equality,
                                              modify: modify,
-                                             completion: nil)
+                                             completion: completion)
     }
 
     func append(item: CellType.ItemType, in section: Int = 0) {
