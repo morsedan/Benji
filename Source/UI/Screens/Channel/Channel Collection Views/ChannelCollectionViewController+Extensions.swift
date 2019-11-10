@@ -70,20 +70,20 @@ extension ChannelCollectionViewController {
             switch channelUpdate.status {
             case .added:
                 if self.collectionView.isTypingIndicatorHidden {
-                    self.channelDataSource.updateLastItem(with: .message(channelUpdate.message))
+                    self.channelDataSource.updateLastItem(with: channelUpdate.message)
                     runMain {
                         self.collectionView.scrollToBottom()
                     }
                 } else {
                     self.setTypingIndicatorViewHidden(true, performUpdates: { [weak self] in
                         guard let `self` = self else { return }
-                        self.channelDataSource.updateLastItem(with: .message(channelUpdate.message), replaceTypingIndicator: true)
+                        self.channelDataSource.updateLastItem(with: channelUpdate.message, replaceTypingIndicator: true)
                     })
                 }
             case .changed:
-                self.channelDataSource.update(item: .message(channelUpdate.message))
+                self.channelDataSource.update(item: channelUpdate.message)
             case .deleted:
-                self.channelDataSource.delete(item: .message(channelUpdate.message))
+                self.channelDataSource.delete(item: channelUpdate.message)
             case .toastReceived:
                 break
         }

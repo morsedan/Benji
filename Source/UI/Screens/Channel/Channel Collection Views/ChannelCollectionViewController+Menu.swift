@@ -59,15 +59,15 @@ extension ChannelCollectionViewController {
 
 private class MessagePreviewViewController: ViewController {
 
-    let messageType: MessageType
+    let message: Messageable
     let messageTextView = MessageTextView()
     let cellWidth: CGFloat
     let bubbleView = View()
 
-    init(with messageType: MessageType,
+    init(with message: Messageable,
          cellWidth: CGFloat) {
 
-        self.messageType = messageType
+        self.message = message
         self.cellWidth = cellWidth
 
         super.init()
@@ -84,18 +84,10 @@ private class MessagePreviewViewController: ViewController {
     override func initializeViews() {
         super.initializeViews()
 
-        switch self.messageType {
-        case .user(_):
-            break
-        case .system(let message):
-            self.messageTextView.set(text: message.body)
-        case .message(let message):
-            if let text = message.body {
-                self.messageTextView.set(text: text)
-            }
-        }
+        self.messageTextView.set(text: self.message.text)
 
-        self.bubbleView.set(backgroundColor: self.messageType.backgroundColor)
+        let backgroundColor: Color = self.message.isFromCurrentUser ? .lightPurple : .purple
+        self.bubbleView.set(backgroundColor: backgroundColor)
         self.view.addSubview(self.messageTextView)
         self.messageTextView.setSize(withWidth: self.cellWidth - 20)
 

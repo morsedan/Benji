@@ -45,7 +45,7 @@ class ToastScheduler {
         return Toast(id: systemMessage.id + "system_message",
                      analyticsID: "ToastSystemMessage",
                      priority: 1,
-                     title: systemMessage.body,
+                     title: systemMessage.text,
                      button: button,
                      displayable: UIImage())
     }

@@ -11,22 +11,15 @@ import Foundation
 class ChannelSectionType {
 
     var date: Date
-    var items: [MessageType] = []
+    var items: [Messageable] = []
     var channelType: ChannelType?
 
     var firstMessageIndex: Int? {
-        guard let firstType = self.items.first else { return nil }
-
-        switch firstType {
-        case .message(let message):
-            return message.index?.intValue
-        default:
-            return nil
-        }
+        return self.items.first?.messageIndex?.intValue
     }
 
     init(date: Date,
-         items: [MessageType],
+         items: [Messageable],
          channelType: ChannelType? = nil) {
 
         self.date = date

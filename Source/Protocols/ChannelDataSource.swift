@@ -94,7 +94,7 @@ extension ChannelDataSource {
         var indexPath: IndexPath?
 
         for (index, existingItem) in sectionValue.items.enumerated() {
-            if localized(existingItem.body) == localized(item.body) {
+            if localized(existingItem.text) == localized(item.text) {
                 indexPath = IndexPath(item: index, section: section)
                 break
             }

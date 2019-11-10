@@ -171,12 +171,14 @@ class ChannelManager: NSObject {
 
         guard let channel = self.selectedChannel, let date = channel.dateCreatedAsDate else { return [] }
 
-        var items: [MessageType] = []
+        var items: [Messageable] = []
         if let firstMessage = self.allMessages.first {
-            items.append(.message(firstMessage))
+            items.append(firstMessage)
         }
 
-        let firstSection = ChannelSectionType(date: date, items: items, channelType: .channel(channel))
+        let firstSection = ChannelSectionType(date: date,
+                                              items: items,
+                                              channelType: .channel(channel))
         var sections: [ChannelSectionType] = [firstSection]
         
         self.allMessages.forEach { (message) in
@@ -186,11 +188,11 @@ class ChannelManager: NSObject {
 
             if let latestSection = sections.last, latestSection.date.isSameDay(as: messageCreatedAt) {
                 // If the message fits into the latest section, then just append it
-                latestSection.items.append(.message(message))
+                latestSection.items.append(message)
             } else {
                 // Otherwise, create a new section with the date of this message
                 let section = ChannelSectionType(date: messageCreatedAt.beginningOfDay,
-                                                 items: [.message(message)])
+                                                 items: [message])
                 sections.append(section)
             }
         }
