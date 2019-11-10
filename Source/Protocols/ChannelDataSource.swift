@@ -14,20 +14,20 @@ protocol ChannelDataSource: AnyObject {
     var sections: [ChannelSectionType] { get set }
     var collectionView: CollectionView? { get set }
 
-    func item(at indexPath: IndexPath) -> MessageType?
+    func item(at indexPath: IndexPath) -> Messageable?
     func numberOfSections() -> Int
     func numberOfItems(inSection section: Int) -> Int
 
     func reset()
     func set(newSections: [ChannelSectionType], keepOffset: Bool)
-    func append(item: MessageType)
-    func update(item: MessageType, in section: Int)
-    func delete(item: MessageType, in section: Int)
+    func append(item: Messageable)
+    func update(item: Messageable, in section: Int)
+    func delete(item: Messageable, in section: Int)
 }
 
 extension ChannelDataSource {
 
-    func item(at indexPath: IndexPath) -> MessageType? {
+    func item(at indexPath: IndexPath) -> Messageable? {
         guard let section = self.sections[safe: indexPath.section],
             let item = section.items[safe: indexPath.row] else { return nil }
 
@@ -58,7 +58,7 @@ extension ChannelDataSource {
         }
     }
 
-    func append(item: MessageType) {
+    func append(item: Messageable) {
         var sectionIndex: Int?
         var itemCount: Int?
         
@@ -82,7 +82,7 @@ extension ChannelDataSource {
         }
     }
 
-    func updateLastItem(with item: MessageType, replaceTypingIndicator: Bool = false) {
+    func updateLastItem(with item: Messageable, replaceTypingIndicator: Bool = false) {
 
         if self.sections.count == 0 {
             self.append(item: item)
@@ -114,7 +114,7 @@ extension ChannelDataSource {
         self.collectionView?.reloadItems(at: [ip])
     }
 
-    func update(item: MessageType, in section: Int = 0) {
+    func update(item: Messageable, in section: Int = 0) {
         guard let sectionValue = self.sections[safe: section] else { return }
 
         var indexPath: IndexPath?
@@ -132,7 +132,7 @@ extension ChannelDataSource {
         self.collectionView?.reloadItems(at: [ip])
     }
 
-    func delete(item: MessageType, in section: Int = 0) {
+    func delete(item: Messageable, in section: Int = 0) {
 
         guard let sectionValue = self.sections[safe: section] else { return }
 

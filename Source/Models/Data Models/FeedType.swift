@@ -9,7 +9,7 @@
 import Foundation
 import TwilioChatClient
 
-enum FeedType: ManageableCellItem {
+enum FeedType {
 
     case system(SystemMessage)
     case message(TCHMessage)

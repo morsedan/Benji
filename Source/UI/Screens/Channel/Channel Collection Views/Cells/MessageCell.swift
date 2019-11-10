@@ -51,13 +51,15 @@ class MessageCell: UICollectionViewCell {
         self.textView.text = nil
     }
 
-    func configure(with message: MessageType) {
+    func configure(with message: Messageable) {
 
         if !message.isFromCurrentUser {
             self.avatarView.set(avatar: message.avatar)
         }
-        self.textView.set(text: message.body)
-        self.bubbleView.set(backgroundColor: message.backgroundColor)
+        self.textView.set(text: message.text)
+
+        let backgroundColor: Color = message.isFromCurrentUser ? .lightPurple : .purple
+        self.bubbleView.set(backgroundColor: backgroundColor)
     }
 
     private func layoutContent(with attributes: ChannelCollectionViewLayoutAttributes) {

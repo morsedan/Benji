@@ -71,11 +71,10 @@ class Lorem {
 
     class func systemSections() -> [ChannelSectionType] {
         var sections: [ChannelSectionType] = []
-        var messages: [MessageType] = []
+        var messages: [Messageable] = []
         for _ in 0...10 {
             let message = self.systemMessage()
-            let type = MessageType.system(message)
-            messages.append(type)
+            messages.append(message)
         }
 
         let grouped = Dictionary(grouping: messages) { (element) -> Date in
@@ -119,25 +118,31 @@ class Lorem {
     }
 
     class func systemMessage() -> SystemMessage {
-        
+
         let message = SystemMessage(avatar: self.avatar(),
                                     context: self.context(),
-                                    body: self.sentence(),
-                                    id: String(self.randomString()),
+                                    text: self.sentence(),
                                     isFromCurrentUser: self.isFromCurrentUserList.random(),
-                                    timeStampAsDate: self.dates.random(),
-                                    status: .unknown)
+                                    createdAt: self.dates.random(),
+                                    authorId: "testMessage",
+                                    messageIndex: nil,
+                                    status: .sent,
+                                    id: String(self.randomString()))
+
         return message
     }
 
     class func systemParagraph() -> SystemMessage {
+
         let message = SystemMessage(avatar: self.avatar(),
                                     context: self.context(),
-                                    body: self.paragraph(),
-                                    id: String(self.randomString()),
+                                    text: self.paragraph(),
                                     isFromCurrentUser: self.isFromCurrentUserList.random(),
-                                    timeStampAsDate: self.dates.random(),
-                                    status: .unknown)
+                                    createdAt: self.dates.random(),
+                                    authorId: "testMessage",
+                                    messageIndex: nil,
+                                    status: .sent,
+                                    id: String(self.randomString()))
         return message
     }
 

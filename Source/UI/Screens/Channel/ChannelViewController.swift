@@ -127,15 +127,14 @@ class ChannelViewController: FullScreenViewController {
             let current = User.current(),
             let objectId = current.objectId else { return }
 
-        let messageType = SystemMessage(avatar: current,
-                                        context: context,
-                                        body: message,
-                                        id: objectId,
-                                        isFromCurrentUser: true,
-                                        timeStampAsDate: Date(),
-                                        status: .sent)
-        let type: MessageType = .user(messageType)
-        self.channelCollectionVC.channelDataSource.append(item: type)
+        let systemMessage = SystemMessage(avatar: current,
+                                          context: context,
+                                          body: message,
+                                          id: objectId,
+                                          isFromCurrentUser: true,
+                                          timeStampAsDate: Date(),
+                                          status: .sent)
+        self.channelCollectionVC.channelDataSource.append(item: systemMessage)
         self.reset()
         ChannelManager.shared.sendMessage(to: channel, with: message)
     }

@@ -18,6 +18,7 @@
 		D607400C23400FA6009633EB /* HomeSearchBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = D607400B23400FA6009633EB /* HomeSearchBar.swift */; };
 		D607400E23401B3E009633EB /* SystemChannel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D607400D23401B3E009633EB /* SystemChannel.swift */; };
 		D6090E562377CB2F00833DA7 /* Messageable.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6090E552377CB2F00833DA7 /* Messageable.swift */; };
+		D6090E582377D2CA00833DA7 /* ChannelSectionable.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6090E572377D2CA00833DA7 /* ChannelSectionable.swift */; };
 		D609AE36236F3F81004FA89A /* User+Objectable.swift in Sources */ = {isa = PBXBuildFile; fileRef = D609AE35236F3F81004FA89A /* User+Objectable.swift */; };
 		D609AE3A236F44A8004FA89A /* User+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = D609AE39236F44A8004FA89A /* User+Extensions.swift */; };
 		D609AE3C236F913F004FA89A /* Objectable.swift in Sources */ = {isa = PBXBuildFile; fileRef = D609AE3B236F913F004FA89A /* Objectable.swift */; };
@@ -275,6 +276,7 @@
 		D607400B23400FA6009633EB /* HomeSearchBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeSearchBar.swift; sourceTree = "<group>"; };
 		D607400D23401B3E009633EB /* SystemChannel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SystemChannel.swift; sourceTree = "<group>"; };
 		D6090E552377CB2F00833DA7 /* Messageable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Messageable.swift; sourceTree = "<group>"; };
+		D6090E572377D2CA00833DA7 /* ChannelSectionable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChannelSectionable.swift; sourceTree = "<group>"; };
 		D609AE35236F3F81004FA89A /* User+Objectable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "User+Objectable.swift"; sourceTree = "<group>"; };
 		D609AE39236F44A8004FA89A /* User+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "User+Extensions.swift"; sourceTree = "<group>"; };
 		D609AE3B236F913F004FA89A /* Objectable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Objectable.swift; sourceTree = "<group>"; };
@@ -573,6 +575,7 @@
 			isa = PBXGroup;
 			children = (
 				D6090E552377CB2F00833DA7 /* Messageable.swift */,
+				D6090E572377D2CA00833DA7 /* ChannelSectionable.swift */,
 			);
 			path = Manager;
 			sourceTree = "<group>";
@@ -1563,6 +1566,7 @@
 				D60C814622092F6B00A127A3 /* Button.swift in Sources */,
 				D6D1503721D7E74500CD8CE4 /* UIViewController+Extensions.swift in Sources */,
 				80D4A21623039B22007CB5F1 /* RoutineInputViewController.swift in Sources */,
+				D6090E582377D2CA00833DA7 /* ChannelSectionable.swift in Sources */,
 				D6B2606822E80A7900143CF0 /* ToastQueue.swift in Sources */,
 				D66F0FEA22C0695E00BA277D /* CNContact+Extensions.swift in Sources */,
 				D6DADF6E2207DF33007D9EB1 /* ChannelsCollectionViewManager.swift in Sources */,

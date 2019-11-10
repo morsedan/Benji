@@ -44,7 +44,7 @@ class FeedView: KolodaView {
 
         switch feedItem {
         case .system(let systemMessage):
-            self.textView.set(localizedText: systemMessage.body)
+            self.textView.set(localizedText: systemMessage.text)
             //self.avatarView.set(avatar: systemMessage.avatar)
         case .message(_):
             break

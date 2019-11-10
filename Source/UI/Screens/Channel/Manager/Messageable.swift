@@ -9,6 +9,14 @@
 import Foundation
 import TMROLocalization
 
+enum MessageStatus {
+    case delivered
+    case sent
+    case read
+    case unknown
+    case error(ClientError)
+}
+
 protocol Messageable: class {
 
     var createdAt: Date { get }
@@ -17,6 +25,9 @@ protocol Messageable: class {
     var authorID: String { get }
     var messageIndex: NSNumber? { get }
     var attributes: [String: Any]? { get }
+    var status: MessageStatus { get }
+    var avatar: Avatar { get }
+    var id: String { get }
 }
 
 func ==(lhs: Messageable, rhs: Messageable) -> Bool {
@@ -25,4 +36,5 @@ func ==(lhs: Messageable, rhs: Messageable) -> Bool {
         && lhs.text == rhs.text
         && lhs.authorID == rhs.authorID
         && lhs.messageIndex == rhs.messageIndex
+        && lhs.id == rhs.id 
 }
