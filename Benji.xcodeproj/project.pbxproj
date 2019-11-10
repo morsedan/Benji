@@ -19,6 +19,7 @@
 		D607400E23401B3E009633EB /* SystemChannel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D607400D23401B3E009633EB /* SystemChannel.swift */; };
 		D6090E562377CB2F00833DA7 /* Messageable.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6090E552377CB2F00833DA7 /* Messageable.swift */; };
 		D6090E582377D2CA00833DA7 /* ChannelSectionable.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6090E572377D2CA00833DA7 /* ChannelSectionable.swift */; };
+		D6090E5A2377D5CF00833DA7 /* ChannelCellAttributesConfigurer.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6090E592377D5CF00833DA7 /* ChannelCellAttributesConfigurer.swift */; };
 		D609AE36236F3F81004FA89A /* User+Objectable.swift in Sources */ = {isa = PBXBuildFile; fileRef = D609AE35236F3F81004FA89A /* User+Objectable.swift */; };
 		D609AE3A236F44A8004FA89A /* User+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = D609AE39236F44A8004FA89A /* User+Extensions.swift */; };
 		D609AE3C236F913F004FA89A /* Objectable.swift in Sources */ = {isa = PBXBuildFile; fileRef = D609AE3B236F913F004FA89A /* Objectable.swift */; };
@@ -276,6 +277,7 @@
 		D607400D23401B3E009633EB /* SystemChannel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SystemChannel.swift; sourceTree = "<group>"; };
 		D6090E552377CB2F00833DA7 /* Messageable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Messageable.swift; sourceTree = "<group>"; };
 		D6090E572377D2CA00833DA7 /* ChannelSectionable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChannelSectionable.swift; sourceTree = "<group>"; };
+		D6090E592377D5CF00833DA7 /* ChannelCellAttributesConfigurer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChannelCellAttributesConfigurer.swift; sourceTree = "<group>"; };
 		D609AE35236F3F81004FA89A /* User+Objectable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "User+Objectable.swift"; sourceTree = "<group>"; };
 		D609AE39236F44A8004FA89A /* User+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "User+Extensions.swift"; sourceTree = "<group>"; };
 		D609AE3B236F913F004FA89A /* Objectable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Objectable.swift; sourceTree = "<group>"; };
@@ -769,6 +771,7 @@
 		D638440C2336E1FA0072227B /* Cell Configurers */ = {
 			isa = PBXGroup;
 			children = (
+				D6090E592377D5CF00833DA7 /* ChannelCellAttributesConfigurer.swift */,
 				D6432BF622D837340016001A /* CellSizeCalculator.swift */,
 				D64C6AA1232EA06800DB7257 /* TypingCellSizeCalculator.swift */,
 				D6432BF822D837A30016001A /* MessageSizeCaluculator.swift */,
@@ -1562,6 +1565,7 @@
 				D60C814622092F6B00A127A3 /* Button.swift in Sources */,
 				D6D1503721D7E74500CD8CE4 /* UIViewController+Extensions.swift in Sources */,
 				80D4A21623039B22007CB5F1 /* RoutineInputViewController.swift in Sources */,
+				D6090E5A2377D5CF00833DA7 /* ChannelCellAttributesConfigurer.swift in Sources */,
 				D6090E582377D2CA00833DA7 /* ChannelSectionable.swift in Sources */,
 				D6B2606822E80A7900143CF0 /* ToastQueue.swift in Sources */,
 				D66F0FEA22C0695E00BA277D /* CNContact+Extensions.swift in Sources */,
