@@ -10,16 +10,16 @@ import Foundation
 import TwilioChatClient
 import Parse
 
-extension TCHMessage: Diffable, DisplayableCellItem, Avatar {
+extension TCHMessage: ManageableCellItem, Avatar {
+
+    var id: String {
+        return self.sid!
+    }
 
     var backgroundColor: Color {
         get {
             return self.isFromCurrentUser ? .purple : .lightPurple
         }
-    }
-    
-    func diffIdentifier() -> NSObjectProtocol {
-        return String(optional: self.sid) as NSObjectProtocol
     }
 
     var isFromCurrentUser: Bool {

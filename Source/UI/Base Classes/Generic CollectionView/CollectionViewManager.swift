@@ -10,7 +10,7 @@ import Foundation
 import ReactiveSwift
 import GestureRecognizerClosures
 
-class CollectionViewManager<CellType: DisplayableCell & UICollectionViewCell>: NSObject, UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout {
+class CollectionViewManager<CellType: ManageableCell & UICollectionViewCell>: NSObject, UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout {
     
     unowned let collectionView: UICollectionView
 

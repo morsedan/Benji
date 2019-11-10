@@ -14,11 +14,7 @@ extension Range: Comparable {
     }
 }
 
-class DisplayableChannel: DisplayableCellItem, Hashable, Comparable {
-
-    var backgroundColor: Color {
-        self.channelType.backgroundColor
-    }
+class DisplayableChannel: ManageableCellItem, Hashable, Comparable {
 
     var highlightText = String()
     var highlightRange: Range<String.Index>? {
@@ -28,6 +24,10 @@ class DisplayableChannel: DisplayableCellItem, Hashable, Comparable {
 
     init(channelType: ChannelType) {
         self.channelType = channelType
+    }
+
+    var id: String {
+        self.channelType.id
     }
 
     func diffIdentifier() -> NSObjectProtocol {

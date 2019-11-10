@@ -19,7 +19,7 @@ enum MessageTypeStatus {
     case error(ClientError)
 }
 
-enum MessageType: DisplayableCellItem {
+enum MessageType: ManageableCellItem {
 
     case user(SystemMessage)
     case system(SystemMessage)
@@ -31,6 +31,17 @@ enum MessageType: DisplayableCellItem {
             return message.timeStampAsDate
         case .message(let message):
             return message.timestampAsDate ?? Date()
+        }
+    }
+
+    var id: String {
+        switch self {
+        case .user(let message):
+            return message.id
+        case .system(let message):
+            return message.id
+        case .message(let message):
+            return message.id
         }
     }
 
@@ -68,15 +79,6 @@ enum MessageType: DisplayableCellItem {
             return message.avatar
         case .message(let message):
             return message
-        }
-    }
-
-    func diffIdentifier() -> NSObjectProtocol {
-        switch self {
-        case .system(let message), .user(let message):
-            return message.diffIdentifier()
-        case .message(let message):
-            return message.diffIdentifier()
         }
     }
 

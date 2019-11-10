@@ -14,19 +14,10 @@ enum ChannelVisibilityType: String {
     case group = "#"
 }
 
-enum ChannelType: DisplayableCellItem {
+enum ChannelType: ManageableCellItem {
 
     case system(SystemChannel)
     case channel(TCHChannel)
-
-    var backgroundColor: Color {
-        switch self {
-        case .system(_):
-            return .blue
-        case .channel(_):
-            return .blue
-        }
-    }
 
     var scope: SearchScope {
         //Update to show channels and dms
@@ -60,12 +51,12 @@ enum ChannelType: DisplayableCellItem {
         }
     }
 
-    func diffIdentifier() -> NSObjectProtocol {
+    var id: String {
         switch self {
-        case .system(let message):
-            return message.diffIdentifier()
-        case .channel(let message):
-            return message.diffIdentifier()
+        case .system(let systemMessage):
+            return systemMessage.id
+        case .channel(let channel):
+            return channel.id
         }
     }
 }

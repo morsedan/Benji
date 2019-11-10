@@ -55,13 +55,10 @@ extension CNContact {
     }
 }
 
-extension CNContact: DisplayableCellItem {
-    var backgroundColor: Color {
-        return .background3
-    }
+extension CNContact: ManageableCellItem {
 
-    func diffIdentifier() -> NSObjectProtocol {
-        return self.identifier as NSObjectProtocol
+    var id: String {
+        return self.identifier
     }
 }
 

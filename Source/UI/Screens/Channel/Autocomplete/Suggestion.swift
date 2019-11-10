@@ -8,7 +8,7 @@
 
 import Foundation
 
-enum SuggestionType: DisplayableCellItem {
+enum SuggestionType: ManageableCellItem {
 
     case text(String)
 
@@ -16,10 +16,10 @@ enum SuggestionType: DisplayableCellItem {
         return .clear
     }
 
-    func diffIdentifier() -> NSObjectProtocol {
+    var id: String {
         switch self {
         case .text(let text):
-            return text as NSObjectProtocol
+            return text
         }
     }
 }

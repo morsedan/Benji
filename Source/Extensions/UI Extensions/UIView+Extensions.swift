@@ -310,5 +310,11 @@ extension UIView {
 
         return matchingViews
     }
+
+    /// Completely fills the superview
+    func expandToSuperviewSize() {
+        guard let superview = self.superview else { return }
+        self.frame = superview.bounds
+    }
 }
 

@@ -11,7 +11,11 @@ import TwilioChatClient
 import Parse
 import TMROFutures
 
-extension TCHChannel: Diffable, DisplayableCellItem {
+extension TCHChannel: Diffable, ManageableCellItem {
+
+    var id: String {
+        return self.sid!
+    }
     
     var backgroundColor: Color {
         return .blue

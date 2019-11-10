@@ -9,7 +9,7 @@
 import Foundation
 import TwilioChatClient
 
-enum FeedType: DisplayableCellItem {
+enum FeedType: ManageableCellItem {
 
     case system(SystemMessage)
     case message(TCHMessage)
@@ -26,14 +26,14 @@ enum FeedType: DisplayableCellItem {
         }
     }
 
-    func diffIdentifier() -> NSObjectProtocol {
+    var id: String {
         switch self {
         case .system(let message):
-            return message.diffIdentifier()
+            return message.id
         case .message(let message):
-            return message.diffIdentifier()
+            return message.sid!
         case .channelInvite(let channel):
-            return channel.diffIdentifier()
+            return channel.sid!
         }
     }
 }

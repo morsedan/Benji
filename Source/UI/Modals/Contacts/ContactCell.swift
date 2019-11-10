@@ -9,8 +9,12 @@
 import Foundation
 import Contacts
 
-class ContactCell: UICollectionViewCell, DisplayableCell {
+class ContactCell: UICollectionViewCell, ManageableCell {
     typealias ItemType = CNContact
+
+    var onLongPress: (() -> Void)?
+
+
     let avatarView = AvatarView()
     let nameLabel = NameLabel()
 
@@ -23,6 +27,9 @@ class ContactCell: UICollectionViewCell, DisplayableCell {
         self.nameLabel.set(text: contact.fullName)
         self.avatarView.set(avatar: contact)
     }
+
+    func collectionViewManagerWillDisplay() {}
+    func collectionViewManagerDidEndDisplaying() {}
 
     override func layoutSubviews() {
         super.layoutSubviews()
