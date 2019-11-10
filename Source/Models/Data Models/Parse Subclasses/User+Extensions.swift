@@ -54,14 +54,9 @@ extension User {
     }
 }
 
-extension User: DisplayableCellItem {
-
-    var backgroundColor: Color {
-        return .red
-    }
-
-    func diffIdentifier() -> NSObjectProtocol {
-        return self.objectId! as NSObjectProtocol
+extension User: ManageableCellItem {
+    var id: String {
+        return self.objectId!
     }
 }
 

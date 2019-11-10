@@ -9,17 +9,10 @@
 import Foundation
 import Contacts
 
-protocol ContactsViewControllerDelegate: class {
-    func contactsViewController(_ controller: ContactsViewController, didSelect contact: CNContact)
-}
-
 class ContactsViewController: CollectionViewController<ContactCell, ContactsCollectionViewManager>, ScrolledModalControllerPresentable, KeyboardObservable {
     
     var didDismiss: (() -> Void)?
-
     var didUpdateHeight: ((CGRect, TimeInterval, UIView.AnimationCurve) -> ())?
-
-    weak var delegate: ContactsViewControllerDelegate?
 
     var topMargin: CGFloat {
         guard let top = UIWindow.topWindow() else { return 120 }
@@ -112,10 +105,6 @@ class ContactsViewController: CollectionViewController<ContactCell, ContactsColl
         }
 
         self.present(contactModal, animated: true)
-    }
-
-    override func didSelect(item: CNContact, at indexPath: IndexPath) {
-        self.delegate?.contactsViewController(self, didSelect: item)
     }
 
     func handleKeyboard(frame: CGRect, with animationDuration: TimeInterval, timingCurve: UIView.AnimationCurve) {

@@ -9,10 +9,10 @@
 import Foundation
 import TwilioChatClient
 
-class ChannelCell: UICollectionViewCell, DisplayableCell {
-
+class ChannelCell: UICollectionViewCell, ManageableCell {
     typealias ItemType = DisplayableChannel
-    
+
+    var onLongPress: (() -> Void)?
     let content = ChannelCellContentView()
     private let selectionFeedback = UIImpactFeedbackGenerator(style: .light)
 
@@ -24,6 +24,9 @@ class ChannelCell: UICollectionViewCell, DisplayableCell {
 
         self.content.configure(with: displayable.channelType)
     }
+
+    func collectionViewManagerWillDisplay() {}
+    func collectionViewManagerDidEndDisplaying() {}
 
     override func prepareForReuse() {
         super.prepareForReuse()

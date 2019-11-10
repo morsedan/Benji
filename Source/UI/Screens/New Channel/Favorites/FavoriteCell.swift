@@ -9,10 +9,11 @@
 import Foundation
 import Parse
 
-class FavoriteCell: UICollectionViewCell, DisplayableCell {
+class FavoriteCell: UICollectionViewCell, ManageableCell {
     typealias ItemType = User
 
     let avatarView = AvatarView()
+    var onLongPress: (() -> Void)?
 
     func configure(with item: User?) {
         guard let avatar = item else { return }
@@ -20,6 +21,10 @@ class FavoriteCell: UICollectionViewCell, DisplayableCell {
         self.contentView.addSubview(self.avatarView)
         self.avatarView.set(avatar: avatar)
     }
+
+    func collectionViewManagerWillDisplay() {}
+
+    func collectionViewManagerDidEndDisplaying() {}
 
     func update(isSelected: Bool) {
         self.avatarView.alpha = isSelected ? 1 : 0.5

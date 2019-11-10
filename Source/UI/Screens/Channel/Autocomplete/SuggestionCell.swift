@@ -8,10 +8,11 @@
 
 import Foundation
 
-class SuggestionCell: UICollectionViewCell, DisplayableCell {
+class SuggestionCell: UICollectionViewCell, ManageableCell {
     typealias ItemType = SuggestionType
 
     var backgroundStyle: UIKeyboardAppearance = .light
+    var onLongPress: (() -> Void)?
 
     let label = RegularSemiBoldLabel()
 
@@ -25,6 +26,9 @@ class SuggestionCell: UICollectionViewCell, DisplayableCell {
 
         self.layoutNow()
     }
+
+    func collectionViewManagerWillDisplay() {}
+    func collectionViewManagerDidEndDisplaying() {}
 
     override func layoutSubviews() {
         super.layoutSubviews()

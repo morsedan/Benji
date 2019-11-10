@@ -12,10 +12,6 @@ enum SuggestionType: ManageableCellItem {
 
     case text(String)
 
-    var backgroundColor: Color {
-        return .clear
-    }
-
     var id: String {
         switch self {
         case .text(let text):

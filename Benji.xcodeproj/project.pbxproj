@@ -168,8 +168,6 @@
 		D68302202349371D006145FE /* HomeHeaderDateLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D683021F2349371D006145FE /* HomeHeaderDateLabel.swift */; };
 		D6830222234AA35C006145FE /* DisplayableChannel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6830221234AA35C006145FE /* DisplayableChannel.swift */; };
 		D68483F922CC3DE400362AC3 /* ChannelCollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D68483F822CC3DE400362AC3 /* ChannelCollectionViewController.swift */; };
-		D68483FB22CD050D00362AC3 /* TableViewManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = D68483FA22CD050C00362AC3 /* TableViewManager.swift */; };
-		D68483FD22CD09C800362AC3 /* ListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D68483FC22CD09C800362AC3 /* ListViewController.swift */; };
 		D68483FF22CD0A1A00362AC3 /* TableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D68483FE22CD0A1A00362AC3 /* TableView.swift */; };
 		D684840A22CD48D000362AC3 /* GradientView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D684840922CD48D000362AC3 /* GradientView.swift */; };
 		D684840C22CD48FA00362AC3 /* PassThroughView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D684840B22CD48FA00362AC3 /* PassThroughView.swift */; };
@@ -430,8 +428,6 @@
 		D683021F2349371D006145FE /* HomeHeaderDateLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeHeaderDateLabel.swift; sourceTree = "<group>"; };
 		D6830221234AA35C006145FE /* DisplayableChannel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DisplayableChannel.swift; sourceTree = "<group>"; };
 		D68483F822CC3DE400362AC3 /* ChannelCollectionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChannelCollectionViewController.swift; sourceTree = "<group>"; };
-		D68483FA22CD050C00362AC3 /* TableViewManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableViewManager.swift; sourceTree = "<group>"; };
-		D68483FC22CD09C800362AC3 /* ListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListViewController.swift; sourceTree = "<group>"; };
 		D68483FE22CD0A1A00362AC3 /* TableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableView.swift; sourceTree = "<group>"; };
 		D684840922CD48D000362AC3 /* GradientView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GradientView.swift; sourceTree = "<group>"; };
 		D684840B22CD48FA00362AC3 /* PassThroughView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PassThroughView.swift; sourceTree = "<group>"; };
@@ -964,7 +960,6 @@
 		D66F0FE022C0413300BA277D /* View Controllers */ = {
 			isa = PBXGroup;
 			children = (
-				D68483FC22CD09C800362AC3 /* ListViewController.swift */,
 				D61EC0DF21D30E3F00204BEE /* FullScreenViewController.swift */,
 				D6D1461221D583E500CD8CE4 /* NavigationController.swift */,
 				D61EC0C121D3071400204BEE /* ViewController.swift */,
@@ -1234,7 +1229,6 @@
 				D642737E22C9A7EC0088256B /* ContactsManager.swift */,
 				D6AF02FC220153F5002D5C75 /* LaunchManager.swift */,
 				80D4A21923039FA5007CB5F1 /* RoutineManager.swift */,
-				D68483FA22CD050C00362AC3 /* TableViewManager.swift */,
 				D685E9262331177100CC1BAB /* UserNotificationManager.swift */,
 			);
 			path = Managers;
@@ -1625,7 +1619,6 @@
 				D6830222234AA35C006145FE /* DisplayableChannel.swift in Sources */,
 				D6A82B772325C48F003E0A8B /* PurposeDescriptionTextView.swift in Sources */,
 				D61EC0EE21D313BA00204BEE /* UIScreen+Extensions.swift in Sources */,
-				D68483FD22CD09C800362AC3 /* ListViewController.swift in Sources */,
 				D6405B6B236E0E7900FAA06B /* Conneciton.swift in Sources */,
 				D68540D1235FDE69006F666C /* SuggestionCollectionView.swift in Sources */,
 				80C7C6062316112400643A14 /* TimeHumpView.swift in Sources */,
@@ -1671,7 +1664,6 @@
 				D646DB3C22CFCCD80055CC7C /* ClientError.swift in Sources */,
 				D6B2604522E6C09700143CF0 /* RegularSemiBoldLabel.swift in Sources */,
 				D67896A722FF4D9B0059BA75 /* NavigationBarView.swift in Sources */,
-				D68483FB22CD050D00362AC3 /* TableViewManager.swift in Sources */,
 				D609AE36236F3F81004FA89A /* User+Objectable.swift in Sources */,
 				D6A82B752325C39A003E0A8B /* PurposeTitleTextField.swift in Sources */,
 				D66F0FDC22BF2ADC00BA277D /* HomeCoordinator.swift in Sources */,
