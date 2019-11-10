@@ -53,10 +53,7 @@ extension UICollectionView {
                              completion: ((Bool) -> Swift.Void)? = nil) {
 
         // Don't reload the collection view if no changes have been made to the items array
-        guard diffResult.hasChanges else {
-            completion?(false)
-            return
-        }
+        guard diffResult.hasChanges else { return }
 
         let sanitizedResults: ListIndexPathResult = diffResult.forBatchUpdates()
 
@@ -82,5 +79,55 @@ extension UICollectionView {
             self.collectionViewLayout.invalidateLayout()
             completion?(completed)
         })
+    }
+
+    func reloadWithModify<T: Diffable>(previousItems: [T],
+                                       newItems: [T],
+                                       equalityOption: IGListDiffOption,
+                                       modify: @escaping () -> Swift.Void,
+                                       completion: ((Bool) -> Swift.Void)? = nil) {
+
+        let previousBoxItems: [ListDiffable] = previousItems.map { (item) -> ListDiffable in
+            return DiffableBox<T>(value: item, equal: ==)
+        }
+
+        let newBoxItems: [ListDiffable] = newItems.map { (item) -> ListDiffable in
+            return DiffableBox<T>(value: item, equal: ==)
+        }
+
+        self.reload(previousItems: previousBoxItems,
+                    newItems: newBoxItems,
+                    equalityOption: equalityOption,
+                    modifyItems: modify,
+                    completion: completion)
+    }
+
+    func performBatchUpdates(modifyItems: (() -> Swift.Void)? = nil,
+                             updates: (() -> Swift.Void)? = nil,
+                             completion: ((Bool) -> Swift.Void)? = nil) {
+
+        if self.frame == .zero {
+            modifyItems?()
+            self.reloadData()
+            completion?(true)
+            return
+        }
+
+        self.performBatchUpdates({
+            modifyItems?()
+            updates?()
+        }, completion: { (completed) in
+            // Force collection view to update otherwise the cells will reflect the old layout
+            self.collectionViewLayout.invalidateLayout()
+            completion?(completed)
+        })
+    }
+
+    func centerMostIndexPath() -> IndexPath? {
+        let point = CGPoint(x: self.halfWidth + self.contentOffset.x,
+                            y: self.halfHeight + self.contentOffset.y)
+        guard let indexPath = self.indexPathForItem(at: point) else { return nil }
+
+        return indexPath
     }
 }

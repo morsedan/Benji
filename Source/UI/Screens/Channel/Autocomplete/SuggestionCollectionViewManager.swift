@@ -17,6 +17,12 @@ class SuggestionCollectionViewManager: CollectionViewManager<SuggestionCell> {
         super.initializeCollectionView()
 
         self.updateLayoutDataSource()
+
+        self.willDisplayCell = { [unowned self] item, indexPath in
+            guard let cell = self.collectionView.cellForItem(at: indexPath) as? SuggestionCell else { return }
+
+            cell.backgroundStyle = self.keyboardAppearance
+        }
     }
 
     private func updateLayoutDataSource() {
@@ -25,8 +31,8 @@ class SuggestionCollectionViewManager: CollectionViewManager<SuggestionCell> {
         }
     }
 
-    override func managerWillDisplay(cell: SuggestionCell, for indexPath: IndexPath) {
-        super.managerWillDisplay(cell: cell, for: indexPath)
+    override func managerDidConfigure(cell: SuggestionCell, for indexPath: IndexPath) {
+        super.managerDidConfigure(cell: cell, for: indexPath)
 
         cell.backgroundStyle = self.keyboardAppearance
     }
