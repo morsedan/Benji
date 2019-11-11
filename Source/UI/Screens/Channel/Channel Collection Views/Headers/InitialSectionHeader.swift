@@ -33,7 +33,7 @@ class InitialSectionHeader: UICollectionReusableView {
         self.set(backgroundColor: .clear)
     }
 
-    func configure(with sectionType: ChannelSectionType) {
+    func configure(with sectionType: ChannelSectionable) {
         guard let channelType = sectionType.channelType else { return }
 
         switch channelType {

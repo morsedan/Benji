@@ -25,7 +25,7 @@ class ChannelViewController: FullScreenViewController {
 
     let channelType: ChannelType
 
-    lazy var channelCollectionVC = ChannelCollectionViewController()
+    //lazy var channelCollectionVC = ChannelCollectionViewController()
 
     private(set) var messageInputView = MessageInputView()
 
@@ -60,7 +60,7 @@ class ChannelViewController: FullScreenViewController {
         super.initializeViews()
 
         self.registerKeyboardEvents()
-        self.addChild(viewController: self.channelCollectionVC)
+        //self.addChild(viewController: self.channelCollectionVC)
         self.view.addSubview(self.detailBar)
 
         self.view.addSubview(self.messageInputView)

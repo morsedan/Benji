@@ -134,7 +134,7 @@ class ChannelManager: NSObject {
 
     func getLastMessages(for channel: TCHChannel,
                         batchAmount: UInt = 10,
-                        completion: @escaping ([ChannelSectionType]) -> Void) {
+                        completion: @escaping ([ChannelSectionable]) -> Void) {
 
         guard let messagesObject = channel.messages else { return }
 
@@ -148,9 +148,9 @@ class ChannelManager: NSObject {
 
     func getMessages(before index: UInt,
                      batchAmount: UInt = 10,
-                     extending currentSections: [ChannelSectionType],
+                     extending currentSections: [ChannelSectionable],
                      for channel: TCHChannel,
-                     completion: @escaping ([ChannelSectionType]) -> Void) {
+                     completion: @escaping ([ChannelSectionable]) -> Void) {
 
         guard let messagesObject = channel.messages else { return }
         var current = currentSections
@@ -167,7 +167,7 @@ class ChannelManager: NSObject {
 
     //MARK: MAPPING
 
-    private func mapMessagesToSections() -> [ChannelSectionType] {
+    private func mapMessagesToSections() -> [ChannelSectionable] {
 
         guard let channel = self.selectedChannel, let date = channel.dateCreatedAsDate else { return [] }
 
@@ -176,10 +176,10 @@ class ChannelManager: NSObject {
             items.append(firstMessage)
         }
 
-        let firstSection = ChannelSectionType(date: date,
+        let firstSection = ChannelSectionable(date: date,
                                               items: items,
                                               channelType: .channel(channel))
-        var sections: [ChannelSectionType] = [firstSection]
+        var sections: [ChannelSectionable] = [firstSection]
         
         self.allMessages.forEach { (message) in
 
@@ -191,7 +191,7 @@ class ChannelManager: NSObject {
                 latestSection.items.append(message)
             } else {
                 // Otherwise, create a new section with the date of this message
-                let section = ChannelSectionType(date: messageCreatedAt.beginningOfDay,
+                let section = ChannelSectionable(date: messageCreatedAt.beginningOfDay,
                                                  items: [message])
                 sections.append(section)
             }

@@ -97,11 +97,6 @@ class ChannelCollectionViewFlowLayout: UICollectionViewFlowLayout {
             }
         }
 
-        for attributes in attributesArray where attributes.representedElementCategory == .supplementaryView {
-            let headerSizeCalculator = self.headerSizeCalculator(for: attributes.indexPath.section)
-            headerSizeCalculator.configure(attributes: attributes)
-        }
-
         return attributesArray
     }
 
@@ -113,10 +108,7 @@ class ChannelCollectionViewFlowLayout: UICollectionViewFlowLayout {
         if attributes.representedElementCategory == .cell, let message = self.dataSource?.item(at: indexPath) {
             let configurer = self.configurer(for: message, at: indexPath)
             configurer.configure(with: message, for: self, attributes: attributes)
-        } else if attributes.representedElementCategory == .supplementaryView {
-            let headerSizeCalculator = self.headerSizeCalculator(for: attributes.indexPath.section)
-            headerSizeCalculator.configure(attributes: attributes)
-        }
+        } 
 
         return attributes
     }
@@ -144,9 +136,9 @@ class ChannelCollectionViewFlowLayout: UICollectionViewFlowLayout {
         return MessageCellAttributesConfigurer()
     }
 
-    private func headerSizeCalculator(for section:  Int) -> HeaderSizeCalculator {
-        return self.initialHeaderSizeCalculator
-    }
+//    private func headerSizeCalculator(for section:  Int) -> HeaderSizeCalculator {
+//        return self.initialHeaderSizeCalculator
+//    }
 
     // MARK: - PUBLIC
 
@@ -159,16 +151,6 @@ class ChannelCollectionViewFlowLayout: UICollectionViewFlowLayout {
         if self.isSectionReservedForTypingIndicator(section) {
             return .zero
         }
-
-        if section == 0 {
-             if let sectionType = self.dataSource?.sections[safe: section],
-                let index = sectionType.firstMessageIndex, index > 0 {
-                 return CGSize(width: collectionView.width, height: 50)
-             } else {
-                 let calculator = self.headerSizeCalculator(for: section)
-                 return calculator.sizeForHeader(at: section)
-             }
-         }
 
         return CGSize(width: collectionView.width, height: 50)
     }

@@ -19,43 +19,45 @@ class InitialHeaderSizeCalculator: HeaderSizeCalculator {
 
     override func configure(attributes: ChannelCollectionViewLayoutAttributes) {
 
-        let dataSource = self.channelLayout.dataSource
-        guard let channelType = dataSource.sections.first?.channelType else { return }
-
-        switch channelType {
-        case .channel(let channel):
-            attributes.headerTopOffset = self.topOffset
-            attributes.headerDateOffset = self.dateOffset
-            attributes.headerDateLabelSize = self.getDateLabelSize(for: self.getLocalizedDateText(for: channel))
-            attributes.headerDescriptionLabelSize = self.getDescriptionLabelSize(for: channel.channelDescription)
-        default:
-            break
-        }
+//        let dataSource = self.channelLayout.dataSource
+//        guard let channelType = dataSource.sections.first?.channelType else { return }
+//
+//        switch channelType {
+//        case .channel(let channel):
+//            attributes.headerTopOffset = self.topOffset
+//            attributes.headerDateOffset = self.dateOffset
+//            attributes.headerDateLabelSize = self.getDateLabelSize(for: self.getLocalizedDateText(for: channel))
+//            attributes.headerDescriptionLabelSize = self.getDescriptionLabelSize(for: channel.channelDescription)
+//        default:
+//            break
+//        }
     }
 
     override func sizeForHeader(at section: Int) -> CGSize {
-        let dataSource = self.channelLayout.dataSource
-        guard let channelType = dataSource.sections.first?.channelType else { return .zero }
-
-        switch channelType {
-        case .channel(let channel):
-            return self.getHeight(for: channel)
-        default:
-            break
-        }
-
-        return .zero
+//        let dataSource = self.channelLayout.dataSource
+//        guard let channelType = dataSource.sections.first?.channelType else { return .zero }
+//
+//        switch channelType {
+//        case .channel(let channel):
+//            return self.getHeight(for: channel)
+//        default:
+//            break
+//        }
+//
+//        return .zero
+        return .zero 
     }
 
     private func getHeight(for channel: TCHChannel) -> CGSize {
 
-        let dateText = self.getLocalizedDateText(for: channel)
-        let descriptionHeight = self.getDescriptionLabelSize(for: channel.channelDescription).height
-        let dateHeight = self.getDateLabelSize(for: dateText).height
-
-        let height = self.topOffset + descriptionHeight + self.dateOffset + dateHeight + 20
-        
-        return CGSize(width: self.channelLayout.channelCollectionView.width, height: height)
+//        let dateText = self.getLocalizedDateText(for: channel)
+//        let descriptionHeight = self.getDescriptionLabelSize(for: channel.channelDescription).height
+//        let dateHeight = self.getDateLabelSize(for: dateText).height
+//
+//        let height = self.topOffset + descriptionHeight + self.dateOffset + dateHeight + 20
+//
+//        return CGSize(width: self.channelLayout.channelCollectionView.width, height: height)
+        return .zero
     }
 
     private func getLocalizedDateText(for channel: TCHChannel) -> Localized {
