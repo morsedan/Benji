@@ -74,7 +74,7 @@ class MessageSupplier {
                 // Otherwise, create a new section with the date of this message
                 let section = ChannelSectionable(date: messageCreatedAt.beginningOfDay,
                                                  items: [message],
-                                                 channelable: channelable)
+                                                 channelType: channelable)
                 sections.append(section)
             }
         }

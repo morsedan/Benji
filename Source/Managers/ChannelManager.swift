@@ -67,31 +67,45 @@ class ChannelManager: NSObject {
         })
     }
 
-    //MARK: HELPERS
+//    //MARK: HELPERS
+//
+//    func getChannels(completion: @escaping ChannelsCompletion) {
+//        guard let client = self.client, let channels = client.channelsList() else { return }
+//
+//        let subscribedChannels = channels.subscribedChannels()
+//        completion(subscribedChannels, nil)
+//    }
 
-    func getChannels(completion: @escaping ChannelsCompletion) {
-        guard let client = self.client, let channels = client.channelsList() else { return }
+    
+    //MARK: MESSAGE HELPERS
 
-        let subscribedChannels = channels.subscribedChannels()
-        completion(subscribedChannels, nil)
-    }
-
-    //MARK: SEND MESSAGE
-
+    @discardableResult
     func sendMessage(to channel: TCHChannel,
                      with body: String,
-                     attributes: Dictionary<String, Any> = [:]) {
+                     attributes: [String : Any] = [:]) -> Future<Void> {
 
         let message = body.extraWhitespaceRemoved()
+        let promise = Promise<Void>()
 
-        guard !message.isEmpty, channel.status == .joined else { return }
-
-        if let messages = channel.messages {
-            let messageOptions = TCHMessageOptions().withBody(body)
-            messageOptions.withAttributes(attributes, completion: nil)
-            messages.sendMessage(with: messageOptions, completion: { (result, message) in
-                
-            })
+        guard !message.isEmpty,
+            channel.status == .joined,
+            let messages = channel.messages else {
+                promise.reject(with: ClientError.generic)
+                return promise
         }
+
+        let messageOptions = TCHMessageOptions().withBody(body)
+        messageOptions.withAttributes(attributes, completion: nil)
+        messages.sendMessage(with: messageOptions) { (result, message) in
+            if result.isSuccessful() {
+                promise.resolve(with: ())
+            } else if let error = result.error {
+                promise.reject(with: error)
+            } else {
+                promise.reject(with: ClientError.generic)
+            }
+        }
+
+        return promise
     }
 }

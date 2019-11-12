@@ -95,8 +95,8 @@ class ChannelDetailBar: View {
         ChannelManager.shared.channelSyncUpdate.producer.on { [weak self] (update) in
             guard let `self` = self else { return }
 
-            guard let channelsUpdate = update, channelsUpdate.channel == ChannelManager.shared.selectedChannel
-                else { return }
+            guard let channelsUpdate = update,
+                channelsUpdate.channel == ChannelManager.shared.selectedChannel.value else { return }
 
             switch channelsUpdate.status {
             case .all:

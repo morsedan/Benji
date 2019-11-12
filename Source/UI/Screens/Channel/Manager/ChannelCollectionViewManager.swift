@@ -13,7 +13,6 @@ import TwilioChatClient
 class ChannelCollectionViewManager: NSObject, UITextViewDelegate, ChannelDataSource,
 UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
 
-
     var sections: [ChannelSectionable] = [] {
         didSet {
             self.updateLayoutDataSource()

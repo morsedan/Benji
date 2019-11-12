@@ -9,6 +9,8 @@
 import Foundation
 import TMROLocalization
 
+typealias CompletionOptional = (() -> Void)?
+
 protocol ChannelDataSource: AnyObject {
 
     var sections: [ChannelSectionable] { get set }
@@ -19,8 +21,10 @@ protocol ChannelDataSource: AnyObject {
     func numberOfItems(inSection section: Int) -> Int
 
     func reset()
-    func set(newSections: [ChannelSectionable], keepOffset: Bool)
-    func append(item: Messageable)
+    func set(newSections: [ChannelSectionable],
+             keepOffset: Bool,
+             completion: CompletionOptional)
+    func append(item: Messageable, completion: CompletionOptional)
     func update(item: Messageable, in section: Int)
     func delete(item: Messageable, in section: Int)
 }
@@ -48,20 +52,30 @@ extension ChannelDataSource {
         self.collectionView.reloadData()
     }
 
-    func set(newSections: [ChannelSectionable], keepOffset: Bool = false) {
+    func set(newSections: [ChannelSectionable],
+             keepOffset: Bool = false,
+             completion: CompletionOptional) {
+
+        guard newSections.count > 0 else {
+            completion?()
+            return
+        }
+
         self.sections = newSections
 
         if keepOffset {
             self.collectionView.reloadDataAndKeepOffset()
+            completion?()
         } else {
             self.collectionView.reloadData()
+            completion?()
         }
     }
 
-    func append(item: Messageable) {
+    func append(item: Messageable, completion: CompletionOptional) {
         var sectionIndex: Int?
         var itemCount: Int?
-        
+
         for (index, type) in self.sections.enumerated() {
             if type.date.isSameDay(as: item.createdAt) {
                 sectionIndex = index
@@ -72,20 +86,29 @@ extension ChannelDataSource {
         if let count = itemCount, let section = sectionIndex {
             let indexPath = IndexPath(item: count, section: section)
 
-            self.sections[section].items.append(item)
-            self.collectionView.insertItems(at: [indexPath])
+            self.collectionView.performBatchUpdates(modifyItems: { [unowned self] in
+                self.sections[section].items.append(item)
+                }, updates: { [unowned self] in
+                    self.collectionView.insertItems(at: [indexPath])
+            }) { (completed) in
+                completion?()
+            }
+
         } else {
             //Create new section
-            let newSection = ChannelSectionable(date: item.createdAt, items: [item])
-            self.sections.append(newSection)
+            let new = ChannelSectionable(date: item.createdAt, items: [item])
+            self.sections.append(new)
             self.collectionView.reloadData()
+            completion?()
         }
     }
 
-    func updateLastItem(with item: Messageable, replaceTypingIndicator: Bool = false) {
+    func updateLastItem(with item: Messageable,
+                        replaceTypingIndicator: Bool = false,
+                        completion: CompletionOptional) {
 
         if self.sections.count == 0 {
-            self.append(item: item)
+            self.append(item: item, completion: completion)
             return
         }
 
@@ -104,14 +127,19 @@ extension ChannelDataSource {
             if replaceTypingIndicator {
                 indexPath = IndexPath(item: sectionValue.items.count - 1, section: section)
             } else {
-                self.append(item: item)
+                self.append(item: item, completion: completion)
             }
         }
 
         guard let ip = indexPath else { return }
 
-        self.sections[section].items[ip.row] = item
-        self.collectionView.reloadItems(at: [ip])
+        self.collectionView.performBatchUpdates(modifyItems: {
+            self.sections[section].items[ip.row] = item
+        }, updates: {
+            self.collectionView.reloadItems(at: [ip])
+        }) { (completed) in
+            completion?()
+        }
     }
 
     func update(item: Messageable, in section: Int = 0) {

@@ -82,7 +82,9 @@ class ChannelViewController: FullScreenViewController {
         }
 
         self.messageInputView.onAlertMessageConfirmed = { [unowned self] in
-            self.send(message: self.messageInputView.textView.text, context: .emergency)
+            self.send(message: self.messageInputView.textView.text,
+                      context: .emergency,
+                      attributes: [:])
         }
 
         self.collectionView.onDoubleTap { [unowned self] (doubleTap) in
@@ -94,7 +96,7 @@ class ChannelViewController: FullScreenViewController {
         self.disposables += ChannelManager.shared.selectedChannel.producer
         .on { [unowned self] (channel) in
             
-            guard let strongChannel = channel else {
+            guard let _ = channel else {
                 self.collectionView.activityIndicator.startAnimating()
                 self.collectionViewManager.reset()
                 return
@@ -114,24 +116,31 @@ class ChannelViewController: FullScreenViewController {
         self.detailBar.top = 0
         self.detailBar.centerOnX()
 
-        self.channelCollectionVC.view.size = CGSize(width: self.view.width,
-                                                    height: self.view.height - handler.currentKeyboardHeight)
-        self.channelCollectionVC.view.top = 0
-        self.channelCollectionVC.view.centerOnX()
+        var keyboardHeight = handler.currentKeyboardHeight
+        if keyboardHeight > 0 {
+            keyboardHeight -= UIWindow.topWindow()?.safeAreaInsets.bottom ?? 0
+        }
 
-        self.messageInputView.size = CGSize(width: self.view.width - 32, height: self.messageInputView.textView.currentHeight)
+        let height = self.view.height - keyboardHeight - self.messageInputView.height
+
+        self.collectionView.size = CGSize(width: self.view.width, height: height)
+        self.collectionView.top = 0
+        self.collectionView.centerOnX()
+
+        self.messageInputView.width = self.view.width
+        self.messageInputView.top = self.collectionView.bottom
         self.messageInputView.centerOnX()
-        self.messageInputView.bottom = self.channelCollectionVC.view.bottom - self.bottomOffset
     }
 
-    func loadMessages(for type: ChannelType) {
-        self.channelCollectionVC.loadMessages(for: type)
-    }
+    @discardableResult
+    func send(message: String,
+              context: MessageContext = .casual,
+              attributes: [String : Any]) -> Future<Void> {
+        let promise = Promise<Void>()
 
-    func send(message: String, context: MessageContext = .casual) {
-        guard let channel = ChannelManager.shared.selectedChannel,
+        guard let channel = ChannelManager.shared.selectedChannel.value,
             let current = User.current(),
-            let objectId = current.objectId else { return }
+            let objectId = current.objectId else { return promise }
 
         let systemMessage = SystemMessage(avatar: current,
                                           context: context,
@@ -142,23 +151,34 @@ class ChannelViewController: FullScreenViewController {
                                           messageIndex: nil,
                                           status: .sent,
                                           id: objectId)
-        self.channelCollectionVC.channelDataSource.append(item: systemMessage)
-        self.reset()
-        ChannelManager.shared.sendMessage(to: channel, with: message)
-    }
 
-    private func reset() {
-        self.channelCollectionVC.collectionView.scrollToBottom()
-        self.messageInputView.textView.text = String()
-        self.messageInputView.textView.alpha = 1
-        self.messageInputView.resetInputViews()
+        self.collectionViewManager.append(item: systemMessage) { [unowned self] in
+            self.collectionView.scrollToBottom()
+        }
+        ChannelManager.shared.sendMessage(to: channel,
+                                          with: message,
+                                          attributes: attributes)
+            .observe { (result) in
+                switch result {
+                case .success:
+                    promise.resolve(with: ())
+                case .failure(let error):
+                    promise.reject(with: error)
+                }
+        }
+
+        self.messageInputView.reset()
+
+        return promise
     }
 }
 
 extension ChannelViewController: GrowingTextViewDelegate {
 
     func textViewTextDidChange(_ textView: GrowingTextView) {
-        guard let channel = ChannelManager.shared.selectedChannel, textView.text.count > 0 else { return }
+        guard let channel = ChannelManager.shared.selectedChannel.value,
+            textView.text.count > 0 else { return }
+        
         channel.typing()
     }
 

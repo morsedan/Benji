@@ -87,7 +87,7 @@ extension ChannelViewController: KeyboardObservable, UIGestureRecognizerDelegate
 
             self.previewAnimator?.addCompletion({ (position) in
                 if position == .end {
-                    self.send(message: text)
+                    self.send(message: text, attributes: [:])
                     self.previewView?.removeFromSuperview()
                 }
                 if position == .start {
