@@ -16,6 +16,7 @@ class ChannelManager: NSObject {
     static let shared = ChannelManager()
     var client: TwilioChatClient?
 
+    var selectedChannel = MutableProperty<TCHChannel?>(nil)
     var clientSyncUpdate = MutableProperty<TCHClientSynchronizationStatus?>(nil)
     var clientUpdate = MutableProperty<ChatClientUpdate?>(nil)
     var channelSyncUpdate = MutableProperty<ChannelSyncUpdate?>(nil)
@@ -33,24 +34,12 @@ class ChannelManager: NSObject {
         return items
     }()
 
-//    var channelTypes: [ChannelType] {
-//        get {
-//            guard let client = self.client, let channels = client.channelsList() else { return [] }
-//            return channels.subscribedChannels().map({ (channel) -> ChannelType in
-//                return .channel(channel)
-//            })
-//        }
-//    }
-
-    var selectedChannel: TCHChannel? {
-        didSet {
-            if self.selectedChannel == nil {
-                self.allMessages = []
-            }
+    var subscribedChannels: [TCHChannel] {
+        get {
+            guard let client = self.client, let channels = client.channelsList() else { return [] }
+            return channels.subscribedChannels()
         }
     }
-
-    private(set) var allMessages: [TCHMessage] = []
 
     var isSynced: Bool {
         guard let client = self.client else { return false }
@@ -87,30 +76,6 @@ class ChannelManager: NSObject {
         completion(subscribedChannels, nil)
     }
 
-    static func createChannel(channelName: String,
-                              channelDescription: String,
-                              type: TCHChannelType,
-                              attributes: NSMutableDictionary = [:]) -> Future<TCHChannel> {
-
-        guard let client = self.shared.client else {
-            let errorMessage = "Unable to create channel. Twilio client uninitialized"
-            return Promise<TCHChannel>(error: ClientError.apiError(detail: errorMessage))
-        }
-
-        attributes[ChannelKey.description.rawValue] = channelDescription
-
-        return client.createChannel(channelName: "#" + channelName,
-                                    uniqueName: UUID().uuidString,
-                                    type: type,
-                                    attributes: attributes)
-    }
-
-    func delete(channel: TCHChannel, completion: @escaping CompletionHandler) {
-        channel.destroy { result in
-            completion(result.isSuccessful() , result.error)
-        }
-    }
-
     //MARK: SEND MESSAGE
 
     func sendMessage(to channel: TCHChannel,
@@ -128,75 +93,5 @@ class ChannelManager: NSObject {
                 
             })
         }
-    }
-
-    //MARK: GET MESSAGES
-
-    func getLastMessages(for channel: TCHChannel,
-                        batchAmount: UInt = 10,
-                        completion: @escaping ([ChannelSectionable]) -> Void) {
-
-        guard let messagesObject = channel.messages else { return }
-
-        messagesObject.getLastWithCount(batchAmount) { (result, messages) in
-            guard let strongMessages = messages else { return }
-
-            self.allMessages = strongMessages
-            completion(self.mapMessagesToSections())
-        }
-    }
-
-    func getMessages(before index: UInt,
-                     batchAmount: UInt = 10,
-                     extending currentSections: [ChannelSectionable],
-                     for channel: TCHChannel,
-                     completion: @escaping ([ChannelSectionable]) -> Void) {
-
-        guard let messagesObject = channel.messages else { return }
-        var current = currentSections
-        //Remove the first section
-        current.remove(at: 0)
-
-        messagesObject.getBefore(index - 1, withCount: batchAmount) { (result, messages) in
-            guard let strongMessages = messages else { return }
-
-            self.allMessages.insert(contentsOf: strongMessages, at: 0)
-            completion(self.mapMessagesToSections())
-        }
-    }
-
-    //MARK: MAPPING
-
-    private func mapMessagesToSections() -> [ChannelSectionable] {
-
-        guard let channel = self.selectedChannel, let date = channel.dateCreatedAsDate else { return [] }
-
-        var items: [Messageable] = []
-        if let firstMessage = self.allMessages.first {
-            items.append(firstMessage)
-        }
-
-        let firstSection = ChannelSectionable(date: date,
-                                              items: items,
-                                              channelType: .channel(channel))
-        var sections: [ChannelSectionable] = [firstSection]
-        
-        self.allMessages.forEach { (message) in
-
-            // Determine if the message is a part of the latest channel section
-            let messageCreatedAt = message.timestampAsDate ?? Date.distantPast
-
-            if let latestSection = sections.last, latestSection.date.isSameDay(as: messageCreatedAt) {
-                // If the message fits into the latest section, then just append it
-                latestSection.items.append(message)
-            } else {
-                // Otherwise, create a new section with the date of this message
-                let section = ChannelSectionable(date: messageCreatedAt.beginningOfDay,
-                                                 items: [message])
-                sections.append(section)
-            }
-        }
-
-        return sections
     }
 }
