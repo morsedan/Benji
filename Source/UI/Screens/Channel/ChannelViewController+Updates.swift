@@ -29,6 +29,25 @@ extension ChannelViewController {
         }
     }
 
+    func subscribeToClient() {
+        ChannelManager.shared.clientSyncUpdate.producer.on { [weak self] (update) in
+            guard let `self` = self, let clientUpdate = update else { return }
+
+            switch clientUpdate {
+            case .started, .channelsListCompleted:
+                self.collectionView.activityIndicator.startAnimating()
+            case .completed:
+                self.collectionView.activityIndicator.stopAnimating()
+            case .failed:
+                self.collectionView.activityIndicator.stopAnimating()
+            @unknown default:
+                break
+            }
+        }
+        .start()
+    }
+
+
     func subscribeToUpdates() {
 
         ChannelManager.shared.messageUpdate.producer.on { [weak self] (update) in

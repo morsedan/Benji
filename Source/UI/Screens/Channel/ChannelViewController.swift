@@ -106,6 +106,7 @@ class ChannelViewController: FullScreenViewController {
             self.view.setNeedsLayout()
         }.start()
 
+        self.subscribeToClient()
         self.subscribeToUpdates()
     }
     

@@ -42,23 +42,6 @@ import Parse
 //        }
 //    }
 //
-//    func subscribeToClient() {
-//        ChannelManager.shared.clientSyncUpdate.producer.on { [weak self] (update) in
-//            guard let `self` = self, let clientUpdate = update else { return }
-//
-//            switch clientUpdate {
-//            case .started, .channelsListCompleted:
-//                self.loadingView.startAnimating()
-//            case .completed:
-//                self.loadingView.stopAnimating()
-//            case .failed:
-//                self.loadingView.stopAnimating()
-//            @unknown default:
-//                break
-//            }
-//        }
-//        .start()
-//    }
 //
 //    func subscribeToUpdates() {
 //
