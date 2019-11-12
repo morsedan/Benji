@@ -257,6 +257,7 @@
 		D6EDD1992355DBFA00FDA5D6 /* ProfileDetailCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6EDD1982355DBFA00FDA5D6 /* ProfileDetailCell.swift */; };
 		D6EDD19B2355DC2900FDA5D6 /* ProfileCollectionViewManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6EDD19A2355DC2900FDA5D6 /* ProfileCollectionViewManager.swift */; };
 		D6FB009F234AB7EB008ED2D6 /* XXSmallSemiBoldLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6FB009E234AB7EB008ED2D6 /* XXSmallSemiBoldLabel.swift */; };
+		D6FC8096237A64650089AACC /* MessageSupplier.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6FC8095237A64650089AACC /* MessageSupplier.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -535,6 +536,7 @@
 		D6EDD1982355DBFA00FDA5D6 /* ProfileDetailCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileDetailCell.swift; sourceTree = "<group>"; };
 		D6EDD19A2355DC2900FDA5D6 /* ProfileCollectionViewManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileCollectionViewManager.swift; sourceTree = "<group>"; };
 		D6FB009E234AB7EB008ED2D6 /* XXSmallSemiBoldLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = XXSmallSemiBoldLabel.swift; sourceTree = "<group>"; };
+		D6FC8095237A64650089AACC /* MessageSupplier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageSupplier.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -573,6 +575,7 @@
 				D6090E552377CB2F00833DA7 /* Messageable.swift */,
 				D6090E572377D2CA00833DA7 /* ChannelSectionable.swift */,
 				D657175D2378CEBA00F8F96C /* ChannelCollectionViewManager.swift */,
+				D6FC8095237A64650089AACC /* MessageSupplier.swift */,
 			);
 			path = Manager;
 			sourceTree = "<group>";
@@ -1677,6 +1680,7 @@
 				D66F0FDC22BF2ADC00BA277D /* HomeCoordinator.swift in Sources */,
 				D6D14FFC21D5893700CD8CE4 /* IGListBatchUpdateData.mm in Sources */,
 				D6EDD1952355DB9B00FDA5D6 /* ProfileCollectionView.swift in Sources */,
+				D6FC8096237A64650089AACC /* MessageSupplier.swift in Sources */,
 				D6B2606A22E80AB000143CF0 /* Toast.swift in Sources */,
 				D6D1500721D5E73D00CD8CE4 /* ChannelViewController.swift in Sources */,
 				D6405B6F236E138D00FAA06B /* Reservation.swift in Sources */,

@@ -23,8 +23,8 @@ class ChannelCollectionView: CollectionView {
         return self.channelLayout.isTypingIndicatorViewHidden
     }
 
-    init(with flowLayout: ChannelCollectionViewFlowLayout) {
-        super.init(flowLayout: flowLayout)
+    init() {
+        super.init(flowLayout: ChannelCollectionViewFlowLayout())
         self.registerReusableViews()
         self.backgroundView = self.emptyView
         self.backgroundView?.alpha = 0

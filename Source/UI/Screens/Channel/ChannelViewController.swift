@@ -25,7 +25,13 @@ class ChannelViewController: FullScreenViewController {
 
     let channelType: ChannelType
 
-    //lazy var channelCollectionVC = ChannelCollectionViewController()
+    let disposables = CompositeDisposable()
+
+    lazy var collectionView = ChannelCollectionView()
+    lazy var collectionViewManager: ChannelCollectionViewManager = {
+        let manager = ChannelCollectionViewManager(with: self.collectionView)
+        return manager
+    }()
 
     private(set) var messageInputView = MessageInputView()
 
@@ -48,6 +54,10 @@ class ChannelViewController: FullScreenViewController {
         super.init()
     }
 
+    deinit {
+        self.disposables.dispose()
+    }
+
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
@@ -60,7 +70,8 @@ class ChannelViewController: FullScreenViewController {
         super.initializeViews()
 
         self.registerKeyboardEvents()
-        //self.addChild(viewController: self.channelCollectionVC)
+
+        self.view.addSubview(self.collectionView)
         self.view.addSubview(self.detailBar)
 
         self.view.addSubview(self.messageInputView)
@@ -74,17 +85,24 @@ class ChannelViewController: FullScreenViewController {
             self.send(message: self.messageInputView.textView.text, context: .emergency)
         }
 
-        self.channelCollectionVC.collectionView.onDoubleTap { [unowned self] (doubleTap) in
+        self.collectionView.onDoubleTap { [unowned self] (doubleTap) in
             if self.messageInputView.textView.isFirstResponder {
                 self.messageInputView.textView.resignFirstResponder()
             }
         }
 
-        self.loadMessages(for: self.channelType)
-    }
+        self.disposables += ChannelManager.shared.selectedChannel.producer
+        .on { [unowned self] (channel) in
+            
+            guard let strongChannel = channel else {
+                self.collectionView.activityIndicator.startAnimating()
+                self.collectionViewManager.reset()
+                return
+            }
 
-    deinit {
-        ChannelManager.shared.selectedChannel = nil 
+            self.loadMessages()
+            self.view.setNeedsLayout()
+        }.start()
     }
     
     override func viewDidLayoutSubviews() {
@@ -109,18 +127,6 @@ class ChannelViewController: FullScreenViewController {
     func loadMessages(for type: ChannelType) {
         self.channelCollectionVC.loadMessages(for: type)
     }
-
-    //    func sendSystem(message: String) {
-    //        let systemMessage = SystemMessage(avatar: Lorem.avatar(),
-    //                                          context: Lorem.context(),
-    //                                          body: message,
-    //                                          id: String(Lorem.randomString()),
-    //                                          isFromCurrentUser: true,
-    //                                          timeStampAsDate: Date(),
-    //                                          status: .unknown)
-    //        self.channelCollectionVC.channelDataSource.append(item: .system(systemMessage))
-    //        self.reset()
-    //    }
 
     func send(message: String, context: MessageContext = .casual) {
         guard let channel = ChannelManager.shared.selectedChannel,
