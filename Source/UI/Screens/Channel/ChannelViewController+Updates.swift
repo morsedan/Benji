@@ -28,4 +28,78 @@ extension ChannelViewController {
                 }
         }
     }
+
+    func subscribeToUpdates() {
+
+        ChannelManager.shared.messageUpdate.producer.on { [weak self] (update) in
+            guard let `self` = self else { return }
+
+            guard let channelUpdate = update,
+                channelUpdate.channel == ChannelManager.shared.selectedChannel.value else { return }
+
+            switch channelUpdate.status {
+            case .added:
+                if self.collectionView.isTypingIndicatorHidden {
+                    self.collectionViewManager.updateLastItem(with: channelUpdate.message) {
+                        self.collectionView.scrollToBottom()
+                    }
+                } else {
+                    self.collectionViewManager.setTypingIndicatorViewHidden(true, performUpdates: { [weak self] in
+                        guard let `self` = self else { return }
+                        self.collectionViewManager.updateLastItem(with: channelUpdate.message,
+                                                                  replaceTypingIndicator: true,
+                                                                  completion: nil)
+                    })
+                }
+
+                //TODO: Add check here for last message not from user and its attributes to find quick messsages
+            case .changed:
+                self.collectionViewManager.update(item: channelUpdate.message)
+            case .deleted:
+                self.collectionViewManager.delete(item: channelUpdate.message)
+            case .toastReceived:
+                break
+            }
+            }.start()
+
+        ChannelManager.shared.memberUpdate.producer.on { [weak self] (update) in
+            guard let `self` = self else { return }
+
+            guard let memberUpdate = update,
+                memberUpdate.channel == ChannelManager.shared.selectedChannel.value else { return }
+
+            switch memberUpdate.status {
+            case .joined:
+                break
+            case .left:
+                break
+            case .changed:
+                self.loadMessages()
+            case .typingEnded:
+                if let memberID = memberUpdate.member.identity, memberID != User.current()?.objectId {
+                    self.collectionViewManager.setTypingIndicatorViewHidden(true)
+                }
+            case .typingStarted:
+                if let memberID = memberUpdate.member.identity, memberID != User.current()?.objectId {
+                    self.collectionViewManager.setTypingIndicatorViewHidden(false, performUpdates: nil)
+                }
+            }
+        }.start()
+
+        ChannelManager.shared.channelSyncUpdate.producer.on { [weak self] (update) in
+            guard let `self` = self else { return }
+
+            guard let syncUpdate = update else { return }
+
+            switch syncUpdate.status {
+                case .none, .identifier, .metadata, .failed:
+                    break
+                case .all:
+                    self.loadMessages()
+                @unknown default:
+                    break
+            }
+
+        }.start()
+    }
 }

@@ -20,7 +20,7 @@ class ChannelManager: NSObject {
     var clientSyncUpdate = MutableProperty<TCHClientSynchronizationStatus?>(nil)
     var clientUpdate = MutableProperty<ChatClientUpdate?>(nil)
     var channelSyncUpdate = MutableProperty<ChannelSyncUpdate?>(nil)
-    var channelUpdate = MutableProperty<ChannelUpdate?>(nil)
+    var channelsUpdate = MutableProperty<ChannelUpdate?>(nil)
     var messageUpdate = MutableProperty<MessageUpdate?>(nil)
     var memberUpdate = MutableProperty<ChannelMemberUpdate?>(nil)
 
@@ -66,16 +66,6 @@ class ChannelManager: NSObject {
             completion(true, nil)
         })
     }
-
-//    //MARK: HELPERS
-//
-//    func getChannels(completion: @escaping ChannelsCompletion) {
-//        guard let client = self.client, let channels = client.channelsList() else { return }
-//
-//        let subscribedChannels = channels.subscribedChannels()
-//        completion(subscribedChannels, nil)
-//    }
-
     
     //MARK: MESSAGE HELPERS
 

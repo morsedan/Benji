@@ -147,15 +147,4 @@ UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFl
         self.didSelectURL?(URL)
         return false
     }
-
-    /// A method that by default checks if the section is the last in the
-    /// `messagesCollectionView` and that `isTypingIndicatorViewHidden`
-    /// is FALSE
-    ///
-    /// - Parameter section
-    /// - Returns: A Boolean indicating if the TypingIndicator should be presented at the given section
-    func isSectionReservedForTypingIndicator(_ section: Int) -> Bool {
-        return !self.collectionView.isTypingIndicatorHidden
-            && section == self.numberOfSections(in: self.collectionView) - 1
-    }
 }

@@ -260,6 +260,7 @@
 		D6FC8096237A64650089AACC /* MessageSupplier.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6FC8095237A64650089AACC /* MessageSupplier.swift */; };
 		D6FC8098237A66220089AACC /* ChannelSupplier.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6FC8097237A66220089AACC /* ChannelSupplier.swift */; };
 		D6FC809A237A68F50089AACC /* ChannelViewController+Updates.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6FC8099237A68F50089AACC /* ChannelViewController+Updates.swift */; };
+		D6FC809C237A6ED30089AACC /* ChannelCollectionViewManager+Typing.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6FC809B237A6ED30089AACC /* ChannelCollectionViewManager+Typing.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -541,6 +542,7 @@
 		D6FC8095237A64650089AACC /* MessageSupplier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageSupplier.swift; sourceTree = "<group>"; };
 		D6FC8097237A66220089AACC /* ChannelSupplier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChannelSupplier.swift; sourceTree = "<group>"; };
 		D6FC8099237A68F50089AACC /* ChannelViewController+Updates.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ChannelViewController+Updates.swift"; sourceTree = "<group>"; };
+		D6FC809B237A6ED30089AACC /* ChannelCollectionViewManager+Typing.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ChannelCollectionViewManager+Typing.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -579,6 +581,7 @@
 				D6090E552377CB2F00833DA7 /* Messageable.swift */,
 				D6090E572377D2CA00833DA7 /* ChannelSectionable.swift */,
 				D657175D2378CEBA00F8F96C /* ChannelCollectionViewManager.swift */,
+				D6FC809B237A6ED30089AACC /* ChannelCollectionViewManager+Typing.swift */,
 				D6FC8095237A64650089AACC /* MessageSupplier.swift */,
 				D6FC8097237A66220089AACC /* ChannelSupplier.swift */,
 			);
@@ -1667,6 +1670,7 @@
 				D642737422C99D6A0088256B /* ContactsViewController.swift in Sources */,
 				D6D145F421D5493000CD8CE4 /* HomeViewController.swift in Sources */,
 				D6090E562377CB2F00833DA7 /* Messageable.swift in Sources */,
+				D6FC809C237A6ED30089AACC /* ChannelCollectionViewManager+Typing.swift in Sources */,
 				D642739722CA6E1F0088256B /* CommonWord.swift in Sources */,
 				D642736C22C98FA00088256B /* MathFunctions.swift in Sources */,
 				80D4A21C2303A005007CB5F1 /* Routine.swift in Sources */,

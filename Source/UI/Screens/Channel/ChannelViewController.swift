@@ -105,6 +105,8 @@ class ChannelViewController: FullScreenViewController {
             self.loadMessages()
             self.view.setNeedsLayout()
         }.start()
+
+        self.subscribeToUpdates()
     }
     
     override func viewDidLayoutSubviews() {

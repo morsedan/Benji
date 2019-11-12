@@ -98,22 +98,3 @@ extension Range where Bound == String.Index {
                        length: self.upperBound.utf16Offset(in: string) - self.lowerBound.utf16Offset(in: string))
     }
 }
-
-extension String: Localized {
-
-    var identifier: String {
-        return String()
-    }
-
-    var arguments: [Localized] {
-        return []
-    }
-
-    var defaultString: String? {
-        return self
-    }
-
-    func localized(withArguments arguments: [Localized]) -> Localized {
-        return self
-    }
-}

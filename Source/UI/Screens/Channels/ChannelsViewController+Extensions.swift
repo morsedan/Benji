@@ -11,7 +11,7 @@ import Foundation
 extension ChannelsViewController {
 
     func subscribeToUpdates() {
-        ChannelManager.shared.channelUpdate.producer.on { [weak self] (update) in
+        ChannelManager.shared.channelsUpdate.producer.on { [weak self] (update) in
             guard let `self` = self else { return }
 
             guard let channelsUpdate = update else { return }
