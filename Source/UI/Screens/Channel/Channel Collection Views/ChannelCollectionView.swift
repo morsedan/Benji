@@ -54,6 +54,12 @@ class ChannelCollectionView: CollectionView {
     override func layoutSubviews() {
         super.layoutSubviews()
 
+        if let dataSource = self.channelLayout.dataSource, dataSource.sections.count > 0 {
+            self.emptyView.isHidden = false
+        } else {
+            self.emptyView.isHidden = true 
+        }
+
         self.emptyView.frame = self.backgroundView?.bounds ?? .zero
     }
 }

@@ -107,7 +107,6 @@ class ChannelViewController: FullScreenViewController {
         }.start()
 
         self.subscribeToClient()
-        self.subscribeToUpdates()
     }
     
     override func viewDidLayoutSubviews() {
@@ -119,12 +118,9 @@ class ChannelViewController: FullScreenViewController {
         self.detailBar.top = 0
         self.detailBar.centerOnX()
 
-        var keyboardHeight = handler.currentKeyboardHeight
-        if keyboardHeight > 0 {
-            keyboardHeight -= UIWindow.topWindow()?.safeAreaInsets.bottom ?? 0
-        }
+        let keyboardHeight = handler.currentKeyboardHeight
 
-        let height = self.view.height - keyboardHeight - self.messageInputView.height
+        let height = self.view.height - keyboardHeight - self.messageInputView.height - self.detailBar.height
 
         self.collectionView.size = CGSize(width: self.view.width, height: height)
         self.collectionView.top = 0

@@ -13,6 +13,15 @@ extension ChannelViewController {
     func loadMessages() {
         self.collectionViewManager.reset()
 
+        switch self.channelType {
+        case .system(let channel):
+            self.loadSystem(channel: channel)
+        case .channel(_):
+            self.loadTwilioMessages()
+        }
+    }
+
+    private func loadTwilioMessages() {
         guard let channel = ChannelManager.shared.selectedChannel.value else { return }
 
         MessageSupplier.shared.getLastMessages(for: channel)
@@ -29,6 +38,16 @@ extension ChannelViewController {
         }
     }
 
+    private func loadSystem(channel: SystemChannel) {
+
+        let sections = MessageSupplier.shared.mapMessagesToSections(for: channel.messages, in: .system(channel))
+
+        self.collectionViewManager.set(newSections: sections) { [weak self] in
+            guard let `self` = self else { return }
+            self.collectionView.scrollToBottom()
+        }
+    }
+
     func subscribeToClient() {
         ChannelManager.shared.clientSyncUpdate.producer.on { [weak self] (update) in
             guard let `self` = self, let clientUpdate = update else { return }
@@ -38,6 +57,7 @@ extension ChannelViewController {
                 self.collectionView.activityIndicator.startAnimating()
             case .completed:
                 self.collectionView.activityIndicator.stopAnimating()
+                self.subscribeToUpdates()
             case .failed:
                 self.collectionView.activityIndicator.stopAnimating()
             @unknown default:
@@ -48,7 +68,7 @@ extension ChannelViewController {
     }
 
 
-    func subscribeToUpdates() {
+    private func subscribeToUpdates() {
 
         ChannelManager.shared.messageUpdate.producer.on { [weak self] (update) in
             guard let `self` = self else { return }
@@ -71,7 +91,6 @@ extension ChannelViewController {
                     })
                 }
 
-                //TODO: Add check here for last message not from user and its attributes to find quick messsages
             case .changed:
                 self.collectionViewManager.update(item: channelUpdate.message)
             case .deleted:
