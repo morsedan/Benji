@@ -18,6 +18,8 @@ class MessageCellAttributesConfigurer: ChannelCellAttributesConfigurer {
     private let widthRatio: CGFloat = 0.8
 
     override func configure(with message: Messageable,
+                            previousMessage: Messageable?,
+                            nextMessage: Messageable?,
                             for layout: ChannelCollectionViewFlowLayout,
                             attributes: ChannelCollectionViewLayoutAttributes) {
 
@@ -42,19 +44,17 @@ class MessageCellAttributesConfigurer: ChannelCellAttributesConfigurer {
 
         //Determine masked corners
         if message.isFromCurrentUser {
-//            let previousIndexPath = IndexPath(item: indexPath.item - 1, section: indexPath.section)
-//            if let previousMessage = dataSource.item(at: previousIndexPath), previousMessage.author == message.author {
-//                attributes.maskedCorners = [.layerMinXMaxYCorner, .layerMinXMinYCorner]
-//            } else {
-//                attributes.maskedCorners = [.layerMinXMaxYCorner, .layerMaxXMinYCorner, .layerMinXMinYCorner]
-//            }
+            if let previous = previousMessage, previous.authorID == message.authorID {
+                attributes.attributes.maskedCorners = [.layerMinXMaxYCorner, .layerMinXMinYCorner]
+            } else {
+                attributes.attributes.maskedCorners = [.layerMinXMaxYCorner, .layerMaxXMinYCorner, .layerMinXMinYCorner]
+            }
         } else {
-//            let nextIndexPath = IndexPath(item: indexPath.item + 1, section: indexPath.section)
-//            if let nextMessage = dataSource.item(at: nextIndexPath), nextMessage.author == message.author {
-//                attributes.maskedCorners = [.layerMaxXMaxYCorner, .layerMaxXMinYCorner]
-//            } else {
-//                attributes.maskedCorners = [.layerMaxXMaxYCorner, .layerMinXMaxYCorner, .layerMaxXMinYCorner]
-//            }
+            if let next = nextMessage, next.authorID == message.authorID {
+                attributes.attributes.maskedCorners = [.layerMaxXMaxYCorner, .layerMaxXMinYCorner]
+            } else {
+                attributes.attributes.maskedCorners = [.layerMaxXMaxYCorner, .layerMinXMaxYCorner, .layerMaxXMinYCorner]
+            }
         }
     }
 

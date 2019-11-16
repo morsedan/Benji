@@ -91,9 +91,13 @@ class ChannelCollectionViewFlowLayout: UICollectionViewFlowLayout {
         for attributes in attributesArray where attributes.representedElementCategory == .cell {
             let message = self.dataSource?.item(at: attributes.indexPath)
             let configurer = self.configurer(for: message, at: attributes.indexPath)
-
+            let adjacentMessages = self.getAdjacentMessages(for: attributes.indexPath)
             if let msg = message {
-                configurer.configure(with: msg, for: self, attributes: attributes)
+                configurer.configure(with: msg,
+                                     previousMessage: adjacentMessages.previousMessage,
+                                     nextMessage: adjacentMessages.nextMessage,
+                                     for: self,
+                                     attributes: attributes)
             }
         }
 
@@ -107,7 +111,13 @@ class ChannelCollectionViewFlowLayout: UICollectionViewFlowLayout {
 
         if attributes.representedElementCategory == .cell, let message = self.dataSource?.item(at: indexPath) {
             let configurer = self.configurer(for: message, at: indexPath)
-            configurer.configure(with: message, for: self, attributes: attributes)
+            let adjacentMessages = self.getAdjacentMessages(for: attributes.indexPath)
+
+            configurer.configure(with: message,
+                                 previousMessage: adjacentMessages.previousMessage,
+                                 nextMessage: adjacentMessages.nextMessage,
+                                 for: self,
+                                 attributes: attributes)
         } 
 
         return attributes
@@ -134,6 +144,17 @@ class ChannelCollectionViewFlowLayout: UICollectionViewFlowLayout {
         }
 
         return MessageCellAttributesConfigurer()
+    }
+
+    private func getAdjacentMessages(for indexPath: IndexPath) -> AdjacectMessages {
+
+        let previousIndexPath = IndexPath(item: indexPath.item - 1, section: indexPath.section)
+        let previousMessage = self.dataSource?.item(at: previousIndexPath)
+
+        let nextIndexPath = IndexPath(item: indexPath.item + 1, section: indexPath.section)
+        let nextMessage = self.dataSource?.item(at: nextIndexPath)
+
+        return AdjacectMessages(previousMessage: previousMessage, nextMessage: nextMessage)
     }
 
 //    private func headerSizeCalculator(for section:  Int) -> HeaderSizeCalculator {
@@ -175,4 +196,9 @@ class ChannelCollectionViewFlowLayout: UICollectionViewFlowLayout {
         guard let collectionView = self.collectionView else { return false }
         return !self.isTypingIndicatorViewHidden && section == collectionView.numberOfSections - 1
     }
+}
+
+private struct AdjacectMessages {
+    var previousMessage: Messageable?
+    var nextMessage: Messageable?
 }

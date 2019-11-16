@@ -17,6 +17,8 @@ class ChannelCellAttributesConfigurer {
     /// - attributes: The attributes of the cell.
     /// The default does nothing
     func configure(with message: Messageable,
+                   previousMessage: Messageable?,
+                   nextMessage: Messageable?,
                    for layout: ChannelCollectionViewFlowLayout,
                    attributes: ChannelCollectionViewLayoutAttributes) {}
 
