@@ -70,6 +70,10 @@ extension ChannelViewController {
 
     private func subscribeToUpdates() {
 
+        if ChannelManager.shared.isSynced {
+            self.loadMessages()
+        }
+
         ChannelManager.shared.messageUpdate.producer.on { [weak self] (update) in
             guard let `self` = self else { return }
 

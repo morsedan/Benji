@@ -77,6 +77,9 @@ class ChannelViewController: FullScreenViewController {
         self.view.addSubview(self.messageInputView)
         self.messageInputView.textView.growingDelegate = self
 
+        self.collectionView.dataSource = self.collectionViewManager
+        self.collectionView.delegate = self.collectionViewManager
+
         self.messageInputView.onPanned = { [unowned self] (panRecognizer) in
             self.handle(pan: panRecognizer)
         }
