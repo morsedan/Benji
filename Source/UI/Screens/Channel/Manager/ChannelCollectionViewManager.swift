@@ -175,4 +175,20 @@ UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFl
         self.didSelectURL?(URL)
         return false
     }
+
+    func didSelectLoadMore(for messageIndex: Int) {
+        guard let channel = ChannelManager.shared.selectedChannel.value else { return }
+
+        MessageSupplier.shared.getMessages(before: UInt(messageIndex), for: channel)
+            .observe { (result) in
+                switch result {
+                case .success(let sections):
+                    self.set(newSections: sections,
+                             keepOffset: true,
+                             completion: nil)
+                case .failure(_):
+                    break
+                }
+        }
+    }
 }
