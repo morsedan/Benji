@@ -69,32 +69,6 @@ class Lorem {
         return SystemAvatar(image: self.image())
     }
 
-    class func systemSections() -> [ChannelSectionable] {
-        var sections: [ChannelSectionable] = []
-        var messages: [Messageable] = []
-        for _ in 0...10 {
-            let message = self.systemMessage()
-            messages.append(message)
-        }
-
-        let grouped = Dictionary(grouping: messages) { (element) -> Date in
-            return element.createdAt
-        }
-
-        for key in grouped.keys {
-            if let value = grouped[key] {
-                let section = ChannelSectionable.init(date: key, items: value)
-                sections.append(section)
-            }
-        }
-
-        let sorted = sections.sorted { (lhs, rhs) -> Bool in
-            return rhs.date.compare(lhs.date) == .orderedDescending
-        }
-
-        return sorted
-    }
-
     class func systemChannel() -> SystemChannel {
         var avatars: [Avatar] = []
         for _ in 0...3 {
