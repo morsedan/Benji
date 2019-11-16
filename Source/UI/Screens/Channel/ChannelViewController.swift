@@ -75,6 +75,7 @@ class ChannelViewController: FullScreenViewController {
         self.view.addSubview(self.detailBar)
 
         self.view.addSubview(self.messageInputView)
+        self.messageInputView.height = 44
         self.messageInputView.textView.growingDelegate = self
 
         self.collectionView.dataSource = self.collectionViewManager
@@ -122,15 +123,19 @@ class ChannelViewController: FullScreenViewController {
         self.detailBar.centerOnX()
 
         let keyboardHeight = handler.currentKeyboardHeight
-
-        let height = self.view.height - keyboardHeight - self.messageInputView.height - self.detailBar.height
+        let height = self.view.height - keyboardHeight
 
         self.collectionView.size = CGSize(width: self.view.width, height: height)
         self.collectionView.top = 0
         self.collectionView.centerOnX()
 
-        self.messageInputView.width = self.view.width
-        self.messageInputView.top = self.collectionView.bottom
+        self.messageInputView.width = self.view.width - Theme.contentOffset * 2
+        var messageBottomOffset: CGFloat = 10
+        if keyboardHeight == 0, let window = UIWindow.topWindow() {
+            messageBottomOffset += window.safeAreaInsets.bottom
+        }
+
+        self.messageInputView.bottom = self.collectionView.bottom - messageBottomOffset
         self.messageInputView.centerOnX()
     }
 

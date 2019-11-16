@@ -50,6 +50,7 @@ class MessageCellAttributesConfigurer: ChannelCellAttributesConfigurer {
                 attributes.attributes.maskedCorners = [.layerMinXMaxYCorner, .layerMaxXMinYCorner, .layerMinXMinYCorner]
             }
         } else {
+            
             if let next = nextMessage, next.authorID == message.authorID {
                 attributes.attributes.maskedCorners = [.layerMaxXMaxYCorner, .layerMaxXMinYCorner]
             } else {
