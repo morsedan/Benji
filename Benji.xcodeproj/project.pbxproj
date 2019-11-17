@@ -186,6 +186,7 @@
 		D696A8E92308D5C900DAFED4 /* MessageInputView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D696A8E82308D5C900DAFED4 /* MessageInputView.swift */; };
 		D696A8F5230BA06A00DAFED4 /* LoginEndingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D696A8F4230BA06A00DAFED4 /* LoginEndingViewController.swift */; };
 		D6A301AA23808252006655E0 /* ChannelCollectionViewManager+Menu.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6A301A923808252006655E0 /* ChannelCollectionViewManager+Menu.swift */; };
+		D6A301AC2380E102006655E0 /* FeedSupplier.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6A301AB2380E102006655E0 /* FeedSupplier.swift */; };
 		D6A82B6F2325BEA2003E0A8B /* FavoritesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6A82B6E2325BEA2003E0A8B /* FavoritesViewController.swift */; };
 		D6A82B732325C2FD003E0A8B /* NewChannelViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6A82B722325C2FD003E0A8B /* NewChannelViewController.swift */; };
 		D6A82B752325C39A003E0A8B /* PurposeTitleTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6A82B742325C39A003E0A8B /* PurposeTitleTextField.swift */; };
@@ -448,6 +449,7 @@
 		D696A8E82308D5C900DAFED4 /* MessageInputView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageInputView.swift; sourceTree = "<group>"; };
 		D696A8F4230BA06A00DAFED4 /* LoginEndingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginEndingViewController.swift; sourceTree = "<group>"; };
 		D6A301A923808252006655E0 /* ChannelCollectionViewManager+Menu.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ChannelCollectionViewManager+Menu.swift"; sourceTree = "<group>"; };
+		D6A301AB2380E102006655E0 /* FeedSupplier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedSupplier.swift; sourceTree = "<group>"; };
 		D6A82B6E2325BEA2003E0A8B /* FavoritesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoritesViewController.swift; sourceTree = "<group>"; };
 		D6A82B722325C2FD003E0A8B /* NewChannelViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewChannelViewController.swift; sourceTree = "<group>"; };
 		D6A82B742325C39A003E0A8B /* PurposeTitleTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PurposeTitleTextField.swift; sourceTree = "<group>"; };
@@ -742,13 +744,14 @@
 		D62C634F22BE9C4600F4D097 /* Feed */ = {
 			isa = PBXGroup;
 			children = (
-				D62C635322BE9CBB00F4D097 /* FeedViewController.swift */,
-				D67896B522FF86AB0059BA75 /* FeedViewController+Extensions.swift */,
 				D642736322C9132A0088256B /* EmptyFeedView.swift */,
-				D642736522C971FD0088256B /* FeedTextView.swift */,
-				D6815DB822EE1CAC00E71251 /* FeedView.swift */,
 				D6815DBA22EE1F1400E71251 /* FeedCollectionViewManager.swift */,
 				D68DC7FB22EE5D9000BEAF80 /* FeedOverlayView.swift */,
+				D6A301AB2380E102006655E0 /* FeedSupplier.swift */,
+				D642736522C971FD0088256B /* FeedTextView.swift */,
+				D6815DB822EE1CAC00E71251 /* FeedView.swift */,
+				D62C635322BE9CBB00F4D097 /* FeedViewController.swift */,
+				D67896B522FF86AB0059BA75 /* FeedViewController+Extensions.swift */,
 			);
 			path = Feed;
 			sourceTree = "<group>";
@@ -1680,6 +1683,7 @@
 				D6B2604522E6C09700143CF0 /* RegularSemiBoldLabel.swift in Sources */,
 				D67896A722FF4D9B0059BA75 /* NavigationBarView.swift in Sources */,
 				D609AE36236F3F81004FA89A /* User+Objectable.swift in Sources */,
+				D6A301AC2380E102006655E0 /* FeedSupplier.swift in Sources */,
 				D6A82B752325C39A003E0A8B /* PurposeTitleTextField.swift in Sources */,
 				D66F0FDC22BF2ADC00BA277D /* HomeCoordinator.swift in Sources */,
 				D6D14FFC21D5893700CD8CE4 /* IGListBatchUpdateData.mm in Sources */,

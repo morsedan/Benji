@@ -25,6 +25,9 @@ enum UserKey: String {
     case familyName
     case smallImage
     case largeImage
+    case innerCircle
+    case outerCircle
+    case community
 }
 
 final class User: PFUser {
@@ -99,6 +102,33 @@ final class User: PFUser {
         }
         set {
             self.setObject(for: .largeImage, with: newValue)
+        }
+    }
+
+    var innerCircle: [User]? {
+        get {
+            return self.getObject(for: .innerCircle)
+        }
+        set {
+            self.setObject(for: .innerCircle, with: newValue)
+        }
+    }
+
+    var outerCircle: [User]? {
+        get {
+            return self.getObject(for: .outerCircle)
+        }
+        set {
+            self.setObject(for: .outerCircle, with: newValue)
+        }
+    }
+
+    var community: [User]? {
+        get {
+            return self.getObject(for: .outerCircle)
+        }
+        set {
+            self.setObject(for: .outerCircle, with: newValue)
         }
     }
 }

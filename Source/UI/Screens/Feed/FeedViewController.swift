@@ -29,7 +29,6 @@ class FeedViewController: ViewController {
         self.subscribeToUpdates()
     }
 
-
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
 

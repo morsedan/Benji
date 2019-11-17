@@ -51,6 +51,9 @@ class FeedView: KolodaView {
         case .channelInvite(_):
             self.textView.set(localizedText: "You have a new channel to join")
             self.avatarView.set(avatar: Lorem.avatar())
+        case .inviteAsk:
+            self.textView.set(localizedText: "You should invite someone")
+            self.avatarView.set(avatar: Lorem.avatar())
         }
     }
 

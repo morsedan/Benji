@@ -30,20 +30,14 @@ extension FeedViewController {
     }
 
     func addItems() {
-
-        var items: [FeedType] = []
-
-        ChannelManager.shared.channelTypes.forEach { (displayable) in
-            switch displayable.channelType {
-            case .channel(let channel):
-                if channel.status == .invited {
-                    items.append(.channelInvite(channel))
+        FeedSupplier.shared.getItems()
+            .observe { (result) in
+                switch result {
+                case .success(let items):
+                    self.manager.set(items: items)
+                case .failure(let error):
+                    print(error)
                 }
-            default:
-                break
-            }
         }
-
-        self.manager.set(items: items)
     }
 }

@@ -14,16 +14,10 @@ enum FeedType {
     case system(SystemMessage)
     case message(TCHMessage)
     case channelInvite(TCHChannel)
+    case inviteAsk
 
     var backgroundColor: Color {
-        switch self {
-        case .system(_):
-            return .blue
-        case .message(_):
-            return .blue
-        case .channelInvite(_):
-            return .blue
-        }
+        return .blue
     }
 
     var id: String {
@@ -34,6 +28,8 @@ enum FeedType {
             return message.sid!
         case .channelInvite(let channel):
             return channel.sid!
+        case .inviteAsk:
+            return "inviteAsk"
         }
     }
 }
