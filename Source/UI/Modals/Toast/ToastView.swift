@@ -8,6 +8,7 @@
 
 import Foundation
 import TMROLocalization
+import GestureRecognizerClosures
 
 enum ToastPosition {
     case top, bottom
