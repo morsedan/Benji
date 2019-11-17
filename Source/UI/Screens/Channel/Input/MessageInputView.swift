@@ -13,7 +13,6 @@ class MessageInputView: View {
     var onPanned: ((UIPanGestureRecognizer) -> Void)?
     var onAlertMessageConfirmed: (() -> Void)?
 
-
     private let minHeight: CGFloat = 38
 
     let textView = InputTextView()
@@ -134,6 +133,12 @@ class MessageInputView: View {
                                                         self.alertProgressView.size = CGSize(width: 0, height: self.height)
         })
         self.alertAnimator?.startAnimation()
+    }
+
+    func reset() {
+        self.textView.text = String()
+        self.textView.alpha = 1
+        self.resetInputViews()
     }
 
     func resetInputViews() {

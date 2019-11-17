@@ -15,11 +15,11 @@ extension ChannelViewController: KeyboardObservable, UIGestureRecognizerDelegate
         guard !self.maintainPositionOnKeyboardFrameChanged else { return }
 
         let animator = UIViewPropertyAnimator(duration: animationDuration, curve: timingCurve) {
-            self.channelCollectionVC.collectionView.height = self.view.height - frame.size.height
+            self.view.layoutNow()
         }
 
         animator.startAnimation()
-        self.channelCollectionVC.collectionView.scrollToBottom()
+        self.collectionView.scrollToBottom()
     }
     
     func handle(pan: UIPanGestureRecognizer) {
@@ -71,8 +71,8 @@ extension ChannelViewController: KeyboardObservable, UIGestureRecognizerDelegate
                                             UIView.addKeyframe(withRelativeStartTime: 0.6,
                                                                relativeDuration: 0.4,
                                                                animations: {
-                                                                self.channelCollectionVC.collectionView.collectionViewLayout.collectionView?.contentInset.bottom += totalOffset
-                                                                self.channelCollectionVC.collectionView.collectionViewLayout.invalidateLayout()
+                                                                self.collectionView.collectionViewLayout.collectionView?.contentInset.bottom += totalOffset
+                                                                self.collectionView.collectionViewLayout.invalidateLayout()
                                             })
 
                                             UIView.addKeyframe(withRelativeStartTime: 0,
@@ -87,15 +87,15 @@ extension ChannelViewController: KeyboardObservable, UIGestureRecognizerDelegate
 
             self.previewAnimator?.addCompletion({ (position) in
                 if position == .end {
-                    self.send(message: text)
+                    self.send(message: text, attributes: [:])
                     self.previewView?.removeFromSuperview()
                 }
                 if position == .start {
                     self.previewView?.removeFromSuperview()
                 }
 
-                self.channelCollectionVC.collectionView.collectionViewLayout.collectionView?.contentInset.bottom = 80
-                self.channelCollectionVC.collectionView.collectionViewLayout.invalidateLayout()
+                self.collectionView.collectionViewLayout.collectionView?.contentInset.bottom = 80
+                self.collectionView.collectionViewLayout.invalidateLayout()
             })
             self.previewAnimator?.pauseAnimation()
         case .changed:

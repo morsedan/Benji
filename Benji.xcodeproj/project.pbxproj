@@ -17,6 +17,9 @@
 		D607400A233FCF3E009633EB /* HomeHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6074009233FCF3E009633EB /* HomeHeaderView.swift */; };
 		D607400C23400FA6009633EB /* HomeSearchBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = D607400B23400FA6009633EB /* HomeSearchBar.swift */; };
 		D607400E23401B3E009633EB /* SystemChannel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D607400D23401B3E009633EB /* SystemChannel.swift */; };
+		D6090E562377CB2F00833DA7 /* Messageable.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6090E552377CB2F00833DA7 /* Messageable.swift */; };
+		D6090E582377D2CA00833DA7 /* ChannelSectionable.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6090E572377D2CA00833DA7 /* ChannelSectionable.swift */; };
+		D6090E5A2377D5CF00833DA7 /* ChannelCellAttributesConfigurer.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6090E592377D5CF00833DA7 /* ChannelCellAttributesConfigurer.swift */; };
 		D609AE36236F3F81004FA89A /* User+Objectable.swift in Sources */ = {isa = PBXBuildFile; fileRef = D609AE35236F3F81004FA89A /* User+Objectable.swift */; };
 		D609AE3A236F44A8004FA89A /* User+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = D609AE39236F44A8004FA89A /* User+Extensions.swift */; };
 		D609AE3C236F913F004FA89A /* Objectable.swift in Sources */ = {isa = PBXBuildFile; fileRef = D609AE3B236F913F004FA89A /* Objectable.swift */; };
@@ -98,7 +101,6 @@
 		D642739522C9C0850088256B /* AlertView.xib in Resources */ = {isa = PBXBuildFile; fileRef = D642739422C9C0850088256B /* AlertView.xib */; };
 		D642739722CA6E1F0088256B /* CommonWord.swift in Sources */ = {isa = PBXBuildFile; fileRef = D642739622CA6E1F0088256B /* CommonWord.swift */; };
 		D642739922CA79B60088256B /* UIWindow+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = D642739822CA79B60088256B /* UIWindow+Extensions.swift */; };
-		D642739D22CAFC930088256B /* MessageType.swift in Sources */ = {isa = PBXBuildFile; fileRef = D642739C22CAFC930088256B /* MessageType.swift */; };
 		D642739F22CAFD680088256B /* MessageTextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D642739E22CAFD680088256B /* MessageTextView.swift */; };
 		D64273A122CBDC870088256B /* ContextButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = D64273A022CBDC870088256B /* ContextButton.swift */; };
 		D64273A322CC040B0088256B /* GrowingTextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D64273A222CC040A0088256B /* GrowingTextView.swift */; };
@@ -107,9 +109,6 @@
 		D6432BF022D824BA0016001A /* ChannelCollectionViewLayoutAttributes.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6432BEF22D824BA0016001A /* ChannelCollectionViewLayoutAttributes.swift */; };
 		D6432BF322D828480016001A /* ChannelDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6432BF222D828480016001A /* ChannelDataSource.swift */; };
 		D6432BF522D82CDC0016001A /* ChannelCollectionViewFlowLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6432BF422D82CDC0016001A /* ChannelCollectionViewFlowLayout.swift */; };
-		D6432BF722D837340016001A /* CellSizeCalculator.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6432BF622D837340016001A /* CellSizeCalculator.swift */; };
-		D6432BF922D837A30016001A /* MessageSizeCaluculator.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6432BF822D837A30016001A /* MessageSizeCaluculator.swift */; };
-		D6432BFB22DB923C0016001A /* ChannelSectionType.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6432BFA22DB923C0016001A /* ChannelSectionType.swift */; };
 		D646DB3A22CFCC110055CC7C /* Future.swift in Sources */ = {isa = PBXBuildFile; fileRef = D646DB3922CFCC110055CC7C /* Future.swift */; };
 		D646DB3C22CFCCD80055CC7C /* ClientError.swift in Sources */ = {isa = PBXBuildFile; fileRef = D646DB3B22CFCCD80055CC7C /* ClientError.swift */; };
 		D646DB3E22CFCF330055CC7C /* TwilioChatClient+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = D646DB3D22CFCF330055CC7C /* TwilioChatClient+Extensions.swift */; };
@@ -124,9 +123,11 @@
 		D64C6A9C232D6C9200DB7257 /* BubbleCircleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D64C6A9B232D6C9200DB7257 /* BubbleCircleView.swift */; };
 		D64C6A9E232D6DD500DB7257 /* TypingIndicatorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D64C6A9D232D6DD500DB7257 /* TypingIndicatorView.swift */; };
 		D64C6AA0232DC2B700DB7257 /* TypingIndicatorCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D64C6A9F232DC2B700DB7257 /* TypingIndicatorCell.swift */; };
-		D64C6AA2232EA06800DB7257 /* TypingCellSizeCalculator.swift in Sources */ = {isa = PBXBuildFile; fileRef = D64C6AA1232EA06800DB7257 /* TypingCellSizeCalculator.swift */; };
+		D64C6AA2232EA06800DB7257 /* TypingCellAttributesConfigurer.swift in Sources */ = {isa = PBXBuildFile; fileRef = D64C6AA1232EA06800DB7257 /* TypingCellAttributesConfigurer.swift */; };
 		D64C6AA4232EA13300DB7257 /* UIEdgeInsets+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = D64C6AA3232EA13300DB7257 /* UIEdgeInsets+Extensions.swift */; };
 		D653F6B023588F8E00A03EEE /* RoutineViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D653F6AF23588F8E00A03EEE /* RoutineViewController.swift */; };
+		D657175C2378C78500F8F96C /* MessageCellAttributesConfigurer.swift in Sources */ = {isa = PBXBuildFile; fileRef = D657175B2378C78500F8F96C /* MessageCellAttributesConfigurer.swift */; };
+		D657175E2378CEBA00F8F96C /* ChannelCollectionViewManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = D657175D2378CEBA00F8F96C /* ChannelCollectionViewManager.swift */; };
 		D65B0CCE2344AE390041A176 /* ChannelsViewController+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = D65B0CCD2344AE390041A176 /* ChannelsViewController+Extensions.swift */; };
 		D65B0CE5234928620041A176 /* ProfileCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = D65B0CE4234928620041A176 /* ProfileCoordinator.swift */; };
 		D65B0CE7234929440041A176 /* NewChannelCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = D65B0CE6234929440041A176 /* NewChannelCoordinator.swift */; };
@@ -187,13 +188,13 @@
 		D691794222F6418700340AA3 /* Router.swift in Sources */ = {isa = PBXBuildFile; fileRef = D691794122F6418700340AA3 /* Router.swift */; };
 		D696A8E92308D5C900DAFED4 /* MessageInputView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D696A8E82308D5C900DAFED4 /* MessageInputView.swift */; };
 		D696A8F5230BA06A00DAFED4 /* LoginEndingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D696A8F4230BA06A00DAFED4 /* LoginEndingViewController.swift */; };
+		D6A301AA23808252006655E0 /* ChannelCollectionViewManager+Menu.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6A301A923808252006655E0 /* ChannelCollectionViewManager+Menu.swift */; };
 		D6A82B6F2325BEA2003E0A8B /* FavoritesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6A82B6E2325BEA2003E0A8B /* FavoritesViewController.swift */; };
 		D6A82B732325C2FD003E0A8B /* NewChannelViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6A82B722325C2FD003E0A8B /* NewChannelViewController.swift */; };
 		D6A82B752325C39A003E0A8B /* PurposeTitleTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6A82B742325C39A003E0A8B /* PurposeTitleTextField.swift */; };
 		D6A82B772325C48F003E0A8B /* PurposeDescriptionTextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6A82B762325C48F003E0A8B /* PurposeDescriptionTextView.swift */; };
 		D6AF02FD220153F5002D5C75 /* LaunchManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6AF02FC220153F5002D5C75 /* LaunchManager.swift */; };
 		D6AF0301220154E3002D5C75 /* ChannelManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6AF0300220154E3002D5C75 /* ChannelManager.swift */; };
-		D6B2601422E3E31500143CF0 /* ChannelDataSourceManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6B2601322E3E31500143CF0 /* ChannelDataSourceManager.swift */; };
 		D6B2601622E41BE700143CF0 /* ChannelSectionHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6B2601522E41BE700143CF0 /* ChannelSectionHeader.swift */; };
 		D6B2601822E4208900143CF0 /* ChannelHeaderDateLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6B2601722E4208900143CF0 /* ChannelHeaderDateLabel.swift */; };
 		D6B2603822E6AB5E00143CF0 /* ChannelDetailBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6B2603722E6AB5E00143CF0 /* ChannelDetailBar.swift */; };
@@ -257,6 +258,10 @@
 		D6EDD1992355DBFA00FDA5D6 /* ProfileDetailCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6EDD1982355DBFA00FDA5D6 /* ProfileDetailCell.swift */; };
 		D6EDD19B2355DC2900FDA5D6 /* ProfileCollectionViewManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6EDD19A2355DC2900FDA5D6 /* ProfileCollectionViewManager.swift */; };
 		D6FB009F234AB7EB008ED2D6 /* XXSmallSemiBoldLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6FB009E234AB7EB008ED2D6 /* XXSmallSemiBoldLabel.swift */; };
+		D6FC8096237A64650089AACC /* MessageSupplier.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6FC8095237A64650089AACC /* MessageSupplier.swift */; };
+		D6FC8098237A66220089AACC /* ChannelSupplier.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6FC8097237A66220089AACC /* ChannelSupplier.swift */; };
+		D6FC809A237A68F50089AACC /* ChannelViewController+Updates.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6FC8099237A68F50089AACC /* ChannelViewController+Updates.swift */; };
+		D6FC809C237A6ED30089AACC /* ChannelCollectionViewManager+Typing.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6FC809B237A6ED30089AACC /* ChannelCollectionViewManager+Typing.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -273,6 +278,9 @@
 		D6074009233FCF3E009633EB /* HomeHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeHeaderView.swift; sourceTree = "<group>"; };
 		D607400B23400FA6009633EB /* HomeSearchBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeSearchBar.swift; sourceTree = "<group>"; };
 		D607400D23401B3E009633EB /* SystemChannel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SystemChannel.swift; sourceTree = "<group>"; };
+		D6090E552377CB2F00833DA7 /* Messageable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Messageable.swift; sourceTree = "<group>"; };
+		D6090E572377D2CA00833DA7 /* ChannelSectionable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChannelSectionable.swift; sourceTree = "<group>"; };
+		D6090E592377D5CF00833DA7 /* ChannelCellAttributesConfigurer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChannelCellAttributesConfigurer.swift; sourceTree = "<group>"; };
 		D609AE35236F3F81004FA89A /* User+Objectable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "User+Objectable.swift"; sourceTree = "<group>"; };
 		D609AE39236F44A8004FA89A /* User+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "User+Extensions.swift"; sourceTree = "<group>"; };
 		D609AE3B236F913F004FA89A /* Objectable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Objectable.swift; sourceTree = "<group>"; };
@@ -357,7 +365,6 @@
 		D642739422C9C0850088256B /* AlertView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = AlertView.xib; sourceTree = "<group>"; };
 		D642739622CA6E1F0088256B /* CommonWord.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommonWord.swift; sourceTree = "<group>"; };
 		D642739822CA79B60088256B /* UIWindow+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIWindow+Extensions.swift"; sourceTree = "<group>"; };
-		D642739C22CAFC930088256B /* MessageType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageType.swift; sourceTree = "<group>"; };
 		D642739E22CAFD680088256B /* MessageTextView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageTextView.swift; sourceTree = "<group>"; };
 		D64273A022CBDC870088256B /* ContextButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContextButton.swift; sourceTree = "<group>"; };
 		D64273A222CC040A0088256B /* GrowingTextView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GrowingTextView.swift; sourceTree = "<group>"; };
@@ -366,9 +373,6 @@
 		D6432BEF22D824BA0016001A /* ChannelCollectionViewLayoutAttributes.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChannelCollectionViewLayoutAttributes.swift; sourceTree = "<group>"; };
 		D6432BF222D828480016001A /* ChannelDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChannelDataSource.swift; sourceTree = "<group>"; };
 		D6432BF422D82CDC0016001A /* ChannelCollectionViewFlowLayout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChannelCollectionViewFlowLayout.swift; sourceTree = "<group>"; };
-		D6432BF622D837340016001A /* CellSizeCalculator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CellSizeCalculator.swift; sourceTree = "<group>"; };
-		D6432BF822D837A30016001A /* MessageSizeCaluculator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageSizeCaluculator.swift; sourceTree = "<group>"; };
-		D6432BFA22DB923C0016001A /* ChannelSectionType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChannelSectionType.swift; sourceTree = "<group>"; };
 		D646DB3922CFCC110055CC7C /* Future.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Future.swift; sourceTree = "<group>"; };
 		D646DB3B22CFCCD80055CC7C /* ClientError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClientError.swift; sourceTree = "<group>"; };
 		D646DB3D22CFCF330055CC7C /* TwilioChatClient+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "TwilioChatClient+Extensions.swift"; sourceTree = "<group>"; };
@@ -383,10 +387,12 @@
 		D64C6A9B232D6C9200DB7257 /* BubbleCircleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BubbleCircleView.swift; sourceTree = "<group>"; };
 		D64C6A9D232D6DD500DB7257 /* TypingIndicatorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TypingIndicatorView.swift; sourceTree = "<group>"; };
 		D64C6A9F232DC2B700DB7257 /* TypingIndicatorCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TypingIndicatorCell.swift; sourceTree = "<group>"; };
-		D64C6AA1232EA06800DB7257 /* TypingCellSizeCalculator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TypingCellSizeCalculator.swift; sourceTree = "<group>"; };
+		D64C6AA1232EA06800DB7257 /* TypingCellAttributesConfigurer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TypingCellAttributesConfigurer.swift; sourceTree = "<group>"; };
 		D64C6AA3232EA13300DB7257 /* UIEdgeInsets+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIEdgeInsets+Extensions.swift"; sourceTree = "<group>"; };
 		D64C6AA523307DB300DB7257 /* Benji.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Benji.entitlements; sourceTree = "<group>"; };
 		D653F6AF23588F8E00A03EEE /* RoutineViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoutineViewController.swift; sourceTree = "<group>"; };
+		D657175B2378C78500F8F96C /* MessageCellAttributesConfigurer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageCellAttributesConfigurer.swift; sourceTree = "<group>"; };
+		D657175D2378CEBA00F8F96C /* ChannelCollectionViewManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChannelCollectionViewManager.swift; sourceTree = "<group>"; };
 		D65B0CCD2344AE390041A176 /* ChannelsViewController+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ChannelsViewController+Extensions.swift"; sourceTree = "<group>"; };
 		D65B0CE4234928620041A176 /* ProfileCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileCoordinator.swift; sourceTree = "<group>"; };
 		D65B0CE6234929440041A176 /* NewChannelCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewChannelCoordinator.swift; sourceTree = "<group>"; };
@@ -447,13 +453,13 @@
 		D691794122F6418700340AA3 /* Router.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Router.swift; sourceTree = "<group>"; };
 		D696A8E82308D5C900DAFED4 /* MessageInputView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageInputView.swift; sourceTree = "<group>"; };
 		D696A8F4230BA06A00DAFED4 /* LoginEndingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginEndingViewController.swift; sourceTree = "<group>"; };
+		D6A301A923808252006655E0 /* ChannelCollectionViewManager+Menu.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ChannelCollectionViewManager+Menu.swift"; sourceTree = "<group>"; };
 		D6A82B6E2325BEA2003E0A8B /* FavoritesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoritesViewController.swift; sourceTree = "<group>"; };
 		D6A82B722325C2FD003E0A8B /* NewChannelViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewChannelViewController.swift; sourceTree = "<group>"; };
 		D6A82B742325C39A003E0A8B /* PurposeTitleTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PurposeTitleTextField.swift; sourceTree = "<group>"; };
 		D6A82B762325C48F003E0A8B /* PurposeDescriptionTextView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PurposeDescriptionTextView.swift; sourceTree = "<group>"; };
 		D6AF02FC220153F5002D5C75 /* LaunchManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LaunchManager.swift; sourceTree = "<group>"; };
 		D6AF0300220154E3002D5C75 /* ChannelManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChannelManager.swift; sourceTree = "<group>"; };
-		D6B2601322E3E31500143CF0 /* ChannelDataSourceManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChannelDataSourceManager.swift; sourceTree = "<group>"; };
 		D6B2601522E41BE700143CF0 /* ChannelSectionHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChannelSectionHeader.swift; sourceTree = "<group>"; };
 		D6B2601722E4208900143CF0 /* ChannelHeaderDateLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChannelHeaderDateLabel.swift; sourceTree = "<group>"; };
 		D6B2603722E6AB5E00143CF0 /* ChannelDetailBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChannelDetailBar.swift; sourceTree = "<group>"; };
@@ -535,6 +541,10 @@
 		D6EDD1982355DBFA00FDA5D6 /* ProfileDetailCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileDetailCell.swift; sourceTree = "<group>"; };
 		D6EDD19A2355DC2900FDA5D6 /* ProfileCollectionViewManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileCollectionViewManager.swift; sourceTree = "<group>"; };
 		D6FB009E234AB7EB008ED2D6 /* XXSmallSemiBoldLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = XXSmallSemiBoldLabel.swift; sourceTree = "<group>"; };
+		D6FC8095237A64650089AACC /* MessageSupplier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageSupplier.swift; sourceTree = "<group>"; };
+		D6FC8097237A66220089AACC /* ChannelSupplier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChannelSupplier.swift; sourceTree = "<group>"; };
+		D6FC8099237A68F50089AACC /* ChannelViewController+Updates.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ChannelViewController+Updates.swift"; sourceTree = "<group>"; };
+		D6FC809B237A6ED30089AACC /* ChannelCollectionViewManager+Typing.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ChannelCollectionViewManager+Typing.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -565,6 +575,20 @@
 				B0D58BAEEF651AA0027FE108 /* Pods_Benji.framework */,
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		D6090E542377CB0F00833DA7 /* Manager */ = {
+			isa = PBXGroup;
+			children = (
+				D657175D2378CEBA00F8F96C /* ChannelCollectionViewManager.swift */,
+				D6A301A923808252006655E0 /* ChannelCollectionViewManager+Menu.swift */,
+				D6FC809B237A6ED30089AACC /* ChannelCollectionViewManager+Typing.swift */,
+				D6090E572377D2CA00833DA7 /* ChannelSectionable.swift */,
+				D6FC8097237A66220089AACC /* ChannelSupplier.swift */,
+				D6090E552377CB2F00833DA7 /* Messageable.swift */,
+				D6FC8095237A64650089AACC /* MessageSupplier.swift */,
+			);
+			path = Manager;
 			sourceTree = "<group>";
 		};
 		D61EC0B321D3071400204BEE = {
@@ -755,14 +779,15 @@
 			path = "New Channel";
 			sourceTree = "<group>";
 		};
-		D638440C2336E1FA0072227B /* Cell Calculators */ = {
+		D638440C2336E1FA0072227B /* Cell Configurers */ = {
 			isa = PBXGroup;
 			children = (
-				D6432BF622D837340016001A /* CellSizeCalculator.swift */,
-				D64C6AA1232EA06800DB7257 /* TypingCellSizeCalculator.swift */,
-				D6432BF822D837A30016001A /* MessageSizeCaluculator.swift */,
+				D6432BEF22D824BA0016001A /* ChannelCollectionViewLayoutAttributes.swift */,
+				D6090E592377D5CF00833DA7 /* ChannelCellAttributesConfigurer.swift */,
+				D64C6AA1232EA06800DB7257 /* TypingCellAttributesConfigurer.swift */,
+				D657175B2378C78500F8F96C /* MessageCellAttributesConfigurer.swift */,
 			);
-			path = "Cell Calculators";
+			path = "Cell Configurers";
 			sourceTree = "<group>";
 		};
 		D638440D2336E2160072227B /* Header Calculators */ = {
@@ -869,10 +894,12 @@
 		D6432BF122D8282E0016001A /* Channel */ = {
 			isa = PBXGroup;
 			children = (
+				D6090E542377CB0F00833DA7 /* Manager */,
 				D68540CD235FDE18006F666C /* Autocomplete */,
 				D67896CB2304524C0059BA75 /* ChannelCoordinator.swift */,
 				D6D1500621D5E73D00CD8CE4 /* ChannelViewController.swift */,
 				D64273A622CC2D280088256B /* ChannelViewController+Extensions.swift */,
+				D6FC8099237A68F50089AACC /* ChannelViewController+Updates.swift */,
 				D6B2603722E6AB5E00143CF0 /* ChannelDetailBar.swift */,
 				D6B2603622E6AA3800143CF0 /* Input */,
 				D6D1500521D5E71E00CD8CE4 /* Channel Collection Views */,
@@ -1066,10 +1093,9 @@
 		D6B2603522E6A97400143CF0 /* Layout */ = {
 			isa = PBXGroup;
 			children = (
-				D638440C2336E1FA0072227B /* Cell Calculators */,
+				D638440C2336E1FA0072227B /* Cell Configurers */,
 				D638440D2336E2160072227B /* Header Calculators */,
 				D6432BF422D82CDC0016001A /* ChannelCollectionViewFlowLayout.swift */,
-				D6432BEF22D824BA0016001A /* ChannelCollectionViewLayoutAttributes.swift */,
 			);
 			path = Layout;
 			sourceTree = "<group>";
@@ -1215,7 +1241,6 @@
 				D646DB4122CFDB400055CC7C /* ChannelCollectionViewController+Extensions.swift */,
 				D6073FCF233AFC1D009633EB /* ChannelCollectionViewController+Menu.swift */,
 				D6D1502C21D6A08300CD8CE4 /* ChannelCollectionView.swift */,
-				D6B2601322E3E31500143CF0 /* ChannelDataSourceManager.swift */,
 				D684D6E822D0E1CB00874B08 /* EmptyChannelView.swift */,
 			);
 			path = "Channel Collection Views";
@@ -1238,13 +1263,11 @@
 			isa = PBXGroup;
 			children = (
 				D6405B65236E001A00FAA06B /* Parse Subclasses */,
-				D6432BFA22DB923C0016001A /* ChannelSectionType.swift */,
 				D66F0FF122C1D86800BA277D /* ChannelsType.swift */,
 				D646DB3B22CFCCD80055CC7C /* ClientError.swift */,
 				D66F0FC622BF004300BA277D /* FeedType.swift */,
 				D646DB3922CFCC110055CC7C /* Future.swift */,
 				D642735022C857760088256B /* MessageContext.swift */,
-				D642739C22CAFC930088256B /* MessageType.swift */,
 				80D4A21B2303A005007CB5F1 /* Routine.swift */,
 				D642735222C85B740088256B /* SystemAvatar.swift */,
 				D66F0FC822BF006D00BA277D /* SystemMessage.swift */,
@@ -1321,7 +1344,7 @@
 				D61EC0B821D3071400204BEE /* Sources */,
 				D61EC0B921D3071400204BEE /* Frameworks */,
 				D61EC0BA21D3071400204BEE /* Resources */,
-				2A58D236142EFAA52F248E0B /* [CP] Embed Pods Frameworks */,
+				AD51D137A99BE875CEBBAC15 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -1389,23 +1412,6 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		2A58D236142EFAA52F248E0B /* [CP] Embed Pods Frameworks */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-Benji/Pods-Benji-frameworks-${CONFIGURATION}-input-files.xcfilelist",
-			);
-			name = "[CP] Embed Pods Frameworks";
-			outputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-Benji/Pods-Benji-frameworks-${CONFIGURATION}-output-files.xcfilelist",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-Benji/Pods-Benji-frameworks.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
 		30D8572DC83E8E92F5506E42 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -1424,6 +1430,23 @@
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
+		AD51D137A99BE875CEBBAC15 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-Benji/Pods-Benji-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-Benji/Pods-Benji-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-Benji/Pods-Benji-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
 /* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
@@ -1431,10 +1454,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				D6432BF922D837A30016001A /* MessageSizeCaluculator.swift in Sources */,
 				D62C635622BE9E5C00F4D097 /* CollectionViewController.swift in Sources */,
 				D67896AF22FF62630059BA75 /* PhoneKit.swift in Sources */,
 				D6E65F19237791650061AA67 /* ManageableCell.swift in Sources */,
+				D657175C2378C78500F8F96C /* MessageCellAttributesConfigurer.swift in Sources */,
 				D63752C6231258DA00214F63 /* PreviewMessageView.swift in Sources */,
 				D6B2601822E4208900143CF0 /* ChannelHeaderDateLabel.swift in Sources */,
 				D67A82DB230CCE3D0076152B /* SplashViewController.swift in Sources */,
@@ -1464,7 +1487,7 @@
 				D6B2606C22E80B6A00143CF0 /* ToastScheduler.swift in Sources */,
 				D66F0FF222C1D86800BA277D /* ChannelsType.swift in Sources */,
 				D66A0B942351821200A0FFEA /* Completeable.swift in Sources */,
-				D64C6AA2232EA06800DB7257 /* TypingCellSizeCalculator.swift in Sources */,
+				D64C6AA2232EA06800DB7257 /* TypingCellAttributesConfigurer.swift in Sources */,
 				D64273A522CC05DD0088256B /* InputTextView.swift in Sources */,
 				D642739F22CAFD680088256B /* MessageTextView.swift in Sources */,
 				D642739922CA79B60088256B /* UIWindow+Extensions.swift in Sources */,
@@ -1483,6 +1506,7 @@
 				D61EC0E421D30E9100204BEE /* TextView.swift in Sources */,
 				D6AF02FD220153F5002D5C75 /* LaunchManager.swift in Sources */,
 				D64273A322CC040B0088256B /* GrowingTextView.swift in Sources */,
+				D657175E2378CEBA00F8F96C /* ChannelCollectionViewManager.swift in Sources */,
 				D68540D3235FDE96006F666C /* SuggestionCollectionViewManager.swift in Sources */,
 				D609AE3C236F913F004FA89A /* Objectable.swift in Sources */,
 				D64C6A7E23294A8600DB7257 /* ChannelKey.swift in Sources */,
@@ -1490,7 +1514,6 @@
 				D6DADF692207D246007D9EB1 /* TCHMessage+Extensions.swift in Sources */,
 				D6EDD1972355DBC500FDA5D6 /* ProfileAvatarCell.swift in Sources */,
 				D61EC0F721D316F100204BEE /* Color.swift in Sources */,
-				D642739D22CAFC930088256B /* MessageType.swift in Sources */,
 				D64C6A7A232883FE00DB7257 /* CloudCalls.swift in Sources */,
 				D64C6AA0232DC2B700DB7257 /* TypingIndicatorCell.swift in Sources */,
 				D6D1503121D6A2B900CD8CE4 /* UITableView+Extensions.swift in Sources */,
@@ -1542,6 +1565,7 @@
 				D66F0FD822BF295A00BA277D /* Coordinator.swift in Sources */,
 				D642738322C9AEA30088256B /* ContactAuthorizationAlertController.swift in Sources */,
 				D66F0FD422BF074C00BA277D /* DeeplinkObject.swift in Sources */,
+				D6FC809A237A68F50089AACC /* ChannelViewController+Updates.swift in Sources */,
 				D63844092336BE540072227B /* InitialSectionHeader.swift in Sources */,
 				D6D1461121D583D200CD8CE4 /* RootNavigationController.swift in Sources */,
 				D6073FD0233AFC1D009633EB /* ChannelCollectionViewController+Menu.swift in Sources */,
@@ -1552,6 +1576,8 @@
 				D60C814622092F6B00A127A3 /* Button.swift in Sources */,
 				D6D1503721D7E74500CD8CE4 /* UIViewController+Extensions.swift in Sources */,
 				80D4A21623039B22007CB5F1 /* RoutineInputViewController.swift in Sources */,
+				D6090E5A2377D5CF00833DA7 /* ChannelCellAttributesConfigurer.swift in Sources */,
+				D6090E582377D2CA00833DA7 /* ChannelSectionable.swift in Sources */,
 				D6B2606822E80A7900143CF0 /* ToastQueue.swift in Sources */,
 				D66F0FEA22C0695E00BA277D /* CNContact+Extensions.swift in Sources */,
 				D6DADF6E2207DF33007D9EB1 /* ChannelsCollectionViewManager.swift in Sources */,
@@ -1560,6 +1586,7 @@
 				D66F0FCF22BF060500BA277D /* Deeplinkable.swift in Sources */,
 				D6B2607222E80FE000143CF0 /* XSmallLabel.swift in Sources */,
 				D63844122337C3CD0072227B /* LoadMoreSectionHeader.swift in Sources */,
+				D6A301AA23808252006655E0 /* ChannelCollectionViewManager+Menu.swift in Sources */,
 				D68540CF235FDE35006F666C /* SuggestionCollectionViewController.swift in Sources */,
 				D642737F22C9A7EC0088256B /* ContactsManager.swift in Sources */,
 				D642738A22C9B0170088256B /* ModalControllerAnimatedTransitioning.swift in Sources */,
@@ -1578,7 +1605,6 @@
 				D6D145FD21D550E400CD8CE4 /* AttributedString.swift in Sources */,
 				D6D14D8F21D5893600CD8CE4 /* NSNumber+IGListDiffable.m in Sources */,
 				D646DB4222CFDB400055CC7C /* ChannelCollectionViewController+Extensions.swift in Sources */,
-				D6B2601422E3E31500143CF0 /* ChannelDataSourceManager.swift in Sources */,
 				D63753202316148E00214F63 /* FavoriteCell.swift in Sources */,
 				D63753242316150000214F63 /* NewFavoriteCell.swift in Sources */,
 				D60C814A2209360400A127A3 /* DisplayableImageView.swift in Sources */,
@@ -1611,6 +1637,7 @@
 				D68540D9235FE089006F666C /* Suggestion.swift in Sources */,
 				D646DB3E22CFCF330055CC7C /* TwilioChatClient+Extensions.swift in Sources */,
 				D6EDD19B2355DC2900FDA5D6 /* ProfileCollectionViewManager.swift in Sources */,
+				D6FC8098237A66220089AACC /* ChannelSupplier.swift in Sources */,
 				D6D1503E21DAF98500CD8CE4 /* TextField.swift in Sources */,
 				D685E9272331177100CC1BAB /* UserNotificationManager.swift in Sources */,
 				D646DB4422CFDE0C0055CC7C /* LoadingView.swift in Sources */,
@@ -1635,9 +1662,7 @@
 				80D4A21A23039FA5007CB5F1 /* RoutineManager.swift in Sources */,
 				D67896BF2302683C0059BA75 /* LoginProfilePhotoViewController.swift in Sources */,
 				D6D1500C21D5E7C200CD8CE4 /* CollectionViewManager.swift in Sources */,
-				D6432BF722D837340016001A /* CellSizeCalculator.swift in Sources */,
 				D64C6A7C23288FB300DB7257 /* SmallSemiBoldLabel.swift in Sources */,
-				D6432BFB22DB923C0016001A /* ChannelSectionType.swift in Sources */,
 				D68540DC235FED41006F666C /* SuggestionCollectionViewLayoutAttributes.swift in Sources */,
 				D66F0FDA22BF297F00BA277D /* MainCoordinator.swift in Sources */,
 				D68540D7235FE050006F666C /* SuggestionCell.swift in Sources */,
@@ -1648,6 +1673,8 @@
 				D642738822C9AF690088256B /* ModalViewController.swift in Sources */,
 				D642737422C99D6A0088256B /* ContactsViewController.swift in Sources */,
 				D6D145F421D5493000CD8CE4 /* HomeViewController.swift in Sources */,
+				D6090E562377CB2F00833DA7 /* Messageable.swift in Sources */,
+				D6FC809C237A6ED30089AACC /* ChannelCollectionViewManager+Typing.swift in Sources */,
 				D642739722CA6E1F0088256B /* CommonWord.swift in Sources */,
 				D642736C22C98FA00088256B /* MathFunctions.swift in Sources */,
 				80D4A21C2303A005007CB5F1 /* Routine.swift in Sources */,
@@ -1669,6 +1696,7 @@
 				D66F0FDC22BF2ADC00BA277D /* HomeCoordinator.swift in Sources */,
 				D6D14FFC21D5893700CD8CE4 /* IGListBatchUpdateData.mm in Sources */,
 				D6EDD1952355DB9B00FDA5D6 /* ProfileCollectionView.swift in Sources */,
+				D6FC8096237A64650089AACC /* MessageSupplier.swift in Sources */,
 				D6B2606A22E80AB000143CF0 /* Toast.swift in Sources */,
 				D6D1500721D5E73D00CD8CE4 /* ChannelViewController.swift in Sources */,
 				D6405B6F236E138D00FAA06B /* Reservation.swift in Sources */,

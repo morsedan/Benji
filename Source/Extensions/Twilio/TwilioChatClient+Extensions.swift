@@ -41,5 +41,26 @@ extension TwilioChatClient {
 
         return promise
     }
+
+    func findChannel(with channelId: String) -> Future<TCHChannel> {
+        let promise = Promise<TCHChannel>()
+
+        guard let channels = self.channelsList() else {
+            promise.reject(with: ClientError.generic)
+            return promise
+        }
+
+        channels.channel(withSidOrUniqueName: channelId) { (result, channel) in
+            if let strongChannel = channel, result.isSuccessful() {
+                promise.resolve(with: strongChannel)
+            } else if let error = result.error {
+                promise.reject(with: error)
+            } else {
+                promise.reject(with: ClientError.generic)
+            }
+        }
+
+        return promise
+    }
 }
 

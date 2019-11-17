@@ -151,7 +151,8 @@ class NewChannelViewController: FullScreenViewController {
                                description: String) {
 
         self.createButton.isLoading = true
-        ChannelManager.createChannel(channelName: title,
+
+        ChannelSupplier.createChannel(channelName: title,
                                      channelDescription: description,
                                      type: .private)
             .joinIfNeeded()

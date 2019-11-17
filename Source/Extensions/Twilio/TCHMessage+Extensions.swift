@@ -9,24 +9,9 @@
 import Foundation
 import TwilioChatClient
 import Parse
+import TMROLocalization
 
-extension TCHMessage: ManageableCellItem, Avatar {
-
-    var id: String {
-        return self.sid!
-    }
-
-    var backgroundColor: Color {
-        get {
-            return self.isFromCurrentUser ? .purple : .lightPurple
-        }
-    }
-
-    var isFromCurrentUser: Bool {
-        guard let author = self.author,
-            let identity = PFUser.current()?.objectId else { return false }
-        return author == identity
-    }
+extension TCHMessage: Avatar {
 
     var givenName: String {
         return String()
@@ -43,8 +28,45 @@ extension TCHMessage: ManageableCellItem, Avatar {
     var userObjectID: String? {
         return self.author
     }
+}
 
-    var status: MessageTypeStatus {
+extension TCHMessage: Messageable {
+
+    var id: String {
+        return self.sid!
+    }
+
+    var isFromCurrentUser: Bool {
+        guard let author = self.author,
+            let identity = PFUser.current()?.objectId else { return false }
+        return author == identity
+    }
+
+    var createdAt: Date {
+        return self.timestampAsDate ?? Date()
+    }
+
+    var text: Localized {
+        return String(optional: self.body)
+    }
+
+    var authorID: String {
+        return String(optional: self.author)
+    }
+
+    var messageIndex: NSNumber? {
+        return self.index
+    }
+
+    var attributes: [String : Any]? {
+        return self.attributes()
+    }
+
+    var avatar: Avatar {
+        return self
+    }
+
+    var status: MessageStatus {
         return .delivered
     }
 }

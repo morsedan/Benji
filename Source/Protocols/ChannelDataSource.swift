@@ -9,25 +9,29 @@
 import Foundation
 import TMROLocalization
 
+typealias CompletionOptional = (() -> Void)?
+
 protocol ChannelDataSource: AnyObject {
 
-    var sections: [ChannelSectionType] { get set }
-    var collectionView: CollectionView? { get set }
+    var sections: [ChannelSectionable] { get set }
+    var collectionView: ChannelCollectionView { get set }
 
-    func item(at indexPath: IndexPath) -> MessageType?
+    func item(at indexPath: IndexPath) -> Messageable?
     func numberOfSections() -> Int
     func numberOfItems(inSection section: Int) -> Int
 
     func reset()
-    func set(newSections: [ChannelSectionType], keepOffset: Bool)
-    func append(item: MessageType)
-    func update(item: MessageType, in section: Int)
-    func delete(item: MessageType, in section: Int)
+    func set(newSections: [ChannelSectionable],
+             keepOffset: Bool,
+             completion: CompletionOptional)
+    func append(item: Messageable, completion: CompletionOptional)
+    func update(item: Messageable, in section: Int)
+    func delete(item: Messageable, in section: Int)
 }
 
 extension ChannelDataSource {
 
-    func item(at indexPath: IndexPath) -> MessageType? {
+    func item(at indexPath: IndexPath) -> Messageable? {
         guard let section = self.sections[safe: indexPath.section],
             let item = section.items[safe: indexPath.row] else { return nil }
 
@@ -45,23 +49,33 @@ extension ChannelDataSource {
 
     func reset() {
         self.sections = []
-        self.collectionView?.reloadData()
+        self.collectionView.reloadData()
     }
 
-    func set(newSections: [ChannelSectionType], keepOffset: Bool = false) {
+    func set(newSections: [ChannelSectionable],
+             keepOffset: Bool = false,
+             completion: CompletionOptional) {
+
+        guard newSections.count > 0 else {
+            completion?()
+            return
+        }
+
         self.sections = newSections
 
         if keepOffset {
-            self.collectionView?.reloadDataAndKeepOffset()
+            self.collectionView.reloadDataAndKeepOffset()
+            completion?()
         } else {
-            self.collectionView?.reloadData()
+            self.collectionView.reloadData()
+            completion?()
         }
     }
 
-    func append(item: MessageType) {
+    func append(item: Messageable, completion: CompletionOptional) {
         var sectionIndex: Int?
         var itemCount: Int?
-        
+
         for (index, type) in self.sections.enumerated() {
             if type.date.isSameDay(as: item.createdAt) {
                 sectionIndex = index
@@ -72,20 +86,29 @@ extension ChannelDataSource {
         if let count = itemCount, let section = sectionIndex {
             let indexPath = IndexPath(item: count, section: section)
 
-            self.sections[section].items.append(item)
-            self.collectionView?.insertItems(at: [indexPath])
+            self.collectionView.performBatchUpdates(modifyItems: { [unowned self] in
+                self.sections[section].items.append(item)
+                }, updates: { [unowned self] in
+                    self.collectionView.insertItems(at: [indexPath])
+            }) { (completed) in
+                completion?()
+            }
+
         } else {
             //Create new section
-            let newSection = ChannelSectionType(date: item.createdAt, items: [item])
-            self.sections.append(newSection)
-            self.collectionView?.reloadData()
+            let new = ChannelSectionable(date: item.createdAt, items: [item])
+            self.sections.append(new)
+            self.collectionView.reloadData()
+            completion?()
         }
     }
 
-    func updateLastItem(with item: MessageType, replaceTypingIndicator: Bool = false) {
+    func updateLastItem(with item: Messageable,
+                        replaceTypingIndicator: Bool = false,
+                        completion: CompletionOptional) {
 
         if self.sections.count == 0 {
-            self.append(item: item)
+            self.append(item: item, completion: completion)
             return
         }
 
@@ -94,7 +117,7 @@ extension ChannelDataSource {
         var indexPath: IndexPath?
 
         for (index, existingItem) in sectionValue.items.enumerated() {
-            if localized(existingItem.body) == localized(item.body) {
+            if localized(existingItem.text) == localized(item.text) {
                 indexPath = IndexPath(item: index, section: section)
                 break
             }
@@ -104,17 +127,22 @@ extension ChannelDataSource {
             if replaceTypingIndicator {
                 indexPath = IndexPath(item: sectionValue.items.count - 1, section: section)
             } else {
-                self.append(item: item)
+                self.append(item: item, completion: completion)
             }
         }
 
         guard let ip = indexPath else { return }
 
-        self.sections[section].items[ip.row] = item
-        self.collectionView?.reloadItems(at: [ip])
+        self.collectionView.performBatchUpdates(modifyItems: {
+            self.sections[section].items[ip.row] = item
+        }, updates: {
+            self.collectionView.reloadItems(at: [ip])
+        }) { (completed) in
+            completion?()
+        }
     }
 
-    func update(item: MessageType, in section: Int = 0) {
+    func update(item: Messageable, in section: Int = 0) {
         guard let sectionValue = self.sections[safe: section] else { return }
 
         var indexPath: IndexPath?
@@ -129,10 +157,10 @@ extension ChannelDataSource {
         guard let ip = indexPath else { return }
 
         self.sections[section].items[ip.row] = item
-        self.collectionView?.reloadItems(at: [ip])
+        self.collectionView.reloadItems(at: [ip])
     }
 
-    func delete(item: MessageType, in section: Int = 0) {
+    func delete(item: Messageable, in section: Int = 0) {
 
         guard let sectionValue = self.sections[safe: section] else { return }
 
@@ -148,6 +176,6 @@ extension ChannelDataSource {
         guard let ip = indexPath else { return }
 
         self.sections[section].items.remove(at: ip.row)
-        self.collectionView?.deleteItems(at: [ip])
+        self.collectionView.deleteItems(at: [ip])
     }
 }

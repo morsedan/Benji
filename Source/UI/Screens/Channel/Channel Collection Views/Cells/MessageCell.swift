@@ -51,53 +51,23 @@ class MessageCell: UICollectionViewCell {
         self.textView.text = nil
     }
 
-    func configure(with message: MessageType) {
+    func configure(with message: Messageable) {
 
         if !message.isFromCurrentUser {
             self.avatarView.set(avatar: message.avatar)
         }
-        self.textView.set(text: message.body)
-        self.bubbleView.set(backgroundColor: message.backgroundColor)
+        self.textView.set(text: message.text)
+
+        let backgroundColor: Color = message.isFromCurrentUser ? .lightPurple : .purple
+        self.bubbleView.set(backgroundColor: backgroundColor)
     }
 
     private func layoutContent(with attributes: ChannelCollectionViewLayoutAttributes) {
-        if attributes.isFromCurrentUser {
-            self.layoutOutgoing(with: attributes)
-        } else {
-            self.layoutIncoming(with: attributes)
-        }
-    }
 
-    // INCOMING
-    private func layoutIncoming(with attributes: ChannelCollectionViewLayoutAttributes) {
-        self.avatarView.size = attributes.avatarSize
-        self.avatarView.left = attributes.avatarLeadingPadding
-
-        self.textView.size = attributes.messageTextViewSize
-        self.textView.top = attributes.messageTextViewVerticalPadding
-        self.textView.left = attributes.messageTextViewHorizontalPadding
-
-        self.bubbleView.size = attributes.bubbleViewSize
-        self.bubbleView.top = 0
-        self.bubbleView.left = self.textView.left - attributes.bubbleViewHorizontalPadding
-        self.bubbleView.layer.maskedCorners = attributes.maskedCorners
-        self.bubbleView.roundCorners()
-        self.avatarView.top = self.bubbleView.top
-    }
-
-    // OUTGOING
-    private func layoutOutgoing(with attributes: ChannelCollectionViewLayoutAttributes) {
-        self.avatarView.size = .zero
-        self.avatarView.left = attributes.avatarLeadingPadding
-
-        self.textView.size = attributes.messageTextViewSize
-        self.textView.top = attributes.messageTextViewVerticalPadding
-        self.textView.right = attributes.size.width - attributes.messageTextViewHorizontalPadding
-
-        self.bubbleView.size = attributes.bubbleViewSize
-        self.bubbleView.top = 0
-        self.bubbleView.right = self.textView.right + attributes.bubbleViewHorizontalPadding
-        self.bubbleView.layer.maskedCorners = attributes.maskedCorners
+        self.avatarView.frame = attributes.attributes.avatarFrame
+        self.textView.frame = attributes.attributes.textViewFrame
+        self.bubbleView.frame = attributes.attributes.bubbleViewFrame
+        self.bubbleView.layer.maskedCorners = attributes.attributes.maskedCorners
         self.bubbleView.roundCorners()
     }
 }

@@ -7,26 +7,39 @@
 //
 
 import Foundation
+import TMROLocalization
 
-struct SystemMessage: Diffable, Hashable {
+class SystemMessage: Messageable {
 
+    var createdAt: Date
+    var text: Localized
+    var authorID: String
+    var messageIndex: NSNumber?
+    var attributes: [String : Any]?
     var avatar: Avatar
     var context: MessageContext
-    var body: String
+    var isFromCurrentUser: Bool
+    var status: MessageStatus
     var id: String
-    var isFromCurrentUser: Bool = false
-    var timeStampAsDate: Date
-    var status: MessageTypeStatus = .sent
 
-    func diffIdentifier() -> NSObjectProtocol {
-        return self.id as NSObjectProtocol
-    }
+    init(avatar: Avatar,
+         context: MessageContext,
+         text: Localized,
+         isFromCurrentUser: Bool,
+         createdAt: Date,
+         authorId: String,
+         messageIndex: NSNumber?,
+         status: MessageStatus,
+         id: String) {
 
-    static func == (lhs: SystemMessage, rhs: SystemMessage) -> Bool {
-        return lhs.id == rhs.id
-    }
-
-    func hash(into hasher: inout Hasher) {
-        hasher.combine(self.id)
+        self.avatar = avatar
+        self.context = context
+        self.isFromCurrentUser = isFromCurrentUser
+        self.text = text
+        self.createdAt = createdAt
+        self.authorID = authorId
+        self.messageIndex = messageIndex
+        self.status = status
+        self.id = id 
     }
 }

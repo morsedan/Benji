@@ -16,10 +16,11 @@ class ChannelManager: NSObject {
     static let shared = ChannelManager()
     var client: TwilioChatClient?
 
+    var selectedChannel = MutableProperty<TCHChannel?>(nil)
     var clientSyncUpdate = MutableProperty<TCHClientSynchronizationStatus?>(nil)
     var clientUpdate = MutableProperty<ChatClientUpdate?>(nil)
     var channelSyncUpdate = MutableProperty<ChannelSyncUpdate?>(nil)
-    var channelUpdate = MutableProperty<ChannelUpdate?>(nil)
+    var channelsUpdate = MutableProperty<ChannelUpdate?>(nil)
     var messageUpdate = MutableProperty<MessageUpdate?>(nil)
     var memberUpdate = MutableProperty<ChannelMemberUpdate?>(nil)
 
@@ -33,24 +34,12 @@ class ChannelManager: NSObject {
         return items
     }()
 
-//    var channelTypes: [ChannelType] {
-//        get {
-//            guard let client = self.client, let channels = client.channelsList() else { return [] }
-//            return channels.subscribedChannels().map({ (channel) -> ChannelType in
-//                return .channel(channel)
-//            })
-//        }
-//    }
-
-    var selectedChannel: TCHChannel? {
-        didSet {
-            if self.selectedChannel == nil {
-                self.allMessages = []
-            }
+    var subscribedChannels: [TCHChannel] {
+        get {
+            guard let client = self.client, let channels = client.channelsList() else { return [] }
+            return channels.subscribedChannels()
         }
     }
-
-    private(set) var allMessages: [TCHMessage] = []
 
     var isSynced: Bool {
         guard let client = self.client else { return false }
@@ -77,124 +66,36 @@ class ChannelManager: NSObject {
             completion(true, nil)
         })
     }
+    
+    //MARK: MESSAGE HELPERS
 
-    //MARK: HELPERS
-
-    func getChannels(completion: @escaping ChannelsCompletion) {
-        guard let client = self.client, let channels = client.channelsList() else { return }
-
-        let subscribedChannels = channels.subscribedChannels()
-        completion(subscribedChannels, nil)
-    }
-
-    static func createChannel(channelName: String,
-                              channelDescription: String,
-                              type: TCHChannelType,
-                              attributes: NSMutableDictionary = [:]) -> Future<TCHChannel> {
-
-        guard let client = self.shared.client else {
-            let errorMessage = "Unable to create channel. Twilio client uninitialized"
-            return Promise<TCHChannel>(error: ClientError.apiError(detail: errorMessage))
-        }
-
-        attributes[ChannelKey.description.rawValue] = channelDescription
-
-        return client.createChannel(channelName: "#" + channelName,
-                                    uniqueName: UUID().uuidString,
-                                    type: type,
-                                    attributes: attributes)
-    }
-
-    func delete(channel: TCHChannel, completion: @escaping CompletionHandler) {
-        channel.destroy { result in
-            completion(result.isSuccessful() , result.error)
-        }
-    }
-
-    //MARK: SEND MESSAGE
-
+    @discardableResult
     func sendMessage(to channel: TCHChannel,
                      with body: String,
-                     attributes: Dictionary<String, Any> = [:]) {
+                     attributes: [String : Any] = [:]) -> Future<Void> {
 
         let message = body.extraWhitespaceRemoved()
+        let promise = Promise<Void>()
 
-        guard !message.isEmpty, channel.status == .joined else { return }
-
-        if let messages = channel.messages {
-            let messageOptions = TCHMessageOptions().withBody(body)
-            messageOptions.withAttributes(attributes, completion: nil)
-            messages.sendMessage(with: messageOptions, completion: { (result, message) in
-                
-            })
-        }
-    }
-
-    //MARK: GET MESSAGES
-
-    func getLastMessages(for channel: TCHChannel,
-                        batchAmount: UInt = 10,
-                        completion: @escaping ([ChannelSectionType]) -> Void) {
-
-        guard let messagesObject = channel.messages else { return }
-
-        messagesObject.getLastWithCount(batchAmount) { (result, messages) in
-            guard let strongMessages = messages else { return }
-
-            self.allMessages = strongMessages
-            completion(self.mapMessagesToSections())
-        }
-    }
-
-    func getMessages(before index: UInt,
-                     batchAmount: UInt = 10,
-                     extending currentSections: [ChannelSectionType],
-                     for channel: TCHChannel,
-                     completion: @escaping ([ChannelSectionType]) -> Void) {
-
-        guard let messagesObject = channel.messages else { return }
-        var current = currentSections
-        //Remove the first section
-        current.remove(at: 0)
-
-        messagesObject.getBefore(index - 1, withCount: batchAmount) { (result, messages) in
-            guard let strongMessages = messages else { return }
-
-            self.allMessages.insert(contentsOf: strongMessages, at: 0)
-            completion(self.mapMessagesToSections())
-        }
-    }
-
-    //MARK: MAPPING
-
-    private func mapMessagesToSections() -> [ChannelSectionType] {
-
-        guard let channel = self.selectedChannel, let date = channel.dateCreatedAsDate else { return [] }
-
-        var items: [MessageType] = []
-        if let firstMessage = self.allMessages.first {
-            items.append(.message(firstMessage))
+        guard !message.isEmpty,
+            channel.status == .joined,
+            let messages = channel.messages else {
+                promise.reject(with: ClientError.generic)
+                return promise
         }
 
-        let firstSection = ChannelSectionType(date: date, items: items, channelType: .channel(channel))
-        var sections: [ChannelSectionType] = [firstSection]
-        
-        self.allMessages.forEach { (message) in
-
-            // Determine if the message is a part of the latest channel section
-            let messageCreatedAt = message.timestampAsDate ?? Date.distantPast
-
-            if let latestSection = sections.last, latestSection.date.isSameDay(as: messageCreatedAt) {
-                // If the message fits into the latest section, then just append it
-                latestSection.items.append(.message(message))
+        let messageOptions = TCHMessageOptions().withBody(body)
+        messageOptions.withAttributes(attributes, completion: nil)
+        messages.sendMessage(with: messageOptions) { (result, message) in
+            if result.isSuccessful() {
+                promise.resolve(with: ())
+            } else if let error = result.error {
+                promise.reject(with: error)
             } else {
-                // Otherwise, create a new section with the date of this message
-                let section = ChannelSectionType(date: messageCreatedAt.beginningOfDay,
-                                                 items: [.message(message)])
-                sections.append(section)
+                promise.reject(with: ClientError.generic)
             }
         }
 
-        return sections
+        return promise
     }
 }

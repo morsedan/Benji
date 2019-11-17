@@ -69,33 +69,6 @@ class Lorem {
         return SystemAvatar(image: self.image())
     }
 
-    class func systemSections() -> [ChannelSectionType] {
-        var sections: [ChannelSectionType] = []
-        var messages: [MessageType] = []
-        for _ in 0...10 {
-            let message = self.systemMessage()
-            let type = MessageType.system(message)
-            messages.append(type)
-        }
-
-        let grouped = Dictionary(grouping: messages) { (element) -> Date in
-            return element.createdAt
-        }
-
-        for key in grouped.keys {
-            if let value = grouped[key] {
-                let section = ChannelSectionType.init(date: key, items: value)
-                sections.append(section)
-            }
-        }
-
-        let sorted = sections.sorted { (lhs, rhs) -> Bool in
-            return rhs.date.compare(lhs.date) == .orderedDescending
-        }
-
-        return sorted
-    }
-
     class func systemChannel() -> SystemChannel {
         var avatars: [Avatar] = []
         for _ in 0...3 {
@@ -119,25 +92,31 @@ class Lorem {
     }
 
     class func systemMessage() -> SystemMessage {
-        
+
         let message = SystemMessage(avatar: self.avatar(),
                                     context: self.context(),
-                                    body: self.sentence(),
-                                    id: String(self.randomString()),
+                                    text: self.sentence(),
                                     isFromCurrentUser: self.isFromCurrentUserList.random(),
-                                    timeStampAsDate: self.dates.random(),
-                                    status: .unknown)
+                                    createdAt: self.dates.random(),
+                                    authorId: "testMessage",
+                                    messageIndex: nil,
+                                    status: .sent,
+                                    id: String(self.randomString()))
+
         return message
     }
 
     class func systemParagraph() -> SystemMessage {
+
         let message = SystemMessage(avatar: self.avatar(),
                                     context: self.context(),
-                                    body: self.paragraph(),
-                                    id: String(self.randomString()),
+                                    text: self.paragraph(),
                                     isFromCurrentUser: self.isFromCurrentUserList.random(),
-                                    timeStampAsDate: self.dates.random(),
-                                    status: .unknown)
+                                    createdAt: self.dates.random(),
+                                    authorId: "testMessage",
+                                    messageIndex: nil,
+                                    status: .sent,
+                                    id: String(self.randomString()))
         return message
     }
 

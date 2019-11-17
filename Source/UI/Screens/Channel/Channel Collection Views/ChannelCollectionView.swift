@@ -10,11 +10,9 @@ import Foundation
 
 class ChannelCollectionView: CollectionView {
 
-    weak var channelDataSource: ChannelDataSource?
-
     lazy var emptyView = EmptyChannelView()
 
-    var channelCollectionViewFlowLayout: ChannelCollectionViewFlowLayout {
+    var channelLayout: ChannelCollectionViewFlowLayout {
         guard let layout = collectionViewLayout as? ChannelCollectionViewFlowLayout else {
             fatalError("ChannelCollectionViewFlowLayout NOT FOUND")
         }
@@ -22,11 +20,11 @@ class ChannelCollectionView: CollectionView {
     }
 
     var isTypingIndicatorHidden: Bool {
-        return self.channelCollectionViewFlowLayout.isTypingIndicatorViewHidden
+        return self.channelLayout.isTypingIndicatorViewHidden
     }
 
-    init(with flowLayout: ChannelCollectionViewFlowLayout) {
-        super.init(flowLayout: flowLayout)
+    init() {
+        super.init(flowLayout: ChannelCollectionViewFlowLayout())
         self.registerReusableViews()
         self.backgroundView = self.emptyView
         self.backgroundView?.alpha = 0
@@ -55,6 +53,12 @@ class ChannelCollectionView: CollectionView {
 
     override func layoutSubviews() {
         super.layoutSubviews()
+
+        if let dataSource = self.channelLayout.dataSource, dataSource.sections.count > 0 {
+            self.emptyView.isHidden = false
+        } else {
+            self.emptyView.isHidden = true 
+        }
 
         self.emptyView.frame = self.backgroundView?.bounds ?? .zero
     }

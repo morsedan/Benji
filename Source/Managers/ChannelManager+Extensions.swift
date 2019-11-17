@@ -102,15 +102,15 @@ extension ChannelManager: TwilioChatClientDelegate {
 
     func chatClient(_ client: TwilioChatClient, channelAdded channel: TCHChannel) {
         ToastScheduler.shared.schedule(toastType: .channel(channel))
-        self.channelUpdate.value = ChannelUpdate(channel: channel, status: .added)
+        self.channelsUpdate.value = ChannelUpdate(channel: channel, status: .added)
     }
 
     func chatClient(_ client: TwilioChatClient!, channelChanged channel: TCHChannel!) {
-        self.channelUpdate.value = ChannelUpdate(channel: channel, status: .changed)
+        self.channelsUpdate.value = ChannelUpdate(channel: channel, status: .changed)
     }
 
     func chatClient(_ client: TwilioChatClient, channelDeleted channel: TCHChannel) {
-        self.channelUpdate.value = ChannelUpdate(channel: channel, status: .deleted)
+        self.channelsUpdate.value = ChannelUpdate(channel: channel, status: .deleted)
     }
 
     func chatClient(_ client: TwilioChatClient, channel: TCHChannel, synchronizationStatusUpdated status: TCHChannelSynchronizationStatus) {
@@ -144,7 +144,7 @@ extension ChannelManager: TwilioChatClientDelegate {
     func chatClient(_ client: TwilioChatClient, channel: TCHChannel, messageAdded message: TCHMessage) {
         self.messageUpdate.value = MessageUpdate(channel: channel, message: message, status: .added)
 
-        if ChannelManager.shared.selectedChannel == nil {
+        if ChannelManager.shared.selectedChannel.value == nil {
             ToastScheduler.shared.schedule(toastType: .message(message))
         }
     }
