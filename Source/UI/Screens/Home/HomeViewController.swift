@@ -38,7 +38,7 @@ class HomeViewController: FullScreenViewController {
     private var currentType: HomeContentType = .feed {
         didSet {
             guard self.currentType != oldValue else { return }
-           // self.updateContent()
+            self.updateContent()
         }
     }
 
@@ -63,7 +63,7 @@ class HomeViewController: FullScreenViewController {
         self.contentContainer.addSubview(self.headerView)
         self.contentContainer.addSubview(self.centerContainer)
 
-        //self.addChild(viewController: self.channelsVC, toView: self.centerContainer)
+        self.addChild(self.channelsVC)
         self.addChild(viewController: self.feedVC, toView: self.centerContainer)
 
         self.headerView.avatarView.onTap { [unowned self] (tap) in
@@ -99,36 +99,26 @@ class HomeViewController: FullScreenViewController {
         self.channelsVC.view.frame = self.centerContainer.bounds
     }
 
-    override func viewDidAppear(_ animated: Bool) {
-        super.viewDidAppear(animated)
+    func updateContent() {
+        self.headerView.updateContent(for: self.currentType)
 
-        once(caller: self, token: "listenForCenter") {
-//            self.feedVC.animateIn(completion: { (completed, error) in
-//                self.feedVC.view.layoutNow()
-//            })
+        switch self.currentType {
+        case .feed:
+            self.channelsVC.animateOut { (completed, error) in
+                guard completed else { return }
+                self.channelsVC.view.removeFromSuperview()
+                self.feedVC.view.frame = self.centerContainer.bounds
+                self.feedVC.animateIn(completion: { (completed, error) in })
+            }
+        case .channels:
+            self.feedVC.animateOut { (completed, error) in
+                guard completed else { return }
+                self.centerContainer.addSubview(self.channelsVC.view)
+                self.channelsVC.view.frame = self.centerContainer.bounds
+                self.channelsVC.animateIn(completion: { (completed, error) in })
+            }
         }
     }
-
-//    func updateContent() {
-//        self.headerView.updateContent(for: self.currentType)
-//
-//        switch self.currentType {
-//        case .feed:
-//            self.channelsVC.animateOut { (completed, error) in
-//                guard completed else { return }
-//                self.centerContainer.sendSubviewToBack(self.channelsVC.view)
-//                self.feedVC.animateIn(completion: { (completed, error) in
-//                    self.feedVC.view.layoutNow()
-//                })
-//            }
-//        case .channels:
-//            self.feedVC.animateOut { (completed, error) in
-//                guard completed else { return }
-//                self.centerContainer.sendSubviewToBack(self.feedVC.view)
-//                self.channelsVC.animateIn(completion: { (completed, error) in })
-//            }
-//        }
-//    }
 }
 
 extension HomeViewController: UISearchBarDelegate {

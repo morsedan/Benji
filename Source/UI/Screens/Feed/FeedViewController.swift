@@ -18,10 +18,12 @@ class FeedViewController: ViewController {
         return manager
     }()
 
+    override func loadView() {
+        self.view = self.collectionView
+    }
+
     override func initializeViews() {
         super.initializeViews()
-
-        self.view.addSubview(self.collectionView)
 
         self.collectionView.dataSource = self.manager
         self.collectionView.delegate = self.manager
@@ -29,19 +31,10 @@ class FeedViewController: ViewController {
         self.subscribeToUpdates()
     }
 
-    override func viewDidLayoutSubviews() {
-        super.viewDidLayoutSubviews()
-
-        print(self.view.bounds)
-
-        self.collectionView.frame = self.view.bounds
-    }
-
     func animateIn(completion: @escaping CompletionHandler) {
         let animator = UIViewPropertyAnimator(duration: Theme.animationDuration,
                                               curve: .easeInOut) {
                                                 self.view.alpha = 1
-                                                self.view.layoutNow()
         }
         animator.addCompletion { (position) in
             if position == .end {
@@ -56,7 +49,6 @@ class FeedViewController: ViewController {
         let animator = UIViewPropertyAnimator(duration: Theme.animationDuration,
                                               curve: .easeInOut) {
                                                 self.view.alpha = 0
-                                                self.view.layoutNow()
         }
         animator.addCompletion { (position) in
             if position == .end {

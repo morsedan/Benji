@@ -43,7 +43,6 @@ class ChannelsViewController: CollectionViewController<ChannelCell, ChannelsColl
           let animator = UIViewPropertyAnimator(duration: Theme.animationDuration,
                                                 curve: .easeInOut) {
                                                   self.view.alpha = 1
-                                                  self.view.layoutNow()
           }
           animator.addCompletion { (position) in
               if position == .end {
@@ -58,7 +57,6 @@ class ChannelsViewController: CollectionViewController<ChannelCell, ChannelsColl
           let animator = UIViewPropertyAnimator(duration: Theme.animationDuration,
                                                 curve: .easeInOut) {
                                                   self.view.alpha = 0
-                                                  self.view.layoutNow()
           }
           animator.addCompletion { (position) in
               if position == .end {
