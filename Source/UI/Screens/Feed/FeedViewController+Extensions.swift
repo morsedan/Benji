@@ -38,6 +38,8 @@ extension FeedViewController {
                 case .failure(let error):
                     print(error)
                 }
+
+                self.view.layoutNow()
         }
     }
 }

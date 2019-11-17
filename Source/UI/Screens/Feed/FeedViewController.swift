@@ -11,20 +11,20 @@ import Koloda
 
 class FeedViewController: ViewController {
 
-    private let kolodaView = KolodaView()
+    private let collectionView = FeedCollectionView()
 
     lazy var manager: FeedCollectionViewManager = {
-        let manager = FeedCollectionViewManager(with: self.kolodaView)
+        let manager = FeedCollectionViewManager(with: self.collectionView)
         return manager
     }()
 
     override func initializeViews() {
         super.initializeViews()
 
-        self.view.addSubview(self.kolodaView)
+        self.view.addSubview(self.collectionView)
 
-        self.kolodaView.dataSource = self.manager
-        self.kolodaView.delegate = self.manager
+        self.collectionView.dataSource = self.manager
+        self.collectionView.delegate = self.manager
 
         self.subscribeToUpdates()
     }
@@ -33,9 +33,9 @@ class FeedViewController: ViewController {
         super.viewDidLayoutSubviews()
 
         let feedHeight = self.view.height * 0.8
-        self.kolodaView.size = CGSize(width: self.view.width * 0.85, height: feedHeight)
-        self.kolodaView.top = Theme.contentOffset
-        self.kolodaView.centerOnX()
+        self.collectionView.size = CGSize(width: self.view.width * 0.85, height: feedHeight)
+        self.collectionView.top = Theme.contentOffset
+        self.collectionView.centerOnX()
     }
 
     func animateIn(completion: @escaping CompletionHandler) {
