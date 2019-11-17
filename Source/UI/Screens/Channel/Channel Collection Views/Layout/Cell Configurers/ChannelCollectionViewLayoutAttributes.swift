@@ -16,16 +16,9 @@ struct ChannelLayoutAttributes: Equatable {
     var headerDescriptionLabelSize: CGSize = .zero
 
     //Cell
-    var avatarSize: CGSize = .zero
-    var avatarLeadingPadding: CGFloat = .zero
-    var bubbleViewSize: CGSize = .zero
-    var bubbleViewHorizontalPadding: CGFloat = .zero
-    var messageTextViewSize: CGSize = .zero
-    var messageTextViewVerticalPadding: CGFloat = .zero
-    var messageTextViewMaxWidth: CGFloat = .zero
-    var messageTextViewHorizontalPadding: CGFloat = .zero
-    var messageFontType: FontType = .regular
-    var isFromCurrentUser: Bool = false
+    var avatarFrame: CGRect = .zero
+    var bubbleViewFrame: CGRect = .zero
+    var textViewFrame: CGRect = .zero
     var maskedCorners: CACornerMask = []
 }
 

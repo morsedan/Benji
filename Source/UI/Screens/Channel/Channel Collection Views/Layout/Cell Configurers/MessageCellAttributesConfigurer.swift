@@ -11,9 +11,9 @@ import Foundation
 class MessageCellAttributesConfigurer: ChannelCellAttributesConfigurer {
 
     var avatarSize = CGSize(width: 30, height: 30)
-    var avatarLeadingPadding: CGFloat = 8
-    var messageTextViewVerticalPadding: CGFloat = 10
-    var messageTextViewHorizontalPadding: CGFloat = 20
+    var avatarPadding: CGFloat = 8
+    var textViewVerticalPadding: CGFloat = 10
+    var textViewHorizontalPadding: CGFloat = 20
     var bubbleViewHorizontalPadding: CGFloat = 14
     private let widthRatio: CGFloat = 0.8
 
@@ -23,25 +23,22 @@ class MessageCellAttributesConfigurer: ChannelCellAttributesConfigurer {
                             for layout: ChannelCollectionViewFlowLayout,
                             attributes: ChannelCollectionViewLayoutAttributes) {
 
-        attributes.attributes.isFromCurrentUser = message.isFromCurrentUser
 
-        attributes.attributes.avatarSize = self.avatarSize
-        attributes.attributes.avatarLeadingPadding = self.avatarLeadingPadding
+        let avatarFrame = self.getAvatarFrame(with: message)
+        attributes.attributes.avatarFrame = avatarFrame
 
-        let textViewSize = self.getMessageTextViewSize(with: message, for: layout)
-        attributes.attributes.messageTextViewSize = textViewSize
-        attributes.attributes.messageTextViewVerticalPadding = self.messageTextViewVerticalPadding
-        attributes.attributes.messageTextViewMaxWidth = layout.itemWidth * self.widthRatio
+        let textViewFrame = self.getTextViewFrame(with: message, for: layout)
+        attributes.attributes.textViewFrame = textViewFrame
 
-        let leadingPaddingForIncoming = self.avatarSize.width + self.avatarLeadingPadding + self.messageTextViewHorizontalPadding
-        let leadingPadding = message.isFromCurrentUser ? self.messageTextViewHorizontalPadding + self.avatarLeadingPadding : leadingPaddingForIncoming
-        attributes.attributes.messageTextViewHorizontalPadding = leadingPadding
+        let bubbleHeight = textViewFrame.height + (self.textViewVerticalPadding * 2)
+        let bubbleWidth = textViewFrame.width + (self.bubbleViewHorizontalPadding * 2)
 
-        let bubbleHeight = textViewSize.height + (self.messageTextViewVerticalPadding * 2)
-        let bubbleWidth = textViewSize.width + (self.bubbleViewHorizontalPadding * 2)
-        attributes.attributes.bubbleViewSize = CGSize(width: bubbleWidth, height: bubbleHeight)
-        attributes.attributes.bubbleViewHorizontalPadding = self.bubbleViewHorizontalPadding
-
+        let bubbleXOffset = textViewFrame.minX - self.bubbleViewHorizontalPadding
+        let bubbleYOffset = textViewFrame.minY - self.textViewVerticalPadding
+        attributes.attributes.bubbleViewFrame = CGRect(x: bubbleXOffset,
+                                                       y: bubbleYOffset,
+                                                       width: bubbleWidth,
+                                                       height: bubbleHeight)
         //Determine masked corners
         if message.isFromCurrentUser {
             if let previous = previousMessage, previous.authorID == message.authorID {
@@ -50,7 +47,7 @@ class MessageCellAttributesConfigurer: ChannelCellAttributesConfigurer {
                 attributes.attributes.maskedCorners = [.layerMinXMaxYCorner, .layerMaxXMinYCorner, .layerMinXMinYCorner]
             }
         } else {
-            
+
             if let next = nextMessage, next.authorID == message.authorID {
                 attributes.attributes.maskedCorners = [.layerMaxXMaxYCorner, .layerMaxXMinYCorner]
             } else {
@@ -66,22 +63,47 @@ class MessageCellAttributesConfigurer: ChannelCellAttributesConfigurer {
         return CGSize(width: layout.itemWidth, height: itemHeight)
     }
 
+    // PRIVATE
+
     private func cellContentHeight(with message: Messageable,
                                    for layout: ChannelCollectionViewFlowLayout) -> CGFloat {
 
-        return self.getMessageTextViewSize(with: message, for: layout).height
-            + (self.messageTextViewVerticalPadding * 2)
+        return self.getTextViewSize(with: message, for: layout).height
+            + (self.textViewVerticalPadding * 2)
     }
 
-    private func getMessageTextViewSize(with message: Messageable,
-                                        for layout: ChannelCollectionViewFlowLayout) -> CGSize {
+    private func getAvatarFrame(with message: Messageable) -> CGRect {
+        let size = message.isFromCurrentUser ? .zero : self.avatarSize
+        return CGRect(x: self.avatarPadding,
+                      y: 0,
+                      width: size.width,
+                      height: size.height)
+    }
+
+    private func getTextViewFrame(with message: Messageable,
+                                  for layout: ChannelCollectionViewFlowLayout) -> CGRect {
+        let size = self.getTextViewSize(with: message, for: layout)
+        var xOffset: CGFloat = 0
+        if message.isFromCurrentUser {
+            xOffset = layout.itemWidth - size.width - self.textViewHorizontalPadding
+        } else {
+            xOffset = self.avatarSize.width + (self.avatarPadding * 2) + Theme.contentOffset
+        }
+        return CGRect(x: xOffset,
+                      y: self.textViewVerticalPadding,
+                      width: size.width,
+                      height: size.height)
+    }
+
+    private func getTextViewSize(with message: Messageable,
+                                 for layout: ChannelCollectionViewFlowLayout) -> CGSize {
 
         let attributed = AttributedString(message.text,
                                           fontType: .smallSemiBold,
                                           color: .white)
 
         let attributedString = attributed.string
-        let maxWidth = (layout.itemWidth * self.widthRatio) - self.avatarLeadingPadding - self.avatarSize.width
+        let maxWidth = (layout.itemWidth * self.widthRatio) - self.avatarPadding - self.avatarSize.width
         let size = attributedString.getSize(withWidth: maxWidth)
         return size
     }

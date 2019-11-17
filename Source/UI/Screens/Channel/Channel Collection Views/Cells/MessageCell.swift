@@ -63,42 +63,10 @@ class MessageCell: UICollectionViewCell {
     }
 
     private func layoutContent(with attributes: ChannelCollectionViewLayoutAttributes) {
-        if attributes.attributes.isFromCurrentUser {
-            self.layoutOutgoing(with: attributes)
-        } else {
-            self.layoutIncoming(with: attributes)
-        }
-    }
 
-    // INCOMING
-    private func layoutIncoming(with attributes: ChannelCollectionViewLayoutAttributes) {
-        self.avatarView.size = attributes.attributes.avatarSize
-        self.avatarView.left = attributes.attributes.avatarLeadingPadding
-
-        self.textView.size = attributes.attributes.messageTextViewSize
-        self.textView.top = attributes.attributes.messageTextViewVerticalPadding
-        self.textView.left = attributes.attributes.messageTextViewHorizontalPadding
-
-        self.bubbleView.size = attributes.attributes.bubbleViewSize
-        self.bubbleView.top = 0
-        self.bubbleView.left = self.textView.left - attributes.attributes.bubbleViewHorizontalPadding
-        self.bubbleView.layer.maskedCorners = attributes.attributes.maskedCorners
-        self.bubbleView.roundCorners()
-        self.avatarView.top = self.bubbleView.top
-    }
-
-    // OUTGOING
-    private func layoutOutgoing(with attributes: ChannelCollectionViewLayoutAttributes) {
-        self.avatarView.size = .zero
-        self.avatarView.left = attributes.attributes.avatarLeadingPadding
-
-        self.textView.size = attributes.attributes.messageTextViewSize
-        self.textView.top = attributes.attributes.messageTextViewVerticalPadding
-        self.textView.right = attributes.size.width - attributes.attributes.messageTextViewHorizontalPadding
-
-        self.bubbleView.size = attributes.attributes.bubbleViewSize
-        self.bubbleView.top = 0
-        self.bubbleView.right = self.textView.right + attributes.attributes.bubbleViewHorizontalPadding
+        self.avatarView.frame = attributes.attributes.avatarFrame
+        self.textView.frame = attributes.attributes.textViewFrame
+        self.bubbleView.frame = attributes.attributes.bubbleViewFrame
         self.bubbleView.layer.maskedCorners = attributes.attributes.maskedCorners
         self.bubbleView.roundCorners()
     }
