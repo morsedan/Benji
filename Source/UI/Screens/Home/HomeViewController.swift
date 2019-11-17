@@ -34,7 +34,13 @@ class HomeViewController: FullScreenViewController {
     lazy var channelsVC = ChannelsViewController(with: self.delegate)
     let centerContainer = View()
     let headerView = HomeHeaderView()
-    private let currentType = MutableProperty<HomeContentType>(.feed)
+
+    private var currentType: HomeContentType = .feed {
+        didSet {
+            guard self.currentType != oldValue else { return }
+           // self.updateContent()
+        }
+    }
 
     init(with delegate: HomeViewControllerDelegate & ChannelsViewControllerDelegate) {
         self.delegate = delegate
@@ -52,13 +58,12 @@ class HomeViewController: FullScreenViewController {
     override func initializeViews() {
         super.initializeViews()
 
-        self.showTopBar = false 
         self.view.set(backgroundColor: .background1)
 
         self.contentContainer.addSubview(self.headerView)
         self.contentContainer.addSubview(self.centerContainer)
 
-        self.addChild(viewController: self.channelsVC, toView: self.centerContainer)
+        //self.addChild(viewController: self.channelsVC, toView: self.centerContainer)
         self.addChild(viewController: self.feedVC, toView: self.centerContainer)
 
         self.headerView.avatarView.onTap { [unowned self] (tap) in
@@ -70,10 +75,6 @@ class HomeViewController: FullScreenViewController {
             self.delegate.homeView(self, didSelect: .add)
         }
 
-        self.currentType.producer.skipRepeats().on { [unowned self] (contentType) in
-            self.updateContent()
-        }.start()
-
         self.headerView.searchBar.delegate = self
     }
 
@@ -81,7 +82,7 @@ class HomeViewController: FullScreenViewController {
         super.viewDidLayoutSubviews()
 
         self.headerView.frame = CGRect(x: 0,
-                                       y: 50,
+                                       y: 0,
                                        width: self.view.width,
                                        height: HomeHeaderView.height)
 
@@ -98,36 +99,47 @@ class HomeViewController: FullScreenViewController {
         self.channelsVC.view.frame = self.centerContainer.bounds
     }
 
-    func updateContent() {
-        let currentType = self.currentType.value
-        self.headerView.updateContent(for: currentType)
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
 
-        switch currentType {
-        case .feed:
-            self.channelsVC.animateOut { (completed, error) in
-                guard completed else { return }
-                self.centerContainer.sendSubviewToBack(self.channelsVC.view)
-                self.feedVC.animateIn(completion: { (completed, error) in })
-            }
-        case .channels:
-            self.feedVC.animateOut { (completed, error) in
-                guard completed else { return }
-                self.centerContainer.sendSubviewToBack(self.feedVC.view)
-                self.channelsVC.animateIn(completion: { (completed, error) in })
-            }
+        once(caller: self, token: "listenForCenter") {
+//            self.feedVC.animateIn(completion: { (completed, error) in
+//                self.feedVC.view.layoutNow()
+//            })
         }
     }
+
+//    func updateContent() {
+//        self.headerView.updateContent(for: self.currentType)
+//
+//        switch self.currentType {
+//        case .feed:
+//            self.channelsVC.animateOut { (completed, error) in
+//                guard completed else { return }
+//                self.centerContainer.sendSubviewToBack(self.channelsVC.view)
+//                self.feedVC.animateIn(completion: { (completed, error) in
+//                    self.feedVC.view.layoutNow()
+//                })
+//            }
+//        case .channels:
+//            self.feedVC.animateOut { (completed, error) in
+//                guard completed else { return }
+//                self.centerContainer.sendSubviewToBack(self.feedVC.view)
+//                self.channelsVC.animateIn(completion: { (completed, error) in })
+//            }
+//        }
+//    }
 }
 
 extension HomeViewController: UISearchBarDelegate {
 
     func searchBarTextDidBeginEditing(_ searchBar: UISearchBar) {
         self.channelsVC.manager.channelFilter = SearchFilter(text: String(), scope: .all)
-        self.currentType.value = .channels
+        self.currentType = .channels
     }
 
     func searchBarTextDidEndEditing(_ searchBar: UISearchBar) {
-        self.currentType.value = .feed
+        self.currentType = .feed
     }
 
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {

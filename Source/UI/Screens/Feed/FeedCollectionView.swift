@@ -12,10 +12,20 @@ import Koloda
 class FeedCollectionView: KolodaView {
 
     let defaultTopOffset: CGFloat = 20
-    let defaultHorizontalOffset: CGFloat = 100
-    let defaultHeightRatio: CGFloat = 1.25
+    let defaultHorizontalOffset: CGFloat = 20
+    let defaultHeightRatio: CGFloat = 0.8
     let backgroundCardHorizontalMarginMultiplier: CGFloat = 0.25
-    let backgroundCardScalePercent: CGFloat = 1.5
+    let backgroundCardScalePercent: CGFloat = 0.9
+
+    override init(frame: CGRect) {
+        super.init(frame: frame)
+
+        self.translatesAutoresizingMaskIntoConstraints = false
+    }
+
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
 
     override func frameForCard(at index: Int) -> CGRect {
 
@@ -23,16 +33,16 @@ class FeedCollectionView: KolodaView {
         case 0:
             let topOffset: CGFloat = self.defaultTopOffset
             let xOffset: CGFloat = self.defaultHorizontalOffset
-            let width = (self.frame).width - 2 * self.defaultHorizontalOffset
-            let height = width * self.defaultHeightRatio
-            let yOffset: CGFloat = topOffset
-            let frame = CGRect(x: xOffset, y: yOffset, width: width, height: height)
+            let width = self.bounds.width - (2 * self.defaultHorizontalOffset)
+            let height = self.bounds.height * self.defaultHeightRatio
+            let frame = CGRect(x: xOffset, y: topOffset, width: width, height: height)
             return frame
         case 1:
-            let horizontalMargin = -self.bounds.width * self.backgroundCardHorizontalMarginMultiplier
-            let width = self.bounds.width * self.backgroundCardScalePercent
-            let height = width * self.defaultHeightRatio
-            return CGRect(x: horizontalMargin, y: 0, width: width, height: height)
+            let topOffset: CGFloat = 30
+            let width = self.bounds.width - (4 * self.defaultHorizontalOffset)
+            let height = self.bounds.height * self.defaultHeightRatio
+            let xOffset = self.defaultHorizontalOffset * 2
+            return CGRect(x: xOffset, y: topOffset, width: width, height: height)
         default:
             return .zero
         }

@@ -32,10 +32,9 @@ class FeedViewController: ViewController {
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
 
-        let feedHeight = self.view.height * 0.8
-        self.collectionView.size = CGSize(width: self.view.width * 0.85, height: feedHeight)
-        self.collectionView.top = Theme.contentOffset
-        self.collectionView.centerOnX()
+        print(self.view.bounds)
+
+        self.collectionView.frame = self.view.bounds
     }
 
     func animateIn(completion: @escaping CompletionHandler) {

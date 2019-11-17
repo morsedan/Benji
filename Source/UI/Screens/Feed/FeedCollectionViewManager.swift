@@ -57,6 +57,7 @@ extension FeedCollectionViewManager: KolodaViewDataSource {
         guard let item = self.items[safe: index] else { return UIView() }
         let feedView = FeedView()
         feedView.configure(with: item)
+        self.collectionView.layoutNow()
         return feedView
     }
 }
@@ -88,7 +89,7 @@ extension FeedCollectionViewManager: KolodaViewDelegate {
     }
 
     func kolodaShouldApplyAppearAnimation(_ koloda: KolodaView) -> Bool {
-        return true 
+        return false
     }
 
     func kolodaDidRunOutOfCards(_ koloda: KolodaView) {
