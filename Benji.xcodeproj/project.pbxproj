@@ -28,6 +28,7 @@
 		D60C81482209314200A127A3 /* UIImage+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = D60C81472209314200A127A3 /* UIImage+Extensions.swift */; };
 		D60C814A2209360400A127A3 /* DisplayableImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D60C81492209360400A127A3 /* DisplayableImageView.swift */; };
 		D611909F237740ED0052764F /* ReservationCount.swift in Sources */ = {isa = PBXBuildFile; fileRef = D611909E237740ED0052764F /* ReservationCount.swift */; };
+		D61BD1752382404A0028AD1E /* BranchUniversalObject+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = D61BD1742382404A0028AD1E /* BranchUniversalObject+Extension.swift */; };
 		D61EC0C021D3071400204BEE /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D61EC0BF21D3071400204BEE /* AppDelegate.swift */; };
 		D61EC0C221D3071400204BEE /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D61EC0C121D3071400204BEE /* ViewController.swift */; };
 		D61EC0C721D3071500204BEE /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D61EC0C621D3071500204BEE /* Assets.xcassets */; };
@@ -288,6 +289,7 @@
 		D60C81472209314200A127A3 /* UIImage+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImage+Extensions.swift"; sourceTree = "<group>"; };
 		D60C81492209360400A127A3 /* DisplayableImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DisplayableImageView.swift; sourceTree = "<group>"; };
 		D611909E237740ED0052764F /* ReservationCount.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReservationCount.swift; sourceTree = "<group>"; };
+		D61BD1742382404A0028AD1E /* BranchUniversalObject+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "BranchUniversalObject+Extension.swift"; sourceTree = "<group>"; };
 		D61EC0BC21D3071400204BEE /* Benji.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Benji.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D61EC0BF21D3071400204BEE /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		D61EC0C121D3071400204BEE /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -698,6 +700,7 @@
 			isa = PBXGroup;
 			children = (
 				8002F37E230CD07F00F8C4E3 /* Authorization+Extensions.swift */,
+				D61BD1742382404A0028AD1E /* BranchUniversalObject+Extension.swift */,
 				D6D1460621D552B100CD8CE4 /* Character+Extensions.swift */,
 				D66F0FE922C0695E00BA277D /* CNContact+Extensions.swift */,
 				D642736F22C991850088256B /* Collection Extensions */,
@@ -1514,6 +1517,7 @@
 				D64C6A7A232883FE00DB7257 /* CloudCalls.swift in Sources */,
 				D64C6AA0232DC2B700DB7257 /* TypingIndicatorCell.swift in Sources */,
 				D6D1503121D6A2B900CD8CE4 /* UITableView+Extensions.swift in Sources */,
+				D61BD1752382404A0028AD1E /* BranchUniversalObject+Extension.swift in Sources */,
 				D646DB3A22CFCC110055CC7C /* Future.swift in Sources */,
 				D66F0FD622BF28A100BA277D /* AppDelegate+Initialization.swift in Sources */,
 				D66F102822C7D1D200BA277D /* ChannelCellContentView.swift in Sources */,

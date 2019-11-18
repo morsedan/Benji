@@ -8,6 +8,7 @@
 
 import Foundation
 import Parse
+import Branch
 
 enum LaunchStatus {
     case isLaunching
@@ -42,7 +43,7 @@ class LaunchManager {
         }
     }
 
-    func launchApp(with: [UIApplication.LaunchOptionsKey: Any]?) {
+    func launchApp(with options: [UIApplication.LaunchOptionsKey: Any]?) {
 
         Parse.enableLocalDatastore()
         Parse.initialize(with: ParseClientConfiguration(block: { (configuration: ParseMutableClientConfiguration) -> Void in
@@ -52,19 +53,19 @@ class LaunchManager {
         }))
 
         if let user = User.current(), let identity = user.objectId {
-            self.authenticateChatClient(with: identity)
+            self.authenticateChatClient(with: identity, options: options)
         } else {
-            self.createAnonymousUser()
+            self.createAnonymousUser(with: options)
         }
     }
 
-    func createAnonymousUser() {
+    func createAnonymousUser(with options: [UIApplication.LaunchOptionsKey: Any]?) {
         User.anonymousLogin()
             .observe { (result) in
                 switch result {
                 case .success(let user):
                     if let identifier = user.objectId {
-                        self.authenticateChatClient(with: identifier)
+                        self.authenticateChatClient(with: identifier, options: options)
                     }
                 case .failure(let error):
                     print(error)
@@ -72,7 +73,9 @@ class LaunchManager {
         }
     }
 
-    func authenticateChatClient(with identity: String) {
+    func authenticateChatClient(with identity: String, options: [UIApplication.LaunchOptionsKey: Any]?) {
+
+        Branch.getInstance().setIdentity(identity)
         // Fetch Access Token from the server and initialize Chat Client - this assumes you are running
         // the PHP starter app on your local machine, as instructed in the quick start guide
         let deviceId = UIDevice.current.identifierForVendor!.uuidString
@@ -84,7 +87,9 @@ class LaunchManager {
                 UserNotificationManager.shared.silentRegister(withApplication: UIApplication.shared)
                 ChannelManager.initialize(token: token)
                 self.finishedInitialFetch = true
-                self.status = .success(object: nil)
+
+                //Initialize Branch
+                self.initializeBranch(with: options)
             } else {
                 self.status = .failed(error: ClientError.apiError(detail: error.debugDescription))
             }
@@ -96,6 +101,34 @@ class LaunchManager {
             client.delegate = nil
             client.shutdown()
         }
+    }
+
+    private func initializeBranch(with launchOptions: [UIApplication.LaunchOptionsKey: Any]?) {
+        let branch: Branch = Branch.getInstance()
+
+        let notificationInfo = launchOptions?[.remoteNotification] as? [String : Any]
+        if let data = notificationInfo?["data"] as? [String : Any],
+            let branchLink = data["branch"] as? String {
+            branch.handleDeepLink(URL(string: branchLink))
+        }
+
+        branch.initSession(launchOptions: launchOptions,
+                           andRegisterDeepLinkHandlerUsingBranchUniversalObject: { (branchObject,
+                            properties,
+                            error) in
+
+                            guard error == nil else {
+                                // IMPORTANT: Allow the launch sequence to continue even if branch fails.
+                                // We don't want issues with the branch api to block our app from launching.
+                                self.delegate?.launchManager(self, didFinishWith: .success(object: nil))
+                                return
+                            }
+
+                            let buo: BranchUniversalObject? = branchObject
+                                ?? Branch.getInstance().getLatestReferringBranchUniversalObject()
+
+                            self.status = .success(object: buo)
+        })
     }
 }
 

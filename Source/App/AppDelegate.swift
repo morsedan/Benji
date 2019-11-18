@@ -32,9 +32,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             break
         case .success(_):
             if let identity = User.current()?.objectId {
-                LaunchManager.shared.authenticateChatClient(with: identity)
+                LaunchManager.shared.authenticateChatClient(with: identity, options: nil)
             } else {
-                LaunchManager.shared.createAnonymousUser()
+                LaunchManager.shared.createAnonymousUser(with: nil )
             }
         }
     }
