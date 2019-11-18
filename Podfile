@@ -19,6 +19,8 @@ target 'Benji' do
   pod 'TMROCoordinator'
   pod 'TMROLocalization'
 
+  pod 'Branch'
+
 end
 
 post_install do |installer|

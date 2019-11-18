@@ -1,5 +1,8 @@
 PODS:
   - Bolts/Tasks (1.9.0)
+  - Branch (0.30.0):
+    - Branch/Core (= 0.30.0)
+  - Branch/Core (0.30.0)
   - CameraKit-iOS (1.2.1)
   - GestureRecognizerClosures (5.0.0)
   - Koloda (5.0):
@@ -24,6 +27,7 @@ PODS:
   - TwilioChatClient (2.6.4)
 
 DEPENDENCIES:
+  - Branch
   - CameraKit-iOS
   - GestureRecognizerClosures
   - Koloda
@@ -40,6 +44,7 @@ DEPENDENCIES:
 SPEC REPOS:
   trunk:
     - Bolts
+    - Branch
     - CameraKit-iOS
     - GestureRecognizerClosures
     - Koloda
@@ -56,6 +61,7 @@ SPEC REPOS:
 
 SPEC CHECKSUMS:
   Bolts: ac6567323eac61e203f6a9763667d0f711be34c8
+  Branch: a859de0efd1fbbb4e52733714542afb2c08174ec
   CameraKit-iOS: 7a8aeb4b6ac93c59088ada934efb6010ed2394c1
   GestureRecognizerClosures: 0dcafb45e669e7a775c840383e54b3d16983037b
   Koloda: 75302d21882cc3e274c1561b1155805ea5919dab
@@ -70,6 +76,6 @@ SPEC CHECKSUMS:
   TwilioAccessManager: f3b0d9edd2eb5a044e50ff78057ab13611a0baa1
   TwilioChatClient: c09d56401957d847272c3e8bf26862db32ccc3f7
 
-PODFILE CHECKSUM: b2cbf4e468661eaf2f52284d5a2344734393e323
+PODFILE CHECKSUM: 7336bafc50d6a4f7a42af0452a542976681a2716
 
 COCOAPODS: 1.8.4
