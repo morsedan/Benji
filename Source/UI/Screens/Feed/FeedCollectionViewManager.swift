@@ -20,6 +20,8 @@ class FeedCollectionViewManager: NSObject {
 
     private var items: [FeedType] = []
 
+    var didSelect: (FeedType) -> Void = { _ in }
+
     init(with collectionView: FeedCollectionView) {
         self.collectionView = collectionView
         super.init()
@@ -65,6 +67,11 @@ extension FeedCollectionViewManager: KolodaViewDelegate {
 
     func koloda(_ koloda: KolodaView, allowedDirectionsForIndex index: Int) -> [SwipeResultDirection] {
         return [.left, .right]
+    }
+
+    func koloda(_ koloda: KolodaView, didSelectCardAt index: Int) {
+        guard let item = self.items[safe: index] else { return }
+        self.didSelect(item)
     }
 
     func koloda(_ koloda: KolodaView, didSwipeCardAt index: Int, in direction: SwipeResultDirection) {

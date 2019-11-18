@@ -25,12 +25,14 @@ protocol HomeViewControllerDelegate: class {
     func homeView(_ controller: HomeViewController, didSelect option: HomeOptionType)
 }
 
+typealias HomeDelegate = HomeViewControllerDelegate & ChannelsViewControllerDelegate & FeedViewControllerDelegate
+
 class HomeViewController: FullScreenViewController {
 
-    unowned let delegate: HomeViewControllerDelegate & ChannelsViewControllerDelegate
+    unowned let delegate: HomeDelegate
 
     private let addButton = HomeAddButton()
-    lazy var feedVC = FeedViewController()
+    lazy var feedVC = FeedViewController(with: self.delegate)
     lazy var channelsVC = ChannelsViewController(with: self.delegate)
     let centerContainer = View()
     let headerView = HomeHeaderView()
@@ -42,7 +44,7 @@ class HomeViewController: FullScreenViewController {
         }
     }
 
-    init(with delegate: HomeViewControllerDelegate & ChannelsViewControllerDelegate) {
+    init(with delegate: HomeDelegate) {
         self.delegate = delegate
         super.init()
     }

@@ -29,6 +29,8 @@ class FeedView: View {
         guard let feedItem = item else { return }
 
         switch feedItem {
+        case .intro:
+            self.textView.set(localizedText: "This is an intro card.")
         case .system(let systemMessage):
             self.textView.set(localizedText: systemMessage.text)
             //self.avatarView.set(avatar: systemMessage.avatar)

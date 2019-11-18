@@ -22,8 +22,7 @@ class FeedSupplier {
     private func getIntroCard() -> Future<[FeedType]> {
         let promise = Promise<[FeedType]>()
 
-        let message = Lorem.systemMessage()
-        let feedItem = FeedType.system(message)
+        let feedItem = FeedType.intro
         self.items.append(feedItem)
         self.getInvitationRecommendations(with: promise)
         return promise

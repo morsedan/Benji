@@ -9,14 +9,32 @@
 import Foundation
 import Koloda
 
+protocol FeedViewControllerDelegate: class {
+    func feedView(_ controller: FeedViewController, didSelect item: FeedType)
+}
+
 class FeedViewController: ViewController {
 
     private let collectionView = FeedCollectionView()
 
     lazy var manager: FeedCollectionViewManager = {
         let manager = FeedCollectionViewManager(with: self.collectionView)
+        manager.didSelect = { [unowned self] feedType in
+            self.delegate.feedView(self, didSelect: feedType)
+        }
         return manager
     }()
+
+    unowned let delegate: FeedViewControllerDelegate
+
+    init(with delegate: FeedViewControllerDelegate) {
+        self.delegate = delegate
+        super.init()
+    }
+
+    required init?(coder aDecoder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
 
     override func loadView() {
         self.view = self.collectionView
@@ -35,7 +53,6 @@ class FeedViewController: ViewController {
         let animator = UIViewPropertyAnimator(duration: Theme.animationDuration,
                                               curve: .easeInOut) {
                                                 self.view.alpha = 1
-
         }
         animator.addCompletion { (position) in
             if position == .end {

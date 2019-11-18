@@ -11,6 +11,7 @@ import TwilioChatClient
 
 enum FeedType {
 
+    case intro
     case system(SystemMessage)
     case message(TCHMessage)
     case channelInvite(TCHChannel)
@@ -30,6 +31,8 @@ enum FeedType {
             return channel.sid!
         case .inviteAsk:
             return "inviteAsk"
+        case .intro:
+            return "intro"
         }
     }
 }

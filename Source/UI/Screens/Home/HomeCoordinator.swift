@@ -69,3 +69,21 @@ extension HomeCoordinator: ChannelsViewControllerDelegate {
         self.router.present(coordinator, source: self.homeVC, animated: true)
     }
 }
+
+extension HomeCoordinator: FeedViewControllerDelegate {
+
+    func feedView(_ controller: FeedViewController, didSelect item: FeedType) {
+        switch item {
+        case .intro:
+            break
+        case .system(_):
+            break
+        case .message(_):
+            break
+        case .channelInvite(_):
+            break
+        case .inviteAsk:
+            break 
+        }
+    }
+}
