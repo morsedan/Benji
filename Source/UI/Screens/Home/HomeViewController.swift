@@ -60,8 +60,8 @@ class HomeViewController: FullScreenViewController {
 
         self.view.set(backgroundColor: .background1)
 
-        self.contentContainer.addSubview(self.headerView)
         self.contentContainer.addSubview(self.centerContainer)
+        self.contentContainer.addSubview(self.headerView)
 
         self.addChild(self.channelsVC)
         self.addChild(viewController: self.feedVC, toView: self.centerContainer)
@@ -96,7 +96,6 @@ class HomeViewController: FullScreenViewController {
         self.centerContainer.centerOnX()
 
         self.feedVC.view.frame = self.centerContainer.bounds
-        self.channelsVC.view.frame = self.centerContainer.bounds
     }
 
     func updateContent() {
@@ -107,14 +106,16 @@ class HomeViewController: FullScreenViewController {
             self.channelsVC.animateOut { (completed, error) in
                 guard completed else { return }
                 self.channelsVC.view.removeFromSuperview()
-                self.feedVC.view.frame = self.centerContainer.bounds
                 self.feedVC.animateIn(completion: { (completed, error) in })
             }
         case .channels:
             self.feedVC.animateOut { (completed, error) in
                 guard completed else { return }
-                self.centerContainer.addSubview(self.channelsVC.view)
-                self.channelsVC.view.frame = self.centerContainer.bounds
+
+                self.view.insertSubview(self.channelsVC.view, belowSubview: self.headerView)
+                self.channelsVC.view.size = self.centerContainer.size
+                self.channelsVC.view.top = self.headerView.height + self.view.safeAreaInsets.top
+                self.channelsVC.view.centerOnX()
                 self.channelsVC.animateIn(completion: { (completed, error) in })
             }
         }

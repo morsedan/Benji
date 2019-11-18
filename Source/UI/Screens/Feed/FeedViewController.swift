@@ -35,6 +35,7 @@ class FeedViewController: ViewController {
         let animator = UIViewPropertyAnimator(duration: Theme.animationDuration,
                                               curve: .easeInOut) {
                                                 self.view.alpha = 1
+
         }
         animator.addCompletion { (position) in
             if position == .end {
