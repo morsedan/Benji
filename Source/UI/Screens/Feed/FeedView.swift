@@ -20,7 +20,7 @@ class FeedView: View {
         self.addSubview(self.textView)
         self.addSubview(self.avatarView)
 
-        self.set(backgroundColor: .background3)
+        self.set(backgroundColor: .background2)
         self.roundCorners()
         self.addShadow(withOffset: 20)
     }
