@@ -83,7 +83,8 @@ extension HomeCoordinator: FeedViewControllerDelegate {
         case .channelInvite(_):
             break
         case .inviteAsk:
-            break 
+            let contactsVC = ContactsViewController()
+            self.router.present(contactsVC, source: controller)
         }
     }
 }
