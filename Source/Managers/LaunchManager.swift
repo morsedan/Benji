@@ -88,8 +88,11 @@ class LaunchManager {
                 ChannelManager.initialize(token: token)
                 self.finishedInitialFetch = true
 
+                //Remove
+                self.status = .success(object: nil)
+                
                 //Initialize Branch
-                self.initializeBranch(with: options)
+                //self.initializeBranch(with: options)
             } else {
                 self.status = .failed(error: ClientError.apiError(detail: error.debugDescription))
             }
