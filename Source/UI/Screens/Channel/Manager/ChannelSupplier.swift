@@ -41,9 +41,9 @@ class ChannelSupplier {
 
     // MARK: GETTERS
 
-    static func getChannel(withSID channelSID: String) -> TCHChannel? {
+    static func getChannel(withSID channelSID: String) -> DisplayableChannel? {
         return ChannelManager.shared.subscribedChannels.first(where: { (channel) in
-            return channel.sid == channelSID
+            return channel.id == channelSID
         })
     }
 
@@ -64,9 +64,14 @@ class ChannelSupplier {
         return promise
     }
 
-    static func getChannel(containingMember userID: String) -> TCHChannel? {
+    static func getChannel(containingMember userID: String) -> DisplayableChannel? {
         return ChannelManager.shared.subscribedChannels.first(where: { (channel) -> Bool in
-            return channel.member(withIdentity: userID) != nil
+            switch channel.channelType {
+            case .channel(let tchChannel):
+                return tchChannel.member(withIdentity: userID) != nil
+            default:
+                return false
+            }
         })
     }
 }

@@ -37,8 +37,13 @@ class FeedSupplier {
     func getInvitedChannels(with promise: Promise<[FeedType]>) {
 
         ChannelManager.shared.subscribedChannels.forEach { (channel) in
-            if channel.status == .invited {
-                self.items.append(.channelInvite(channel))
+            switch channel.channelType {
+            case .channel(let tchChannel):
+                if tchChannel.status == .invited {
+                    self.items.append(.channelInvite(tchChannel))
+                }
+            default:
+                break
             }
         }
 

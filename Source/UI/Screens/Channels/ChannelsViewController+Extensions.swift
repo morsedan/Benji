@@ -54,7 +54,7 @@ extension ChannelsViewController {
     }
 
     private func getChannelsSortedByUpdateDate() -> [DisplayableChannel] {
-        let channelTypes = ChannelManager.shared.channelTypes
+        let channelTypes = ChannelManager.shared.subscribedChannels
         return channelTypes.sorted { (channel1, channel2) -> Bool in
             channel1.channelType.dateUpdated > channel2.channelType.dateUpdated
         }
