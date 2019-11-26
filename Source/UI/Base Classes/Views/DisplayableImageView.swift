@@ -55,8 +55,6 @@ class DisplayableImageView: View {
     private func updateImageView() {
         if let photo = self.displayable.image {
             self.imageView.image = photo
-        } else if let person = self.displayable.user {
-            self.downloadAndSetImage(for: person)
         } else if let objectID = self.displayable.userObjectID {
             self.findUser(with: objectID)
         }

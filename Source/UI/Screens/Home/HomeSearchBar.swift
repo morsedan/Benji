@@ -27,6 +27,7 @@ class HomeSearchBar: UISearchBar {
 
     func initializeSubviews() {
 
+        self.keyboardAppearance = .dark
         self.keyboardType = .twitter
         self.barStyle = .black
         self.searchBarStyle = .prominent
@@ -41,6 +42,9 @@ class HomeSearchBar: UISearchBar {
         self.scopeButtonTitles = SearchScope.allCases.map({ (scope) -> String in
             return scope.rawValue
         })
+
+        let attributes = StringStyle.init(font: .smallSemiBold, color: .white).attributes
+        self.setScopeBarButtonTitleTextAttributes(attributes, for: .normal)
 
         self.scopeBarBackgroundImage = UIImage()
 

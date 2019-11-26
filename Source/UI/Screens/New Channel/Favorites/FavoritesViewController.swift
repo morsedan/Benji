@@ -16,7 +16,7 @@ class FavoritesViewController: CollectionViewController<FavoriteCell, FavoritesC
 
         guard let objectId = User.current()?.objectId else { return }
 
-        User.cachedArrayQuery(notEqualTo: objectId)
+        User.initializeArrayQuery(notEqualTo: objectId)
             .observe { (result) in
                 switch result {
                 case .success(let users):

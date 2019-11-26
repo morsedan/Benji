@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import Parse
 
 extension User: Objectable {
     typealias KeyType = UserKey
@@ -65,11 +66,13 @@ extension User: Objectable {
         return promise
     }
 
-    static func cachedArrayQuery(notEqualTo identifier: String) -> Future<[User]> {
+    static func initializeArrayQuery(notEqualTo identifier: String,
+                                     cachePolicy: PFCachePolicy = .cacheThenNetwork) -> Future<[User]> {
+        
         let promise = Promise<[User]>()
 
         if let query = self.query() {
-            query.cachePolicy = .cacheThenNetwork
+            query.cachePolicy = cachePolicy
             query.whereKey(ObjectKey.objectId.rawValue, notEqualTo: identifier)
             query.findObjectsInBackground { (objects, error) in
                 if let objs = objects as? [User] {

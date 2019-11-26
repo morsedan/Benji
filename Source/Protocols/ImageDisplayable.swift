@@ -11,6 +11,5 @@ import Parse
 
 protocol ImageDisplayable {
     var userObjectID: String? { get }
-    var user: User? { get }
     var image: UIImage? { get }
 }

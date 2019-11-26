@@ -11,10 +11,6 @@ import Parse
 
 extension User: Avatar {
 
-    var user: User? {
-        return User.current()
-    }
-
     var userObjectID: String? {
         self.objectId
     }

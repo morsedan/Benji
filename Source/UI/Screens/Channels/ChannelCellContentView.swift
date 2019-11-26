@@ -31,7 +31,10 @@ class ChannelCellContentView: View {
             channel.getMembersAsUsers().observe { (result) in
                 switch result {
                 case .success(let users):
-                    self.stackedAvatarView.set(items: users)
+                    let notMeUsers = users.filter { (user) -> Bool in
+                        return user.objectId != User.current()?.objectId
+                    }
+                    self.stackedAvatarView.set(items: notMeUsers)
                 case .failure(let error):
                     print(error)
                 }

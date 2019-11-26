@@ -18,7 +18,7 @@ class MessageInputView: View {
     let textView = InputTextView()
     let overlayButton = UIButton()
     private let alertProgressView = UIView()
-    let blurView = UIVisualEffectView(effect: UIBlurEffect(style: .systemChromeMaterial))
+    let blurView = UIVisualEffectView(effect: UIBlurEffect(style: .systemChromeMaterialDark))
     private lazy var alertConfirmation = AlertConfirmationView()
 
     private var alertAnimator: UIViewPropertyAnimator?

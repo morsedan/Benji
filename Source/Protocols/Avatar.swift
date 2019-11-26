@@ -31,8 +31,4 @@ extension Avatar {
     var handle: String? {
         return nil
     }
-
-    var user: User? {
-        return nil 
-    }
 }

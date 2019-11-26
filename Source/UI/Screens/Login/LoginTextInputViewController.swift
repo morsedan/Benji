@@ -51,6 +51,7 @@ class LoginTextInputViewController: ViewController {
         self.textField.keyboardType = .numberPad
         self.textField.returnKeyType = .done
         self.textField.adjustsFontSizeToFitWidth = true
+        self.textField.keyboardAppearance = .dark
         if let placeholder = self.textFieldPlaceholder {
             let attributed = AttributedString(placeholder, fontType: .medium, color: .background3)
             self.textField.setPlaceholder(attributed: attributed)
