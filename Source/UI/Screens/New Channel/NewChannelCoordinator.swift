@@ -8,7 +8,7 @@
 
 import Foundation
 
-class NewChannelCoordinator: PresentableCoordinator<Void> {
+class NewChannelCoordinator: PresentableCoordinator<ChannelType?> {
 
     lazy var newChannelVC = NewChannelViewController(delegate: self)
 
@@ -20,11 +20,6 @@ class NewChannelCoordinator: PresentableCoordinator<Void> {
 extension NewChannelCoordinator: NewChannelViewControllerDelegate {
 
     func newChannelView(_ controller: NewChannelViewController, didCreate channel: ChannelType) {
-
-        let coordinator = ChannelCoordinator(router: self.router, channelType: channel)
-        self.router.present(coordinator, source: newChannelVC, animated: true)
-        self.addChildAndStart(coordinator, finishedHandler: { (_) in
-            self.router.dismiss(source: controller)
-        })
+        self.finishFlow(with: channel)
     }
 }

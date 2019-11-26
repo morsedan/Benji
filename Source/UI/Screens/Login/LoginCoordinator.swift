@@ -18,19 +18,6 @@ class LoginCoordinator: PresentableCoordinator<Void> {
         return self.loginPhoneVC
     }
 
-    private func fetchAllData() {
-        
-        User.anonymousLogin()
-            .observe { (result) in
-                switch result {
-                case .success(_):
-                    self.runHomeFlow()
-                case .failure(let error):
-                    print(error)
-                }
-        }
-    }
-
     private func runHomeFlow() {
         let coordinator = HomeCoordinator(router: self.router, deepLink: self.deepLink)
         self.router.setRootModule(coordinator, animated: true)

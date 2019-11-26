@@ -43,7 +43,13 @@ extension HomeCoordinator: HomeViewControllerDelegate {
 
     private func presentNewChannel() {
         let coordinator = NewChannelCoordinator(router: self.router, deepLink: self.deepLink)
-        self.present(coordinator: coordinator)
+        self.addChildAndStart(coordinator) { (result) in
+            self.router.dismiss(source: coordinator.toPresentable(), animated: true) {
+                guard let channel = result else { return }
+                self.startChannelFlow(for: channel)
+            }
+        }
+        self.router.present(coordinator, source: self.homeVC, animated: true)
     }
 
     private func present(coordinator: PresentableCoordinator<Void>) {

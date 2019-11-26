@@ -46,6 +46,9 @@ class HomeSearchBar: UISearchBar {
         let attributes = StringStyle.init(font: .smallSemiBold, color: .white).attributes
         self.setScopeBarButtonTitleTextAttributes(attributes, for: .normal)
 
+        let selectedAttributes = StringStyle.init(font: .smallSemiBold, color: .background1).attributes
+        self.setScopeBarButtonTitleTextAttributes(selectedAttributes, for: .selected)
+
         self.scopeBarBackgroundImage = UIImage()
 
         let styleAttributes = StringStyle(font: .regularSemiBold, color: .lightPurple).attributes
