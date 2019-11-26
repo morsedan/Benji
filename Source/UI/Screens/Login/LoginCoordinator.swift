@@ -19,8 +19,7 @@ class LoginCoordinator: PresentableCoordinator<Void> {
     }
 
     private func fetchAllData() {
-        UserNotificationManager.shared.requestAuthorization()
-
+        
         User.anonymousLogin()
             .observe { (result) in
                 switch result {

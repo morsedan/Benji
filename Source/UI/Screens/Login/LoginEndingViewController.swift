@@ -42,7 +42,7 @@ class LoginEndingViewController: ViewController {
                                    default: "@1, I made this for you.\n\n ~Benji")
         self.displayLabel.set(text: text,
                               alignment: .center,
-                              stringCasing: .capitalized)
+                              stringCasing: .unchanged)
 
         self.fetchAllData()
             .observe { (result) in

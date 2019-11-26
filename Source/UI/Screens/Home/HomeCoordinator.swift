@@ -19,8 +19,8 @@ class HomeCoordinator: PresentableCoordinator<Void> {
 
     override func start() {
         super.start()
-
-        UserNotificationManager.shared.requestAuthorization()
+        
+        UserNotificationManager.shared.silentRegister(withApplication: UIApplication.shared)
     }
 }
 

@@ -62,10 +62,8 @@ class UserNotificationManager: NSObject {
                     application.registerForRemoteNotifications()  // To update our token
                 }
             case .notDetermined:
-                var options: UNAuthorizationOptions = [.alert,.sound,.badge]
-                if #available(iOS 12, *) {
-                    options = [.alert,.sound,.badge, .provisional]
-                }
+                let options: UNAuthorizationOptions = [.alert,.sound,.badge, .provisional]
+
                 self.register(with: options, application: application, completion: { (success, error) in
 
                 })
@@ -73,34 +71,28 @@ class UserNotificationManager: NSObject {
             case .denied:
                 return
             case .provisional:
-                var options: UNAuthorizationOptions = [.alert,.sound,.badge]
-                if #available(iOS 12, *) {
-                    options = [.alert,.sound,.badge, .provisional]
-                }
-                self.register(with: options, application: application, completion: { (success, error) in
-
-                })
+                return
             @unknown default:
                 return
             }
         }
     }
 
-    @discardableResult
-    func requestAuthorization() -> Future<Bool> {
-        let isGrantedPromise = Promise<Bool>()
-
-        let options: UNAuthorizationOptions = [.alert, .sound, .badge]
-        self.center.requestAuthorization(options: options) { (granted, error) in
-            if let error = error {
-                isGrantedPromise.reject(with: error)
-            } else {
-                isGrantedPromise.resolve(with: granted)
-            }
-        }
-
-        return isGrantedPromise
-    }
+//    @discardableResult
+//    func requestAuthorization() -> Future<Bool> {
+//        let isGrantedPromise = Promise<Bool>()
+//
+//        let options: UNAuthorizationOptions = [.alert, .sound, .badge]
+//        self.center.requestAuthorization(options: options) { (granted, error) in
+//            if let error = error {
+//                isGrantedPromise.reject(with: error)
+//            } else {
+//                isGrantedPromise.resolve(with: granted)
+//            }
+//        }
+//
+//        return isGrantedPromise
+//    }
 
     func register(with options: UNAuthorizationOptions,
                   application: UIApplication,
