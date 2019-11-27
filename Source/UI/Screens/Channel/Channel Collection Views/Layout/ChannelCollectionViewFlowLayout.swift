@@ -47,8 +47,8 @@ class ChannelCollectionViewFlowLayout: UICollectionViewFlowLayout {
     override func prepare() {
         super.prepare()
 
+        self.collectionView?.contentInset.top = 0
         self.collectionView?.contentInset.bottom = 80
-        self.collectionView?.contentInset.top = 70
     }
 
     override func prepare(forCollectionViewUpdates updateItems: [UICollectionViewUpdateItem]) {
@@ -156,10 +156,6 @@ class ChannelCollectionViewFlowLayout: UICollectionViewFlowLayout {
 
         return AdjacectMessages(previousMessage: previousMessage, nextMessage: nextMessage)
     }
-
-//    private func headerSizeCalculator(for section:  Int) -> HeaderSizeCalculator {
-//        return self.initialHeaderSizeCalculator
-//    }
 
     // MARK: - PUBLIC
 

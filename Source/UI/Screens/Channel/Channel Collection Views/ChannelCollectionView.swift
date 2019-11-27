@@ -10,8 +10,6 @@ import Foundation
 
 class ChannelCollectionView: CollectionView {
 
-    lazy var emptyView = EmptyChannelView()
-
     var channelLayout: ChannelCollectionViewFlowLayout {
         guard let layout = collectionViewLayout as? ChannelCollectionViewFlowLayout else {
             fatalError("ChannelCollectionViewFlowLayout NOT FOUND")
@@ -26,8 +24,6 @@ class ChannelCollectionView: CollectionView {
     init() {
         super.init(flowLayout: ChannelCollectionViewFlowLayout())
         self.registerReusableViews()
-        self.backgroundView = self.emptyView
-        self.backgroundView?.alpha = 0
     }
 
     required init?(coder aDecoder: NSCoder) {
@@ -49,17 +45,5 @@ class ChannelCollectionView: CollectionView {
                       forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader)
         self.register(LoadMoreSectionHeader.self,
                       forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader)
-    }
-
-    override func layoutSubviews() {
-        super.layoutSubviews()
-
-        if let dataSource = self.channelLayout.dataSource, dataSource.sections.count > 0 {
-            self.emptyView.isHidden = false
-        } else {
-            self.emptyView.isHidden = true 
-        }
-
-        self.emptyView.frame = self.backgroundView?.bounds ?? .zero
     }
 }
