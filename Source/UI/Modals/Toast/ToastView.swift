@@ -105,10 +105,8 @@ class ToastView: UIView {
         self.toast = toast
         self.title = toast.title
 
-        toast.button.onTap { (tap) in
-            //Add any repsone to the button tap here
-            self.didTap()
-            toast.button.didSelect?()
+        self.onTap { [unowned self] (tap) in
+            toast.didTap()
             self.dismiss()
         }
 
@@ -272,8 +270,8 @@ class ToastView: UIView {
 
         self.height = 60
 
-        self.displayableImageView.size = CGSize(width: 50, height: 50)
-        self.displayableImageView.left = 5
+        self.displayableImageView.size = CGSize(width: 40, height: 40)
+        self.displayableImageView.left = 10
         self.displayableImageView.centerOnY()
 
         let maxTitleWidth = self.width - (self.displayableImageView.right + 22)

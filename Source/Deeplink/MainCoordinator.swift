@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import Parse
 
 class MainCoordinator: Coordinator<Void> {
 
@@ -28,11 +29,7 @@ class MainCoordinator: Coordinator<Void> {
     override func start() {
         super.start()
 
-        if !LaunchManager.shared.finishedInitialFetch {
-            self.runLaunchFlow()
-        } else {
-            self.runHomeFlow()
-        }
+        self.runLaunchFlow()
     }
 
     private func runLaunchFlow() {
@@ -41,12 +38,21 @@ class MainCoordinator: Coordinator<Void> {
                                                   launchOptions: self.launchOptions)
 
         self.router.setRootModule(launchCoordinator, animated: true)
-        self.addChildAndStart(launchCoordinator, finishedHandler: { [unowned self] (deepLink) in
-            // Listen for any future deep links
-            LaunchManager.shared.delegate = self
+        self.addChildAndStart(launchCoordinator, finishedHandler: { [unowned self] (result) in
+            ChannelManager.initialize(token: result.token)
 
-            self.start(with: deepLink)
+            self.handle(result: result)
         })
+    }
+
+    private func handle(result: LaunchResult) {
+        runMain {
+            if PFAnonymousUtils.isLinked(with: PFUser.current()) {
+                self.runLoginFlow()
+            } else {
+                self.runHomeFlow()
+            }
+        }
     }
 
     private func runHomeFlow() {
@@ -56,17 +62,15 @@ class MainCoordinator: Coordinator<Void> {
             // If the home coordinator ever finishes, put handling logic here.
         })
     }
-}
 
-extension MainCoordinator: LaunchManagerDelegate {
-    func launchManager(_ launchManager: LaunchManager, didFinishWith options: LaunchStatus) {
-        switch options {
-        case .success(let object):
-            guard let deepLink = object else { break }
-            self.start(with: deepLink)
-        default:
-            break
-        }
+    private func runLoginFlow() {
+        let coordinator = LoginCoordinator(router: self.router, deepLink: self.deepLink)
+        self.router.setRootModule(coordinator, animated: true)
+        self.addChildAndStart(coordinator, finishedHandler: { (_) in
+            self.router.dismiss(source: coordinator.toPresentable(), animated: true) {
+                self.runHomeFlow()
+            }
+        })
     }
 }
 

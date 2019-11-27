@@ -139,6 +139,12 @@ class ChannelViewController: FullScreenViewController {
         self.messageInputView.centerOnX()
     }
 
+    override func viewWasDismissed() {
+        super.viewWasDismissed()
+
+        ChannelManager.shared.selectedChannel.value = nil
+    }
+
     @discardableResult
     func send(message: String,
               context: MessageContext = .casual,

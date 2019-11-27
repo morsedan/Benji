@@ -12,7 +12,7 @@ import Branch
 
 enum LaunchStatus {
     case isLaunching
-    case success(object: DeepLinkable?)
+    case success(object: DeepLinkable?, token: String)
     case failed(error: ClientError?)
 }
 
@@ -25,7 +25,6 @@ class LaunchManager {
     static let shared = LaunchManager()
 
     weak var delegate: LaunchManagerDelegate?
-
     private(set) var finishedInitialFetch = false
     var onLoggedOut: (() -> Void)?
 
@@ -82,14 +81,13 @@ class LaunchManager {
         let urlString = "\(self.tokenURL)?identity=\(identity)&device=\(deviceId)"
 
         TokenUtils.retrieveToken(url: urlString) { (token, identity, error) in
-            if let token = token {
+            if let tkn = token {
                 // Set up Twilio Chat client
                 UserNotificationManager.shared.silentRegister(withApplication: UIApplication.shared)
-                ChannelManager.initialize(token: token)
                 self.finishedInitialFetch = true
 
                 //Remove
-                self.status = .success(object: nil)
+                self.status = .success(object: nil, token: tkn)
                 
                 //Initialize Branch
                 //self.initializeBranch(with: options)
@@ -106,7 +104,7 @@ class LaunchManager {
         }
     }
 
-    private func initializeBranch(with launchOptions: [UIApplication.LaunchOptionsKey: Any]?) {
+    private func initializeBranch(with launchOptions: [UIApplication.LaunchOptionsKey: Any]?, token: String) {
         let branch: Branch = Branch.getInstance()
 
         let notificationInfo = launchOptions?[.remoteNotification] as? [String : Any]
@@ -123,14 +121,14 @@ class LaunchManager {
                             guard error == nil else {
                                 // IMPORTANT: Allow the launch sequence to continue even if branch fails.
                                 // We don't want issues with the branch api to block our app from launching.
-                                self.delegate?.launchManager(self, didFinishWith: .success(object: nil))
+                                self.delegate?.launchManager(self, didFinishWith: .success(object: nil, token: token))
                                 return
                             }
 
                             let buo: BranchUniversalObject? = branchObject
                                 ?? Branch.getInstance().getLatestReferringBranchUniversalObject()
 
-                            self.status = .success(object: buo)
+                            self.status = .success(object: buo, token: token)
         })
     }
 }

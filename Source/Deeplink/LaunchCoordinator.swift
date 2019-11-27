@@ -9,14 +9,18 @@
 import Foundation
 import Parse
 
+struct LaunchResult {
+    var deepLink: DeepLinkable?
+    var token: String
+}
+
 // Presents the splash view controller and tells the launch manager to start retrieving
 // user data. Once the data is retrieved, it checks if the app needs to be updated, and presents the
 // update flow if needed.
 
-class LaunchCoordinator: PresentableCoordinator<DeepLinkable?> {
+class LaunchCoordinator: PresentableCoordinator<LaunchResult> {
 
     private lazy var splashVC = SplashViewController()
-    private var finishedAnimation: Bool = false
     private var launchOptions: [UIApplication.LaunchOptionsKey: Any]?
 
     init(router: Router,
@@ -43,36 +47,11 @@ extension LaunchCoordinator: LaunchManagerDelegate {
 
     func launchManager(_ launchManager: LaunchManager, didFinishWith options: LaunchStatus) {
         switch options {
-        case .success(let deepLink):
-            self.deepLink = deepLink
-            runMain {
-                if PFAnonymousUtils.isLinked(with: PFUser.current()) {
-                    self.runLoginFlow()
-                } else {
-                    self.runHomeFlow()
-                }
-            }
+        case .success(let deepLink, let token):
+            self.finishFlow(with: LaunchResult(deepLink: deepLink, token: token))
         default:
             break
         }
-    }
-
-    private func runHomeFlow() {
-        let coordinator = HomeCoordinator(router: self.router, deepLink: self.deepLink)
-        self.router.setRootModule(coordinator, animated: true)
-        self.addChildAndStart(coordinator, finishedHandler: { _ in
-            // If the home coordinator ever finishes, put handling logic here.
-        })
-    }
-
-    private func runLoginFlow() {
-        let coordinator = LoginCoordinator(router: self.router, deepLink: self.deepLink)
-        self.router.setRootModule(coordinator, animated: true)
-        self.addChildAndStart(coordinator, finishedHandler: { (_) in
-            self.router.dismiss(source: coordinator.toPresentable(), animated: true) {
-                self.runHomeFlow()
-            }
-        })
     }
 }
 

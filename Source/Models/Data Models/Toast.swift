@@ -14,8 +14,8 @@ struct Toast: Equatable {
     var analyticsID: String
     var priority: Int = 0
     var title: Localized
-    var button: LoadingButton
     var displayable: ImageDisplayable
+    var didTap: () -> Void
 
     static func == (lhs: Toast, rhs: Toast) -> Bool {
         return lhs.id == rhs.id

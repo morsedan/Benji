@@ -19,8 +19,8 @@ class HomeCoordinator: PresentableCoordinator<Void> {
 
     override func start() {
         super.start()
-        
-        UserNotificationManager.shared.silentRegister(withApplication: UIApplication.shared)
+
+        ToastScheduler.shared.delegate = self
     }
 }
 
@@ -91,6 +91,20 @@ extension HomeCoordinator: FeedViewControllerDelegate {
         case .inviteAsk:
             let contactsVC = ContactsViewController()
             self.router.present(contactsVC, source: controller)
+        }
+    }
+}
+
+extension HomeCoordinator: ToastSchedulerDelegate {
+
+    func didInteractWith(type: ToastType) {
+        switch type {
+        case .systemMessage(_):
+            break
+        case .message(_, let channel), .channel(let channel):
+            self.startChannelFlow(for: .channel(channel))
+        case .error(_):
+            break
         }
     }
 }
