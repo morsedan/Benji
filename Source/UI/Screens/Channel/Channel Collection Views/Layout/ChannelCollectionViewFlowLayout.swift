@@ -101,6 +101,12 @@ class ChannelCollectionViewFlowLayout: UICollectionViewFlowLayout {
             }
         }
 
+        for attributes in attributesArray where attributes.representedElementKind == UICollectionView.elementKindSectionHeader {
+            if let configurer = self.headerConfigurer(for: attributes.indexPath.section) {
+                configurer.configure(attributes: attributes, for: self)
+            }
+        }
+
         return attributesArray
     }
 
@@ -118,7 +124,11 @@ class ChannelCollectionViewFlowLayout: UICollectionViewFlowLayout {
                                  nextMessage: adjacentMessages.nextMessage,
                                  for: self,
                                  attributes: attributes)
-        } 
+        } else if attributes.representedElementKind == UICollectionView.elementKindSectionHeader,
+            let configurer = self.headerConfigurer(for: attributes.indexPath.section) {
+
+            configurer.configure(attributes: attributes, for: self)
+        }
 
         return attributes
     }
@@ -157,6 +167,10 @@ class ChannelCollectionViewFlowLayout: UICollectionViewFlowLayout {
         return AdjacectMessages(previousMessage: previousMessage, nextMessage: nextMessage)
     }
 
+    private func headerConfigurer(for section: Int) -> ChannelHeaderAttributesConfigurer? {
+        return nil
+    }
+
     // MARK: - PUBLIC
 
     func sizeForItem(at indexPath: IndexPath, with message: Messageable?) -> CGSize {
@@ -167,6 +181,10 @@ class ChannelCollectionViewFlowLayout: UICollectionViewFlowLayout {
 
         if self.isSectionReservedForTypingIndicator(section) {
             return .zero
+        }
+
+        if let configurer = self.headerConfigurer(for: section) {
+            return configurer.sizeForHeader(at: section, for: self)
         }
 
         return CGSize(width: collectionView.width, height: 50)
