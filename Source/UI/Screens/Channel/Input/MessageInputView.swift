@@ -13,7 +13,8 @@ class MessageInputView: View {
     var onPanned: ((UIPanGestureRecognizer) -> Void)?
     var onAlertMessageConfirmed: (() -> Void)?
 
-    private let minHeight: CGFloat = 38
+    private(set) var minHeight: CGFloat = 44
+    var oldTextViewHeight: CGFloat = 44
 
     let textView = InputTextView()
     let overlayButton = UIButton()
@@ -34,6 +35,7 @@ class MessageInputView: View {
         self.alertProgressView.size = .zero 
         self.addSubview(self.textView)
         self.textView.minHeight = self.minHeight
+        self.textView.growingDelegate = self
         self.addSubview(self.overlayButton)
 
         self.overlayButton.onTap { [unowned self] (tap) in
@@ -156,6 +158,28 @@ class MessageInputView: View {
         self.textView.reloadInputViews()
 
         self.alertProgressView.size = CGSize(width: self.width, height: self.height)
+    }
+}
+
+extension MessageInputView: GrowingTextViewDelegate {
+
+    func textViewDidBeginEditing(_ textView: UITextView) {}
+
+    func textViewTextDidChange(_ textView: GrowingTextView) {
+        guard let channel = ChannelManager.shared.selectedChannel.value,
+            self.textView.text.count > 0 else { return }
+        // Twilio throttles this call to every 5 seconds
+        channel.typing()
+    }
+
+    func textViewDidChangeHeight(_ textView: GrowingTextView, height: CGFloat) {
+        UIView.animate(withDuration: Theme.animationDuration) {
+            self.textView.height = height
+            self.height = height
+            self.y = self.y + (self.oldTextViewHeight - height)
+            self.layoutNow()
+            self.oldTextViewHeight = height
+        }
     }
 }
 

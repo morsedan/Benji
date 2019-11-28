@@ -75,8 +75,7 @@ class ChannelViewController: FullScreenViewController {
         self.view.addSubview(self.detailBar)
 
         self.view.addSubview(self.messageInputView)
-        self.messageInputView.height = 44
-        self.messageInputView.textView.growingDelegate = self
+        self.messageInputView.height = self.messageInputView.minHeight
 
         self.collectionView.dataSource = self.collectionViewManager
         self.collectionView.delegate = self.collectionViewManager
@@ -183,23 +182,5 @@ class ChannelViewController: FullScreenViewController {
         self.messageInputView.reset()
 
         return promise
-    }
-}
-
-extension ChannelViewController: GrowingTextViewDelegate {
-
-    func textViewTextDidChange(_ textView: GrowingTextView) {
-        guard let channel = ChannelManager.shared.selectedChannel.value,
-            textView.text.count > 0 else { return }
-        
-        channel.typing()
-    }
-
-
-    func textViewDidChangeHeight(_ textView: GrowingTextView, height: CGFloat) {
-        UIView.animate(withDuration: Theme.animationDuration) {
-            self.messageInputView.textView.height = height
-            self.view.layoutNow()
-        }
     }
 }
