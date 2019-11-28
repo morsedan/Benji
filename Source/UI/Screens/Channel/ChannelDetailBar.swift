@@ -96,7 +96,7 @@ class ChannelDetailBar: View {
             guard let `self` = self else { return }
 
             guard let channelsUpdate = update,
-                channelsUpdate.channel == ChannelManager.shared.selectedChannel.value else { return }
+                channelsUpdate.channel == ChannelManager.shared.activeChannel.value else { return }
 
             switch channelsUpdate.status {
             case .all:

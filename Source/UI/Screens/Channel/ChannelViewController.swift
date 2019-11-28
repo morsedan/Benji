@@ -96,7 +96,7 @@ class ChannelViewController: FullScreenViewController {
             }
         }
 
-        self.disposables += ChannelManager.shared.selectedChannel.producer
+        self.disposables += ChannelManager.shared.activeChannel.producer
         .on { [unowned self] (channel) in
             
             guard let _ = channel else {
@@ -141,7 +141,7 @@ class ChannelViewController: FullScreenViewController {
     override func viewWasDismissed() {
         super.viewWasDismissed()
 
-        ChannelManager.shared.selectedChannel.value = nil
+        ChannelManager.shared.activeChannel.value = nil
     }
 
     @discardableResult
@@ -150,7 +150,7 @@ class ChannelViewController: FullScreenViewController {
               attributes: [String : Any]) -> Future<Void> {
         let promise = Promise<Void>()
 
-        guard let channel = ChannelManager.shared.selectedChannel.value,
+        guard let channel = ChannelManager.shared.activeChannel.value,
             let current = User.current(),
             let objectId = current.objectId else { return promise }
 

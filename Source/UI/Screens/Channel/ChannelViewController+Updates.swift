@@ -22,7 +22,7 @@ extension ChannelViewController {
     }
 
     private func loadTwilioMessages() {
-        guard let channel = ChannelManager.shared.selectedChannel.value else { return }
+        guard let channel = ChannelManager.shared.activeChannel.value else { return }
 
         MessageSupplier.shared.getLastMessages(for: channel)
             .observe { (result) in
@@ -78,7 +78,7 @@ extension ChannelViewController {
             guard let `self` = self else { return }
 
             guard let channelUpdate = update,
-                channelUpdate.channel == ChannelManager.shared.selectedChannel.value else { return }
+                channelUpdate.channel == ChannelManager.shared.activeChannel.value else { return }
 
             switch channelUpdate.status {
             case .added:
@@ -107,7 +107,7 @@ extension ChannelViewController {
             guard let `self` = self else { return }
 
             guard let memberUpdate = update,
-                memberUpdate.channel == ChannelManager.shared.selectedChannel.value else { return }
+                memberUpdate.channel == ChannelManager.shared.activeChannel.value else { return }
 
             switch memberUpdate.status {
             case .joined:

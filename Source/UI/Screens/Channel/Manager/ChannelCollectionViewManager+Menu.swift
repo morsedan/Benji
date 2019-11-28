@@ -68,7 +68,7 @@ extension ChannelCollectionViewManager {
     }
 
     private func setToRead(message: Messageable) {
-        guard let channel = ChannelManager.shared.selectedChannel.value else { return }
+        guard let channel = ChannelManager.shared.activeChannel.value else { return }
 
         if !message.isFromCurrentUser,
             !message.isConsumed,

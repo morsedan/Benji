@@ -176,7 +176,7 @@ UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFl
     }
 
     func didSelectLoadMore(for messageIndex: Int) {
-        guard let channel = ChannelManager.shared.selectedChannel.value else { return }
+        guard let channel = ChannelManager.shared.activeChannel.value else { return }
 
         MessageSupplier.shared.getMessages(before: UInt(messageIndex), for: channel)
             .observe { (result) in

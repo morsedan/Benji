@@ -144,7 +144,7 @@ extension ChannelManager: TwilioChatClientDelegate {
     func chatClient(_ client: TwilioChatClient, channel: TCHChannel, messageAdded message: TCHMessage) {
         self.messageUpdate.value = MessageUpdate(channel: channel, message: message, status: .added)
 
-        if ChannelManager.shared.selectedChannel.value == nil {
+        if ChannelManager.shared.activeChannel.value == nil {
             ToastScheduler.shared.schedule(toastType: .message(message, channel))
         }
     }

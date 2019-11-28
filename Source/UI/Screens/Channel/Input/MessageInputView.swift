@@ -166,7 +166,7 @@ extension MessageInputView: GrowingTextViewDelegate {
     func textViewDidBeginEditing(_ textView: UITextView) {}
 
     func textViewTextDidChange(_ textView: GrowingTextView) {
-        guard let channel = ChannelManager.shared.selectedChannel.value,
+        guard let channel = ChannelManager.shared.activeChannel.value,
             self.textView.text.count > 0 else { return }
         // Twilio throttles this call to every 5 seconds
         channel.typing()

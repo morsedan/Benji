@@ -16,7 +16,7 @@ class ChannelCoordinator: PresentableCoordinator<Void> {
     init(router: Router, channelType: ChannelType) {
         self.channelType = channelType
         if case let .channel(channel) = channelType {
-            ChannelManager.shared.selectedChannel.value = channel
+            ChannelManager.shared.activeChannel.value = channel
         }
         super.init(router: router, deepLink: nil)
     }
