@@ -40,7 +40,6 @@ extension ChannelCollectionViewManager {
             // Show rename UI
         }
 
-        // Here we specify the "destructive" attribute to show that it’s destructive in nature
         let neverMind = UIAction(title: "Never Mind", image: UIImage(systemName: "nosign")) { action in
 
         }
@@ -51,8 +50,35 @@ extension ChannelCollectionViewManager {
 
         let deleteMenu = UIMenu(title: "Delete", image: UIImage(systemName: "trash"), options: .destructive, children: [confirm, neverMind])
 
+        let readOk = UIAction(title: "Ok", image: UIImage(systemName: "hand.thumbsup")) { action in
+            self.setToRead(message: message)
+        }
+
+        let readCancel = UIAction(title: "Never mind", image: UIImage(systemName: "nosign")) { action in
+        }
+
+        let readMenu = UIMenu(title: "Set messages to read", image: UIImage(systemName: "eyeglasses"), children: [readOk, readCancel])
+
+        if message.isFromCurrentUser {
+            return UIMenu(title: "Options", children: [deleteMenu, share, editMessage])
+        }
+
         // Create and return a UIMenu with the share action
-        return UIMenu(title: "Menu", children: [share, editMessage, deleteMenu])
+        return UIMenu(title: "Options", children: [share, readMenu])
+    }
+
+    private func setToRead(message: Messageable) {
+        guard let channel = ChannelManager.shared.selectedChannel.value else { return }
+
+        if !message.isFromCurrentUser,
+            !message.isConsumed,
+            let messageIndex = message.messageIndex,
+            let messages = channel.messages {
+
+            messages.setLastConsumedMessageIndex(messageIndex) { (result, index) in
+
+            }
+        }
     }
 }
 

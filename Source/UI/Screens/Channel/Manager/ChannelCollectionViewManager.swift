@@ -76,20 +76,6 @@ UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFl
         return cell
     }
 
-    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        guard let message = self.item(at: indexPath), let channel = ChannelManager.shared.selectedChannel.value else { return }
-
-        if !message.isFromCurrentUser,
-            !message.isConsumed,
-            let messageIndex = message.messageIndex,
-            let messages = channel.messages {
-
-            messages.setLastConsumedMessageIndex(messageIndex) { (result, index) in
-
-            }
-        }
-    }
-
     func collectionView(_ collectionView: UICollectionView,
                         viewForSupplementaryElementOfKind kind: String,
                         at indexPath: IndexPath) -> UICollectionReusableView {
