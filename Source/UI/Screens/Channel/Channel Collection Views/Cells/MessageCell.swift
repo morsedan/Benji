@@ -48,6 +48,9 @@ class MessageCell: UICollectionViewCell {
     override func prepareForReuse() {
         super.prepareForReuse()
 
+        self.bubbleView.layer.borderColor = nil
+        self.bubbleView.layer.borderWidth = 0
+        
         self.textView.text = nil
     }
 
@@ -58,8 +61,58 @@ class MessageCell: UICollectionViewCell {
         }
         self.textView.set(text: message.text)
 
-        let backgroundColor: Color = message.isFromCurrentUser ? .lightPurple : .purple
-        self.bubbleView.set(backgroundColor: backgroundColor)
+        self.handleStatus(for: message)
+        self.handleIsConsumed(for: message)
+    }
+
+    private func handleStatus(for message: Messageable) {
+
+        if message.isFromCurrentUser {
+            switch message.status {
+            case .sent:
+                break
+            case .delivered:
+                break
+            case .unknown:
+                break
+            case .error:
+                break
+            }
+        } else {
+            switch message.status {
+            case .sent:
+                break
+            case .delivered:
+                break
+            case .unknown:
+                break
+            case .error:
+                break
+            }
+        }
+    }
+
+    private func handleIsConsumed(for message: Messageable) {
+
+        if message.isFromCurrentUser {
+            self.bubbleView.set(backgroundColor: .lightPurple)
+
+            if message.isConsumed {
+                //show read
+            } else {
+                //show delivered
+            }
+
+        } else {
+
+            if message.isConsumed {
+                self.bubbleView.set(backgroundColor: .purple)
+            } else {
+                self.bubbleView.set(backgroundColor: .clear)
+                self.bubbleView.layer.borderColor = Color.purple.color.cgColor
+                self.bubbleView.layer.borderWidth = 2
+            }
+        }
     }
 
     private func layoutContent(with attributes: ChannelCollectionViewLayoutAttributes) {

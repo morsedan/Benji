@@ -8,11 +8,11 @@
 
 import Foundation
 import TMROLocalization
+import TwilioChatClient
 
 enum MessageStatus: String {
-    case sent //Message was sent
-    case delivered //Message was successfully delivered but not consumed
-    case read //Message was consumed
+    case sent //Message was sent as a system message
+    case delivered //Message was successfully delivered by Twilio
     case unknown
     case error
 }
@@ -25,10 +25,11 @@ protocol Messageable: class {
     var authorID: String { get }
     var messageIndex: NSNumber? { get }
     var attributes: [String: Any]? { get }
-    var status: MessageStatus { get }
     var avatar: Avatar { get }
     var id: String { get }
-    func updateTo(status: MessageStatus) -> Future<Void>
+    var status: MessageStatus { get }
+    var isConsumed: Bool { get }
+    var hasBeenConsumedBy: [Avatar] { get set }
 }
 
 func ==(lhs: Messageable, rhs: Messageable) -> Bool {
@@ -38,4 +39,10 @@ func ==(lhs: Messageable, rhs: Messageable) -> Bool {
         && lhs.authorID == rhs.authorID
         && lhs.messageIndex == rhs.messageIndex
         && lhs.id == rhs.id 
+}
+
+extension Messageable {
+    var isConsumed: Bool {
+        return self.hasBeenConsumedBy.count > 0 
+    }
 }

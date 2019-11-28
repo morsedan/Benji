@@ -30,6 +30,7 @@ extension TCHMessage: Avatar {
     }
 }
 
+private var hasBeenConsumedByKey: UInt8 = 0
 extension TCHMessage: Messageable {
 
     var id: String {
@@ -74,19 +75,13 @@ extension TCHMessage: Messageable {
         return .unknown
     }
 
-    func updateTo(status: MessageStatus) -> Future<Void> {
-        let promise = Promise<Void>()
-        var mutableAttributes: [String: Any] = self.attributes() ?? [:]
-        mutableAttributes["status"] = status.rawValue
-        self.setAttributes(mutableAttributes) { (result) in
-            if let error = result.error {
-                promise.reject(with: error)
-            } else {
-                promise.resolve(with: ())
-            }
+    var hasBeenConsumedBy: [Avatar] {
+        get {
+            return self.getAssociatedObject(&hasBeenConsumedByKey) ?? []
         }
-
-        return promise 
+        set {
+            self.setAssociatedObject(key: &hasBeenConsumedByKey, value: newValue)
+        }
     }
 }
 

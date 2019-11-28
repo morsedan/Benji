@@ -77,16 +77,16 @@ UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFl
     }
 
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        guard let message = self.item(at: indexPath), message.status == .delivered else { return }
+        guard let message = self.item(at: indexPath), let channel = ChannelManager.shared.selectedChannel.value else { return }
 
-        message.updateTo(status: .read)
-            .observe { (result) in
-                switch result {
-                case .success:
-                    self.update(item: message)
-                case .failure(let error):
-                    print(error)
-                }
+        if !message.isFromCurrentUser,
+            !message.isConsumed,
+            let messageIndex = message.messageIndex,
+            let messages = channel.messages {
+
+            messages.setLastConsumedMessageIndex(messageIndex) { (result, index) in
+
+            }
         }
     }
 

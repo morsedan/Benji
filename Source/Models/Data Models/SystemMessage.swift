@@ -21,6 +21,7 @@ class SystemMessage: Messageable {
     var isFromCurrentUser: Bool
     var status: MessageStatus
     var id: String
+    var hasBeenConsumedBy: [Avatar] = []
 
     init(avatar: Avatar,
          context: MessageContext,
@@ -41,12 +42,5 @@ class SystemMessage: Messageable {
         self.messageIndex = messageIndex
         self.status = status
         self.id = id 
-    }
-
-    func updateTo(status: MessageStatus) -> Future<Void> {
-        let promise = Promise<Void>()
-        self.status = status
-        promise.resolve(with: ())
-        return promise
     }
 }
