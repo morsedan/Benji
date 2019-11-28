@@ -67,8 +67,6 @@
 		D637532E23161B9B00214F63 /* FavoritesSectionHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = D637532D23161B9B00214F63 /* FavoritesSectionHeader.swift */; };
 		D637533023161C2500214F63 /* FavoritesCollectionViewManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = D637532F23161C2400214F63 /* FavoritesCollectionViewManager.swift */; };
 		D63826D22274C8C0001D4B8B /* ChannelManager+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = D63826D12274C8C0001D4B8B /* ChannelManager+Extensions.swift */; };
-		D63844092336BE540072227B /* InitialSectionHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = D63844082336BE540072227B /* InitialSectionHeader.swift */; };
-		D638440F2336E25F0072227B /* ChannelDetailHeaderAttributesConfigurer.swift in Sources */ = {isa = PBXBuildFile; fileRef = D638440E2336E25F0072227B /* ChannelDetailHeaderAttributesConfigurer.swift */; };
 		D63844122337C3CD0072227B /* LoadMoreSectionHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = D63844112337C3CD0072227B /* LoadMoreSectionHeader.swift */; };
 		D6384414233834380072227B /* Symbols.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6384413233834380072227B /* Symbols.swift */; };
 		D6405B5E236BCB4D00FAA06B /* AlertConfirmationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6405B5D236BCB4D00FAA06B /* AlertConfirmationView.swift */; };
@@ -331,8 +329,6 @@
 		D637532D23161B9B00214F63 /* FavoritesSectionHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoritesSectionHeader.swift; sourceTree = "<group>"; };
 		D637532F23161C2400214F63 /* FavoritesCollectionViewManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoritesCollectionViewManager.swift; sourceTree = "<group>"; };
 		D63826D12274C8C0001D4B8B /* ChannelManager+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ChannelManager+Extensions.swift"; sourceTree = "<group>"; };
-		D63844082336BE540072227B /* InitialSectionHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InitialSectionHeader.swift; sourceTree = "<group>"; };
-		D638440E2336E25F0072227B /* ChannelDetailHeaderAttributesConfigurer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChannelDetailHeaderAttributesConfigurer.swift; sourceTree = "<group>"; };
 		D63844112337C3CD0072227B /* LoadMoreSectionHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadMoreSectionHeader.swift; sourceTree = "<group>"; };
 		D6384413233834380072227B /* Symbols.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Symbols.swift; sourceTree = "<group>"; };
 		D6405B5D236BCB4D00FAA06B /* AlertConfirmationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertConfirmationView.swift; sourceTree = "<group>"; };
@@ -796,7 +792,6 @@
 			isa = PBXGroup;
 			children = (
 				D6E4C7FA238E4217002B1330 /* ChannelHeaderAttributesConfigurer.swift */,
-				D638440E2336E25F0072227B /* ChannelDetailHeaderAttributesConfigurer.swift */,
 			);
 			path = "Header Configurers";
 			sourceTree = "<group>";
@@ -806,7 +801,6 @@
 			children = (
 				D6B2601522E41BE700143CF0 /* ChannelSectionHeader.swift */,
 				D6B2601722E4208900143CF0 /* ChannelHeaderDateLabel.swift */,
-				D63844082336BE540072227B /* InitialSectionHeader.swift */,
 				D63844112337C3CD0072227B /* LoadMoreSectionHeader.swift */,
 			);
 			path = Headers;
@@ -1564,10 +1558,8 @@
 				D642738322C9AEA30088256B /* ContactAuthorizationAlertController.swift in Sources */,
 				D66F0FD422BF074C00BA277D /* DeeplinkObject.swift in Sources */,
 				D6FC809A237A68F50089AACC /* ChannelViewController+Updates.swift in Sources */,
-				D63844092336BE540072227B /* InitialSectionHeader.swift in Sources */,
 				D6D1461121D583D200CD8CE4 /* RootNavigationController.swift in Sources */,
 				D61EC0EC21D312B600204BEE /* UIView+Extensions.swift in Sources */,
-				D638440F2336E25F0072227B /* ChannelDetailHeaderAttributesConfigurer.swift in Sources */,
 				D6D1504021DAFB8300CD8CE4 /* UITextField+Extensions.swift in Sources */,
 				D67896CA23039E680059BA75 /* ScrolledModalControllerPresentable.swift in Sources */,
 				D60C814622092F6B00A127A3 /* Button.swift in Sources */,

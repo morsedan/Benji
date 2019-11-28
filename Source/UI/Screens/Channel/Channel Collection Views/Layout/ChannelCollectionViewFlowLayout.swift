@@ -47,7 +47,7 @@ class ChannelCollectionViewFlowLayout: UICollectionViewFlowLayout {
     override func prepare() {
         super.prepare()
 
-        self.collectionView?.contentInset.top = 0
+        self.collectionView?.contentInset.top = 60
         self.collectionView?.contentInset.bottom = 80
     }
 

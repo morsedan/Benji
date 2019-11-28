@@ -99,37 +99,36 @@ UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFl
 
         guard let section = self.sections[safe: indexPath.section] else { fatalError() }
 
-        if indexPath.section == 0 {
-            return self.getTopHeader(for: section, at: indexPath, in: channelCollectionView)
+        if indexPath.section == 0,
+            let topHeader = self.getTopHeader(for: section, at: indexPath, in: channelCollectionView) {
+            return topHeader
         }
 
         let header = channelCollectionView.dequeueReusableHeaderView(ChannelSectionHeader.self, for: indexPath)
         header.configure(with: section.date)
+        
         return header
     }
 
     private func getTopHeader(for section: ChannelSectionable,
                               at indexPath: IndexPath,
-                              in collectionView: ChannelCollectionView) -> UICollectionReusableView {
+                              in collectionView: ChannelCollectionView) -> UICollectionReusableView? {
 
-        if let index = section.firstMessageIndex, index > 0 {
-            let moreHeader = collectionView.dequeueReusableHeaderView(LoadMoreSectionHeader.self, for: indexPath)
-            //Reset all gestures
-            moreHeader.gestureRecognizers?.forEach({ (recognizer) in
-                moreHeader.removeGestureRecognizer(recognizer)
-            })
+        guard let index = section.firstMessageIndex, index > 0 else { return nil }
 
-            moreHeader.button.onTap { [weak self] (tap) in
-                guard let `self` = self else { return }
-                moreHeader.button.isLoading = true
-                self.didSelectLoadMore(for: index)
-            }
-            return moreHeader
+        let moreHeader = collectionView.dequeueReusableHeaderView(LoadMoreSectionHeader.self, for: indexPath)
+        //Reset all gestures
+        moreHeader.gestureRecognizers?.forEach({ (recognizer) in
+            moreHeader.removeGestureRecognizer(recognizer)
+        })
+
+        moreHeader.button.onTap { [weak self] (tap) in
+            guard let `self` = self else { return }
+            moreHeader.button.isLoading = true
+            self.didSelectLoadMore(for: index)
         }
 
-        let header = collectionView.dequeueReusableHeaderView(InitialSectionHeader.self, for: indexPath)
-        header.configure(with: section)
-        return header
+        return moreHeader
     }
 
     func collectionView(_ collectionView: UICollectionView,
