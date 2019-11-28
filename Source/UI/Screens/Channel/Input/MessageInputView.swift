@@ -194,6 +194,11 @@ extension MessageInputView: UIGestureRecognizerDelegate {
     }
 
     func gestureRecognizer(_ gestureRecognizer: UIGestureRecognizer, shouldRecognizeSimultaneouslyWith otherGestureRecognizer: UIGestureRecognizer) -> Bool {
+
+        if gestureRecognizer is UIPanGestureRecognizer {
+            return false
+        }
+        
         return true
     }
 }
