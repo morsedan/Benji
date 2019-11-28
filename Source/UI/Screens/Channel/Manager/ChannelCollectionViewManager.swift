@@ -76,6 +76,20 @@ UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFl
         return cell
     }
 
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        guard let message = self.item(at: indexPath), message.status == .delivered else { return }
+
+        message.updateTo(status: .read)
+            .observe { (result) in
+                switch result {
+                case .success:
+                    self.update(item: message)
+                case .failure(let error):
+                    print(error)
+                }
+        }
+    }
+
     func collectionView(_ collectionView: UICollectionView,
                         viewForSupplementaryElementOfKind kind: String,
                         at indexPath: IndexPath) -> UICollectionReusableView {

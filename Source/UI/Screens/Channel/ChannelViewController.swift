@@ -87,7 +87,7 @@ class ChannelViewController: FullScreenViewController {
         self.messageInputView.onAlertMessageConfirmed = { [unowned self] in
             self.send(message: self.messageInputView.textView.text,
                       context: .emergency,
-                      attributes: [:])
+                      attributes: ["status": MessageStatus.sent.rawValue])
         }
 
         self.collectionView.onDoubleTap { [unowned self] (doubleTap) in

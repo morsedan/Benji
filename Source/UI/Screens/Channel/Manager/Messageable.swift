@@ -9,12 +9,12 @@
 import Foundation
 import TMROLocalization
 
-enum MessageStatus {
-    case delivered
-    case sent
-    case read
+enum MessageStatus: String {
+    case sent //Message was sent
+    case delivered //Message was successfully delivered but not consumed
+    case read //Message was consumed
     case unknown
-    case error(ClientError)
+    case error
 }
 
 protocol Messageable: class {
@@ -28,6 +28,7 @@ protocol Messageable: class {
     var status: MessageStatus { get }
     var avatar: Avatar { get }
     var id: String { get }
+    func updateTo(status: MessageStatus) -> Future<Void>
 }
 
 func ==(lhs: Messageable, rhs: Messageable) -> Bool {

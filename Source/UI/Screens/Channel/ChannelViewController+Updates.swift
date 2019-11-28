@@ -95,6 +95,17 @@ extension ChannelViewController {
                     })
                 }
 
+                if channelUpdate.message.status == .sent {
+                    channelUpdate.message.updateTo(status: .delivered)
+                        .observe { (result) in
+                            switch result {
+                            case .success:
+                                self.collectionViewManager.update(item: channelUpdate.message)
+                            case .failure(let error):
+                                print(error)
+                            }
+                    }
+                }
             case .changed:
                 self.collectionViewManager.update(item: channelUpdate.message)
             case .deleted:

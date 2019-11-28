@@ -42,4 +42,11 @@ class SystemMessage: Messageable {
         self.status = status
         self.id = id 
     }
+
+    func updateTo(status: MessageStatus) -> Future<Void> {
+        let promise = Promise<Void>()
+        self.status = status
+        promise.resolve(with: ())
+        return promise
+    }
 }

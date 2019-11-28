@@ -67,7 +67,26 @@ extension TCHMessage: Messageable {
     }
 
     var status: MessageStatus {
-        return .delivered
+        if let statusString = self.attributes()?["status"] as? String, let type = MessageStatus(rawValue: statusString) {
+            return type
+        }
+
+        return .unknown
+    }
+
+    func updateTo(status: MessageStatus) -> Future<Void> {
+        let promise = Promise<Void>()
+        var mutableAttributes: [String: Any] = self.attributes() ?? [:]
+        mutableAttributes["status"] = status.rawValue
+        self.setAttributes(mutableAttributes) { (result) in
+            if let error = result.error {
+                promise.reject(with: error)
+            } else {
+                promise.resolve(with: ())
+            }
+        }
+
+        return promise 
     }
 }
 
