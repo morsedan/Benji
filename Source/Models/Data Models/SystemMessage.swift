@@ -21,7 +21,7 @@ class SystemMessage: Messageable {
     var isFromCurrentUser: Bool
     var status: MessageStatus
     var id: String
-    var hasBeenConsumedBy: [Avatar] = []
+    var hasBeenConsumedBy: [String] = []
 
     init(avatar: Avatar,
          context: MessageContext,

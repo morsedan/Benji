@@ -73,6 +73,17 @@ UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFl
         cell.configure(with: message)
         cell.textView.delegate = self
 
+        cell.textView.gestureRecognizers?.forEach({ (gesture) in
+            if gesture is UITapGestureRecognizer {
+                cell.bubbleView.removeGestureRecognizer(gesture)
+            }
+        })
+
+        cell.textView.onTap { (tap) in
+            guard let current = User.current() else { return }
+            message.udpateConsumers(with: current)
+        }
+
         return cell
     }
 

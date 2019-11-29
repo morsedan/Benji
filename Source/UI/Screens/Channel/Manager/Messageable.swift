@@ -29,7 +29,9 @@ protocol Messageable: class {
     var id: String { get }
     var status: MessageStatus { get }
     var isConsumed: Bool { get }
-    var hasBeenConsumedBy: [Avatar] { get set }
+    var hasBeenConsumedBy: [String] { get }
+    func udpateConsumers(with consumer: Avatar)
+    func appendAttributes(with attributes: [String: Any]) -> Future<Void>
 }
 
 func ==(lhs: Messageable, rhs: Messageable) -> Bool {
@@ -42,7 +44,13 @@ func ==(lhs: Messageable, rhs: Messageable) -> Bool {
 }
 
 extension Messageable {
+
     var isConsumed: Bool {
         return self.hasBeenConsumedBy.count > 0 
+    }
+
+    func udpateConsumers(with consumer: Avatar) {}
+    func appendAttributes(with attributes: [String: Any]) -> Future<Void>  {
+        return Promise<Void>()
     }
 }

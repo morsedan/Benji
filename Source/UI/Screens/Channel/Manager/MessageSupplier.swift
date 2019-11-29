@@ -24,19 +24,10 @@ class MessageSupplier {
 
         if let messagesObject = channel.messages {
             messagesObject.getLastWithCount(batchAmount) { (result, messages) in
-                if let msgs = messages, let members = channel.members {
-                    self.getMembersArray(from: members)
-                        .observe { (membersResult) in
-                            switch membersResult {
-                            case .success(let membersArray):
-                                let updatedMsgs = self.mapConsumption(to: msgs, from: membersArray)
-                                let sections = self.mapMessagesToSections(for: updatedMsgs, in: .channel(channel))
-                                promise.resolve(with: sections)
-                            case .failure(_):
-                                promise.reject(with: ClientError.generic)
-                            }
-                    }
-                    promise.resolve(with: self.mapMessagesToSections(for: msgs, in: .channel(channel)))
+                if let msgs = messages {
+                    self.allMessages = msgs
+                    let sections = self.mapMessagesToSections(for: msgs, in: .channel(channel))
+                    promise.resolve(with: sections)
                 } else {
                     promise.reject(with: ClientError.generic)
                 }
@@ -56,19 +47,10 @@ class MessageSupplier {
 
         if let messagesObject = channel.messages {
             messagesObject.getBefore(index, withCount: batchAmount) { (result, messages) in
-                if let msgs = messages, let members = channel.members {
-                    self.getMembersArray(from: members)
-                        .observe { (membersResult) in
-                            switch membersResult {
-                            case .success(let membersArray):
-                                let updatedMsgs = self.mapConsumption(to: msgs, from: membersArray)
-                                self.allMessages.insert(contentsOf: updatedMsgs, at: 0)
-                                let sections = self.mapMessagesToSections(for: updatedMsgs, in: .channel(channel))
-                                promise.resolve(with: sections)
-                            case .failure(_):
-                                promise.reject(with: ClientError.generic)
-                            }
-                    }
+                if let msgs = messages {
+                    self.allMessages.insert(contentsOf: msgs, at: 0)
+                    let sections = self.mapMessagesToSections(for: msgs, in: .channel(channel))
+                    promise.resolve(with: sections)
                 } else {
                     promise.reject(with: ClientError.generic)
                 }
@@ -104,12 +86,6 @@ class MessageSupplier {
         return sections
     }
 
-    func setLastConsumedMessage(index: Int) {
-
-        
-        
-    }
-
     private func getMembersArray(from members: TCHMembers) -> Future<[TCHMember]> {
         let promise = Promise<[TCHMember]>()
 
@@ -122,27 +98,5 @@ class MessageSupplier {
         }
 
         return promise
-    }
-
-    private func mapConsumption(to messages: [Messageable], from members: [TCHMember]) -> [Messageable] {
-        var updatedMessages: [Messageable] = []
-
-        messages.forEach { (message) in
-            var consumers: [Avatar] = []
-            members.forEach { (member) in
-                if let identity = member.identity,
-                    identity != message.authorID,
-                    let messageIndex = message.messageIndex,
-                    let lastIndex = member.lastConsumedMessageIndex,
-                    lastIndex.intValue >= messageIndex.intValue {
-
-                    consumers.append(member)
-                }
-            }
-            
-            message.hasBeenConsumedBy = consumers
-            updatedMessages.append(message)
-        }
-        return updatedMessages
     }
 }

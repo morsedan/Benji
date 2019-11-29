@@ -30,7 +30,6 @@ extension TCHMessage: Avatar {
     }
 }
 
-private var hasBeenConsumedByKey: UInt8 = 0
 extension TCHMessage: Messageable {
 
     var id: String {
@@ -75,13 +74,38 @@ extension TCHMessage: Messageable {
         return .unknown
     }
 
-    var hasBeenConsumedBy: [Avatar] {
-        get {
-            return self.getAssociatedObject(&hasBeenConsumedByKey) ?? []
+    var hasBeenConsumedBy: [String] {
+        return self.attributes()?["consumers"] as? [String] ?? []
+    }
+
+    func udpateConsumers(with consumer: Avatar) {
+        guard let identity = consumer.userObjectID else { return }
+        var consumers = self.hasBeenConsumedBy
+        consumers.append(identity)
+        self.appendAttributes(with: ["consumers": consumers])
+            .observe { (result) in
+                switch result {
+                case .success:
+                    break
+                case .failure(_):
+                    break 
+                }
         }
-        set {
-            self.setAssociatedObject(key: &hasBeenConsumedByKey, value: newValue)
+    }
+
+    func appendAttributes(with attributes: [String: Any]) -> Future<Void> {
+        let promise = Promise<Void>()
+        let current: [String: Any] = self.attributes() ?? [:]
+        let updated = current.merging(attributes, uniquingKeysWith: { (first, _) in first })
+        self.setAttributes(updated) { (result) in
+            if let error = result.error {
+                promise.reject(with: error)
+            } else {
+                promise.resolve(with: ())
+            }
         }
+
+        return promise
     }
 }
 

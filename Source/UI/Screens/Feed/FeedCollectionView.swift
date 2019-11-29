@@ -34,7 +34,11 @@ class FeedCollectionView: KolodaView {
             let xOffset = self.defaultHorizontalOffset * 2
             return CGRect(x: xOffset, y: topOffset, width: width, height: height)
         default:
-            return .zero
+            let topOffset: CGFloat = 50
+            let width = self.bounds.width - (6 * self.defaultHorizontalOffset)
+            let height = self.bounds.height * self.defaultHeightRatio
+            let xOffset = self.defaultHorizontalOffset * 3
+            return CGRect(x: xOffset, y: topOffset, width: width, height: height)
         }
     }
 }

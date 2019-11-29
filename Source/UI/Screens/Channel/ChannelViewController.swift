@@ -9,6 +9,7 @@
 import Foundation
 import ReactiveSwift
 import Parse
+import TwilioChatClient
 
 class ChannelViewController: FullScreenViewController {
 
@@ -99,12 +100,13 @@ class ChannelViewController: FullScreenViewController {
         self.disposables += ChannelManager.shared.activeChannel.producer
         .on { [unowned self] (channel) in
             
-            guard let _ = channel else {
+            guard let strongChannel = channel else {
                 self.collectionView.activityIndicator.startAnimating()
                 self.collectionViewManager.reset()
                 return
             }
 
+            strongChannel.delegate = self
             self.loadMessages()
             self.view.setNeedsLayout()
         }.start()
@@ -182,5 +184,16 @@ class ChannelViewController: FullScreenViewController {
         self.messageInputView.reset()
 
         return promise
+    }
+}
+
+extension ChannelViewController: TCHChannelDelegate {
+
+    func chatClient(_ client: TwilioChatClient, channel: TCHChannel, member: TCHMember, updated: TCHMemberUpdate) {
+        
+    }
+
+    func chatClient(_ client: TwilioChatClient, channel: TCHChannel, message: TCHMessage, updated: TCHMessageUpdate) {
+        self.collectionViewManager.update(item: message)
     }
 }

@@ -8,6 +8,7 @@
 
 import Foundation
 import TMROLocalization
+import TwilioChatClient
 
 extension ChannelCollectionViewManager {
 
@@ -57,7 +58,7 @@ extension ChannelCollectionViewManager {
         let readCancel = UIAction(title: "Never mind", image: UIImage(systemName: "nosign")) { action in
         }
 
-        let readMenu = UIMenu(title: "Set messages to read", image: UIImage(systemName: "eyeglasses"), children: [readOk, readCancel])
+        let readMenu = UIMenu(title: "Set messages to read", image: UIImage(systemName: "eyeglasses"), children: [readCancel, readOk])
 
         if message.isFromCurrentUser {
             return UIMenu(title: "Options", children: [deleteMenu, share, editMessage])
@@ -68,17 +69,8 @@ extension ChannelCollectionViewManager {
     }
 
     private func setToRead(message: Messageable) {
-        guard let channel = ChannelManager.shared.activeChannel.value else { return }
-
-        if !message.isFromCurrentUser,
-            !message.isConsumed,
-            let messageIndex = message.messageIndex,
-            let messages = channel.messages {
-
-            messages.setLastConsumedMessageIndex(messageIndex) { (result, index) in
-
-            }
-        }
+        guard let current = User.current() else { return }
+        message.udpateConsumers(with: current)
     }
 }
 
