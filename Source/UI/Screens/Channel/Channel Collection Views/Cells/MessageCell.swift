@@ -14,6 +14,7 @@ class MessageCell: UICollectionViewCell {
     let avatarView = AvatarView()
     let bubbleView = View()
     let textView = MessageTextView()
+    private let selectionFeedback = UIImpactFeedbackGenerator(style: .light)
 
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -122,5 +123,21 @@ class MessageCell: UICollectionViewCell {
         self.bubbleView.frame = attributes.attributes.bubbleViewFrame
         self.bubbleView.layer.maskedCorners = attributes.attributes.maskedCorners
         self.bubbleView.roundCorners()
+    }
+
+    override open func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+        super.touchesBegan(touches, with: event)
+        self.selectionFeedback.impactOccurred()
+        self.bubbleView.scaleDown()
+    }
+
+    override open func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {
+        super.touchesEnded(touches, with: event)
+        self.bubbleView.scaleUp()
+    }
+
+    override open func touchesCancelled(_ touches: Set<UITouch>, with event: UIEvent?) {
+        super.touchesCancelled(touches, with: event)
+        self.bubbleView.scaleUp()
     }
 }
