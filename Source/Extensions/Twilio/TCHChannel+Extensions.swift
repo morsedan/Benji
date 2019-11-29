@@ -34,6 +34,30 @@ extension TCHChannel: Diffable, ManageableCellItem {
         })
     }
 
+    func getNonMeMembers() -> Future<[TCHMember]> {
+
+        let promise = Promise<[TCHMember]>()
+        if let members = self.members {
+            members.members { (result, paginator) in
+                if let error = result.error {
+                    promise.reject(with: error)
+                } else if let pag = paginator {
+                    var nonMeMembers: [TCHMember] = []
+                    pag.items().forEach { (member) in
+                        if member.identity != User.current()?.objectId {
+                            nonMeMembers.append(member)
+                        }
+                    }
+                    promise.resolve(with: nonMeMembers)
+                } else {
+                    promise.reject(with: ClientError.generic)
+                }
+            }
+        }
+
+        return promise
+    }
+
     func getAuthorAsUser() -> Future<User> {
         let promise = Promise<TCHChannel>(value: self)
         return promise.getAuthorAsUser()

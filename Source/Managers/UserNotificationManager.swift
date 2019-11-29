@@ -8,13 +8,16 @@
 
 import Foundation
 import UserNotifications
+import TMROLocalization
+import TwilioChatClient
 
 class UserNotificationManager: NSObject {
 
 
     //Temp Twilio Funciton to register for push notifications
     private var serverURL = "https://topaz-booby-6355.twil.io"
-    private var path = "/register-binding"
+    private var registerPath = "/register-binding"
+    private var sendPath = "/send-notification"
 
     static let shared = UserNotificationManager()
 
@@ -110,7 +113,7 @@ class UserNotificationManager: NSObject {
         // Create a POST request to the /register endpoint with device variables to register for Twilio Notifications
         let session = URLSession.shared
 
-        let url = URL(string: self.serverURL + self.path)
+        let url = URL(string: self.serverURL + self.registerPath)
         var request = URLRequest(url: url!, cachePolicy: .useProtocolCachePolicy, timeoutInterval: 30.0)
         request.httpMethod = "POST"
 
@@ -132,7 +135,62 @@ class UserNotificationManager: NSObject {
                     let responseObject = try JSONSerialization.jsonObject(with: responseData, options: [])
                     if let responseDictionary = responseObject as? [String: Any] {
                         if let message = responseDictionary["message"] as? String {
-                            print("Message: \(message)")
+                            print("Message: \(message), for: \(identity)")
+                        }
+                    }
+                } catch let error {
+                    print("Error: \(error)")
+                }
+            }
+        })
+
+        task.resume()
+    }
+
+    func notify(channel: TCHChannel, body: String) {
+        channel.getNonMeMembers()
+            .observe { (result) in
+                switch result {
+                case .success(let members):
+                    let identities = members.map { (member) -> String in
+                        return String(optional: member.identity)
+                    }
+
+                    self.notify(identities: identities, body: body)
+                case .failure(_):
+                    break
+                }
+        }
+    }
+
+    private func notify(identities: [String], body: String) {
+
+        guard let first = identities.first else { return }
+
+        let session = URLSession.shared
+
+        let url = URL(string: self.serverURL + self.sendPath)
+        var request = URLRequest(url: url!, cachePolicy: .useProtocolCachePolicy, timeoutInterval: 30.0)
+        request.httpMethod = "POST"
+
+        request.addValue("application/json", forHTTPHeaderField: "Accept")
+        request.addValue("application/json", forHTTPHeaderField: "Content-Type")
+
+        let params = ["identity": first,
+                      "body" : body]
+
+        let jsonData = try! JSONSerialization.data(withJSONObject: params, options: [])
+        request.httpBody = jsonData
+
+        let task = session.dataTask(with: request, completionHandler: {
+            (responseData, response, error) in
+
+            if let responseData = responseData {
+                do {
+                    let responseObject = try JSONSerialization.jsonObject(with: responseData, options: [])
+                    if let responseDictionary = responseObject as? [String: Any] {
+                        if let message = responseDictionary["message"] as? String {
+                            print("Message: \(message), for: \(first)")
                         }
                     }
                 } catch let error {
