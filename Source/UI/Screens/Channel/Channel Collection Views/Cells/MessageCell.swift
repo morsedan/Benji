@@ -96,12 +96,11 @@ class MessageCell: UICollectionViewCell {
     private func handleIsConsumed(for message: Messageable) {
 
         if message.isFromCurrentUser {
-            self.bubbleView.set(backgroundColor: .lightPurple)
 
             if message.isConsumed {
-                //show read
+                self.bubbleView.set(backgroundColor: .background3)
             } else {
-                //show delivered
+                self.bubbleView.set(backgroundColor: .lightPurple)
             }
 
         } else {

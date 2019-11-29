@@ -12,7 +12,7 @@ class ChannelHeaderDateLabel: Label {
 
     func set(date: Date) {
         let attributed = AttributedString(self.getString(for: date),
-                                          fontType: .xSmall,
+                                          fontType: .xxSmallSemiBold,
                                           color: .white)
         self.set(attributed: attributed,
                  alignment: .left,
