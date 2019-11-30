@@ -158,7 +158,8 @@ class ChannelViewController: FullScreenViewController {
 
         var mutableAttributes = attributes
         mutableAttributes["updateId"] = UUID().uuidString
-        
+        mutableAttributes["context"] = context.rawValue
+
         let systemMessage = SystemMessage(avatar: current,
                                           context: context,
                                           text: message,
@@ -167,6 +168,7 @@ class ChannelViewController: FullScreenViewController {
                                           authorId: objectId,
                                           messageIndex: nil,
                                           status: .sent,
+                                          id: String(),
                                           attributes: mutableAttributes)
 
         self.collectionViewManager.append(item: systemMessage) { [unowned self] in

@@ -81,9 +81,12 @@ UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFl
     }
 
     private func updateConsumers(with consumer: Avatar, for message: Messageable) {
-
         //create system message copy of current message
-
+        let messageCopy = SystemMessage(with: message)
+        messageCopy.udpateConsumers(with: consumer)
+        //update the current message with the copy
+        self.updateItem(with: messageCopy, completion: nil)
+        //call update on the actual message and update on callback
         message.udpateConsumers(with: consumer)
     }
 

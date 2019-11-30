@@ -20,13 +20,13 @@ class SystemMessage: Messageable {
     var context: MessageContext
     var isFromCurrentUser: Bool
     var status: MessageStatus
-    var id: String {
-        return String(optional: self.updateId)
-    }
+    var id: String
     var updateId: String? {
         return self.attributes?["updateId"] as? String
     }
-    var hasBeenConsumedBy: [String] = []
+    var hasBeenConsumedBy: [String] {
+        return self.attributes?["consumers"] as? [String] ?? []
+    }
 
     init(avatar: Avatar,
          context: MessageContext,
@@ -36,6 +36,7 @@ class SystemMessage: Messageable {
          authorId: String,
          messageIndex: NSNumber?,
          status: MessageStatus,
+         id: String,
          attributes: [String: Any]?) {
 
         self.avatar = avatar
@@ -46,6 +47,7 @@ class SystemMessage: Messageable {
         self.authorID = authorId
         self.messageIndex = messageIndex
         self.status = status
+        self.id = id
         self.attributes = attributes
     }
 
@@ -53,13 +55,20 @@ class SystemMessage: Messageable {
     convenience init(with message: Messageable) {
 
         self.init(avatar: message.avatar,
-                  context: .casual,
+                  context: message.context,
                   text: message.text,
                   isFromCurrentUser: message.isFromCurrentUser,
                   createdAt: message.createdAt,
                   authorId: message.authorID,
                   messageIndex: message.messageIndex,
                   status: message.status,
+                  id: message.id,
                   attributes: message.attributes)
+    }
+
+    func udpateConsumers(with consumer: Avatar) {
+        guard let identity = consumer.userObjectID else { return }
+        var consumers = self.hasBeenConsumedBy
+        consumers.append(identity)
     }
 }

@@ -45,11 +45,10 @@ class MessageCell: UICollectionViewCell {
         })
 
         self.textView.onTap { (tap) in
-            UIView.animate(withDuration: 1.0, delay: 0, options: [.curveEaseIn, .autoreverse], animations: {
+            UIView.animate(withDuration: Theme.animationDuration, delay: 0, options: [.curveEaseIn, .autoreverse], animations: {
                 self.bubbleView.transform = CGAffineTransform(scaleX: 0.9, y: 0.9)
             }, completion: nil)
 
-            self.selectionFeedback.impactOccurred()
             self.didTapMessage()
         }
     }

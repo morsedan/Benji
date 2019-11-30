@@ -29,6 +29,7 @@ protocol Messageable: class {
     var id: String { get }
     var updateId: String? { get }
     var status: MessageStatus { get }
+    var context: MessageContext { get }
     var isConsumed: Bool { get }
     var hasBeenConsumedBy: [String] { get }
     func udpateConsumers(with consumer: Avatar)
@@ -54,7 +55,6 @@ extension Messageable {
         return self.hasBeenConsumedBy.count > 0 
     }
 
-    func udpateConsumers(with consumer: Avatar) {}
     func appendAttributes(with attributes: [String: Any]) -> Future<Void>  {
         return Promise<Void>()
     }

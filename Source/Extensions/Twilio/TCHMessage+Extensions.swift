@@ -78,6 +78,14 @@ extension TCHMessage: Messageable {
         return .unknown
     }
 
+    var context: MessageContext {
+        if let statusString = self.attributes()?["context"] as? String, let type = MessageContext(rawValue: statusString) {
+            return type
+        }
+
+        return .casual
+    }
+
     var hasBeenConsumedBy: [String] {
         return self.attributes()?["consumers"] as? [String] ?? []
     }
