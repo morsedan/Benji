@@ -15,6 +15,7 @@ class MessageCell: UICollectionViewCell {
     let bubbleView = View()
     let textView = MessageTextView()
     private let selectionFeedback = UIImpactFeedbackGenerator(style: .light)
+    var didTapMessage: () -> Void = {}
 
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -35,7 +36,22 @@ class MessageCell: UICollectionViewCell {
 
         let view = UIView(frame: self.bounds)
         view.set(backgroundColor: .background2)
-        self.backgroundView = view 
+        self.backgroundView = view
+
+        self.textView.gestureRecognizers?.forEach({ (gesture) in
+            if gesture is UITapGestureRecognizer {
+                self.bubbleView.removeGestureRecognizer(gesture)
+            }
+        })
+
+        self.textView.onTap { (tap) in
+            UIView.animate(withDuration: 1.0, delay: 0, options: [.curveEaseIn, .autoreverse], animations: {
+                self.bubbleView.transform = CGAffineTransform(scaleX: 0.9, y: 0.9)
+            }, completion: nil)
+
+            self.selectionFeedback.impactOccurred()
+            self.didTapMessage()
+        }
     }
 
     override func apply(_ layoutAttributes: UICollectionViewLayoutAttributes) {

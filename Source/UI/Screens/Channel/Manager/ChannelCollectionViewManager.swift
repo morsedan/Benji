@@ -72,19 +72,19 @@ UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFl
 
         cell.configure(with: message)
         cell.textView.delegate = self
-
-        cell.textView.gestureRecognizers?.forEach({ (gesture) in
-            if gesture is UITapGestureRecognizer {
-                cell.bubbleView.removeGestureRecognizer(gesture)
-            }
-        })
-
-        cell.textView.onTap { (tap) in
-            guard let current = User.current() else { return }
-            message.udpateConsumers(with: current)
+        cell.didTapMessage = { [weak self] in
+            guard let `self` = self, let current = User.current() else { return }
+            self.updateConsumers(with: current, for: message)
         }
 
         return cell
+    }
+
+    private func updateConsumers(with consumer: Avatar, for message: Messageable) {
+
+        //create system message copy of current message
+
+        message.udpateConsumers(with: consumer)
     }
 
     func collectionView(_ collectionView: UICollectionView,

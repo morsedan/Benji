@@ -48,4 +48,18 @@ class SystemMessage: Messageable {
         self.status = status
         self.attributes = attributes
     }
+
+    // Used for updating the read state of messages
+    convenience init(with message: Messageable) {
+
+        self.init(avatar: message.avatar,
+                  context: .casual,
+                  text: message.text,
+                  isFromCurrentUser: message.isFromCurrentUser,
+                  createdAt: message.createdAt,
+                  authorId: message.authorID,
+                  messageIndex: message.messageIndex,
+                  status: message.status,
+                  attributes: message.attributes)
+    }
 }
