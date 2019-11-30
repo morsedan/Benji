@@ -200,6 +200,6 @@ extension ChannelViewController: TCHChannelDelegate {
     }
 
     func chatClient(_ client: TwilioChatClient, channel: TCHChannel, message: TCHMessage, updated: TCHMessageUpdate) {
-        self.collectionViewManager.update(item: message)
+        self.collectionViewManager.updateItem(with: message)
     }
 }

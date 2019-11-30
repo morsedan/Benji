@@ -25,7 +25,9 @@ protocol ChannelDataSource: AnyObject {
              keepOffset: Bool,
              completion: CompletionOptional)
     func append(item: Messageable, completion: CompletionOptional)
-    func update(item: Messageable, in section: Int)
+    func updateItem(with updatedItem: Messageable,
+                    replaceTypingIndicator: Bool,
+                    completion: CompletionOptional)
     func delete(item: Messageable, in section: Int)
 }
 
@@ -103,46 +105,11 @@ extension ChannelDataSource {
         }
     }
 
-    func updateLastItem(with item: Messageable,
-                        replaceTypingIndicator: Bool = false,
-                        completion: CompletionOptional) {
+    func updateItem(with updatedItem: Messageable,
+                    replaceTypingIndicator: Bool = false,
+                    completion: CompletionOptional = nil) {
 
-        if self.sections.count == 0 {
-            self.append(item: item, completion: completion)
-            return
-        }
-
-        guard let sectionValue = self.sections.last else { return }
-        let section = self.sections.count - 1
-        var indexPath: IndexPath?
-
-        for (index, existingItem) in sectionValue.items.enumerated() {
-            if existingItem.updateId == item.updateId {
-                indexPath = IndexPath(item: index, section: section)
-                break
-            }
-        }
-
-        if indexPath == nil {
-            if replaceTypingIndicator {
-                indexPath = IndexPath(item: sectionValue.items.count - 1, section: section)
-            } else {
-                self.append(item: item, completion: completion)
-            }
-        }
-
-        guard let ip = indexPath else { return }
-
-        self.collectionView.performBatchUpdates(modifyItems: {
-            self.sections[section].items[ip.row] = item
-        }, updates: {
-            self.collectionView.reloadItems(at: [ip])
-        }) { (completed) in
-            completion?()
-        }
-    }
-
-    func updateItem(with updateId: String, for updatedItem: Messageable) {
+        guard let updateId = updatedItem.updateId else { return }
 
         var indexPath: IndexPath?
 
@@ -155,30 +122,26 @@ extension ChannelDataSource {
             }
         }
 
-        guard let ip = indexPath else { return }
-
-        self.sections[ip.section].items[ip.row] = updatedItem
-        self.collectionView.reloadItems(at: [ip])
-    }
-
-    func update(item: Messageable, in section: Int = 0) {
-        guard let sectionValue = self.sections[safe: section] else { return }
-
-        var indexPath: IndexPath?
-
-        for (index, existingItem) in sectionValue.items.enumerated() {
-            if existingItem == item {
-                indexPath = IndexPath(item: index, section: section)
-                break
+        if indexPath == nil {
+            if replaceTypingIndicator, let lastSection = self.sections.last {
+                 let section = self.sections.count - 1
+                indexPath = IndexPath(item: lastSection.items.count - 1, section: section)
+            } else {
+                self.append(item: updatedItem, completion: completion)
             }
         }
 
         guard let ip = indexPath else { return }
 
-        self.sections[section].items[ip.row] = item
-        self.collectionView.reloadItems(at: [ip])
+        self.collectionView.performBatchUpdates(modifyItems: {
+            self.sections[ip.section].items[ip.row] = updatedItem
+        }, updates: {
+            self.collectionView.reloadItems(at: [ip])
+        }) { (completed) in
+            completion?()
+        }
     }
-
+    
     func delete(item: Messageable, in section: Int = 0) {
 
         guard let sectionValue = self.sections[safe: section] else { return }

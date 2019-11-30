@@ -33,7 +33,7 @@ extension TCHMessage: Avatar {
 extension TCHMessage: Messageable {
 
     var updateId: String? {
-        return self.attributes()?["udpateId"] as? String
+        return self.attributes()?["updateId"] as? String
     }
 
     var id: String {
