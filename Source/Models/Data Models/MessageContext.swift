@@ -16,6 +16,19 @@ enum MessageContext: String, CaseIterable {
     case convenient
     case casual
 
+    var title: Localized {
+        switch self {
+        case .emergency:
+            return "🚨 Emergency 🚨"
+        case .timeSensitive:
+            return " ⏰ Time-Sensitive ⏰"
+        case .convenient:
+            return " 🙋🏻‍♂️ When you have time 🙋🏻‍♂️"
+        case .casual:
+            return "Casual"
+        }
+    }
+
     var text: Localized {
         switch self {
         case .emergency:

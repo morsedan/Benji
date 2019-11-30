@@ -145,7 +145,7 @@ class UserNotificationManager: NSObject {
         task.resume()
     }
 
-    func notify(channel: TCHChannel, body: String) {
+    func notify(channel: TCHChannel, message: Messageable) {
         channel.getNonMeMembers()
             .observe { (result) in
                 switch result {
@@ -154,14 +154,14 @@ class UserNotificationManager: NSObject {
                         return String(optional: member.identity)
                     }
 
-                    self.notify(identities: identities, body: body)
+                    self.notify(identities: identities, message: message)
                 case .failure(_):
                     break
                 }
         }
     }
 
-    private func notify(identities: [String], body: String) {
+    private func notify(identities: [String], message: Messageable) {
 
         let session = URLSession.shared
 
@@ -173,8 +173,8 @@ class UserNotificationManager: NSObject {
         request.addValue("application/json", forHTTPHeaderField: "Content-Type")
 
         let params: [String: Any] = ["identity": identities,
-                                     "body" : body,
-                                     "title": "URGENT MESSAGE 🚨"]
+                                     "body" : localized(message.text),
+                                     "title": message.context.title]
 
         let jsonData = try! JSONSerialization.data(withJSONObject: params, options: [])
         request.httpBody = jsonData

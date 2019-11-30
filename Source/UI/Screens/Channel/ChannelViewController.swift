@@ -179,10 +179,10 @@ class ChannelViewController: FullScreenViewController {
                                           attributes: mutableAttributes)
             .observe { (result) in
                 switch result {
-                case .success:
+                case .success(let sentMessage):
                     promise.resolve(with: ())
                     if context == .emergency {
-                        UserNotificationManager.shared.notify(channel: channel, body: message)
+                        UserNotificationManager.shared.notify(channel: channel, message: sentMessage)
                     }
                 case .failure(let error):
                     promise.reject(with: error)

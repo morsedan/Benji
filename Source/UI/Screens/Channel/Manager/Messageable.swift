@@ -32,6 +32,7 @@ protocol Messageable: class {
     var context: MessageContext { get }
     var isConsumed: Bool { get }
     var hasBeenConsumedBy: [String] { get }
+    var color: Color { get }
     func udpateConsumers(with consumer: Avatar)
     func appendAttributes(with attributes: [String: Any]) -> Future<Void>
 }
@@ -57,5 +58,25 @@ extension Messageable {
 
     func appendAttributes(with attributes: [String: Any]) -> Future<Void>  {
         return Promise<Void>()
+    }
+
+    var color: Color {
+        if self.isFromCurrentUser {
+            if self.isConsumed {
+                return .background3
+            } else {
+                if self.context == .casual {
+                    return .lightPurple
+                } else {
+                    return self.context.color
+                }
+            }
+        } else {
+            if self.isConsumed {
+                return .purple
+            } else {
+                return .clear
+            }
+        }
     }
 }

@@ -64,10 +64,10 @@ class ChannelManager: NSObject {
     @discardableResult
     func sendMessage(to channel: TCHChannel,
                      with body: String,
-                     attributes: [String : Any] = [:]) -> Future<Void> {
+                     attributes: [String : Any] = [:]) -> Future<Messageable> {
 
         let message = body.extraWhitespaceRemoved()
-        let promise = Promise<Void>()
+        let promise = Promise<Messageable>()
 
         guard !message.isEmpty,
             channel.status == .joined,
@@ -79,8 +79,8 @@ class ChannelManager: NSObject {
         let messageOptions = TCHMessageOptions().withBody(body)
         messageOptions.withAttributes(attributes, completion: nil)
         messages.sendMessage(with: messageOptions) { (result, message) in
-            if result.isSuccessful() {
-                promise.resolve(with: ())
+            if result.isSuccessful(), let msg = message {
+                promise.resolve(with: msg)
             } else if let error = result.error {
                 promise.reject(with: error)
             } else {

@@ -110,23 +110,12 @@ class MessageCell: UICollectionViewCell {
 
     private func handleIsConsumed(for message: Messageable) {
 
-        if message.isFromCurrentUser {
+        self.bubbleView.set(backgroundColor: message.color)
 
-            if message.isConsumed {
-                self.bubbleView.set(backgroundColor: .background3)
-            } else {
-                self.bubbleView.set(backgroundColor: .lightPurple)
-            }
-
-        } else {
-
-            if message.isConsumed {
-                self.bubbleView.set(backgroundColor: .purple)
-            } else {
-                self.bubbleView.set(backgroundColor: .clear)
-                self.bubbleView.layer.borderColor = Color.purple.color.cgColor
-                self.bubbleView.layer.borderWidth = 2
-            }
+        if !message.isFromCurrentUser, !message.isConsumed {
+            self.bubbleView.set(backgroundColor: message.context.color)
+            self.bubbleView.layer.borderColor = Color.purple.color.cgColor
+            self.bubbleView.layer.borderWidth = 2
         }
     }
 
