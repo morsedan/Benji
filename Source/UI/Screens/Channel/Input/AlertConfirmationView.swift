@@ -13,6 +13,7 @@ class AlertConfirmationView: View {
     private let confirmButton = Button()
     private let cancelButton = Button()
     private var blurView = UIVisualEffectView(effect: nil)
+    private let selectionFeedback = UIImpactFeedbackGenerator(style: .light)
 
     var keyboardAppearance: UIKeyboardAppearance? {
         didSet {
@@ -36,11 +37,13 @@ class AlertConfirmationView: View {
         self.addSubview(self.confirmButton)
         self.confirmButton.set(style: .rounded(color: .red, text: "Confirm"))
         self.confirmButton.onTap { [unowned self] (tap) in
+            self.selectionFeedback.impactOccurred()
             self.didConfirm?(true, nil)
         }
         self.cancelButton.set(style: .rounded(color: .blue, text: "Cancel"))
         self.addSubview(self.cancelButton)
         self.cancelButton.onTap { [unowned self] (tap) in
+            self.selectionFeedback.impactOccurred()
             self.didConfirm?(false, nil)
         }
     }

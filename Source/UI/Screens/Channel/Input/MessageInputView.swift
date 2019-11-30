@@ -23,6 +23,7 @@ class MessageInputView: View {
     private lazy var alertConfirmation = AlertConfirmationView()
 
     private var alertAnimator: UIViewPropertyAnimator?
+    private let selectionFeedback = UIImpactFeedbackGenerator(style: .rigid)
 
     override func initializeSubviews() {
         super.initializeSubviews()
@@ -108,6 +109,7 @@ class MessageInputView: View {
     private func startAlertAnimation() {
         self.alertAnimator?.stopAnimation(true)
         self.alertAnimator?.pausesOnCompletion = true
+        self.selectionFeedback.impactOccurred()
 
         self.alertAnimator = UIViewPropertyAnimator(duration: 1.0,
                                                     curve: .linear,
@@ -119,7 +121,7 @@ class MessageInputView: View {
 
         UIView.animate(withDuration: 1.0, delay: 0, options: [.curveEaseIn, .repeat, .autoreverse], animations: {
             self.alertProgressView.alpha = 0
-
+            self.selectionFeedback.impactOccurred()
         }, completion: nil)
     }
     
