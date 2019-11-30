@@ -117,7 +117,7 @@ extension ChannelDataSource {
         var indexPath: IndexPath?
 
         for (index, existingItem) in sectionValue.items.enumerated() {
-            if localized(existingItem.text) == localized(item.text) {
+            if existingItem.updateId == item.updateId {
                 indexPath = IndexPath(item: index, section: section)
                 break
             }
@@ -140,6 +140,25 @@ extension ChannelDataSource {
         }) { (completed) in
             completion?()
         }
+    }
+
+    func updateItem(with updateId: String, for updatedItem: Messageable) {
+
+        var indexPath: IndexPath?
+
+        for (sectionIndex, section) in self.sections.enumerated() {
+            for (itemIndex, item) in section.items.enumerated() {
+                if item.updateId == updateId {
+                    indexPath = IndexPath(item: itemIndex, section: sectionIndex)
+                    break
+                }
+            }
+        }
+
+        guard let ip = indexPath else { return }
+
+        self.sections[ip.section].items[ip.row] = updatedItem
+        self.collectionView.reloadItems(at: [ip])
     }
 
     func update(item: Messageable, in section: Int = 0) {
