@@ -60,12 +60,8 @@ class UserNotificationManager: NSObject {
 
         self.center.getNotificationSettings() { (settings) in
             switch settings.authorizationStatus {
-            case .authorized, .provisional:
-                runMain {
-                    application.registerForRemoteNotifications()  // To update our token
-                }
-            case .notDetermined:
-                let options: UNAuthorizationOptions = [.alert,.sound,.badge, .provisional]
+            case .authorized, .provisional, .notDetermined:
+                let options: UNAuthorizationOptions = [.alert, .sound, .badge, .provisional]
 
                 self.register(with: options, application: application, completion: { (success, error) in
 
@@ -92,6 +88,8 @@ class UserNotificationManager: NSObject {
             }
             completion(granted, error)
         }
+
+        self.center.delegate = self
     }
 
     func clearNotificationCenter() {
