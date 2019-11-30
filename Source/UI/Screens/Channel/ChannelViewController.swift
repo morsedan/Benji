@@ -156,6 +156,9 @@ class ChannelViewController: FullScreenViewController {
             let current = User.current(),
             let objectId = current.objectId else { return promise }
 
+        var mutableAttributes = attributes
+        mutableAttributes["updateId"] = UUID().uuidString
+        
         let systemMessage = SystemMessage(avatar: current,
                                           context: context,
                                           text: message,
@@ -164,14 +167,14 @@ class ChannelViewController: FullScreenViewController {
                                           authorId: objectId,
                                           messageIndex: nil,
                                           status: .sent,
-                                          id: objectId)
+                                          attributes: mutableAttributes)
 
         self.collectionViewManager.append(item: systemMessage) { [unowned self] in
             self.collectionView.scrollToBottom()
         }
         ChannelManager.shared.sendMessage(to: channel,
                                           with: message,
-                                          attributes: attributes)
+                                          attributes: mutableAttributes)
             .observe { (result) in
                 switch result {
                 case .success:

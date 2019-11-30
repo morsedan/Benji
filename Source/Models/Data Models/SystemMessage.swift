@@ -20,7 +20,12 @@ class SystemMessage: Messageable {
     var context: MessageContext
     var isFromCurrentUser: Bool
     var status: MessageStatus
-    var id: String
+    var id: String {
+        return String(optional: self.updateId)
+    }
+    var updateId: String? {
+        return self.attributes?["updateId"] as? String
+    }
     var hasBeenConsumedBy: [String] = []
 
     init(avatar: Avatar,
@@ -31,7 +36,7 @@ class SystemMessage: Messageable {
          authorId: String,
          messageIndex: NSNumber?,
          status: MessageStatus,
-         id: String) {
+         attributes: [String: Any]?) {
 
         self.avatar = avatar
         self.context = context
@@ -41,6 +46,6 @@ class SystemMessage: Messageable {
         self.authorID = authorId
         self.messageIndex = messageIndex
         self.status = status
-        self.id = id 
+        self.attributes = attributes
     }
 }

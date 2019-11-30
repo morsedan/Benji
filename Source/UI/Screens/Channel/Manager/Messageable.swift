@@ -27,6 +27,7 @@ protocol Messageable: class {
     var attributes: [String: Any]? { get }
     var avatar: Avatar { get }
     var id: String { get }
+    var updateId: String? { get }
     var status: MessageStatus { get }
     var isConsumed: Bool { get }
     var hasBeenConsumedBy: [String] { get }
@@ -40,10 +41,14 @@ func ==(lhs: Messageable, rhs: Messageable) -> Bool {
         && lhs.text == rhs.text
         && lhs.authorID == rhs.authorID
         && lhs.messageIndex == rhs.messageIndex
-        && lhs.id == rhs.id 
+        && lhs.id == rhs.id
 }
 
 extension Messageable {
+
+    var updateId: String? {
+        return nil 
+    }
 
     var isConsumed: Bool {
         return self.hasBeenConsumedBy.count > 0 
