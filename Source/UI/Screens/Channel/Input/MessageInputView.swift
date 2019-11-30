@@ -18,7 +18,7 @@ class MessageInputView: View {
 
     let textView = InputTextView()
     let overlayButton = UIButton()
-    private let alertProgressView = UIView()
+    private let alertProgressView = AlertProgressView()
     let blurView = UIVisualEffectView(effect: UIBlurEffect(style: .systemChromeMaterialDark))
     private lazy var alertConfirmation = AlertConfirmationView()
 
@@ -65,13 +65,13 @@ class MessageInputView: View {
         self.alertConfirmation.didConfirm = { [unowned self] success, error in
             if success {
                 self.onAlertMessageConfirmed?()
-            } else {
-                self.resetInputViews()
             }
 
+            self.alertProgressView.width = 0
+            self.alertProgressView.set(backgroundColor: .red)
+            self.alertProgressView.alpha = 1 
+            self.resetInputViews()
             self.alertProgressView.layer.removeAllAnimations()
-            self.alertAnimator?.stopAnimation(true)
-            self.alertAnimator = nil
         }
     }
 
@@ -114,9 +114,7 @@ class MessageInputView: View {
                                                     animations: { [unowned self] in
             self.alertProgressView.size = CGSize(width: self.width, height: self.height)
         })
-        self.alertAnimator?.addCompletion({ [unowned self] (position) in
-            self.showAlertConfirmation()
-        })
+
         self.alertAnimator?.startAnimation()
 
         UIView.animate(withDuration: 1.0, delay: 0, options: [.curveEaseIn, .repeat, .autoreverse], animations: {
@@ -126,15 +124,21 @@ class MessageInputView: View {
     }
     
     private func endAlertAnimation() {
-        guard self.alertProgressView.width < self.width else { return }
-        self.alertAnimator?.stopAnimation(true)
-        
-        self.alertAnimator = UIViewPropertyAnimator(duration: 0.5,
-                                                    curve: .linear,
-                                                    animations: { [unowned self] in
-                                                        self.alertProgressView.size = CGSize(width: 0, height: self.height)
-        })
-        self.alertAnimator?.startAnimation()
+        if let fractionComplete = self.alertAnimator?.fractionComplete,
+            fractionComplete == CGFloat(0.0) {
+
+            self.alertAnimator?.stopAnimation(true)
+            self.showAlertConfirmation()
+        } else {
+            self.alertAnimator?.stopAnimation(true)
+
+            self.alertAnimator = UIViewPropertyAnimator(duration: 0.5,
+                                                        curve: .linear,
+                                                        animations: { [unowned self] in
+                                                            self.alertProgressView.size = CGSize(width: 0, height: self.height)
+            })
+            self.alertAnimator?.startAnimation()
+        }
     }
 
     func reset() {
@@ -202,3 +206,5 @@ extension MessageInputView: UIGestureRecognizerDelegate {
         return true
     }
 }
+
+private class AlertProgressView: View {}

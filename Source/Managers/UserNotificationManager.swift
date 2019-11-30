@@ -165,8 +165,6 @@ class UserNotificationManager: NSObject {
 
     private func notify(identities: [String], body: String) {
 
-        guard let first = identities.first else { return }
-
         let session = URLSession.shared
 
         let url = URL(string: self.serverURL + self.sendPath)
@@ -176,8 +174,9 @@ class UserNotificationManager: NSObject {
         request.addValue("application/json", forHTTPHeaderField: "Accept")
         request.addValue("application/json", forHTTPHeaderField: "Content-Type")
 
-        let params = ["identity": first,
-                      "body" : body]
+        let params: [String: Any] = ["identity": identities,
+                                     "body" : body,
+                                     "title": "URGENT MESSAGE 🚨"]
 
         let jsonData = try! JSONSerialization.data(withJSONObject: params, options: [])
         request.httpBody = jsonData
@@ -190,7 +189,7 @@ class UserNotificationManager: NSObject {
                     let responseObject = try JSONSerialization.jsonObject(with: responseData, options: [])
                     if let responseDictionary = responseObject as? [String: Any] {
                         if let message = responseDictionary["message"] as? String {
-                            print("Message: \(message), for: \(first)")
+                            print("Message: \(message), for: \(identities)")
                         }
                     }
                 } catch let error {
