@@ -49,7 +49,7 @@ class MessageSupplier {
             messagesObject.getBefore(index, withCount: batchAmount) { (result, messages) in
                 if let msgs = messages {
                     self.allMessages.insert(contentsOf: msgs, at: 0)
-                    let sections = self.mapMessagesToSections(for: msgs, in: .channel(channel))
+                    let sections = self.mapMessagesToSections(for: self.allMessages, in: .channel(channel))
                     promise.resolve(with: sections)
                 } else {
                     promise.reject(with: ClientError.generic)
