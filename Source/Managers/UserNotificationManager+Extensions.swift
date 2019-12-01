@@ -20,12 +20,7 @@ extension UserNotificationManager: UNUserNotificationCenterDelegate {
                                 willPresent notification: UNNotification,
                                 withCompletionHandler completionHandler: @escaping (UNNotificationPresentationOptions) -> Void) {
 
-//        guard Defaults[.notificationsEnabled] else {
-//            completionHandler([])
-//            return
-//        }
-
-        completionHandler([.alert])
+        completionHandler([.alert, .sound, .badge])
     }
 
     func userNotificationCenter(_ center: UNUserNotificationCenter, openSettingsFor notification: UNNotification?) {

@@ -13,7 +13,7 @@ class TimeHumpView: View {
 
     let sliderView = View()
     var amplitude: CGFloat {
-        return self.height * 0.5
+        return (self.height - 8) * 0.5
     }
 
     let percentage = MutableProperty<CGFloat>(0)
@@ -45,7 +45,7 @@ class TimeHumpView: View {
 
         let path = UIBezierPath()
         path.lineWidth = 2
-        let startingPoint = CGPoint(x: 0, y: self.height - 2)
+        let startingPoint = CGPoint(x: 2, y: self.height - 4)
         path.move(to: startingPoint)
 
         for percentage in stride(from: 0, through: 1.0, by: 0.01) {
@@ -67,10 +67,10 @@ class TimeHumpView: View {
 
     func getPoint(normalizedX: CGFloat) -> CGPoint {
 
-        let angle = normalizedX * twoPi
+        let angle = (normalizedX - 4) * twoPi
 
-        let x = self.width * normalizedX
-        let y = ((self.height + 2) * 0.5) - (sin(angle - halfPi) * self.amplitude)
+        let x = (self.width - 4) * normalizedX
+        let y = ((self.height - 4) * 0.5) - (sin(angle - halfPi) * self.amplitude)
 
         return CGPoint(x: x, y: y)
     }
