@@ -16,6 +16,8 @@ class RoutineInputViewController: ViewController {
 
     var selectedDate = Date()
 
+    private let selectionFeedback = UIImpactFeedbackGenerator(style: .light)
+
     override func loadView() {
         self.view = self.content
     }
@@ -31,6 +33,7 @@ class RoutineInputViewController: ViewController {
             if let date = calendar.date(from: components) {
                 self.selectedDate = date
                 self.content.set(date: date)
+                self.selectionFeedback.impactOccurred()
             }
         }
 
@@ -90,5 +93,6 @@ class RoutineInputViewController: ViewController {
         totalSeconds += CGFloat(components.hour ?? 0) * 3600
 
         self.content.timeHump.percentage.value = totalSeconds/86400
+        self.selectionFeedback.impactOccurred()
     }
 }
