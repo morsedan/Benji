@@ -39,7 +39,7 @@ class ChannelsCollectionViewManager: CollectionViewManager<ChannelCell> {
     func loadFilteredChannels() {
         guard let filter = self.channelFilter else { return }
 
-        let allChannels = self.channelCache
+        let allChannels = !filter.text.isEmpty ? self.channelCache : ChannelManager.shared.subscribedChannels
         var filteredChannels: [DisplayableChannel] = []
 
         switch filter.scope {

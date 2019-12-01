@@ -29,7 +29,7 @@ enum ChannelType: ManageableCellItem {
         case .system(let channel):
             return channel.uniqueName
         case .channel(let channel):
-            return String(optional: channel.uniqueName)
+            return String(optional: channel.friendlyName)
         }
     }
 
