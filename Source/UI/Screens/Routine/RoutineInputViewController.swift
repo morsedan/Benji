@@ -29,7 +29,9 @@ class RoutineInputViewController: ViewController {
             var components = DateComponents()
             components.second = Int(percentage * 86400)
 
-           // self.content.timePicker.setDate(calendar.date(from: components)!, animated: false)
+            if let date = calendar.date(from: components) {
+                self.content.set(date: date)
+            }
         }
 
         RoutineManager.shared.getRoutineNotifications().observe { (result) in
@@ -38,14 +40,10 @@ class RoutineInputViewController: ViewController {
                 case .success(let notificationRequests):
                     guard let trigger = notificationRequests.first?.trigger
                         as? UNCalendarNotificationTrigger else {
+                            self.setDefault()
                         return
                     }
-                    let components = trigger.dateComponents
-                    var totalSeconds = CGFloat(components.second ?? 0)
-                    totalSeconds += CGFloat(components.minute ?? 0) * 60
-                    totalSeconds += CGFloat(components.hour ?? 0) * 3600
-
-                    self.content.timeHump.percentage.value = totalSeconds/86400
+                    self.updateHump(with: trigger.dateComponents)
                 case .failure(_):
                     break
                 }
@@ -64,5 +62,21 @@ class RoutineInputViewController: ViewController {
 //        self.content.plusButton.onTap { [unowned self] (tap) in
 //            
 //        }
+    }
+
+    private func setDefault() {
+        var dateComponents = Calendar.current.dateComponents([.hour, .minute],
+                                                             from: Date.today)
+        dateComponents.hour = 7
+        dateComponents.minute = 0
+        self.updateHump(with: dateComponents)
+    }
+
+    private func updateHump(with components: DateComponents) {
+        var totalSeconds = CGFloat(components.second ?? 0)
+        totalSeconds += CGFloat(components.minute ?? 0) * 60
+        totalSeconds += CGFloat(components.hour ?? 0) * 3600
+
+        self.content.timeHump.percentage.value = totalSeconds/86400
     }
 }

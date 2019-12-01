@@ -31,7 +31,7 @@ class ProfileDetailCell: UICollectionViewCell {
         self.contentView.addSubview(self.imageView)
         self.imageView.isHidden = true
         self.imageView.tintColor = Color.lightPurple.color
-        self.lineView.set(backgroundColor: .background2)
+        self.lineView.set(backgroundColor: .background3)
     }
 
     func configure(with detail: ProfileDisplayable) {

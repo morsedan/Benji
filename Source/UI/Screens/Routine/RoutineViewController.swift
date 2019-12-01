@@ -16,6 +16,7 @@ class RoutineViewController: NavigationBarViewController {
     override func initializeViews() {
         super.initializeViews()
 
+        self.view.set(backgroundColor: .background2)
         self.addChild(viewController: self.routineInputVC)
     }
 

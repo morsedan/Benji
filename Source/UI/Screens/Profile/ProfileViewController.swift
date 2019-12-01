@@ -46,7 +46,7 @@ class ProfileViewController: ViewController {
     override func initializeViews() {
         super.initializeViews()
 
-        self.view.set(backgroundColor: .background1)
+        self.view.set(backgroundColor: .background2)
 
         self.collectionView.delegate = self.manager
         self.collectionView.dataSource = self.manager
