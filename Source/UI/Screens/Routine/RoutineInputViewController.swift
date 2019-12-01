@@ -10,12 +10,11 @@ import Foundation
 import UserNotifications
 
 class RoutineInputViewController: ViewController {
+
     static let height: CGFloat = 500
     let content = RoutineInputContentView()
 
-    var selectedDate: Date {
-        return Date()
-    }
+    var selectedDate = Date()
 
     override func loadView() {
         self.view = self.content
@@ -30,6 +29,7 @@ class RoutineInputViewController: ViewController {
             components.second = Int(percentage * 86400)
 
             if let date = calendar.date(from: components) {
+                self.selectedDate = date
                 self.content.set(date: date)
             }
         }
@@ -41,7 +41,7 @@ class RoutineInputViewController: ViewController {
                     guard let trigger = notificationRequests.first?.trigger
                         as? UNCalendarNotificationTrigger else {
                             self.setDefault()
-                        return
+                            return
                     }
                     self.updateHump(with: trigger.dateComponents)
                 case .failure(_):
@@ -55,15 +55,26 @@ class RoutineInputViewController: ViewController {
             RoutineManager.shared.scheduleNotification(for: routine)
         }
 
-//        self.content.minusButton.onTap { [unowned self] (tap) in
-//
-//        }
-//
-//        self.content.plusButton.onTap { [unowned self] (tap) in
-//            
-//        }
-    }
+        self.content.minusButton.onTap { [unowned self] (tap) in
 
+            if let newDate = self.selectedDate.subtract(component: .minute, amount: 15) {
+                let dateComponents = Calendar.current.dateComponents([.year, .month, .day,
+                                                                      .hour, .minute, .second],
+                                                                     from: newDate)
+                self.updateHump(with: dateComponents)
+            }
+        }
+
+        self.content.plusButton.onTap { [unowned self] (tap) in
+            if let newDate = self.selectedDate.add(component: .minute, amount: 15) {
+                let dateComponents = Calendar.current.dateComponents([.year, .month, .day,
+                                                                      .hour, .minute, .second],
+                                                                     from: newDate)
+                self.updateHump(with: dateComponents)
+            }
+        }
+    }
+    
     private func setDefault() {
         var dateComponents = Calendar.current.dateComponents([.hour, .minute],
                                                              from: Date.today)
@@ -73,6 +84,7 @@ class RoutineInputViewController: ViewController {
     }
 
     private func updateHump(with components: DateComponents) {
+
         var totalSeconds = CGFloat(components.second ?? 0)
         totalSeconds += CGFloat(components.minute ?? 0) * 60
         totalSeconds += CGFloat(components.hour ?? 0) * 3600

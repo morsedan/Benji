@@ -12,7 +12,7 @@ class RoutineTimeLabel: Display1Label {
 
     func set(date: Date) {
         let formatter = DateFormatter()
-        formatter.dateFormat = "HH:mm"
+        formatter.dateFormat = "h:mm"
         let string = formatter.string(from: date)
         self.set(text: string,
                  color: .lightPurple,

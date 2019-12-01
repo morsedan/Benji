@@ -59,6 +59,10 @@ extension Date {
         return Date.add(component: component, amount: amount, toDate: self)
     }
 
+    func subtract(component: Calendar.Component, amount: Int) -> Date? {
+        return Date.subtract(component: component, amount: amount, toDate: self)
+    }
+
     static var jsonFriendly: DateFormatter {
         let formatter = DateFormatter()
         formatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ssZZZ"
