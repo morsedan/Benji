@@ -50,11 +50,6 @@ class RoutineInputViewController: ViewController {
             }
         }
 
-        self.content.setRoutineButton.onTap { [unowned self] (tap) in
-            let routine = Routine(messageCheckTime: self.selectedDate)
-            RoutineManager.shared.scheduleNotification(for: routine)
-        }
-
         self.content.minusButton.onTap { [unowned self] (tap) in
 
             if let newDate = self.selectedDate.subtract(component: .minute, amount: 15) {
@@ -72,6 +67,11 @@ class RoutineInputViewController: ViewController {
                                                                      from: newDate)
                 self.updateHump(with: dateComponents)
             }
+        }
+
+        self.content.setRoutineButton.onTap { [unowned self] (tap) in
+            let routine = Routine(messageCheckTime: self.selectedDate)
+            RoutineManager.shared.scheduleNotification(for: routine)
         }
     }
     
