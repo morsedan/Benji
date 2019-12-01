@@ -10,8 +10,8 @@ import Foundation
 
 class RoutineInputContentView: View {
 
-    let timeLabel = Display1Label()
-    let timeOfDayLabel = XSmallLabel()
+    let timeLabel = RoutineTimeLabel()
+    let timeOfDayLabel = RoutineTimeOfDayLabel()
     let everyDayLabel = XXSmallSemiBoldLabel()
 
     let plusButton = Button()
@@ -23,15 +23,7 @@ class RoutineInputContentView: View {
         super.initializeSubviews()
         
         self.addSubview(self.timeLabel)
-        self.timeLabel.set(text: "6:00",
-                           color: .lightPurple,
-                           alignment: .center)
         self.addSubview(self.timeOfDayLabel)
-        self.timeOfDayLabel.set(text: "PM",
-                                color: .lightPurple,
-                                alignment: .left,
-                                stringCasing: .uppercase)
-
         self.addSubview(self.everyDayLabel)
         self.everyDayLabel.set(text: "EVERY DAY",
                                color: .white,
@@ -85,5 +77,10 @@ class RoutineInputContentView: View {
         self.everyDayLabel.setSize(withWidth: 200)
         self.everyDayLabel.centerOnX()
         self.everyDayLabel.top = self.timeLabel.bottom + 10
+    }
+
+    func set(date: Date) {
+        self.timeLabel.set(date: date)
+        self.timeOfDayLabel.set(date: date)
     }
 }
