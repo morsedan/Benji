@@ -25,7 +25,7 @@ class RoutineViewController: NavigationBarViewController {
     }
 
     override func getDescription() -> Localized {
-        return "Get a daily reminder to follow up and and connect with people."
+        return "Get a daily reminder to follow up and connect with others."
     }
 
     override func viewDidLayoutSubviews() {

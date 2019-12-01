@@ -57,6 +57,10 @@ class ProfileViewController: ViewController {
 
         self.view.addSubview(self.topBar)
         self.topBar.set(backgroundColor: .background3)
+    }
+
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
 
         self.createItems()
     }
@@ -76,14 +80,57 @@ class ProfileViewController: ViewController {
                                      hasDetail: false)
         items.append(handleItem)
 
+        RoutineManager.shared.getRoutineNotifications().observe { (result) in
+            runMain {
+                switch result {
+                case .success(let notificationRequests):
+                    guard let trigger = notificationRequests.first?.trigger
+                        as? UNCalendarNotificationTrigger else {
+                            self.setNoRoutineItem(for: items)
+                            return
+                    }
+
+                    self.setRoutineItem(with: trigger.dateComponents, for: items)
+                case .failure(_):
+                    break
+                }
+            }
+        }
+    }
+
+    private func setNoRoutineItem(for items: [ProfileDisplayable]) {
+        var items = items
         let routineItem = ProfileItem(avatar: nil,
                                       title: "Routine",
-                                      text: "7:00 PM",
+                                      text: "NO ROUTINE SET",
                                       hasDetail: true)
         items.append(routineItem)
 
         self.manager.items = items
         self.collectionView.reloadData()
+    }
+
+    private func setRoutineItem(with components: DateComponents, for items: [ProfileDisplayable]) {
+        var items = items
+
+        let calendar = Calendar.current
+
+        if let date = calendar.date(from: components) {
+            let formatter = DateFormatter()
+            formatter.dateFormat = "h:mm a"
+            let string = formatter.string(from: date)
+            let routineItem = ProfileItem(avatar: nil,
+                                          title: "Routine",
+                                          text: string.uppercased(),
+                                          hasDetail: true)
+            items.append(routineItem)
+
+            self.manager.items = items
+            self.collectionView.reloadData()
+
+        } else {
+            self.setNoRoutineItem(for: items)
+        }
     }
 
     override func viewDidLayoutSubviews() {

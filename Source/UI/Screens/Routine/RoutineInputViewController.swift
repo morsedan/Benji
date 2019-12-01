@@ -81,7 +81,7 @@ class RoutineInputViewController: ViewController {
     private func setDefault() {
         var dateComponents = Calendar.current.dateComponents([.hour, .minute],
                                                              from: Date.today)
-        dateComponents.hour = 7
+        dateComponents.hour = 19
         dateComponents.minute = 0
         self.updateHump(with: dateComponents)
     }

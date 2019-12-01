@@ -43,9 +43,9 @@ class RoutineManager {
         content.body = "It's time to check your messages!"
         content.sound = UNNotificationSound.default
 
-        let trigger = UNTimeIntervalNotificationTrigger(timeInterval: 5, repeats: false)
-//        let trigger = UNCalendarNotificationTrigger(dateMatching: routine.timeComponents,
-//                                                    repeats: true)
+//        let trigger = UNTimeIntervalNotificationTrigger(timeInterval: 5, repeats: false)
+        let trigger = UNCalendarNotificationTrigger(dateMatching: routine.timeComponents,
+                                                    repeats: true)
 
         let request = UNNotificationRequest(identifier: identifier,
                                             content: content,
