@@ -52,29 +52,29 @@ class FeedSupplier {
 
     func getUnreadMessages(with promise: Promise<[FeedType]>) {
 
-        for (index, channel) in ChannelManager.shared.subscribedChannels.enumerated() {
-            switch channel.channelType {
-            case .channel(let tchChannel):
-                tchChannel.getUnconsumedCount()
-//                    .observe { (result) in
-//                        switch result {
-//                        case .success(let count):
-//                            if count > 0 {
-//                                self.items.append(.unreadMessages(tchChannel, count))
-//                            }
-//                        case .failure:
-//                            break
-//                        }
+//        for (index, channel) in ChannelManager.shared.subscribedChannels.enumerated() {
+//            switch channel.channelType {
+//            case .channel(let tchChannel):
+//                tchChannel.getUnconsumedCount()
+////                    .observe { (result) in
+////                        switch result {
+////                        case .success(let count):
+////                            if count > 0 {
+////                                self.items.append(.unreadMessages(tchChannel, count))
+////                            }
+////                        case .failure:
+////                            break
+////                        }
+////
+////                        if
+//                }
+//            default:
+//                break
+//            }
+//        }
 //
-//                        if
-                }
-            default:
-                break
-            }
-        }
-
-        ChannelManager.shared.subscribedChannels.forEach { (channel) in
-
-        }
+//        ChannelManager.shared.subscribedChannels.forEach { (channel) in
+//
+//        }
     }
 }

@@ -74,7 +74,7 @@ extension TCHChannel: Diffable, ManageableCellItem {
         return text
     }
 
-    func getUnconsumedCount() {
+    func getUnconsumedCount() -> Int {
 
 //        // To avoid read/write issues inherent to multithreading, create a serial dispatch queue
 //        // so that mutations to the notification setting var happening synchronously
@@ -102,26 +102,45 @@ extension TCHChannel: Diffable, ManageableCellItem {
 //                return strongResult
 //            }
 //        }
-//        if let messagesObject = self.messages {
-//            self.getMessagesCount { (result, count) in
-//                if result.isSuccessful() {
-//                    messagesObject.getLastWithCount(count) { (messageResult, messages) in
-//                        var totalUnread: Int = 0
-//                        if messageResult.isSuccessful(), let msgs = messages {
-//                            msgs.forEach { (message) in
-//                                if !message.isFromCurrentUser, !message.isConsumed {
-//                                    totalUnread += 1
-//                                }
-//                            }
-//                        } else {
-//                        }
-//                    }
-//                } else {
-//                }
-//            }
-//        } else {
-//
-//        }
+
+        let dispatchQueue = DispatchQueue(label: "getMessages\(self.sid!)")
+        let dispatchGroup  = DispatchGroup()
+        var totalUnread: Int = 0
+
+        if let messagesObject = self.messages {
+            self.getMessagesCount { (result, count) in
+                dispatchQueue.async {
+                    dispatchGroup.enter()
+                    if result.isSuccessful() {
+                        messagesObject.getLastWithCount(count) { (messageResult, messages) in
+
+                            if messageResult.isSuccessful(), let msgs = messages {
+                                msgs.forEach { (message) in
+                                    if !message.isFromCurrentUser, !message.isConsumed {
+                                        totalUnread += 1
+                                    }
+                                }
+                            }
+
+                            dispatchGroup.leave()
+                        }
+                    }
+                    dispatchGroup.wait(timeout: .distantFuture)
+                }
+            }
+        }
+
+        while true {
+            var result: Int?
+
+            dispatchQueue.sync {
+                result = totalUnread
+            }
+
+            if let strongResult = result {
+                return strongResult
+            }
+        }
     }
 }
 

@@ -18,10 +18,11 @@ protocol ChannelDetailBarDelegate: class {
 
 class ChannelDetailBar: View {
 
-    private let blurView = UIVisualEffectView(effect: UIBlurEffect(style: .dark))
+    private let blurView = UIVisualEffectView(effect: UIBlurEffect(style: .prominent))
     private(set) var titleLabel = RegularBoldLabel()
     private let titleButton = Button()
     private let selectionFeedback = UIImpactFeedbackGenerator(style: .light)
+    private(set) var stackedAvatarView = StackedAvatarView()
     let channelType: ChannelType
 
     unowned let delegate: ChannelDetailBarDelegate
@@ -42,6 +43,8 @@ class ChannelDetailBar: View {
         self.addSubview(self.blurView)
         self.addSubview(self.titleLabel)
         self.addSubview(self.titleButton)
+        self.addSubview(self.stackedAvatarView)
+        
         self.titleButton.onTap { [unowned self] (tap) in
             self.delegate.channelDetailBarDidTapMenu(self)
         }
@@ -51,6 +54,17 @@ class ChannelDetailBar: View {
             self.setLayout(for: channel)
         case .channel(let channel):
             self.setLayout(for: channel)
+            channel.getMembersAsUsers().observe { (result) in
+                switch result {
+                case .success(let users):
+                    let notMeUsers = users.filter { (user) -> Bool in
+                        return user.objectId != User.current()?.objectId
+                    }
+                    self.stackedAvatarView.set(items: notMeUsers)
+                case .failure(let error):
+                    print(error)
+                }
+            }
         }
 
         self.subscribeToUpdates()
@@ -69,6 +83,10 @@ class ChannelDetailBar: View {
         self.titleButton.size = CGSize(width: self.titleLabel.width, height: self.height)
         self.titleButton.left = self.titleLabel.left
         self.titleButton.centerOnY()
+
+        self.stackedAvatarView.height = 40
+        self.stackedAvatarView.right = self.width - 16
+        self.stackedAvatarView.centerOnY()
     }
 
     func setLayout(for system: SystemChannel) {
