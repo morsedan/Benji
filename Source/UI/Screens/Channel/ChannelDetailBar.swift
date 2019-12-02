@@ -18,7 +18,7 @@ protocol ChannelDetailBarDelegate: class {
 
 class ChannelDetailBar: View {
 
-    private let blurView = UIVisualEffectView(effect: UIBlurEffect(style: .prominent))
+    private let blurView = UIVisualEffectView(effect: UIBlurEffect(style: .dark))
     private(set) var titleLabel = RegularBoldLabel()
     private let titleButton = Button()
     private let selectionFeedback = UIImpactFeedbackGenerator(style: .light)

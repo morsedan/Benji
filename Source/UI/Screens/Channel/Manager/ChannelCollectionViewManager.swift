@@ -22,6 +22,7 @@ UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFl
     var collectionView: ChannelCollectionView
     var didSelectURL: ((URL) -> Void)?
     var willDisplayCell: ((Messageable, IndexPath) -> Void)?
+    private let selectionFeedback = UIImpactFeedbackGenerator(style: .heavy)
 
     init(with collectionView: ChannelCollectionView) {
         self.collectionView = collectionView
@@ -75,6 +76,7 @@ UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFl
         cell.didTapMessage = { [weak self] in
             guard let `self` = self, let current = User.current() else { return }
             self.updateConsumers(with: current, for: message)
+            self.selectionFeedback.impactOccurred()
         }
 
         return cell

@@ -14,7 +14,6 @@ class MessageCell: UICollectionViewCell {
     let avatarView = AvatarView()
     let bubbleView = View()
     let textView = MessageTextView()
-    private let selectionFeedback = UIImpactFeedbackGenerator(style: .light)
     var didTapMessage: () -> Void = {}
 
     override init(frame: CGRect) {
@@ -45,10 +44,6 @@ class MessageCell: UICollectionViewCell {
         })
 
         self.textView.onTap { (tap) in
-            UIView.animate(withDuration: Theme.animationDuration, delay: 0, options: [.curveEaseIn, .autoreverse], animations: {
-                self.bubbleView.transform = CGAffineTransform(scaleX: 0.9, y: 0.9)
-            }, completion: nil)
-
             self.didTapMessage()
         }
     }
@@ -116,6 +111,7 @@ class MessageCell: UICollectionViewCell {
             self.bubbleView.set(backgroundColor: message.context.color)
             self.bubbleView.layer.borderColor = Color.purple.color.cgColor
             self.bubbleView.layer.borderWidth = 2
+            self.bubbleView.set(backgroundColor: .clear)
         }
     }
 
@@ -126,21 +122,5 @@ class MessageCell: UICollectionViewCell {
         self.bubbleView.frame = attributes.attributes.bubbleViewFrame
         self.bubbleView.layer.maskedCorners = attributes.attributes.maskedCorners
         self.bubbleView.roundCorners()
-    }
-
-    override open func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
-        super.touchesBegan(touches, with: event)
-        self.selectionFeedback.impactOccurred()
-        self.bubbleView.scaleDown()
-    }
-
-    override open func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {
-        super.touchesEnded(touches, with: event)
-        self.bubbleView.scaleUp()
-    }
-
-    override open func touchesCancelled(_ touches: Set<UITouch>, with event: UIEvent?) {
-        super.touchesCancelled(touches, with: event)
-        self.bubbleView.scaleUp()
     }
 }

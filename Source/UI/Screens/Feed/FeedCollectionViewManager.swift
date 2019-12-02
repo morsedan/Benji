@@ -31,6 +31,8 @@ class FeedCollectionViewManager: NSObject {
     private func initialize() {
         self.collectionView.countOfVisibleCards = 3
         self.collectionView.backgroundCardsTopMargin = 10
+        self.collectionView.alphaValueOpaque = 1.0
+        self.collectionView.alphaValueTransparent = 1.0
     }
 
     func set(items: [FeedType]) {
