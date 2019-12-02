@@ -73,6 +73,56 @@ extension TCHChannel: Diffable, ManageableCellItem {
             let text = attributes[ChannelKey.description.rawValue] as? String else { return String() }
         return text
     }
+
+    func getUnconsumedCount() {
+
+//        // To avoid read/write issues inherent to multithreading, create a serial dispatch queue
+//        // so that mutations to the notification setting var happening synchronously
+//        let notificationSettingsQueue = DispatchQueue(label: "notificationsQueue")
+//
+//        var notificationSettings: UNNotificationSettings?
+//
+//        self.center.getNotificationSettings { (settings) in
+//            notificationSettingsQueue.sync {
+//                notificationSettings = settings
+//            }
+//        }
+//
+//        // Wait in a loop until we get a result back from the notification center
+//        while true {
+//            var result: UNNotificationSettings?
+//
+//            // IMPORTANT: Perform reads synchrononously to ensure the value if fully written before a read.
+//            // If the sync is not performed, this function may never return.
+//            notificationSettingsQueue.sync {
+//                result = notificationSettings
+//            }
+//
+//            if let strongResult = result {
+//                return strongResult
+//            }
+//        }
+//        if let messagesObject = self.messages {
+//            self.getMessagesCount { (result, count) in
+//                if result.isSuccessful() {
+//                    messagesObject.getLastWithCount(count) { (messageResult, messages) in
+//                        var totalUnread: Int = 0
+//                        if messageResult.isSuccessful(), let msgs = messages {
+//                            msgs.forEach { (message) in
+//                                if !message.isFromCurrentUser, !message.isConsumed {
+//                                    totalUnread += 1
+//                                }
+//                            }
+//                        } else {
+//                        }
+//                    }
+//                } else {
+//                }
+//            }
+//        } else {
+//
+//        }
+    }
 }
 
 extension Future where Value == TCHChannel {

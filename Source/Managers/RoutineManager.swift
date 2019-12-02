@@ -39,7 +39,7 @@ class RoutineManager {
         notificationCenter.removeAllPendingNotificationRequests()
 
         let content = UNMutableNotificationContent()
-        content.title = "New Messages"
+        content.title = "Messages Unlocked"
         content.body = "It's time to check your messages!"
         content.sound = UNNotificationSound.default
 

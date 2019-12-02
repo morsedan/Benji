@@ -13,7 +13,7 @@ enum FeedType {
 
     case intro
     case system(SystemMessage)
-    case message(TCHMessage)
+    case unreadMessages(TCHChannel, Int)
     case channelInvite(TCHChannel)
     case inviteAsk
 
@@ -25,8 +25,8 @@ enum FeedType {
         switch self {
         case .system(let message):
             return message.id
-        case .message(let message):
-            return message.sid!
+        case .unreadMessages(let channel, _):
+            return channel.sid!
         case .channelInvite(let channel):
             return channel.sid!
         case .inviteAsk:
