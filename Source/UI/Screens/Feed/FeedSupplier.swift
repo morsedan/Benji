@@ -70,7 +70,15 @@ class FeedSupplier {
         var disposable: Disposable?
         disposable = allProducers
             .on(value: { (channelItems) in
-                self.items.append(contentsOf: channelItems)
+                let items = channelItems.filter { (feedType) -> Bool in
+                    switch feedType {
+                    case .unreadMessages(_,let count):
+                        return count > 0
+                    default:
+                        return false
+                    }
+                }
+                self.items.append(contentsOf: items)
             })
             .on(failed: { (error) in
                 disposable?.dispose()

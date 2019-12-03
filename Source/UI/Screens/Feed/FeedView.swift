@@ -33,9 +33,9 @@ class FeedView: View {
             self.textView.set(localizedText: "This is an intro card.")
         case .system(let systemMessage):
             self.textView.set(localizedText: systemMessage.text)
-            //self.avatarView.set(avatar: systemMessage.avatar)
+            self.avatarView.set(avatar: systemMessage.avatar)
         case .unreadMessages(let channel, let count):
-            break
+            self.textView.set(localizedText: "You have \(count) unread messages in \(String(optional:channel.friendlyName))")
         case .channelInvite(_):
             self.textView.set(localizedText: "You have a new channel to join")
             self.avatarView.set(avatar: Lorem.avatar())
