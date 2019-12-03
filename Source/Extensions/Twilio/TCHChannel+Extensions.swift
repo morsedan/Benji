@@ -10,6 +10,7 @@ import Foundation
 import TwilioChatClient
 import Parse
 import TMROFutures
+import ReactiveSwift
 
 extension TCHChannel: Diffable, ManageableCellItem {
 
@@ -74,43 +75,14 @@ extension TCHChannel: Diffable, ManageableCellItem {
         return text
     }
 
-    func getUnconsumedCount() -> Int {
-
-//        // To avoid read/write issues inherent to multithreading, create a serial dispatch queue
-//        // so that mutations to the notification setting var happening synchronously
-//        let notificationSettingsQueue = DispatchQueue(label: "notificationsQueue")
-//
-//        var notificationSettings: UNNotificationSettings?
-//
-//        self.center.getNotificationSettings { (settings) in
-//            notificationSettingsQueue.sync {
-//                notificationSettings = settings
-//            }
-//        }
-//
-//        // Wait in a loop until we get a result back from the notification center
-//        while true {
-//            var result: UNNotificationSettings?
-//
-//            // IMPORTANT: Perform reads synchrononously to ensure the value if fully written before a read.
-//            // If the sync is not performed, this function may never return.
-//            notificationSettingsQueue.sync {
-//                result = notificationSettings
-//            }
-//
-//            if let strongResult = result {
-//                return strongResult
-//            }
-//        }
-
-        let dispatchQueue = DispatchQueue(label: "getMessages\(self.sid!)")
-        let dispatchGroup  = DispatchGroup()
+    func getUnconsumedCount() -> SignalProducer<FeedType, Error> {
         var totalUnread: Int = 0
 
-        if let messagesObject = self.messages {
-            self.getMessagesCount { (result, count) in
-                dispatchQueue.async {
-                    dispatchGroup.enter()
+        return SignalProducer { [weak self] observer, lifetime in
+            guard let `self` = self else { return }
+
+            if let messagesObject = self.messages {
+                self.getMessagesCount { (result, count) in
                     if result.isSuccessful() {
                         messagesObject.getLastWithCount(count) { (messageResult, messages) in
 
@@ -120,25 +92,18 @@ extension TCHChannel: Diffable, ManageableCellItem {
                                         totalUnread += 1
                                     }
                                 }
+                                observer.send(value: .unreadMessages(self, totalUnread))
+                                observer.sendCompleted()
+                            } else {
+                                observer.send(error: ClientError.generic)
                             }
-
-                            dispatchGroup.leave()
                         }
+                    } else {
+                        observer.send(error: ClientError.generic)
                     }
-                    dispatchGroup.wait(timeout: .distantFuture)
                 }
-            }
-        }
-
-        while true {
-            var result: Int?
-
-            dispatchQueue.sync {
-                result = totalUnread
-            }
-
-            if let strongResult = result {
-                return strongResult
+            } else {
+                observer.send(error: ClientError.generic)
             }
         }
     }
@@ -249,7 +214,7 @@ extension TCHChannel: ImageDisplayable {
     var image: UIImage? {
         return nil 
     }
-
+    
     var userObjectID: String? {
         return self.createdBy
     }

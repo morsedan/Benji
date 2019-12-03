@@ -8,6 +8,7 @@
 
 import Foundation
 import TMROFutures
+import ReactiveSwift
 
 class FeedSupplier {
 
@@ -47,34 +48,35 @@ class FeedSupplier {
             }
         }
 
-        promise.resolve(with: self.items)
+        self.getUnreadMessages(with: promise)
     }
 
     func getUnreadMessages(with promise: Promise<[FeedType]>) {
 
-//        for (index, channel) in ChannelManager.shared.subscribedChannels.enumerated() {
-//            switch channel.channelType {
-//            case .channel(let tchChannel):
-//                tchChannel.getUnconsumedCount()
-////                    .observe { (result) in
-////                        switch result {
-////                        case .success(let count):
-////                            if count > 0 {
-////                                self.items.append(.unreadMessages(tchChannel, count))
-////                            }
-////                        case .failure:
-////                            break
-////                        }
-////
-////                        if
-//                }
-//            default:
-//                break
-//            }
-//        }
-//
-//        ChannelManager.shared.subscribedChannels.forEach { (channel) in
-//
-//        }
+        var allProducers: SignalProducer<[FeedType], Error>
+
+        var channelProducers: [SignalProducer<FeedType, Error>] = []
+        for channel in ChannelManager.shared.subscribedChannels {
+            switch channel.channelType {
+            case .channel(let tchChannel):
+                channelProducers.append(tchChannel.getUnconsumedCount())
+            default:
+                break
+            }
+        }
+
+        allProducers = SignalProducer.combineLatest(channelProducers)
+
+        var disposable: Disposable?
+        disposable = allProducers
+            .on(value: { (channelItems) in
+                self.items.append(contentsOf: channelItems)
+            })
+            .on(failed: { (error) in
+                disposable?.dispose()
+            }, completed: {
+                disposable?.dispose()
+                promise.resolve(with: self.items)
+            }).start()
     }
 }
