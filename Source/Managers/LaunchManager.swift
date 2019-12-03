@@ -85,12 +85,9 @@ class LaunchManager {
                 // Set up Twilio Chat client
                 UserNotificationManager.shared.silentRegister(withApplication: UIApplication.shared)
                 self.finishedInitialFetch = true
-
-                //Remove
-                self.status = .success(object: nil, token: tkn)
                 
                 //Initialize Branch
-                //self.initializeBranch(with: options)
+                self.initializeBranch(with: options, token: tkn)
             } else {
                 self.status = .failed(error: ClientError.apiError(detail: error.debugDescription))
             }
