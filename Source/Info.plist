@@ -21,7 +21,7 @@
 		<dict>
 			<key>CFBundleURLSchemes</key>
 			<array>
-				<string>benji://</string>
+				<string>benji</string>
 			</array>
 		</dict>
 	</array>
