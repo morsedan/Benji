@@ -23,9 +23,26 @@ class FeedSupplier {
     private func getIntroCard() -> Future<[FeedType]> {
         let promise = Promise<[FeedType]>()
 
-        let feedItem = FeedType.intro
-        self.items.append(feedItem)
-        self.getInvitationRecommendations(with: promise)
+        RoutineManager.shared.getRoutineNotifications()
+            .observe { (result) in
+                switch result {
+                case .success(let routines):
+                    if let trigger = routines.first?.trigger as? UNCalendarNotificationTrigger,
+                        let date = trigger.nextTriggerDate(),
+                        date >= Date(), date < Date().endOfDay {
+                        
+                        self.items.append(FeedType.intro(showTimer: false))
+                        self.getInvitationRecommendations(with: promise)
+                    } else {
+                        self.items.append(FeedType.intro(showTimer: true))
+                        promise.resolve(with: self.items)
+                    }
+                case .failure(_):
+                    self.items.append(FeedType.intro(showTimer: false))
+                    //show routine ask
+                }
+        }
+
         return promise
     }
 

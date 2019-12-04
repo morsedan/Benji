@@ -85,6 +85,24 @@ extension Date {
         return day
     }
 
+    var hour: Int {
+        let calendar = Calendar.current
+        let day = calendar.component(.hour, from: self)
+        return day
+    }
+
+    var minutes: Int {
+        let calendar = Calendar.current
+        let day = calendar.component(.minute, from: self)
+        return day
+    }
+
+    var seconds: Int {
+        let calendar = Calendar.current
+        let day = calendar.component(.second, from: self)
+        return day
+    }
+
     var month: String {
         let calendar = Calendar.current
         let month = calendar.component(.month, from: self)

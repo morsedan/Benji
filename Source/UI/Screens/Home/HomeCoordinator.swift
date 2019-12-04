@@ -84,8 +84,8 @@ extension HomeCoordinator: FeedViewControllerDelegate {
             break
         case .system(_):
             break
-        case .unreadMessages(_, _):
-            break
+        case .unreadMessages(let channel, _):
+            self.startChannelFlow(for: .channel(channel))
         case .channelInvite(_):
             break
         case .inviteAsk:
