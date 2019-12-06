@@ -26,6 +26,8 @@ class FeedViewController: ViewController {
     }()
 
     unowned let delegate: FeedViewControllerDelegate
+    var items: [FeedType] = []
+    private let countDownView = CountDownView()
 
     init(with delegate: FeedViewControllerDelegate) {
         self.delegate = delegate
@@ -36,12 +38,11 @@ class FeedViewController: ViewController {
         fatalError("init(coder:) has not been implemented")
     }
 
-    override func loadView() {
-        self.view = self.collectionView
-    }
-
     override func initializeViews() {
         super.initializeViews()
+
+        self.view.addSubview(self.countDownView)
+        self.view.addSubview(self.collectionView)
 
         self.collectionView.dataSource = self.manager
         self.collectionView.delegate = self.manager
@@ -49,10 +50,29 @@ class FeedViewController: ViewController {
         self.subscribeToUpdates()
     }
 
+    override func viewDidLayoutSubviews() {
+        super.viewDidLayoutSubviews()
+
+        self.countDownView.size = CGSize(width: 200, height: 60)
+        self.countDownView.centerY = self.view.halfHeight * 0.8
+        self.countDownView.centerOnX()
+
+        self.collectionView.bounds = self.view.bounds
+    }
+
+    override func viewDidLoad() {
+        super.viewDidLoad()
+
+        if let date = Date().subtract(component: .hour, amount: 1) {
+            self.countDownView.startTimer(with: date)
+        }
+    }
+
     func animateIn(completion: @escaping CompletionHandler) {
         let animator = UIViewPropertyAnimator(duration: Theme.animationDuration,
                                               curve: .easeInOut) {
                                                 self.view.alpha = 1
+                                                self.view.layoutNow()
         }
         animator.addCompletion { (position) in
             if position == .end {

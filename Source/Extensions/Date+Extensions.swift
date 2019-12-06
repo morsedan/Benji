@@ -91,13 +91,13 @@ extension Date {
         return day
     }
 
-    var minutes: Int {
+    var minute: Int {
         let calendar = Calendar.current
         let day = calendar.component(.minute, from: self)
         return day
     }
 
-    var seconds: Int {
+    var second: Int {
         let calendar = Calendar.current
         let day = calendar.component(.second, from: self)
         return day

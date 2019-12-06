@@ -124,6 +124,7 @@
 		D653F6B023588F8E00A03EEE /* RoutineViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D653F6AF23588F8E00A03EEE /* RoutineViewController.swift */; };
 		D657175C2378C78500F8F96C /* MessageCellAttributesConfigurer.swift in Sources */ = {isa = PBXBuildFile; fileRef = D657175B2378C78500F8F96C /* MessageCellAttributesConfigurer.swift */; };
 		D657175E2378CEBA00F8F96C /* ChannelCollectionViewManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = D657175D2378CEBA00F8F96C /* ChannelCollectionViewManager.swift */; };
+		D6579536239A141900A01338 /* CountDownView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6579535239A141900A01338 /* CountDownView.swift */; };
 		D65B0CCE2344AE390041A176 /* ChannelsViewController+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = D65B0CCD2344AE390041A176 /* ChannelsViewController+Extensions.swift */; };
 		D65B0CE5234928620041A176 /* ProfileCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = D65B0CE4234928620041A176 /* ProfileCoordinator.swift */; };
 		D65B0CE7234929440041A176 /* NewChannelCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = D65B0CE6234929440041A176 /* NewChannelCoordinator.swift */; };
@@ -390,6 +391,7 @@
 		D653F6AF23588F8E00A03EEE /* RoutineViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoutineViewController.swift; sourceTree = "<group>"; };
 		D657175B2378C78500F8F96C /* MessageCellAttributesConfigurer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageCellAttributesConfigurer.swift; sourceTree = "<group>"; };
 		D657175D2378CEBA00F8F96C /* ChannelCollectionViewManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChannelCollectionViewManager.swift; sourceTree = "<group>"; };
+		D6579535239A141900A01338 /* CountDownView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CountDownView.swift; sourceTree = "<group>"; };
 		D65B0CCD2344AE390041A176 /* ChannelsViewController+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ChannelsViewController+Extensions.swift"; sourceTree = "<group>"; };
 		D65B0CE4234928620041A176 /* ProfileCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileCoordinator.swift; sourceTree = "<group>"; };
 		D65B0CE6234929440041A176 /* NewChannelCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewChannelCoordinator.swift; sourceTree = "<group>"; };
@@ -759,6 +761,7 @@
 				D6815DB822EE1CAC00E71251 /* FeedView.swift */,
 				D62C635322BE9CBB00F4D097 /* FeedViewController.swift */,
 				D67896B522FF86AB0059BA75 /* FeedViewController+Extensions.swift */,
+				D6579535239A141900A01338 /* CountDownView.swift */,
 			);
 			path = Feed;
 			sourceTree = "<group>";
@@ -1586,6 +1589,7 @@
 				D66F0FCF22BF060500BA277D /* Deeplinkable.swift in Sources */,
 				D6B2607222E80FE000143CF0 /* XSmallLabel.swift in Sources */,
 				D63844122337C3CD0072227B /* LoadMoreSectionHeader.swift in Sources */,
+				D6579536239A141900A01338 /* CountDownView.swift in Sources */,
 				D6A301AA23808252006655E0 /* ChannelCollectionViewManager+Menu.swift in Sources */,
 				D68540CF235FDE35006F666C /* SuggestionCollectionViewController.swift in Sources */,
 				D642737F22C9A7EC0088256B /* ContactsManager.swift in Sources */,

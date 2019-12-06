@@ -34,9 +34,7 @@ extension FeedViewController {
             .observe { (result) in
                 switch result {
                 case .success(let items):
-                    runMain {
-                        self.manager.set(items: items)
-                    }
+                    self.items = items
                 case .failure(let error):
                     print(error)
                 }

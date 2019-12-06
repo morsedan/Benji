@@ -20,7 +20,7 @@ class MediumLabel: Label {
                                           fontType: .medium,
                                           color: color)
         self.set(attributed: attributed,
-                 alignment: .left,
+                 alignment: alignment,
                  lineBreakMode: lineBreakMode,
                  stringCasing: .unchanged)
     }
