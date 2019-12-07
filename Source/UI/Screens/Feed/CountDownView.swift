@@ -10,65 +10,30 @@ import Foundation
 
 class CountDownView: View {
 
-    private let hoursComponentLabel = ComponentLabel()
-    private let minutesComponentLabel = ComponentLabel()
-    private let secondsComponentLabel = ComponentLabel()
-    private let midSemicolonLabel = Display2Label()
-    private let leftSemicolonLabel = Display2Label()
-    private let rightSemicolonLabel = Display2Label()
+    private let timeLabel = ComponentLabel()
 
     private(set) var timer: Timer?
 
-    private var currentSeconds: TimeInterval? {
-        didSet {
-            self.updateLabels()
-        }
-    }
+    private var referenceDate: Date?
 
     override func initializeSubviews() {
         super.initializeSubviews()
 
-        self.addSubview(self.hoursComponentLabel)
-        self.addSubview(self.minutesComponentLabel)
-        self.addSubview(self.secondsComponentLabel)
-        self.addSubview(self.midSemicolonLabel)
-        self.addSubview(self.rightSemicolonLabel)
-        self.addSubview(self.leftSemicolonLabel)
-
-        self.midSemicolonLabel.set(text: ":", color: .white, alignment: .center)
-        self.rightSemicolonLabel.set(text: ":", color: .white, alignment: .center)
-        self.leftSemicolonLabel.set(text: ":", color: .white, alignment: .center)
+        self.addSubview(self.timeLabel)
     }
 
     override func layoutSubviews() {
         super.layoutSubviews()
 
-        let componentWidth = self.width * 0.33
-        let componentSize = CGSize(width: componentWidth, height: 30)
-
-        self.hoursComponentLabel.size = componentSize
-        self.hoursComponentLabel.centerOnY()
-        self.hoursComponentLabel.left = 0
-
-        self.midSemicolonLabel.sizeToFit()
-        self.midSemicolonLabel.left = self.hoursComponentLabel.right - self.midSemicolonLabel.halfWidth
-        self.midSemicolonLabel.centerOnY()
-
-        self.minutesComponentLabel.size = componentSize
-        self.minutesComponentLabel.centerOnY()
-        self.minutesComponentLabel.left = self.hoursComponentLabel.right
-
-        self.rightSemicolonLabel.sizeToFit()
-        self.rightSemicolonLabel.left = self.minutesComponentLabel.right - self.rightSemicolonLabel.halfWidth
-        self.rightSemicolonLabel.centerOnY()
-
-        self.secondsComponentLabel.size = componentSize
-        self.secondsComponentLabel.centerOnY()
-        self.secondsComponentLabel.left = self.minutesComponentLabel.right
+        self.timeLabel.expandToSuperviewSize()
     }
 
     func startTimer(with date: Date) {
-        self.currentSeconds = date.timeIntervalSinceNow
+        // TODO: Keep this for testing
+        if let test = Date().add(component: .minute, amount: 5) {
+            self.referenceDate = test
+        }
+     //   self.referenceDate = date
         self.timer?.invalidate()
         self.timer = Timer.scheduledTimer(timeInterval: 1.0,
                                           target: self,
@@ -79,26 +44,39 @@ class CountDownView: View {
     }
 
     @objc private func fireTimer() {
-        if var seconds = self.currentSeconds {
-            seconds -= 1
-            self.currentSeconds = seconds
-        }
+        self.updateLabels()
     }
 
     private func updateLabels() {
-        guard let current = self.currentSeconds else { return }
+        guard let refDate = self.referenceDate else { return }
+        let now = Date()
 
-        let date = Date(timeIntervalSinceReferenceDate: current)
+        // If the present time is greater than the referenceDate than the countdown is expired.
+        if now > refDate {
+            self.timer?.invalidate()
+            self.timeLabel.set(value: "00 : 00 : 00")
+        } else {
+            // Otherwise get the differnce in DateComponents
+            let components = self.getTime(from: now, to: refDate)
+            let time = String(format: "%.2d : %.2d : %.2d",
+                              components.hour ?? 00,
+                              components.minute ?? 00,
+                              components.second ?? 00)
 
-        self.hoursComponentLabel.set(value: date.hour)
-        self.minutesComponentLabel.set(value: date.minute)
-        self.secondsComponentLabel.set(value: date.second)
+            self.timeLabel.set(value: time)
+        }
+    }
+
+    private func getTime(from now: Date, to reference: Date) -> DateComponents {
+        return Calendar.current.dateComponents([.day, .hour, .minute, .second],
+                                               from: now,
+                                               to: reference)
     }
 }
 
 private class ComponentLabel: Display2Label {
 
-    func set(value: Int) {
-        self.set(text: String(value), color: .white, alignment: .center)
+    func set(value: String) {
+        self.set(text: value, color: .white, alignment: .center)
     }
 }

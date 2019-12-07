@@ -69,6 +69,12 @@ extension Date {
         return formatter
     }
 
+    static var countDown: DateFormatter {
+        let formatter = DateFormatter()
+        formatter.dateFormat = "HH : mm : ss"
+        return formatter
+    }
+
     static func easy(_ mmddyyyy: String) -> Date {
         return Date.standard.date(from: mmddyyyy) ?? Date()
     }

@@ -57,13 +57,13 @@ class FeedViewController: ViewController {
         self.countDownView.centerY = self.view.halfHeight * 0.8
         self.countDownView.centerOnX()
 
-        self.collectionView.bounds = self.view.bounds
+        self.collectionView.expandToSuperviewSize()
     }
 
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        if let date = Date().subtract(component: .hour, amount: 1) {
+        if let date = Date().add(component: .hour, amount: 1) {
             self.countDownView.startTimer(with: date)
         }
     }
