@@ -11,10 +11,10 @@ import Foundation
 class CountDownView: View {
 
     private let timeLabel = ComponentLabel()
-
     private(set) var timer: Timer?
-
     private var referenceDate: Date?
+
+    var didExpire: () -> Void = {}
 
     override func initializeSubviews() {
         super.initializeSubviews()
@@ -29,11 +29,7 @@ class CountDownView: View {
     }
 
     func startTimer(with date: Date) {
-        // TODO: Keep this for testing
-        if let test = Date().add(component: .minute, amount: 5) {
-            self.referenceDate = test
-        }
-     //   self.referenceDate = date
+        self.referenceDate = date
         self.timer?.invalidate()
         self.timer = Timer.scheduledTimer(timeInterval: 1.0,
                                           target: self,
@@ -55,6 +51,7 @@ class CountDownView: View {
         if now > refDate {
             self.timer?.invalidate()
             self.timeLabel.set(value: "00 : 00 : 00")
+            self.didExpire()
         } else {
             // Otherwise get the differnce in DateComponents
             let components = self.getTime(from: now, to: refDate)
