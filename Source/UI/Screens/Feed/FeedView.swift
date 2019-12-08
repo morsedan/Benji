@@ -15,6 +15,8 @@ class FeedView: View {
 
     lazy var introView = FeedIntroView()
     lazy var routineView = FeedRoutineView()
+    lazy var inviteView = FeedChannelInviteView()
+
     var didSelect: () -> Void = {}
 
     override func initializeSubviews() {
@@ -36,8 +38,12 @@ class FeedView: View {
             break
         case .unreadMessages(let channel, let count):
             break
-        case .channelInvite(_):
-            break
+        case .channelInvite(let channel):
+            self.container.addSubview(self.inviteView)
+            self.inviteView.configure(with: channel)
+            self.inviteView.didSelect = { [unowned self] in
+                self.didSelect()
+            }
         case .inviteAsk:
             break
         case .rountine:
