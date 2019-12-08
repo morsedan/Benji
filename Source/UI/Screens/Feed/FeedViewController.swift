@@ -79,7 +79,7 @@ class FeedViewController: ViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        if let date = Date().add(component: .second, amount: 10) {
+        if let date = Date().add(component: .second, amount: 5) {
             self.countDownView.startTimer(with: date)
         }
     }

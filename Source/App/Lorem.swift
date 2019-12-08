@@ -50,6 +50,15 @@ class Lorem {
         "maiores", "doloribus", "asperiores", "repellat"
     ]
 
+    private static let quotes = [#""When I was a boy and I would see scary things in the news, my mother would say to me, "Look for the helpers. You will always find people who are helping.""#,
+    #""Love isn’t a state of perfect caring. It is an active noun like “struggle."\n\n"To love someone is to strive to accept that person exactly the way he or she is, right here and now.""#,
+    #""If you could only sense how important you are to the lives of those you meet; how important you can be to the people you may never even dream of."\n\n"There is something of yourself that you leave at every meeting with another person.""#,
+    #""It’s not so much what we have in this life that matters. It’s what we do with what we have.""#,
+    #""The world needs a sense of worth, and it will achieve it only by its people feeling that they are worthwhile.""#,
+    #""We live in a world in which we need to share responsibility. It’s easy to say “It’s not my child, not my community, not my world, not my problem."\n\n"Then there are those who see the need and respond. I consider those people my heroes.""#,
+    #""Nobody else can live the life you live."\n"And even though no human being is perfect, we always have the chance to bring what’s unique about us to live in a redeeming way."#
+    ]
+
     private static let nameList = ["Jane", "Bobby", "Ashley", "Benjamin", "Devon", "Kevin", "Leo"]
 
     private static let dateList = [Date.subtract(component: .day, amount: 1, toDate: Date())!,
@@ -125,6 +134,10 @@ class Lorem {
     class func randomString(length: Int = 10) -> String {
         let letters = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789"
         return String((0..<length).map{ _ in letters.randomElement()! })
+    }
+
+    class func quote() -> String {
+        self.quotes.random()
     }
 
     class func channelName() -> String {

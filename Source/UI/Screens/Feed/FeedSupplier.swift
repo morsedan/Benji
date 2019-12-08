@@ -36,7 +36,7 @@ class FeedSupplier {
 
                 case .failure(_):
                     self.items.append(FeedType.intro)
-                    //show routine ask
+                    self.showRoutineAsk(with: promise)
                 }
         }
 

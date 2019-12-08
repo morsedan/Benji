@@ -11,15 +11,14 @@ import Koloda
 
 class FeedView: View {
 
-    let textView = FeedTextView()
-    let avatarView = AvatarView()
+    private let container = View()
+
+    lazy var introView = FeedIntroView()
 
     override func initializeSubviews() {
         super.initializeSubviews()
 
-        self.addSubview(self.textView)
-        self.addSubview(self.avatarView)
-
+        self.addSubview(self.container)
         self.set(backgroundColor: .background2)
         self.roundCorners()
         self.addShadow(withOffset: 20)
@@ -28,34 +27,35 @@ class FeedView: View {
     func configure(with item: FeedType?) {
         guard let feedItem = item else { return }
 
+        self.container.removeAllSubviews()
+
         switch feedItem {
         case .intro:
-            self.textView.set(localizedText: "This is an intro card.")
+            self.container.addSubview(self.introView)
         case .system(let systemMessage):
-            self.textView.set(localizedText: systemMessage.text)
-            self.avatarView.set(avatar: systemMessage.avatar)
+            break
         case .unreadMessages(let channel, let count):
-            self.textView.set(localizedText: "You have \(count) unread messages in \(String(optional:channel.friendlyName))")
+            break
         case .channelInvite(_):
-            self.textView.set(localizedText: "You have a new channel to join")
-            self.avatarView.set(avatar: Lorem.avatar())
+            break
         case .inviteAsk:
-            self.textView.set(localizedText: "You should invite someone")
-            self.avatarView.set(avatar: Lorem.avatar())
+            break
         case .rountine:
             break 
         }
+
+        self.container.layoutNow()
     }
 
     override func layoutSubviews() {
         super.layoutSubviews()
 
-        self.textView.size = CGSize(width: self.proportionalWidth, height: self.height * 0.5)
-        self.textView.top = 40
-        self.textView.centerOnX()
+        let margin = Theme.contentOffset * 2
+        self.container.size = CGSize(width: self.width - margin, height: self.height - margin)
+        self.container.centerOnXAndY()
 
-        self.avatarView.size = CGSize(width: 24, height: 24)
-        self.avatarView.bottom = self.height - 100
-        self.avatarView.centerOnX()
+        if let first = self.container.subviews.first {
+            first.frame = self.container.bounds
+        }
     }
 }

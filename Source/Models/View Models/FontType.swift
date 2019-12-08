@@ -13,6 +13,7 @@ enum FontType {
     case display1
     case display2
     case medium
+    case italic
     case regular
     case regularSemiBold
     case regularBold
@@ -30,6 +31,8 @@ enum FontType {
             return UIFont.systemFont(ofSize: self.size, weight: .black)
         case .medium:
             return UIFont.systemFont(ofSize: self.size, weight: .medium)
+        case .italic:
+            return UIFont.italicSystemFont(ofSize: self.size)
         case .regular:
             return UIFont.systemFont(ofSize: self.size, weight: .regular)
         case .regularSemiBold:
@@ -65,7 +68,7 @@ enum FontType {
             return 40
         case .display2:
             return 28
-        case .medium:
+        case .medium, .italic:
             return 20
         case .regular, .regularBold, .regularSemiBold:
             return 19

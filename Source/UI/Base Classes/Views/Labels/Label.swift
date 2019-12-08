@@ -14,12 +14,17 @@ class Label: UILabel {
              alignment: NSTextAlignment = .left,
              lineCount: Int = 0,
              lineBreakMode: NSLineBreakMode = .byWordWrapping,
-             stringCasing: StringCasing = .unchanged) {
+             stringCasing: StringCasing = .unchanged,
+             additionalAttributes: [NSAttributedString.Key : Any]? = nil) {
 
         let string = stringCasing.format(string: attributed.string.string)
         let newString = NSMutableAttributedString(string: string)
         newString.addAttributes(attributed.attributes, range: NSRange(location: 0,
                                                                       length: newString.length))
+        if let other = additionalAttributes {
+            newString.addAttributes(other, range: NSRange(location: 0,
+                                                          length: newString.length))
+        }
         // NOTE: Some emojis don't display properly with certain attributes applied to them
         for emojiRange in string.getEmojiRanges() {
             newString.removeAttributes(atRange: emojiRange)
