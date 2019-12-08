@@ -42,11 +42,10 @@ extension Future {
         return promise
     }
 
-    func ignoreUserInteractionEventsUntilDone() -> Future<Value> {
-        UIApplication.shared.beginIgnoringInteractionEvents()
-
+    func ignoreUserInteractionEventsUntilDone(for view: UIView) -> Future<Value> {
+        view.isUserInteractionEnabled = false
         self.observe { (result) in
-            UIApplication.shared.endIgnoringInteractionEvents()
+            view.isUserInteractionEnabled = true
         }
 
         return self

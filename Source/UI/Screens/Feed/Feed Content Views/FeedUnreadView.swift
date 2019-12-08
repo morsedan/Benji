@@ -1,5 +1,5 @@
 //
-//  FeedChannelInviteView.swift
+//  FeedUnreadView.swift
 //  Benji
 //
 //  Created by Benji Dodgson on 12/7/19.
@@ -10,7 +10,7 @@ import Foundation
 import TwilioChatClient
 import TMROLocalization
 
-class FeedChannelInviteView: View {
+class FeedUnreadView: View {
 
     let textView = FeedTextView()
     let avatarView = AvatarView()
@@ -24,13 +24,13 @@ class FeedChannelInviteView: View {
         self.addSubview(self.avatarView)
         self.addSubview(self.button)
 
-        self.button.set(style: .normal(color: .blue, text: "JOIN"))
+        self.button.set(style: .normal(color: .blue, text: "OPEN"))
         self.button.onTap { [unowned self] (tap) in
             self.didSelect()
         }
     }
 
-    func configure(with channel: TCHChannel) {
+    func configure(with channel: TCHChannel, count: Int) {
 
         channel.getAuthorAsUser()
             .observe { (result) in
@@ -38,9 +38,10 @@ class FeedChannelInviteView: View {
                 case .success(let user):
                     self.avatarView.set(avatar: user)
                     let text = LocalizedString(id: "",
-                                               arguments: [String(optional: channel.friendlyName), user.fullName],
-                                               default: "You have been invited to join @1, by @2")
+                                               arguments: [String(count), String(optional: channel.friendlyName)],
+                                               default: "You have @1 unread messages in @2")
                     self.textView.set(localizedText: text)
+                    self.layoutNow()
                 case .failure(_):
                     break
                 }
@@ -64,3 +65,4 @@ class FeedChannelInviteView: View {
         self.button.roundCorners()
     }
 }
+

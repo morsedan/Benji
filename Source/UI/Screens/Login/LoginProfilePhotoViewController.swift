@@ -112,7 +112,7 @@ class LoginProfilePhotoViewController: ViewController {
         current.largeImage = largeImageFile
 
         current.saveObject()
-            .ignoreUserInteractionEventsUntilDone()
+            .ignoreUserInteractionEventsUntilDone(for: self.view)
             .observe { (result) in
                 switch result {
                 case .success(_):

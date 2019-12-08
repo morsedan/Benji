@@ -159,7 +159,7 @@ class NewChannelViewController: FullScreenViewController {
             .invite(personUserID: inviteeIdentifier)
             .withProgressBanner("Creating channel")
             .withErrorBanner()
-            .ignoreUserInteractionEventsUntilDone()
+            .ignoreUserInteractionEventsUntilDone(for: self.view)
             .observe { (result) in
                 self.createButton.isLoading = false
                 switch result {

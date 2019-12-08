@@ -16,6 +16,8 @@ class FeedView: View {
     lazy var introView = FeedIntroView()
     lazy var routineView = FeedRoutineView()
     lazy var inviteView = FeedChannelInviteView()
+    lazy var unreadView = FeedUnreadView()
+    lazy var needInvitesView = FeedInviteView()
 
     var didSelect: () -> Void = {}
 
@@ -34,10 +36,14 @@ class FeedView: View {
         switch feedItem {
         case .intro:
             self.container.addSubview(self.introView)
-        case .system(let systemMessage):
+        case .system(_):
             break
         case .unreadMessages(let channel, let count):
-            break
+            self.container.addSubview(self.unreadView)
+            self.unreadView.configure(with: channel, count: count)
+            self.unreadView.didSelect = { [unowned self] in
+                self.didSelect()
+            }
         case .channelInvite(let channel):
             self.container.addSubview(self.inviteView)
             self.inviteView.configure(with: channel)
@@ -45,7 +51,7 @@ class FeedView: View {
                 self.didSelect()
             }
         case .inviteAsk:
-            break
+            self.container.addSubview(self.needInvitesView)
         case .rountine:
             self.container.addSubview(self.routineView)
             self.routineView.button.onTap { [unowned self] (tap) in

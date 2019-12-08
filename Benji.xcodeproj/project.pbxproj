@@ -209,6 +209,7 @@
 		D6B2606E22E80E4000143CF0 /* ToastView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6B2606D22E80E4000143CF0 /* ToastView.swift */; };
 		D6B2607022E80E6500143CF0 /* ToastView.xib in Resources */ = {isa = PBXBuildFile; fileRef = D6B2606F22E80E6500143CF0 /* ToastView.xib */; };
 		D6B2607222E80FE000143CF0 /* XSmallLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6B2607122E80FE000143CF0 /* XSmallLabel.swift */; };
+		D6BF68D7239CBF74008E79A1 /* FeedInviteView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6BF68D6239CBF74008E79A1 /* FeedInviteView.swift */; };
 		D6C65E9E230CD07400259F7A /* LaunchCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6C65E9D230CD07400259F7A /* LaunchCoordinator.swift */; };
 		D6D145F421D5493000CD8CE4 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6D145F321D5493000CD8CE4 /* HomeViewController.swift */; };
 		D6D145FD21D550E400CD8CE4 /* AttributedString.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6D145FC21D550E400CD8CE4 /* AttributedString.swift */; };
@@ -252,6 +253,7 @@
 		D6DADF722207DF83007D9EB1 /* ChannelsCollectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6DADF712207DF83007D9EB1 /* ChannelsCollectionView.swift */; };
 		D6DADF742207E0E2007D9EB1 /* TCHChannel+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6DADF732207E0E2007D9EB1 /* TCHChannel+Extensions.swift */; };
 		D6E0ED4F239CA8950073B33E /* FeedChannelInviteView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6E0ED4E239CA8950073B33E /* FeedChannelInviteView.swift */; };
+		D6E0ED53239CBDA40073B33E /* FeedUnreadView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6E0ED52239CBDA40073B33E /* FeedUnreadView.swift */; };
 		D6E4C7FB238E4217002B1330 /* ChannelHeaderAttributesConfigurer.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6E4C7FA238E4217002B1330 /* ChannelHeaderAttributesConfigurer.swift */; };
 		D6E4C7FD23930675002B1330 /* UserNotificationManager+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6E4C7FC23930675002B1330 /* UserNotificationManager+Extensions.swift */; };
 		D6E4C7FF23943798002B1330 /* RoutineTimeLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6E4C7FE23943798002B1330 /* RoutineTimeLabel.swift */; };
@@ -480,6 +482,7 @@
 		D6B2606D22E80E4000143CF0 /* ToastView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToastView.swift; sourceTree = "<group>"; };
 		D6B2606F22E80E6500143CF0 /* ToastView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ToastView.xib; sourceTree = "<group>"; };
 		D6B2607122E80FE000143CF0 /* XSmallLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = XSmallLabel.swift; sourceTree = "<group>"; };
+		D6BF68D6239CBF74008E79A1 /* FeedInviteView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedInviteView.swift; sourceTree = "<group>"; };
 		D6C65E9D230CD07400259F7A /* LaunchCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LaunchCoordinator.swift; sourceTree = "<group>"; };
 		D6D145F321D5493000CD8CE4 /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
 		D6D145FC21D550E400CD8CE4 /* AttributedString.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AttributedString.swift; sourceTree = "<group>"; };
@@ -541,6 +544,7 @@
 		D6DADF712207DF83007D9EB1 /* ChannelsCollectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChannelsCollectionView.swift; sourceTree = "<group>"; };
 		D6DADF732207E0E2007D9EB1 /* TCHChannel+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "TCHChannel+Extensions.swift"; sourceTree = "<group>"; };
 		D6E0ED4E239CA8950073B33E /* FeedChannelInviteView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedChannelInviteView.swift; sourceTree = "<group>"; };
+		D6E0ED52239CBDA40073B33E /* FeedUnreadView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedUnreadView.swift; sourceTree = "<group>"; };
 		D6E4C7FA238E4217002B1330 /* ChannelHeaderAttributesConfigurer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChannelHeaderAttributesConfigurer.swift; sourceTree = "<group>"; };
 		D6E4C7FC23930675002B1330 /* UserNotificationManager+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UserNotificationManager+Extensions.swift"; sourceTree = "<group>"; };
 		D6E4C7FE23943798002B1330 /* RoutineTimeLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoutineTimeLabel.swift; sourceTree = "<group>"; };
@@ -768,7 +772,6 @@
 				D6579556239C8B4000A01338 /* FeedCoordinator.swift */,
 				D68DC7FB22EE5D9000BEAF80 /* FeedOverlayView.swift */,
 				D6A301AB2380E102006655E0 /* FeedSupplier.swift */,
-				D6815DB822EE1CAC00E71251 /* FeedView.swift */,
 				D62C635322BE9CBB00F4D097 /* FeedViewController.swift */,
 				D67896B522FF86AB0059BA75 /* FeedViewController+Extensions.swift */,
 			);
@@ -955,10 +958,13 @@
 		D6579558239C8D8800A01338 /* Feed Content Views */ = {
 			isa = PBXGroup;
 			children = (
-				D642736522C971FD0088256B /* FeedTextView.swift */,
-				D6579559239C8DA000A01338 /* FeedIntroView.swift */,
-				D657955B239CA01100A01338 /* FeedRoutineView.swift */,
 				D6E0ED4E239CA8950073B33E /* FeedChannelInviteView.swift */,
+				D6579559239C8DA000A01338 /* FeedIntroView.swift */,
+				D6BF68D6239CBF74008E79A1 /* FeedInviteView.swift */,
+				D657955B239CA01100A01338 /* FeedRoutineView.swift */,
+				D642736522C971FD0088256B /* FeedTextView.swift */,
+				D6E0ED52239CBDA40073B33E /* FeedUnreadView.swift */,
+				D6815DB822EE1CAC00E71251 /* FeedView.swift */,
 			);
 			path = "Feed Content Views";
 			sourceTree = "<group>";
@@ -1618,6 +1624,7 @@
 				D642737F22C9A7EC0088256B /* ContactsManager.swift in Sources */,
 				D642738A22C9B0170088256B /* ModalControllerAnimatedTransitioning.swift in Sources */,
 				D637531E2316146A00214F63 /* ContextCell.swift in Sources */,
+				D6BF68D7239CBF74008E79A1 /* FeedInviteView.swift in Sources */,
 				D65B0CE5234928620041A176 /* ProfileCoordinator.swift in Sources */,
 				D68483FF22CD0A1A00362AC3 /* TableView.swift in Sources */,
 				D67896B622FF86AB0059BA75 /* FeedViewController+Extensions.swift in Sources */,
@@ -1633,6 +1640,7 @@
 				D6D14D8F21D5893600CD8CE4 /* NSNumber+IGListDiffable.m in Sources */,
 				D63753202316148E00214F63 /* FavoriteCell.swift in Sources */,
 				D63753242316150000214F63 /* NewFavoriteCell.swift in Sources */,
+				D6E0ED53239CBDA40073B33E /* FeedUnreadView.swift in Sources */,
 				D60C814A2209360400A127A3 /* DisplayableImageView.swift in Sources */,
 				D64273A722CC2D280088256B /* ChannelViewController+Extensions.swift in Sources */,
 				D66F0FDE22BF2C5D00BA277D /* HomeSegmentControl.swift in Sources */,
