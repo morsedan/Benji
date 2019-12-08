@@ -127,6 +127,7 @@
 		D6579536239A141900A01338 /* CountDownView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6579535239A141900A01338 /* CountDownView.swift */; };
 		D6579557239C8B4000A01338 /* FeedCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6579556239C8B4000A01338 /* FeedCoordinator.swift */; };
 		D657955A239C8DA000A01338 /* FeedIntroView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6579559239C8DA000A01338 /* FeedIntroView.swift */; };
+		D657955C239CA01100A01338 /* FeedRoutineView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D657955B239CA01100A01338 /* FeedRoutineView.swift */; };
 		D65B0CCE2344AE390041A176 /* ChannelsViewController+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = D65B0CCD2344AE390041A176 /* ChannelsViewController+Extensions.swift */; };
 		D65B0CE5234928620041A176 /* ProfileCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = D65B0CE4234928620041A176 /* ProfileCoordinator.swift */; };
 		D65B0CE7234929440041A176 /* NewChannelCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = D65B0CE6234929440041A176 /* NewChannelCoordinator.swift */; };
@@ -396,6 +397,7 @@
 		D6579535239A141900A01338 /* CountDownView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CountDownView.swift; sourceTree = "<group>"; };
 		D6579556239C8B4000A01338 /* FeedCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedCoordinator.swift; sourceTree = "<group>"; };
 		D6579559239C8DA000A01338 /* FeedIntroView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedIntroView.swift; sourceTree = "<group>"; };
+		D657955B239CA01100A01338 /* FeedRoutineView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedRoutineView.swift; sourceTree = "<group>"; };
 		D65B0CCD2344AE390041A176 /* ChannelsViewController+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ChannelsViewController+Extensions.swift"; sourceTree = "<group>"; };
 		D65B0CE4234928620041A176 /* ProfileCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileCoordinator.swift; sourceTree = "<group>"; };
 		D65B0CE6234929440041A176 /* NewChannelCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewChannelCoordinator.swift; sourceTree = "<group>"; };
@@ -764,7 +766,6 @@
 				D6579556239C8B4000A01338 /* FeedCoordinator.swift */,
 				D68DC7FB22EE5D9000BEAF80 /* FeedOverlayView.swift */,
 				D6A301AB2380E102006655E0 /* FeedSupplier.swift */,
-				D642736522C971FD0088256B /* FeedTextView.swift */,
 				D6815DB822EE1CAC00E71251 /* FeedView.swift */,
 				D62C635322BE9CBB00F4D097 /* FeedViewController.swift */,
 				D67896B522FF86AB0059BA75 /* FeedViewController+Extensions.swift */,
@@ -952,7 +953,9 @@
 		D6579558239C8D8800A01338 /* Feed Content Views */ = {
 			isa = PBXGroup;
 			children = (
+				D642736522C971FD0088256B /* FeedTextView.swift */,
 				D6579559239C8DA000A01338 /* FeedIntroView.swift */,
+				D657955B239CA01100A01338 /* FeedRoutineView.swift */,
 			);
 			path = "Feed Content Views";
 			sourceTree = "<group>";
@@ -1640,6 +1643,7 @@
 				D60C814222092D5300A127A3 /* PagingCollectionViewFlowLayout.swift in Sources */,
 				D642737122C991A60088256B /* ClosedRange+Extensions.swift in Sources */,
 				D6375322231614DF00214F63 /* NewContextCell.swift in Sources */,
+				D657955C239CA01100A01338 /* FeedRoutineView.swift in Sources */,
 				D6DADF722207DF83007D9EB1 /* ChannelsCollectionView.swift in Sources */,
 				D6D1502B21D69C3300CD8CE4 /* NSObject+Extensions.swift in Sources */,
 				D607400C23400FA6009633EB /* HomeSearchBar.swift in Sources */,

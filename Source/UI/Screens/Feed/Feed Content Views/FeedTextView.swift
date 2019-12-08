@@ -18,7 +18,7 @@ class FeedTextView: TextView {
                                           color: .white)
 
         self.set(attributed: attributed,
-                 alignment: .left,
+                 alignment: .center,
                  linkColor: .blue)
     }
 }

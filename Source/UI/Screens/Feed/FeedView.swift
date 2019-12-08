@@ -14,6 +14,8 @@ class FeedView: View {
     private let container = View()
 
     lazy var introView = FeedIntroView()
+    lazy var routineView = FeedRoutineView()
+    var didSelect: (FeedType) -> Void = {_ in }
 
     override func initializeSubviews() {
         super.initializeSubviews()
@@ -27,8 +29,6 @@ class FeedView: View {
     func configure(with item: FeedType?) {
         guard let feedItem = item else { return }
 
-        self.container.removeAllSubviews()
-
         switch feedItem {
         case .intro:
             self.container.addSubview(self.introView)
@@ -41,7 +41,10 @@ class FeedView: View {
         case .inviteAsk:
             break
         case .rountine:
-            break 
+            self.container.addSubview(self.routineView)
+            self.routineView.button.onTap { [unowned self] (tap) in
+                self.didSelect(feedItem)
+            }
         }
 
         self.container.layoutNow()

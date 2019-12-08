@@ -71,10 +71,7 @@ extension FeedCollectionViewManager: KolodaViewDelegate {
         return [.left, .right]
     }
 
-    func koloda(_ koloda: KolodaView, didSelectCardAt index: Int) {
-        guard let item = self.items[safe: index] else { return }
-        self.didSelect(item)
-    }
+    func koloda(_ koloda: KolodaView, didSelectCardAt index: Int) {}
 
     func koloda(_ koloda: KolodaView, didSwipeCardAt index: Int, in direction: SwipeResultDirection) {
         guard let item = self.items[safe: index] else { return }
@@ -97,7 +94,7 @@ extension FeedCollectionViewManager: KolodaViewDelegate {
     }
 
     func kolodaShouldApplyAppearAnimation(_ koloda: KolodaView) -> Bool {
-        return false
+        return true
     }
 
     func kolodaDidRunOutOfCards(_ koloda: KolodaView) {
@@ -111,6 +108,6 @@ extension FeedCollectionViewManager: KolodaViewDelegate {
     }
 
     func koloda(_ koloda: KolodaView, viewForCardOverlayAt index: Int) -> OverlayView? {
-        return FeedOverlayView()
+        return nil
     }
 }
