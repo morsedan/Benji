@@ -27,18 +27,15 @@ class FeedSupplier {
             .observe { (result) in
                 switch result {
                 case .success(let routines):
-                    if let trigger = routines.first?.trigger as? UNCalendarNotificationTrigger,
-                        let date = trigger.nextTriggerDate(),
-                        date >= Date(), date < Date().endOfDay {
-                        
-                        self.items.append(FeedType.intro(showTimer: false))
-                        self.getInvitationRecommendations(with: promise)
+                    if routines.isEmpty {
+
                     } else {
-                        self.items.append(FeedType.intro(showTimer: true))
-                        promise.resolve(with: self.items)
+                        self.items.append(FeedType.intro)
+                        self.getInvitationRecommendations(with: promise)
                     }
+
                 case .failure(_):
-                    self.items.append(FeedType.intro(showTimer: false))
+                    self.items.append(FeedType.intro)
                     //show routine ask
                 }
         }
@@ -46,9 +43,13 @@ class FeedSupplier {
         return promise
     }
 
+    func showRoutineAsk(with promise: Promise<[FeedType]>) {
+        self.items.append(.rountine)
+        self.getInvitationRecommendations(with: promise)
+    }
+
     func getInvitationRecommendations(with promise: Promise<[FeedType]>) {
-        let item = FeedType.inviteAsk
-        self.items.append(item)
+        self.items.append(.inviteAsk)
         self.getInvitedChannels(with: promise)
     }
 

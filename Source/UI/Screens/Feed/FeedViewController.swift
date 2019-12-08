@@ -69,7 +69,7 @@ class FeedViewController: ViewController {
         self.countDownView.centerY = self.view.halfHeight * 0.8
         self.countDownView.centerOnX()
 
-        self.loadButton.size = CGSize(width: 200, height: 60)
+        self.loadButton.size = CGSize(width: 200, height: 50)
         self.loadButton.centerY = self.view.halfHeight * 0.8
         self.loadButton.centerOnX()
 
@@ -87,7 +87,7 @@ class FeedViewController: ViewController {
     private func showLoadingButton() {
         self.view.addSubview(self.loadButton)
         self.view.layoutNow()
-        
+
         UIView.animate(withDuration: Theme.animationDuration, animations: {
             self.countDownView.alpha = 0
             self.countDownView.transform = CGAffineTransform(scaleX: 0.9, y: 0.9)

@@ -42,6 +42,8 @@ class FeedView: View {
         case .inviteAsk:
             self.textView.set(localizedText: "You should invite someone")
             self.avatarView.set(avatar: Lorem.avatar())
+        case .rountine:
+            break 
         }
     }
 

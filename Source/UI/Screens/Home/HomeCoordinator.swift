@@ -82,6 +82,8 @@ extension HomeCoordinator: FeedViewControllerDelegate {
         switch item {
         case .intro:
             break
+        case .rountine:
+            break 
         case .system(_):
             break
         case .unreadMessages(let channel, _):
