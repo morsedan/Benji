@@ -8,6 +8,7 @@
 
 import Foundation
 import TMROFutures
+import TMROLocalization
 
 extension Future {
 
@@ -46,6 +47,19 @@ extension Future {
         view.isUserInteractionEnabled = false
         self.observe { (result) in
             view.isUserInteractionEnabled = true
+        }
+
+        return self
+    }
+
+    func withCompletionToast(with successMessage: Localized) -> Future<Value> {
+        self.observe { (result) in
+            switch result {
+            case .success(_):
+                ToastScheduler.shared.schedule(toastType: .success(successMessage))
+            case .failure(let error):
+                ToastScheduler.shared.schedule(toastType: .error(error))
+            }
         }
 
         return self

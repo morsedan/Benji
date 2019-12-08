@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import TwilioChatClient
 
 class FeedCoordinator: Coordinator<Void> {
 
@@ -47,7 +48,19 @@ class FeedCoordinator: Coordinator<Void> {
         }
     }
 
-    func startChannelFlow(for type: ChannelType) {
+    private func join(channel: TCHChannel) {
+        channel.joinIfNeeded()
+            .observe { (result) in
+                switch result {
+                case .success(let joinedChannel):
+                    self.startChannelFlow(for: .channel(joinedChannel))
+                case .failure(let error):
+                    print(error)
+                }
+        }
+    }
+
+    private func startChannelFlow(for type: ChannelType) {
 
         let coordinator = ChannelCoordinator(router: self.router, channelType: type)
         self.addChildAndStart(coordinator, finishedHandler: { (_) in

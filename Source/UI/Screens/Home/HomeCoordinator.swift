@@ -101,6 +101,8 @@ extension HomeCoordinator: ToastSchedulerDelegate {
             self.startChannelFlow(for: .channel(channel))
         case .error(_):
             break
+        case .success(_):
+            break 
         }
     }
 }

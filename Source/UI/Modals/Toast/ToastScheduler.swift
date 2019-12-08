@@ -8,12 +8,14 @@
 
 import Foundation
 import TwilioChatClient
+import TMROLocalization
 
 enum ToastType {
     case systemMessage(SystemMessage)
     case message(TCHMessage, TCHChannel)
     case channel(TCHChannel)
-    case error(ClientError)
+    case error(Error)
+    case success(Localized)
 }
 
 protocol ToastSchedulerDelegate: class {
@@ -36,6 +38,8 @@ class ToastScheduler {
             toast = self.createChannelToast(for: channel)
         case .error(let error):
             toast = self.createErrorToast(for: error)
+        case .success(let text): 
+            toast = self.createSuccessToast(for: text)
         }
 
         if let toast = toast {
@@ -86,7 +90,7 @@ class ToastScheduler {
         })
     }
 
-    private func createErrorToast(for error: ClientError) -> Toast? {
+    private func createErrorToast(for error: Error) -> Toast? {
         guard let image = UIImage(named: "error") else { return nil }
 
         return Toast(id: error.localizedDescription + "error",
@@ -96,6 +100,19 @@ class ToastScheduler {
                      displayable: image,
                      didTap: {
                         self.delegate?.didInteractWith(type: .error(error))
+        })
+    }
+
+    private func createSuccessToast(for text: Localized) -> Toast? {
+        guard let image = UIImage(named: "error") else { return nil }
+
+        return Toast(id: text.identifier + "success",
+                     analyticsID: "ToastSystemMessage",
+                     priority: 1,
+                     title: localized(text),
+                     displayable: image,
+                     didTap: {
+                        self.delegate?.didInteractWith(type: .success(text))
         })
     }
 }

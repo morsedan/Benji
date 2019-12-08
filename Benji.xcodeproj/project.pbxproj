@@ -133,6 +133,7 @@
 		D65B0CE7234929440041A176 /* NewChannelCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = D65B0CE6234929440041A176 /* NewChannelCoordinator.swift */; };
 		D66A0B942351821200A0FFEA /* Completeable.swift in Sources */ = {isa = PBXBuildFile; fileRef = D66A0B932351821200A0FFEA /* Completeable.swift */; };
 		D66A0B9823526A4E00A0FFEA /* CarmeraButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = D66A0B9723526A4E00A0FFEA /* CarmeraButton.swift */; };
+		D66E7C14239DC14C002A363C /* AlertType.swift in Sources */ = {isa = PBXBuildFile; fileRef = D66E7C13239DC14C002A363C /* AlertType.swift */; };
 		D66F0FC722BF004300BA277D /* FeedType.swift in Sources */ = {isa = PBXBuildFile; fileRef = D66F0FC622BF004300BA277D /* FeedType.swift */; };
 		D66F0FC922BF006D00BA277D /* SystemMessage.swift in Sources */ = {isa = PBXBuildFile; fileRef = D66F0FC822BF006D00BA277D /* SystemMessage.swift */; };
 		D66F0FCF22BF060500BA277D /* Deeplinkable.swift in Sources */ = {isa = PBXBuildFile; fileRef = D66F0FCE22BF060500BA277D /* Deeplinkable.swift */; };
@@ -406,6 +407,7 @@
 		D65B0CE6234929440041A176 /* NewChannelCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewChannelCoordinator.swift; sourceTree = "<group>"; };
 		D66A0B932351821200A0FFEA /* Completeable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Completeable.swift; sourceTree = "<group>"; };
 		D66A0B9723526A4E00A0FFEA /* CarmeraButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CarmeraButton.swift; sourceTree = "<group>"; };
+		D66E7C13239DC14C002A363C /* AlertType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertType.swift; sourceTree = "<group>"; };
 		D66F0FC622BF004300BA277D /* FeedType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedType.swift; sourceTree = "<group>"; };
 		D66F0FC822BF006D00BA277D /* SystemMessage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SystemMessage.swift; sourceTree = "<group>"; };
 		D66F0FCE22BF060500BA277D /* Deeplinkable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Deeplinkable.swift; sourceTree = "<group>"; };
@@ -737,13 +739,14 @@
 		D61EC0EF21D313D900204BEE /* View Models */ = {
 			isa = PBXGroup;
 			children = (
+				D66E7C13239DC14C002A363C /* AlertType.swift */,
 				D6D145FC21D550E400CD8CE4 /* AttributedString.swift */,
 				D61EC0F621D316F100204BEE /* Color.swift */,
+				D642739622CA6E1F0088256B /* CommonWord.swift */,
 				D6D1460A21D5547000CD8CE4 /* FontType.swift */,
 				D61EC0F021D313F500204BEE /* ScreenSize.swift */,
 				D6D1460421D5524C00CD8CE4 /* StringCasing.swift */,
 				D6D145FE21D5510400CD8CE4 /* StringStyle.swift */,
-				D642739622CA6E1F0088256B /* CommonWord.swift */,
 				D6384413233834380072227B /* Symbols.swift */,
 			);
 			path = "View Models";
@@ -1661,6 +1664,7 @@
 				D607400C23400FA6009633EB /* HomeSearchBar.swift in Sources */,
 				8002F37F230CD07F00F8C4E3 /* Authorization+Extensions.swift in Sources */,
 				D66A0B9823526A4E00A0FFEA /* CarmeraButton.swift in Sources */,
+				D66E7C14239DC14C002A363C /* AlertType.swift in Sources */,
 				D6815DB122ECAEC700E71251 /* MediumLabel.swift in Sources */,
 				D642739122C9BFA10088256B /* AlertViewController.swift in Sources */,
 				D61EC0E621D30EB300204BEE /* View.swift in Sources */,
