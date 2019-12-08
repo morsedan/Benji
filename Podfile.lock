@@ -1,8 +1,8 @@
 PODS:
   - Bolts/Tasks (1.9.0)
-  - Branch (0.30.0):
-    - Branch/Core (= 0.30.0)
-  - Branch/Core (0.30.0)
+  - Branch (0.30.1):
+    - Branch/Core (= 0.30.1)
+  - Branch/Core (0.30.1)
   - CameraKit-iOS (1.2.1)
   - GestureRecognizerClosures (5.0.0)
   - Koloda (5.0):
@@ -11,20 +11,20 @@ PODS:
     - Parse/Core (= 1.17.3)
   - Parse/Core (1.17.3):
     - Bolts/Tasks (~> 1.9)
-  - PhoneNumberKit (3.0.0):
-    - PhoneNumberKit/PhoneNumberKitCore (= 3.0.0)
-    - PhoneNumberKit/UIKit (= 3.0.0)
-  - PhoneNumberKit/PhoneNumberKitCore (3.0.0)
-  - PhoneNumberKit/UIKit (3.0.0):
+  - PhoneNumberKit (3.1.0):
+    - PhoneNumberKit/PhoneNumberKitCore (= 3.1.0)
+    - PhoneNumberKit/UIKit (= 3.1.0)
+  - PhoneNumberKit/PhoneNumberKitCore (3.1.0)
+  - PhoneNumberKit/UIKit (3.1.0):
     - PhoneNumberKit/PhoneNumberKitCore
   - pop (1.0.12)
   - ReactiveSwift (6.1.0)
   - TMROCoordinator (0.0.3)
   - TMROExtensionObject (0.0.1)
   - TMROFutures (0.0.6)
-  - TMROLocalization (0.0.1)
+  - TMROLocalization (0.0.2)
   - TwilioAccessManager (1.1.2)
-  - TwilioChatClient (2.6.4)
+  - TwilioChatClient (2.6.5)
 
 DEPENDENCIES:
   - Branch
@@ -61,21 +61,21 @@ SPEC REPOS:
 
 SPEC CHECKSUMS:
   Bolts: ac6567323eac61e203f6a9763667d0f711be34c8
-  Branch: a859de0efd1fbbb4e52733714542afb2c08174ec
+  Branch: 80c583d989d3d46a7ada15b6cc1881142c1720a1
   CameraKit-iOS: 7a8aeb4b6ac93c59088ada934efb6010ed2394c1
   GestureRecognizerClosures: 0dcafb45e669e7a775c840383e54b3d16983037b
   Koloda: 75302d21882cc3e274c1561b1155805ea5919dab
   Parse: c1ad2a04d2cab2b54b6fb7da05f741abf2cf57d1
-  PhoneNumberKit: 86019c972ef6904bcad11b46a6b8a91184d51117
+  PhoneNumberKit: adffe4e128af1918386e09e7421d3d851a2987af
   pop: d582054913807fd11fd50bfe6a539d91c7e1a55a
   ReactiveSwift: b78c7259f8ca46368238c895ae33a6a3bf9f811c
   TMROCoordinator: 8e675e45c895feafdd548e1dd2de35430d3ea146
   TMROExtensionObject: 08ab13fbe9226deeeff0738ca7ca8d06f0019e0d
   TMROFutures: 644772c28f997ce292e9b67985eca927efaa5d7a
-  TMROLocalization: 523f42237a1edaea25d7557376d6041de107996e
+  TMROLocalization: f48046617e8453fabf353088634b91130d726d64
   TwilioAccessManager: f3b0d9edd2eb5a044e50ff78057ab13611a0baa1
-  TwilioChatClient: c09d56401957d847272c3e8bf26862db32ccc3f7
+  TwilioChatClient: c7d2cc9c7769f9f082bbac719c09192e62bf26cc
 
-PODFILE CHECKSUM: 7336bafc50d6a4f7a42af0452a542976681a2716
+PODFILE CHECKSUM: 220fecbb85a25ac1e0f52b207f32112234c5114f
 
 COCOAPODS: 1.8.4

@@ -41,13 +41,14 @@ public struct LocalizedStringLibrary {
             localizedString = String(optional: localized.defaultString)
         }
 
-        for (index, argument) in localized.arguments.enumerated() {
-            let localizedArgument = LocalizedStringLibrary.shared.getLocalizedString(for: argument)
-            localizedString = localizedString.replacingOccurrences(of: "@\(index + 1)",
-                with: localizedArgument)
+        let localizedArguments = localized.arguments.map { (argument) -> String in
+            return LocalizedStringLibrary.shared.getLocalizedString(for: argument)
         }
-        
-        return localizedString
+
+        let mutableString = NSMutableAttributedString(string: localizedString)
+        mutableString.replace(arguments: localizedArguments)
+
+        return mutableString.string
     }
 
     private func addToPlist(dictionary: Dictionary<String, String>) {
