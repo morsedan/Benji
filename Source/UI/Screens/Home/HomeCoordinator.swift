@@ -79,20 +79,14 @@ extension HomeCoordinator: ChannelsViewControllerDelegate {
 extension HomeCoordinator: FeedViewControllerDelegate {
 
     func feedView(_ controller: FeedViewController, didSelect item: FeedType) {
-        switch item {
-        case .intro:
-            break
-        case .rountine:
-            break 
-        case .system(_):
-            break
-        case .unreadMessages(let channel, _):
-            self.startChannelFlow(for: .channel(channel))
-        case .channelInvite(_):
-            break
-        case .inviteAsk:
-            let contactsVC = ContactsViewController()
-            self.router.present(contactsVC, source: controller)
+
+        let coordinator = FeedCoordinator(with: self.homeVC,
+                                          item: item,
+                                          router: self.router,
+                                          deepLink: self.deepLink)
+
+        self.addChildAndStart(coordinator) { (result) in
+
         }
     }
 }

@@ -125,6 +125,7 @@
 		D657175C2378C78500F8F96C /* MessageCellAttributesConfigurer.swift in Sources */ = {isa = PBXBuildFile; fileRef = D657175B2378C78500F8F96C /* MessageCellAttributesConfigurer.swift */; };
 		D657175E2378CEBA00F8F96C /* ChannelCollectionViewManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = D657175D2378CEBA00F8F96C /* ChannelCollectionViewManager.swift */; };
 		D6579536239A141900A01338 /* CountDownView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6579535239A141900A01338 /* CountDownView.swift */; };
+		D6579557239C8B4000A01338 /* FeedCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6579556239C8B4000A01338 /* FeedCoordinator.swift */; };
 		D65B0CCE2344AE390041A176 /* ChannelsViewController+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = D65B0CCD2344AE390041A176 /* ChannelsViewController+Extensions.swift */; };
 		D65B0CE5234928620041A176 /* ProfileCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = D65B0CE4234928620041A176 /* ProfileCoordinator.swift */; };
 		D65B0CE7234929440041A176 /* NewChannelCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = D65B0CE6234929440041A176 /* NewChannelCoordinator.swift */; };
@@ -392,6 +393,7 @@
 		D657175B2378C78500F8F96C /* MessageCellAttributesConfigurer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageCellAttributesConfigurer.swift; sourceTree = "<group>"; };
 		D657175D2378CEBA00F8F96C /* ChannelCollectionViewManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChannelCollectionViewManager.swift; sourceTree = "<group>"; };
 		D6579535239A141900A01338 /* CountDownView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CountDownView.swift; sourceTree = "<group>"; };
+		D6579556239C8B4000A01338 /* FeedCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedCoordinator.swift; sourceTree = "<group>"; };
 		D65B0CCD2344AE390041A176 /* ChannelsViewController+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ChannelsViewController+Extensions.swift"; sourceTree = "<group>"; };
 		D65B0CE4234928620041A176 /* ProfileCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileCoordinator.swift; sourceTree = "<group>"; };
 		D65B0CE6234929440041A176 /* NewChannelCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewChannelCoordinator.swift; sourceTree = "<group>"; };
@@ -752,16 +754,17 @@
 		D62C634F22BE9C4600F4D097 /* Feed */ = {
 			isa = PBXGroup;
 			children = (
+				D6579535239A141900A01338 /* CountDownView.swift */,
 				D642736322C9132A0088256B /* EmptyFeedView.swift */,
 				D6A301AD2381B8D7006655E0 /* FeedCollectionView.swift */,
 				D6815DBA22EE1F1400E71251 /* FeedCollectionViewManager.swift */,
+				D6579556239C8B4000A01338 /* FeedCoordinator.swift */,
 				D68DC7FB22EE5D9000BEAF80 /* FeedOverlayView.swift */,
 				D6A301AB2380E102006655E0 /* FeedSupplier.swift */,
 				D642736522C971FD0088256B /* FeedTextView.swift */,
 				D6815DB822EE1CAC00E71251 /* FeedView.swift */,
 				D62C635322BE9CBB00F4D097 /* FeedViewController.swift */,
 				D67896B522FF86AB0059BA75 /* FeedViewController+Extensions.swift */,
-				D6579535239A141900A01338 /* CountDownView.swift */,
 			);
 			path = Feed;
 			sourceTree = "<group>";
@@ -1508,6 +1511,7 @@
 				D6EB4DF023540E48005BF3B4 /* CameraViewController.swift in Sources */,
 				D696A8E92308D5C900DAFED4 /* MessageInputView.swift in Sources */,
 				D6D1501A21D5F5D100CD8CE4 /* CollectionView.swift in Sources */,
+				D6579557239C8B4000A01338 /* FeedCoordinator.swift in Sources */,
 				D63753262316156800214F63 /* FavoritesCollectionViewLayout.swift in Sources */,
 				D61EC0E421D30E9100204BEE /* TextView.swift in Sources */,
 				D6AF02FD220153F5002D5C75 /* LaunchManager.swift in Sources */,
