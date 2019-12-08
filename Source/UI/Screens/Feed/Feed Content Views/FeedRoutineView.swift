@@ -18,19 +18,20 @@ class FeedRoutineView: View {
 
         self.addSubview(self.textView)
         self.addSubview(self.button)
-        self.textView.set(localizedText: "Set a time to check your feed.")
-        self.button.set(style: .normal(color: .blue, text: "SET"))
+        self.textView.set(localizedText: "Set a time each day to check your feed.")
+        self.button.set(style: .rounded(color: .blue, text: "SET"))
     }
 
     override func layoutSubviews() {
         super.layoutSubviews()
 
         self.textView.setSize(withWidth: self.width)
+        self.textView.bottom = self.centerY - 10
         self.textView.centerOnX()
-        self.textView.top = 0
 
         self.button.size = CGSize(width: 100, height: 40)
         self.button.centerOnX()
-        self.button.bottom = self.height
+        self.button.bottom = self.height - Theme.contentOffset
+        self.button.roundCorners()
     }
 }

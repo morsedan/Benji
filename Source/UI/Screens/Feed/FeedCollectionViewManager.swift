@@ -59,8 +59,12 @@ extension FeedCollectionViewManager: KolodaViewDataSource {
 
     func koloda(_ koloda: KolodaView, viewForCardAt index: Int) -> UIView {
         guard let item = self.items[safe: index] else { return UIView() }
+        
         let feedView = FeedView()
         feedView.configure(with: item)
+        feedView.didSelect = { [unowned self] in
+            self.didSelect(item)
+        }
         return feedView
     }
 }

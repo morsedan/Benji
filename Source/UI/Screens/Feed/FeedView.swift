@@ -15,7 +15,7 @@ class FeedView: View {
 
     lazy var introView = FeedIntroView()
     lazy var routineView = FeedRoutineView()
-    var didSelect: (FeedType) -> Void = {_ in }
+    var didSelect: () -> Void = {}
 
     override func initializeSubviews() {
         super.initializeSubviews()
@@ -43,7 +43,7 @@ class FeedView: View {
         case .rountine:
             self.container.addSubview(self.routineView)
             self.routineView.button.onTap { [unowned self] (tap) in
-                self.didSelect(feedItem)
+                self.didSelect()
             }
         }
 
