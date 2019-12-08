@@ -28,7 +28,6 @@ class FeedViewController: ViewController {
     unowned let delegate: FeedViewControllerDelegate
     var items: [FeedType] = []
     private let countDownView = CountDownView()
-    private let loadButton = LoadingButton()
 
     init(with delegate: FeedViewControllerDelegate) {
         self.delegate = delegate
@@ -44,13 +43,6 @@ class FeedViewController: ViewController {
 
         self.view.addSubview(self.countDownView)
         self.view.addSubview(self.collectionView)
-
-        self.loadButton.set(style: .normal(color: .blue, text: "Load Feed"))
-        self.loadButton.alpha = 0
-
-        self.loadButton.onTap { [unowned self] (tap) in
-            self.loadFeedItems()
-        }
 
         self.countDownView.didExpire = { [unowned self] in
             self.showLoadingButton()
@@ -69,10 +61,6 @@ class FeedViewController: ViewController {
         self.countDownView.centerY = self.view.halfHeight * 0.8
         self.countDownView.centerOnX()
 
-        self.loadButton.size = CGSize(width: 200, height: 50)
-        self.loadButton.centerY = self.view.halfHeight * 0.8
-        self.loadButton.centerOnX()
-
         self.collectionView.expandToSuperviewSize()
     }
 
@@ -85,35 +73,13 @@ class FeedViewController: ViewController {
     }
 
     private func showLoadingButton() {
-        self.view.addSubview(self.loadButton)
-        self.view.layoutNow()
 
-        UIView.animate(withDuration: Theme.animationDuration, animations: {
+        UIView.animate(withDuration: Theme.animationDuration, delay: Theme.animationDuration, options: [], animations: {
             self.countDownView.alpha = 0
             self.countDownView.transform = CGAffineTransform(scaleX: 0.9, y: 0.9)
-        }) { (completed) in
-            self.countDownView.transform = .identity
-            self.loadButton.transform = CGAffineTransform(scaleX: 0.9, y: 0.9)
-            if completed {
-                UIView.animate(withDuration: Theme.animationDuration) {
-                    self.loadButton.alpha = 1
-                    self.loadButton.transform = .identity
-                }
-            }
-        }
-    }
+        }, completion: nil)
 
-    private func loadFeedItems() {
-        self.loadButton.isLoading = true
-        UIView.animate(withDuration: Theme.animationDuration,
-                       delay: 1.0,
-                       options: [], animations: {
-                        self.loadButton.alpha = 0
-                        self.loadButton.transform = CGAffineTransform(scaleX: 0.9, y: 0.9)
-        }) { (completed) in
-            self.loadButton.removeFromSuperview()
-            self.manager.set(items: self.items)
-        }
+        self.manager.set(items: self.items)
     }
 
     func animateIn(completion: @escaping CompletionHandler) {
