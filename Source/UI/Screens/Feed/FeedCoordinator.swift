@@ -8,6 +8,7 @@
 
 import Foundation
 import TwilioChatClient
+import TMROLocalization
 
 class FeedCoordinator: Coordinator<Void> {
 
@@ -32,24 +33,41 @@ class FeedCoordinator: Coordinator<Void> {
     private func handle(item: FeedType) {
 
         switch item {
-        case .intro:
+        case .intro, .system(_):
             break
         case .rountine:
-            break
-        case .system(_):
-            break
+            self.startRoutineFlow()
         case .unreadMessages(let channel, _):
             self.startChannelFlow(for: .channel(channel))
-        case .channelInvite(_):
-            break
+        case .channelInvite(let channel):
+            self.join(channel: channel)
         case .inviteAsk:
             let contactsVC = ContactsViewController()
             self.router.present(contactsVC, source: self.sourceViewController)
         }
     }
 
+    private func startRoutineFlow() {
+        guard let current = User.current() else { return }
+
+        let routineLink = DeepLinkObject.init(target: .routine)
+        let coordinator = ProfileCoordinator(with: current,
+                                             router: self.router,
+                                             deepLink: routineLink)
+
+        self.addChildAndStart(coordinator, finishedHandler: { (_) in
+            self.router.dismiss(source: coordinator.toPresentable())
+        })
+        self.router.present(coordinator, source: self.sourceViewController, animated: true)
+    }
+
     private func join(channel: TCHChannel) {
+
+        let text = LocalizedString(id: "join.channel",
+                                   arguments: [channel.friendlyName!],
+                                   default: "You have joined @1")
         channel.joinIfNeeded()
+        .withCompletionToast(with: text)
             .observe { (result) in
                 switch result {
                 case .success(let joinedChannel):

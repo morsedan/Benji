@@ -15,7 +15,10 @@ class ProfileCoordinator: PresentableCoordinator<Void> {
     let navController: NavigationController
     let user: User
 
-    init(with user: User, router: Router, deepLink: DeepLinkable?) {
+    init(with user: User,
+         router: Router,
+         deepLink: DeepLinkable?) {
+        
         self.user = user
         let navController = NavigationController()
         let router = Router(navController: navController)
