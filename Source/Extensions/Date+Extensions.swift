@@ -71,7 +71,7 @@ extension Date {
 
     static var hourMinuteTimeOfDay: DateFormatter {
         let formatter = DateFormatter()
-        formatter.dateFormat = "hh : mm a"
+        formatter.dateFormat = "h : mm a"
         return formatter
     }
 
@@ -79,6 +79,10 @@ extension Date {
         let formatter = DateFormatter()
         formatter.dateFormat = "HH : mm : ss"
         return formatter
+    }
+
+    func isBetween(_ date1: Date, and date2: Date) -> Bool {
+        return (min(date1, date2) ... max(date1, date2)).contains(self)
     }
 
     static func easy(_ mmddyyyy: String) -> Date {

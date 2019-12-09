@@ -102,11 +102,9 @@ class FeedViewController: ViewController {
         }
     }
 
-    private func determineMessage(with date: Date) {
+    private func determineMessage(with triggerDate: Date) {
 
         let now = Date()
-
-        guard let triggerDate = now.add(component: .minute, amount: 30) else { return }
 
         guard let anHourAfter = triggerDate.add(component: .hour, amount: 1),
             let anHourUntil = triggerDate.subtract(component: .hour, amount: 1) else { return }
@@ -115,26 +113,27 @@ class FeedViewController: ViewController {
         print("NOW \(now)")
         print("anHourAfter \(anHourAfter)")
         print("anHourUntil \(anHourUntil)")
+        
 
         //If date is 1 hour or less away, show countDown
-        if now < anHourUntil {
+        if now.isBetween(anHourUntil, and: triggerDate) {
             self.countDownView.startTimer(with: triggerDate)
             self.showCountDown()
 
         //If date is 1 hour past, show "See you tomorrow at (date)"
-        } else if triggerDate > anHourAfter || !triggerDate.isSameDay(as: now) {
+        } else if now.isBetween(anHourAfter, and: Date().endOfDay) || !triggerDate.isSameDay(as: now) {
             let dateString = Date.hourMinuteTimeOfDay.string(from: triggerDate)
-            self.message = "See you tomorrow at \(dateString)"
+            self.message = "See you tomorrow at \n\(dateString)"
             self.showMessage()
 
         //If date is less than an hour ahead of current date, show feed
-        } else if triggerDate > now, triggerDate < anHourAfter {
+        } else if now.isBetween(triggerDate, and: anHourAfter){
             self.showFeed()
 
         //If date is 1 hour or more away, show "see you at (date)"
-        } else if triggerDate < anHourUntil, triggerDate < now.endOfDay {
+        } else if now.isBetween(Date().beginningOfDay, and: anHourUntil) {
             let dateString = Date.hourMinuteTimeOfDay.string(from: triggerDate)
-            self.message = "See you at \(dateString)"
+            self.message = "See you at \n\(dateString)"
             self.showMessage()
         } else {
             self.message = "Error"
