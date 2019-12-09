@@ -12,6 +12,7 @@ import Parse
 class ProfileCoordinator: PresentableCoordinator<Void> {
 
     lazy var profileVC = ProfileViewController(with: self.user, delegate: self)
+    lazy var routineVC = RoutineViewController()
     let navController: NavigationController
     let user: User
 
@@ -28,7 +29,13 @@ class ProfileCoordinator: PresentableCoordinator<Void> {
     }
 
     override func toPresentable() -> DismissableVC {
-        self.navController.setViewControllers([self.profileVC], animated: false)
+        var controller: UIViewController = self.profileVC
+
+        if let link = self.deepLink, let target = link.deepLinkTarget, target == .routine {
+            controller = self.routineVC
+        }
+
+        self.navController.setViewControllers([controller], animated: false)
         return self.navController
     }
 }
