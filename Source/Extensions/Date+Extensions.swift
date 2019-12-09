@@ -69,6 +69,12 @@ extension Date {
         return formatter
     }
 
+    static var hourMinuteTimeOfDay: DateFormatter {
+        let formatter = DateFormatter()
+        formatter.dateFormat = "hh : mm a"
+        return formatter
+    }
+
     static var countDown: DateFormatter {
         let formatter = DateFormatter()
         formatter.dateFormat = "HH : mm : ss"

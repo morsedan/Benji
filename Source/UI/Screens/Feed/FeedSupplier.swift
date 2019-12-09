@@ -23,24 +23,8 @@ class FeedSupplier {
     private func getIntroCard() -> Future<[FeedType]> {
         let promise = Promise<[FeedType]>()
 
-//        RoutineManager.shared.getRoutineNotifications()
-//            .observe { (result) in
-//                switch result {
-//                case .success(let routines):
-//                    if routines.isEmpty {
-//
-//                    } else {
-//                        self.items.append(FeedType.intro)
-//                        self.getInvitationRecommendations(with: promise)
-//                    }
-//
-//                case .failure(_):
-//                    self.items.append(FeedType.intro)
-//                    self.showRoutineAsk(with: promise)
-//                }
-//        }
-        self.showRoutineAsk(with: promise)
-
+        self.items.append(FeedType.intro)
+        self.getInvitationRecommendations(with: promise)
 
         return promise
     }
