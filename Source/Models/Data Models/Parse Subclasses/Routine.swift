@@ -26,6 +26,15 @@ final class Routine: PFObject, PFSubclassing  {
         components.minute = self.minute
         return components
     }
+
+    var date: Date? {
+        var components = self.timeComponents
+        let now = Date()
+        components.year = now.year
+        components.month = now.month
+        components.day = now.day
+        return Calendar.current.date(from: components)
+    }
     
     var timeDescription: String {
         let hour = self.timeComponents.hour ?? 0

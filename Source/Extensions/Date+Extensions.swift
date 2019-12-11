@@ -10,7 +10,7 @@ import Foundation
 
 extension Date {
 
-    private static var currentTimeZoneCalendar: Calendar = {
+    static var currentTimeZoneCalendar: Calendar = {
         var calendar = Calendar.current
         calendar.timeZone = TimeZone.current
         return calendar
@@ -95,6 +95,12 @@ extension Date {
         return year
     }
 
+    var month: Int {
+        let calendar = Calendar.current
+        let day = calendar.component(.month, from: self)
+        return day
+    }
+
     var day: Int {
         let calendar = Calendar.current
         let day = calendar.component(.day, from: self)
@@ -103,27 +109,20 @@ extension Date {
 
     var hour: Int {
         let calendar = Calendar.current
-        let day = calendar.component(.hour, from: self)
-        return day
+        let hour = calendar.component(.hour, from: self)
+        return hour
     }
 
     var minute: Int {
         let calendar = Calendar.current
-        let day = calendar.component(.minute, from: self)
-        return day
+        let minute = calendar.component(.minute, from: self)
+        return minute
     }
 
     var second: Int {
         let calendar = Calendar.current
-        let day = calendar.component(.second, from: self)
-        return day
-    }
-
-    var month: String {
-        let calendar = Calendar.current
-        let month = calendar.component(.month, from: self)
-        // Subtract one to keep December in range
-        return calendar.monthSymbols[month - 1]
+        let second = calendar.component(.second, from: self)
+        return second
     }
 
     var beginningOfDay: Date {
