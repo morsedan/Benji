@@ -88,7 +88,7 @@ final class User: PFUser {
         }
     }
 
-    var routine: Date? {
+    var routine: Routine? {
         get {
             return self.getObject(for: .routine)
         }

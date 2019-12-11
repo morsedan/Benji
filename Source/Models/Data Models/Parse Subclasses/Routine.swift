@@ -1,0 +1,106 @@
+//
+//  Routine.swift
+//  Benji
+//
+//  Created by Martin Young on 8/13/19.
+//  Copyright © 2019 Benjamin Dodgson. All rights reserved.
+//
+
+import Foundation
+import Parse
+
+enum RoutineKey: String {
+    case hour
+    case minute
+}
+
+final class Routine: PFObject, PFSubclassing  {
+
+    static func parseClassName() -> String {
+        return String(describing: self)
+    }
+
+    var timeComponents: DateComponents {
+        var components = DateComponents()
+        components.hour = self.hour
+        components.minute = self.minute
+        return components
+    }
+    
+    var timeDescription: String {
+        let hour = self.timeComponents.hour ?? 0
+        let minute = self.timeComponents.minute ?? 0
+        return "\(hour):\(minute)"
+    }
+
+    init(messageCheckTime: Date) {
+        super.init(className: Routine.parseClassName())
+        let components = Calendar.current.dateComponents([.hour, .minute],
+                                                         from: messageCheckTime)
+
+        self.set(components: components)
+    }
+
+    init(timeComponents: DateComponents) {
+        super.init(className: Routine.parseClassName())
+        self.set(components: timeComponents)
+    }
+
+    private func set(components: DateComponents) {
+        if let hr = components.hour {
+            self.hour = hr
+        }
+
+        if let min = components.minute {
+            self.minute = min
+        }
+    }
+
+    private(set) var hour: Int {
+        get {
+            return self.getObject(for: .hour) ?? 0
+        }
+        set {
+            self.setObject(for: .hour, with: newValue)
+        }
+    }
+
+    private(set) var minute: Int {
+        get {
+            return self.getObject(for: .minute) ?? 0
+        }
+        set {
+            self.setObject(for: .minute, with: newValue)
+        }
+    }
+}
+
+extension Routine: Objectable {
+    typealias KeyType = RoutineKey
+
+    func getObject<Type>(for key: RoutineKey) -> Type? {
+        self.object(forKey: key.rawValue) as? Type
+    }
+
+    func setObject<Type>(for key: RoutineKey, with newValue: Type) {
+        self.setObject(newValue, forKey: key.rawValue)
+    }
+
+    func getRelationalObject<PFRelation>(for key: RoutineKey) -> PFRelation? {
+        return self.relation(forKey: key.rawValue) as? PFRelation
+    }
+
+    func saveObject() -> Future<Routine> {
+        let promise = Promise<Routine>()
+
+        self.saveInBackground { (success, error) in
+            if let error = error {
+                promise.reject(with: error)
+            } else {
+                promise.resolve(with: self)
+            }
+        }
+
+        return promise
+    }
+}
