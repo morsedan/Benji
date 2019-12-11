@@ -33,17 +33,15 @@ final class Routine: PFObject, PFSubclassing  {
         return "\(hour):\(minute)"
     }
 
-    init(messageCheckTime: Date) {
-        super.init(className: Routine.parseClassName())
+    func create(with date: Date) {
         let components = Calendar.current.dateComponents([.hour, .minute],
-                                                         from: messageCheckTime)
+                                                         from: date)
 
         self.set(components: components)
     }
 
-    init(timeComponents: DateComponents) {
-        super.init(className: Routine.parseClassName())
-        self.set(components: timeComponents)
+    func create(with components: DateComponents) {
+        self.set(components: components)
     }
 
     private func set(components: DateComponents) {
@@ -93,10 +91,12 @@ extension Routine: Objectable {
     func saveObject() -> Future<Routine> {
         let promise = Promise<Routine>()
 
-        self.saveInBackground { (success, error) in
+        User.current()?.routine = self
+        User.current()?.saveInBackground { (success, error) in
             if let error = error {
                 promise.reject(with: error)
             } else {
+                RoutineManager.shared.scheduleNotification(for: self)
                 promise.resolve(with: self)
             }
         }
