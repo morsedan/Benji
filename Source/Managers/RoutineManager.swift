@@ -39,8 +39,8 @@ class RoutineManager {
         notificationCenter.removeAllPendingNotificationRequests()
 
         let content = UNMutableNotificationContent()
-        content.title = "Messages Unlocked"
-        content.body = "It's time to check your messages!"
+        content.title = "Feed Unlocked"
+        content.body = "Your daily feed is unlocked for the next hour."
         content.sound = UNNotificationSound.default
 
 //        let trigger = UNTimeIntervalNotificationTrigger(timeInterval: 5, repeats: false)

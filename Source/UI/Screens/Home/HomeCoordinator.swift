@@ -70,7 +70,9 @@ extension HomeCoordinator: ChannelsViewControllerDelegate {
 
         let coordinator = ChannelCoordinator(router: self.router, channelType: type)
         self.addChildAndStart(coordinator, finishedHandler: { (_) in
-            self.router.dismiss(source: coordinator.toPresentable())
+            self.router.dismiss(source: coordinator.toPresentable(), animated: true) {
+                self.finishFlow(with: ())
+            }
         })
         self.router.present(coordinator, source: self.homeVC, animated: true)
     }
@@ -86,7 +88,7 @@ extension HomeCoordinator: FeedViewControllerDelegate {
                                           deepLink: self.deepLink)
 
         self.addChildAndStart(coordinator) { (result) in
-
+            self.finishFlow(with: ())
         }
     }
 }

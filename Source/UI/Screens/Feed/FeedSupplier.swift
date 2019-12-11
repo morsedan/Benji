@@ -52,7 +52,7 @@ class FeedSupplier {
                 break
             }
         }
-
+        
         self.getUnreadMessages(with: promise)
     }
 
@@ -64,7 +64,9 @@ class FeedSupplier {
         for channel in ChannelManager.shared.subscribedChannels {
             switch channel.channelType {
             case .channel(let tchChannel):
-                channelProducers.append(tchChannel.getUnconsumedCount())
+                if tchChannel.status == .joined {
+                    channelProducers.append(tchChannel.getUnconsumedCount())
+                }
             default:
                 break
             }

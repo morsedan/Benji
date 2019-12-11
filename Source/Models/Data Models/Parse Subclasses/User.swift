@@ -28,6 +28,7 @@ enum UserKey: String {
     case innerCircle
     case outerCircle
     case community
+    case routine
 }
 
 final class User: PFUser {
@@ -84,6 +85,15 @@ final class User: PFUser {
         }
         set {
             self.setObject(for: .familyName, with: newValue)
+        }
+    }
+
+    var routine: Date? {
+        get {
+            return self.getObject(for: .routine)
+        }
+        set {
+            self.setObject(for: .routine, with: newValue)
         }
     }
 

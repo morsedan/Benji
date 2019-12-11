@@ -35,6 +35,9 @@ extension FeedViewController {
                 switch result {
                 case .success(let items):
                     self.items = items
+                    if self.showItems {
+                        self.showFeed()
+                    }
                 case .failure(let error):
                     print(error)
                 }

@@ -150,6 +150,11 @@ extension Date {
     var ageInYears: Int {
         return Date().year - self.year
     }
+
+    static func date(from components: DateComponents) -> Date? {
+        let calendar = Calendar.current
+        return calendar.date(from: components)
+    }
 }
 
 extension Date: Diffable {

@@ -67,7 +67,7 @@ class FeedCoordinator: Coordinator<Void> {
                                    arguments: [channel.friendlyName!],
                                    default: "You have joined @1")
         channel.joinIfNeeded()
-        .withCompletionToast(with: text)
+        .withResultToast(with: text)
             .observe { (result) in
                 switch result {
                 case .success(let joinedChannel):

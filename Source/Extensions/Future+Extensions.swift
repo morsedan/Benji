@@ -52,7 +52,7 @@ extension Future {
         return self
     }
 
-    func withCompletionToast(with successMessage: Localized) -> Future<Value> {
+    func withResultToast(with successMessage: Localized) -> Future<Value> {
         self.observe { (result) in
             switch result {
             case .success(_):

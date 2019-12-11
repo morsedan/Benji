@@ -50,13 +50,12 @@ class CountDownView: View {
         // If the present time is greater than the referenceDate than the countdown is expired.
         if now > refDate {
             self.timer?.invalidate()
-            self.timeLabel.set(value: "00 : 00 : 00")
+            self.timeLabel.set(value: "00 : 00")
             self.didExpire()
         } else {
             // Otherwise get the differnce in DateComponents
             let components = self.getTime(from: now, to: refDate)
-            let time = String(format: "%.2d : %.2d : %.2d",
-                              components.hour ?? 00,
+            let time = String(format: "%.2d : %.2d",
                               components.minute ?? 00,
                               components.second ?? 00)
 
@@ -65,7 +64,7 @@ class CountDownView: View {
     }
 
     private func getTime(from now: Date, to reference: Date) -> DateComponents {
-        return Calendar.current.dateComponents([.day, .hour, .minute, .second],
+        return Calendar.current.dateComponents([.minute, .second],
                                                from: now,
                                                to: reference)
     }

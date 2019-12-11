@@ -36,6 +36,7 @@ class FeedViewController: ViewController {
             self.messageLabel.set(text: text, alignment: .center)
         }
     }
+    var showItems: Bool = true
 
     init(with delegate: FeedViewControllerDelegate) {
         self.delegate = delegate
@@ -81,33 +82,39 @@ class FeedViewController: ViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        self.getRoutine()
+        //self.getRoutine()
     }
 
-    private func getRoutine() {
-        RoutineManager.shared.getRoutineNotifications()
-            .observe { (result) in
-                runMain {
-                    switch result {
-                    case .success(let requests):
-                        guard let trigger = requests.first?.trigger
-                            as? UNCalendarNotificationTrigger,
-                            let date = trigger.nextTriggerDate() else { return }
-                        self.determineMessage(with: date)
-                    case .failure(_):
-                        let items: [FeedType] = [.rountine]
-                        self.manager.set(items: items)
-                    }
-                }
-        }
-    }
+//    private func getRoutine() {
+//        RoutineManager.shared.getRoutineNotifications()
+//            .observe { (result) in
+//                runMain {
+//                    switch result {
+//                    case .success(let requests):
+//                        guard let trigger = requests.first?.trigger
+//                            as? UNCalendarNotificationTrigger,
+//                            let date = trigger.nextTriggerDate() else { return }
+//                        self.determineMessage(with: date)
+//                    case .failure(_):
+//                        let items: [FeedType] = [.rountine]
+//                        self.manager.set(items: items)
+//                    }
+//                }
+//        }
+//    }
 
     private func determineMessage(with triggerDate: Date) {
 
         let now = Date()
 
+        var components = DateComponents()
+        components.day = now.day
+        components.hour = triggerDate.hour
+        components.minute = triggerDate.minute
+
         guard let anHourAfter = triggerDate.add(component: .hour, amount: 1),
-            let anHourUntil = triggerDate.subtract(component: .hour, amount: 1) else { return }
+            let anHourUntil = triggerDate.subtract(component: .hour, amount: 1),
+            let todaysTrigger = Date.date(from: components) else { return }
 
         print("trigger \(triggerDate)")
         print("NOW \(now)")
@@ -120,14 +127,8 @@ class FeedViewController: ViewController {
             self.countDownView.startTimer(with: triggerDate)
             self.showCountDown()
 
-        //If date is 1 hour past, show "See you tomorrow at (date)"
-        } else if now.isBetween(anHourAfter, and: Date().endOfDay) || !triggerDate.isSameDay(as: now) {
-            let dateString = Date.hourMinuteTimeOfDay.string(from: triggerDate)
-            self.message = "See you tomorrow at \n\(dateString)"
-            self.showMessage()
-
-        //If date is less than an hour ahead of current date, show feed
-        } else if now.isBetween(triggerDate, and: anHourAfter){
+            //If date is less than an hour ahead of current date, show feed
+        } else if now.isBetween(todaysTrigger, and: anHourAfter) {
             self.showFeed()
 
         //If date is 1 hour or more away, show "see you at (date)"
@@ -136,7 +137,8 @@ class FeedViewController: ViewController {
             self.message = "See you at \n\(dateString)"
             self.showMessage()
         } else {
-            self.message = "Error"
+            let dateString = Date.hourMinuteTimeOfDay.string(from: triggerDate)
+            self.message = "See you tomorrow at \n\(dateString)"
             self.showMessage()
         }
 
@@ -166,7 +168,8 @@ class FeedViewController: ViewController {
         }, completion: nil)
     }
 
-    private func showFeed() {
+    func showFeed() {
+        self.showItems = true
 
         UIView.animate(withDuration: Theme.animationDuration, delay: Theme.animationDuration, options: [], animations: {
             self.countDownView.alpha = 0

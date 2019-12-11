@@ -37,10 +37,8 @@ class FeedUnreadView: View {
                 switch result {
                 case .success(let user):
                     self.avatarView.set(avatar: user)
-                    let text = LocalizedString(id: "",
-                                               arguments: [String(count), String(optional: channel.friendlyName)],
-                                               default: "You have @1 unread messages in @2")
-                    self.textView.set(localizedText: text)
+
+                    self.textView.set(localizedText: "You have \(String(count)) unread messages in \(String(optional: channel.friendlyName))")
                     self.layoutNow()
                 case .failure(_):
                     break

@@ -37,13 +37,13 @@ class FeedChannelInviteView: View {
                 switch result {
                 case .success(let user):
                     self.avatarView.set(avatar: user)
-                    let text = LocalizedString(id: "",
-                                               arguments: [String(optional: channel.friendlyName), user.fullName],
-                                               default: "You have been invited to join @1, by @2")
+                    let text = "You have been invited to join \(String(optional: channel.friendlyName)), by \(user.fullName)"
                     self.textView.set(localizedText: text)
                 case .failure(_):
                     break
                 }
+
+                self.layoutNow()
         }
     }
 
