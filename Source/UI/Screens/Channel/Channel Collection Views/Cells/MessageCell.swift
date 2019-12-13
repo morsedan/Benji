@@ -14,6 +14,7 @@ class MessageCell: UICollectionViewCell {
     let avatarView = AvatarView()
     let bubbleView = View()
     let textView = MessageTextView()
+    let overlayView = View()
     var didTapMessage: () -> Void = {}
 
     override init(frame: CGRect) {
@@ -29,21 +30,20 @@ class MessageCell: UICollectionViewCell {
     }
 
     private func initializeViews() {
+
         self.contentView.addSubview(self.avatarView)
         self.contentView.addSubview(self.bubbleView)
         self.contentView.addSubview(self.textView)
+        self.contentView.addSubview(self.overlayView)
+        self.overlayView.set(backgroundColor: .clear)
 
         let view = UIView(frame: self.bounds)
         view.set(backgroundColor: .background2)
         self.backgroundView = view
 
-        self.textView.gestureRecognizers?.forEach({ (gesture) in
-            if gesture is UITapGestureRecognizer {
-                self.bubbleView.removeGestureRecognizer(gesture)
-            }
-        })
+        //TODO: REMOVE SELECTED STATE FROM CELL 
 
-        self.textView.onTap { (tap) in
+        self.overlayView.onTap { [unowned self] (tap) in
             self.didTapMessage()
         }
     }
@@ -120,6 +120,7 @@ class MessageCell: UICollectionViewCell {
         self.avatarView.frame = attributes.attributes.avatarFrame
         self.textView.frame = attributes.attributes.textViewFrame
         self.bubbleView.frame = attributes.attributes.bubbleViewFrame
+        self.overlayView.frame = attributes.attributes.bubbleViewFrame
         self.bubbleView.layer.maskedCorners = attributes.attributes.maskedCorners
         self.bubbleView.roundCorners()
     }
