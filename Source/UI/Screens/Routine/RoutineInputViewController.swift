@@ -73,8 +73,18 @@ class RoutineInputViewController: ViewController {
         }
 
         self.content.setRoutineButton.onTap { [unowned self] (tap) in
-            let routine = Routine(messageCheckTime: self.selectedDate)
-            RoutineManager.shared.scheduleNotification(for: routine)
+            let routine = Routine()
+            routine.create(with: self.selectedDate)
+            routine.saveObject()
+            .withResultToast(with: "Routine saved")
+                .observe { (result) in
+                    switch result {
+                    case .success(_):
+                        break
+                    case .failure(let error):
+                        print(error)
+                    }
+            }
         }
     }
     
