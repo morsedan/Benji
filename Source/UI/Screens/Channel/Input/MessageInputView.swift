@@ -24,6 +24,8 @@ class MessageInputView: View {
     private var alertAnimator: UIViewPropertyAnimator?
     private let selectionFeedback = UIImpactFeedbackGenerator(style: .rigid)
 
+    var messageContext: MessageContext = .casual
+
     override func initializeSubviews() {
         super.initializeSubviews()
 
@@ -57,7 +59,6 @@ class MessageInputView: View {
         self.overlayButton.addGestureRecognizer(longPressRecognizer)
 
         self.layer.masksToBounds = true
-        self.layer.borderColor = Color.lightPurple.color.cgColor
         self.layer.borderWidth = Theme.borderWidth
         self.layer.maskedCorners = [.layerMinXMaxYCorner, .layerMaxXMinYCorner, .layerMinXMinYCorner]
         self.layer.cornerRadius = Theme.cornerRadius
@@ -79,6 +80,8 @@ class MessageInputView: View {
 
         self.overlayButton.frame = self.bounds
         self.blurView.frame = self.bounds
+
+        self.layer.borderColor = self.messageContext.color.color.cgColor
     }
 
     private func handle(longPress: UILongPressGestureRecognizer) {
@@ -98,6 +101,7 @@ class MessageInputView: View {
     }
 
     private func startAlertAnimation() {
+        self.messageContext = .emergency
         self.alertAnimator?.stopAnimation(true)
         self.alertAnimator?.pausesOnCompletion = true
         self.selectionFeedback.impactOccurred()
@@ -124,22 +128,25 @@ class MessageInputView: View {
             self.showAlertConfirmation()
         } else {
             self.alertAnimator?.stopAnimation(true)
-
+            self.messageContext = .casual
             self.alertAnimator = UIViewPropertyAnimator(duration: 0.5,
                                                         curve: .linear,
                                                         animations: { [unowned self] in
                                                             self.alertProgressView.size = CGSize(width: 0, height: self.height)
+                                                            self.layer.borderColor = self.messageContext.color.color.cgColor
             })
             self.alertAnimator?.startAnimation()
         }
     }
 
     func resetAlertProgress() {
+        self.messageContext = .casual
         self.alertProgressView.width = 0
         self.alertProgressView.set(backgroundColor: .red)
         self.alertProgressView.alpha = 1
         self.resetInputViews()
         self.alertProgressView.layer.removeAllAnimations()
+        self.layer.borderColor = self.messageContext.color.color.cgColor
     }
 
     func reset() {

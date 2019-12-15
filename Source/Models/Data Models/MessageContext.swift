@@ -51,7 +51,7 @@ enum MessageContext: String, CaseIterable {
         case .convenient:
             return .green
         case .casual:
-            return .teal
+            return .lightPurple
         }
     }
 }
