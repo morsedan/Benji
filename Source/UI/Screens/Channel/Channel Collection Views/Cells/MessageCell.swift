@@ -40,6 +40,7 @@ class MessageCell: UICollectionViewCell {
         let view = UIView(frame: self.bounds)
         view.set(backgroundColor: .background2)
         self.backgroundView = view
+        self.selectedBackgroundView = view
 
         //TODO: REMOVE SELECTED STATE FROM CELL 
 
