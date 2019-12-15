@@ -24,7 +24,7 @@ class MessageInputView: View {
     private var alertAnimator: UIViewPropertyAnimator?
     private let selectionFeedback = UIImpactFeedbackGenerator(style: .rigid)
 
-    var messageContext: MessageContext = .casual
+    private(set) var messageContext: MessageContext = .casual
 
     override func initializeSubviews() {
         super.initializeSubviews()
@@ -139,6 +139,13 @@ class MessageInputView: View {
         }
     }
 
+    func reset() {
+        self.textView.text = String()
+        self.textView.alpha = 1
+        self.resetInputViews()
+        self.resetAlertProgress()
+    }
+
     func resetAlertProgress() {
         self.messageContext = .casual
         self.alertProgressView.width = 0
@@ -147,12 +154,6 @@ class MessageInputView: View {
         self.resetInputViews()
         self.alertProgressView.layer.removeAllAnimations()
         self.layer.borderColor = self.messageContext.color.color.cgColor
-    }
-
-    func reset() {
-        self.textView.text = String()
-        self.textView.alpha = 1
-        self.resetInputViews()
     }
 
     func resetInputViews() {

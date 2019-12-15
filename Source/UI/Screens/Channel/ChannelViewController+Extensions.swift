@@ -46,6 +46,7 @@ extension ChannelViewController: KeyboardObservable, UIGestureRecognizerDelegate
             break
         case .began:
             self.previewView = PreviewMessageView()
+            self.previewView?.set(backgroundColor: self.messageInputView.messageContext.color)
             self.previewView?.textView.text = self.messageInputView.textView.text
             self.previewView?.backgroundView.alpha = 0.0
             self.view.insertSubview(self.previewView!, aboveSubview: self.messageInputView)
@@ -87,7 +88,9 @@ extension ChannelViewController: KeyboardObservable, UIGestureRecognizerDelegate
 
             self.previewAnimator?.addCompletion({ (position) in
                 if position == .end {
-                    self.send(message: text, attributes: ["status": MessageStatus.sent.rawValue])
+                    self.send(message: text,
+                              context: self.messageInputView.messageContext,
+                              attributes: ["status": MessageStatus.sent.rawValue])
                     self.previewView?.removeFromSuperview()
                 }
                 if position == .start {

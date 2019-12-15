@@ -19,7 +19,6 @@ class PreviewMessageView: View {
         super.initializeSubviews()
 
         self.addSubview(self.backgroundView)
-        self.backgroundView.set(backgroundColor: .lightPurple)
         self.addSubview(self.textView)
         self.layer.masksToBounds = true
         self.layer.cornerRadius = Theme.cornerRadius
