@@ -247,6 +247,7 @@
 		D6D1504021DAFB8300CD8CE4 /* UITextField+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6D1503F21DAFB8300CD8CE4 /* UITextField+Extensions.swift */; };
 		D6D1504F21E304D800CD8CE4 /* BouncyCollectionViewLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6D1504E21E304D800CD8CE4 /* BouncyCollectionViewLayout.swift */; };
 		D6D6D57223A6D43100D2B5BF /* CancelButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6D6D57123A6D43100D2B5BF /* CancelButton.swift */; };
+		D6D6D57423A6E51000D2B5BF /* UIView+ScalingAnimation.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6D6D57323A6E51000D2B5BF /* UIView+ScalingAnimation.swift */; };
 		D6D8A48C235D154500F0CC4B /* NavigationBarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6D8A48B235D154500F0CC4B /* NavigationBarViewController.swift */; };
 		D6DADF692207D246007D9EB1 /* TCHMessage+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6DADF682207D246007D9EB1 /* TCHMessage+Extensions.swift */; };
 		D6DADF6C2207DCA8007D9EB1 /* ChannelsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6DADF6B2207DCA8007D9EB1 /* ChannelsViewController.swift */; };
@@ -540,6 +541,7 @@
 		D6D1503F21DAFB8300CD8CE4 /* UITextField+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UITextField+Extensions.swift"; sourceTree = "<group>"; };
 		D6D1504E21E304D800CD8CE4 /* BouncyCollectionViewLayout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BouncyCollectionViewLayout.swift; sourceTree = "<group>"; };
 		D6D6D57123A6D43100D2B5BF /* CancelButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CancelButton.swift; sourceTree = "<group>"; };
+		D6D6D57323A6E51000D2B5BF /* UIView+ScalingAnimation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+ScalingAnimation.swift"; sourceTree = "<group>"; };
 		D6D8A48B235D154500F0CC4B /* NavigationBarViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavigationBarViewController.swift; sourceTree = "<group>"; };
 		D6DADF682207D246007D9EB1 /* TCHMessage+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "TCHMessage+Extensions.swift"; sourceTree = "<group>"; };
 		D6DADF6B2207DCA8007D9EB1 /* ChannelsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChannelsViewController.swift; sourceTree = "<group>"; };
@@ -1315,19 +1317,20 @@
 		D6D1503A21D7F47600CD8CE4 /* UI Extensions */ = {
 			isa = PBXGroup;
 			children = (
-				D61EC0EB21D312B600204BEE /* UIView+Extensions.swift */,
-				D6D1503821D7F46F00CD8CE4 /* UITextView+Extensions.swift */,
-				D61EC0F221D3146600204BEE /* UINib+Extensions.swift */,
 				D6D1501721D5F40F00CD8CE4 /* UICollectionView+Extensions.swift */,
-				D6D1503021D6A2B900CD8CE4 /* UITableView+Extensions.swift */,
 				D6D1503221D7E5F800CD8CE4 /* UIDynamicAnimator+Extensions.swift */,
-				D6D1503621D7E74500CD8CE4 /* UIViewController+Extensions.swift */,
-				D61EC0ED21D313BA00204BEE /* UIScreen+Extensions.swift */,
-				D6D1503F21DAFB8300CD8CE4 /* UITextField+Extensions.swift */,
-				D635551A21E5B3D400530602 /* UIScrollView+Extensions.swift */,
-				D60C81472209314200A127A3 /* UIImage+Extensions.swift */,
-				D642739822CA79B60088256B /* UIWindow+Extensions.swift */,
 				D64C6AA3232EA13300DB7257 /* UIEdgeInsets+Extensions.swift */,
+				D60C81472209314200A127A3 /* UIImage+Extensions.swift */,
+				D61EC0F221D3146600204BEE /* UINib+Extensions.swift */,
+				D61EC0ED21D313BA00204BEE /* UIScreen+Extensions.swift */,
+				D635551A21E5B3D400530602 /* UIScrollView+Extensions.swift */,
+				D6D1503021D6A2B900CD8CE4 /* UITableView+Extensions.swift */,
+				D6D1503F21DAFB8300CD8CE4 /* UITextField+Extensions.swift */,
+				D6D1503821D7F46F00CD8CE4 /* UITextView+Extensions.swift */,
+				D61EC0EB21D312B600204BEE /* UIView+Extensions.swift */,
+				D6D6D57323A6E51000D2B5BF /* UIView+ScalingAnimation.swift */,
+				D6D1503621D7E74500CD8CE4 /* UIViewController+Extensions.swift */,
+				D642739822CA79B60088256B /* UIWindow+Extensions.swift */,
 			);
 			path = "UI Extensions";
 			sourceTree = "<group>";
@@ -1522,6 +1525,7 @@
 				D6D1504F21E304D800CD8CE4 /* BouncyCollectionViewLayout.swift in Sources */,
 				D6815DB922EE1CAC00E71251 /* FeedView.swift in Sources */,
 				D61EC0F521D3151400204BEE /* NSAttributedString+Extensions.swift in Sources */,
+				D6D6D57423A6E51000D2B5BF /* UIView+ScalingAnimation.swift in Sources */,
 				D6D1460721D552B100CD8CE4 /* Character+Extensions.swift in Sources */,
 				D6B2606C22E80B6A00143CF0 /* ToastScheduler.swift in Sources */,
 				D66F0FF222C1D86800BA277D /* ChannelsType.swift in Sources */,

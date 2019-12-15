@@ -11,7 +11,6 @@ import Foundation
 class MessageInputView: View {
 
     var onPanned: ((UIPanGestureRecognizer) -> Void)?
-    var onAlertMessageConfirmed: (() -> Void)?
 
     private(set) var minHeight: CGFloat = 44
     var oldTextViewHeight: CGFloat = 44
@@ -63,16 +62,8 @@ class MessageInputView: View {
         self.layer.maskedCorners = [.layerMinXMaxYCorner, .layerMaxXMinYCorner, .layerMinXMinYCorner]
         self.layer.cornerRadius = Theme.cornerRadius
 
-        self.alertConfirmation.didConfirm = { [unowned self] success, error in
-            if success {
-                self.onAlertMessageConfirmed?()
-            }
-
-            self.alertProgressView.width = 0
-            self.alertProgressView.set(backgroundColor: .red)
-            self.alertProgressView.alpha = 1 
-            self.resetInputViews()
-            self.alertProgressView.layer.removeAllAnimations()
+        self.alertConfirmation.didCancel = { [unowned self] in
+            self.resetAlertProgress()
         }
     }
 
@@ -143,6 +134,14 @@ class MessageInputView: View {
         }
     }
 
+    func resetAlertProgress() {
+        self.alertProgressView.width = 0
+        self.alertProgressView.set(backgroundColor: .red)
+        self.alertProgressView.alpha = 1
+        self.resetInputViews()
+        self.alertProgressView.layer.removeAllAnimations()
+    }
+
     func reset() {
         self.textView.text = String()
         self.textView.alpha = 1
@@ -162,6 +161,16 @@ class MessageInputView: View {
         self.alertConfirmation.keyboardAppearance = self.textView.keyboardAppearance
         self.textView.inputAccessoryView = self.alertConfirmation
         self.textView.reloadInputViews()
+
+        ChannelManager.shared.activeChannel.value?.getMembersAsUsers()
+            .observe(with: { (result) in
+                switch result {
+                case .success(let users):
+                    self.alertConfirmation.setAlertMessage(for: users)
+                case .failure(_):
+                    break
+                }
+            })
 
         self.alertProgressView.size = CGSize(width: self.width, height: self.height)
     }

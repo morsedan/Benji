@@ -20,7 +20,14 @@ class CancelButton: Button {
     }
 
     func initializeSubviews() {
+        self.tintColor = Color.white.color
         self.setImage(UIImage(systemName: "xmark.square"), for: .normal)
         self.setImage(UIImage(systemName: "xmark.square.fill"), for: .highlighted)
+    }
+
+    override func layoutSubviews() {
+        super.layoutSubviews()
+
+        self.size = CGSize(width: 44, height: 44)
     }
 }
