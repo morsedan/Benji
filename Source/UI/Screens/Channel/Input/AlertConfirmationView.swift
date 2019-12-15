@@ -52,7 +52,7 @@ class AlertConfirmationView: View {
     }
 
     func setAlertMessage(for avatars: [Avatar]) {
-        var arguments: [String] = []
+        var arguments = String()
         for (index, avatar) in avatars.enumerated() {
             if avatar.userObjectID != User.current()?.objectId, let handle = avatar.handle, !handle.isEmpty {
                 if avatars.count == 1 {
@@ -68,7 +68,7 @@ class AlertConfirmationView: View {
         if arguments.isEmpty {
             arguments.append("others ")
         }
-        self.text = LocalizedString(id: "", arguments: arguments, default: "Swipe up to alert @(handle)of this message and be notified when it is read.")
+        self.text = LocalizedString(id: "", arguments: [arguments], default: "Swipe up to alert @(handle)of this message and be notified when it is read.")
     }
 
     override func layoutSubviews() {
