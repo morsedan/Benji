@@ -11,8 +11,8 @@ import Foundation
 class SearchButton: Button {
 
     override func initializeSubviews() {
-
-        self.setImage(UIImage(systemName: "magnifyingglass.circle"), for: .normal)
-        self.tintColor = Color.background3.color
+        self.set(backgroundColor: .background2)
+        self.setImage(UIImage(systemName: "magnifyingglass"), for: .normal)
+        self.tintColor = Color.white.color
     }
 }
