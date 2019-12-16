@@ -17,6 +17,17 @@ enum ButtonStyle {
 
 class Button: UIButton {
 
+    override init(frame: CGRect) {
+        super.init(frame: frame)
+        self.initializeSubviews()
+    }
+
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+
+    func initializeSubviews() {}
+
     //Sets text font, color and background color
     func set(style: ButtonStyle,
              shouldRound: Bool = true,

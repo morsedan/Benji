@@ -11,6 +11,7 @@ import Foundation
 extension UIView {
 
     func scaleDown() {
+
         let propertyAnimator = UIViewPropertyAnimator(duration: 0.6,
                                                       dampingRatio: 0.6) {
                                                         self.transform = CGAffineTransform(scaleX: 0.9, y: 0.9)

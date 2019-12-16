@@ -10,16 +10,7 @@ import Foundation
 
 class CancelButton: Button {
 
-    override init(frame: CGRect) {
-        super.init(frame: frame)
-        self.initializeSubviews()
-    }
-
-    required init?(coder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
-    }
-
-    func initializeSubviews() {
+    override func initializeSubviews() {
         self.tintColor = Color.white.color
         self.setImage(UIImage(systemName: "xmark.square"), for: .normal)
         self.setImage(UIImage(systemName: "xmark.square.fill"), for: .highlighted)

@@ -248,6 +248,7 @@
 		D6D1504F21E304D800CD8CE4 /* BouncyCollectionViewLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6D1504E21E304D800CD8CE4 /* BouncyCollectionViewLayout.swift */; };
 		D6D6D57223A6D43100D2B5BF /* CancelButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6D6D57123A6D43100D2B5BF /* CancelButton.swift */; };
 		D6D6D57423A6E51000D2B5BF /* UIView+ScalingAnimation.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6D6D57323A6E51000D2B5BF /* UIView+ScalingAnimation.swift */; };
+		D6D6D57623A70DF100D2B5BF /* SearchButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6D6D57523A70DF100D2B5BF /* SearchButton.swift */; };
 		D6D8A48C235D154500F0CC4B /* NavigationBarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6D8A48B235D154500F0CC4B /* NavigationBarViewController.swift */; };
 		D6DADF692207D246007D9EB1 /* TCHMessage+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6DADF682207D246007D9EB1 /* TCHMessage+Extensions.swift */; };
 		D6DADF6C2207DCA8007D9EB1 /* ChannelsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6DADF6B2207DCA8007D9EB1 /* ChannelsViewController.swift */; };
@@ -542,6 +543,7 @@
 		D6D1504E21E304D800CD8CE4 /* BouncyCollectionViewLayout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BouncyCollectionViewLayout.swift; sourceTree = "<group>"; };
 		D6D6D57123A6D43100D2B5BF /* CancelButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CancelButton.swift; sourceTree = "<group>"; };
 		D6D6D57323A6E51000D2B5BF /* UIView+ScalingAnimation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+ScalingAnimation.swift"; sourceTree = "<group>"; };
+		D6D6D57523A70DF100D2B5BF /* SearchButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchButton.swift; sourceTree = "<group>"; };
 		D6D8A48B235D154500F0CC4B /* NavigationBarViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavigationBarViewController.swift; sourceTree = "<group>"; };
 		D6DADF682207D246007D9EB1 /* TCHMessage+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "TCHMessage+Extensions.swift"; sourceTree = "<group>"; };
 		D6DADF6B2207DCA8007D9EB1 /* ChannelsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChannelsViewController.swift; sourceTree = "<group>"; };
@@ -911,8 +913,9 @@
 			isa = PBXGroup;
 			children = (
 				D60C814522092F6B00A127A3 /* Button.swift */,
-				D642738B22C9B24E0088256B /* LoadingButton.swift */,
 				D6D6D57123A6D43100D2B5BF /* CancelButton.swift */,
+				D642738B22C9B24E0088256B /* LoadingButton.swift */,
+				D6D6D57523A70DF100D2B5BF /* SearchButton.swift */,
 			);
 			path = Buttons;
 			sourceTree = "<group>";
@@ -1709,6 +1712,7 @@
 				D68DC7FC22EE5D9000BEAF80 /* FeedOverlayView.swift in Sources */,
 				80D4A21A23039FA5007CB5F1 /* RoutineManager.swift in Sources */,
 				D67896BF2302683C0059BA75 /* LoginProfilePhotoViewController.swift in Sources */,
+				D6D6D57623A70DF100D2B5BF /* SearchButton.swift in Sources */,
 				D6D1500C21D5E7C200CD8CE4 /* CollectionViewManager.swift in Sources */,
 				D64C6A7C23288FB300DB7257 /* SmallSemiBoldLabel.swift in Sources */,
 				D68540DC235FED41006F666C /* SuggestionCollectionViewLayoutAttributes.swift in Sources */,

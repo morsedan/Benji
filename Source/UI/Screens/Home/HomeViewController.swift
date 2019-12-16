@@ -77,6 +77,10 @@ class HomeViewController: FullScreenViewController {
             self.delegate.homeView(self, didSelect: .add)
         }
 
+        self.headerView.searchButton.onTap { [unowned self] (tap) in
+            self.currentType = .channels
+        }
+
         self.headerView.searchBar.delegate = self
     }
 
@@ -128,7 +132,6 @@ extension HomeViewController: UISearchBarDelegate {
 
     func searchBarTextDidBeginEditing(_ searchBar: UISearchBar) {
         self.channelsVC.manager.channelFilter = SearchFilter(text: String(), scope: .all)
-        self.currentType = .channels
     }
 
     func searchBarTextDidEndEditing(_ searchBar: UISearchBar) {

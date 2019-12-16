@@ -23,61 +23,65 @@ class HomeHeaderView: View {
     }()
 
     private let label = Display1Label()
-    private let dateLabel = HomeHeaderDateLabel()
     private(set) var searchBar = HomeSearchBar()
-    private var searchBarOffset: CGFloat?
-    private var searchBarHeight: CGFloat?
+    private(set) var searchButton = SearchButton()
+    private var searchButtonOffset: CGFloat?
 
     override func initializeSubviews() {
         super.initializeSubviews()
 
         self.addSubview(self.label)
         self.addSubview(self.avatarView)
-        self.addSubview(self.dateLabel)
-        self.addSubview(self.searchBar)
+        self.addSubview(self.searchButton)
 
         self.label.set(text: "Feed")
-        self.dateLabel.set(date: Date.today)
     }
 
     override func layoutSubviews() {
         super.layoutSubviews()
 
+        self.avatarView.size = CGSize(width: 44, height: 44)
+        self.avatarView.left = Theme.contentOffset
+        self.avatarView.top = 0
+
         self.label.setSize(withWidth: self.width * 0.8)
-        self.label.left = Theme.contentOffset
-        self.label.top = 0
+        self.label.left = self.avatarView.right + Theme.contentOffset
+        self.label.top = self.avatarView.top
 
-        self.dateLabel.setSize(withWidth: self.width * 0.8)
-        self.dateLabel.left = Theme.contentOffset
-        self.dateLabel.top = self.label.bottom + 5
-
-        self.avatarView.size = CGSize(width: 40, height: 40)
-        self.avatarView.right = self.width - Theme.contentOffset
-        self.avatarView.centerY = self.label.centerY
-
-        let offset = self.searchBarOffset ?? HomeHeaderView.height - HomeHeaderView.searchBarCollapsedHeight
-        let height = self.searchBarHeight ?? HomeHeaderView.searchBarCollapsedHeight
-        self.searchBar.size = CGSize(width: self.width, height: height)
-        self.searchBar.top = offset
-        self.searchBar.centerOnX()
+        self.searchButton.size = CGSize(width: 36, height: 36)
+        let offset = self.searchButtonOffset ?? self.width - Theme.contentOffset - 36
+        self.searchButton.left = offset
+        self.searchButton.centerY = self.avatarView.centerY
     }
 
     func updateContent(for type: HomeContentType) {
 
         let showScope = type == .channels
         let showCanel = type == .channels
-        self.searchBarHeight = type == .channels ? HomeHeaderView.height : HomeHeaderView.searchBarCollapsedHeight
-        self.searchBarOffset = type == .channels ? 0 : HomeHeaderView.height - self.searchBarHeight!
+
         let alpha: CGFloat = type == .channels ? 0 : 1.0
 
-        self.searchBar.setShowsScope(showScope, animated: true)
-        self.searchBar.setShowsCancelButton(showCanel, animated: true)
+        self.searchButtonOffset = type == .channels ? Theme.contentOffset : self.width - Theme.contentOffset - self.searchButton.width
 
-        UIView.animate(withDuration: Theme.animationDuration) {
+        UIView.animate(withDuration: 0.2, animations: {
             self.avatarView.alpha = alpha
             self.label.alpha = alpha
-            self.dateLabel.alpha = alpha
             self.layoutNow()
+        }) { (completed) in
+            self.addSubview(self.searchBar)
+            self.searchButton.frame = CGRect(x: Theme.contentOffset,
+                                             y: 0,
+                                             width: self.width - (Theme.contentOffset * 2),
+                                             height: 120)
+            self.searchBar.alpha = 0
+            UIView.animate(withDuration: 0.2, animations: {
+                self.searchBar.alpha = 1
+                self.searchButton.alpha = 0 
+            }) { (completed) in
+                self.searchBar.becomeFirstResponder()
+            }
+            self.searchBar.setShowsScope(showScope, animated: true)
+            self.searchBar.setShowsCancelButton(showCanel, animated: true)
         }
     }
 }
