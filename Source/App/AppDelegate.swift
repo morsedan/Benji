@@ -25,7 +25,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
 
     func applicationDidBecomeActive(_ application: UIApplication) {
-        guard !ChannelManager.shared.isSynced else { return }
+
+        guard !ChannelManager.shared.isConnected else { return }
 
         switch LaunchManager.shared.status {
         case .isLaunching, .failed(_):

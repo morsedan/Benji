@@ -161,7 +161,27 @@ class UserNotificationManager: NSObject {
         }
     }
 
-    private func notify(identities: [String], message: Messageable) {
+    func notify(channel: TCHChannel, messageWasRead message: Messageable) {
+        let body = LocalizedString(id: "",
+                                   arguments: [channel.friendlyName!, User.current()!.handle!],
+                                   default: "Your message in @(channelname) was read by @(handle)")
+
+        let params: [String: Any] = ["identity": [message.authorID],
+                                     "body" : localized(body),
+                                     "title": "Message read 🤓"]
+        self.notify(with: params)
+    }
+
+    func notify(identities: [String], message: Messageable) {
+
+        let params: [String: Any] = ["identity": identities,
+                                     "body" : localized(message.text),
+                                     "title": message.context.title]
+
+        self.notify(with: params)
+    }
+
+    func notify(with params: [String: Any]) {
 
         let session = URLSession.shared
 
@@ -171,10 +191,6 @@ class UserNotificationManager: NSObject {
 
         request.addValue("application/json", forHTTPHeaderField: "Accept")
         request.addValue("application/json", forHTTPHeaderField: "Content-Type")
-
-        let params: [String: Any] = ["identity": identities,
-                                     "body" : localized(message.text),
-                                     "title": message.context.title]
 
         let jsonData = try! JSONSerialization.data(withJSONObject: params, options: [])
         request.httpBody = jsonData
@@ -187,7 +203,7 @@ class UserNotificationManager: NSObject {
                     let responseObject = try JSONSerialization.jsonObject(with: responseData, options: [])
                     if let responseDictionary = responseObject as? [String: Any] {
                         if let message = responseDictionary["message"] as? String {
-                            print("Message: \(message), for: \(identities)")
+                            print("Message: \(message)")
                         }
                     }
                 } catch let error {

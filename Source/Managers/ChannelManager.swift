@@ -42,6 +42,11 @@ class ChannelManager: NSObject {
         return false
     }
 
+    var isConnected: Bool {
+        guard let client = self.client else { return false }
+        return client.connectionState == .connected
+    }
+
     static func initialize(token: String) {
         TwilioChatClient.chatClient(withToken: token,
                                     properties: nil,
@@ -69,9 +74,10 @@ class ChannelManager: NSObject {
         let message = body.extraWhitespaceRemoved()
         let promise = Promise<Messageable>()
 
-        guard !message.isEmpty,
-            channel.status == .joined,
-            let messages = channel.messages else {
+        guard self.isConnected,
+                !message.isEmpty,
+                channel.status == .joined,
+                let messages = channel.messages else {
                 promise.reject(with: ClientError.generic)
                 return promise
         }

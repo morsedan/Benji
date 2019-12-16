@@ -110,7 +110,13 @@ class MessageCell: UICollectionViewCell {
 
         if !message.isFromCurrentUser, !message.isConsumed {
             self.bubbleView.set(backgroundColor: message.context.color)
-            self.bubbleView.layer.borderColor = Color.purple.color.cgColor
+
+            if !message.isFromCurrentUser, message.context == .casual {
+                self.bubbleView.layer.borderColor = Color.purple.color.cgColor
+            } else {
+                self.bubbleView.layer.borderColor = message.context.color.color.cgColor
+            }
+
             self.bubbleView.layer.borderWidth = 2
             self.bubbleView.set(backgroundColor: .clear)
         }
