@@ -19,6 +19,7 @@ enum HomeOptionType {
 enum HomeContentType {
     case feed
     case channels
+    case profile
 }
 
 protocol HomeViewControllerDelegate: class {
@@ -35,7 +36,7 @@ class HomeViewController: FullScreenViewController {
     lazy var feedVC = FeedViewController(with: self.delegate)
     lazy var channelsVC = ChannelsViewController(with: self.delegate)
     let centerContainer = View()
-    let headerView = HomeHeaderView()
+    let tabView = HomeTabView()
 
     private var currentType: HomeContentType = .feed {
         didSet {
@@ -63,51 +64,44 @@ class HomeViewController: FullScreenViewController {
         self.view.set(backgroundColor: .background1)
 
         self.contentContainer.addSubview(self.centerContainer)
-        self.contentContainer.addSubview(self.headerView)
 
         self.addChild(self.channelsVC)
         self.addChild(viewController: self.feedVC, toView: self.centerContainer)
-
-        self.headerView.avatarView.onTap { [unowned self] (tap) in
-            self.delegate.homeView(self, didSelect: .profile)
-        }
 
         self.contentContainer.addSubview(self.addButton)
         self.addButton.onTap { [unowned self] (tap) in
             self.delegate.homeView(self, didSelect: .add)
         }
 
-        self.headerView.searchButton.onTap { [unowned self] (tap) in
-            self.currentType = .channels
-        }
-
-        self.headerView.searchBar.delegate = self
+        self.contentContainer.addSubview(self.tabView)
+        self.tabView.delegate = self
     }
 
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
 
-        self.headerView.frame = CGRect(x: 0,
-                                       y: 0,
-                                       width: self.view.width,
-                                       height: HomeHeaderView.height)
-
         self.addButton.size = CGSize(width: 60, height: 60)
-        self.addButton.centerOnX()
+        self.addButton.right = self.view.width - Theme.contentOffset
         self.addButton.bottom = self.contentContainer.height - 10
 
         self.centerContainer.size = CGSize(width: self.contentContainer.width,
-                                           height: self.contentContainer.height - self.headerView.bottom)
-        self.centerContainer.top = self.headerView.bottom
+                                           height: self.contentContainer.height - 40)
+        self.centerContainer.top = 40
         self.centerContainer.centerOnX()
 
         self.feedVC.view.frame = self.centerContainer.bounds
+
+        self.tabView.size = CGSize(width: 200, height: 60)
+        self.tabView.left = Theme.contentOffset
+        self.tabView.bottom = self.addButton.bottom
+        self.tabView.roundCorners()
     }
 
     func updateContent() {
-        self.headerView.updateContent(for: self.currentType)
 
         switch self.currentType {
+        case .profile:
+            break 
         case .feed:
             self.channelsVC.animateOut { (completed, error) in
                 guard completed else { return }
@@ -118,9 +112,9 @@ class HomeViewController: FullScreenViewController {
             self.feedVC.animateOut { (completed, error) in
                 guard completed else { return }
 
-                self.view.insertSubview(self.channelsVC.view, belowSubview: self.headerView)
+                self.view.insertSubview(self.channelsVC.view, belowSubview: self.tabView)
                 self.channelsVC.view.size = self.centerContainer.size
-                self.channelsVC.view.top = self.headerView.height + self.view.safeAreaInsets.top
+                self.channelsVC.view.top = 40
                 self.channelsVC.view.centerOnX()
                 self.channelsVC.animateIn(completion: { (completed, error) in })
             }
@@ -143,13 +137,19 @@ extension HomeViewController: UISearchBarDelegate {
             let scope = SearchScope(rawValue: scopeString) else { return }
         
         let lowercaseString = searchText.lowercased()
-        self.headerView.searchBar.text = lowercaseString
+        //self.headerView.searchBar.text = lowercaseString
         self.channelsVC.manager.channelFilter = SearchFilter(text: lowercaseString, scope: scope)
     }
 
     func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
         searchBar.searchTextField.text = String()
         searchBar.resignFirstResponder()
+    }
+}
+
+extension HomeViewController: HomeTabViewDelegate {
+    func homeTab(_ view: HomeTabView, didSelect tab: HomeContentType) {
+        self.currentType = tab
     }
 }
 
