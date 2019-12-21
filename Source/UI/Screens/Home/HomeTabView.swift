@@ -10,9 +10,10 @@ import Foundation
 
 class HomeTabView: View {
 
-    private let profileItem = Button()
-    private let feedItem = Button()
-    private let channelsItem = Button()
+    private(set) var profileItem = Button()
+    private(set) var feedItem = Button()
+    private(set) var channelsItem = Button()
+    private let selectionFeedback = UIImpactFeedbackGenerator(style: .light)
     
     override func initializeSubviews() {
         super.initializeSubviews()
@@ -23,27 +24,16 @@ class HomeTabView: View {
         self.profileItem.tintColor = Color.white.color
         self.profileItem.setImage(UIImage(systemName: "person.crop.circle"), for: .normal)
         self.profileItem.setImage(UIImage(systemName: "person.crop.circle.fill"), for: .selected)
-        self.profileItem.onTap { [unowned self] (tap) in
-           // self.delegate?.homeTab(self, didSelect: .profile)
-        }
 
         self.addSubview(self.feedItem)
         self.feedItem.tintColor = Color.white.color
         self.feedItem.setImage(UIImage(systemName: "square.stack"), for: .normal)
         self.feedItem.setImage(UIImage(systemName: "square.stack.fill"), for: .selected)
-        self.feedItem.onTap { [unowned self] (tap) in
-            //self.delegate?.homeTab(self, didSelect: .feed)
-        }
 
         self.addSubview(self.channelsItem)
         self.channelsItem.tintColor = Color.white.color
         self.channelsItem.setImage(UIImage(systemName: "bubble.left.and.bubble.right"), for: .normal)
         self.channelsItem.setImage(UIImage(systemName: "bubble.left.and.bubble.right.fill"), for: .selected)
-        self.channelsItem.onTap { [unowned self] (tap) in
-           // self.delegate?.homeTab(self, didSelect: .channels)
-        }
-
-        self.feedItem.isSelected = true 
     }
 
     override func layoutSubviews() {
@@ -65,7 +55,8 @@ class HomeTabView: View {
     }
 
     func updateTabItems(for contentType: HomeContent) {
-
+        self.selectionFeedback.impactOccurred()
+        
         switch contentType {
         case .feed:
             self.feedItem.isSelected = true

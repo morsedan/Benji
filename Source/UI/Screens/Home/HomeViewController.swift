@@ -69,7 +69,20 @@ class HomeViewController: FullScreenViewController {
             .skipRepeats()
             .on { [unowned self] (contentType) in
                 self.switchContent()
+                self.tabView.updateTabItems(for: contentType)
         }.start()
+
+        self.tabView.profileItem.onTap { [unowned self] (tap) in
+            self.currentContent.value = .profile(self.profileVC)
+        }
+
+        self.tabView.feedItem.onTap { [unowned self] (tap) in
+            self.currentContent.value = .feed(self.feedVC)
+        }
+
+        self.tabView.channelsItem.onTap { [unowned self] (tap) in
+            self.currentContent.value = .channels(self.channelsVC)
+        }
     }
 
     override func viewDidLayoutSubviews() {
