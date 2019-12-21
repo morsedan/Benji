@@ -109,6 +109,7 @@ class HomeViewController: FullScreenViewController {
 
         UIView.animate(withDuration: Theme.animationDuration, animations: {
             self.centerContainer.alpha = 0
+            self.centerContainer.transform = CGAffineTransform(scaleX: 0.95, y: 0.95)
         }) { (completed) in
 
             self.currentCenterVC?.removeFromParentSuperview()
@@ -133,6 +134,7 @@ class HomeViewController: FullScreenViewController {
 
             UIView.animate(withDuration: Theme.animationDuration) {
                 self.centerContainer.alpha = 1
+                self.centerContainer.transform = .identity
             }
         }
     }
