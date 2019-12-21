@@ -14,7 +14,7 @@ enum SearchScope: String, CaseIterable {
     case dms = "@"
 }
 
-class HomeSearchBar: UISearchBar {
+class ChannelsSearchBar: UISearchBar {
 
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -53,5 +53,8 @@ class HomeSearchBar: UISearchBar {
 
         let styleAttributes = StringStyle(font: .regularSemiBold, color: .lightPurple).attributes
         self.searchTextField.typingAttributes = styleAttributes
+
+        self.setShowsScope(true, animated: true)
+        self.setShowsCancelButton(true, animated: true)
     }
 }
