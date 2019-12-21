@@ -19,11 +19,6 @@ enum ChannelType: ManageableCellItem {
     case system(SystemChannel)
     case channel(TCHChannel)
 
-    var scope: SearchScope {
-        //Update to show channels and dms
-        return .dms
-    }
-
     var uniqueName: String {
         switch self {
         case .system(let channel):

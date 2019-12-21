@@ -44,7 +44,7 @@ extension ChannelsViewController {
                 break
             case .completed:
                 self.manager.channelCache = self.getChannelsSortedByUpdateDate()
-                self.manager.loadFilteredChannels()
+                self.manager.loadAllChannels()
             case .failed:
                 break
             @unknown default:

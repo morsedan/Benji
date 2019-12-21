@@ -8,12 +8,6 @@
 
 import Foundation
 
-enum SearchScope: String, CaseIterable {
-    case all = "All"
-    case channels = "#"
-    case dms = "@"
-}
-
 class ChannelsSearchBar: UISearchBar {
 
     override init(frame: CGRect) {
@@ -27,6 +21,10 @@ class ChannelsSearchBar: UISearchBar {
 
     func initializeSubviews() {
 
+        self.set(backgroundColor: .clear)
+
+        self.scopeBarBackgroundImage = UIImage()
+
         self.keyboardAppearance = .dark
         self.keyboardType = .twitter
         self.barStyle = .black
@@ -39,22 +37,7 @@ class ChannelsSearchBar: UISearchBar {
 
         self.setImage(UIImage(systemName: "xmark.circle.fill"), for: .clear, state: .normal)
 
-        self.scopeButtonTitles = SearchScope.allCases.map({ (scope) -> String in
-            return scope.rawValue
-        })
-
-        let attributes = StringStyle.init(font: .smallSemiBold, color: .white).attributes
-        self.setScopeBarButtonTitleTextAttributes(attributes, for: .normal)
-
-        let selectedAttributes = StringStyle.init(font: .smallSemiBold, color: .background1).attributes
-        self.setScopeBarButtonTitleTextAttributes(selectedAttributes, for: .selected)
-
-        self.scopeBarBackgroundImage = UIImage()
-
         let styleAttributes = StringStyle(font: .regularSemiBold, color: .lightPurple).attributes
         self.searchTextField.typingAttributes = styleAttributes
-
-        self.setShowsScope(true, animated: true)
-        self.setShowsCancelButton(true, animated: true)
     }
 }

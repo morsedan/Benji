@@ -11,7 +11,6 @@ import TwilioChatClient
 
 struct SearchFilter {
     var text: String
-    var scope: SearchScope
 }
 
 class ChannelsCollectionViewManager: CollectionViewManager<ChannelCell> {
@@ -36,36 +35,21 @@ class ChannelsCollectionViewManager: CollectionViewManager<ChannelCell> {
         }
     }
 
+    func loadAllChannels() {
+        self.set(newItems: self.channelCache)
+    }
+
     func loadFilteredChannels() {
         guard let filter = self.channelFilter else { return }
 
         let allChannels = !filter.text.isEmpty ? self.channelCache : ChannelManager.shared.subscribedChannels
         var filteredChannels: [DisplayableChannel] = []
 
-        switch filter.scope {
-        case .all:
-            if filter.text.isEmpty {
-                filteredChannels = Array(allChannels.prefix(3))
+        filteredChannels = allChannels.filter { (channel) in
+            if channel.channelType.uniqueName.contains(filter.text) {
+                return true
             } else {
-                filteredChannels = allChannels.filter { (channel) in
-                    if channel.channelType.uniqueName.contains(filter.text) {
-                        return true
-                    } else {
-                        return false
-                    }
-                }
-            }
-
-        case .channels, .dms:
-            filteredChannels = allChannels.filter { (channel) in
-
-                let doesCategoryMatch = channel.channelType.scope == filter.scope
-
-                if filter.text.isEmpty {
-                    return doesCategoryMatch
-                } else {
-                    return doesCategoryMatch && channel.channelType.uniqueName.contains(filter.text)
-                }
+                return false
             }
         }
 

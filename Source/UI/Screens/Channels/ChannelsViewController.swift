@@ -54,16 +54,17 @@ class ChannelsViewController: CollectionViewController<ChannelCell, ChannelsColl
 extension ChannelsViewController: UISearchBarDelegate {
 
     func searchBarTextDidBeginEditing(_ searchBar: UISearchBar) {
-        self.manager.channelFilter = SearchFilter(text: String(), scope: .all)
+        searchBar.setShowsCancelButton(true, animated: false)
+    }
+
+    func searchBarTextDidEndEditing(_ searchBar: UISearchBar) {
+        searchBar.setShowsCancelButton(false, animated: true)
+        self.manager.channelFilter = SearchFilter(text: String())
     }
 
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
-        guard let scopeString = searchBar.scopeButtonTitles?[searchBar.selectedScopeButtonIndex],
-            let scope = SearchScope(rawValue: scopeString) else { return }
-
         let lowercaseString = searchText.lowercased()
-        //self.headerView.searchBar.text = lowercaseString
-        self.manager.channelFilter = SearchFilter(text: lowercaseString, scope: scope)
+        self.manager.channelFilter = SearchFilter(text: lowercaseString)
     }
 
     func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
