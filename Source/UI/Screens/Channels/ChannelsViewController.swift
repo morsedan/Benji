@@ -38,32 +38,27 @@ class ChannelsViewController: CollectionViewController<ChannelCell, ChannelsColl
             self.delegate.channelsView(self, didSelect: item.item.channelType)
         }
     }
+}
 
-    func animateIn(completion: @escaping CompletionHandler) {
-          let animator = UIViewPropertyAnimator(duration: Theme.animationDuration,
-                                                curve: .easeInOut) {
-                                                  self.view.alpha = 1
-          }
-          animator.addCompletion { (position) in
-              if position == .end {
-                  completion(true, nil)
-              }
-          }
+extension ChannelsViewController: UISearchBarDelegate {
 
-          animator.startAnimation()
-      }
+    func searchBarTextDidBeginEditing(_ searchBar: UISearchBar) {
+        self.manager.channelFilter = SearchFilter(text: String(), scope: .all)
+    }
 
-      func animateOut(completion: @escaping CompletionHandler) {
-          let animator = UIViewPropertyAnimator(duration: Theme.animationDuration,
-                                                curve: .easeInOut) {
-                                                  self.view.alpha = 0
-          }
-          animator.addCompletion { (position) in
-              if position == .end {
-                  completion(true, nil)
-              }
-          }
+    func searchBarTextDidEndEditing(_ searchBar: UISearchBar) {}
 
-          animator.startAnimation()
-      }
+    func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
+        guard let scopeString = searchBar.scopeButtonTitles?[searchBar.selectedScopeButtonIndex],
+            let scope = SearchScope(rawValue: scopeString) else { return }
+
+        let lowercaseString = searchText.lowercased()
+        //self.headerView.searchBar.text = lowercaseString
+        self.manager.channelFilter = SearchFilter(text: lowercaseString, scope: scope)
+    }
+
+    func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
+        searchBar.searchTextField.text = String()
+        searchBar.resignFirstResponder()
+    }
 }

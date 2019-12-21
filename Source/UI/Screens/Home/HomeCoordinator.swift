@@ -21,18 +21,52 @@ class HomeCoordinator: PresentableCoordinator<Void> {
         super.start()
 
         ToastScheduler.shared.delegate = self
+
+        self.homeVC.currentContent.producer.on { [unowned self] (contentType) in
+            self.removeChild()
+
+            // Only use the deeplink once so that we don't repeatedly try
+            // to deeplink whenever content changes.
+            defer {
+                self.deepLink = nil
+            }
+
+            switch contentType {
+            case .feed(let vc):
+                break
+            case .channels(let vc):
+                break
+            case .profile(let vc):
+                break 
+            }
+
+//            switch homeContentType {
+//            case .homeCarouselCards(let homeCarouselVC):
+//                let homeCarouselCoordinator = HomeCarouselCoordinator(router: self.router,
+//                                                                      deepLink: self.deepLink,
+//                                                                      homeCarousel: homeCarouselVC)
+//                self.addChildAndStart(homeCarouselCoordinator, finishedHandler: { _ in })
+//            case .userAccount(let userAccountVC):
+//                let userAccountCoordinator = UserAccountCoordinator(router: self.router,
+//                                                                    deepLink: nil,
+//                                                                    userAccountVC: userAccountVC)
+//                self.addChildAndStart(userAccountCoordinator, finishedHandler: { _ in })
+//            case .messageCenter(let messageCenterVC):
+//                let messageCenterCoordinator = MessageCenterCoordinator(router: self.router,
+//                                                                        deepLink: nil,
+//                                                                        messageCenterVC: messageCenterVC)
+//                self.addChildAndStart(messageCenterCoordinator, finishedHandler: { _ in })
+//            case .lenses(_):
+//                break
+//            }
+        }.start()
     }
 }
 
 extension HomeCoordinator: HomeViewControllerDelegate {
 
-    func homeView(_ controller: HomeViewController, didSelect option: HomeOptionType) {
-        switch option {
-        case .profile:
-            self.presentProfile()
-        case .add:
-            self.presentNewChannel()
-        }
+    func homeViewDidTapAdd(_ controller: HomeViewController) {
+        self.presentNewChannel()
     }
 
     private func presentProfile() {
@@ -90,6 +124,13 @@ extension HomeCoordinator: FeedViewControllerDelegate {
         self.addChildAndStart(coordinator) { (result) in
             self.finishFlow(with: ())
         }
+    }
+}
+
+extension HomeCoordinator: ProfileViewControllerDelegate {
+
+    func profileView(_ controller: ProfileViewController, didSelectRoutineFor user: PFUser) {
+
     }
 }
 

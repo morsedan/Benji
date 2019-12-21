@@ -8,17 +8,12 @@
 
 import Foundation
 
-protocol HomeTabViewDelegate: class {
-    func homeTab(_ view: HomeTabView, didSelect tab: HomeContentType)
-}
-
 class HomeTabView: View {
 
     private let profileItem = Button()
     private let feedItem = Button()
     private let channelsItem = Button()
-    weak var delegate: HomeTabViewDelegate?
-
+    
     override func initializeSubviews() {
         super.initializeSubviews()
 
@@ -29,7 +24,7 @@ class HomeTabView: View {
         self.profileItem.setImage(UIImage(systemName: "person.crop.circle"), for: .normal)
         self.profileItem.setImage(UIImage(systemName: "person.crop.circle.fill"), for: .selected)
         self.profileItem.onTap { [unowned self] (tap) in
-            self.delegate?.homeTab(self, didSelect: .profile)
+           // self.delegate?.homeTab(self, didSelect: .profile)
         }
 
         self.addSubview(self.feedItem)
@@ -37,7 +32,7 @@ class HomeTabView: View {
         self.feedItem.setImage(UIImage(systemName: "square.stack"), for: .normal)
         self.feedItem.setImage(UIImage(systemName: "square.stack.fill"), for: .selected)
         self.feedItem.onTap { [unowned self] (tap) in
-            self.delegate?.homeTab(self, didSelect: .feed)
+            //self.delegate?.homeTab(self, didSelect: .feed)
         }
 
         self.addSubview(self.channelsItem)
@@ -45,7 +40,7 @@ class HomeTabView: View {
         self.channelsItem.setImage(UIImage(systemName: "bubble.left.and.bubble.right"), for: .normal)
         self.channelsItem.setImage(UIImage(systemName: "bubble.left.and.bubble.right.fill"), for: .selected)
         self.channelsItem.onTap { [unowned self] (tap) in
-            self.delegate?.homeTab(self, didSelect: .channels)
+           // self.delegate?.homeTab(self, didSelect: .channels)
         }
 
         self.feedItem.isSelected = true 
@@ -69,7 +64,7 @@ class HomeTabView: View {
         self.channelsItem.left = self.feedItem.right
     }
 
-    func updateTabItems(for contentType: HomeContentType) {
+    func updateTabItems(for contentType: HomeContent) {
 
         switch contentType {
         case .feed:

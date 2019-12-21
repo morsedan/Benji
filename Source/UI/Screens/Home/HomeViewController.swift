@@ -11,39 +11,32 @@ import Contacts
 import Parse
 import ReactiveSwift
 
-enum HomeOptionType {
-    case profile
-    case add
-}
-
-enum HomeContentType {
-    case feed
-    case channels
-    case profile
+enum HomeContent: Equatable {
+    case feed(FeedViewController)
+    case channels(ChannelsViewController)
+    case profile(ProfileViewController)
 }
 
 protocol HomeViewControllerDelegate: class {
-    func homeView(_ controller: HomeViewController, didSelect option: HomeOptionType)
+    func homeViewDidTapAdd(_ controller: HomeViewController)
 }
 
-typealias HomeDelegate = HomeViewControllerDelegate & ChannelsViewControllerDelegate & FeedViewControllerDelegate
+typealias HomeDelegate = HomeViewControllerDelegate & ChannelsViewControllerDelegate & FeedViewControllerDelegate & ProfileViewControllerDelegate
 
 class HomeViewController: FullScreenViewController {
 
     unowned let delegate: HomeDelegate
 
-    private let addButton = HomeAddButton()
     lazy var feedVC = FeedViewController(with: self.delegate)
     lazy var channelsVC = ChannelsViewController(with: self.delegate)
+    lazy var profileVC = ProfileViewController(with: User.current()!, delegate: self.delegate)
+
+    private let addButton = HomeAddButton()
     let centerContainer = View()
     let tabView = HomeTabView()
 
-    private var currentType: HomeContentType = .feed {
-        didSet {
-            guard self.currentType != oldValue else { return }
-            self.updateContent()
-        }
-    }
+    lazy var currentContent = MutableProperty<HomeContent>(.feed(self.feedVC))
+    private var currentCenterVC: UIViewController?
 
     init(with delegate: HomeDelegate) {
         self.delegate = delegate
@@ -65,16 +58,18 @@ class HomeViewController: FullScreenViewController {
 
         self.contentContainer.addSubview(self.centerContainer)
 
-        self.addChild(self.channelsVC)
-        self.addChild(viewController: self.feedVC, toView: self.centerContainer)
-
         self.contentContainer.addSubview(self.addButton)
         self.addButton.onTap { [unowned self] (tap) in
-            self.delegate.homeView(self, didSelect: .add)
+            self.delegate.homeViewDidTapAdd(self)
         }
 
         self.contentContainer.addSubview(self.tabView)
-        self.tabView.delegate = self
+
+        self.currentContent.producer
+            .skipRepeats()
+            .on { [unowned self] (contentType) in
+                self.switchContent()
+        }.start()
     }
 
     override func viewDidLayoutSubviews() {
@@ -89,67 +84,41 @@ class HomeViewController: FullScreenViewController {
         self.centerContainer.top = 40
         self.centerContainer.centerOnX()
 
-        self.feedVC.view.frame = self.centerContainer.bounds
-
         self.tabView.size = CGSize(width: 200, height: 60)
         self.tabView.left = Theme.contentOffset
         self.tabView.bottom = self.addButton.bottom
         self.tabView.roundCorners()
     }
 
-    func updateContent() {
+    private func switchContent() {
 
-        switch self.currentType {
-        case .profile:
-            break 
-        case .feed:
-            self.channelsVC.animateOut { (completed, error) in
-                guard completed else { return }
-                self.channelsVC.view.removeFromSuperview()
-                self.feedVC.animateIn(completion: { (completed, error) in })
+        UIView.animate(withDuration: Theme.animationDuration, animations: {
+            self.centerContainer.alpha = 0
+        }) { (completed) in
+
+            self.currentCenterVC?.removeFromParentSuperview()
+            var newContentVC: UIViewController?
+
+            switch self.currentContent.value {
+            case .feed(let vc):
+                newContentVC = vc
+            case .channels(let vc):
+                newContentVC = vc
+            case .profile(let vc):
+                newContentVC = vc
             }
-        case .channels:
-            self.feedVC.animateOut { (completed, error) in
-                guard completed else { return }
 
-                self.view.insertSubview(self.channelsVC.view, belowSubview: self.tabView)
-                self.channelsVC.view.size = self.centerContainer.size
-                self.channelsVC.view.top = 40
-                self.channelsVC.view.centerOnX()
-                self.channelsVC.animateIn(completion: { (completed, error) in })
+            self.currentCenterVC = newContentVC
+
+            if let contentVC = self.currentCenterVC {
+                self.addChild(viewController: contentVC, toView: self.centerContainer)
+            }
+
+            self.view.setNeedsLayout()
+
+            UIView.animate(withDuration: Theme.animationDuration) {
+                self.centerContainer.alpha = 1
             }
         }
     }
 }
-
-extension HomeViewController: UISearchBarDelegate {
-
-    func searchBarTextDidBeginEditing(_ searchBar: UISearchBar) {
-        self.channelsVC.manager.channelFilter = SearchFilter(text: String(), scope: .all)
-    }
-
-    func searchBarTextDidEndEditing(_ searchBar: UISearchBar) {
-        self.currentType = .feed
-    }
-
-    func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
-        guard let scopeString = searchBar.scopeButtonTitles?[searchBar.selectedScopeButtonIndex],
-            let scope = SearchScope(rawValue: scopeString) else { return }
-        
-        let lowercaseString = searchText.lowercased()
-        //self.headerView.searchBar.text = lowercaseString
-        self.channelsVC.manager.channelFilter = SearchFilter(text: lowercaseString, scope: scope)
-    }
-
-    func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
-        searchBar.searchTextField.text = String()
-        searchBar.resignFirstResponder()
-    }
-}
-
-extension HomeViewController: HomeTabViewDelegate {
-    func homeTab(_ view: HomeTabView, didSelect tab: HomeContentType) {
-        self.currentType = tab
-    }
-}
-

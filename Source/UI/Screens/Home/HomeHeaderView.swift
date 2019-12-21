@@ -54,35 +54,35 @@ class HomeHeaderView: View {
         self.searchButton.centerY = self.avatarView.centerY
     }
 
-    func updateContent(for type: HomeContentType) {
+    func updateContent(for type: HomeContent) {
 
-        let showScope = type == .channels
-        let showCanel = type == .channels
-
-        let alpha: CGFloat = type == .channels ? 0 : 1.0
-
-        self.searchButtonOffset = type == .channels ? Theme.contentOffset : self.width - Theme.contentOffset - self.searchButton.width
-
-        UIView.animate(withDuration: 0.2, animations: {
-            self.avatarView.alpha = alpha
-            self.label.alpha = alpha
-            self.layoutNow()
-        }) { (completed) in
-            self.addSubview(self.searchBar)
-            self.searchButton.frame = CGRect(x: Theme.contentOffset,
-                                             y: 0,
-                                             width: self.width - (Theme.contentOffset * 2),
-                                             height: 120)
-            self.searchBar.alpha = 0
-            UIView.animate(withDuration: 0.2, animations: {
-                self.searchBar.alpha = 1
-                self.searchButton.alpha = 0 
-            }) { (completed) in
-                self.searchBar.becomeFirstResponder()
-            }
-            self.searchBar.setShowsScope(showScope, animated: true)
-            self.searchBar.setShowsCancelButton(showCanel, animated: true)
-        }
+//        let showScope = type == .channels
+//        let showCanel = type == .channels
+//
+//        let alpha: CGFloat = type == .channels ? 0 : 1.0
+//
+//        self.searchButtonOffset = type == .channels ? Theme.contentOffset : self.width - Theme.contentOffset - self.searchButton.width
+//
+//        UIView.animate(withDuration: 0.2, animations: {
+//            self.avatarView.alpha = alpha
+//            self.label.alpha = alpha
+//            self.layoutNow()
+//        }) { (completed) in
+//            self.addSubview(self.searchBar)
+//            self.searchButton.frame = CGRect(x: Theme.contentOffset,
+//                                             y: 0,
+//                                             width: self.width - (Theme.contentOffset * 2),
+//                                             height: 120)
+//            self.searchBar.alpha = 0
+//            UIView.animate(withDuration: 0.2, animations: {
+//                self.searchBar.alpha = 1
+//                self.searchButton.alpha = 0 
+//            }) { (completed) in
+//                self.searchBar.becomeFirstResponder()
+//            }
+//            self.searchBar.setShowsScope(showScope, animated: true)
+//            self.searchBar.setShowsCancelButton(showCanel, animated: true)
+//        }
     }
 }
 
