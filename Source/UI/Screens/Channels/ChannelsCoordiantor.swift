@@ -19,6 +19,8 @@ class ChannelsCoordinator: Coordinator<Void> {
         self.channelsVC = channelsVC
 
         super.init(router: router, deepLink: deepLink)
+
+        self.channelsVC.delegate = self 
     }
 }
 
