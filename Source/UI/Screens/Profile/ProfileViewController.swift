@@ -18,7 +18,7 @@ struct ProfileItem: ProfileDisplayable {
 }
 
 protocol ProfileViewControllerDelegate: class {
-    func profileView(_ controller: ProfileViewController, didSelectRoutineFor user: PFUser)
+    func profileViewControllerDidSelectRoutine(_ controller: ProfileViewController)
 }
 
 class ProfileViewController: ViewController {
@@ -51,11 +51,12 @@ class ProfileViewController: ViewController {
         self.collectionView.dataSource = self.manager
 
         self.manager.didSelectItemAt = { [unowned self] indexPath in
-            self.delegate?.profileView(self, didSelectRoutineFor: self.user)
+            self.delegate?.profileViewControllerDidSelectRoutine(self)
         }
 
         self.view.addSubview(self.topBar)
         self.topBar.set(backgroundColor: .background1)
+        self.topBar.isHidden = true 
     }
 
     override func viewWillAppear(_ animated: Bool) {

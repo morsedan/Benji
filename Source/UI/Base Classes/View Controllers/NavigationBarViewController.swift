@@ -11,7 +11,6 @@ import TMROLocalization
 
 class NavigationBarViewController: ViewController {
 
-    private let backButton = Button()
     private let titleLabel = MediumLabel()
     private let descriptionLabel = XSmallLabel()
     /// Place all views under the lineView 
@@ -25,13 +24,6 @@ class NavigationBarViewController: ViewController {
     override func initializeViews() {
         super.initializeViews()
 
-        self.view.addSubview(self.backButton)
-        self.backButton.setImage(UIImage(systemName: "arrow.left"), for: .normal)
-        self.backButton.tintColor = Color.lightPurple.color
-        self.backButton.onTap { [unowned self] (tap) in
-            self.navigationController?.popViewController(animated: true)
-        }
-
         self.view.addSubview(self.titleLabel)
         self.titleLabel.set(text: self.getTitle(), alignment: .center)
         self.view.addSubview(self.descriptionLabel)
@@ -40,18 +32,14 @@ class NavigationBarViewController: ViewController {
                                   alignment: .center,
                                   stringCasing: .unchanged)
         self.view.addSubview(self.lineView)
-        self.lineView.set(backgroundColor: .background2)
+        self.lineView.set(backgroundColor: .background3)
     }
 
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
 
-        self.backButton.size = CGSize(width: 40, height: 40)
-        self.backButton.left = Theme.contentOffset
-        self.backButton.top = Theme.contentOffset
-
         self.titleLabel.setSize(withWidth: 200)
-        self.titleLabel.centerY = self.backButton.centerY
+        self.titleLabel.top = Theme.contentOffset
         self.titleLabel.centerOnX()
 
         self.descriptionLabel.setSize(withWidth: self.view.width * 0.6)

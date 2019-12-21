@@ -12,35 +12,34 @@ import Parse
 class ProfileCoordinator: Coordinator<Void> {
 
     let profileVC: ProfileViewController
-    let navController: NavigationController
 
     init(router: Router,
          deepLink: DeepLinkable?,
          profileVC: ProfileViewController) {
 
         self.profileVC = profileVC
-        let navController = NavigationController()
-        let router = Router(navController: navController)
-        self.navController = navController
 
         super.init(router: router, deepLink: deepLink)
     }
 
     override func start() {
-        var controllers: [UIViewController] = [self.profileVC]
+
+        self.profileVC.delegate = self
 
         if let link = self.deepLink, let target = link.deepLinkTarget, target == .routine {
-            controllers.append(RoutineViewController())
+            self.presentRoutine()
         }
+    }
 
-        self.navController.setViewControllers(controllers, animated: false)
+    private func presentRoutine() {
+        let vc = RoutineViewController()
+        self.router.present(vc, source: self.profileVC)
     }
 }
 
 extension ProfileCoordinator: ProfileViewControllerDelegate {
-    
-    func profileView(_ controller: ProfileViewController, didSelectRoutineFor user: PFUser) {
-        let vc = RoutineViewController()
-        self.router.push(vc, animated: true, completion: nil)
+
+    func profileViewControllerDidSelectRoutine(_ controller: ProfileViewController) {
+        self.presentRoutine()
     }
 }
