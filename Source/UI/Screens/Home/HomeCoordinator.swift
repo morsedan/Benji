@@ -33,32 +33,21 @@ class HomeCoordinator: PresentableCoordinator<Void> {
 
             switch contentType {
             case .feed(let vc):
-                break
+                let coordinator = FeedCoordinator(router: self.router,
+                                                  deepLink: self.deepLink,
+                                                  feedVC: vc)
+                self.addChildAndStart(coordinator) { (_) in }
             case .channels(let vc):
-                break
+                let coordinator = ChannelsCoordinator(router: self.router,
+                                                      deepLink: self.deepLink,
+                                                      channelsVC: vc)
+                self.addChildAndStart(coordinator) { (_) in }
             case .profile(let vc):
-                break 
+                let coordinator = ProfileCoordinator(router: self.router,
+                                                     deepLink: self.deepLink,
+                                                     profileVC: vc)
+                self.addChildAndStart(coordinator) { (_) in }
             }
-
-//            switch homeContentType {
-//            case .homeCarouselCards(let homeCarouselVC):
-//                let homeCarouselCoordinator = HomeCarouselCoordinator(router: self.router,
-//                                                                      deepLink: self.deepLink,
-//                                                                      homeCarousel: homeCarouselVC)
-//                self.addChildAndStart(homeCarouselCoordinator, finishedHandler: { _ in })
-//            case .userAccount(let userAccountVC):
-//                let userAccountCoordinator = UserAccountCoordinator(router: self.router,
-//                                                                    deepLink: nil,
-//                                                                    userAccountVC: userAccountVC)
-//                self.addChildAndStart(userAccountCoordinator, finishedHandler: { _ in })
-//            case .messageCenter(let messageCenterVC):
-//                let messageCenterCoordinator = MessageCenterCoordinator(router: self.router,
-//                                                                        deepLink: nil,
-//                                                                        messageCenterVC: messageCenterVC)
-//                self.addChildAndStart(messageCenterCoordinator, finishedHandler: { _ in })
-//            case .lenses(_):
-//                break
-//            }
         }.start()
     }
 }
@@ -66,16 +55,6 @@ class HomeCoordinator: PresentableCoordinator<Void> {
 extension HomeCoordinator: HomeViewControllerDelegate {
 
     func homeViewDidTapAdd(_ controller: HomeViewController) {
-        self.presentNewChannel()
-    }
-
-    private func presentProfile() {
-        guard let current = User.current() else { return }
-        let coordinator = ProfileCoordinator(with: current, router: self.router, deepLink: self.deepLink)
-        self.present(coordinator: coordinator)
-    }
-
-    private func presentNewChannel() {
         let coordinator = NewChannelCoordinator(router: self.router, deepLink: self.deepLink)
         self.addChildAndStart(coordinator) { (result) in
             self.router.dismiss(source: coordinator.toPresentable(), animated: true) {
@@ -84,20 +63,6 @@ extension HomeCoordinator: HomeViewControllerDelegate {
             }
         }
         self.router.present(coordinator, source: self.homeVC, animated: true)
-    }
-
-    private func present(coordinator: PresentableCoordinator<Void>) {
-        self.addChildAndStart(coordinator, finishedHandler: { _ in
-            self.router.dismiss(source: coordinator.toPresentable())
-        })
-        self.router.present(coordinator, source: self.homeVC, animated: true)
-    }
-}
-
-extension HomeCoordinator: ChannelsViewControllerDelegate {
-
-    func channelsView(_ controller: ChannelsViewController, didSelect channelType: ChannelType) {
-        self.startChannelFlow(for: channelType)
     }
 
     func startChannelFlow(for type: ChannelType) {
@@ -109,28 +74,6 @@ extension HomeCoordinator: ChannelsViewControllerDelegate {
             }
         })
         self.router.present(coordinator, source: self.homeVC, animated: true)
-    }
-}
-
-extension HomeCoordinator: FeedViewControllerDelegate {
-
-    func feedView(_ controller: FeedViewController, didSelect item: FeedType) {
-
-        let coordinator = FeedCoordinator(with: self.homeVC,
-                                          item: item,
-                                          router: self.router,
-                                          deepLink: self.deepLink)
-
-        self.addChildAndStart(coordinator) { (result) in
-            self.finishFlow(with: ())
-        }
-    }
-}
-
-extension HomeCoordinator: ProfileViewControllerDelegate {
-
-    func profileView(_ controller: ProfileViewController, didSelectRoutineFor user: PFUser) {
-
     }
 }
 

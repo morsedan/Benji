@@ -12,22 +12,19 @@ import TMROLocalization
 
 class FeedCoordinator: Coordinator<Void> {
 
-    private let sourceViewController: UIViewController
-    private let feedItem: FeedType
+    private let feedVC: FeedViewController
 
-    init(with source: UIViewController,
-         item: FeedType,
-         router: Router,
-         deepLink: DeepLinkable?) {
+    init(router: Router,
+         deepLink: DeepLinkable?,
+         feedVC: FeedViewController) {
 
-        self.sourceViewController = source
-        self.feedItem = item
+        self.feedVC = feedVC
 
         super.init(router: router, deepLink: deepLink)
     }
 
     override func start() {
-        self.handle(item: self.feedItem)
+       // self.handle(item: self.feedItem)
     }
 
     private func handle(item: FeedType) {
@@ -42,23 +39,24 @@ class FeedCoordinator: Coordinator<Void> {
         case .channelInvite(let channel):
             self.join(channel: channel)
         case .inviteAsk:
-            let contactsVC = ContactsViewController()
-            self.router.present(contactsVC, source: self.sourceViewController)
+            break
+            //let contactsVC = ContactsViewController()
+            //self.router.present(contactsVC, source: self.sourceViewController)
         }
     }
 
     private func startRoutineFlow() {
         guard let current = User.current() else { return }
 
-        let routineLink = DeepLinkObject.init(target: .routine)
-        let coordinator = ProfileCoordinator(with: current,
-                                             router: self.router,
-                                             deepLink: routineLink)
-
-        self.addChildAndStart(coordinator, finishedHandler: { (_) in
-            self.router.dismiss(source: coordinator.toPresentable())
-        })
-        self.router.present(coordinator, source: self.sourceViewController, animated: true)
+//        let routineLink = DeepLinkObject.init(target: .routine)
+//        let coordinator = ProfileCoordinator(with: current,
+//                                             router: self.router,
+//                                             deepLink: routineLink)
+//
+//        self.addChildAndStart(coordinator, finishedHandler: { (_) in
+//            self.router.dismiss(source: coordinator.toPresentable())
+//        })
+//        self.router.present(coordinator, source: self.sourceViewController, animated: true)
     }
 
     private func join(channel: TCHChannel) {
@@ -80,10 +78,10 @@ class FeedCoordinator: Coordinator<Void> {
 
     private func startChannelFlow(for type: ChannelType) {
 
-        let coordinator = ChannelCoordinator(router: self.router, channelType: type)
-        self.addChildAndStart(coordinator, finishedHandler: { (_) in
-            self.router.dismiss(source: coordinator.toPresentable())
-        })
-        self.router.present(coordinator, source: self.sourceViewController, animated: true)
+//        let coordinator = ChannelCoordinator(router: self.router, channelType: type)
+//        self.addChildAndStart(coordinator, finishedHandler: { (_) in
+//            self.router.dismiss(source: coordinator.toPresentable())
+//        })
+//        self.router.present(coordinator, source: self.sourceViewController, animated: true)
     }
 }

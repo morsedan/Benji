@@ -21,15 +21,15 @@ protocol HomeViewControllerDelegate: class {
     func homeViewDidTapAdd(_ controller: HomeViewController)
 }
 
-typealias HomeDelegate = HomeViewControllerDelegate & ChannelsViewControllerDelegate & FeedViewControllerDelegate & ProfileViewControllerDelegate
+typealias HomeDelegate = HomeViewControllerDelegate
 
 class HomeViewController: FullScreenViewController {
 
     unowned let delegate: HomeDelegate
 
-    lazy var feedVC = FeedViewController(with: self.delegate)
-    lazy var channelsVC = ChannelsViewController(with: self.delegate)
-    lazy var profileVC = ProfileViewController(with: User.current()!, delegate: self.delegate)
+    lazy var feedVC = FeedViewController()
+    lazy var channelsVC = ChannelsViewController()
+    lazy var profileVC = ProfileViewController(with: User.current()!)
 
     private let addButton = HomeAddButton()
     let centerContainer = View()

@@ -15,10 +15,9 @@ protocol ChannelsViewControllerDelegate: class {
 
 class ChannelsViewController: CollectionViewController<ChannelCell, ChannelsCollectionViewManager> {
 
-    unowned let delegate: ChannelsViewControllerDelegate
+    weak var delegate: ChannelsViewControllerDelegate?
 
-    init(with delegate: ChannelsViewControllerDelegate) {
-        self.delegate = delegate
+    init() {
         let collectionView = ChannelsCollectionView()
 
         super.init(with: collectionView)
@@ -35,7 +34,7 @@ class ChannelsViewController: CollectionViewController<ChannelCell, ChannelsColl
 
         self.manager.onSelectedItem.signal.observeValues { (selectedItem) in
             guard let item = selectedItem else { return }
-            self.delegate.channelsView(self, didSelect: item.item.channelType)
+            self.delegate?.channelsView(self, didSelect: item.item.channelType)
         }
     }
 }

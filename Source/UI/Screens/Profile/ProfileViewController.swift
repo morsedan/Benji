@@ -27,11 +27,10 @@ class ProfileViewController: ViewController {
     let topBar = View()
     lazy var collectionView = ProfileCollectionView()
     lazy var manager = ProfileCollectionViewManager(with: self.collectionView)
-    unowned let delegate: ProfileViewControllerDelegate
+    weak var delegate: ProfileViewControllerDelegate?
 
-    init(with user: User, delegate: ProfileViewControllerDelegate) {
+    init(with user: User) {
         self.user = user
-        self.delegate = delegate
         super.init()
     }
 
@@ -52,7 +51,7 @@ class ProfileViewController: ViewController {
         self.collectionView.dataSource = self.manager
 
         self.manager.didSelectItemAt = { [unowned self] indexPath in
-            self.delegate.profileView(self, didSelectRoutineFor: self.user)
+            self.delegate?.profileView(self, didSelectRoutineFor: self.user)
         }
 
         self.view.addSubview(self.topBar)

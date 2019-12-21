@@ -9,18 +9,16 @@
 import Foundation
 import Parse
 
-class ProfileCoordinator: PresentableCoordinator<Void> {
+class ProfileCoordinator: Coordinator<Void> {
 
-    lazy var profileVC = ProfileViewController(with: self.user, delegate: self)
-    lazy var routineVC = RoutineViewController()
+    let profileVC: ProfileViewController
     let navController: NavigationController
-    let user: User
 
-    init(with user: User,
-         router: Router,
-         deepLink: DeepLinkable?) {
-        
-        self.user = user
+    init(router: Router,
+         deepLink: DeepLinkable?,
+         profileVC: ProfileViewController) {
+
+        self.profileVC = profileVC
         let navController = NavigationController()
         let router = Router(navController: navController)
         self.navController = navController
@@ -28,15 +26,14 @@ class ProfileCoordinator: PresentableCoordinator<Void> {
         super.init(router: router, deepLink: deepLink)
     }
 
-    override func toPresentable() -> DismissableVC {
+    override func start() {
         var controller: UIViewController = self.profileVC
 
         if let link = self.deepLink, let target = link.deepLinkTarget, target == .routine {
-            controller = self.routineVC
+            controller = RoutineViewController()
         }
 
         self.navController.setViewControllers([controller], animated: false)
-        return self.navController
     }
 }
 

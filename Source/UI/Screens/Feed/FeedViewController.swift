@@ -21,12 +21,12 @@ class FeedViewController: ViewController {
     lazy var manager: FeedCollectionViewManager = {
         let manager = FeedCollectionViewManager(with: self.collectionView)
         manager.didSelect = { [unowned self] feedType in
-            self.delegate.feedView(self, didSelect: feedType)
+            self.delegate?.feedView(self, didSelect: feedType)
         }
         return manager
     }()
 
-    unowned let delegate: FeedViewControllerDelegate
+    weak var delegate: FeedViewControllerDelegate?
     var items: [FeedType] = []
     private let countDownView = CountDownView()
     private let messageLabel = MediumLabel()
@@ -37,15 +37,6 @@ class FeedViewController: ViewController {
         }
     }
     var showItems: Bool = true
-
-    init(with delegate: FeedViewControllerDelegate) {
-        self.delegate = delegate
-        super.init()
-    }
-
-    required init?(coder aDecoder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
-    }
 
     override func initializeViews() {
         super.initializeViews()
@@ -161,34 +152,5 @@ class FeedViewController: ViewController {
         }, completion: nil)
 
         self.manager.set(items: self.items)
-    }
-
-    func animateIn(completion: @escaping CompletionHandler) {
-        let animator = UIViewPropertyAnimator(duration: Theme.animationDuration,
-                                              curve: .easeInOut) {
-                                                self.view.alpha = 1
-                                                self.view.layoutNow()
-        }
-        animator.addCompletion { (position) in
-            if position == .end {
-                completion(true, nil)
-            }
-        }
-
-        animator.startAnimation()
-    }
-
-    func animateOut(completion: @escaping CompletionHandler) {
-        let animator = UIViewPropertyAnimator(duration: Theme.animationDuration,
-                                              curve: .easeInOut) {
-                                                self.view.alpha = 0
-        }
-        animator.addCompletion { (position) in
-            if position == .end {
-                completion(true, nil)
-            }
-        }
-
-        animator.startAnimation()
     }
 }
