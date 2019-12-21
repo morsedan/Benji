@@ -67,9 +67,7 @@ class FeedViewController: ViewController {
         self.countDownView.centerY = self.view.halfHeight * 0.8
         self.countDownView.centerOnX()
 
-        self.collectionView.size = CGSize(width: self.view.width,
-                                          height: self.view.height * 0.8)
-        self.collectionView.centerOnXAndY()
+        self.collectionView.expandToSuperviewSize()
     }
 
     override func viewDidLoad() {

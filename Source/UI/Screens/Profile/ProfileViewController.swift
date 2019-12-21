@@ -45,7 +45,7 @@ class ProfileViewController: ViewController {
     override func initializeViews() {
         super.initializeViews()
 
-        self.view.set(backgroundColor: .background2)
+        self.view.set(backgroundColor: .background1)
 
         self.collectionView.delegate = self.manager
         self.collectionView.dataSource = self.manager
@@ -55,7 +55,7 @@ class ProfileViewController: ViewController {
         }
 
         self.view.addSubview(self.topBar)
-        self.topBar.set(backgroundColor: .background3)
+        self.topBar.set(backgroundColor: .background1)
     }
 
     override func viewWillAppear(_ animated: Bool) {

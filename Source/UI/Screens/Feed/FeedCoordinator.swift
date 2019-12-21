@@ -24,7 +24,14 @@ class FeedCoordinator: Coordinator<Void> {
     }
 
     override func start() {
-       // self.handle(item: self.feedItem)
+        self.feedVC.delegate = self
+    }
+}
+
+extension FeedCoordinator: FeedViewControllerDelegate {
+
+    func feedView(_ controller: FeedViewController, didSelect item: FeedType) {
+        self.handle(item: item)
     }
 
     private func handle(item: FeedType) {
@@ -48,15 +55,15 @@ class FeedCoordinator: Coordinator<Void> {
     private func startRoutineFlow() {
         guard let current = User.current() else { return }
 
-//        let routineLink = DeepLinkObject.init(target: .routine)
-//        let coordinator = ProfileCoordinator(with: current,
-//                                             router: self.router,
-//                                             deepLink: routineLink)
-//
-//        self.addChildAndStart(coordinator, finishedHandler: { (_) in
-//            self.router.dismiss(source: coordinator.toPresentable())
-//        })
-//        self.router.present(coordinator, source: self.sourceViewController, animated: true)
+        //        let routineLink = DeepLinkObject.init(target: .routine)
+        //        let coordinator = ProfileCoordinator(with: current,
+        //                                             router: self.router,
+        //                                             deepLink: routineLink)
+        //
+        //        self.addChildAndStart(coordinator, finishedHandler: { (_) in
+        //            self.router.dismiss(source: coordinator.toPresentable())
+        //        })
+        //        self.router.present(coordinator, source: self.sourceViewController, animated: true)
     }
 
     private func join(channel: TCHChannel) {
@@ -65,7 +72,7 @@ class FeedCoordinator: Coordinator<Void> {
                                    arguments: [channel.friendlyName!],
                                    default: "You have joined @1")
         channel.joinIfNeeded()
-        .withResultToast(with: text)
+            .withResultToast(with: text)
             .observe { (result) in
                 switch result {
                 case .success(let joinedChannel):
@@ -78,10 +85,10 @@ class FeedCoordinator: Coordinator<Void> {
 
     private func startChannelFlow(for type: ChannelType) {
 
-//        let coordinator = ChannelCoordinator(router: self.router, channelType: type)
-//        self.addChildAndStart(coordinator, finishedHandler: { (_) in
-//            self.router.dismiss(source: coordinator.toPresentable())
-//        })
-//        self.router.present(coordinator, source: self.sourceViewController, animated: true)
+        //        let coordinator = ChannelCoordinator(router: self.router, channelType: type)
+        //        self.addChildAndStart(coordinator, finishedHandler: { (_) in
+        //            self.router.dismiss(source: coordinator.toPresentable())
+        //        })
+        //        self.router.present(coordinator, source: self.sourceViewController, animated: true)
     }
 }

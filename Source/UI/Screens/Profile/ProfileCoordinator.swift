@@ -27,13 +27,13 @@ class ProfileCoordinator: Coordinator<Void> {
     }
 
     override func start() {
-        var controller: UIViewController = self.profileVC
+        var controllers: [UIViewController] = [self.profileVC]
 
         if let link = self.deepLink, let target = link.deepLinkTarget, target == .routine {
-            controller = RoutineViewController()
+            controllers.append(RoutineViewController())
         }
 
-        self.navController.setViewControllers([controller], animated: false)
+        self.navController.setViewControllers(controllers, animated: false)
     }
 }
 

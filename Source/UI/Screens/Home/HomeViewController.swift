@@ -97,6 +97,8 @@ class HomeViewController: FullScreenViewController {
         self.centerContainer.bottom = self.addButton.top 
         self.centerContainer.centerOnX()
 
+        self.currentCenterVC?.view.frame = self.centerContainer.bounds
+
         self.tabView.size = CGSize(width: 200, height: 60)
         self.tabView.left = Theme.contentOffset
         self.tabView.bottom = self.addButton.bottom
