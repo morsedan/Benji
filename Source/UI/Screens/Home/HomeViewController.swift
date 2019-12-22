@@ -30,6 +30,7 @@ class HomeViewController: FullScreenViewController {
     lazy var feedVC = FeedViewController()
     lazy var channelsVC = ChannelsViewController()
     lazy var profileVC = ProfileViewController(with: User.current()!)
+    let searchController = UISearchController(searchResultsController: nil)
 
     private let addButton = HomeAddButton()
     let centerContainer = View()
@@ -89,14 +90,15 @@ class HomeViewController: FullScreenViewController {
 
     private func setupSearchController() {
         
-        let searchController = UISearchController(searchResultsController: nil)
-        searchController.searchResultsUpdater = self.channelsVC
-        searchController.delegate = self.channelsVC
-        searchController.searchBar.tintColor = Color.lightPurple.color
-        searchController.searchBar.keyboardAppearance = .dark
-        searchController.searchBar.keyboardType = .twitter
-        searchController.searchBar.placeholder = "Search"
-        searchController.searchBar.setImage(UIImage(systemName: "xmark.circle.fill"), for: .clear, state: .normal)
+        self.searchController.searchResultsUpdater = self.channelsVC
+        self.searchController.delegate = self.channelsVC
+        self.searchController.searchBar.tintColor = Color.lightPurple.color
+        self.searchController.searchBar.keyboardAppearance = .dark
+        self.searchController.searchBar.keyboardType = .twitter
+        self.searchController.searchBar.placeholder = "Search"
+        self.searchController.searchBar.setImage(UIImage(systemName: "xmark.circle.fill"), for: .clear, state: .normal)
+        self.searchController.obscuresBackgroundDuringPresentation = false
+        self.searchController.definesPresentationContext = true 
         let styleAttributes = StringStyle(font: .regularSemiBold, color: .lightPurple).attributes
         self.navigationItem.searchController?.searchBar.searchTextField.typingAttributes = styleAttributes
 
