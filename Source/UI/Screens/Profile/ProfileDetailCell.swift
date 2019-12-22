@@ -45,20 +45,20 @@ class ProfileDetailCell: UICollectionViewCell {
         super.layoutSubviews()
 
         self.titleLabel.size = CGSize(width: self.contentView.width - Theme.contentOffset, height: 20)
-        self.titleLabel.left = Theme.contentOffset
+        self.titleLabel.left = 0
         self.titleLabel.top = 0
 
         self.label.size = self.titleLabel.size
         self.label.left = self.titleLabel.left
         self.label.top = self.titleLabel.bottom + 5
 
-        self.lineView.size = CGSize(width: self.contentView.width - Theme.contentOffset, height: 2)
+        self.lineView.size = CGSize(width: self.contentView.width, height: 2)
         self.lineView.left = self.titleLabel.left
         self.lineView.top = self.label.bottom + 5
 
         self.imageView.size = CGSize(width: 26, height: 26)
         self.imageView.centerOnY()
-        self.imageView.right = self.contentView.right - Theme.contentOffset
+        self.imageView.right = self.contentView.right
     }
 
     override func prepareForReuse() {

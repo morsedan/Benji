@@ -78,10 +78,14 @@ class ProfileCollectionViewManager: NSObject, UICollectionViewDelegate, UICollec
 
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
 
+        guard let flowLayout = collectionViewLayout as? UICollectionViewFlowLayout else { return .zero }
+
+        let width = collectionView.width - flowLayout.sectionInset.left - flowLayout.sectionInset.right
+
         if indexPath.row == 0 {
-            return CGSize(width: collectionView.width, height: collectionView.width)
+            return CGSize(width: width, height: width)
         }
 
-        return CGSize(width: collectionView.width, height: 50)
+        return CGSize(width: width, height: 50)
     }
 }

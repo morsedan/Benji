@@ -38,7 +38,7 @@ class ChannelCell: UICollectionViewCell, ManageableCell {
     override func layoutSubviews() {
         super.layoutSubviews()
 
-        self.content.size = CGSize(width: self.contentView.width - (8 * 2), height: self.contentView.height)
+        self.content.size = CGSize(width: self.contentView.width - (16 * 2), height: self.contentView.height)
         self.content.centerOnXAndY()
     }
 
