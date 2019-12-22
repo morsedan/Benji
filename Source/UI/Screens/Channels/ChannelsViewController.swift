@@ -15,7 +15,6 @@ protocol ChannelsViewControllerDelegate: class {
 
 class ChannelsViewController: CollectionViewController<ChannelCell, ChannelsCollectionViewManager> {
 
-    private(set) var searchBar = ChannelsSearchBar()
     weak var delegate: ChannelsViewControllerDelegate?
 
     init() {
@@ -33,8 +32,7 @@ class ChannelsViewController: CollectionViewController<ChannelCell, ChannelsColl
     override func initializeViews() {
         super.initializeViews()
 
-        self.view.addSubview(self.searchBar)
-        self.searchBar.delegate = self
+        self.setupSearchBar()
 
         self.manager.onSelectedItem.signal.observeValues { (selectedItem) in
             guard let item = selectedItem else { return }
@@ -42,12 +40,15 @@ class ChannelsViewController: CollectionViewController<ChannelCell, ChannelsColl
         }
     }
 
-    override func viewDidLayoutSubviews() {
-        super.viewDidLayoutSubviews()
-
-        self.searchBar.size = CGSize(width: self.view.width, height: 120)
-        self.searchBar.top = 0
-        self.searchBar.centerOnX()
+    private func setupSearchBar() {
+        self.navigationItem.searchController?.searchBar.delegate = self
+        self.navigationItem.searchController?.view.tintColor = Color.lightPurple.color
+        self.navigationItem.searchController?.searchBar.keyboardAppearance = .dark
+        self.navigationItem.searchController?.searchBar.keyboardType = .twitter
+        self.navigationItem.searchController?.searchBar.placeholder = "Search"
+        self.navigationItem.searchController?.searchBar.setImage(UIImage(systemName: "xmark.circle.fill"), for: .clear, state: .normal)
+        let styleAttributes = StringStyle(font: .regularSemiBold, color: .lightPurple).attributes
+        self.navigationItem.searchController?.searchBar.searchTextField.typingAttributes = styleAttributes
     }
 }
 

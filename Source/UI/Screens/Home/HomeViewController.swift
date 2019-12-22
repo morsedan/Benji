@@ -54,6 +54,11 @@ class HomeViewController: FullScreenViewController {
     override func initializeViews() {
         super.initializeViews()
 
+        let searchController = UISearchController(searchResultsController: self.channelsVC)
+        self.navigationItem.searchController = searchController
+        self.navigationItem.hidesSearchBarWhenScrolling = false
+        self.navigationItem.searchController?.searchBar.isHidden = true
+
         self.view.set(backgroundColor: .background1)
 
         self.contentContainer.addSubview(self.centerContainer)
@@ -108,6 +113,7 @@ class HomeViewController: FullScreenViewController {
     private func switchContent() {
 
         UIView.animate(withDuration: Theme.animationDuration, animations: {
+            self.navigationController?.navigationBar.alpha = 0
             self.centerContainer.alpha = 0
             self.centerContainer.transform = CGAffineTransform(scaleX: 0.95, y: 0.95)
         }) { (completed) in
@@ -118,10 +124,16 @@ class HomeViewController: FullScreenViewController {
             switch self.currentContent.value {
             case .feed(let vc):
                 newContentVC = vc
+                self.title = "Feed"
+                self.navigationItem.searchController?.searchBar.isHidden = true
             case .channels(let vc):
                 newContentVC = vc
+                self.title = "Conversations"
+                self.navigationItem.searchController?.searchBar.isHidden = false
             case .profile(let vc):
                 newContentVC = vc
+                self.title = "Profile"
+                self.navigationItem.searchController?.searchBar.isHidden = true
             }
 
             self.currentCenterVC = newContentVC
@@ -133,6 +145,7 @@ class HomeViewController: FullScreenViewController {
             self.view.setNeedsLayout()
 
             UIView.animate(withDuration: Theme.animationDuration) {
+                self.navigationController?.navigationBar.alpha = 1 
                 self.centerContainer.alpha = 1
                 self.centerContainer.transform = .identity
             }

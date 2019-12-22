@@ -23,17 +23,16 @@ class ChannelsSearchBar: UISearchBar {
 
         self.set(backgroundColor: .clear)
 
-        self.scopeBarBackgroundImage = UIImage()
-
         self.keyboardAppearance = .dark
         self.keyboardType = .twitter
         self.barStyle = .black
-        self.searchBarStyle = .prominent
+        self.searchBarStyle = .minimal
         self.placeholder = "Search"
         self.tintColor = Color.lightPurple.color
         self.showsCancelButton = false
-        self.backgroundImage = UIImage()
         self.searchTextField.set(backgroundColor: .background2)
+        self.isTranslucent = true
+        self.setBackgroundImage(UIImage(), for: .any, barMetrics: .default)
 
         self.setImage(UIImage(systemName: "xmark.circle.fill"), for: .clear, state: .normal)
 

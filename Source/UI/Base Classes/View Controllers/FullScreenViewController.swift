@@ -9,8 +9,6 @@
 import Foundation
 
 // Base class for all full screen view controllers pushed onto a UINavigationController stack.
-// Contains a custom navigation bar that replaces the standard navigation bar. View content is
-// placed in the space below the nav bar.
 class FullScreenViewController: ViewController {
 
     // A view to insert content. Takes up the space below the custom nav bar
