@@ -54,10 +54,7 @@ class HomeViewController: FullScreenViewController {
     override func initializeViews() {
         super.initializeViews()
 
-        let searchController = UISearchController(searchResultsController: self.channelsVC)
-        self.navigationItem.searchController = searchController
-        self.navigationItem.hidesSearchBarWhenScrolling = false
-        self.navigationItem.searchController?.searchBar.isHidden = true
+        self.setupSearchController()
 
         self.view.set(backgroundColor: .background1)
 
@@ -87,6 +84,32 @@ class HomeViewController: FullScreenViewController {
 
         self.tabView.channelsItem.onTap { [unowned self] (tap) in
             self.currentContent.value = .channels(self.channelsVC)
+        }
+    }
+
+    private func setupSearchController() {
+        
+        let searchController = UISearchController(searchResultsController: nil)
+        searchController.searchResultsUpdater = self.channelsVC
+        searchController.delegate = self.channelsVC
+        searchController.searchBar.tintColor = Color.lightPurple.color
+        searchController.searchBar.keyboardAppearance = .dark
+        searchController.searchBar.keyboardType = .twitter
+        searchController.searchBar.placeholder = "Search"
+        searchController.searchBar.setImage(UIImage(systemName: "xmark.circle.fill"), for: .clear, state: .normal)
+        let styleAttributes = StringStyle(font: .regularSemiBold, color: .lightPurple).attributes
+        self.navigationItem.searchController?.searchBar.searchTextField.typingAttributes = styleAttributes
+
+        self.navigationItem.searchController = searchController
+        self.navigationItem.hidesSearchBarWhenScrolling = false
+        self.navigationItem.searchController?.searchBar.isHidden = true
+
+        self.channelsVC.didDismissSearch = { [unowned self] in
+            self.view.layoutNow()
+        }
+
+        self.channelsVC.didPresentSearch = { [unowned self] in
+            self.view.layoutNow()
         }
     }
 

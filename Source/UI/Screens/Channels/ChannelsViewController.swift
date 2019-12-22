@@ -17,6 +17,9 @@ class ChannelsViewController: CollectionViewController<ChannelCell, ChannelsColl
 
     weak var delegate: ChannelsViewControllerDelegate?
 
+    var didPresentSearch: CompletionOptional = nil
+    var didDismissSearch: CompletionOptional = nil 
+
     init() {
         let collectionView = ChannelsCollectionView()
 
@@ -32,44 +35,32 @@ class ChannelsViewController: CollectionViewController<ChannelCell, ChannelsColl
     override func initializeViews() {
         super.initializeViews()
 
-        self.setupSearchBar()
-
         self.manager.onSelectedItem.signal.observeValues { (selectedItem) in
             guard let item = selectedItem else { return }
             self.delegate?.channelsView(self, didSelect: item.item.channelType)
         }
     }
+}
 
-    private func setupSearchBar() {
-        self.navigationItem.searchController?.searchBar.delegate = self
-        self.navigationItem.searchController?.view.tintColor = Color.lightPurple.color
-        self.navigationItem.searchController?.searchBar.keyboardAppearance = .dark
-        self.navigationItem.searchController?.searchBar.keyboardType = .twitter
-        self.navigationItem.searchController?.searchBar.placeholder = "Search"
-        self.navigationItem.searchController?.searchBar.setImage(UIImage(systemName: "xmark.circle.fill"), for: .clear, state: .normal)
-        let styleAttributes = StringStyle(font: .regularSemiBold, color: .lightPurple).attributes
-        self.navigationItem.searchController?.searchBar.searchTextField.typingAttributes = styleAttributes
+extension ChannelsViewController: UISearchResultsUpdating {
+
+    func updateSearchResults(for searchController: UISearchController) {
+        if let text = searchController.searchBar.text {
+            let lowercaseString = text.lowercased()
+            self.manager.channelFilter = SearchFilter(text: lowercaseString)
+        }
     }
 }
 
-extension ChannelsViewController: UISearchBarDelegate {
+extension ChannelsViewController: UISearchControllerDelegate {
 
-    func searchBarTextDidBeginEditing(_ searchBar: UISearchBar) {
-        searchBar.setShowsCancelButton(true, animated: false)
+    func didPresentSearchController(_ searchController: UISearchController) {
+        self.didPresentSearch?()
     }
 
-    func searchBarTextDidEndEditing(_ searchBar: UISearchBar) {
-        searchBar.setShowsCancelButton(false, animated: true)
+    func didDismissSearchController(_ searchController: UISearchController) {
         self.manager.channelFilter = SearchFilter(text: String())
-    }
-
-    func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
-        let lowercaseString = searchText.lowercased()
-        self.manager.channelFilter = SearchFilter(text: lowercaseString)
-    }
-
-    func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
-        searchBar.searchTextField.text = String()
-        searchBar.resignFirstResponder()
+        self.manager.loadAllChannels()
+        self.didDismissSearch?()
     }
 }
