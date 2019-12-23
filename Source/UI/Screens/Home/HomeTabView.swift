@@ -10,9 +10,9 @@ import Foundation
 
 class HomeTabView: View {
 
-    private(set) var profileItem = Button()
-    private(set) var feedItem = Button()
-    private(set) var channelsItem = Button()
+    private(set) var profileItem = HomeButton()
+    private(set) var feedItem = HomeButton()
+    private(set) var channelsItem = HomeButton()
     private let selectionFeedback = UIImpactFeedbackGenerator(style: .light)
     
     override func initializeSubviews() {
@@ -21,19 +21,8 @@ class HomeTabView: View {
         self.set(backgroundColor: .clear)
 
         self.addSubview(self.profileItem)
-        self.profileItem.tintColor = Color.white.color
-        self.profileItem.setImage(UIImage(systemName: "person.crop.circle"), for: .normal)
-        self.profileItem.setImage(UIImage(systemName: "person.crop.circle.fill"), for: .selected)
-
         self.addSubview(self.feedItem)
-        self.feedItem.tintColor = Color.white.color
-        self.feedItem.setImage(UIImage(systemName: "square.stack"), for: .normal)
-        self.feedItem.setImage(UIImage(systemName: "square.stack.fill"), for: .selected)
-
         self.addSubview(self.channelsItem)
-        self.channelsItem.tintColor = Color.white.color
-        self.channelsItem.setImage(UIImage(systemName: "bubble.left.and.bubble.right"), for: .normal)
-        self.channelsItem.setImage(UIImage(systemName: "bubble.left.and.bubble.right.fill"), for: .selected)
     }
 
     override func layoutSubviews() {
@@ -59,17 +48,17 @@ class HomeTabView: View {
         
         switch contentType {
         case .feed:
-            self.feedItem.isSelected = true
-            self.profileItem.isSelected = false
-            self.channelsItem.isSelected = false
+            self.feedItem.imageView.image = UIImage(systemName: "square.stack.fill")
+            self.profileItem.imageView.image = UIImage(systemName: "person.crop.circle")
+            self.channelsItem.imageView.image = UIImage(systemName: "bubble.left.and.bubble.right")
         case .channels:
-            self.feedItem.isSelected = false
-            self.profileItem.isSelected = false
-            self.channelsItem.isSelected = true
+            self.feedItem.imageView.image = UIImage(systemName: "square.stack")
+            self.profileItem.imageView.image = UIImage(systemName: "person.crop.circle")
+            self.channelsItem.imageView.image = UIImage(systemName: "bubble.left.and.bubble.right.fill")
         case .profile:
-            self.feedItem.isSelected = false
-            self.profileItem.isSelected = true
-            self.channelsItem.isSelected = false
+            self.feedItem.imageView.image = UIImage(systemName: "square.stack")
+            self.profileItem.imageView.image = UIImage(systemName: "person.crop.circle.fill")
+            self.channelsItem.imageView.image = UIImage(systemName: "bubble.left.and.bubble.right")
         }
     }
 }

@@ -8,23 +8,17 @@
 
 import Foundation
 
-class HomeAddButton: View {
+class HomeButton: View {
 
-    let imageView = UIImageView(image: UIImage(systemName: "square.and.pencil"))
+    let imageView = UIImageView()
     private let selectionFeedback = UIImpactFeedbackGenerator(style: .light)
 
     override func initializeSubviews() {
         super.initializeSubviews()
         
-        self.set(backgroundColor: .purple)
         self.addSubview(self.imageView)
         self.imageView.tintColor = Color.white.color
-
-        self.layer.shadowColor = Color.background1.color.cgColor
-        self.layer.shadowOpacity = 0.3
-        self.layer.shadowOffset = CGSize(width: 0, height: 5)
-        self.layer.shadowRadius = 5
-        self.layer.masksToBounds = false
+        self.imageView.contentMode = .scaleAspectFit
     }
 
     override func layoutSubviews() {

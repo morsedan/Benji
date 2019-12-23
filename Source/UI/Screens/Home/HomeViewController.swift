@@ -32,7 +32,7 @@ class HomeViewController: FullScreenViewController {
     lazy var profileVC = ProfileViewController(with: User.current()!)
     let searchController = UISearchController(searchResultsController: nil)
 
-    private let addButton = HomeAddButton()
+    private let addButton = HomeButton()
     let centerContainer = View()
     let tabView = HomeTabView()
 
@@ -58,6 +58,8 @@ class HomeViewController: FullScreenViewController {
         self.setupSearchController()
 
         self.view.set(backgroundColor: .background1)
+        self.addButton.imageView.image = UIImage(systemName: "square.and.pencil")
+        self.addButton.set(backgroundColor: .purple)
 
         self.contentContainer.addSubview(self.centerContainer)
 
@@ -119,7 +121,7 @@ class HomeViewController: FullScreenViewController {
         super.viewDidLayoutSubviews()
 
         self.addButton.size = CGSize(width: 60, height: 60)
-        self.addButton.right = self.view.width - Theme.contentOffset
+        self.addButton.right = self.view.width - 16
         self.addButton.bottom = self.contentContainer.height - 10
 
         self.centerContainer.size = CGSize(width: self.contentContainer.width,
