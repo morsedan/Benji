@@ -28,10 +28,6 @@ class ChannelCoordinator: PresentableCoordinator<Void> {
 
 extension ChannelCoordinator: ChannelDetailBarDelegate {
 
-    func channelDetailBarDidTapClose(_ view: ChannelDetailBar) {
-        self.finishFlow(with: ())
-    }
-
     func channelDetailBarDidTapMenu(_ view: ChannelDetailBar) {
         //Present channel menu
     }

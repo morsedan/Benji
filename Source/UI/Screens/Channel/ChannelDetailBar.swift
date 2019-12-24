@@ -12,7 +12,6 @@ import Parse
 import TMROLocalization
 
 protocol ChannelDetailBarDelegate: class {
-    func channelDetailBarDidTapClose(_ view: ChannelDetailBar)
     func channelDetailBarDidTapMenu(_ view: ChannelDetailBar)
 }
 

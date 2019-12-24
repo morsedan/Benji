@@ -51,7 +51,7 @@ class NewChannelViewController: FullScreenViewController {
         super.initializeViews()
 
         self.contentContainer.addSubview(self.textFieldTitleLabel)
-        self.textFieldTitleLabel.set(text: "Channel Name", stringCasing: .unchanged)
+        self.textFieldTitleLabel.set(text: "Conversation Name", stringCasing: .unchanged)
         self.contentContainer.addSubview(self.textField)
         self.textField.set(backgroundColor: .background3)
         self.textField.roundCorners()
@@ -157,7 +157,7 @@ class NewChannelViewController: FullScreenViewController {
                                      type: .private)
             .joinIfNeeded()
             .invite(personUserID: inviteeIdentifier)
-            .withProgressBanner("Creating channel")
+            .withProgressBanner("Creating conversation")
             .withErrorBanner()
             .ignoreUserInteractionEventsUntilDone(for: self.view)
             .observe { (result) in
