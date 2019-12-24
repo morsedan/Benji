@@ -7,7 +7,6 @@
 //
 
 import Foundation
-import TwilioChatClient
 
 class LoadMoreSectionHeader: UICollectionReusableView {
 
