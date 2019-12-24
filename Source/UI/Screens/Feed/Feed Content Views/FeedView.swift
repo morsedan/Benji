@@ -18,6 +18,7 @@ class FeedView: View {
     lazy var inviteView = FeedChannelInviteView()
     lazy var unreadView = FeedUnreadView()
     lazy var needInvitesView = FeedInviteView()
+    lazy var notificationsView = FeedNotificationPermissionsView()
 
     var didSelect: () -> Void = {}
 
@@ -54,6 +55,11 @@ class FeedView: View {
             self.container.addSubview(self.needInvitesView)
         case .rountine:
             self.container.addSubview(self.routineView)
+            self.routineView.button.onTap { [unowned self] (tap) in
+                self.didSelect()
+            }
+        case .notificationPermissions:
+            self.container.addSubview(self.notificationsView)
             self.routineView.button.onTap { [unowned self] (tap) in
                 self.didSelect()
             }

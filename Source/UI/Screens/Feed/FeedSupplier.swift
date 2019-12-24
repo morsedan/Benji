@@ -37,7 +37,16 @@ class FeedSupplier {
 
     func getInvitationRecommendations(with promise: Promise<[FeedType]>) {
         self.items.append(.inviteAsk)
-        self.getInvitedChannels(with: promise)
+        self.getNotificationPermissions(with: promise)
+    }
+
+    func getNotificationPermissions(with promise: Promise<[FeedType]>) {
+        UserNotificationManager.shared.center.getNotificationSettings { (settings) in
+            if settings.authorizationStatus != .authorized {
+                self.items.append(.notificationPermissions)
+            }
+            self.getInvitedChannels(with: promise)
+        }
     }
 
     func getInvitedChannels(with promise: Promise<[FeedType]>) {
