@@ -60,7 +60,7 @@ class FeedView: View {
             }
         case .notificationPermissions:
             self.container.addSubview(self.notificationsView)
-            self.routineView.button.onTap { [unowned self] (tap) in
+            self.notificationsView.button.onTap { [unowned self] (tap) in
                 self.didSelect()
             }
         }

@@ -49,6 +49,8 @@ extension FeedCoordinator: FeedViewControllerDelegate {
             break
             //let contactsVC = ContactsViewController()
             //self.router.present(contactsVC, source: self.sourceViewController)
+        case .notificationPermissions:
+            self.handleNotificationPermissions()
         }
     }
 
@@ -90,5 +92,22 @@ extension FeedCoordinator: FeedViewControllerDelegate {
         //            self.router.dismiss(source: coordinator.toPresentable())
         //        })
         //        self.router.present(coordinator, source: self.sourceViewController, animated: true)
+    }
+
+    private func handleNotificationPermissions() {
+        let settings = UserNotificationManager.shared.getNotificationSettingsSynchronously()
+        switch settings.authorizationStatus {
+        case .notDetermined, .provisional:
+            UserNotificationManager.shared.silentRegister(withApplication: UIApplication.shared)
+        case .denied:
+            guard let settingsUrl = URL(string: UIApplication.openSettingsURLString) else { return }
+            UIApplication.shared.open(settingsUrl, completionHandler: { (success) in
+                print("Settings opened: \(success)") // Prints true
+            })
+        case .authorized:
+            break
+        @unknown default:
+            break
+        }
     }
 }
