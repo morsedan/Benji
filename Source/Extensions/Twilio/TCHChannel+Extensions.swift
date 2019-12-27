@@ -133,6 +133,25 @@ extension Future where Value == TCHChannel {
         })
     }
 
+    func sendInitialMessage() -> Future<TCHChannel> {
+
+        return self.then { (channel) in
+            let promise = Promise<TCHChannel>()
+
+            ChannelManager.shared.sendMessage(to: channel, with: channel.channelDescription)
+                .observe { (result) in
+                    switch result {
+                    case .success(_):
+                        return promise.resolve(with: channel)
+                    case .failure(_):
+                        return promise.reject(with: ClientError.generic)
+                    }
+            }
+
+            return promise
+        }
+    }
+
     func invite(personUserID: String) -> Future<TCHChannel> {
 
         return self.then(with: { (channel) in
