@@ -74,19 +74,8 @@ class PurposeViewController: ViewController {
 
     private func updateCreateButton() {
         guard let text = self.textField.text else {
-            //self.createButton.isEnabled = false
             return
         }
-
-
-        // self.createButton.isEnabled = !text.isEmpty
-    }
-
-    private func createTapped() {
-        guard let title = self.textField.text,
-            let description = self.textView.text else { return }
-
-        //  self.createChannel(with: user.objectId!, title: title, description: description)
     }
 }
 
@@ -105,7 +94,7 @@ extension PurposeViewController: UITextViewDelegate {
     }
 
     func textViewDidBeginEditing(_ textView: UITextView) {
-        self.purposeAccessoryView.showAccessoryForDescription(textView: textView) 
+        self.purposeAccessoryView.showAccessoryForDescription(textView: textView)
     }
 }
 

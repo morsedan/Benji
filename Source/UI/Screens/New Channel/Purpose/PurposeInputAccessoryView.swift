@@ -23,6 +23,10 @@ class PurposeInputAccessoryView: TextInputAccessoryView {
         self.text = LocalizedString(id: "", arguments: [], default: "Names must be lowercase, without spaces or periods, and can't be longer than 80 characters.")
         textField.inputAccessoryView = self
         textField.reloadInputViews()
+
+        self.didCancel = {
+            textField.resignFirstResponder()
+        }
     }
 
     func showAccessoryForDescription(textView: UITextView) {
@@ -37,6 +41,10 @@ class PurposeInputAccessoryView: TextInputAccessoryView {
         self.text = LocalizedString(id: "",arguments: [], default: "Briefly describe the purpose of this conversation. This will be added to initial message for the conversation.")
         textView.inputAccessoryView = self
         textView.reloadInputViews()
+
+        self.didCancel = {
+            textView.resignFirstResponder()
+        }
     }
 }
 
