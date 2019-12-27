@@ -88,28 +88,6 @@ class PurposeViewController: ViewController {
 
         //  self.createChannel(with: user.objectId!, title: title, description: description)
     }
-
-    private func showAccessoryForName() {
-        self.purposeAccessoryView.frame = CGRect(x: 0,
-                                                 y: 0,
-                                                 width: UIScreen.main.bounds.width,
-                                                 height: 60)
-        self.purposeAccessoryView.keyboardAppearance = self.textField.keyboardAppearance
-        self.purposeAccessoryView.text = LocalizedString(id: "", arguments: [], default: "Names must be lowercase, without spaces or periods, and can't be longer than 80 characters.")
-        self.textField.inputAccessoryView = self.purposeAccessoryView
-        self.textField.reloadInputViews()
-    }
-
-    private func showAccessoryForDescription() {
-        self.purposeAccessoryView.frame = CGRect(x: 0,
-                                                 y: 0,
-                                                 width: UIScreen.main.bounds.width,
-                                                 height: 60)
-        self.purposeAccessoryView.keyboardAppearance = self.textView.keyboardAppearance
-        self.purposeAccessoryView.text = LocalizedString(id: "",arguments: [], default: "Briefly describe the purpose of this conversation.")
-        self.textView.inputAccessoryView = self.purposeAccessoryView
-        self.textView.reloadInputViews()
-    }
 }
 
 extension PurposeViewController: UITextViewDelegate {
@@ -127,14 +105,14 @@ extension PurposeViewController: UITextViewDelegate {
     }
 
     func textViewDidBeginEditing(_ textView: UITextView) {
-        self.showAccessoryForDescription()
+        self.purposeAccessoryView.showAccessoryForDescription(textView: textView) 
     }
 }
 
 extension PurposeViewController: UITextFieldDelegate {
 
     func textFieldDidBeginEditing(_ textField: UITextField) {
-        self.showAccessoryForName()
+        self.purposeAccessoryView.showAccessoryForName(textField: textField)
     }
 
     func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
