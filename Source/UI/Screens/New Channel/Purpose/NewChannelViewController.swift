@@ -27,7 +27,7 @@ class NewChannelViewController: FullScreenViewController {
     let textView = PurposeDescriptionTextView()
     let textViewDescription = XXSmallSemiBoldLabel()
 
-    let createButton = LoadingButton()
+    let createButton = NewChannelButton()
 
     let favoritesLabel = RegularBoldLabel()
     let collectionView = FavoritesCollectionView()
@@ -77,9 +77,10 @@ class NewChannelViewController: FullScreenViewController {
         self.textField.delegate = self
 
         self.contentContainer.addSubview(self.createButton)
-        self.createButton.set(style: .normal(color: .purple, text: "CREATE")) { [unowned self] in
+        self.createButton.onTap { [unowned self] (tap) in
             self.createTapped()
         }
+
         self.createButton.isEnabled = false
 
         self.contentContainer.addSubview(self.favoritesLabel)
@@ -126,9 +127,9 @@ class NewChannelViewController: FullScreenViewController {
         self.favoritesVC.view.top = self.favoritesLabel.bottom + 10
         self.favoritesVC.view.left = self.offset
 
-        self.createButton.size = CGSize(width: width, height: 40)
-        self.createButton.top = self.favoritesVC.view.bottom + 30
-        self.createButton.centerOnX()
+        self.createButton.size = CGSize(width: 60, height: 60)
+        self.createButton.right = self.view.width - 16
+        self.createButton.bottom = self.contentContainer.height - 10
     }
 
     private func handleTextChange() {
