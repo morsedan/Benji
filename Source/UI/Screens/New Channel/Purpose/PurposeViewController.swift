@@ -94,7 +94,7 @@ class PurposeViewController: ViewController {
                                                  y: 0,
                                                  width: UIScreen.main.bounds.width,
                                                  height: 60)
-        self.purposeAccessoryView.keyboardAppearance = self.textView.keyboardAppearance
+        self.purposeAccessoryView.keyboardAppearance = self.textField.keyboardAppearance
         self.purposeAccessoryView.text = LocalizedString(id: "", arguments: [], default: "Names must be lowercase, without spaces or periods, and can't be longer than 80 characters.")
         self.textField.inputAccessoryView = self.purposeAccessoryView
         self.textField.reloadInputViews()

@@ -54,6 +54,8 @@ class TextInputAccessoryView: View {
     override func layoutSubviews() {
         super.layoutSubviews()
 
+        self.blurView.expandToSuperviewSize()
+
         self.cancelButton.centerOnY()
         self.cancelButton.right = self.width - Theme.contentOffset
 
