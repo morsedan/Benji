@@ -20,24 +20,6 @@ protocol NewChannelViewControllerDelegate: class {
 enum NewChannelContent: Equatable {
     case purpose(PurposeViewController)
     case favorites(FavoritesViewController)
-
-    var title: Localized {
-        switch self {
-        case .purpose(_):
-            return "NEW CONVERSATION"
-        case .favorites(_):
-            return "ADD PEOPLE"
-        }
-    }
-
-    var description: Localized {
-        switch self {
-        case .purpose(_):
-            return "Add a name and description to help frame the conversation."
-        case .favorites(_):
-            return "Add others to the conversation."
-        }
-    }
 }
 
 class NewChannelViewController: NavigationBarViewController {
@@ -82,6 +64,10 @@ class NewChannelViewController: NavigationBarViewController {
             .on { [unowned self] (contentType) in
                 self.switchContent()
         }.start()
+
+        self.backButton.onTap { [unowned self] (tap) in
+            self.currentContent.value = .purpose(self.purposeVC)
+        }
     }
 
     override func viewDidLayoutSubviews() {
@@ -102,11 +88,25 @@ class NewChannelViewController: NavigationBarViewController {
     }
 
     override func getTitle() -> Localized {
-        return self.currentContent.value.title
+        switch self.currentContent.value {
+        case .purpose(_):
+            return "NEW CONVERSATION"
+        case .favorites(_):
+            return LocalizedString(id: "",
+                                   arguments: [self.purposeVC.textField.text!],
+                                   default: "ADD PEOPLE TO: @()")
+        }
     }
 
     override func getDescription() -> Localized {
-        return self.currentContent.value.description
+        switch self.currentContent.value {
+        case .purpose(_):
+            return "Add a name and description to help frame the conversation."
+        case .favorites(_):
+            return LocalizedString(id: "",
+                                   arguments: [self.purposeVC.textView.text!],
+                                   default: "Descriptoin: @()")
+        }
     }
 
     private func updateButton() {
@@ -144,11 +144,12 @@ class NewChannelViewController: NavigationBarViewController {
             self.descriptionLabel.transform = CGAffineTransform(scaleX: 0.95, y: 0.95)
 
             self.centerContainer.alpha = 0
+            self.backButton.alpha = 0 
         }) { (completed) in
 
             self.currentCenterVC?.removeFromParentSuperview()
             var newContentVC: UIViewController?
-
+            var showBackButton = false
             switch self.currentContent.value {
             case .purpose(let vc):
                 newContentVC = vc
@@ -156,6 +157,7 @@ class NewChannelViewController: NavigationBarViewController {
             case .favorites(let vc):
                 newContentVC = vc
                 self.centerContainerHeight = 500
+                showBackButton = true
             }
 
             self.updateLabels()
@@ -176,7 +178,8 @@ class NewChannelViewController: NavigationBarViewController {
                 self.descriptionLabel.alpha = 1
                 self.descriptionLabel.transform = .identity
 
-                self.centerContainer.alpha = 1 
+                self.centerContainer.alpha = 1
+                self.backButton.alpha = showBackButton ? 1 : 0
             }
         }
     }

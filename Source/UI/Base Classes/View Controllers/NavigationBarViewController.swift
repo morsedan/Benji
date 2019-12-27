@@ -11,6 +11,7 @@ import TMROLocalization
 
 class NavigationBarViewController: ViewController {
 
+    private(set) var backButton = Button()
     private(set) var titleLabel = MediumLabel()
     private(set) var descriptionLabel = XSmallLabel()
     /// Place all views under the lineView 
@@ -23,6 +24,10 @@ class NavigationBarViewController: ViewController {
 
     override func initializeViews() {
         super.initializeViews()
+
+        self.view.addSubview(self.backButton)
+        self.backButton.setImage(UIImage(systemName: "arrow.left"), for: .normal)
+        self.backButton.tintColor = Color.lightPurple.color
 
         self.view.addSubview(self.titleLabel)
         self.view.addSubview(self.descriptionLabel)
@@ -44,7 +49,11 @@ class NavigationBarViewController: ViewController {
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
 
-        self.titleLabel.setSize(withWidth: 200)
+        self.backButton.size = CGSize(width: 40, height: 40)
+        self.backButton.left = Theme.contentOffset
+        self.backButton.top = Theme.contentOffset
+
+        self.titleLabel.setSize(withWidth: self.view.width * 0.7)
         self.titleLabel.top = Theme.contentOffset
         self.titleLabel.centerOnX()
 
