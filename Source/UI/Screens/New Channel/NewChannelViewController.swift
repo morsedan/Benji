@@ -70,6 +70,46 @@ class NewChannelViewController: NavigationBarViewController, KeyboardObservable 
         }
 
         self.registerKeyboardEvents()
+
+        self.purposeVC.textFieldDidBegin = { [unowned self] in
+            UIView.animate(withDuration: Theme.animationDuration) {
+                self.titleLabel.alpha = 0.2
+                self.descriptionLabel.alpha = 0.2
+                self.lineView.alpha = 0.2
+                self.purposeVC.textViewTitleLabel.alpha = 0.2
+                self.purposeVC.textView.alpha = 0.2
+            }
+        }
+
+        self.purposeVC.textFieldDidEnd = { [unowned self] in
+            UIView.animate(withDuration: Theme.animationDuration) {
+                self.titleLabel.alpha = 1
+                self.descriptionLabel.alpha = 1
+                self.lineView.alpha = 1
+                self.purposeVC.textViewTitleLabel.alpha = 1
+                self.purposeVC.textView.alpha = 1
+            }
+        }
+
+        self.purposeVC.textViewDidBegin = { [unowned self] in
+            UIView.animate(withDuration: Theme.animationDuration) {
+                self.titleLabel.alpha = 0.2
+                self.descriptionLabel.alpha = 0.2
+                self.lineView.alpha = 0.2
+                self.purposeVC.textFieldTitleLabel.alpha = 0.2
+                self.purposeVC.textField.alpha = 0.2
+            }
+        }
+
+        self.purposeVC.textViewDidEnd = { [unowned self] in
+            UIView.animate(withDuration: Theme.animationDuration) {
+                self.titleLabel.alpha = 1
+                self.descriptionLabel.alpha = 1
+                self.lineView.alpha = 1
+                self.purposeVC.textFieldTitleLabel.alpha = 1
+                self.purposeVC.textField.alpha = 1
+            }
+        }
     }
 
     override func viewDidLayoutSubviews() {
@@ -203,8 +243,8 @@ class NewChannelViewController: NavigationBarViewController, KeyboardObservable 
         self.button.isLoading = true
 
         ChannelSupplier.createChannel(channelName: title,
-                                     channelDescription: description,
-                                     type: .private)
+                                      channelDescription: description,
+                                      type: .private)
             .joinIfNeeded()
             .sendInitialMessage()
             .invite(personUserID: inviteeIdentifier)

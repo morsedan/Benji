@@ -23,6 +23,12 @@ class PurposeViewController: ViewController {
 
     var totalHeight: CGFloat = 284
 
+    var textFieldDidBegin: CompletionOptional = nil
+    var textFieldDidEnd: CompletionOptional = nil
+
+    var textViewDidBegin: CompletionOptional = nil
+    var textViewDidEnd: CompletionOptional = nil 
+
     override func initializeViews() {
         super.initializeViews()
 
@@ -97,6 +103,11 @@ extension PurposeViewController: UITextViewDelegate {
 
     func textViewDidBeginEditing(_ textView: UITextView) {
         self.purposeAccessoryView.showAccessoryForDescription(textView: textView)
+        self.textViewDidBegin?()
+    }
+
+    func textViewDidEndEditing(_ textView: UITextView) {
+        self.textViewDidEnd?()
     }
 }
 
@@ -104,6 +115,11 @@ extension PurposeViewController: UITextFieldDelegate {
 
     func textFieldDidBeginEditing(_ textField: UITextField) {
         self.purposeAccessoryView.showAccessoryForName(textField: textField)
+        self.textFieldDidBegin?()
+    }
+
+    func textFieldDidEndEditing(_ textField: UITextField) {
+        self.textFieldDidEnd?()
     }
 
     func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {

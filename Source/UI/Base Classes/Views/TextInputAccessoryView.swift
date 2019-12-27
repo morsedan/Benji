@@ -19,8 +19,24 @@ class TextInputAccessoryView: View {
     var text: Localized? {
         didSet {
             guard let text = self.text else { return }
-            self.label.set(text: text, color: .white, alignment: .left, stringCasing: .unchanged)
-            self.layoutNow()
+            UIView.animate(withDuration: Theme.animationDuration,
+                           delay: Theme.animationDuration,
+                           options: [],
+                           animations: {
+                            self.label.alpha = 0
+                            self.label.transform = CGAffineTransform(scaleX: 0.95, y: 0.95)
+            }) { (completed) in
+
+                if completed {
+                    self.label.set(text: text, color: .white, alignment: .left, stringCasing: .unchanged)
+                    self.layoutNow()
+
+                    UIView.animate(withDuration: Theme.animationDuration) {
+                        self.label.alpha = 1
+                        self.label.transform = .identity
+                    }
+                }
+            }
         }
     }
 
@@ -49,6 +65,8 @@ class TextInputAccessoryView: View {
             self.selectionFeedback.impactOccurred()
             self.didCancel?()
         }
+
+        self.label.alpha = 0
     }
 
     override func layoutSubviews() {
