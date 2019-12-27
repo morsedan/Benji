@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import TMROLocalization
 
 class PurposeViewController: ViewController {
 
@@ -14,48 +15,33 @@ class PurposeViewController: ViewController {
 
     let textFieldTitleLabel = RegularBoldLabel()
     let textField = PurposeTitleTextField()
-    let textFieldDescriptionLabel = XXSmallSemiBoldLabel()
 
     let textViewTitleLabel = RegularBoldLabel()
     let textView = PurposeDescriptionTextView()
-    let textViewDescription = XXSmallSemiBoldLabel()
 
-    let createButton = NewChannelButton()
+    let purposeAccessoryView = PurposeInputAccessoryView()
 
     override func initializeViews() {
         super.initializeViews()
 
         self.view.addSubview(self.textFieldTitleLabel)
-        self.textFieldTitleLabel.set(text: "Conversation", stringCasing: .unchanged)
+        self.textFieldTitleLabel.set(text: "Name", stringCasing: .unchanged)
         self.view.addSubview(self.textField)
         self.textField.set(backgroundColor: .background3)
         self.textField.roundCorners()
 
-        self.view.addSubview(self.textFieldDescriptionLabel)
-        self.textFieldDescriptionLabel.set(text: "Names must be lowercase, without spaces or periods, and can't be longer than 80 characters.")
-
         self.view.addSubview(self.textViewTitleLabel)
-        self.textViewTitleLabel.set(text: "Purpose", stringCasing: .unchanged)
+        self.textViewTitleLabel.set(text: "Description", stringCasing: .unchanged)
         self.view.addSubview(self.textView)
         self.textView.set(backgroundColor: .background3)
         self.textView.roundCorners()
         self.textView.delegate = self
-
-        self.view.addSubview(self.textViewDescription)
-        self.textViewDescription.set(text: "Briefly describe the purpose of this conversation.")
 
         self.textField.onTextChanged = { [unowned self] in
             self.handleTextChange()
         }
 
         self.textField.delegate = self
-
-        self.view.addSubview(self.createButton)
-        self.createButton.onTap { [unowned self] (tap) in
-            self.createTapped()
-        }
-
-        self.createButton.isEnabled = false
     }
 
     override func viewDidLayoutSubviews() {
@@ -71,21 +57,13 @@ class PurposeViewController: ViewController {
         self.textField.left = self.offset
         self.textField.top = self.textFieldTitleLabel.bottom + 10
 
-        self.textFieldDescriptionLabel.setSize(withWidth: width)
-        self.textFieldDescriptionLabel.left = self.offset
-        self.textFieldDescriptionLabel.top = self.textField.bottom + 10
-
         self.textViewTitleLabel.setSize(withWidth: width)
-        self.textViewTitleLabel.top = self.textFieldDescriptionLabel.bottom + 30
+        self.textViewTitleLabel.top = self.textField.bottom + 30
         self.textViewTitleLabel.left = self.offset
 
         self.textView.size = CGSize(width: width, height: 120)
         self.textView.top = self.textViewTitleLabel.bottom + 10
         self.textView.left = self.offset
-
-        self.textViewDescription.setSize(withWidth: width)
-        self.textViewDescription.left = self.offset
-        self.textViewDescription.top = self.textView.bottom + 10
     }
 
     private func handleTextChange() {
@@ -96,19 +74,41 @@ class PurposeViewController: ViewController {
 
     private func updateCreateButton() {
         guard let text = self.textField.text else {
-            self.createButton.isEnabled = false
+            //self.createButton.isEnabled = false
             return
         }
 
 
-        self.createButton.isEnabled = !text.isEmpty
+        // self.createButton.isEnabled = !text.isEmpty
     }
 
     private func createTapped() {
         guard let title = self.textField.text,
             let description = self.textView.text else { return }
 
-      //  self.createChannel(with: user.objectId!, title: title, description: description)
+        //  self.createChannel(with: user.objectId!, title: title, description: description)
+    }
+
+    private func showAccessoryForName() {
+        self.purposeAccessoryView.frame = CGRect(x: 0,
+                                                 y: 0,
+                                                 width: UIScreen.main.bounds.width,
+                                                 height: 60)
+        self.purposeAccessoryView.keyboardAppearance = self.textView.keyboardAppearance
+        self.purposeAccessoryView.text = LocalizedString(id: "", arguments: [], default: "Names must be lowercase, without spaces or periods, and can't be longer than 80 characters.")
+        self.textField.inputAccessoryView = self.purposeAccessoryView
+        self.textField.reloadInputViews()
+    }
+
+    private func showAccessoryForDescription() {
+        self.purposeAccessoryView.frame = CGRect(x: 0,
+                                                 y: 0,
+                                                 width: UIScreen.main.bounds.width,
+                                                 height: 60)
+        self.purposeAccessoryView.keyboardAppearance = self.textView.keyboardAppearance
+        self.purposeAccessoryView.text = LocalizedString(id: "",arguments: [], default: "Briefly describe the purpose of this conversation.")
+        self.textView.inputAccessoryView = self.purposeAccessoryView
+        self.textView.reloadInputViews()
     }
 }
 
@@ -125,9 +125,17 @@ extension PurposeViewController: UITextViewDelegate {
 
         return true
     }
+
+    func textViewDidBeginEditing(_ textView: UITextView) {
+        self.showAccessoryForDescription()
+    }
 }
 
 extension PurposeViewController: UITextFieldDelegate {
+
+    func textFieldDidBeginEditing(_ textField: UITextField) {
+        self.showAccessoryForName()
+    }
 
     func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
 

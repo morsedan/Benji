@@ -20,6 +20,8 @@ class NewChannelViewController: NavigationBarViewController {
 
     lazy var purposeVC = PurposeViewController()
 
+    let createButton = NewChannelButton()
+
     unowned let delegate: NewChannelViewControllerDelegate
 
     init(delegate: NewChannelViewControllerDelegate) {
@@ -35,29 +37,50 @@ class NewChannelViewController: NavigationBarViewController {
         fatalError("init(withObject:) has not been implemented")
     }
 
+    override func loadView() {
+        self.view = UIView()
+    }
+
     override func initializeViews() {
         super.initializeViews()
 
+        self.view.addSubview(self.scrollView)
+
         self.view.set(backgroundColor: .background2)
         self.addChild(viewController: self.purposeVC)
+
+        self.view.addSubview(self.createButton)
+        self.createButton.onTap { [unowned self] (tap) in
+            self.createTapped()
+        }
     }
 
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
 
-        self.purposeVC.view.size = CGSize(width: self.view.width, height: 400)
+        self.scrollView.expandToSuperviewSize()
+
+        self.createButton.size = CGSize(width: 60, height: 60)
+        self.createButton.right = self.view.width - 16
+        self.createButton.bottom = self.view.height - self.view.safeAreaInsets.bottom - 10
+
+        self.purposeVC.view.size = CGSize(width: self.view.width, height: 500)
         self.purposeVC.view.centerOnX()
-        self.purposeVC.view.bottom = self.view.height - self.view.safeAreaInsets.bottom
+        self.purposeVC.view.top = self.lineView.bottom + 30
 
         self.scrollView.contentSize = CGSize(width: self.view.width, height: self.purposeVC.view.bottom + 20)
     }
 
     override func getTitle() -> Localized {
-        return "DAILY ROUTINE"
+        return "NEW CONVERSATION"
     }
 
     override func getDescription() -> Localized {
-        return "Get a daily reminder to follow up and connect with others."
+        return "Add a name and description to help frame the conversation."
+    }
+
+    func createTapped() {
+        
     }
 }
 
