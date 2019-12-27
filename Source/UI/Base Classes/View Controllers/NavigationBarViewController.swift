@@ -11,8 +11,8 @@ import TMROLocalization
 
 class NavigationBarViewController: ViewController {
 
-    private let titleLabel = MediumLabel()
-    private let descriptionLabel = XSmallLabel()
+    private(set) var titleLabel = MediumLabel()
+    private(set) var descriptionLabel = XSmallLabel()
     /// Place all views under the lineView 
     private(set) var lineView = View()
     let scrollView = UIScrollView()
@@ -25,14 +25,20 @@ class NavigationBarViewController: ViewController {
         super.initializeViews()
 
         self.view.addSubview(self.titleLabel)
-        self.titleLabel.set(text: self.getTitle(), alignment: .center)
         self.view.addSubview(self.descriptionLabel)
+        self.view.addSubview(self.lineView)
+        self.lineView.set(backgroundColor: .background3)
+
+        self.updateLabels()
+    }
+
+    func updateLabels() {
+        self.titleLabel.set(text: self.getTitle(), alignment: .center)
         self.descriptionLabel.set(text: self.getDescription(),
                                   color: .white,
                                   alignment: .center,
                                   stringCasing: .unchanged)
-        self.view.addSubview(self.lineView)
-        self.lineView.set(backgroundColor: .background3)
+        self.view.layoutNow()
     }
 
     override func viewDidLayoutSubviews() {

@@ -25,8 +25,6 @@ class NewChannelButton: LoadingButton {
         self.addSubview(self.iconImageView)
         self.iconImageView.tintColor = Color.white.color
         self.iconImageView.contentMode = .scaleAspectFit
-
-        self.iconImageView.image = UIImage(systemName: "square.and.pencil")
         self.set(style: .normal(color: .purple, text: ""))
     }
 

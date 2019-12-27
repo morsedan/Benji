@@ -34,36 +34,4 @@ class FavoritesViewController: CollectionViewController<FavoriteCell, FavoritesC
                 }
         }
     }
-
-
-    private func createChannel(with inviteeIdentifier: String,
-                               title: String,
-                               description: String) {
-
-        //self.createButton.isLoading = true
-
-        ChannelSupplier.createChannel(channelName: title,
-                                     channelDescription: description,
-                                     type: .private)
-            .joinIfNeeded()
-            .sendInitialMessage()
-            .invite(personUserID: inviteeIdentifier)
-            .withProgressBanner("Creating conversation")
-            .withErrorBanner()
-            .ignoreUserInteractionEventsUntilDone(for: self.view)
-            .observe { (result) in
-                //self.createButton.isLoading = false
-                switch result {
-                case .success(let channel):
-                    break
-                    //self.delegate.newChannelView(self, didCreate: .channel(channel))
-                case .failure(let error):
-                    if let tomorrowError = error as? ClientError {
-                        print(tomorrowError.localizedDescription)
-                    } else {
-                        print(error.localizedDescription)
-                    }
-                }
-        }
-    }
 }
