@@ -21,6 +21,8 @@ class PurposeViewController: ViewController {
 
     let purposeAccessoryView = PurposeInputAccessoryView()
 
+    var totalHeight: CGFloat = 284
+
     override func initializeViews() {
         super.initializeViews()
 

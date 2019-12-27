@@ -22,7 +22,7 @@ enum NewChannelContent: Equatable {
     case favorites(FavoritesViewController)
 }
 
-class NewChannelViewController: NavigationBarViewController {
+class NewChannelViewController: NavigationBarViewController, KeyboardObservable {
 
     lazy var purposeVC = PurposeViewController()
     lazy var favoritesVC = FavoritesViewController()
@@ -68,6 +68,8 @@ class NewChannelViewController: NavigationBarViewController {
         self.backButton.onTap { [unowned self] (tap) in
             self.currentContent.value = .purpose(self.purposeVC)
         }
+
+        self.registerKeyboardEvents()
     }
 
     override func viewDidLayoutSubviews() {
@@ -84,7 +86,15 @@ class NewChannelViewController: NavigationBarViewController {
 
         self.currentCenterVC?.view.frame = self.centerContainer.bounds
 
-        self.scrollView.contentSize = CGSize(width: self.view.width, height: self.centerContainer.bottom + 20)
+        let offset: CGFloat = self.keyboardHandler?.currentKeyboardHeight ?? 20
+        self.scrollView.contentSize = CGSize(width: self.view.width, height: self.centerContainer.bottom + offset)
+
+        guard let handler = self.keyboardHandler else { return }
+        let diff = self.view.height - handler.currentKeyboardHeight
+        if diff < self.centerContainer.bottom {
+            let offset = self.centerContainer.bottom - diff
+            self.scrollView.setContentOffset(CGPoint(x: 0, y: offset), animated: false)
+        }
     }
 
     override func getTitle() -> Localized {
@@ -155,10 +165,10 @@ class NewChannelViewController: NavigationBarViewController {
             switch self.currentContent.value {
             case .purpose(let vc):
                 newContentVC = vc
-                self.centerContainerHeight = 500
+                self.centerContainerHeight = vc.totalHeight
             case .favorites(let vc):
                 newContentVC = vc
-                self.centerContainerHeight = 500
+                self.centerContainerHeight = vc.totalHeight
                 showBackButton = true
             }
 
@@ -216,5 +226,13 @@ class NewChannelViewController: NavigationBarViewController {
         }
     }
 
+    func handleKeyboard(frame: CGRect,
+                        with animationDuration: TimeInterval,
+                        timingCurve: UIView.AnimationCurve) {
+
+        UIView.animate(withDuration: animationDuration, animations: {
+            self.view.layoutNow()
+        })
+    }
 }
 

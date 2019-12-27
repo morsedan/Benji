@@ -11,6 +11,8 @@ import Parse
 
 class FavoritesViewController: CollectionViewController<FavoriteCell, FavoritesCollectionViewManager> {
 
+    var totalHeight: CGFloat = 200
+
     init() {
         super.init(with: FavoritesCollectionView())
     }
