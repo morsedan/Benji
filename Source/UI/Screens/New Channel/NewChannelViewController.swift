@@ -94,7 +94,7 @@ class NewChannelViewController: NavigationBarViewController {
         case .favorites(_):
             return LocalizedString(id: "",
                                    arguments: [self.purposeVC.textField.text!],
-                                   default: "ADD PEOPLE TO: @()")
+                                   default: "ADD PEOPLE TO:\n@(foo)")
         }
     }
 
@@ -103,9 +103,11 @@ class NewChannelViewController: NavigationBarViewController {
         case .purpose(_):
             return "Add a name and description to help frame the conversation."
         case .favorites(_):
-            return LocalizedString(id: "",
-                                   arguments: [self.purposeVC.textView.text!],
-                                   default: "Descriptoin: @()")
+            if let text = self.purposeVC.textView.text, !text.isEmpty {
+                return text
+            } else {
+                return "No description given."
+            }
         }
     }
 

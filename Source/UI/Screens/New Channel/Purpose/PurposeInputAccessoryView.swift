@@ -34,7 +34,7 @@ class PurposeInputAccessoryView: TextInputAccessoryView {
                             width: UIScreen.main.bounds.width,
                             height: 60)
         self.keyboardAppearance = textView.keyboardAppearance
-        self.text = LocalizedString(id: "",arguments: [], default: "Briefly describe the purpose of this conversation.")
+        self.text = LocalizedString(id: "",arguments: [], default: "Briefly describe the purpose of this conversation. This will be added to initial message for the conversation.")
         textView.inputAccessoryView = self
         textView.reloadInputViews()
     }
