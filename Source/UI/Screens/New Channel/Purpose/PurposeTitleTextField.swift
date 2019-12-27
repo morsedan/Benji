@@ -10,29 +10,26 @@ import Foundation
 
 class PurposeTitleTextField: TextField {
 
-    let label = SmallSemiBoldLabel()
-    let padding = UIEdgeInsets(top: 0, left: 30, bottom: 0, right: 10)
+    let padding = UIEdgeInsets(top: 0, left: 10, bottom: 0, right: 10)
 
     override func initialize() {
         super.initialize()
 
-        self.addSubview(self.label)
-        self.label.set(text: "#", color: .white, alignment: .left)
-
         self.returnKeyType = .done
         self.autocapitalizationType = .none
 
-        let attributed = AttributedString("Name", fontType: .smallSemiBold, color: .background4)
+        let attributed = AttributedString("", fontType: .smallSemiBold, color: .background4)
         self.setPlaceholder(attributed: attributed)
         self.setDefaultAttributes(style: StringStyle(font: .smallSemiBold, color: .white))
+
+        self.setDefault()
     }
 
-    override func layoutSubviews() {
-        super.layoutSubviews()
+    private func setDefault() {
+        let formatter = DateFormatter()
+        formatter.dateFormat = "E_dd_MM"
 
-        self.label.setSize(withWidth: self.width)
-        self.label.centerOnY()
-        self.label.left = 10
+        self.text = formatter.string(from: Date()).lowercased()
     }
 
     override func textRect(forBounds bounds: CGRect) -> CGRect {
@@ -46,4 +43,5 @@ class PurposeTitleTextField: TextField {
     override func editingRect(forBounds bounds: CGRect) -> CGRect {
         return bounds.inset(by: self.padding)
     }
+
 }

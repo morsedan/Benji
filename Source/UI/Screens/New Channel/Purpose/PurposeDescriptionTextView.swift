@@ -14,8 +14,8 @@ class PurposeDescriptionTextView: TextView {
         super.initialize()
 
         self.textContainerInset = UIEdgeInsets(top: 10, left: 5, bottom: 10, right: 5)
-
-        self.set(placeholder: "Briefly describe the purpose of this channel.", color: .white)
         self.returnKeyType = .done
+
+        self.set(placeholder: "Optional", color: .background2)
     }
 }

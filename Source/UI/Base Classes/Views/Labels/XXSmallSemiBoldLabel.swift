@@ -12,7 +12,7 @@ import TMROLocalization
 class XXSmallSemiBoldLabel: Label {
 
     func set(text: Localized,
-                color: Color = .background4,
+                color: Color = .background3,
                 alignment: NSTextAlignment = .left,
                 lineBreakMode: NSLineBreakMode = .byWordWrapping,
                 stringCasing: StringCasing = .unchanged) {

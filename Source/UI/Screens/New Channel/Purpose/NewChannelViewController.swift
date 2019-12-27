@@ -25,6 +25,7 @@ class NewChannelViewController: FullScreenViewController {
 
     let textViewTitleLabel = RegularBoldLabel()
     let textView = PurposeDescriptionTextView()
+    let textViewDescription = XXSmallSemiBoldLabel()
 
     let createButton = LoadingButton()
 
@@ -51,7 +52,7 @@ class NewChannelViewController: FullScreenViewController {
         super.initializeViews()
 
         self.contentContainer.addSubview(self.textFieldTitleLabel)
-        self.textFieldTitleLabel.set(text: "Conversation Name", stringCasing: .unchanged)
+        self.textFieldTitleLabel.set(text: "Conversation", stringCasing: .unchanged)
         self.contentContainer.addSubview(self.textField)
         self.textField.set(backgroundColor: .background3)
         self.textField.roundCorners()
@@ -60,11 +61,14 @@ class NewChannelViewController: FullScreenViewController {
         self.textFieldDescriptionLabel.set(text: "Names must be lowercase, without spaces or periods, and can't be longer than 80 characters.")
 
         self.contentContainer.addSubview(self.textViewTitleLabel)
-        self.textViewTitleLabel.set(text: "Purpose (Optional)", stringCasing: .unchanged)
+        self.textViewTitleLabel.set(text: "Purpose", stringCasing: .unchanged)
         self.contentContainer.addSubview(self.textView)
         self.textView.set(backgroundColor: .background3)
         self.textView.roundCorners()
         self.textView.delegate = self
+
+        self.contentContainer.addSubview(self.textViewDescription)
+        self.textViewDescription.set(text: "Briefly describe the purpose of this conversation.")
 
         self.textField.onTextChanged = { [unowned self] in
             self.handleTextChange()
@@ -91,7 +95,7 @@ class NewChannelViewController: FullScreenViewController {
         let width = self.contentContainer.width - (self.offset * 2)
 
         self.textFieldTitleLabel.setSize(withWidth: width)
-        self.textFieldTitleLabel.top = 30
+        self.textFieldTitleLabel.top = 20
         self.textFieldTitleLabel.left = self.offset
 
         self.textField.size = CGSize(width: width, height: 40)
@@ -110,8 +114,12 @@ class NewChannelViewController: FullScreenViewController {
         self.textView.top = self.textViewTitleLabel.bottom + 10
         self.textView.left = self.offset
 
+        self.textViewDescription.setSize(withWidth: width)
+        self.textViewDescription.left = self.offset
+        self.textViewDescription.top = self.textView.bottom + 10
+
         self.favoritesLabel.setSize(withWidth: width)
-        self.favoritesLabel.top = self.textView.bottom + 30
+        self.favoritesLabel.top = self.textViewDescription.bottom + 30
         self.favoritesLabel.left = self.offset
 
         self.favoritesVC.view.size = CGSize(width: width, height: 80)
