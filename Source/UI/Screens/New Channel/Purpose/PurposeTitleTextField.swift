@@ -43,5 +43,4 @@ class PurposeTitleTextField: TextField {
     override func editingRect(forBounds bounds: CGRect) -> CGRect {
         return bounds.inset(by: self.padding)
     }
-
 }

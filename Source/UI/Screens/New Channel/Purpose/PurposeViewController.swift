@@ -39,7 +39,7 @@ class PurposeViewController: ViewController {
         self.textField.roundCorners()
 
         self.view.addSubview(self.textViewTitleLabel)
-        self.textViewTitleLabel.set(text: "Description", stringCasing: .unchanged)
+        self.textViewTitleLabel.set(text: "Purpose", stringCasing: .unchanged)
         self.view.addSubview(self.textView)
         self.textView.set(backgroundColor: .background3)
         self.textView.roundCorners()
@@ -129,6 +129,10 @@ extension PurposeViewController: UITextFieldDelegate {
         }
 
         if string.count > 80 {
+            return false
+        }
+
+        if let _ = string.rangeOfCharacter(from: .uppercaseLetters) {
             return false
         }
 

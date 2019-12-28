@@ -32,7 +32,7 @@ class HomeViewController: FullScreenViewController {
     lazy var profileVC = ProfileViewController(with: User.current()!)
     let searchController = UISearchController(searchResultsController: nil)
 
-    private let addButton = ImageViewButton()
+    private let addButton = HomeNewChannellButton()
     let centerContainer = View()
     let tabView = HomeTabView()
 

@@ -27,8 +27,7 @@ class ImageViewButton: View {
         self.makeRound()
 
         self.imageView.size = CGSize(width: self.width * 0.55, height: self.height * 0.55)
-        self.imageView.centerX = self.halfWidth + 2
-        self.imageView.centerY = self.halfHeight - 2
+        self.imageView.centerOnXAndY()
     }
 
     override open func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
