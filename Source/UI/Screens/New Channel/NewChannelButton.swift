@@ -13,6 +13,9 @@ class NewChannelButton: LoadingButton {
     let iconImageView = UIImageView()
     private let selectionFeedback = UIImpactFeedbackGenerator(style: .light)
 
+    private var xOffset: CGFloat = 0
+    private var yOffset: CGFloat = 0
+
     override var isEnabled: Bool {
         didSet {
             self.iconImageView.tintColor = self.isEnabled ? Color.white.color : Color.white.color.withAlphaComponent(0.4)
@@ -34,8 +37,34 @@ class NewChannelButton: LoadingButton {
         self.makeRound()
 
         self.iconImageView.size = CGSize(width: self.width * 0.55, height: self.height * 0.55)
-        self.iconImageView.centerX = self.halfWidth + 2
-        self.iconImageView.centerY = self.halfHeight - 2
+        self.iconImageView.centerX = self.halfWidth + self.xOffset
+        self.iconImageView.centerY = self.halfHeight + self.yOffset
+    }
+
+    func update(for contentType: NewChannelContent) {
+        UIView.animate(withDuration: Theme.animationDuration,
+                       animations: {
+                        self.iconImageView.alpha = 0
+                        self.iconImageView.transform = CGAffineTransform(scaleX: 0.96, y: 0.96)
+        }) { (completed) in
+            switch contentType {
+            case .purpose(_):
+                self.iconImageView.image = UIImage(systemName: "person.badge.plus")
+                self.xOffset = -1
+                self.yOffset = 0
+            case .favorites(_):
+                self.iconImageView.image = UIImage(systemName: "square.and.pencil")
+                self.xOffset = 2
+                self.yOffset = -2
+            }
+
+            self.layoutNow()
+
+            UIView.animate(withDuration: Theme.animationDuration) {
+                self.iconImageView.alpha = 1
+                self.iconImageView.transform = .identity
+            }
+        }
     }
 
     override open func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {

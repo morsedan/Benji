@@ -161,17 +161,6 @@ class NewChannelViewController: NavigationBarViewController, KeyboardObservable 
         }
     }
 
-    private func updateButton() {
-        switch self.currentContent.value {
-        case .purpose(_):
-            self.button.iconImageView.image = UIImage(systemName: "person.badge.plus")
-        case .favorites(_):
-            self.button.iconImageView.image = UIImage(systemName: "square.and.pencil")
-        }
-
-        self.button.layoutNow()
-    }
-
     func buttonTapped() {
         switch self.currentContent.value {
         case .purpose(_):
@@ -213,7 +202,7 @@ class NewChannelViewController: NavigationBarViewController, KeyboardObservable 
             }
 
             self.updateLabels()
-            self.updateButton()
+            self.button.update(for: self.currentContent.value)
 
             self.currentCenterVC = newContentVC
 
