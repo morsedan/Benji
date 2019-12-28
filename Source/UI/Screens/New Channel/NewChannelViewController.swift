@@ -110,6 +110,10 @@ class NewChannelViewController: NavigationBarViewController, KeyboardObservable 
                 self.purposeVC.textField.alpha = 1
             }
         }
+
+        self.purposeVC.textFieldTextDidChange = { [unowned self] text in
+            self.button.isEnabled = !text.isEmpty
+        }
     }
 
     override func viewDidLayoutSubviews() {

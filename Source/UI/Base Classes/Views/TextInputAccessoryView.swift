@@ -16,6 +16,16 @@ class TextInputAccessoryView: View {
     private var blurView = UIVisualEffectView(effect: nil)
     private let selectionFeedback = UIImpactFeedbackGenerator(style: .light)
 
+    var textColor: Color = .white {
+        didSet {
+            guard let text = self.text else { return }
+            self.label.set(text: text,
+                           color: self.textColor,
+                           alignment: .left,
+                           stringCasing: .unchanged)
+        }
+    }
+
     var text: Localized? {
         didSet {
             let old = oldValue ?? ""
@@ -29,7 +39,7 @@ class TextInputAccessoryView: View {
             }) { (completed) in
 
                 if completed {
-                    self.label.set(text: text, color: .white, alignment: .left, stringCasing: .unchanged)
+                    self.label.set(text: text, color: self.textColor, alignment: .left, stringCasing: .unchanged)
                     self.layoutNow()
 
                     UIView.animate(withDuration: Theme.animationDuration) {

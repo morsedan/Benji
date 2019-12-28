@@ -20,7 +20,7 @@ class PurposeInputAccessoryView: TextInputAccessoryView {
                             width: UIScreen.main.bounds.width,
                             height: 60)
         self.keyboardAppearance = textField.keyboardAppearance
-        self.text = LocalizedString(id: "", arguments: [], default: "Names must be lowercase, without spaces or periods, and can't be longer than 80 characters.")
+        self.text = LocalizedString(id: "", arguments: [], default: "A name is required and must be lowercase, without spaces or periods, and less than 80 characters.")
         textField.inputAccessoryView = self
         textField.reloadInputViews()
 

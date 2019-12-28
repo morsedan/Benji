@@ -27,7 +27,9 @@ class PurposeViewController: ViewController {
     var textFieldDidEnd: CompletionOptional = nil
 
     var textViewDidBegin: CompletionOptional = nil
-    var textViewDidEnd: CompletionOptional = nil 
+    var textViewDidEnd: CompletionOptional = nil
+
+    var textFieldTextDidChange: (String) -> Void = { _ in }
 
     override func initializeViews() {
         super.initializeViews()
@@ -46,7 +48,9 @@ class PurposeViewController: ViewController {
         self.textView.delegate = self
 
         self.textField.onTextChanged = { [unowned self] in
-            self.handleTextChange()
+            guard let text = self.textField.text else { return }
+            self.textFieldTextDidChange(text)
+            self.purposeAccessoryView.textColor = text.isEmpty ? .red : .white
         }
 
         self.textField.delegate = self
@@ -72,18 +76,6 @@ class PurposeViewController: ViewController {
         self.textView.size = CGSize(width: width, height: 120)
         self.textView.top = self.textViewTitleLabel.bottom + 10
         self.textView.left = self.offset
-    }
-
-    private func handleTextChange() {
-        guard let text = self.textField.text else { return }
-        self.textField.text = text.lowercased()
-        self.updateCreateButton()
-    }
-
-    private func updateCreateButton() {
-        guard let text = self.textField.text else {
-            return
-        }
     }
 }
 
