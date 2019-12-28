@@ -10,9 +10,9 @@ import Foundation
 
 class HomeTabView: View {
 
-    private(set) var profileItem = HomeButton()
-    private(set) var feedItem = HomeButton()
-    private(set) var channelsItem = HomeButton()
+    private(set) var profileItem = ImageViewButton()
+    private(set) var feedItem = ImageViewButton()
+    private(set) var channelsItem = ImageViewButton()
     private let selectionFeedback = UIImpactFeedbackGenerator(style: .light)
     
     override func initializeSubviews() {

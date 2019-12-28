@@ -8,17 +8,12 @@
 
 import Foundation
 
-class CancelButton: Button {
+class CancelButton: ImageViewButton {
 
     override func initializeSubviews() {
-        self.tintColor = Color.white.color
-        self.setImage(UIImage(systemName: "xmark.square"), for: .normal)
-        self.setImage(UIImage(systemName: "xmark.square.fill"), for: .highlighted)
-    }
 
-    override func layoutSubviews() {
-        super.layoutSubviews()
+        self.imageView.image = UIImage(systemName: "xmark.square")
 
-        self.size = CGSize(width: 44, height: 44)
+        super.initializeSubviews()
     }
 }

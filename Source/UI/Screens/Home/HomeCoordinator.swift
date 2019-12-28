@@ -61,6 +61,8 @@ class HomeCoordinator: PresentableCoordinator<Void> {
 extension HomeCoordinator: HomeViewControllerDelegate {
 
     func homeViewDidTapAdd(_ controller: HomeViewController) {
+        self.removeChild()
+        
         let coordinator = NewChannelCoordinator(router: self.router, deepLink: self.deepLink)
         self.addChildAndStart(coordinator) { (result) in
             self.router.dismiss(source: coordinator.toPresentable(), animated: true) {

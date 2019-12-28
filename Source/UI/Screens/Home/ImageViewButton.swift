@@ -8,7 +8,7 @@
 
 import Foundation
 
-class HomeButton: View {
+class ImageViewButton: View {
 
     let imageView = UIImageView()
     private let selectionFeedback = UIImpactFeedbackGenerator(style: .light)

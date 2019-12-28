@@ -18,7 +18,8 @@ class TextInputAccessoryView: View {
 
     var text: Localized? {
         didSet {
-            guard let text = self.text else { return }
+            let old = oldValue ?? ""
+            guard let text = self.text, localized(text) != localized(old) else { return }
             UIView.animate(withDuration: Theme.animationDuration,
                            delay: Theme.animationDuration,
                            options: [],
@@ -74,6 +75,7 @@ class TextInputAccessoryView: View {
 
         self.blurView.expandToSuperviewSize()
 
+        self.cancelButton.size = CGSize(width: 44, height: 44)
         self.cancelButton.centerOnY()
         self.cancelButton.right = self.width - Theme.contentOffset
 

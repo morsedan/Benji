@@ -27,7 +27,7 @@ class PurposeTitleTextField: TextField {
 
     private func setDefault() {
         let formatter = DateFormatter()
-        formatter.dateFormat = "E_dd_MM"
+        formatter.dateFormat = "EEEEMMdd"
 
         self.text = formatter.string(from: Date()).lowercased()
     }
