@@ -22,12 +22,6 @@ class FavoritesCollectionView: CollectionView {
     override func initialize() {
         super.initialize()
 
-        self.register(ContextCell.self)
         self.register(FavoriteCell.self)
-        self.register(NewContextCell.self)
-        self.register(NewFavoriteCell.self)
-        self.register(FavoritesSectionHeader.self,
-                      forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader)
     }
-    
 }

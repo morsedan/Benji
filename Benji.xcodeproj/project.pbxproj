@@ -56,10 +56,7 @@
 		D63752C6231258DA00214F63 /* PreviewMessageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D63752C5231258DA00214F63 /* PreviewMessageView.swift */; };
 		D63752F92313833B00214F63 /* ProfileAvatarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D63752F82313833B00214F63 /* ProfileAvatarView.swift */; };
 		D637531C2316143700214F63 /* FavoritesCollectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D637531B2316143700214F63 /* FavoritesCollectionView.swift */; };
-		D637531E2316146A00214F63 /* ContextCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D637531D2316146A00214F63 /* ContextCell.swift */; };
 		D63753202316148E00214F63 /* FavoriteCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D637531F2316148E00214F63 /* FavoriteCell.swift */; };
-		D6375322231614DF00214F63 /* NewContextCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6375321231614DF00214F63 /* NewContextCell.swift */; };
-		D63753242316150000214F63 /* NewFavoriteCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D63753232316150000214F63 /* NewFavoriteCell.swift */; };
 		D63753262316156800214F63 /* FavoritesCollectionViewLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = D63753252316156800214F63 /* FavoritesCollectionViewLayout.swift */; };
 		D637532A2316172700214F63 /* Roboto-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = D63753272316172700214F63 /* Roboto-Regular.ttf */; };
 		D637532B2316172700214F63 /* Roboto-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = D63753282316172700214F63 /* Roboto-Bold.ttf */; };
@@ -338,10 +335,7 @@
 		D63752C5231258DA00214F63 /* PreviewMessageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PreviewMessageView.swift; sourceTree = "<group>"; };
 		D63752F82313833B00214F63 /* ProfileAvatarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileAvatarView.swift; sourceTree = "<group>"; };
 		D637531B2316143700214F63 /* FavoritesCollectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoritesCollectionView.swift; sourceTree = "<group>"; };
-		D637531D2316146A00214F63 /* ContextCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContextCell.swift; sourceTree = "<group>"; };
 		D637531F2316148E00214F63 /* FavoriteCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoriteCell.swift; sourceTree = "<group>"; };
-		D6375321231614DF00214F63 /* NewContextCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewContextCell.swift; sourceTree = "<group>"; };
-		D63753232316150000214F63 /* NewFavoriteCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewFavoriteCell.swift; sourceTree = "<group>"; };
 		D63753252316156800214F63 /* FavoritesCollectionViewLayout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoritesCollectionViewLayout.swift; sourceTree = "<group>"; };
 		D63753272316172700214F63 /* Roboto-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Roboto-Regular.ttf"; sourceTree = "<group>"; };
 		D63753282316172700214F63 /* Roboto-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Roboto-Bold.ttf"; sourceTree = "<group>"; };
@@ -814,9 +808,6 @@
 				D6849CBC23B5BCAA006799F6 /* NewChannelButton.swift */,
 				D6A82B712325C2DA003E0A8B /* Purpose */,
 				D6A82B702325C105003E0A8B /* Favorites */,
-				D637531D2316146A00214F63 /* ContextCell.swift */,
-				D6375321231614DF00214F63 /* NewContextCell.swift */,
-				D63753232316150000214F63 /* NewFavoriteCell.swift */,
 			);
 			path = "New Channel";
 			sourceTree = "<group>";
@@ -1658,7 +1649,6 @@
 				D68540CF235FDE35006F666C /* SuggestionCollectionViewController.swift in Sources */,
 				D642737F22C9A7EC0088256B /* ContactsManager.swift in Sources */,
 				D642738A22C9B0170088256B /* ModalControllerAnimatedTransitioning.swift in Sources */,
-				D637531E2316146A00214F63 /* ContextCell.swift in Sources */,
 				D6BF68D7239CBF74008E79A1 /* FeedInviteView.swift in Sources */,
 				D65B0CE5234928620041A176 /* ProfileCoordinator.swift in Sources */,
 				D68483FF22CD0A1A00362AC3 /* TableView.swift in Sources */,
@@ -1674,7 +1664,6 @@
 				D6D145FD21D550E400CD8CE4 /* AttributedString.swift in Sources */,
 				D6D14D8F21D5893600CD8CE4 /* NSNumber+IGListDiffable.m in Sources */,
 				D63753202316148E00214F63 /* FavoriteCell.swift in Sources */,
-				D63753242316150000214F63 /* NewFavoriteCell.swift in Sources */,
 				D6740D4823AEA5BD009D5702 /* ChannelsCoordiantor.swift in Sources */,
 				D6E0ED53239CBDA40073B33E /* FeedUnreadView.swift in Sources */,
 				D60C814A2209360400A127A3 /* DisplayableImageView.swift in Sources */,
@@ -1690,7 +1679,6 @@
 				D67896B222FF67650059BA75 /* LoginCodeViewController.swift in Sources */,
 				D60C814222092D5300A127A3 /* PagingCollectionViewFlowLayout.swift in Sources */,
 				D642737122C991A60088256B /* ClosedRange+Extensions.swift in Sources */,
-				D6375322231614DF00214F63 /* NewContextCell.swift in Sources */,
 				D657955C239CA01100A01338 /* FeedRoutineView.swift in Sources */,
 				D6DADF722207DF83007D9EB1 /* ChannelsCollectionView.swift in Sources */,
 				D6D1502B21D69C3300CD8CE4 /* NSObject+Extensions.swift in Sources */,
