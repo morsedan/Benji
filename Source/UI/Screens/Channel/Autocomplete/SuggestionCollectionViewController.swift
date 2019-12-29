@@ -73,7 +73,7 @@ class SuggestionCollectionViewController: CollectionViewController<SuggestionCel
 
     func configure(with keyboardAppearance: UIKeyboardAppearance) {
 
-        self.manager.keyboardAppearance = keyboardAppearance
+        self.collectionViewManager.keyboardAppearance = keyboardAppearance
         switch keyboardAppearance {
         case .light:
             self.blurView.effect = UIBlurEffect(style: .prominent)

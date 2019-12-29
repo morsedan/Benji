@@ -85,7 +85,7 @@ class ContactsViewController: CollectionViewController<ContactCell, ContactsColl
     }
 
     private func sort(contacts: [CNContact]) {
-        self.manager.set(newItems: contacts)
+        self.collectionViewManager.set(newItems: contacts)
     }
 
     private func askForAuthorization(status: CNAuthorizationStatus) {

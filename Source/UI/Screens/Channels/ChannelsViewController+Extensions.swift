@@ -22,14 +22,14 @@ extension ChannelsViewController {
                 break
             case .changed:
                 let displayable = DisplayableChannel(channelType: .channel(channelsUpdate.channel))
-                self.manager.update(item: displayable)
+                self.collectionViewManager.update(item: displayable)
             case .deleted:
                 let displayable = DisplayableChannel(channelType: .channel(channelsUpdate.channel))
-                self.manager.delete(item: displayable)
+                self.collectionViewManager.delete(item: displayable)
             }
 
             // Reload the cache because changes to the channel list have occurred.
-            self.manager.channelCache = self.getChannelsSortedByUpdateDate()
+            self.collectionViewManager.channelCache = self.getChannelsSortedByUpdateDate()
             }.start()
 
         ChannelManager.shared.clientSyncUpdate.producer.on { [weak self] (update) in
@@ -43,8 +43,8 @@ extension ChannelsViewController {
             case .channelsListCompleted:
                 break
             case .completed:
-                self.manager.channelCache = self.getChannelsSortedByUpdateDate()
-                self.manager.loadAllChannels()
+                self.collectionViewManager.channelCache = self.getChannelsSortedByUpdateDate()
+                self.collectionViewManager.loadAllChannels()
             case .failed:
                 break
             @unknown default:

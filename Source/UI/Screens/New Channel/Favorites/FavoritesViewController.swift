@@ -30,7 +30,7 @@ class FavoritesViewController: CollectionViewController<FavoriteCell, FavoritesC
             .observe { (result) in
                 switch result {
                 case .success(let users):
-                    self.manager.set(newItems: users)
+                    self.collectionViewManager.set(newItems: users)
                 case .failure(_):
                     break
                 }

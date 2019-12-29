@@ -12,7 +12,7 @@ class CollectionViewController<CellType: ManageableCell & UICollectionViewCell,
 ManagerType: CollectionViewManager<CellType>>: ViewController {
 
     let collectionView: CollectionView
-    lazy var manager = ManagerType(with: self.collectionView)
+    lazy var collectionViewManager = ManagerType(with: self.collectionView)
 
     init(with collectionView: CollectionView) {
         self.collectionView = collectionView

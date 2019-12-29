@@ -39,7 +39,7 @@ class ChannelsViewController: CollectionViewController<ChannelCell, ChannelsColl
 
         self.view.addSubview(self.gradientView)
 
-        self.manager.onSelectedItem.signal.observeValues { (selectedItem) in
+        self.collectionViewManager.onSelectedItem.signal.observeValues { (selectedItem) in
             guard let item = selectedItem else { return }
             self.delegate?.channelsView(self, didSelect: item.item.channelType)
         }
@@ -59,7 +59,7 @@ extension ChannelsViewController: UISearchResultsUpdating {
     func updateSearchResults(for searchController: UISearchController) {
         if let text = searchController.searchBar.text {
             let lowercaseString = text.lowercased()
-            self.manager.channelFilter = SearchFilter(text: lowercaseString)
+            self.collectionViewManager.channelFilter = SearchFilter(text: lowercaseString)
         }
     }
 }
@@ -71,8 +71,8 @@ extension ChannelsViewController: UISearchControllerDelegate {
     }
 
     func didDismissSearchController(_ searchController: UISearchController) {
-        self.manager.channelFilter = SearchFilter(text: String())
-        self.manager.loadAllChannels()
+        self.collectionViewManager.channelFilter = SearchFilter(text: String())
+        self.collectionViewManager.loadAllChannels()
         self.didDismissSearch?()
     }
 }
