@@ -9,19 +9,9 @@
 import Foundation
 import Parse
 
-struct SystemAvatar: Avatar {
-
+struct SystemAvatar: Avatar, Hashable {
+    var userObjectID: String?
+    var givenName: String
+    var familyName: String
     var image: UIImage?
-
-    var givenName: String {
-        return "Benji"
-    }
-
-    var familyName: String {
-        return "Dodgson"
-    }
-
-    var userObjectID: String? {
-        return nil 
-    }
 }

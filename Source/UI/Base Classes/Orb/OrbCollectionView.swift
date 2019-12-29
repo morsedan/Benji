@@ -10,8 +10,8 @@ import Foundation
 
 class OrbCollectionView: CollectionView {
 
-    init(with orbLayout: OrbCollectionViewLayout) {
-        super.init(layout: orbLayout)
+    init() {
+        super.init(layout: OrbCollectionViewLayout())
         self.showsVerticalScrollIndicator = false
         self.showsHorizontalScrollIndicator = false 
     }

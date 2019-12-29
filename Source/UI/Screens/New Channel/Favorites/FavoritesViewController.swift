@@ -30,10 +30,17 @@ class FavoritesViewController: OrbCollectionViewController {
     }
 
     private func setItems(from users: [User]) {
-        let orbItems = users.map { (user) in
-            return OrbCellItem(id: user.id,
+
+        var testUsers: [SystemAvatar] = []
+        for _ in 0...10 {
+            testUsers.append(Lorem.avatar())
+        }
+        let orbItems = testUsers.map { (user) in
+            return OrbCellItem(id: String(optional: user.userObjectID),
                                avatar: AnyHashableDisplayable(user))
         }
+
+
 
         self.collectionViewManager.set(newItems: orbItems)
     }

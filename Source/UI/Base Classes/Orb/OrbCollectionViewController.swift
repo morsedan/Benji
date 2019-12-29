@@ -13,7 +13,7 @@ import TMROLocalization
 class OrbCollectionViewController: CollectionViewController<OrbCell, CollectionViewManager<OrbCell>> {
 
     init() {
-        super.init(with: CollectionView(layout: OrbCollectionViewLayout()))
+        super.init(with: OrbCollectionView())
     }
 
     required init?(coder aDecoder: NSCoder) {
