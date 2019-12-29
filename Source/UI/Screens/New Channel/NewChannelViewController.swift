@@ -244,7 +244,6 @@ class NewChannelViewController: NavigationBarViewController, KeyboardObservable 
                                       channelDescription: description,
                                       type: .private)
             .joinIfNeeded()
-            .sendInitialMessage()
             .invite(personUserID: inviteeIdentifier)
             .withProgressBanner("Creating conversation")
             .withErrorBanner()
@@ -253,7 +252,12 @@ class NewChannelViewController: NavigationBarViewController, KeyboardObservable 
                 self.button.isLoading = false
                 switch result {
                 case .success(let channel):
-                    self.delegate.newChannelView(self, didCreate: .channel(channel))
+                    guard let handle = User.current()?.handle else { return }
+                    let message = "\(handle) set the conversation purpose to: \(channel.channelDescription)"
+                    ChannelManager.shared.sendMessage(to: channel, with: message, context: .status)
+                        .observe { (result) in
+                            self.delegate.newChannelView(self, didCreate: .channel(channel))
+                    }
                 case .failure(let error):
                     if let tomorrowError = error as? ClientError {
                         print(tomorrowError.localizedDescription)

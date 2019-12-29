@@ -125,7 +125,10 @@ extension Future where Value == TCHChannel {
                 if let error = result.error {
                     promise.reject(with: error)
                 } else {
-                    promise.resolve(with: channel)
+                    self.sendJoinedMessage()
+                        .observe { (messageResult) in
+                           promise.resolve(with: channel)
+                    }
                 }
             })
 
@@ -133,12 +136,13 @@ extension Future where Value == TCHChannel {
         })
     }
 
-    func sendInitialMessage() -> Future<TCHChannel> {
-
+    func sendJoinedMessage() -> Future<TCHChannel> {
         return self.then { (channel) in
             let promise = Promise<TCHChannel>()
 
-            ChannelManager.shared.sendMessage(to: channel, with: channel.channelDescription)
+            let message = "joined: \(String(optional: channel.friendlyName))"
+
+            ChannelManager.shared.sendMessage(to: channel, with: message, context: .status)
                 .observe { (result) in
                     switch result {
                     case .success(_):
@@ -231,7 +235,7 @@ extension TCHChannel: ImageDisplayable {
     }
 
     var image: UIImage? {
-        return nil 
+        return UIImage(systemName: "text.bubble.fill")
     }
     
     var userObjectID: String? {

@@ -50,9 +50,14 @@ class OrbCell: CollectionViewManagerCell, ManageableCell {
         self.setNeedsLayout()
     }
 
+    func update(isSelected: Bool) {
+        self.imageView.alpha = isSelected ? 1.0 : 0.3
+    }
+
     override func prepareForReuse() {
         super.prepareForReuse()
 
+        self.imageView.alpha = 0.3
         self.label.text = String()
     }
 

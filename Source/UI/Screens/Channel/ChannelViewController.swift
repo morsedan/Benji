@@ -152,7 +152,6 @@ class ChannelViewController: FullScreenViewController {
 
         var mutableAttributes = attributes
         mutableAttributes["updateId"] = UUID().uuidString
-        mutableAttributes["context"] = context.rawValue
 
         let systemMessage = SystemMessage(avatar: current,
                                           context: context,
@@ -170,6 +169,7 @@ class ChannelViewController: FullScreenViewController {
         }
         ChannelManager.shared.sendMessage(to: channel,
                                           with: message,
+                                          context: context,
                                           attributes: mutableAttributes)
             .observe { (result) in
                 switch result {

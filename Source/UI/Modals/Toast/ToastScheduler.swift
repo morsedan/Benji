@@ -78,12 +78,13 @@ class ToastScheduler {
     }
 
     private func createChannelToast(for channel: TCHChannel) -> Toast? {
-        guard let sid = channel.sid else { return nil }
+        guard let sid = channel.sid, let friendlyName = channel.friendlyName else { return nil }
 
+        let title = LocalizedString(id: "", arguments: [friendlyName], default: "New conversaton added: @(friendlyName)")
         return Toast(id: sid + "channel",
                      analyticsID: "ToastMessage",
                      priority: 1,
-                     title: "New conversation added.",
+                     title: title,
                      displayable: channel,
                      didTap: {
                         self.delegate?.didInteractWith(type: .channel(channel))

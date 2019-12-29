@@ -69,10 +69,13 @@ class ChannelManager: NSObject {
     @discardableResult
     func sendMessage(to channel: TCHChannel,
                      with body: String,
+                     context: MessageContext = .casual,
                      attributes: [String : Any] = [:]) -> Future<Messageable> {
 
         let message = body.extraWhitespaceRemoved()
         let promise = Promise<Messageable>()
+        var mutableAttributes = attributes
+        mutableAttributes["context"] = context.rawValue
 
         guard self.isConnected,
                 !message.isEmpty,
@@ -83,7 +86,7 @@ class ChannelManager: NSObject {
         }
 
         let messageOptions = TCHMessageOptions().withBody(body)
-        messageOptions.withAttributes(attributes, completion: nil)
+        messageOptions.withAttributes(mutableAttributes, completion: nil)
         messages.sendMessage(with: messageOptions) { (result, message) in
             if result.isSuccessful(), let msg = message {
                 promise.resolve(with: msg)
