@@ -145,7 +145,11 @@ extension ChannelManager: TwilioChatClientDelegate {
         self.messageUpdate.value = MessageUpdate(channel: channel, message: message, status: .added)
 
         if ChannelManager.shared.activeChannel.value == nil {
-            ToastScheduler.shared.schedule(toastType: .message(message, channel))
+            if message.isFromCurrentUser, message.context == .status {
+                // Don't send toast for status messages from current user
+            } else {
+                ToastScheduler.shared.schedule(toastType: .message(message, channel))
+            }
         }
     }
 
