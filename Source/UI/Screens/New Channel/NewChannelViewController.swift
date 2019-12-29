@@ -174,13 +174,15 @@ class NewChannelViewController: NavigationBarViewController, KeyboardObservable 
             guard let title = self.purposeVC.textField.text,
                 let description = self.purposeVC.textView.text else { return }
 
-            let identifier = self.favoritesVC.collectionViewManager.onSelectedItem.value.map { (orbItem) -> String in
-                return orbItem.item.id
+            let avatar = self.favoritesVC.collectionViewManager.onSelectedItem.value.map { (orbItem) -> Avatar in
+                return orbItem.item.avatar.value
             }
 
-            self.createChannel(with: String(optional: identifier),
-                               title: title,
-                               description: description)
+            if let user = avatar as? User {
+                self.createChannel(with: user,
+                                   title: title,
+                                   description: description)
+            }
         }
     }
 
@@ -234,7 +236,7 @@ class NewChannelViewController: NavigationBarViewController, KeyboardObservable 
         }
     }
 
-    private func createChannel(with inviteeIdentifier: String,
+    private func createChannel(with user: User,
                                title: String,
                                description: String) {
 
@@ -244,7 +246,7 @@ class NewChannelViewController: NavigationBarViewController, KeyboardObservable 
                                       channelDescription: description,
                                       type: .private)
             .joinIfNeeded()
-            .invite(personUserID: inviteeIdentifier)
+            .invite(user: user)
             .withProgressBanner("Creating conversation")
             .withErrorBanner()
             .ignoreUserInteractionEventsUntilDone(for: self.view)

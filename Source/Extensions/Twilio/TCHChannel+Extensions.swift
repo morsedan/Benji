@@ -156,17 +156,37 @@ extension Future where Value == TCHChannel {
         }
     }
 
-    func invite(personUserID: String) -> Future<TCHChannel> {
+    func invite(user: User) -> Future<TCHChannel> {
 
         return self.then(with: { (channel) in
 
             let promise = Promise<TCHChannel>()
 
-            channel.members!.invite(byIdentity: personUserID) { (result) in
+            channel.members!.invite(byIdentity: String(optional: user.objectId)) { (result) in
                 if let error = result.error {
                     promise.reject(with: error)
                 } else {
-                    promise.resolve(with: channel)
+                    if let handle = user.handle {
+                        let formatter = DateFormatter()
+                        formatter.dateFormat = "h:mm a"
+
+                        let monthDayFormatter = DateFormatter()
+                        monthDayFormatter.dateFormat = "MMMM d"
+
+                        let message = "Invite sent at \(formatter.string(from: Date())) on \(monthDayFormatter.string(from: Date())) to: \(handle)"
+
+                        ChannelManager.shared.sendMessage(to: channel, with: message, context: .status)
+                            .observe { (result) in
+                                switch result {
+                                case .success(_):
+                                    return promise.resolve(with: channel)
+                                case .failure(_):
+                                    return promise.reject(with: ClientError.generic)
+                                }
+                        }
+                    } else {
+                        promise.resolve(with: channel)
+                    }
                 }
             }
 
