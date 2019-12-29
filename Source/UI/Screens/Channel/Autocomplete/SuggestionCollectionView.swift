@@ -12,7 +12,7 @@ class SuggestionCollectionView: CollectionView {
 
     init() {
         let flowLayout = SuggestionCollectionViewFlowLayout()
-        super.init(flowLayout: flowLayout)
+        super.init(layout: flowLayout)
     }
 
     required init?(coder aDecoder: NSCoder) {

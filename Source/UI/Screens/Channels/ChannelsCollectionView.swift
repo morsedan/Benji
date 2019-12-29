@@ -15,7 +15,7 @@ class ChannelsCollectionView: CollectionView {
         flowLayout.scrollDirection = .vertical
         flowLayout.minimumLineSpacing = 16
         flowLayout.sectionInset = UIEdgeInsets(top: 20, left: 0, bottom: 300, right: 0)
-        super.init(flowLayout: flowLayout)
+        super.init(layout: flowLayout)
 
         self.bounces = true 
     }

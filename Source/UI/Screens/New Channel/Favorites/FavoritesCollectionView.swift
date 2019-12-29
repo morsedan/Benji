@@ -12,7 +12,7 @@ class FavoritesCollectionView: CollectionView {
 
     init() {
         let flowLayout = FavoritesCollectionViewLayout()
-        super.init(flowLayout: flowLayout)
+        super.init(layout: flowLayout)
     }
     
     required init?(coder aDecoder: NSCoder) {

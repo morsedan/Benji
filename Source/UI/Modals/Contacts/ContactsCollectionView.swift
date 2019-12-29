@@ -16,7 +16,7 @@ class ContactsCollectionView: CollectionView {
         let flowLayout = UICollectionViewFlowLayout()
         flowLayout.scrollDirection = .vertical
         flowLayout.sectionHeadersPinToVisibleBounds = true 
-        super.init(flowLayout: flowLayout)
+        super.init(layout: flowLayout)
         self.backgroundView = self.emptyView
     }
 

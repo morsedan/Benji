@@ -22,7 +22,7 @@ class ChannelCollectionView: CollectionView {
     }
 
     init() {
-        super.init(flowLayout: ChannelCollectionViewFlowLayout())
+        super.init(layout: ChannelCollectionViewFlowLayout())
         self.registerReusableViews()
     }
 

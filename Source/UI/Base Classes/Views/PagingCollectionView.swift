@@ -18,7 +18,7 @@ class PagingCollectionView: CollectionView {
 
         pagingLayout.scrollDirection = .horizontal
 
-        super.init(flowLayout: pagingLayout)
+        super.init(layout: pagingLayout)
 
         self.isPagingEnabled = false
         self.decelerationRate = .fast

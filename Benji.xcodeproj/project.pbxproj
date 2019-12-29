@@ -276,6 +276,8 @@
 		D6EE715723B84B3C000ED221 /* OrbCellItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6EE715623B84B3C000ED221 /* OrbCellItem.swift */; };
 		D6EE715923B84BC0000ED221 /* CollectionViewManagerCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6EE715823B84BC0000ED221 /* CollectionViewManagerCell.swift */; };
 		D6EE715B23B84C5C000ED221 /* AnyHashableDisplayable.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6EE715A23B84C5C000ED221 /* AnyHashableDisplayable.swift */; };
+		D6EE715D23B84DAC000ED221 /* OrbCollectionViewLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6EE715C23B84DAC000ED221 /* OrbCollectionViewLayout.swift */; };
+		D6EE715F23B84DC6000ED221 /* OrbCollectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6EE715E23B84DC6000ED221 /* OrbCollectionView.swift */; };
 		D6EEE7B12383A70F00F9D446 /* Benji.entitlements in Resources */ = {isa = PBXBuildFile; fileRef = D64C6AA523307DB300DB7257 /* Benji.entitlements */; };
 		D6FB009F234AB7EB008ED2D6 /* XXSmallSemiBoldLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6FB009E234AB7EB008ED2D6 /* XXSmallSemiBoldLabel.swift */; };
 		D6FC8096237A64650089AACC /* MessageSupplier.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6FC8095237A64650089AACC /* MessageSupplier.swift */; };
@@ -579,6 +581,8 @@
 		D6EE715623B84B3C000ED221 /* OrbCellItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrbCellItem.swift; sourceTree = "<group>"; };
 		D6EE715823B84BC0000ED221 /* CollectionViewManagerCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollectionViewManagerCell.swift; sourceTree = "<group>"; };
 		D6EE715A23B84C5C000ED221 /* AnyHashableDisplayable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnyHashableDisplayable.swift; sourceTree = "<group>"; };
+		D6EE715C23B84DAC000ED221 /* OrbCollectionViewLayout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrbCollectionViewLayout.swift; sourceTree = "<group>"; };
+		D6EE715E23B84DC6000ED221 /* OrbCollectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrbCollectionView.swift; sourceTree = "<group>"; };
 		D6FB009E234AB7EB008ED2D6 /* XXSmallSemiBoldLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = XXSmallSemiBoldLabel.swift; sourceTree = "<group>"; };
 		D6FC8095237A64650089AACC /* MessageSupplier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageSupplier.swift; sourceTree = "<group>"; };
 		D6FC8097237A66220089AACC /* ChannelSupplier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChannelSupplier.swift; sourceTree = "<group>"; };
@@ -1403,6 +1407,8 @@
 			children = (
 				D6EE715423B84B2D000ED221 /* OrbCell.swift */,
 				D6EE715623B84B3C000ED221 /* OrbCellItem.swift */,
+				D6EE715C23B84DAC000ED221 /* OrbCollectionViewLayout.swift */,
+				D6EE715E23B84DC6000ED221 /* OrbCollectionView.swift */,
 			);
 			path = Orb;
 			sourceTree = "<group>";
@@ -1641,6 +1647,7 @@
 				D6405B5E236BCB4D00FAA06B /* AlertConfirmationView.swift in Sources */,
 				D6B2601622E41BE700143CF0 /* ChannelSectionHeader.swift in Sources */,
 				D6849CBF23B65E2B006799F6 /* PurposeViewController.swift in Sources */,
+				D6EE715D23B84DAC000ED221 /* OrbCollectionViewLayout.swift in Sources */,
 				D6A82B732325C2FD003E0A8B /* NewChannelViewController.swift in Sources */,
 				D61EC0F921D317AB00204BEE /* Theme.swift in Sources */,
 				D635551B21E5B3D400530602 /* UIScrollView+Extensions.swift in Sources */,
@@ -1716,6 +1723,7 @@
 				D6815DB122ECAEC700E71251 /* MediumLabel.swift in Sources */,
 				D642739122C9BFA10088256B /* AlertViewController.swift in Sources */,
 				D61EC0E621D30EB300204BEE /* View.swift in Sources */,
+				D6EE715F23B84DC6000ED221 /* OrbCollectionView.swift in Sources */,
 				D642738F22C9BE330088256B /* TextAlertViewController.swift in Sources */,
 				D66F0FC722BF004300BA277D /* FeedType.swift in Sources */,
 				D6E4C8012394391A002B1330 /* RoutineTimeOfDayLabel.swift in Sources */,

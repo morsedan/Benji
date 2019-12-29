@@ -12,8 +12,8 @@ class CollectionView: UICollectionView {
 
     let activityIndicator = UIActivityIndicatorView(style: .large)
 
-    init(flowLayout: UICollectionViewFlowLayout) {
-        super.init(frame: .zero, collectionViewLayout: flowLayout)
+    init(layout: UICollectionViewLayout) {
+        super.init(frame: .zero, collectionViewLayout: layout)
         self.set(backgroundColor: .clear)
         self.initialize()
     }
