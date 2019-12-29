@@ -14,7 +14,8 @@ class OrbCell: CollectionViewManagerCell, ManageableCell {
     typealias ItemType = OrbCellItem
 
     let label = RegularSemiBoldLabel()
-    let imageView = DisplayableImageView()
+    let imageView = AvatarView()
+    let selectionFeedback = UIImpactFeedbackGenerator()
 
     override func initializeSubviews() {
         super.initializeSubviews()
@@ -39,13 +40,13 @@ class OrbCell: CollectionViewManagerCell, ManageableCell {
     func configure(with item: OrbCellItem?) {
         guard let orbItem = item else { return }
 
-        self.imageView.displayable = orbItem.avatar.value
+        self.imageView.set(avatar: orbItem.avatar.value)
 
         let displayName: Localized = orbItem.avatar.value.handle ?? orbItem.avatar.value.fullName
         self.label.set(text: displayName,
                        color: .white,
                        alignment: .center,
-                       stringCasing: .uppercase)
+                       stringCasing: .lowercase)
         self.setNeedsLayout()
     }
 
@@ -53,5 +54,21 @@ class OrbCell: CollectionViewManagerCell, ManageableCell {
         super.prepareForReuse()
 
         self.label.text = String()
+    }
+
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+        super.touchesBegan(touches, with: event)
+        self.selectionFeedback.impactOccurred()
+        self.scaleDown()
+    }
+
+    override func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {
+        super.touchesEnded(touches, with: event)
+        self.scaleUp()
+    }
+
+    override func touchesCancelled(_ touches: Set<UITouch>, with event: UIEvent?) {
+        super.touchesCancelled(touches, with: event)
+        self.scaleUp()
     }
 }

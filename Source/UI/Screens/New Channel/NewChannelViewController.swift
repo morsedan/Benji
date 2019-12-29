@@ -148,7 +148,7 @@ class NewChannelViewController: NavigationBarViewController, KeyboardObservable 
         case .favorites(_):
             return LocalizedString(id: "",
                                    arguments: [self.purposeVC.textField.text!],
-                                   default: "ADD PEOPLE TO:\n@(foo)")
+                                   default: "ADD FAVORITES TO:\n@(foo)")
         }
     }
 
@@ -173,7 +173,11 @@ class NewChannelViewController: NavigationBarViewController, KeyboardObservable 
             guard let title = self.purposeVC.textField.text,
                 let description = self.purposeVC.textView.text else { return }
 
-            self.createChannel(with: "",
+            let identifier = self.favoritesVC.collectionViewManager.onSelectedItem.value.map { (orbItem) -> String in
+                return orbItem.item.id
+            }
+
+            self.createChannel(with: String(optional: identifier),
                                title: title,
                                description: description)
         }

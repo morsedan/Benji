@@ -9,17 +9,9 @@
 import Foundation
 import Parse 
 
-class FavoritesViewController: CollectionViewController<FavoriteCell, FavoritesCollectionViewManager> {
+class FavoritesViewController: OrbCollectionViewController {
 
-    var totalHeight: CGFloat = 200
-
-    init() {
-        super.init(with: FavoritesCollectionView())
-    }
-    
-    required init?(coder aDecoder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
-    }
+    var totalHeight: CGFloat = 500
     
     override func initializeViews() {
         super.initializeViews()
@@ -30,10 +22,19 @@ class FavoritesViewController: CollectionViewController<FavoriteCell, FavoritesC
             .observe { (result) in
                 switch result {
                 case .success(let users):
-                    self.collectionViewManager.set(newItems: users)
+                    self.setItems(from: users)
                 case .failure(_):
                     break
                 }
         }
+    }
+
+    private func setItems(from users: [User]) {
+        let orbItems = users.map { (user) in
+            return OrbCellItem(id: user.id,
+                               avatar: AnyHashableDisplayable(user))
+        }
+
+        self.collectionViewManager.set(newItems: orbItems)
     }
 }

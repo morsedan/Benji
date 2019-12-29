@@ -22,6 +22,7 @@ class OrbCollectionViewLayout: UICollectionViewLayout {
             self.invalidateLayout()
         }
     }
+    
     var cellCount: Int {
         return self.collectionView?.numberOfItems(inSection: 0) ?? 0
     }

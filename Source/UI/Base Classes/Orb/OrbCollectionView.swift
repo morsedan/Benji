@@ -12,6 +12,8 @@ class OrbCollectionView: CollectionView {
 
     init(with orbLayout: OrbCollectionViewLayout) {
         super.init(layout: orbLayout)
+        self.showsVerticalScrollIndicator = false
+        self.showsHorizontalScrollIndicator = false 
     }
 
     required init?(coder aDecoder: NSCoder) {

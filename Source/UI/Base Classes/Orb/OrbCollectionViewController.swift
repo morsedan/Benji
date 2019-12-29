@@ -23,7 +23,7 @@ class OrbCollectionViewController: CollectionViewController<OrbCell, CollectionV
     override func initializeViews() {
         super.initializeViews()
 
-        self.view.set(backgroundColor: .blue)
+        self.view.set(backgroundColor: .clear)
 
         self.collectionViewManager.onSelectedItem.signal.observeValues { [unowned self] (selectedItem) in
             guard let selectedItem = selectedItem else { return }
