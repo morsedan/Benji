@@ -101,7 +101,7 @@ private class MessagePreviewViewController: ViewController {
     override func initializeViews() {
         super.initializeViews()
 
-        self.messageTextView.set(text: self.message.text)
+        self.messageTextView.set(text: self.message.text, messageContext: self.message.context)
 
         let backgroundColor: Color = self.message.isFromCurrentUser ? .lightPurple : .purple
         self.bubbleView.set(backgroundColor: backgroundColor)

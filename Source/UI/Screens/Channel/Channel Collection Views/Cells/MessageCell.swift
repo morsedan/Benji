@@ -71,7 +71,7 @@ class MessageCell: UICollectionViewCell {
         if !message.isFromCurrentUser {
             self.avatarView.set(avatar: message.avatar)
         }
-        self.textView.set(text: message.text)
+        self.textView.set(text: message.text, messageContext: message.context)
 
         self.handleStatus(for: message)
         self.handleIsConsumed(for: message)

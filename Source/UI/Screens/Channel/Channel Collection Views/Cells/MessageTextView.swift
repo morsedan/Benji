@@ -19,9 +19,8 @@ class MessageTextView: TextView {
         self.isSelectable = true
     }
 
-    func set(text: Localized) {
-        let textColor: Color  = .white
-
+    func set(text: Localized, messageContext: MessageContext) {
+        let textColor: Color = messageContext == .status ? .background2 : .white
         let attributedString = AttributedString(text,
                                                 fontType: .smallSemiBold,
                                                 color: textColor)
