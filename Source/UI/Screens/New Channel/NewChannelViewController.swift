@@ -255,7 +255,7 @@ class NewChannelViewController: NavigationBarViewController, KeyboardObservable 
                 switch result {
                 case .success(let channel):
                     guard let handle = User.current()?.handle else { return }
-                    let message = "\(handle) set the conversation purpose to: \(channel.channelDescription)"
+                    let message = "[\(handle)](\(String(optional: User.current()?.objectId))) set the conversation purpose to: \(channel.channelDescription)"
                     ChannelManager.shared.sendMessage(to: channel, with: message, context: .status)
                         .observe { (result) in
                             self.delegate.newChannelView(self, didCreate: .channel(channel))

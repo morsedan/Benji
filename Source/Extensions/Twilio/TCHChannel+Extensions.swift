@@ -161,8 +161,8 @@ extension Future where Value == TCHChannel {
         return self.then(with: { (channel) in
 
             let promise = Promise<TCHChannel>()
-
-            channel.members!.invite(byIdentity: String(optional: user.objectId)) { (result) in
+            let identity = String(optional: user.objectId)
+            channel.members!.invite(byIdentity: identity) { (result) in
                 if let error = result.error {
                     promise.reject(with: error)
                 } else {
@@ -173,7 +173,7 @@ extension Future where Value == TCHChannel {
                         let monthDayFormatter = DateFormatter()
                         monthDayFormatter.dateFormat = "MMMM d"
 
-                        let message = "Invite sent at \(formatter.string(from: Date())) on \(monthDayFormatter.string(from: Date())) to: \(handle)"
+                        let message = "Invite sent at \(formatter.string(from: Date())) on \(monthDayFormatter.string(from: Date())) to: [\(handle)](\(identity))"
 
                         ChannelManager.shared.sendMessage(to: channel, with: message, context: .status)
                             .observe { (result) in

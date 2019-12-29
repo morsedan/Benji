@@ -87,7 +87,7 @@ class TextView: UITextView {
                                                                              length: attributedString.length))
 
         attributedString.linkItems()
-        self.linkTextAttributes = [.foregroundColor: linkColor.color, .underlineStyle: 1]
+        self.linkTextAttributes = [.foregroundColor: linkColor.color, .underlineStyle: 0]
 
         self.isEditable = isEditable
         self.attributedText = attributedString

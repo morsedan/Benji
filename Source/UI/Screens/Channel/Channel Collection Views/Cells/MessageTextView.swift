@@ -31,6 +31,6 @@ class MessageTextView: TextView {
                  lineBreakMode: .byWordWrapping,
                  stringCasing: .unchanged,
                  isEditable: false,
-                 linkColor: .teal)
+                 linkColor: .blue)
     }
 }
