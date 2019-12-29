@@ -29,7 +29,7 @@ class NewChannelViewController: NavigationBarViewController, KeyboardObservable 
     lazy var currentContent = MutableProperty<NewChannelContent>(.purpose(self.purposeVC))
     private var currentCenterVC: UIViewController?
     private let centerContainer = View()
-    private var centerContainerHeight: CGFloat = 0
+    private var centerVCHeight: CGFloat?
 
     let button = NewChannelButton()
 
@@ -123,9 +123,10 @@ class NewChannelViewController: NavigationBarViewController, KeyboardObservable 
         self.button.right = self.view.width - 16
         self.button.bottom = self.view.height - self.view.safeAreaInsets.bottom - 10
 
+        let height = self.centerVCHeight ?? self.view.height - self.lineView.bottom
         self.centerContainer.size = CGSize(width: self.view.width,
-                                           height: self.centerContainerHeight)
-        self.centerContainer.top = self.lineView.bottom + 30
+                                           height: height)
+        self.centerContainer.top = self.lineView.bottom
         self.centerContainer.centerOnX()
 
         self.currentCenterVC?.view.frame = self.centerContainer.bounds
@@ -202,11 +203,11 @@ class NewChannelViewController: NavigationBarViewController, KeyboardObservable 
             switch self.currentContent.value {
             case .purpose(let vc):
                 newContentVC = vc
-                self.centerContainerHeight = vc.totalHeight
+                self.centerVCHeight = vc.totalHeight
             case .favorites(let vc):
                 newContentVC = vc
-                self.centerContainerHeight = vc.totalHeight
                 showBackButton = true
+                self.centerVCHeight = nil
             }
 
             self.updateLabels()

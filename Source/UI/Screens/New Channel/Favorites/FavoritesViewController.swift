@@ -10,8 +10,6 @@ import Foundation
 import Parse 
 
 class FavoritesViewController: OrbCollectionViewController {
-
-    var totalHeight: CGFloat = 500
     
     override func initializeViews() {
         super.initializeViews()

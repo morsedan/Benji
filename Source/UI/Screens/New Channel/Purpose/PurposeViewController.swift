@@ -62,7 +62,7 @@ class PurposeViewController: ViewController {
         let width = self.view.width - (self.offset * 2)
 
         self.textFieldTitleLabel.setSize(withWidth: width)
-        self.textFieldTitleLabel.top = 20
+        self.textFieldTitleLabel.top = 30
         self.textFieldTitleLabel.left = self.offset
 
         self.textField.size = CGSize(width: width, height: 40)
