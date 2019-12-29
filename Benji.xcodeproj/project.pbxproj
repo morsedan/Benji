@@ -272,6 +272,10 @@
 		D6EDD19B2355DC2900FDA5D6 /* ProfileCollectionViewManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6EDD19A2355DC2900FDA5D6 /* ProfileCollectionViewManager.swift */; };
 		D6EE715023B704F2000ED221 /* HomeNewChannellButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6EE714F23B704F2000ED221 /* HomeNewChannellButton.swift */; };
 		D6EE715223B7C854000ED221 /* UICollectionViewLayout+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6EE715123B7C854000ED221 /* UICollectionViewLayout+Extensions.swift */; };
+		D6EE715523B84B2D000ED221 /* OrbCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6EE715423B84B2D000ED221 /* OrbCell.swift */; };
+		D6EE715723B84B3C000ED221 /* OrbCellItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6EE715623B84B3C000ED221 /* OrbCellItem.swift */; };
+		D6EE715923B84BC0000ED221 /* CollectionViewManagerCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6EE715823B84BC0000ED221 /* CollectionViewManagerCell.swift */; };
+		D6EE715B23B84C5C000ED221 /* AnyHashableDisplayable.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6EE715A23B84C5C000ED221 /* AnyHashableDisplayable.swift */; };
 		D6EEE7B12383A70F00F9D446 /* Benji.entitlements in Resources */ = {isa = PBXBuildFile; fileRef = D64C6AA523307DB300DB7257 /* Benji.entitlements */; };
 		D6FB009F234AB7EB008ED2D6 /* XXSmallSemiBoldLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6FB009E234AB7EB008ED2D6 /* XXSmallSemiBoldLabel.swift */; };
 		D6FC8096237A64650089AACC /* MessageSupplier.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6FC8095237A64650089AACC /* MessageSupplier.swift */; };
@@ -571,6 +575,10 @@
 		D6EDD19A2355DC2900FDA5D6 /* ProfileCollectionViewManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileCollectionViewManager.swift; sourceTree = "<group>"; };
 		D6EE714F23B704F2000ED221 /* HomeNewChannellButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeNewChannellButton.swift; sourceTree = "<group>"; };
 		D6EE715123B7C854000ED221 /* UICollectionViewLayout+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UICollectionViewLayout+Extensions.swift"; sourceTree = "<group>"; };
+		D6EE715423B84B2D000ED221 /* OrbCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrbCell.swift; sourceTree = "<group>"; };
+		D6EE715623B84B3C000ED221 /* OrbCellItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrbCellItem.swift; sourceTree = "<group>"; };
+		D6EE715823B84BC0000ED221 /* CollectionViewManagerCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollectionViewManagerCell.swift; sourceTree = "<group>"; };
+		D6EE715A23B84C5C000ED221 /* AnyHashableDisplayable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnyHashableDisplayable.swift; sourceTree = "<group>"; };
 		D6FB009E234AB7EB008ED2D6 /* XXSmallSemiBoldLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = XXSmallSemiBoldLabel.swift; sourceTree = "<group>"; };
 		D6FC8095237A64650089AACC /* MessageSupplier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageSupplier.swift; sourceTree = "<group>"; };
 		D6FC8097237A66220089AACC /* ChannelSupplier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChannelSupplier.swift; sourceTree = "<group>"; };
@@ -676,6 +684,7 @@
 		D61EC0D221D30B8800204BEE /* Base Classes */ = {
 			isa = PBXGroup;
 			children = (
+				D6EE715323B84AEB000ED221 /* Orb */,
 				D6E65F17237791450061AA67 /* Generic CollectionView */,
 				D66F0FE022C0413300BA277D /* View Controllers */,
 				D66F0FDF22C0412300BA277D /* Views */,
@@ -706,6 +715,7 @@
 		D61EC0D521D30BF900204BEE /* Protocols */ = {
 			isa = PBXGroup;
 			children = (
+				D6EE715A23B84C5C000ED221 /* AnyHashableDisplayable.swift */,
 				D66F0FE522C0640E00BA277D /* Avatar.swift */,
 				D6432BF222D828480016001A /* ChannelDataSource.swift */,
 				D66F0FCE22BF060500BA277D /* Deeplinkable.swift */,
@@ -1371,6 +1381,7 @@
 				D6D1500B21D5E7C200CD8CE4 /* CollectionViewManager.swift */,
 				D62C635522BE9E5C00F4D097 /* CollectionViewController.swift */,
 				D6E65F18237791650061AA67 /* ManageableCell.swift */,
+				D6EE715823B84BC0000ED221 /* CollectionViewManagerCell.swift */,
 			);
 			path = "Generic CollectionView";
 			sourceTree = "<group>";
@@ -1385,6 +1396,15 @@
 				D6E4C8002394391A002B1330 /* RoutineTimeOfDayLabel.swift */,
 			);
 			path = Routine;
+			sourceTree = "<group>";
+		};
+		D6EE715323B84AEB000ED221 /* Orb */ = {
+			isa = PBXGroup;
+			children = (
+				D6EE715423B84B2D000ED221 /* OrbCell.swift */,
+				D6EE715623B84B3C000ED221 /* OrbCellItem.swift */,
+			);
+			path = Orb;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -1587,6 +1607,7 @@
 				D66F0FD622BF28A100BA277D /* AppDelegate+Initialization.swift in Sources */,
 				D66F102822C7D1D200BA277D /* ChannelCellContentView.swift in Sources */,
 				D67896AD22FF60190059BA75 /* LoginTextInputViewController.swift in Sources */,
+				D6EE715723B84B3C000ED221 /* OrbCellItem.swift in Sources */,
 				D6D1502921D6085200CD8CE4 /* ResourceObject.swift in Sources */,
 				D6D145FF21D5510400CD8CE4 /* StringStyle.swift in Sources */,
 				D64C6A9C232D6C9200DB7257 /* BubbleCircleView.swift in Sources */,
@@ -1601,6 +1622,7 @@
 				D684D6EB22D0E4F000874B08 /* StackedAvatarView.swift in Sources */,
 				D6D1460B21D5547000CD8CE4 /* FontType.swift in Sources */,
 				D6D1461321D583E500CD8CE4 /* NavigationController.swift in Sources */,
+				D6EE715B23B84C5C000ED221 /* AnyHashableDisplayable.swift in Sources */,
 				D67896B8230096620059BA75 /* KeyboardObservable.swift in Sources */,
 				D642735E22C90C820088256B /* CGPoint+Extensions.swift in Sources */,
 				D61EC0DE21D30DAC00204BEE /* Array+Extensions.swift in Sources */,
@@ -1689,6 +1711,7 @@
 				D607400C23400FA6009633EB /* ChannelsSearchBar.swift in Sources */,
 				8002F37F230CD07F00F8C4E3 /* Authorization+Extensions.swift in Sources */,
 				D66A0B9823526A4E00A0FFEA /* CarmeraButton.swift in Sources */,
+				D6EE715523B84B2D000ED221 /* OrbCell.swift in Sources */,
 				D66E7C14239DC14C002A363C /* AlertType.swift in Sources */,
 				D6815DB122ECAEC700E71251 /* MediumLabel.swift in Sources */,
 				D642739122C9BFA10088256B /* AlertViewController.swift in Sources */,
@@ -1731,6 +1754,7 @@
 				D6D6D57623A70DF100D2B5BF /* SearchButton.swift in Sources */,
 				D6D1500C21D5E7C200CD8CE4 /* CollectionViewManager.swift in Sources */,
 				D64C6A7C23288FB300DB7257 /* SmallSemiBoldLabel.swift in Sources */,
+				D6EE715923B84BC0000ED221 /* CollectionViewManagerCell.swift in Sources */,
 				D68540DC235FED41006F666C /* SuggestionCollectionViewLayoutAttributes.swift in Sources */,
 				D66F0FDA22BF297F00BA277D /* MainCoordinator.swift in Sources */,
 				D68540D7235FE050006F666C /* SuggestionCell.swift in Sources */,
