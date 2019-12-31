@@ -37,20 +37,10 @@ class RoutineInputViewController: ViewController {
             }
         }
 
-        RoutineManager.shared.getRoutineNotifications().observe { (result) in
-            runMain {
-                switch result {
-                case .success(let notificationRequests):
-                    guard let trigger = notificationRequests.first?.trigger
-                        as? UNCalendarNotificationTrigger else {
-                            self.setDefault()
-                            return
-                    }
-                    self.updateHump(with: trigger.dateComponents)
-                case .failure(_):
-                    break
-                }
-            }
+        if let routine = User.current()?.routine {
+            self.updateHump(with: routine.timeComponents)
+        } else {
+            self.setDefault()
         }
 
         self.content.minusButton.onTap { [unowned self] (tap) in
@@ -101,7 +91,6 @@ class RoutineInputViewController: ViewController {
         var totalSeconds = CGFloat(components.second ?? 0)
         totalSeconds += CGFloat(components.minute ?? 0) * 60
         totalSeconds += CGFloat(components.hour ?? 0) * 3600
-
         self.content.timeHump.percentage.value = totalSeconds/86400
         self.selectionFeedback.impactOccurred()
     }
