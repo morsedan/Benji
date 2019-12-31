@@ -35,6 +35,7 @@ class HomeViewController: FullScreenViewController {
     private let addButton = HomeNewChannellButton()
     let centerContainer = View()
     let tabView = HomeTabView()
+    let gradientView = GradientView()
 
     lazy var currentContent = MutableProperty<HomeContent>(.feed(self.feedVC))
     private var currentCenterVC: UIViewController?
@@ -62,6 +63,7 @@ class HomeViewController: FullScreenViewController {
         self.addButton.set(backgroundColor: .purple)
 
         self.contentContainer.addSubview(self.centerContainer)
+        self.contentContainer.addSubview(self.gradientView)
 
         self.contentContainer.addSubview(self.addButton)
         self.addButton.onTap { [unowned self] (tap) in
@@ -119,6 +121,10 @@ class HomeViewController: FullScreenViewController {
 
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
+
+        self.gradientView.size = CGSize(width: self.view.width, height: 40)
+        self.gradientView.centerOnX()
+        self.gradientView.bottom = self.contentContainer.height - 70
 
         self.addButton.size = CGSize(width: 60, height: 60)
         self.addButton.right = self.view.width - 16

@@ -13,7 +13,7 @@ class ProfileCollectionView: CollectionView {
     init() {
         let flowLayout = UICollectionViewFlowLayout()
         flowLayout.scrollDirection = .vertical
-        flowLayout.sectionInset = UIEdgeInsets(top: 0, left: 16, bottom: 0, right: 16)
+        flowLayout.sectionInset = UIEdgeInsets(top: 0, left: 16, bottom: 70, right: 16)
         super.init(layout: flowLayout)
 
         self.bounces = true 

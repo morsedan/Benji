@@ -28,7 +28,7 @@ class OrbCell: CollectionViewManagerCell, ManageableCell {
     override func layoutSubviews() {
         super.layoutSubviews()
 
-        self.imageView.size = CGSize(width: 90, height: 90)
+        self.imageView.size = CGSize(width: 90, height: 120)
         self.imageView.top = 0
         self.imageView.centerOnX()
 

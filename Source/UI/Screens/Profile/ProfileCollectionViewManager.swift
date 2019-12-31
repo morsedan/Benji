@@ -83,7 +83,7 @@ class ProfileCollectionViewManager: NSObject, UICollectionViewDelegate, UICollec
         let width = collectionView.width - flowLayout.sectionInset.left - flowLayout.sectionInset.right
 
         if indexPath.row == 0 {
-            return CGSize(width: width, height: width)
+            return CGSize(width: width, height: 140)
         }
 
         return CGSize(width: width, height: 50)

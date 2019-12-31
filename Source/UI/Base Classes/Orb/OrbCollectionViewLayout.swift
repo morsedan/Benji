@@ -11,7 +11,7 @@ import Foundation
 class OrbCollectionViewLayout: UICollectionViewLayout {
 
     let interimSpace: CGFloat = 10.0
-    let itemSize: CGFloat = 140
+    let itemSize: CGFloat = 160
     var screenCenter: CGPoint {
         return CGPoint(x: UIScreen.main.bounds.width * 0.5,
                        y: UIScreen.main.bounds.height * 0.5)

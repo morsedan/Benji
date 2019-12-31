@@ -20,8 +20,6 @@ class ChannelsViewController: CollectionViewController<ChannelCell, ChannelsColl
     var didPresentSearch: CompletionOptional = nil
     var didDismissSearch: CompletionOptional = nil
 
-    let gradientView = GradientView()
-
     init() {
         let collectionView = ChannelsCollectionView()
 
@@ -37,20 +35,10 @@ class ChannelsViewController: CollectionViewController<ChannelCell, ChannelsColl
     override func initializeViews() {
         super.initializeViews()
 
-        self.view.addSubview(self.gradientView)
-
         self.collectionViewManager.onSelectedItem.signal.observeValues { (selectedItem) in
             guard let item = selectedItem else { return }
             self.delegate?.channelsView(self, didSelect: item.item.channelType)
         }
-    }
-
-    override func viewDidLayoutSubviews() {
-        super.viewDidLayoutSubviews()
-
-        self.gradientView.size = CGSize(width: self.view.width, height: 40)
-        self.gradientView.centerOnX()
-        self.gradientView.bottom = self.view.height
     }
 }
 

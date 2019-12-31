@@ -10,7 +10,7 @@ import Foundation
 
 class MessageCellAttributesConfigurer: ChannelCellAttributesConfigurer {
 
-    var avatarSize = CGSize(width: 30, height: 30)
+    var avatarSize = CGSize(width: 30, height: 38)
     var avatarPadding: CGFloat = 8
     var textViewVerticalPadding: CGFloat = 10
     var textViewHorizontalPadding: CGFloat = 20
