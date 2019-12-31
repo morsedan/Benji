@@ -7,12 +7,13 @@
 //
 
 import Foundation
+import TMROLocalization
 
 protocol ProfileDisplayable {
     var avatar: Avatar? { get set }
     var title: String { get set }
     var text: String { get set }
-    var hasDetail: Bool { get set }
+    var buttonText: Localized? { get set }
 }
 
 extension ProfileDisplayable {
@@ -20,8 +21,8 @@ extension ProfileDisplayable {
         return nil
     }
 
-    var hasDetail: Bool {
-        return false
+    var buttonText: Localized? {
+        return nil 
     }
 }
 
@@ -31,7 +32,7 @@ class ProfileCollectionViewManager: NSObject, UICollectionViewDelegate, UICollec
 
     var items: [ProfileDisplayable] = []
 
-    var didSelectItemAt: (IndexPath) -> Void = {_ in }
+    var didTapButtonAt: (IndexPath) -> Void = {_ in }
 
     init(with collectionView: CollectionView) {
         self.collectionView = collectionView
@@ -44,10 +45,6 @@ class ProfileCollectionViewManager: NSObject, UICollectionViewDelegate, UICollec
 
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return self.items.count
-    }
-
-    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        self.didSelectItemAt(indexPath)
     }
 
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
@@ -73,6 +70,11 @@ class ProfileCollectionViewManager: NSObject, UICollectionViewDelegate, UICollec
         if let item = self.items[safe: indexPath.row] {
             cell.configure(with: item)
         }
+
+        cell.button.onTap { [unowned self] (tap) in
+            self.didTapButtonAt(indexPath)
+        }
+
         return cell
     }
 

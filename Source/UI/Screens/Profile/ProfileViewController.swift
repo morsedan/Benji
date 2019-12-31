@@ -9,12 +9,13 @@
 import Foundation
 import Parse
 import TwilioChatClient
+import TMROLocalization
 
 struct ProfileItem: ProfileDisplayable {
     var avatar: Avatar? = nil
     var title: String
     var text: String
-    var hasDetail: Bool = false
+    var buttonText: Localized?
 }
 
 protocol ProfileViewControllerDelegate: class {
@@ -49,7 +50,7 @@ class ProfileViewController: ViewController {
         self.collectionView.delegate = self.manager
         self.collectionView.dataSource = self.manager
 
-        self.manager.didSelectItemAt = { [unowned self] indexPath in
+        self.manager.didTapButtonAt = { [unowned self] indexPath in
             self.delegate?.profileViewControllerDidSelectRoutine(self)
         }
     }
@@ -65,20 +66,17 @@ class ProfileViewController: ViewController {
 
         let avatarItem = ProfileItem(avatar: self.user,
                                      title: String(),
-                                     text: String(),
-                                     hasDetail: false)
+                                     text: String())
         items.append(avatarItem)
 
         let nameItem = ProfileItem(avatar: nil,
                                    title: "Name",
-                                   text: String(optional: self.user.fullName),
-                                   hasDetail: false)
+                                   text: String(optional: self.user.fullName))
         items.append(nameItem)
 
         let handleItem = ProfileItem(avatar: nil,
                                      title: "Handle",
-                                     text: String(optional: self.user.handle),
-                                     hasDetail: false)
+                                     text: String(optional: self.user.handle))
         items.append(handleItem)
 
         if let date = self.user.routine?.date {
@@ -88,13 +86,13 @@ class ProfileViewController: ViewController {
             let routineItem = ProfileItem(avatar: nil,
                                           title: "Routine",
                                           text: string.uppercased(),
-                                          hasDetail: true)
+                                          buttonText: "Update")
             items.append(routineItem)
         } else {
             let routineItem = ProfileItem(avatar: nil,
                                           title: "Routine",
                                           text: "NO ROUTINE SET",
-                                          hasDetail: true)
+                                          buttonText: "Set")
             items.append(routineItem)
         }
         self.manager.items = items

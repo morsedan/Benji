@@ -18,6 +18,7 @@ class RoutineViewController: NavigationBarViewController {
 
         self.view.set(backgroundColor: .background2)
         self.addChild(viewController: self.routineInputVC)
+        self.backButton.isHidden = true 
     }
 
     override func getTitle() -> Localized {

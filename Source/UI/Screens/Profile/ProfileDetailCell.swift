@@ -13,7 +13,7 @@ class ProfileDetailCell: UICollectionViewCell {
     let titleLabel = XSmallLabel()
     let label = SmallSemiBoldLabel()
     let lineView = View()
-    let imageView = UIImageView(image: UIImage(systemName: "info.circle"))
+    let button = Button()
 
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -28,9 +28,7 @@ class ProfileDetailCell: UICollectionViewCell {
         self.contentView.addSubview(self.titleLabel)
         self.contentView.addSubview(self.label)
         self.contentView.addSubview(self.lineView)
-        self.contentView.addSubview(self.imageView)
-        self.imageView.isHidden = true
-        self.imageView.tintColor = Color.lightPurple.color
+        self.contentView.addSubview(self.button)
         self.lineView.set(backgroundColor: .background3)
     }
 
@@ -38,7 +36,11 @@ class ProfileDetailCell: UICollectionViewCell {
 
         self.titleLabel.set(text: detail.title)
         self.label.set(text: detail.text)
-        self.imageView.isHidden = !detail.hasDetail
+        if let text = detail.buttonText {
+            self.button.set(style: .normal(color: .lightPurple, text: text))
+        } else {
+            self.button.isHidden = true
+        }
     }
 
     override func layoutSubviews() {
@@ -56,9 +58,10 @@ class ProfileDetailCell: UICollectionViewCell {
         self.lineView.left = self.titleLabel.left
         self.lineView.top = self.label.bottom + 5
 
-        self.imageView.size = CGSize(width: 26, height: 26)
-        self.imageView.centerOnY()
-        self.imageView.right = self.contentView.right
+        self.button.size = CGSize(width: 80, height: 30)
+        self.button.centerOnY()
+        self.button.right = self.contentView.right
+        self.button.roundCorners()
     }
 
     override func prepareForReuse() {
@@ -66,6 +69,6 @@ class ProfileDetailCell: UICollectionViewCell {
 
         self.titleLabel.text = nil
         self.label.text = nil
-        self.imageView.isHidden = true
+        self.button.isHidden = true
     }
 }
