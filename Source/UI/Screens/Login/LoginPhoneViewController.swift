@@ -73,5 +73,9 @@ class LoginPhoneViewController: LoginTextInputViewController {
 //            }
 //        }
     }
+
+    override func getAccessoryText() -> Localized? {
+        return LocalizedString(id: "", arguments: [], default: "Please verify your account using the mobile number for this device.")
+    }
 }
 

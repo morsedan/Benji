@@ -74,18 +74,18 @@ class FeedViewController: ViewController {
         super.viewDidLoad()
 
         User.current()?.routine?.fetchInBackground(block: { (object, error) in
-            if let routine = object as? Routine {
-                self.determineMessage(with: routine)
-            } else {
-                let items: [FeedType] = [.rountine]
-                self.manager.set(items: items)
+            runMain {
+                if let routine = object as? Routine {
+                    self.determineMessage(with: routine)
+                } else {
+                    let items: [FeedType] = [.rountine]
+                    self.manager.set(items: items)
+                }
             }
         })
     }
 
     private func determineMessage(with routine: Routine) {
-
-
         guard let triggerDate = routine.date,
             let anHourAfter = triggerDate.add(component: .hour, amount: 1),
             let anHourUntil = triggerDate.subtract(component: .hour, amount: 1) else { return }
@@ -144,13 +144,15 @@ class FeedViewController: ViewController {
     }
 
     func showFeed() {
-        self.showItems = true
+        runMain {
+            self.showItems = true
 
-        UIView.animate(withDuration: Theme.animationDuration, delay: Theme.animationDuration, options: [], animations: {
-            self.countDownView.alpha = 0
-            self.countDownView.transform = CGAffineTransform(scaleX: 0.9, y: 0.9)
-        }, completion: nil)
+            UIView.animate(withDuration: Theme.animationDuration, delay: Theme.animationDuration, options: [], animations: {
+                self.countDownView.alpha = 0
+                self.countDownView.transform = CGAffineTransform(scaleX: 0.9, y: 0.9)
+            }, completion: nil)
 
-        self.manager.set(items: self.items)
+            self.manager.set(items: self.items)
+        }
     }
 }

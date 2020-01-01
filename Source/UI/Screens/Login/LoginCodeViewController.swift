@@ -27,7 +27,7 @@ class LoginCodeViewController: LoginTextInputViewController {
         self.phoneNumber = phoneNumber
         super.init(textField: TextField(),
                    textFieldTitle: LocalizedString(id: "", default: "CODE"),
-                   textFieldPlaceholder: LocalizedString(id: "", default: "000000"))
+                   textFieldPlaceholder: LocalizedString(id: "", default: "0000"))
     }
 
     required public init?(coder aDecoder: NSCoder) {
@@ -35,7 +35,7 @@ class LoginCodeViewController: LoginTextInputViewController {
     }
 
     override func textFieldDidChange() {
-        guard let code = self.textField.text, code.extraWhitespaceRemoved().count == 6 else { return }
+        guard let code = self.textField.text, code.extraWhitespaceRemoved().count == 4 else { return }
         self.verify(code: code)
     }
 
@@ -68,5 +68,9 @@ class LoginCodeViewController: LoginTextInputViewController {
 //            }
 //            self.textField.resignFirstResponder()
 //        }
+    }
+
+    override func getAccessoryText() -> Localized? {
+        return LocalizedString(id: "", arguments: [], default: "Enter the 4 digit code from the text message.")
     }
 }

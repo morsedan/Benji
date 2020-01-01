@@ -16,6 +16,7 @@ class LoginTextInputViewController: ViewController {
     let textFieldLabel = Label()
     let textFieldTitle: Localized
     let textFieldPlaceholder: Localized?
+    lazy var textInputAccessory = TextInputAccessoryView()
 
     init(textField: UITextField,
          textFieldTitle: Localized,
@@ -87,6 +88,28 @@ class LoginTextInputViewController: ViewController {
 
         self.textField.becomeFirstResponder()
     }
+
+    func showAccessory() {
+        self.textField.inputAccessoryView = nil
+        self.textField.reloadInputViews()
+
+        self.textInputAccessory.frame = CGRect(x: 0,
+                                               y: 0,
+                                               width: UIScreen.main.bounds.width,
+                                               height: 60)
+        self.textInputAccessory.keyboardAppearance = self.textField.keyboardAppearance
+        self.textInputAccessory.text = self.getAccessoryText()
+        self.textField.inputAccessoryView = self.textInputAccessory
+        self.textField.reloadInputViews()
+
+        self.textInputAccessory.didCancel = { [unowned self] in
+            self.textField.resignFirstResponder()
+        }
+    }
+
+    func getAccessoryText() -> Localized? {
+        return nil
+    }
 }
 
 extension LoginTextInputViewController: UITextFieldDelegate {
@@ -97,5 +120,8 @@ extension LoginTextInputViewController: UITextFieldDelegate {
     }
 
     func textFieldDidEndEditing(_ textField: UITextField) {}
+    func textFieldDidBeginEditing(_ textField: UITextField) {
+        self.showAccessory()
+    }
 }
 

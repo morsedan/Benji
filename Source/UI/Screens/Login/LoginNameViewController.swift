@@ -57,4 +57,8 @@ class LoginNameViewController: LoginTextInputViewController {
                 self.delegate.loginNameViewControllerDidComplete(self)
         }
     }
+
+    override func getAccessoryText() -> Localized? {
+        return LocalizedString(id: "", arguments: [], default: "Please use your legal first and last name.")
+    }
 }
