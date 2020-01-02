@@ -20,7 +20,7 @@ class FeedViewController: ViewController {
 
     lazy var manager: FeedCollectionViewManager = {
         let manager = FeedCollectionViewManager(with: self.collectionView)
-        manager.didSelect = { [unowned self] feedType in
+        manager.didComplete = { [unowned self] feedType in
             self.delegate?.feedView(self, didSelect: feedType)
         }
         return manager
@@ -36,6 +36,7 @@ class FeedViewController: ViewController {
             self.messageLabel.set(text: text, alignment: .center)
         }
     }
+    var currentRoutine: Routine?
 
     override func initializeViews() {
         super.initializeViews()
@@ -72,7 +73,9 @@ class FeedViewController: ViewController {
 
         User.current()?.routine?.fetchInBackground(block: { (object, error) in
             runMain {
-                if let routine = object as? Routine {
+                if let routine = object as? Routine, routine != self.currentRoutine {
+                    self.currentRoutine = routine
+                    self.items = []
                     self.determineMessage(with: routine)
                 } else {
                     let items: [FeedType] = [.rountine]

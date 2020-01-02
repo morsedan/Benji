@@ -15,7 +15,8 @@ class FeedChannelInviteView: View {
     let textView = FeedTextView()
     let avatarView = AvatarView()
     let button = Button()
-    var didSelect: () -> Void = {}
+    var didComplete: CompletionOptional = nil
+    private var channel: TCHChannel?
 
     override func initializeSubviews() {
         super.initializeSubviews()
@@ -26,12 +27,13 @@ class FeedChannelInviteView: View {
 
         self.button.set(style: .normal(color: .blue, text: "JOIN"))
         self.button.onTap { [unowned self] (tap) in
-            self.didSelect()
+            guard let channel = self.channel else { return }
+            self.join(channel: channel)
         }
     }
 
     func configure(with channel: TCHChannel) {
-
+        self.channel = channel 
         channel.getAuthorAsUser()
             .observe { (result) in
                 switch result {
@@ -44,6 +46,23 @@ class FeedChannelInviteView: View {
                 }
 
                 self.layoutNow()
+        }
+    }
+
+    private func join(channel: TCHChannel) {
+
+        let text = LocalizedString(id: "join.channel",
+                                   arguments: [channel.friendlyName!],
+                                   default: "You have joined @1")
+        channel.joinIfNeeded()
+            .withResultToast(with: text)
+            .observe { (result) in
+                switch result {
+                case .success(_):
+                    self.didComplete?()
+                case .failure(let error):
+                    print(error)
+                }
         }
     }
 

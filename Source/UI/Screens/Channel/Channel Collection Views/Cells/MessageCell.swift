@@ -108,7 +108,7 @@ class MessageCell: UICollectionViewCell {
 
         self.bubbleView.set(backgroundColor: message.color)
 
-        if !message.isFromCurrentUser, !message.isConsumed {
+        if !message.isFromCurrentUser, !message.isConsumed, message.context != .status {
             self.bubbleView.set(backgroundColor: message.context.color)
 
             if !message.isFromCurrentUser, message.context == .casual {

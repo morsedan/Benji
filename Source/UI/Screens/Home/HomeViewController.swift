@@ -36,6 +36,7 @@ class HomeViewController: FullScreenViewController {
     let centerContainer = View()
     let tabView = HomeTabView()
     let gradientView = GradientView()
+    let tabContainerView = View()
 
     lazy var currentContent = MutableProperty<HomeContent>(.feed(self.feedVC))
     private var currentCenterVC: UIViewController?
@@ -65,12 +66,14 @@ class HomeViewController: FullScreenViewController {
         self.contentContainer.addSubview(self.centerContainer)
         self.contentContainer.addSubview(self.gradientView)
 
-        self.contentContainer.addSubview(self.addButton)
         self.addButton.onTap { [unowned self] (tap) in
             self.delegate.homeViewDidTapAdd(self)
         }
 
-        self.contentContainer.addSubview(self.tabView)
+        self.contentContainer.addSubview(self.tabContainerView)
+        self.tabContainerView.set(backgroundColor: .background1)
+        self.tabContainerView.addSubview(self.tabView)
+        self.tabContainerView.addSubview(self.addButton)
 
         self.currentContent.producer
             .skipRepeats()
@@ -122,25 +125,29 @@ class HomeViewController: FullScreenViewController {
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
 
+        let height = 70 + self.view.safeAreaInsets.bottom
+        self.tabContainerView.size = CGSize(width: self.contentContainer.width, height: height)
+        self.tabContainerView.centerOnX()
+        self.tabContainerView.bottom = self.contentContainer.height + self.view.safeAreaInsets.bottom
+
         self.gradientView.size = CGSize(width: self.view.width, height: 40)
         self.gradientView.centerOnX()
-        self.gradientView.bottom = self.contentContainer.height - 70
+        self.gradientView.bottom = self.tabContainerView.top
 
         self.addButton.size = CGSize(width: 60, height: 60)
-        self.addButton.right = self.view.width - 16
-        self.addButton.bottom = self.contentContainer.height - 10
+        self.addButton.right = self.tabContainerView.width - 16
+        self.addButton.top = 0
 
         self.centerContainer.size = CGSize(width: self.contentContainer.width,
-                                           height: self.contentContainer.height - 70)
-        self.centerContainer.bottom = self.addButton.top 
+                                           height: self.contentContainer.height - self.tabContainerView.height)
+        self.centerContainer.bottom = self.tabContainerView.top
         self.centerContainer.centerOnX()
 
         self.currentCenterVC?.view.frame = self.centerContainer.bounds
 
         self.tabView.size = CGSize(width: 200, height: 60)
         self.tabView.left = Theme.contentOffset
-        self.tabView.bottom = self.addButton.bottom
-        self.tabView.roundCorners()
+        self.tabView.top = 0
     }
 
     private func switchContent() {

@@ -15,7 +15,7 @@ class FeedCollectionViewManager: NSObject {
 
     private var items: [FeedType] = []
 
-    var didSelect: (FeedType) -> Void = { _ in }
+    var didComplete: (FeedType) -> Void = { _ in }
 
     init(with collectionView: FeedCollectionView) {
         self.collectionView = collectionView
@@ -51,11 +51,10 @@ extension FeedCollectionViewManager: KolodaViewDataSource {
         
         let feedView = FeedView()
         feedView.configure(with: item)
-        feedView.didSelect = { [unowned self] in
-            self.didSelect(item)
-        }
-        feedView.didComplete = { 
+
+        feedView.didComplete = {
             koloda.swipe(.right)
+            self.didComplete(item)
         }
         return feedView
     }

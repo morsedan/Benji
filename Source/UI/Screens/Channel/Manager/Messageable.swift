@@ -74,6 +74,8 @@ extension Messageable {
         } else {
             if self.isConsumed {
                 return .purple
+            } else if self.context == .status {
+                return self.context.color
             } else {
                 return .clear
             }

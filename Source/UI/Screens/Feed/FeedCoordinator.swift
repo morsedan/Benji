@@ -44,7 +44,7 @@ extension FeedCoordinator: FeedViewControllerDelegate {
         case .unreadMessages(let channel, _):
             self.startChannelFlow(for: .channel(channel))
         case .channelInvite(let channel):
-            self.join(channel: channel)
+            self.startChannelFlow(for: .channel(channel))
         case .inviteAsk:
             break
             //let contactsVC = ContactsViewController()
@@ -68,29 +68,11 @@ extension FeedCoordinator: FeedViewControllerDelegate {
         //        self.router.present(coordinator, source: self.sourceViewController, animated: true)
     }
 
-    private func join(channel: TCHChannel) {
-
-        let text = LocalizedString(id: "join.channel",
-                                   arguments: [channel.friendlyName!],
-                                   default: "You have joined @1")
-        channel.joinIfNeeded()
-            .withResultToast(with: text)
-            .observe { (result) in
-                switch result {
-                case .success(let joinedChannel):
-                    self.startChannelFlow(for: .channel(joinedChannel))
-                case .failure(let error):
-                    print(error)
-                }
-        }
-    }
-
     private func startChannelFlow(for type: ChannelType) {
-
-        //        let coordinator = ChannelCoordinator(router: self.router, channelType: type)
-        //        self.addChildAndStart(coordinator, finishedHandler: { (_) in
-        //            self.router.dismiss(source: coordinator.toPresentable())
-        //        })
-        //        self.router.present(coordinator, source: self.sourceViewController, animated: true)
+        let coordinator = ChannelCoordinator(router: self.router, channelType: type)
+        self.addChildAndStart(coordinator) { (_) in
+            self.router.dismiss(source: coordinator.toPresentable())
+        }
+        self.router.present(coordinator, source: self.feedVC)
     }
 }
