@@ -61,9 +61,7 @@ class UserNotificationManager: NSObject {
         self.center.getNotificationSettings() { (settings) in
             switch settings.authorizationStatus {
             case .authorized, .provisional, .notDetermined:
-                let options: UNAuthorizationOptions = [.alert, .sound, .badge, .provisional]
-
-                self.register(with: options, application: application, completion: { (success, error) in
+                self.register(application: application, completion: { (success, error) in
 
                 })
             case .denied:
@@ -74,7 +72,7 @@ class UserNotificationManager: NSObject {
         }
     }
 
-    func register(with options: UNAuthorizationOptions,
+    func register(with options: UNAuthorizationOptions = [.alert, .sound, .badge, .provisional],
                   application: UIApplication,
                   completion: @escaping ((Bool, Error?) -> Void)) {
 

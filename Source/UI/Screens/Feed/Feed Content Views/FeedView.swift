@@ -9,6 +9,10 @@
 import Foundation
 import Koloda
 
+protocol FeedViewDelegate: class {
+    func feed(_ view: FeedView, didComplete: Bool)
+}
+
 class FeedView: View {
 
     private let container = View()
@@ -20,7 +24,8 @@ class FeedView: View {
     lazy var needInvitesView = FeedInviteView()
     lazy var notificationsView = FeedNotificationPermissionsView()
 
-    var didSelect: () -> Void = {}
+    var didSelect: CompletionOptional = nil
+    var didComplete: CompletionOptional = nil
 
     override func initializeSubviews() {
         super.initializeSubviews()
@@ -43,25 +48,25 @@ class FeedView: View {
             self.container.addSubview(self.unreadView)
             self.unreadView.configure(with: channel, count: count)
             self.unreadView.didSelect = { [unowned self] in
-                self.didSelect()
+                self.didSelect?()
             }
         case .channelInvite(let channel):
             self.container.addSubview(self.inviteView)
             self.inviteView.configure(with: channel)
             self.inviteView.didSelect = { [unowned self] in
-                self.didSelect()
+                self.didSelect?()
             }
         case .inviteAsk:
             self.container.addSubview(self.needInvitesView)
         case .rountine:
             self.container.addSubview(self.routineView)
             self.routineView.button.onTap { [unowned self] (tap) in
-                self.didSelect()
+                self.didSelect?()
             }
         case .notificationPermissions:
             self.container.addSubview(self.notificationsView)
-            self.notificationsView.button.onTap { [unowned self] (tap) in
-                self.didSelect()
+            self.notificationsView.didGivePermission = { [unowned self] in
+                self.didComplete?()
             }
         }
 

@@ -12,11 +12,6 @@ import Koloda
 class FeedCollectionViewManager: NSObject {
 
     private let collectionView: FeedCollectionView
-    private lazy var emptyView: EmptyFeedView = {
-        let view = EmptyFeedView()
-        view.set(text: "You are all done! 🎉")
-        return view
-    }()
 
     private var items: [FeedType] = []
 
@@ -36,14 +31,8 @@ class FeedCollectionViewManager: NSObject {
     }
 
     func set(items: [FeedType]) {
-        if items.count == 0 {
-            self.collectionView.addSubview(self.emptyView)
-            self.emptyView.frame = self.collectionView.bounds
-        } else {
-            self.emptyView.removeFromSuperview()
-            self.items = items
-            self.collectionView.reloadData()
-        }
+        self.items = items
+        self.collectionView.reloadData()
     }
 }
 
@@ -84,9 +73,7 @@ extension FeedCollectionViewManager: KolodaViewDelegate {
     }
 
     func kolodaDidRunOutOfCards(_ koloda: KolodaView) {
-        //Show empty view
-        self.collectionView.addSubview(self.emptyView)
-        self.emptyView.frame = self.collectionView.bounds
+
     }
 
     func koloda(_ koloda: KolodaView, didShowCardAt index: Int) {}

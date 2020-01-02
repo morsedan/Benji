@@ -69,7 +69,6 @@
 		D642735322C85B740088256B /* SystemAvatar.swift in Sources */ = {isa = PBXBuildFile; fileRef = D642735222C85B740088256B /* SystemAvatar.swift */; };
 		D642735522C87CCA0088256B /* ImageViewButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = D642735422C87CCA0088256B /* ImageViewButton.swift */; };
 		D642735E22C90C820088256B /* CGPoint+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = D642735D22C90C820088256B /* CGPoint+Extensions.swift */; };
-		D642736422C9132A0088256B /* EmptyFeedView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D642736322C9132A0088256B /* EmptyFeedView.swift */; };
 		D642736622C971FD0088256B /* FeedTextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D642736522C971FD0088256B /* FeedTextView.swift */; };
 		D642736C22C98FA00088256B /* MathFunctions.swift in Sources */ = {isa = PBXBuildFile; fileRef = D642736B22C98FA00088256B /* MathFunctions.swift */; };
 		D642737122C991A60088256B /* ClosedRange+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = D642737022C991A60088256B /* ClosedRange+Extensions.swift */; };
@@ -350,7 +349,6 @@
 		D642735222C85B740088256B /* SystemAvatar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SystemAvatar.swift; sourceTree = "<group>"; };
 		D642735422C87CCA0088256B /* ImageViewButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageViewButton.swift; sourceTree = "<group>"; };
 		D642735D22C90C820088256B /* CGPoint+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CGPoint+Extensions.swift"; sourceTree = "<group>"; };
-		D642736322C9132A0088256B /* EmptyFeedView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmptyFeedView.swift; sourceTree = "<group>"; };
 		D642736522C971FD0088256B /* FeedTextView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedTextView.swift; sourceTree = "<group>"; };
 		D642736B22C98FA00088256B /* MathFunctions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MathFunctions.swift; sourceTree = "<group>"; };
 		D642737022C991A60088256B /* ClosedRange+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ClosedRange+Extensions.swift"; sourceTree = "<group>"; };
@@ -787,7 +785,6 @@
 			children = (
 				D6579558239C8D8800A01338 /* Feed Content Views */,
 				D6579535239A141900A01338 /* CountDownView.swift */,
-				D642736322C9132A0088256B /* EmptyFeedView.swift */,
 				D6A301AD2381B8D7006655E0 /* FeedCollectionView.swift */,
 				D6815DBA22EE1F1400E71251 /* FeedCollectionViewManager.swift */,
 				D6579556239C8B4000A01338 /* FeedCoordinator.swift */,
@@ -1669,7 +1666,6 @@
 				D68483FF22CD0A1A00362AC3 /* TableView.swift in Sources */,
 				D67896B622FF86AB0059BA75 /* FeedViewController+Extensions.swift in Sources */,
 				D6AF0301220154E3002D5C75 /* ChannelManager.swift in Sources */,
-				D642736422C9132A0088256B /* EmptyFeedView.swift in Sources */,
 				D64C6A99232D6C0200DB7257 /* TypingBubbleView.swift in Sources */,
 				D61EC0C021D3071400204BEE /* AppDelegate.swift in Sources */,
 				D646DB4022CFCFDB0055CC7C /* Future+Extensions.swift in Sources */,

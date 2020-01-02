@@ -11,7 +11,8 @@ import Foundation
 class FeedNotificationPermissionsView: View {
 
     let textView = FeedTextView()
-    let button = Button()
+    let button = LoadingButton()
+    var didGivePermission: CompletionOptional = nil
 
     override func initializeSubviews() {
         super.initializeSubviews()
@@ -20,7 +21,9 @@ class FeedNotificationPermissionsView: View {
         self.addSubview(self.button)
         self.textView.set(localizedText: "Notifications are only sent for important messages and daily routine remiders. Nothing else.")
         self.button.set(style: .rounded(color: .blue, text: "OK"))
-        self.button.isEnabled = true
+        self.button.onTap { [unowned self] (tap) in
+            self.handleNotificationPermissions()
+        }
     }
 
     override func layoutSubviews() {
@@ -34,6 +37,20 @@ class FeedNotificationPermissionsView: View {
         self.button.centerOnX()
         self.button.bottom = self.height - Theme.contentOffset
         self.button.roundCorners()
+    }
+
+    private func handleNotificationPermissions() {
+        self.button.isLoading = true
+        UserNotificationManager.shared.register(application: UIApplication.shared) { (success, error) in
+            self.button.isLoading = false
+            if success {
+                self.didGivePermission?()
+            } else if let settingsUrl = URL(string: UIApplication.openSettingsURLString) {
+                UIApplication.shared.open(settingsUrl, completionHandler: { (success) in
+                    print("Settings opened: \(success)") // Prints true
+                })
+            }
+        }
     }
 }
 
