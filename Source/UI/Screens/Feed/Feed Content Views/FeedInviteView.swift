@@ -20,7 +20,7 @@ class FeedInviteView: View {
         self.addSubview(self.button)
         self.textView.set(localizedText: "INVITES COMING SOON")
         self.button.set(style: .rounded(color: .blue, text: "SEND"))
-        self.button.isEnabled = false
+        self.button.isEnabled = true
     }
 
     override func layoutSubviews() {

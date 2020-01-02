@@ -54,6 +54,9 @@ extension FeedCollectionViewManager: KolodaViewDataSource {
         feedView.didSelect = { [unowned self] in
             self.didSelect(item)
         }
+        feedView.didComplete = { 
+            koloda.swipe(.right)
+        }
         return feedView
     }
 }
@@ -80,5 +83,9 @@ extension FeedCollectionViewManager: KolodaViewDelegate {
 
     func koloda(_ koloda: KolodaView, viewForCardOverlayAt index: Int) -> OverlayView? {
         return nil
+    }
+
+    func kolodaShouldTransparentizeNextCard(_ koloda: KolodaView) -> Bool {
+        return false
     }
 }

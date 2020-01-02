@@ -58,6 +58,9 @@ class FeedView: View {
             }
         case .inviteAsk:
             self.container.addSubview(self.needInvitesView)
+            self.needInvitesView.button.onTap { [unowned self] (tap) in
+                self.didComplete?()
+            }
         case .rountine:
             self.container.addSubview(self.routineView)
             self.routineView.button.onTap { [unowned self] (tap) in
