@@ -37,11 +37,13 @@ class RoutineInputViewController: ViewController {
             }
         }
 
-        if let routine = User.current()?.routine {
-            self.updateHump(with: routine.timeComponents)
-        } else {
-            self.setDefault()
-        }
+        User.current()?.routine?.fetchIfNeededInBackground(block: { (object, error) in
+            if let routine = object as? Routine {
+                self.updateHump(with: routine.timeComponents)
+            } else {
+                self.setDefault()
+            }
+        })
 
         self.content.minusButton.onTap { [unowned self] (tap) in
 
