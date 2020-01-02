@@ -17,7 +17,7 @@ class RoutineInputContentView: View {
     let plusButton = Button()
     let minusButton = Button()
     let timeHump = TimeHumpView()
-    let setRoutineButton = Button()
+    let setRoutineButton = LoadingButton()
 
     override func initializeSubviews() {
         super.initializeSubviews()
@@ -39,7 +39,7 @@ class RoutineInputContentView: View {
         self.minusButton.tintColor = Color.lightPurple.color.withAlphaComponent(0.6)
         
         self.addSubview(self.setRoutineButton)
-        self.setRoutineButton.set(style: .rounded(color: .blue, text: "SET"),
+        self.setRoutineButton.set(style: .rounded(color: .purple, text: "SET"),
                                   shouldRound: true,
                                   casingType: StringCasing.uppercase)
 
@@ -49,8 +49,8 @@ class RoutineInputContentView: View {
     override func layoutSubviews() {
         super.layoutSubviews()
 
-        self.setRoutineButton.size = CGSize(width: self.width * 0.9, height: 40)
-        self.setRoutineButton.bottom = self.height
+        self.setRoutineButton.size = CGSize(width: 200, height: 40)
+        self.setRoutineButton.bottom = self.height - 20
         self.setRoutineButton.centerOnX()
         self.setRoutineButton.makeRound()
 

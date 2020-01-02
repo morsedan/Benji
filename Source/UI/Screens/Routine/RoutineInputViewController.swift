@@ -8,6 +8,7 @@
 
 import Foundation
 import UserNotifications
+import TMROLocalization
 
 class RoutineInputViewController: ViewController {
 
@@ -33,7 +34,6 @@ class RoutineInputViewController: ViewController {
             if let date = calendar.date(from: components) {
                 self.selectedDate = date
                 self.content.set(date: date)
-                self.selectionFeedback.impactOccurred()
             }
         }
 
@@ -63,6 +63,7 @@ class RoutineInputViewController: ViewController {
         }
 
         self.content.setRoutineButton.onTap { [unowned self] (tap) in
+            self.selectionFeedback.impactOccurred()
             let routine = Routine()
             routine.create(with: self.selectedDate)
             routine.saveObject()
@@ -70,10 +71,24 @@ class RoutineInputViewController: ViewController {
                 .observe { (result) in
                     switch result {
                     case .success(_):
-                        break
+                        self.animateButton(with: .blue, text: "Routine Updated!")
                     case .failure(let error):
                         print(error)
+                        self.animateButton(with: .red, text: "Error")
                     }
+            }
+        }
+    }
+
+    private func animateButton(with color: Color, text: Localized) {
+        UIView.animate(withDuration: Theme.animationDuration, animations: {
+            self.content.setRoutineButton.transform = CGAffineTransform(scaleX: 0.95, y: 0.95)
+            self.content.setRoutineButton.alpha = 0
+        }) { (completed) in
+            self.content.setRoutineButton.set(style: .normal(color: color, text: text))
+            UIView.animate(withDuration: Theme.animationDuration) {
+                self.content.setRoutineButton.transform = .identity
+                self.content.setRoutineButton.alpha = 1
             }
         }
     }
@@ -87,11 +102,9 @@ class RoutineInputViewController: ViewController {
     }
 
     private func updateHump(with components: DateComponents) {
-
         var totalSeconds = CGFloat(components.second ?? 0)
         totalSeconds += CGFloat(components.minute ?? 0) * 60
         totalSeconds += CGFloat(components.hour ?? 0) * 3600
         self.content.timeHump.percentage.value = totalSeconds/86400
-        self.selectionFeedback.impactOccurred()
     }
 }

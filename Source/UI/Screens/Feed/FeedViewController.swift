@@ -36,7 +36,6 @@ class FeedViewController: ViewController {
             self.messageLabel.set(text: text, alignment: .center)
         }
     }
-    var showItems: Bool = true
 
     override func initializeViews() {
         super.initializeViews()
@@ -47,13 +46,11 @@ class FeedViewController: ViewController {
         self.view.addSubview(self.collectionView)
 
         self.countDownView.didExpire = { [unowned self] in
-            self.showFeed()
+            self.subscribeToUpdates()
         }
 
         self.collectionView.dataSource = self.manager
         self.collectionView.delegate = self.manager
-
-        self.subscribeToUpdates()
     }
 
     override func viewDidLayoutSubviews() {
@@ -70,8 +67,8 @@ class FeedViewController: ViewController {
         self.collectionView.expandToSuperviewSize()
     }
 
-    override func viewDidLoad() {
-        super.viewDidLoad()
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
 
         User.current()?.routine?.fetchInBackground(block: { (object, error) in
             runMain {
@@ -104,7 +101,7 @@ class FeedViewController: ViewController {
 
             //If date is less than an hour ahead of current date, show feed
         } else if now.isBetween(triggerDate, and: anHourAfter) {
-            self.showFeed()
+            self.subscribeToUpdates()
 
         //If date is 1 hour or more away, show "see you at (date)"
         } else if now.isBetween(Date().beginningOfDay, and: anHourUntil) {
@@ -145,8 +142,6 @@ class FeedViewController: ViewController {
 
     func showFeed() {
         runMain {
-            self.showItems = true
-
             UIView.animate(withDuration: Theme.animationDuration, delay: Theme.animationDuration, options: [], animations: {
                 self.countDownView.alpha = 0
                 self.countDownView.transform = CGAffineTransform(scaleX: 0.9, y: 0.9)
