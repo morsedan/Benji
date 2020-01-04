@@ -14,7 +14,7 @@ class SuggestionCell: UICollectionViewCell, ManageableCell {
     var backgroundStyle: UIKeyboardAppearance = .light
     var onLongPress: (() -> Void)?
 
-    let label = RegularSemiBoldLabel()
+    let label = RegularBoldLabel()
 
     func configure(with item: SuggestionType?) {
         guard let suggestion = item else { return }

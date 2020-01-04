@@ -15,7 +15,7 @@ class DisplayThinLabel: Label {
              color: Color = .white,
              alignment: NSTextAlignment = .left) {
         let attributed = AttributedString(text,
-                                          fontType: .display2,
+                                          fontType: .displayThin,
                                           color: color)
 
         self.set(attributed: attributed,

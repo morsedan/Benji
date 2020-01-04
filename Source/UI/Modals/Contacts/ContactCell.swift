@@ -16,7 +16,7 @@ class ContactCell: UICollectionViewCell, ManageableCell {
 
 
     let avatarView = AvatarView()
-    let nameLabel = NameLabel()
+    let nameLabel = RegularLabel()
 
     func configure(with item: CNContact?) {
         guard let contact = item else { return }

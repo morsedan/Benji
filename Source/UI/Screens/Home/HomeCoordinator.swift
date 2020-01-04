@@ -25,7 +25,7 @@ class HomeCoordinator: PresentableCoordinator<Void> {
         self.router.navController.setNavigationBarHidden(false, animated: false)
         self.router.navController.navigationBar.prefersLargeTitles = true
 
-        let attributed = AttributedString("", fontType: .display1, color: .white)
+        let attributed = AttributedString("", fontType: .display, color: .white)
         self.router.navController.navigationBar.largeTitleTextAttributes = attributed.attributes
 
         self.homeVC.currentContent.producer.on { [unowned self] (contentType) in

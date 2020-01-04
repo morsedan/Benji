@@ -20,7 +20,7 @@ enum ToastState {
 
 class ToastView: UIView {
 
-    @IBOutlet weak var titleLabel: SmallSemiBoldLabel!
+    @IBOutlet weak var titleLabel: SmallBoldLabel!
     @IBOutlet weak var displayableImageView: DisplayableImageView!
     @IBOutlet weak var effectView: UIVisualEffectView!
 

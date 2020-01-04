@@ -12,7 +12,7 @@ class RoutineInputContentView: View {
 
     let timeLabel = RoutineTimeLabel()
     let timeOfDayLabel = RoutineTimeOfDayLabel()
-    let everyDayLabel = XXSmallSemiBoldLabel()
+    let everyDayLabel = SmallBoldLabel()
 
     let plusButton = Button()
     let minusButton = Button()

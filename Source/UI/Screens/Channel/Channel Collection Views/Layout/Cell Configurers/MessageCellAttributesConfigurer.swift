@@ -99,7 +99,7 @@ class MessageCellAttributesConfigurer: ChannelCellAttributesConfigurer {
                                  for layout: ChannelCollectionViewFlowLayout) -> CGSize {
 
         let attributed = AttributedString(message.text,
-                                          fontType: .smallSemiBold,
+                                          fontType: .smallBold,
                                           color: .white)
 
         let attributedString = attributed.string

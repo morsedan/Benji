@@ -11,7 +11,7 @@ import TMROLocalization
 
 class TextInputAccessoryView: View {
 
-    private let label = XXSmallSemiBoldLabel()
+    private let label = SmallBoldLabel()
     private let cancelButton = CancelButton()
     private var blurView = UIVisualEffectView(effect: nil)
     private let selectionFeedback = UIImpactFeedbackGenerator(style: .light)

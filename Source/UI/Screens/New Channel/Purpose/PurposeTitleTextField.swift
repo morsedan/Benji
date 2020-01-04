@@ -18,9 +18,9 @@ class PurposeTitleTextField: TextField {
         self.returnKeyType = .done
         self.autocapitalizationType = .none
 
-        let attributed = AttributedString("", fontType: .smallSemiBold, color: .background4)
+        let attributed = AttributedString("", fontType: .smallBold, color: .background4)
         self.setPlaceholder(attributed: attributed)
-        self.setDefaultAttributes(style: StringStyle(font: .smallSemiBold, color: .white))
+        self.setDefaultAttributes(style: StringStyle(font: .smallBold, color: .white))
 
         self.setDefault()
     }

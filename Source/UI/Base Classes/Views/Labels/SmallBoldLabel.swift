@@ -9,7 +9,7 @@
 import Foundation
 import TMROLocalization
 
-class XSmallLabel: Label {
+class SmallBoldLabel: Label {
     
     func set(text: Localized,
              color: Color = .white,
@@ -18,7 +18,7 @@ class XSmallLabel: Label {
              stringCasing: StringCasing = .unchanged) {
         
         let attributed = AttributedString(text,
-                                          fontType: .xSmall,
+                                          fontType: .smallBold,
                                           color: color)
         self.set(attributed: attributed,
                  alignment: alignment,

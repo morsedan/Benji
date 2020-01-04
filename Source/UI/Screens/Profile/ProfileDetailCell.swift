@@ -10,8 +10,8 @@ import Foundation
 
 class ProfileDetailCell: UICollectionViewCell {
 
-    let titleLabel = XSmallLabel()
-    let label = SmallSemiBoldLabel()
+    let titleLabel = SmallLabel()
+    let label = SmallBoldLabel()
     let lineView = View()
     let button = Button()
 

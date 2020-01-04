@@ -8,7 +8,7 @@
 
 import Foundation
 
-class RoutineTimeOfDayLabel: XSmallLabel {
+class RoutineTimeOfDayLabel: SmallLabel {
 
     func set(date: Date) {
         let formatter = DateFormatter()

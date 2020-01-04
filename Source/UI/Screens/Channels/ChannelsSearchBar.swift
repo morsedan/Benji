@@ -36,7 +36,7 @@ class ChannelsSearchBar: UISearchBar {
 
         self.setImage(UIImage(systemName: "xmark.circle.fill"), for: .clear, state: .normal)
 
-        let styleAttributes = StringStyle(font: .regularSemiBold, color: .lightPurple).attributes
+        let styleAttributes = StringStyle(font: .regular, color: .lightPurple).attributes
         self.searchTextField.typingAttributes = styleAttributes
     }
 }

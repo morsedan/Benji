@@ -33,7 +33,7 @@ private class FeedQuoteLabel: Label {
 
     func set(text: Localized) {
         let attributed = AttributedString(text,
-                                          fontType: .italic,
+                                          fontType: .medium,
                                           color: .white)
 
         self.set(attributed: attributed,

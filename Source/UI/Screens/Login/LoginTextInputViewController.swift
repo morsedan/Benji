@@ -38,7 +38,7 @@ class LoginTextInputViewController: ViewController {
 
         self.view.set(backgroundColor: .background1)
         let attributed = AttributedString(self.textFieldTitle,
-                                          fontType: .xxSmallSemiBold,
+                                          fontType: .smallBold,
                                           color: .white)
         self.textFieldLabel.set(attributed: attributed,
                                 lineCount: 1,

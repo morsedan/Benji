@@ -11,7 +11,7 @@ import Foundation
 class SplashViewController: FullScreenViewController {
 
     let loadingIndicator = UIActivityIndicatorView(style: .large)
-    let label = RegularSemiBoldLabel()
+    let label = RegularBoldLabel()
     
     override func initializeViews() {
         super.initializeViews()

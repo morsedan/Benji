@@ -41,11 +41,11 @@ class Button: UIButton {
             localizedString = casingType.format(string: localizedString)
 
             let normalString = NSMutableAttributedString(string: localizedString)
-            normalString.addAttribute(.font, value: FontType.smallSemiBold.font)
+            normalString.addAttribute(.font, value: FontType.smallBold.font)
             normalString.addAttribute(.kern, value: CGFloat(2))
 
             let highlightedString = NSMutableAttributedString(string: localizedString)
-            highlightedString.addAttribute(.font, value: FontType.smallSemiBold.font)
+            highlightedString.addAttribute(.font, value: FontType.smallBold.font)
             highlightedString.addAttribute(.kern, value: CGFloat(2))
 
             normalString.addAttribute(.foregroundColor, value: Color.white.color)

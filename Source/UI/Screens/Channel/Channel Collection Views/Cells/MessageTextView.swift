@@ -22,7 +22,7 @@ class MessageTextView: TextView {
     func set(text: Localized, messageContext: MessageContext) {
         let textColor: Color = messageContext == .status ? .background2 : .white
         let attributedString = AttributedString(text,
-                                                fontType: .smallSemiBold,
+                                                fontType: .smallBold,
                                                 color: textColor)
 
         self.set(attributed: attributedString,

@@ -19,7 +19,7 @@ class LoginProfilePhotoViewController: ViewController {
     private let cameraVC = CameraViewController()
     private let avatarView = AvatarView()
     private let cameraButton = CameraButton()
-    private let label = RegularSemiBoldLabel()
+    private let label = RegularBoldLabel()
 
     unowned let delegate: LoginProfilePhotoViewControllerDelegate
 

@@ -13,7 +13,7 @@ class OrbCell: CollectionViewManagerCell, ManageableCell {
 
     typealias ItemType = OrbCellItem
 
-    let label = RegularSemiBoldLabel()
+    let label = RegularBoldLabel()
     let imageView = AvatarView()
     let selectionFeedback = UIImpactFeedbackGenerator()
 

@@ -106,7 +106,7 @@ class HomeViewController: FullScreenViewController {
         self.searchController.searchBar.setImage(UIImage(systemName: "xmark.circle.fill"), for: .clear, state: .normal)
         self.searchController.obscuresBackgroundDuringPresentation = false
         self.searchController.definesPresentationContext = true 
-        let styleAttributes = StringStyle(font: .regularSemiBold, color: .lightPurple).attributes
+        let styleAttributes = StringStyle(font: .regularBold, color: .lightPurple).attributes
         self.navigationItem.searchController?.searchBar.searchTextField.typingAttributes = styleAttributes
 
         self.navigationItem.searchController = searchController
