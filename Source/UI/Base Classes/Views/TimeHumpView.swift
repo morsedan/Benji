@@ -23,7 +23,7 @@ class TimeHumpView: View {
 
         self.set(backgroundColor: .clear)
 
-        self.sliderView.set(backgroundColor: .background1)
+        self.sliderView.set(backgroundColor: .background2)
         self.sliderView.size = CGSize(width: 26, height: 26)
         self.sliderView.layer.borderColor = Color.lightPurple.color.cgColor
         self.sliderView.layer.borderWidth = 2

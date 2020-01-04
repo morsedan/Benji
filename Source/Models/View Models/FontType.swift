@@ -10,45 +10,33 @@ import Foundation
 
 enum FontType {
 
-    case display1
-    case display2
+    case display
+    case displayThin
     case medium
-    case italic
+    case mediumBold
     case regular
-    case regularSemiBold
     case regularBold
     case small
-    case smallSemiBold
-    case xSmall
-    case xxSmall
-    case xxSmallSemiBold
+    case smallBold
 
     var font: UIFont {
         switch self {
-        case .display1:
-            return UIFont.systemFont(ofSize: self.size, weight: .black)
-        case .display2:
-            return UIFont.systemFont(ofSize: self.size, weight: .black)
+        case .display:
+            return UIFont.systemFont(ofSize: self.size, weight: .heavy)
+        case .displayThin:
+            return UIFont.systemFont(ofSize: self.size, weight: .ultraLight)
         case .medium:
-            return UIFont.systemFont(ofSize: self.size, weight: .medium)
-        case .italic:
-            return UIFont.italicSystemFont(ofSize: self.size)
+            return UIFont.systemFont(ofSize: self.size, weight: .regular)
+        case .mediumBold:
+            return UIFont.systemFont(ofSize: self.size, weight: .bold)
         case .regular:
             return UIFont.systemFont(ofSize: self.size, weight: .regular)
-        case .regularSemiBold:
-            return UIFont.systemFont(ofSize: self.size, weight: .semibold)
         case .regularBold:
             return UIFont.systemFont(ofSize: self.size, weight: .bold)
         case .small:
-            return UIFont.systemFont(ofSize: self.size, weight: .light)
-        case .smallSemiBold:
-            return UIFont.systemFont(ofSize: self.size, weight: .semibold)
-        case .xSmall:
-            return UIFont.systemFont(ofSize: self.size, weight: .thin)
-        case .xxSmall:
-             return UIFont.systemFont(ofSize: self.size, weight: .thin)
-        case .xxSmallSemiBold:
-             return UIFont.systemFont(ofSize: self.size, weight: .semibold)
+            return UIFont.systemFont(ofSize: self.size, weight: .regular)
+        case .smallBold:
+            return UIFont.systemFont(ofSize: self.size, weight: .bold)
         }
 
 //        guard let customFont = UIFont(name: "CustomFont-Light", size: UIFont.labelFontSize) else {
@@ -64,20 +52,16 @@ enum FontType {
 
     var size: CGFloat {
         switch self {
-        case .display1:
+        case .display:
             return 40
-        case .display2:
-            return 28
-        case .medium, .italic:
+        case .displayThin:
+            return 40
+        case .medium, .mediumBold:
+            return 24
+        case .regular, .regularBold:
             return 20
-        case .regular, .regularBold, .regularSemiBold:
-            return 19
-        case .small, .smallSemiBold:
-            return 15
-        case .xSmall:
-            return 13
-        case .xxSmall, .xxSmallSemiBold:
-            return 11
+        case .small, .smallBold:
+            return 14
         }
     }
 

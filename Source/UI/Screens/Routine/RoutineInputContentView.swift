@@ -54,7 +54,7 @@ class RoutineInputContentView: View {
         self.setRoutineButton.centerOnX()
         self.setRoutineButton.makeRound()
 
-        self.timeHump.size = CGSize(width: self.width * 0.9, height: 160)
+        self.timeHump.size = CGSize(width: self.width * 0.9, height: 140)
         self.timeHump.bottom = self.setRoutineButton.top - 100
         self.timeHump.centerOnX()
 

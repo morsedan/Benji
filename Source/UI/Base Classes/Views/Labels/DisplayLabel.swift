@@ -1,5 +1,5 @@
 //
-//  Display2Label.swift
+//  Display1Label.swift
 //  Benji
 //
 //  Created by Benji Dodgson on 7/22/19.
@@ -9,17 +9,19 @@
 import Foundation
 import TMROLocalization
 
-class Display2Label: Label {
+class DisplayLabel: Label {
 
     func set(text: Localized,
              color: Color = .white,
-             alignment: NSTextAlignment = .left) {
+             alignment: NSTextAlignment = .left,
+             stringCasing: StringCasing = .unchanged) {
+
         let attributed = AttributedString(text,
-                                          fontType: .display2,
+                                          fontType: .display,
                                           color: color)
 
         self.set(attributed: attributed,
                  alignment: alignment,
-                 stringCasing: .capitalized)
+                 stringCasing: stringCasing)
     }
 }

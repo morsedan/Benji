@@ -11,7 +11,7 @@ import Koloda
 
 class FeedOverlayView: OverlayView {
 
-    let titleLabel = Display1Label()
+    let titleLabel = DisplayLabel()
 
     override var overlayState: SwipeResultDirection?  {
         didSet {

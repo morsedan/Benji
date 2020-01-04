@@ -8,7 +8,7 @@
 
 import Foundation
 
-class RoutineTimeLabel: Display1Label {
+class RoutineTimeLabel: DisplayLabel {
 
     func set(date: Date) {
         let formatter = DateFormatter()

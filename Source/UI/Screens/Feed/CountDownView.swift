@@ -70,7 +70,7 @@ class CountDownView: View {
     }
 }
 
-private class ComponentLabel: Display2Label {
+private class ComponentLabel: DisplayThinLabel {
 
     func set(value: String) {
         self.set(text: value, color: .white, alignment: .center)

@@ -13,7 +13,7 @@ class NavigationBarViewController: ViewController {
 
     private(set) var backButton = Button()
     private(set) var titleLabel = MediumLabel()
-    private(set) var descriptionLabel = XSmallLabel()
+    private(set) var descriptionLabel = RegularSemiBoldLabel()
     /// Place all views under the lineView 
     private(set) var lineView = View()
     let scrollView = UIScrollView()

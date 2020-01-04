@@ -12,7 +12,7 @@ class NavigationBarView: View {
 
     static let margin: CGFloat = 14
 
-    private(set) var titleLabel = Display2Label()
+    private(set) var titleLabel = DisplayThinLabel()
 
     let leftContainer = UIView()
     private(set) var leftItem: UIView?
