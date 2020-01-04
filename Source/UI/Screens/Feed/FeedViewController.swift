@@ -64,26 +64,17 @@ class FeedViewController: ViewController {
 
     private func loadFeed() {
 
-        if let routine = User.current()?.routine {
-            if routine.isDataAvailable {
-                self.determineMessage(with: routine)
-            } else {
-                User.current()?.routine?.fetchInBackground(block: { (object, error) in
-                    runMain {
-                        if let routine = object as? Routine {
-                            self.items = []
-                            self.determineMessage(with: routine)
-                        } else {
-                            let items: [FeedType] = [.rountine]
-                            self.manager.set(items: items)
-                        }
-                    }
-                })
-            }
-        } else if self.items.count == 0 {
-            let items: [FeedType] = [.rountine]
-            self.manager.set(items: items)
-        }
+        User.current()?.getRoutine()
+            .observe(with: { (result) in
+                switch result {
+                case .success(let routine):
+                    self.items = []
+                    self.determineMessage(with: routine)
+                case .failure(_):
+                    let items: [FeedType] = [.rountine]
+                    self.manager.set(items: items)
+                }
+            })
     }
 
     override func viewDidLayoutSubviews() {
@@ -105,6 +96,8 @@ class FeedViewController: ViewController {
             self.currentTriggerDate != triggerDate,
             let anHourAfter = triggerDate.add(component: .hour, amount: 1),
             let anHourUntil = triggerDate.subtract(component: .hour, amount: 1) else { return }
+
+        self.items = []
 
         //Set the current trigger date so we dont reload for duplicates
         UserDefaults.standard.set(triggerDate, forKey: Routine.currentRoutineKey)

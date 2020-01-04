@@ -37,10 +37,12 @@ class RoutineInputViewController: ViewController {
             }
         }
 
-        User.current()?.routine?.fetchIfNeededInBackground(block: { (object, error) in
-            if let routine = object as? Routine {
+        User.current()?.getRoutine()
+        .observe(with: { (result) in
+            switch result {
+            case .success(let routine):
                 self.updateHump(with: routine.timeComponents)
-            } else {
+            case .failure(_):
                 self.setDefault()
             }
         })

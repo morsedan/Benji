@@ -22,6 +22,30 @@ extension User: Avatar {
 
 extension User {
 
+    func getRoutine() -> Future<Routine> {
+        let promise = Promise<Routine>()
+
+        if let routine = self.routine {
+            if routine.isDataAvailable {
+                promise.resolve(with: routine)
+            } else {
+                self.routine?.fetchInBackground(block: { (object, error) in
+                    runMain {
+                        if let routine = object as? Routine {
+                            promise.resolve(with: routine)
+                        } else if let error = error {
+                            promise.reject(with: error)
+                        }
+                    }
+                })
+            }
+        } else {
+            promise.reject(with: ClientError.generic)
+        }
+
+        return promise
+    }
+
     func createHandle() {
         guard let current = User.current(),
             !current.givenName.isEmpty,
