@@ -50,7 +50,7 @@ class LoginCodeViewController: LoginTextInputViewController {
         tf?.activityIndicator.startAnimating()
         //Temp
         User.current()?.phoneNumber = self.phoneNumber.numberString.formatPhoneNumber()
-        User.current()?.saveObject()
+        User.current()?.saveEventually()
             .observe { (result) in
                 switch result {
                 case .success(let user):

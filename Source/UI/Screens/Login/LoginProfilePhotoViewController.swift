@@ -111,15 +111,10 @@ class LoginProfilePhotoViewController: ViewController {
         let largeImageFile = PFFileObject(name:"image.png", data: imageData)
         current.largeImage = largeImageFile
 
-        current.saveObject()
-            .ignoreUserInteractionEventsUntilDone(for: self.view)
-            .observe { (result) in
-                switch result {
-                case .success(_):
-                    self.delegate.loginProfilePhotoViewControllerDidUpdatePhoto(self)
-                case .failure(let error):
-                    print(error)
-                }
+        current.saveInBackground { (success, error) in
+            if success {
+                self.delegate.loginProfilePhotoViewControllerDidUpdatePhoto(self)
+            }
         }
     }
 

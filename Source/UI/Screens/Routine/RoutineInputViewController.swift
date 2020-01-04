@@ -68,7 +68,7 @@ class RoutineInputViewController: ViewController {
             self.selectionFeedback.impactOccurred()
             let routine = Routine()
             routine.create(with: self.selectedDate)
-            routine.saveObject()
+            routine.saveEventually()
             .withResultToast(with: "Routine saved")
                 .observe { (result) in
                     switch result {

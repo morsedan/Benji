@@ -73,7 +73,7 @@ extension LoginCoordinator: LoginProfilePhotoViewControllerDelegate {
                             case .success(let reservation):
                                 user.reservation = reservation
                                 user.createHandle()
-                                user.saveObject()
+                                user.save()
                                     .observe { (userResult) in
                                         switch userResult {
                                         case .success(_):

@@ -97,18 +97,20 @@ extension Routine: Objectable {
         return self.relation(forKey: key.rawValue) as? PFRelation
     }
 
-    func saveObject() -> Future<Routine> {
+    func saveEventually() -> Future<Routine> {
         let promise = Promise<Routine>()
 
         User.current()?.routine = self
-        User.current()?.saveInBackground { (success, error) in
-            if let error = error {
-                promise.reject(with: error)
-            } else {
-                RoutineManager.shared.scheduleNotification(for: self)
-                promise.resolve(with: self)
-            }
-        }
+        User.current()?.saveEventually()
+            .observe(with: { (result) in
+                switch result {
+                case .success(_):
+                    RoutineManager.shared.scheduleNotification(for: self)
+                    promise.resolve(with: self)
+                case .failure(let error):
+                    promise.reject(with: error)
+                }
+            })
 
         return promise
     }

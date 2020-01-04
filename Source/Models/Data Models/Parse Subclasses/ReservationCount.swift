@@ -54,18 +54,4 @@ extension ReservationCount: Objectable {
     func getRelationalObject<PFRelation>(for key: ReservationCountKeys) -> PFRelation? {
         return self.relation(forKey: key.rawValue) as? PFRelation
     }
-
-    func saveObject() -> Future<ReservationCount> {
-        let promise = Promise<ReservationCount>()
-
-        self.saveInBackground { (success, error) in
-            if let error = error {
-                promise.reject(with: error)
-            } else {
-                promise.resolve(with: self)
-            }
-        }
-
-        return promise
-    }
 }

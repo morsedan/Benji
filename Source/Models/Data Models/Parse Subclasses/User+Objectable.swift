@@ -12,25 +12,11 @@ import Parse
 extension User: Objectable {
     typealias KeyType = UserKey
 
-    func saveObject() -> Future<User> {
-        let promise = Promise<User>()
-
-        self.saveInBackground { (success, error) in
-            if let error = error {
-                promise.reject(with: error)
-            } else {
-                promise.resolve(with: self)
-            }
-        }
-
-        return promise
-    }
-
     static func cachedQuery(for objectID: String) -> Future<User> {
         let promise = Promise<User>()
 
+        // update to use pin
         if let query = self.query() {
-            query.cachePolicy = .cacheThenNetwork
             query.whereKey(ObjectKey.objectId.rawValue, equalTo: objectID)
             query.getFirstObjectInBackground { (object, error) in
                 if let obj = object as? User {
@@ -49,8 +35,8 @@ extension User: Objectable {
     static func cachedArrayQuery(with identifiers: [String]) -> Future<[User]> {
         let promise = Promise<[User]>()
 
+        //Udpate to use pin
         if let query = self.query() {
-            query.cachePolicy = .cacheThenNetwork
             query.whereKey(ObjectKey.objectId.rawValue, containedIn: identifiers)
             query.findObjectsInBackground { (objects, error) in
                 if let objs = objects as? [User] {
@@ -71,8 +57,8 @@ extension User: Objectable {
         
         let promise = Promise<[User]>()
 
+        //Update to use pin
         if let query = self.query() {
-            query.cachePolicy = cachePolicy
             query.whereKey(ObjectKey.objectId.rawValue, notEqualTo: identifier)
             query.findObjectsInBackground { (objects, error) in
                 if let objs = objects as? [User] {

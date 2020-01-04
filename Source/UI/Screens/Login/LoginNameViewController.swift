@@ -51,7 +51,7 @@ class LoginNameViewController: LoginTextInputViewController {
         tf?.activityIndicator.startAnimating()
 
         User.current()?.formatName(from: text)
-        User.current()?.saveObject()
+        User.current()?.saveEventually()
             .observe { (result) in
                 tf?.activityIndicator.stopAnimating()
                 self.delegate.loginNameViewControllerDidComplete(self)

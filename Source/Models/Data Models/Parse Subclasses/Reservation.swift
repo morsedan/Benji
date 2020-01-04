@@ -42,7 +42,7 @@ final class Reservation: PFObject, PFSubclassing {
                         let cap = current["cap"] as! NSNumber
                         let position: Double = Double(truncating: count) / Double(truncating: cap)
                         reservation.position = position.rounded(by: cap.intValue)
-                        reservation.saveObject()
+                        reservation.saveEventually()
                             .observe { (result) in
                                 switch result {
                                 case .success(let updatedReservation):
@@ -78,20 +78,6 @@ extension Reservation: Objectable {
 
     func getRelationalObject<PFRelation>(for key: ReservationKeys) -> PFRelation? {
         return self.relation(forKey: key.rawValue) as? PFRelation
-    }
-
-    func saveObject() -> Future<Reservation> {
-        let promise = Promise<Reservation>()
-
-        self.saveInBackground { (success, error) in
-            if let error = error {
-                promise.reject(with: error)
-            } else {
-                promise.resolve(with: self)
-            }
-        }
-
-        return promise
     }
 }
 

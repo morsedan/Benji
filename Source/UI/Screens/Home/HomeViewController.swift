@@ -110,7 +110,7 @@ class HomeViewController: FullScreenViewController {
         self.navigationItem.searchController?.searchBar.searchTextField.typingAttributes = styleAttributes
 
         self.navigationItem.searchController = searchController
-        self.navigationItem.hidesSearchBarWhenScrolling = false
+        self.navigationItem.hidesSearchBarWhenScrolling = true
         self.navigationItem.searchController?.searchBar.isHidden = true
 
         self.channelsVC.didDismissSearch = { [unowned self] in
@@ -139,7 +139,7 @@ class HomeViewController: FullScreenViewController {
         self.addButton.top = 0
 
         self.centerContainer.size = CGSize(width: self.contentContainer.width,
-                                           height: self.contentContainer.height - self.tabContainerView.height)
+                                           height: self.contentContainer.height - 70)
         self.centerContainer.bottom = self.tabContainerView.top
         self.centerContainer.centerOnX()
 

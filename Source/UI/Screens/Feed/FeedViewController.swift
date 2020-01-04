@@ -36,7 +36,6 @@ class FeedViewController: ViewController {
             self.messageLabel.set(text: text, alignment: .center)
         }
     }
-    var currentRoutine: Routine?
 
     override func initializeViews() {
         super.initializeViews()
@@ -54,6 +53,22 @@ class FeedViewController: ViewController {
         self.collectionView.delegate = self.manager
     }
 
+    override func viewDidLoad() {
+        super.viewDidLoad()
+
+        User.current()?.routine?.fetchIfNeededInBackground(block: { (object, error) in
+            runMain {
+                if let routine = object as? Routine {
+                    self.items = []
+                    self.determineMessage(with: routine)
+                } else {
+                    let items: [FeedType] = [.rountine]
+                    self.manager.set(items: items)
+                }
+            }
+        })
+    }
+
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
 
@@ -66,23 +81,6 @@ class FeedViewController: ViewController {
         self.countDownView.centerOnX()
 
         self.collectionView.expandToSuperviewSize()
-    }
-
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-
-        User.current()?.routine?.fetchInBackground(block: { (object, error) in
-            runMain {
-                if let routine = object as? Routine, routine != self.currentRoutine {
-                    self.currentRoutine = routine
-                    self.items = []
-                    self.determineMessage(with: routine)
-                } else {
-                    let items: [FeedType] = [.rountine]
-                    self.manager.set(items: items)
-                }
-            }
-        })
     }
 
     private func determineMessage(with routine: Routine) {
