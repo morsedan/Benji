@@ -33,6 +33,7 @@ class FeedCollectionViewManager: NSObject {
     func set(items: [FeedType]) {
         self.items = items
         self.collectionView.reloadData()
+        self.collectionView.layoutNow()
     }
 }
 

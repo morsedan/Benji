@@ -16,6 +16,8 @@ enum RoutineKey: String {
 
 final class Routine: PFObject, PFSubclassing  {
 
+    static let currentRoutineKey = "currentRoutineKey"
+
     static func parseClassName() -> String {
         return String(describing: self)
     }

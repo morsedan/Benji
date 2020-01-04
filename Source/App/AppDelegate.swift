@@ -55,5 +55,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         let token = tokenParts.joined()
         return token
     }
+
+    func applicationWillTerminate(_ application: UIApplication) {
+        UserDefaults.standard.set(nil, forKey: Routine.currentRoutineKey)
+    }
 }
 

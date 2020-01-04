@@ -36,6 +36,9 @@ class FeedViewController: ViewController {
             self.messageLabel.set(text: text, alignment: .center)
         }
     }
+    private var currentTriggerDate: Date? {
+        return UserDefaults.standard.value(forKey: Routine.currentRoutineKey) as? Date
+    }
 
     override func initializeViews() {
         super.initializeViews()
@@ -53,20 +56,34 @@ class FeedViewController: ViewController {
         self.collectionView.delegate = self.manager
     }
 
-    override func viewDidLoad() {
-        super.viewDidLoad()
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
 
-        User.current()?.routine?.fetchIfNeededInBackground(block: { (object, error) in
-            runMain {
-                if let routine = object as? Routine {
-                    self.items = []
-                    self.determineMessage(with: routine)
-                } else {
-                    let items: [FeedType] = [.rountine]
-                    self.manager.set(items: items)
-                }
+        self.loadFeed()
+    }
+
+    private func loadFeed() {
+
+        if let routine = User.current()?.routine {
+            if routine.isDataAvailable {
+                self.determineMessage(with: routine)
+            } else {
+                User.current()?.routine?.fetchInBackground(block: { (object, error) in
+                    runMain {
+                        if let routine = object as? Routine {
+                            self.items = []
+                            self.determineMessage(with: routine)
+                        } else {
+                            let items: [FeedType] = [.rountine]
+                            self.manager.set(items: items)
+                        }
+                    }
+                })
             }
-        })
+        } else if self.items.count == 0 {
+            let items: [FeedType] = [.rountine]
+            self.manager.set(items: items)
+        }
     }
 
     override func viewDidLayoutSubviews() {
@@ -85,8 +102,12 @@ class FeedViewController: ViewController {
 
     private func determineMessage(with routine: Routine) {
         guard let triggerDate = routine.date,
+            self.currentTriggerDate != triggerDate,
             let anHourAfter = triggerDate.add(component: .hour, amount: 1),
             let anHourUntil = triggerDate.subtract(component: .hour, amount: 1) else { return }
+
+        //Set the current trigger date so we dont reload for duplicates
+        UserDefaults.standard.set(triggerDate, forKey: Routine.currentRoutineKey)
 
         let now = Date()
 
