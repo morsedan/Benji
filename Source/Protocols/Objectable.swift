@@ -9,6 +9,17 @@
 import Foundation
 import Parse
 
+enum ContainerName {
+    case channel(identifier: String)
+
+    var name: String {
+        switch self {
+        case .channel(let identifier):
+            return "channel\(identifier)"
+        }
+    }
+}
+
 protocol Objectable: class {
     associatedtype KeyType
 
@@ -19,8 +30,7 @@ protocol Objectable: class {
     func save() -> Future<Self>
 
     static func localThenNetworkQuery(for objectId: String) -> Future<Self>
-    static func cachedArrayQuery(with identifiers: [String]) -> Future<[Self]>
-    static func cachedArrayQuery(notEqualTo identifier: String) -> Future<[Self]>
+    static func localThenNetworkArrayQuery(where identifiers: [String], isEqual: Bool, name: ContainerName) -> Future<[Self]>
 }
 
 extension Objectable {
@@ -30,10 +40,6 @@ extension Objectable {
     }
 
     static func cachedArrayQuery(with identifiers: [String]) -> Future<[Self]> {
-        return Promise<[Self]>()
-    }
-
-    static func cachedArrayQuery(notEqualTo identifier: String) -> Future<[Self]> {
         return Promise<[Self]>()
     }
 }
@@ -67,51 +73,80 @@ extension Objectable where Self: PFObject {
     }
 
     static func localThenNetworkQuery(for objectId: String) -> Future<Self> {
-        let objectTask = BFTaskCompletionSource<Self>()
+        let promise = Promise<Self>()
 
         if let query = self.query() {
             query.fromPin(withName: objectId)
             query.getFirstObjectInBackground()
                 .continueWith { (task) -> Any? in
                 if let object = task.result as? Self {
-                    objectTask.set(result: object)
+                    promise.resolve(with: object)
                 } else if let nonCacheQuery = self.query() {
                     nonCacheQuery.whereKey(ObjectKey.objectId.rawValue, equalTo: objectId)
                     nonCacheQuery.getFirstObjectInBackground { (object, error) in
                         if let nonCachedObject = object as? Self, let identifier = nonCachedObject.objectId {
                             nonCachedObject.pinInBackground(withName: identifier) { (success, error) in
                                 if let error = error {
-                                    objectTask.set(error: error)
+                                    promise.reject(with: error)
                                 } else {
-                                    objectTask.set(result: nonCachedObject)
+                                    promise.resolve(with: nonCachedObject)
                                 }
                             }
                         } else if let error = error {
-                            objectTask.set(error: error)
+                            promise.reject(with: error)
                         } else {
-                            objectTask.set(error: ClientError.generic)
+                            promise.reject(with: ClientError.generic)
                         }
                     }
                 } else {
-                    return objectTask.set(error: ClientError.generic)
+                    promise.reject(with: ClientError.generic)
                 }
-                return objectTask
+
+                return nil
             }
         }
 
-        let promise = Promise<Self>()
-        objectTask.task
-            .continueWith { (task) -> Any? in
-                if let object = task.result {
-                    promise.resolve(with: object)
-                } else if let error = task.error {
-                    promise.reject(with: error)
+        return promise
+    }
+
+    static func localThenNetworkArrayQuery(where identifiers: [String],
+                                           isEqual: Bool,
+                                           name: ContainerName) -> Future<[Self]> {
+
+
+        let promise = Promise<[Self]>()
+
+        if let query = self.query() {
+            query.fromPin(withName: name.name)
+            query.findObjectsInBackground()
+                .continueWith { (task) -> Any? in
+                if let objects = task.result as? [Self], !objects.isEmpty {
+                    promise.resolve(with: objects)
+                } else if let nonCacheQuery = self.query() {
+                    if isEqual {
+                        nonCacheQuery.whereKey(ObjectKey.objectId.rawValue, containedIn: identifiers)
+                    } else {
+                        nonCacheQuery.whereKey(ObjectKey.objectId.rawValue, notContainedIn: identifiers)
+                    }
+                    nonCacheQuery.findObjectsInBackground { (objects, error) in
+                        PFObject.pinAll(inBackground: objects, withName: name.name) { (success, error) in
+                            if let error = error {
+                                promise.reject(with: error)
+                            } else if let objectsForType = objects as? [Self] {
+                                promise.resolve(with: objectsForType)
+                            } else {
+                                promise.reject(with: ClientError.generic)
+                            }
+                        }
+                    }
                 } else {
                     promise.reject(with: ClientError.generic)
                 }
+
                 return nil
+            }
         }
 
-        return promise
+        return promise 
     }
 }

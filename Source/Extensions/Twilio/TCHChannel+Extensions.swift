@@ -228,7 +228,9 @@ extension Future where Value == TCHChannel {
                             }
                         }
 
-                        User.cachedArrayQuery(with: identifiers)
+                        User.localThenNetworkArrayQuery(where: identifiers,
+                                                        isEqual: true, 
+                                                        name: .channel(identifier: channel.sid!))
                             .observe { (result) in
                                 switch result {
                                 case .success(let users):
@@ -238,7 +240,7 @@ extension Future where Value == TCHChannel {
                                 }
                         }
                     } else {
-                        return promise.reject(with: ClientError.generic)
+                        promise.reject(with: ClientError.generic)
                     }
                 }
             }
