@@ -26,7 +26,7 @@ class ChannelsCollectionViewManager: CollectionViewManager<ChannelCell> {
     }
 
     override func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        return CGSize(width: collectionView.width, height: 60)
+        return CGSize(width: collectionView.width, height: 80)
     }
 
     override func managerDidConfigure(cell: ChannelCell, for indexPath: IndexPath) {

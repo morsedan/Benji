@@ -95,7 +95,6 @@ class Lorem {
                                     context: self.context(),
                                     id: String(self.randomString()),
                                     timeStampAsDate: self.dates.random(),
-                                    visibilityType: .directMessage,
                                     messages: messages,
                                     uniqueName: self.channelName())
 

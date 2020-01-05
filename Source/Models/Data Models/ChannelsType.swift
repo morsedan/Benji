@@ -8,11 +8,7 @@
 
 import Foundation
 import TwilioChatClient
-
-enum ChannelVisibilityType: String {
-    case directMessage = "@"
-    case group = "#"
-}
+import TMROLocalization
 
 enum ChannelType: ManageableCellItem {
 
@@ -34,6 +30,15 @@ enum ChannelType: ManageableCellItem {
             return channel.displayName
         case .channel(let channel):
             return String(optional: channel.friendlyName)
+        }
+    }
+
+    var purpose: String {
+        switch self {
+        case .system(let channel):
+            return localized(channel.context.text)
+        case .channel(let channel):
+            return String(optional: channel.channelDescription)
         }
     }
 

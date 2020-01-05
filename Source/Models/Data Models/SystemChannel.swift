@@ -14,12 +14,11 @@ struct SystemChannel: Diffable, Hashable {
     var context: MessageContext
     var id: String
     var timeStampAsDate: Date
-    var visibilityType: ChannelVisibilityType
     var messages: [SystemMessage]
     var uniqueName: String
 
     var displayName: String {
-        return self.visibilityType.rawValue + self.uniqueName
+        return self.uniqueName
     }
 
     func diffIdentifier() -> NSObjectProtocol {

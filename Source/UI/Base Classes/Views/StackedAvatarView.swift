@@ -12,7 +12,7 @@ class StackedAvatarView: View {
 
     private var imageViews: [AvatarView] = []
     private let maxItems: Int = 3
-    var itemSize: CGSize = CGSize(width: 30, height: 38)
+    var itemSize: CGSize = CGSize(width: 44, height: 60)
     var offsetMultiplier: CGFloat = 0.5
 
     func set(items: [Avatar]) {

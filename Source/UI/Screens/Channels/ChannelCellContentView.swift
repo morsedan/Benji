@@ -11,6 +11,7 @@ import Foundation
 class ChannelCellContentView: View {
 
     private(set) var titleLabel = RegularBoldLabel()
+    private(set) var purposeLabel = SmallLabel()
     private(set) var stackedAvatarView = StackedAvatarView()
 
     override func initializeSubviews() {
@@ -18,6 +19,8 @@ class ChannelCellContentView: View {
         
         self.addSubview(self.stackedAvatarView)
         self.addSubview(self.titleLabel)
+        self.addSubview(self.purposeLabel)
+
         self.roundCorners()
         self.set(backgroundColor: .background2)
     }
@@ -44,6 +47,7 @@ class ChannelCellContentView: View {
         }
 
         self.titleLabel.set(text: type.displayName)
+        self.purposeLabel.set(text: type.purpose, color: .background4)
         self.layoutNow()
     }
 
@@ -64,12 +68,16 @@ class ChannelCellContentView: View {
     override func layoutSubviews() {
         super.layoutSubviews()
 
-        self.stackedAvatarView.height = 40
-        self.stackedAvatarView.right = self.width - 16
+        self.stackedAvatarView.setSize()
+        self.stackedAvatarView.left = Theme.contentOffset
         self.stackedAvatarView.centerOnY()
 
-        self.titleLabel.setSize(withWidth: 200)
-        self.titleLabel.left = Theme.contentOffset
-        self.titleLabel.centerOnY()
+        self.titleLabel.setSize(withWidth: self.width * 0.7)
+        self.titleLabel.left = self.stackedAvatarView.right + 10
+        self.titleLabel.top = self.stackedAvatarView.top
+
+        self.purposeLabel.setSize(withWidth: self.width * 0.7)
+        self.purposeLabel.left = self.titleLabel.left
+        self.purposeLabel.top = self.titleLabel.bottom + 4
     }
 }
