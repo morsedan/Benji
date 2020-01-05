@@ -29,6 +29,7 @@ class ProfileDetailCell: UICollectionViewCell {
         self.contentView.addSubview(self.label)
         self.contentView.addSubview(self.lineView)
         self.contentView.addSubview(self.button)
+        self.button.isHidden = true
         self.lineView.set(backgroundColor: .background3)
     }
 
@@ -37,10 +38,11 @@ class ProfileDetailCell: UICollectionViewCell {
         self.titleLabel.set(text: detail.title)
         self.label.set(text: detail.text)
         if let text = detail.buttonText {
+            self.button.isHidden = false
             self.button.set(style: .normal(color: .lightPurple, text: text))
-        } else {
-            self.button.isHidden = true
         }
+
+        self.contentView.layoutNow()
     }
 
     override func layoutSubviews() {

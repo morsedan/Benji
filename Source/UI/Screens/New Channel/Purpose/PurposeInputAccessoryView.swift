@@ -18,7 +18,7 @@ class PurposeInputAccessoryView: TextInputAccessoryView {
         self.frame = CGRect(x: 0,
                             y: 0,
                             width: UIScreen.main.bounds.width,
-                            height: 60)
+                            height: 70)
         self.keyboardAppearance = textField.keyboardAppearance
         self.text = LocalizedString(id: "", arguments: [], default: "A name is required and must be lowercase, without spaces or periods, and less than 80 characters.")
         textField.inputAccessoryView = self
@@ -36,7 +36,7 @@ class PurposeInputAccessoryView: TextInputAccessoryView {
         self.frame = CGRect(x: 0,
                             y: 0,
                             width: UIScreen.main.bounds.width,
-                            height: 60)
+                            height: 70)
         self.keyboardAppearance = textView.keyboardAppearance
         self.text = LocalizedString(id: "",arguments: [], default: "Briefly describe the purpose of this conversation. This will be added to initial message for the conversation.")
         textView.inputAccessoryView = self
