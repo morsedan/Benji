@@ -80,7 +80,7 @@ class FeedViewController: ViewController {
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
 
-        self.messageLabel.setSize(withWidth: self.view.width * 0.8)
+        self.messageLabel.size = CGSize(width: 300, height: 200)
         self.messageLabel.centerY = self.view.halfHeight * 0.8
         self.messageLabel.centerOnX()
 
@@ -121,7 +121,7 @@ class FeedViewController: ViewController {
         //If date is 1 hour or more away, show "see you at (date)"
         } else if now.isBetween(Date().beginningOfDay, and: anHourUntil) {
             let dateString = Date.hourMinuteTimeOfDay.string(from: triggerDate)
-            self.message = "See you at \n\(dateString)"
+            self.message = "Take a break! ☕️\nSee you at \(dateString)"
             self.showMessage()
         } else {
             let dateString = Date.hourMinuteTimeOfDay.string(from: triggerDate)
@@ -147,6 +147,7 @@ class FeedViewController: ViewController {
 
         self.countDownView.alpha = 0
         self.messageLabel.alpha = 0
+        self.view.layoutNow()
         self.messageLabel.transform = CGAffineTransform(scaleX: 0.9, y: 0.9)
 
         UIView.animate(withDuration: Theme.animationDuration, animations: {

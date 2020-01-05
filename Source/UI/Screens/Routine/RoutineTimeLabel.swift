@@ -8,14 +8,21 @@
 
 import Foundation
 
-class RoutineTimeLabel: DisplayLabel {
+class RoutineTimeLabel: Label {
 
     func set(date: Date) {
         let formatter = DateFormatter()
-        formatter.dateFormat = "h:mm"
-        let string = formatter.string(from: date)
-        self.set(text: string,
-                 color: .lightPurple,
-                 alignment: .center)
+        formatter.dateFormat = "h:mm a"
+        let dateString = formatter.string(from: date)
+
+        let attributed = AttributedString(dateString,
+                                          fontType: .displayThin,
+                                          color: .lightPurple)
+        let string = StringCasing.uppercase.format(string: attributed.string.string)
+        let newString = NSMutableAttributedString(string: string)
+        newString.addAttributes(attributed.attributes, range: NSRange(location: 0,
+                                                                      length: newString.length))
+
+        self.attributedText = newString
     }
 }

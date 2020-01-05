@@ -55,7 +55,7 @@ enum FontType {
         case .display:
             return 40
         case .displayThin:
-            return 40
+            return 54
         case .medium, .mediumBold:
             return 24
         case .regular, .regularBold:
@@ -66,6 +66,11 @@ enum FontType {
     }
 
     var kern: CGFloat {
-        return 1
+        switch self {
+        case .displayThin:
+            return 0
+        default:
+            return 1
+        }
     }
 }

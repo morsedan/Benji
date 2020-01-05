@@ -20,7 +20,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         let rootNavController = RootNavigationController()
         self.initializeKeyWindow(with: rootNavController)
         self.initializeMainCoordinator(with: rootNavController, withOptions: launchOptions)
-
+        UserDefaults.standard.set(nil, forKey: Routine.currentRoutineKey)
         return true
     }
 
@@ -54,10 +54,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
         let token = tokenParts.joined()
         return token
-    }
-
-    func applicationWillTerminate(_ application: UIApplication) {
-        UserDefaults.standard.set(nil, forKey: Routine.currentRoutineKey)
     }
 }
 

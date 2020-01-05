@@ -11,7 +11,6 @@ import Foundation
 class RoutineInputContentView: View {
 
     let timeLabel = RoutineTimeLabel()
-    let timeOfDayLabel = RoutineTimeOfDayLabel()
     let everyDayLabel = SmallBoldLabel()
 
     let plusButton = Button()
@@ -23,7 +22,6 @@ class RoutineInputContentView: View {
         super.initializeSubviews()
         
         self.addSubview(self.timeLabel)
-        self.addSubview(self.timeOfDayLabel)
         self.addSubview(self.everyDayLabel)
         self.everyDayLabel.set(text: "EVERY DAY",
                                color: .white,
@@ -32,11 +30,11 @@ class RoutineInputContentView: View {
 
         self.addSubview(self.plusButton)
         self.plusButton.setImage(UIImage(systemName: "plus"), for: .normal)
-        self.plusButton.tintColor = Color.lightPurple.color.withAlphaComponent(0.6)
+        self.plusButton.tintColor = Color.lightPurple.color.withAlphaComponent(0.2)
 
         self.addSubview(self.minusButton)
         self.minusButton.setImage(UIImage(systemName: "minus"), for: .normal)
-        self.minusButton.tintColor = Color.lightPurple.color.withAlphaComponent(0.6)
+        self.minusButton.tintColor = Color.lightPurple.color.withAlphaComponent(0.2)
         
         self.addSubview(self.setRoutineButton)
         self.setRoutineButton.set(style: .rounded(color: .purple, text: "SET"),
@@ -58,21 +56,17 @@ class RoutineInputContentView: View {
         self.timeHump.bottom = self.setRoutineButton.top - 100
         self.timeHump.centerOnX()
 
-        self.timeLabel.size = CGSize(width: 120, height: 40)
+        self.timeLabel.setSize(withWidth: 220)
         self.timeLabel.centerOnX()
         self.timeLabel.bottom = self.timeHump.top - 140
 
-        self.timeOfDayLabel.size = CGSize(width: 30, height: 20)
-        self.timeOfDayLabel.left = self.timeLabel.right + 4
-        self.timeOfDayLabel.centerY = self.timeLabel.centerY
-
         self.minusButton.size = CGSize(width: 50, height: 50)
         self.minusButton.centerY = self.timeLabel.centerY
-        self.minusButton.right = self.timeLabel.left - 50
+        self.minusButton.right = self.timeLabel.left - 30
 
         self.plusButton.size = CGSize(width: 50, height: 50)
         self.plusButton.centerY = self.timeLabel.centerY
-        self.plusButton.left = self.timeLabel.right + 50
+        self.plusButton.left = self.timeLabel.right + 30
 
         self.everyDayLabel.setSize(withWidth: 200)
         self.everyDayLabel.centerOnX()
@@ -81,6 +75,6 @@ class RoutineInputContentView: View {
 
     func set(date: Date) {
         self.timeLabel.set(date: date)
-        self.timeOfDayLabel.set(date: date)
+        self.setNeedsLayout()
     }
 }

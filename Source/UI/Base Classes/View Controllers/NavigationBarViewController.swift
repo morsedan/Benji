@@ -12,8 +12,8 @@ import TMROLocalization
 class NavigationBarViewController: ViewController {
 
     private(set) var backButton = Button()
-    private(set) var titleLabel = MediumLabel()
-    private(set) var descriptionLabel = RegularLabel()
+    private(set) var titleLabel = RegularBoldLabel()
+    private(set) var descriptionLabel = SmallLabel()
     /// Place all views under the lineView 
     private(set) var lineView = View()
     let scrollView = UIScrollView()
@@ -38,7 +38,9 @@ class NavigationBarViewController: ViewController {
     }
 
     func updateLabels() {
-        self.titleLabel.set(text: self.getTitle(), alignment: .center)
+        self.titleLabel.set(text: self.getTitle(),
+                            alignment: .center,
+                            stringCasing: .uppercase)
         self.descriptionLabel.set(text: self.getDescription(),
                                   color: .white,
                                   alignment: .center,
@@ -53,11 +55,11 @@ class NavigationBarViewController: ViewController {
         self.backButton.left = Theme.contentOffset
         self.backButton.top = Theme.contentOffset
 
-        self.titleLabel.setSize(withWidth: self.view.width * 0.7)
+        self.titleLabel.setSize(withWidth: self.view.width * 0.8)
         self.titleLabel.top = Theme.contentOffset
         self.titleLabel.centerOnX()
 
-        self.descriptionLabel.setSize(withWidth: self.view.width * 0.6)
+        self.descriptionLabel.setSize(withWidth: self.view.width * 0.8)
         self.descriptionLabel.top = self.titleLabel.bottom + 20
         self.descriptionLabel.centerOnX()
 
