@@ -34,9 +34,9 @@ class ChannelCellContentView: View {
                     let notMeUsers = users.filter { (user) -> Bool in
                         return user.objectId != User.current()?.objectId
                     }
-                    runMain {
-                        self.stackedAvatarView.set(items: notMeUsers)
-                    }
+
+                    self.stackedAvatarView.set(items: notMeUsers)
+
                 case .failure(let error):
                     print(error)
                 }

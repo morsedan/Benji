@@ -53,7 +53,8 @@ class ChannelDetailBar: View {
             self.setLayout(for: channel)
         case .channel(let channel):
             self.setLayout(for: channel)
-            channel.getMembersAsUsers().observe { (result) in
+            channel.getMembersAsUsers()
+                .observe { (result) in
                 switch result {
                 case .success(let users):
                     let notMeUsers = users.filter { (user) -> Bool in
