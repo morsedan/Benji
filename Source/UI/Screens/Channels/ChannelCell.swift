@@ -31,8 +31,7 @@ class ChannelCell: UICollectionViewCell, ManageableCell {
     override func prepareForReuse() {
         super.prepareForReuse()
 
-        self.content.titleLabel.text = String()
-        self.content.stackedAvatarView.set(items: [])
+        self.content.reset()
     }
 
     override func layoutSubviews() {

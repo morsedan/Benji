@@ -113,7 +113,7 @@ class ChannelViewController: FullScreenViewController {
 
         guard let handler = self.keyboardHandler else { return }
 
-        self.detailBar.size = CGSize(width: self.view.width, height: 60)
+        self.detailBar.size = CGSize(width: self.view.width, height: 80)
         self.detailBar.top = 0
         self.detailBar.centerOnX()
 

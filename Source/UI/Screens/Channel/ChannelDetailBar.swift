@@ -18,11 +18,10 @@ protocol ChannelDetailBarDelegate: class {
 class ChannelDetailBar: View {
 
     private let blurView = UIVisualEffectView(effect: UIBlurEffect(style: .dark))
-    private(set) var titleLabel = RegularBoldLabel()
     private let titleButton = Button()
     private let selectionFeedback = UIImpactFeedbackGenerator(style: .light)
-    private(set) var stackedAvatarView = StackedAvatarView()
     let channelType: ChannelType
+    private let content = ChannelContentView()
 
     unowned let delegate: ChannelDetailBarDelegate
 
@@ -40,32 +39,14 @@ class ChannelDetailBar: View {
         super.initializeSubviews()
 
         self.addSubview(self.blurView)
-        self.addSubview(self.titleLabel)
-        self.addSubview(self.titleButton)
-        self.addSubview(self.stackedAvatarView)
-        
+        self.addSubview(self.content)
+        self.content.addSubview(self.titleButton)
+
         self.titleButton.onTap { [unowned self] (tap) in
             self.delegate.channelDetailBarDidTapMenu(self)
         }
 
-        switch self.channelType {
-        case .system(let channel):
-            self.setLayout(for: channel)
-        case .channel(let channel):
-            self.setLayout(for: channel)
-            channel.getMembersAsUsers()
-                .observe { (result) in
-                switch result {
-                case .success(let users):
-                    let notMeUsers = users.filter { (user) -> Bool in
-                        return user.objectId != User.current()?.objectId
-                    }
-                    self.stackedAvatarView.set(items: notMeUsers)
-                case .failure(let error):
-                    print(error)
-                }
-            }
-        }
+        self.content.configure(with: self.channelType)
 
         self.subscribeToUpdates()
     }
@@ -74,38 +55,8 @@ class ChannelDetailBar: View {
         super.layoutSubviews()
 
         self.blurView.frame = self.bounds
-
-        let titleWidth = self.width - 44
-        self.titleLabel.setSize(withWidth: titleWidth)
-        self.titleLabel.left = 16
-        self.titleLabel.centerOnY()
-
-        self.titleButton.size = CGSize(width: self.titleLabel.width, height: self.height)
-        self.titleButton.left = self.titleLabel.left
-        self.titleButton.centerOnY()
-
-        self.stackedAvatarView.height = 40
-        self.stackedAvatarView.right = self.width - 16
-        self.stackedAvatarView.centerOnY()
-    }
-
-    func setLayout(for system: SystemChannel) {
-        self.set(text: system.displayName)
-    }
-
-    func setLayout(for channel: TCHChannel) {
-        self.updateFriendlyName(for: channel)
-    }
-
-    private func updateFriendlyName(for channel: TCHChannel) {
-        if let name = channel.friendlyName {
-            self.set(text: name)
-        }
-    }
-
-    private func set(text: Localized) {
-        self.titleLabel.set(text: text)
-        self.layoutNow()
+        self.content.frame = self.bounds
+        self.titleButton.frame = self.content.titleLabel.bounds
     }
 
     private func subscribeToUpdates() {
@@ -118,7 +69,7 @@ class ChannelDetailBar: View {
 
             switch channelsUpdate.status {
             case .all:
-                self.updateFriendlyName(for: channelsUpdate.channel)
+                self.content.configure(with: .channel(channelsUpdate.channel))
             default:
                 break
             }
