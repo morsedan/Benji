@@ -38,7 +38,7 @@ extension TCHMember {
 
         let promise = Promise<User>()
         if let authorID = self.identity {
-            User.cachedQuery(for: authorID)
+            User.localThenNetworkQuery(for: authorID)
                 .observe { (result) in
                     switch result {
                     case .success(let user):

@@ -198,7 +198,7 @@ extension Future where Value == TCHChannel {
         return self.then(with: { (channel) in
             let promise = Promise<User>()
             if let authorID = channel.createdBy {
-                User.cachedQuery(for: authorID)
+                User.localThenNetworkQuery(for: authorID)
                     .observe { (result) in
                         switch result {
                         case .success(let user):

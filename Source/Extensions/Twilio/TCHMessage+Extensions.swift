@@ -126,7 +126,7 @@ extension TCHMessage {
     func getAuthorAsUser() -> Future<User> {
         let promise = Promise<User>()
         if let authorID = self.author {
-            User.cachedQuery(for: authorID)
+            User.localThenNetworkQuery(for: authorID)
                 .observe { (result) in
                     switch result {
                     case .success(let user):
