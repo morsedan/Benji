@@ -12,24 +12,42 @@ import Parse
 extension User: Objectable {
     typealias KeyType = UserKey
 
-    static func cachedQuery(for objectID: String) -> Future<User> {
-        let promise = Promise<User>()
+    static func cachedTaskQuery(for objectID: String) -> BFTask<User> {
+        let userTask = BFTaskCompletionSource<User>()
 
         // update to use pin
         if let query = self.query() {
+            query.fromLocalDatastore()
             query.whereKey(ObjectKey.objectId.rawValue, equalTo: objectID)
-            query.getFirstObjectInBackground { (object, error) in
-                if let obj = object as? User {
-                    promise.resolve(with: obj)
-                } else if let error = error {
-                    promise.reject(with: error)
+            query.getFirstObjectInBackground()
+                .continueWith { (task) -> Any? in
+                if let user = task.result as? User {
+                    userTask.set(result: user)
+                } else if let nonCacheQuery = self.query() {
+                    nonCacheQuery.whereKey(ObjectKey.objectId.rawValue, equalTo: objectID)
+                    nonCacheQuery.getFirstObjectInBackground { (object, error) in
+                        if let user = object as? User {
+                            user.pinInBackground { (success, error) in
+                                if let error = error {
+                                    userTask.set(error: error)
+                                } else {
+                                    userTask.set(result: user)
+                                }
+                            }
+                        } else if let error = error {
+                            userTask.set(error: error)
+                        } else {
+                            userTask.set(error: ClientError.generic)
+                        }
+                    }
                 } else {
-                    promise.reject(with: ClientError.generic)
+                    return userTask.set(error: ClientError.generic)
                 }
+                return userTask
             }
         }
 
-        return promise
+        return userTask.task
     }
 
     static func cachedArrayQuery(with identifiers: [String]) -> Future<[User]> {

@@ -70,14 +70,14 @@ class DisplayableImageView: View {
     }
 
     private func findUser(with objectID: String) {
-        User.cachedQuery(for: objectID)
-            .observe { (result) in
-                switch result {
-                case .success(let user):
-                    self.downloadAndSetImage(for: user)
-                case .failure(let error):
-                    print(error)
-                }
+       User.cachedTaskQuery(for: objectID)
+        .continueWith { (task) -> Any? in
+            if let user = task.result {
+                self.downloadAndSetImage(for: user)
+            } else if let error = task.error {
+                print(error)
+            }
+            return nil
         }
     }
 }
