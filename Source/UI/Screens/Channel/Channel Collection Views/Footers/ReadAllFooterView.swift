@@ -10,12 +10,13 @@ import Foundation
 
 class ReadAllFooterView: UICollectionReusableView {
 
-    let refreshControlIndicator = UIActivityIndicatorView()
+    let refreshControlIndicator = UIActivityIndicatorView(style: .large)
     var isAnimatingFinal: Bool = false
     var currentTransform: CGAffineTransform?
 
     override init(frame: CGRect) {
         super.init(frame: frame)
+        self.initializeViews()
     }
 
     required init?(coder: NSCoder) {

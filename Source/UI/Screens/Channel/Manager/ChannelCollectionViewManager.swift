@@ -23,6 +23,7 @@ UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFl
     var didSelectURL: ((URL) -> Void)?
     var willDisplayCell: ((Messageable, IndexPath) -> Void)?
     private let selectionFeedback = UIImpactFeedbackGenerator(style: .heavy)
+    private var readFooter: ReadAllFooterView?
 
     init(with collectionView: ChannelCollectionView) {
         self.collectionView = collectionView
@@ -111,7 +112,7 @@ UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFl
         case UICollectionView.elementKindSectionHeader:
             return self.header(for: collectionView, at: indexPath)
         case UICollectionView.elementKindSectionFooter:
-            fatalError("UNRECOGNIZED SECTION KIND")
+            return self.footer(for: collectionView, at: indexPath)
         default:
             fatalError("UNRECOGNIZED SECTION KIND")
         }
@@ -120,12 +121,8 @@ UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFl
     private func footer(for collectionView: UICollectionView, at indexPath: IndexPath) -> UICollectionReusableView {
         guard let channelCollectionView = collectionView as? ChannelCollectionView else { fatalError() }
 
-        if self.isSectionReservedForTypingIndicator(indexPath.section) {
-            return UICollectionReusableView()
-        }
-
-        let footer = channelCollectionView.dequeueReusableHeaderView(ReadAllFooterView.self, for: indexPath)
-
+        let footer = channelCollectionView.dequeueReusableFooterView(ReadAllFooterView.self, for: indexPath)
+        self.readFooter = footer
         return footer
     }
 
@@ -207,7 +204,11 @@ UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFl
     func collectionView(_ collectionView: UICollectionView,
                         layout collectionViewLayout: UICollectionViewLayout,
                         referenceSizeForFooterInSection section: Int) -> CGSize {
-        return .zero
+        guard let channelLayout = collectionViewLayout as? ChannelCollectionViewFlowLayout else {
+            return .zero
+        }
+
+        return channelLayout.sizeForFooter(at: section, with: collectionView)
     }
 
     func collectionView(_ collectionView: UICollectionView,
@@ -241,9 +242,9 @@ UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFl
         var triggerThreshold  = Float((diffHeight - frameHeight))/Float(threshold);
         triggerThreshold   =  min(triggerThreshold, 0.0)
         let pullRatio  = min(abs(triggerThreshold), 1.0)
-        //self.footerView?.setTransform(inTransform: CGAffineTransform.identity, scaleFactor: CGFloat(pullRatio))
+        self.readFooter?.setTransform(inTransform: .identity, scaleFactor: CGFloat(pullRatio))
         if pullRatio >= 1 {
-           // self.footerView?.animateFinal()
+            self.readFooter?.animateFinal()
         }
         print("pullRation:\(pullRatio)")
     }
@@ -258,20 +259,18 @@ UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFl
         let pullHeight  = abs(diffHeight - frameHeight)
         print("pullHeight:\(pullHeight)")
 
-        if pullHeight == 0.0 {
-//            if self.footerView?.isAnimatingFinal! {
-//                print("load more trigger")
-//                //self.isLoading = true
-//                //self.footerView?.startAnimate()
-//                Timer.scheduledTimer(withTimeInterval: 1, repeats: false, block: { (timer:Timer) in
-//                    for i:Int in self.items.count + 1...self.items.count + 25 {
-//                        self.items.append(i)
-//                    }
-//                    //self.collectionView.reloadDataAndKeepOffset()
-//                    //self.isLoading = false
-//                })
-//            }
+        if pullHeight < 114 {
+            if let footer = self.readFooter, footer.isAnimatingFinal {
+                print("load more trigger")
+                self.collectionView.channelLayout.isSettingAllToRead = true
+                footer.startAnimate()
+            }
         }
+    }
+
+    func setAllToRead() {
+        //self.collectionView.reloadDataAndKeepOffset()
+        //self.isLoading = false
     }
 
     // MARK: TEXT VIEW DELEGATE

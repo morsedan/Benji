@@ -10,7 +10,7 @@ import Foundation
 
 class ChannelCollectionViewFlowLayout: UICollectionViewFlowLayout {
 
-    private(set) var isSettingAllToRead: Bool = false
+    var isSettingAllToRead: Bool = false
     private(set) var isTypingIndicatorViewHidden: Bool = true
     private var insertingIndexPaths: [IndexPath] = []
 
