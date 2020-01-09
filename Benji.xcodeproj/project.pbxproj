@@ -114,6 +114,7 @@
 		D64C6AA4232EA13300DB7257 /* UIEdgeInsets+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = D64C6AA3232EA13300DB7257 /* UIEdgeInsets+Extensions.swift */; };
 		D64F5F1F23B670C300216D99 /* PurposeInputAccessoryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D64F5F1E23B670C300216D99 /* PurposeInputAccessoryView.swift */; };
 		D64F5F2123B6713800216D99 /* TextInputAccessoryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D64F5F2023B6713800216D99 /* TextInputAccessoryView.swift */; };
+		D652446D23C6D0500095C0F3 /* ReadAllFooterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D652446C23C6D0500095C0F3 /* ReadAllFooterView.swift */; };
 		D653F6B023588F8E00A03EEE /* RoutineViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D653F6AF23588F8E00A03EEE /* RoutineViewController.swift */; };
 		D657175C2378C78500F8F96C /* MessageCellAttributesConfigurer.swift in Sources */ = {isa = PBXBuildFile; fileRef = D657175B2378C78500F8F96C /* MessageCellAttributesConfigurer.swift */; };
 		D657175E2378CEBA00F8F96C /* ChannelCollectionViewManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = D657175D2378CEBA00F8F96C /* ChannelCollectionViewManager.swift */; };
@@ -394,6 +395,7 @@
 		D64C6AA523307DB300DB7257 /* Benji.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Benji.entitlements; sourceTree = "<group>"; };
 		D64F5F1E23B670C300216D99 /* PurposeInputAccessoryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PurposeInputAccessoryView.swift; sourceTree = "<group>"; };
 		D64F5F2023B6713800216D99 /* TextInputAccessoryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextInputAccessoryView.swift; sourceTree = "<group>"; };
+		D652446C23C6D0500095C0F3 /* ReadAllFooterView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReadAllFooterView.swift; sourceTree = "<group>"; };
 		D653F6AF23588F8E00A03EEE /* RoutineViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoutineViewController.swift; sourceTree = "<group>"; };
 		D657175B2378C78500F8F96C /* MessageCellAttributesConfigurer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageCellAttributesConfigurer.swift; sourceTree = "<group>"; };
 		D657175D2378CEBA00F8F96C /* ChannelCollectionViewManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChannelCollectionViewManager.swift; sourceTree = "<group>"; };
@@ -971,6 +973,14 @@
 			path = Shared;
 			sourceTree = "<group>";
 		};
+		D652446B23C6D0390095C0F3 /* Footers */ = {
+			isa = PBXGroup;
+			children = (
+				D652446C23C6D0500095C0F3 /* ReadAllFooterView.swift */,
+			);
+			path = Footers;
+			sourceTree = "<group>";
+		};
 		D6579558239C8D8800A01338 /* Feed Content Views */ = {
 			isa = PBXGroup;
 			children = (
@@ -1277,6 +1287,7 @@
 		D6D1500521D5E71E00CD8CE4 /* Channel Collection Views */ = {
 			isa = PBXGroup;
 			children = (
+				D652446B23C6D0390095C0F3 /* Footers */,
 				D63844102337C3900072227B /* Headers */,
 				D6B2603522E6A97400143CF0 /* Layout */,
 				D684840822CD2E1E00362AC3 /* Cells */,
@@ -1770,6 +1781,7 @@
 				D6A301AE2381B8D7006655E0 /* FeedCollectionView.swift in Sources */,
 				D6D14FFC21D5893700CD8CE4 /* IGListBatchUpdateData.mm in Sources */,
 				D6EDD1952355DB9B00FDA5D6 /* ProfileCollectionView.swift in Sources */,
+				D652446D23C6D0500095C0F3 /* ReadAllFooterView.swift in Sources */,
 				D6FC8096237A64650089AACC /* MessageSupplier.swift in Sources */,
 				D6B2606A22E80AB000143CF0 /* Toast.swift in Sources */,
 				D6D1500721D5E73D00CD8CE4 /* ChannelViewController.swift in Sources */,

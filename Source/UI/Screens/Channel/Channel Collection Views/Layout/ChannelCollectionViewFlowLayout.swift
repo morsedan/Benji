@@ -10,6 +10,7 @@ import Foundation
 
 class ChannelCollectionViewFlowLayout: UICollectionViewFlowLayout {
 
+    private(set) var isSettingAllToRead: Bool = false
     private(set) var isTypingIndicatorViewHidden: Bool = true
     private var insertingIndexPaths: [IndexPath] = []
 
@@ -189,6 +190,16 @@ class ChannelCollectionViewFlowLayout: UICollectionViewFlowLayout {
 
         return CGSize(width: collectionView.width, height: 50)
     }
+
+    func sizeForFooter(at section: Int, with collectionView: UICollectionView) -> CGSize {
+
+        if self.isSettingAllToRead {
+            return .zero
+        }
+
+        return CGSize(width: collectionView.width, height: 50)
+    }
+
 
     // MARK: - Typing Indicator API
 

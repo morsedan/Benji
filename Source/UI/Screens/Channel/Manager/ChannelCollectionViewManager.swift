@@ -117,6 +117,18 @@ UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFl
         }
     }
 
+    private func footer(for collectionView: UICollectionView, at indexPath: IndexPath) -> UICollectionReusableView {
+        guard let channelCollectionView = collectionView as? ChannelCollectionView else { fatalError() }
+
+        if self.isSectionReservedForTypingIndicator(indexPath.section) {
+            return UICollectionReusableView()
+        }
+
+        let footer = channelCollectionView.dequeueReusableHeaderView(ReadAllFooterView.self, for: indexPath)
+
+        return footer
+    }
+
     private func header(for collectionView: UICollectionView, at indexPath: IndexPath) -> UICollectionReusableView {
         guard let channelCollectionView = collectionView as? ChannelCollectionView else { fatalError() }
 
@@ -190,6 +202,76 @@ UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFl
         }
 
         return channelLayout.sizeForHeader(at: section, with: collectionView)
+    }
+
+    func collectionView(_ collectionView: UICollectionView,
+                        layout collectionViewLayout: UICollectionViewLayout,
+                        referenceSizeForFooterInSection section: Int) -> CGSize {
+        return .zero
+    }
+
+    func collectionView(_ collectionView: UICollectionView,
+                        willDisplaySupplementaryView view: UICollectionReusableView,
+                        forElementKind elementKind: String,
+                        at indexPath: IndexPath) {
+
+        if let readFooter = view as? ReadAllFooterView {
+            readFooter.prepareInitialAnimation()
+        }
+    }
+
+    func collectionView(_ collectionView: UICollectionView,
+                        didEndDisplayingSupplementaryView view: UICollectionReusableView,
+                        forElementOfKind elementKind: String,
+                        at indexPath: IndexPath) {
+
+        if let readFooter = view as? ReadAllFooterView {
+            readFooter.stopAnimation()
+        }
+    }
+
+    //compute the scroll value and play witht the threshold to get desired effect
+    func scrollViewDidScroll(_ scrollView: UIScrollView) {
+
+        let threshold   = 100.0
+        let contentOffset = scrollView.contentOffset.y
+        let contentHeight = scrollView.contentSize.height
+        let diffHeight = contentHeight - contentOffset;
+        let frameHeight = scrollView.bounds.size.height;
+        var triggerThreshold  = Float((diffHeight - frameHeight))/Float(threshold);
+        triggerThreshold   =  min(triggerThreshold, 0.0)
+        let pullRatio  = min(abs(triggerThreshold), 1.0)
+        //self.footerView?.setTransform(inTransform: CGAffineTransform.identity, scaleFactor: CGFloat(pullRatio))
+        if pullRatio >= 1 {
+           // self.footerView?.animateFinal()
+        }
+        print("pullRation:\(pullRatio)")
+    }
+
+    //compute the offset and call the load method
+    func scrollViewDidEndDecelerating(_ scrollView: UIScrollView) {
+
+        let contentOffset = scrollView.contentOffset.y
+        let contentHeight = scrollView.contentSize.height
+        let diffHeight = contentHeight - contentOffset
+        let frameHeight = scrollView.bounds.size.height
+        let pullHeight  = abs(diffHeight - frameHeight)
+        print("pullHeight:\(pullHeight)")
+
+        if pullHeight == 0.0 {
+//            if self.footerView?.isAnimatingFinal! {
+//                print("load more trigger")
+//                //self.isLoading = true
+//                //self.footerView?.startAnimate()
+//                Timer.scheduledTimer(withTimeInterval: 1, repeats: false, block: { (timer:Timer) in
+//                    for i:Int in self.items.count + 1...self.items.count + 25 {
+//                        self.items.append(i)
+//                    }
+//                    //self.collectionView.reloadDataAndKeepOffset()
+//                    //self.isLoading = false
+//                })
+//            }
+        }
     }
 
     // MARK: TEXT VIEW DELEGATE
