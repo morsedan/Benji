@@ -66,7 +66,7 @@ class HomeViewController: FullScreenViewController {
         self.contentContainer.addSubview(self.centerContainer)
         self.contentContainer.addSubview(self.gradientView)
 
-        self.addButton.onTap { [unowned self] (tap) in
+        self.addButton.didSelect = { [unowned self] in
             self.delegate.homeViewDidTapAdd(self)
         }
 
@@ -82,15 +82,15 @@ class HomeViewController: FullScreenViewController {
                 self.tabView.updateTabItems(for: contentType)
         }.start()
 
-        self.tabView.profileItem.onTap { [unowned self] (tap) in
+        self.tabView.profileItem.didSelect = { [unowned self] in
             self.currentContent.value = .profile(self.profileVC)
         }
 
-        self.tabView.feedItem.onTap { [unowned self] (tap) in
+        self.tabView.feedItem.didSelect = { [unowned self] in
             self.currentContent.value = .feed(self.feedVC)
         }
 
-        self.tabView.channelsItem.onTap { [unowned self] (tap) in
+        self.tabView.channelsItem.didSelect = { [unowned self] in
             self.currentContent.value = .channels(self.channelsVC)
         }
     }

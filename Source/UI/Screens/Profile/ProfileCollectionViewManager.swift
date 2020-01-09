@@ -71,7 +71,7 @@ class ProfileCollectionViewManager: NSObject, UICollectionViewDelegate, UICollec
             cell.configure(with: item)
         }
 
-        cell.button.onTap { [unowned self] (tap) in
+        cell.button.didSelect = { [unowned self] in
             self.didTapButtonAt(indexPath)
         }
 

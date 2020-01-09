@@ -55,7 +55,7 @@ class NewChannelViewController: NavigationBarViewController, KeyboardObservable 
         self.view.set(backgroundColor: .background2)
 
         self.view.addSubview(self.button)
-        self.button.onTap { [unowned self] (tap) in
+        self.button.didSelect = { [unowned self] in
             self.buttonTapped()
         }
 
@@ -65,7 +65,7 @@ class NewChannelViewController: NavigationBarViewController, KeyboardObservable 
                 self.switchContent()
         }.start()
 
-        self.backButton.onTap { [unowned self] (tap) in
+        self.backButton.didSelect = { [unowned self] in
             self.currentContent.value = .purpose(self.purposeVC)
         }
 

@@ -17,8 +17,6 @@ class RoutineInputViewController: ViewController {
 
     var selectedDate = Date()
 
-    private let selectionFeedback = UIImpactFeedbackGenerator(style: .light)
-
     override func loadView() {
         self.view = self.content
     }
@@ -47,7 +45,7 @@ class RoutineInputViewController: ViewController {
             }
         })
 
-        self.content.minusButton.onTap { [unowned self] (tap) in
+        self.content.minusButton.didSelect = { [unowned self] in
 
             if let newDate = self.selectedDate.subtract(component: .minute, amount: 15) {
                 let dateComponents = Calendar.current.dateComponents([.year, .month, .day,
@@ -57,7 +55,7 @@ class RoutineInputViewController: ViewController {
             }
         }
 
-        self.content.plusButton.onTap { [unowned self] (tap) in
+        self.content.plusButton.didSelect = { [unowned self] in
             if let newDate = self.selectedDate.add(component: .minute, amount: 15) {
                 let dateComponents = Calendar.current.dateComponents([.year, .month, .day,
                                                                       .hour, .minute, .second],
@@ -66,8 +64,7 @@ class RoutineInputViewController: ViewController {
             }
         }
 
-        self.content.setRoutineButton.onTap { [unowned self] (tap) in
-            self.selectionFeedback.impactOccurred()
+        self.content.setRoutineButton.didSelect = { [unowned self] in
             let routine = Routine()
             routine.create(with: self.selectedDate)
             routine.saveEventually()

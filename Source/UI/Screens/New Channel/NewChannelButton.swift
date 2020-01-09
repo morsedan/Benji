@@ -11,7 +11,6 @@ import Foundation
 class NewChannelButton: LoadingButton {
 
     let iconImageView = UIImageView()
-    private let selectionFeedback = UIImpactFeedbackGenerator(style: .light)
 
     private var xOffset: CGFloat = 0
     private var yOffset: CGFloat = 0
@@ -66,10 +65,5 @@ class NewChannelButton: LoadingButton {
                 self.iconImageView.transform = .identity
             }
         }
-    }
-
-    override open func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
-        super.touchesBegan(touches, with: event)
-        self.selectionFeedback.impactOccurred()
     }
 }

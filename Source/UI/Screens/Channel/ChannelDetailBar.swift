@@ -42,7 +42,7 @@ class ChannelDetailBar: View {
         self.addSubview(self.content)
         self.content.addSubview(self.titleButton)
 
-        self.titleButton.onTap { [unowned self] (tap) in
+        self.titleButton.didSelect = { [unowned self] in
             self.delegate.channelDetailBarDidTapMenu(self)
         }
 

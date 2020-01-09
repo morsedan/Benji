@@ -14,7 +14,6 @@ class TextInputAccessoryView: View {
     private let label = SmallLabel()
     private let cancelButton = CancelButton()
     private var blurView = UIVisualEffectView(effect: nil)
-    private let selectionFeedback = UIImpactFeedbackGenerator(style: .light)
 
     var textColor: Color = .white {
         didSet {
@@ -72,8 +71,7 @@ class TextInputAccessoryView: View {
         self.addSubview(self.blurView)
         self.addSubview(self.label)
         self.addSubview(self.cancelButton)
-        self.cancelButton.onTap { [unowned self] (tap) in
-            self.selectionFeedback.impactOccurred()
+        self.cancelButton.didSelect = { [unowned self] in
             self.didCancel?()
         }
 

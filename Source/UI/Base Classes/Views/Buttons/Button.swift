@@ -17,6 +17,9 @@ enum ButtonStyle {
 
 class Button: UIButton {
 
+    var didSelect: CompletionOptional = nil
+    private let selectionImpact = UIImpactFeedbackGenerator()
+
     override init(frame: CGRect) {
         super.init(frame: frame)
         self.initializeSubviews()
@@ -26,7 +29,12 @@ class Button: UIButton {
         fatalError("init(coder:) has not been implemented")
     }
 
-    func initializeSubviews() {}
+    func initializeSubviews() {
+        self.onTap { [unowned self] (tap) in
+            self.selectionImpact.impactOccurred()
+            self.didSelect?()
+        }
+    }
 
     //Sets text font, color and background color
     func set(style: ButtonStyle,

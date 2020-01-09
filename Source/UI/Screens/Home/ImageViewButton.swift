@@ -12,6 +12,7 @@ class ImageViewButton: View {
 
     let imageView = UIImageView()
     private let selectionFeedback = UIImpactFeedbackGenerator(style: .light)
+    var didSelect: CompletionOptional = nil
 
     override func initializeSubviews() {
         super.initializeSubviews()
@@ -19,6 +20,11 @@ class ImageViewButton: View {
         self.addSubview(self.imageView)
         self.imageView.tintColor = Color.white.color
         self.imageView.contentMode = .scaleAspectFit
+
+        self.onTap { [unowned self] (tap) in
+            self.selectionFeedback.impactOccurred()
+            self.didSelect?()
+        }
     }
 
     override func layoutSubviews() {
@@ -33,7 +39,6 @@ class ImageViewButton: View {
     override open func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         super.touchesBegan(touches, with: event)
         if let touch = touches.first, let view = touch.view {
-            self.selectionFeedback.impactOccurred()
             view.scaleDown()
         }
     }

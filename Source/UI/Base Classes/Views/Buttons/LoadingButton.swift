@@ -20,7 +20,6 @@ class LoadingButton: Button {
                                                          curve: .linear,
                                                          animations: nil)
 
-    var didSelect: (() -> Void)?
     private let shouldRound: Bool = true
     var canShowLoading: Bool = true
 
@@ -38,8 +37,6 @@ class LoadingButton: Button {
             self.isEnabled = !self.isLoading
         }
     }
-
-    let buttonFeedback = UIImpactFeedbackGenerator()
 
     init() {
         super.init(frame: .zero)
@@ -66,11 +63,6 @@ class LoadingButton: Button {
         self.addShadow(withOffset: 5)
 
         self.addSubview(self.loadingIndicator)
-
-        self.onTap { [unowned self] (tap) in
-            self.buttonFeedback.impactOccurred()
-            self.didSelect?()
-        }
     }
 
     override func layoutSubviews() {
