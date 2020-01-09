@@ -10,9 +10,9 @@ import Foundation
 
 class ReadAllFooterView: UICollectionReusableView {
 
-    let refreshControlIndicator = UIActivityIndicatorView(style: .large)
     var isAnimatingFinal: Bool = false
     var currentTransform: CGAffineTransform?
+    let label = RegularLabel()
 
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -24,37 +24,36 @@ class ReadAllFooterView: UICollectionReusableView {
     }
 
     func initializeViews() {
-        self.addSubview(self.refreshControlIndicator)
+        self.addSubview(self.label)
+        self.label.set(text: "Set all messages to read?")
     }
 
     override func layoutSubviews() {
         super.layoutSubviews()
 
-        self.refreshControlIndicator.centerOnXAndY()
+        self.label.setSize(withWidth: self.width - 20)
+        self.label.centerOnXAndY()
     }
 
     func setTransform(inTransform: CGAffineTransform, scaleFactor: CGFloat) {
         guard !self.isAnimatingFinal else { return }
 
         self.currentTransform = inTransform
-        self.refreshControlIndicator.transform = CGAffineTransform.init(scaleX: scaleFactor, y: scaleFactor)
+        self.label.transform = CGAffineTransform.init(scaleX: scaleFactor, y: scaleFactor)
     }
 
     //reset the animation
     func prepareInitialAnimation() {
         self.isAnimatingFinal = false
-        self.refreshControlIndicator.stopAnimating()
-        self.refreshControlIndicator.transform = CGAffineTransform.init(scaleX: 0.0, y: 0.0)
+        self.label.transform = CGAffineTransform.init(scaleX: 0.0, y: 0.0)
     }
 
     func startAnimate() {
         self.isAnimatingFinal = true
-        self.refreshControlIndicator.startAnimating()
     }
 
     func stopAnimation() {
         self.isAnimatingFinal = false
-        self.refreshControlIndicator.stopAnimating()
     }
 
     //final animation to display loading
@@ -63,7 +62,7 @@ class ReadAllFooterView: UICollectionReusableView {
 
         self.isAnimatingFinal = true
         UIView.animate(withDuration: 0.2) {
-            self.refreshControlIndicator.transform = .identity
+            self.label.transform = .identity
         }
     }
 }
