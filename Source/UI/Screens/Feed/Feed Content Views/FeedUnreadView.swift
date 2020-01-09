@@ -34,14 +34,16 @@ class FeedUnreadView: View {
 
         channel.getAuthorAsUser()
             .observe { (result) in
-                switch result {
-                case .success(let user):
-                    self.avatarView.set(avatar: user)
+                runMain {
+                    switch result {
+                    case .success(let user):
+                        self.avatarView.set(avatar: user)
 
-                    self.textView.set(localizedText: "You have \(String(count)) unread messages in \(String(optional: channel.friendlyName))")
-                    self.layoutNow()
-                case .failure(_):
-                    break
+                        self.textView.set(localizedText: "You have \(String(count)) unread messages in \(String(optional: channel.friendlyName))")
+                        self.layoutNow()
+                    case .failure(_):
+                        break
+                    }
                 }
         }
     }

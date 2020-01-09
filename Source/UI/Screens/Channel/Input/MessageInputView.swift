@@ -172,11 +172,13 @@ class MessageInputView: View {
 
         ChannelManager.shared.activeChannel.value?.getMembersAsUsers()
             .observe(with: { (result) in
-                switch result {
-                case .success(let users):
-                    self.alertConfirmation.setAlertMessage(for: users)
-                case .failure(_):
-                    break
+                runMain {
+                    switch result {
+                    case .success(let users):
+                        self.alertConfirmation.setAlertMessage(for: users)
+                    case .failure(_):
+                        break
+                    }
                 }
             })
 
