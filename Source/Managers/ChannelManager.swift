@@ -47,14 +47,24 @@ class ChannelManager: NSObject {
         return client.connectionState == .connected
     }
 
-    static func initialize(token: String) {
+    static func initialize(token: String) -> Future<Void> {
+        let promise = Promise<Void>()
         TwilioChatClient.chatClient(withToken: token,
                                     properties: nil,
                                     delegate: shared,
                                     completion: { (result, client) in
-                                        guard let strongClient = client else { return }
-                                        shared.client = strongClient
+
+                                        if let error = result.error {
+                                            promise.reject(with: error)
+                                        } else if let strongClient = client {
+                                            shared.client = strongClient
+                                            promise.resolve(with: ())
+                                        } else {
+                                            promise.reject(with: ClientError.generic)
+                                        }
         })
+        
+        return promise
     }
 
     func update(token: String, completion: @escaping CompletionHandler) {

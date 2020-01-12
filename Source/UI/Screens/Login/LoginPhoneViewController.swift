@@ -65,13 +65,12 @@ class LoginPhoneViewController: LoginTextInputViewController {
     }
 
     private func sendCode(to phone: PhoneNumber) {
-        self.delegate.loginPhoneView(self, didCompleteWith: phone)
-        //TODO: Add send code in when backend is ready
-//        SendCode.callFunction { (object, error) in
-//            if error == nil {
-//                self.delegate.loginPhoneView(self, didCompleteWith: phone)
-//            }
-//        }
+        // TODO: Add loading
+        SendCode(phoneNumber: phone).callFunction { (object, error) in
+            if error == nil {
+                self.delegate.loginPhoneView(self, didCompleteWith: phone)
+            }
+        }
     }
 
     override func getAccessoryText() -> Localized? {

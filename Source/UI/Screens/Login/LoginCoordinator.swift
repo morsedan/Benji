@@ -50,47 +50,6 @@ extension LoginCoordinator: LoginNameViewControllerDelegate {
 
 extension LoginCoordinator: LoginProfilePhotoViewControllerDelegate {
     func loginProfilePhotoViewControllerDidUpdatePhoto(_ controller: LoginProfilePhotoViewController) {
-        self.fetchAllData()
-            .observe { (result) in
-                switch result {
-                case .success:
-                    self.finishFlow(with: ())
-                case .failure(let error):
-                    print(error)
-                }
-        }
-    }
-
-    private func fetchAllData() -> Future<Void> {
-        let promise = Promise<Void>()
-        User.anonymousLogin()
-            .observe { (result) in
-                switch result {
-                case .success(let user):
-                    Reservation.create()
-                        .observe { (result) in
-                            switch result {
-                            case .success(let reservation):
-                                user.reservation = reservation
-                                user.createHandle()
-                                user.save()
-                                    .observe { (userResult) in
-                                        switch userResult {
-                                        case .success(_):
-                                            promise.resolve(with: ())
-                                        case .failure(let error):
-                                            promise.reject(with: error)
-                                        }
-                                }
-                            case .failure(let error):
-                                promise.reject(with: error)
-                            }
-                    }
-                case .failure(let error):
-                    promise.reject(with: error)
-                }
-        }
-
-        return promise
+        self.finishFlow(with: ())
     }
 }

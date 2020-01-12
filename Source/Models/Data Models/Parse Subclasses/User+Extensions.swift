@@ -58,20 +58,6 @@ extension User {
         let handleString = String(current.givenName) + String(last) + "_" + positionString
         self.handle = handleString.lowercased()
     }
-
-    static func anonymousLogin() -> Future<User> {
-        let promise = Promise<User>()
-        PFAnonymousUtils.logIn { (user, error) in
-            if let anonymousUser = user as? User {
-                promise.resolve(with: anonymousUser)
-            } else if let error = error {
-                promise.reject(with: error)
-            } else {
-                promise.reject(with: ClientError.generic)
-            }
-        }
-        return promise 
-    }
 }
 
 extension User: ManageableCellItem {

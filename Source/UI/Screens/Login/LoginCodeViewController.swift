@@ -48,26 +48,17 @@ class LoginCodeViewController: LoginTextInputViewController {
 
         let tf = self.textField as? TextField
         tf?.activityIndicator.startAnimating()
-        //Temp
-        User.current()?.phoneNumber = self.phoneNumber.numberString.formatPhoneNumber()
-        User.current()?.saveEventually()
-            .observe { (result) in
-                switch result {
-                case .success(let user):
-                    self.delegate.loginCodeView(self, didVerify: user)
-                case .failure(_):
-                    break 
+        VerifyCode(code: code, phoneNumber: self.phoneNumber).callFunction { (object, error) in
+            if let token = object as? String {
+                User.become(inBackground: token) { (user, error) in
+                    if let strongUser = user {
+                        self.delegate.loginCodeView(self, didVerify: strongUser)
+                    }
+                    tf?.activityIndicator.stopAnimating()
                 }
-                tf?.activityIndicator.stopAnimating()
-                self.textField.resignFirstResponder()
+            }
+            self.textField.resignFirstResponder()
         }
-
-//        VerifyCode.callFunction { (object, error) in
-//            if let user = object as? PFUser {
-//                self.delegate.loginCodeView(self, didVerify: user)
-//            }
-//            self.textField.resignFirstResponder()
-//        }
     }
 
     override func getAccessoryText() -> Localized? {

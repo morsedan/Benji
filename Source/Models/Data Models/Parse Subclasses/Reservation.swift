@@ -11,6 +11,8 @@ import Parse
 
 enum ReservationKeys: String {
     case position
+    case code
+    case isClaimed
 }
 
 final class Reservation: PFObject, PFSubclassing {
@@ -28,19 +30,41 @@ final class Reservation: PFObject, PFSubclassing {
         }
     }
 
+    private(set) var code: String {
+        get {
+            return self.getObject(for: .code) ?? String()
+        }
+        set {
+            self.setObject(for: .code, with: newValue)
+        }
+    }
+
+    private(set) var isClaimed: Bool {
+        get {
+            return self.getObject(for: .isClaimed) ?? false
+        }
+        set {
+            self.setObject(for: .isClaimed, with: newValue)
+        }
+    }
+
     static func create() -> Future<Reservation> {
         let promise = Promise<Reservation>()
 
-        let query = PFQuery.init(className: "ReservationCount")
-        query.getObjectInBackground(withId: "DVfDrd0gWq") { (object, error) in
-            if let current = object {
-                current.incrementKey(ReservationCountKeys.currentCount.rawValue, byAmount: 1)
-                current.saveInBackground { (success, error) in
+        // TODO: Instead of creating a reservation we should retrieve one.
+
+        let query = ReservationCount.query()
+        query?.getObjectInBackground(withId: "UodXr1FRNN") { (object, error) in
+            if let reservationCount = object as? ReservationCount {
+                reservationCount.incrementKey(ReservationCountKeys.currentCount.rawValue, byAmount: 1)
+                reservationCount.saveInBackground { (success, error) in
                     if success {
                         let reservation = Reservation()
-                        let count = current["currentCount"] as! NSNumber
-                        let cap = current["cap"] as! NSNumber
+                        let count = NSNumber(value: reservationCount.current!)
+                        let cap = NSNumber(value: reservationCount.cap!)
                         let position: Double = Double(truncating: count) / Double(truncating: cap)
+                        reservation.code = "123456"
+                        reservation.isClaimed = true 
                         reservation.position = position.rounded(by: cap.intValue)
                         reservation.saveEventually()
                             .observe { (result) in

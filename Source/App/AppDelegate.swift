@@ -29,14 +29,14 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         guard !ChannelManager.shared.isConnected else { return }
 
         switch LaunchManager.shared.status {
-        case .isLaunching, .failed(_):
-            break
         case .success(_):
             if let identity = User.current()?.objectId {
                 LaunchManager.shared.authenticateChatClient(with: identity, options: nil)
             } else {
-                LaunchManager.shared.createAnonymousUser(with: nil )
+                //LaunchManager.shared.createAnonymousUser(with: nil )
             }
+        case .needsOnboarding, .isLaunching, .failed(_):
+            break
         }
     }
 

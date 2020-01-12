@@ -39,28 +39,57 @@ class MainCoordinator: Coordinator<Void> {
 
         self.router.setRootModule(launchCoordinator, animated: true)
         self.addChildAndStart(launchCoordinator, finishedHandler: { [unowned self] (result) in
-            ChannelManager.initialize(token: result.token)
-
             self.handle(result: result)
         })
     }
 
-    private func handle(result: LaunchResult) {
-        runMain {
-            if PFAnonymousUtils.isLinked(with: PFUser.current()) {
+    private func handle(result: LaunchStatus) {
+
+        switch result {
+        case .isLaunching:
+            break
+        case .needsOnboarding:
+            runMain {
                 self.runLoginFlow()
-            } else {
-                self.runHomeFlow()
             }
+        case .success(let object, let token):
+            self.deepLink = object
+            ChannelManager.initialize(token: token)
+                .observe { (result) in
+                    switch result {
+                    case .success:
+                        runMain {
+                            self.runHomeFlow()
+                        }
+                    case .failure(let error):
+                        print(error)
+                    }
+            }
+        case .failed(_):
+            break
         }
     }
 
     private func runHomeFlow() {
-        let homeCoordinator = HomeCoordinator(router: self.router, deepLink: self.deepLink)
-        self.router.setRootModule(homeCoordinator, animated: true)
-        self.addChildAndStart(homeCoordinator, finishedHandler: { _ in
-            // If the home coordinator ever finishes, put handling logic here.
-        })
+        if User.current()?.handle == nil {
+            self.createHandle()
+                .observe { (result) in
+                    switch result {
+                    case .success:
+                        self.runHomeFlow()
+                    case .failure(_):
+                        break 
+                    }
+            }
+        } else {
+            runMain {
+                let homeCoordinator = HomeCoordinator(router: self.router, deepLink: self.deepLink)
+                self.router.setRootModule(homeCoordinator, animated: true)
+                self.addChildAndStart(homeCoordinator, finishedHandler: { _ in
+                    // If the home coordinator ever finishes, put handling logic here.
+                })
+            }
+        }
     }
 
     private func runLoginFlow() {
@@ -72,5 +101,31 @@ class MainCoordinator: Coordinator<Void> {
             }
         })
     }
+
+    private func createHandle() -> Future<Void> {
+           let promise = Promise<Void>()
+
+           Reservation.create()
+               .observe { (result) in
+                   switch result {
+                   case .success(let reservation):
+                       User.current()?.reservation = reservation
+                       User.current()?.createHandle()
+                       User.current()?.save()
+                           .observe { (userResult) in
+                               switch userResult {
+                               case .success(_):
+                                   promise.resolve(with: ())
+                               case .failure(let error):
+                                   promise.reject(with: error)
+                               }
+                       }
+                   case .failure(let error):
+                       promise.reject(with: error)
+                   }
+           }
+
+           return promise
+       }
 }
 

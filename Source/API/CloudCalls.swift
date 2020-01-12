@@ -8,19 +8,31 @@
 
 import Foundation
 import Parse
+import PhoneNumberKit
 
 protocol CloudFunction {
-    static func callFunction(completion: PFIdResultBlock?)
+    func callFunction(completion: PFIdResultBlock?)
 }
 
 struct SendCode: CloudFunction {
-    static func callFunction(completion: PFIdResultBlock?) {
-        PFCloud.callFunction(inBackground: "sendCode", withParameters: nil, block: completion)
+    let phoneNumber: PhoneNumber
+
+    func callFunction(completion: PFIdResultBlock?) {
+        PFCloud.callFunction(inBackground: "sendCode",
+                             withParameters: ["phoneNumber": PhoneKit.shared.format(self.phoneNumber, toType: .e164)],
+                             block: completion)
     }
 }
 
 struct VerifyCode: CloudFunction {
-    static func callFunction(completion: PFIdResultBlock?) {
-        PFCloud.callFunction(inBackground: "validateCode", withParameters: nil, block: completion)
+    let code: String
+    let phoneNumber: PhoneNumber
+
+    func callFunction(completion: PFIdResultBlock?) {
+        let params: [String: Any] = ["authCode": self.code,
+                                     "phoneNumber": PhoneKit.shared.format(self.phoneNumber, toType: .e164)]
+        PFCloud.callFunction(inBackground: "validateCode",
+                             withParameters: params,
+                             block: completion)
     }
 }

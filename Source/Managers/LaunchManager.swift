@@ -12,6 +12,7 @@ import Branch
 
 enum LaunchStatus {
     case isLaunching
+    case needsOnboarding
     case success(object: DeepLinkable?, token: String)
     case failed(error: ClientError?)
 }
@@ -33,9 +34,9 @@ class LaunchManager {
 
     // Important - this identity would be assigned by your app, for
     // instance after a user logs in
-    private let url = "https://benji-ios.herokuapp.com/parse"
-    private let appID = "benjamindodgson.Benji"
-    private let clientKey = "myMasterKey"
+    private let url = "https://benji-backend.herokuapp.com/parse"
+    private let appID = "BenjiApp"
+    private let clientKey = "theStupidMasterKeyThatShouldBeSecret"
     private(set) var status: LaunchStatus = .isLaunching {
         didSet {
             self.delegate?.launchManager(self, didFinishWith: self.status)
@@ -55,21 +56,7 @@ class LaunchManager {
         if let user = User.current(), let identity = user.objectId {
             self.authenticateChatClient(with: identity, options: options)
         } else {
-            self.createAnonymousUser(with: options)
-        }
-    }
-
-    func createAnonymousUser(with options: [UIApplication.LaunchOptionsKey: Any]?) {
-        User.anonymousLogin()
-            .observe { (result) in
-                switch result {
-                case .success(let user):
-                    if let identifier = user.objectId {
-                        self.authenticateChatClient(with: identifier, options: options)
-                    }
-                case .failure(let error):
-                    print(error)
-                }
+            self.status = .needsOnboarding
         }
     }
 
@@ -119,7 +106,7 @@ class LaunchManager {
                             guard error == nil else {
                                 // IMPORTANT: Allow the launch sequence to continue even if branch fails.
                                 // We don't want issues with the branch api to block our app from launching.
-                                self.delegate?.launchManager(self, didFinishWith: .success(object: nil, token: token))
+                                self.status = .success(object: nil, token: token)
                                 return
                             }
 
