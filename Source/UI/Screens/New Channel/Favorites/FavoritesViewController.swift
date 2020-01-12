@@ -15,8 +15,8 @@ class FavoritesViewController: OrbCollectionViewController {
         super.initializeViews()
 
         guard let objectId = User.current()?.objectId else { return }
-
-        User.initializeArrayQuery(notEqualTo: objectId)
+        User.current()
+        User.localThenNetworkArrayQuery(where: [objectId], isEqual: false, container: .favorites)
             .observe { (result) in
                 switch result {
                 case .success(let users):

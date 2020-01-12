@@ -11,11 +11,14 @@ import Parse
 
 enum ContainerName {
     case channel(identifier: String)
+    case favorites
 
     var name: String {
         switch self {
         case .channel(let identifier):
             return "channel\(identifier)"
+        case .favorites:
+            return "favorites"
         }
     }
 }
@@ -30,7 +33,7 @@ protocol Objectable: class {
     func save() -> Future<Self>
 
     static func localThenNetworkQuery(for objectId: String) -> Future<Self>
-    static func localThenNetworkArrayQuery(where identifiers: [String], isEqual: Bool, name: ContainerName) -> Future<[Self]>
+    static func localThenNetworkArrayQuery(where identifiers: [String], isEqual: Bool, container: ContainerName) -> Future<[Self]>
 }
 
 extension Objectable {
@@ -111,13 +114,13 @@ extension Objectable where Self: PFObject {
 
     static func localThenNetworkArrayQuery(where identifiers: [String],
                                            isEqual: Bool,
-                                           name: ContainerName) -> Future<[Self]> {
+                                           container: ContainerName) -> Future<[Self]> {
 
 
         let promise = Promise<[Self]>()
 
         if let query = self.query() {
-            query.fromPin(withName: name.name)
+            query.fromPin(withName: container.name)
             query.findObjectsInBackground()
                 .continueWith { (task) -> Any? in
                 if let objects = task.result as? [Self], !objects.isEmpty {
@@ -129,7 +132,7 @@ extension Objectable where Self: PFObject {
                         nonCacheQuery.whereKey(ObjectKey.objectId.rawValue, notContainedIn: identifiers)
                     }
                     nonCacheQuery.findObjectsInBackground { (objects, error) in
-                        PFObject.pinAll(inBackground: objects, withName: name.name) { (success, error) in
+                        PFObject.pinAll(inBackground: objects, withName: container.name) { (success, error) in
                             if let error = error {
                                 promise.reject(with: error)
                             } else if let objectsForType = objects as? [Self] {

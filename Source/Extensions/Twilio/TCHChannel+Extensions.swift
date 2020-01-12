@@ -230,7 +230,7 @@ extension Future where Value == TCHChannel {
 
                         User.localThenNetworkArrayQuery(where: identifiers,
                                                         isEqual: true, 
-                                                        name: .channel(identifier: channel.sid!))
+                                                        container: .channel(identifier: channel.sid!))
                             .observe { (result) in
                                 switch result {
                                 case .success(let users):
