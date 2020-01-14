@@ -18,13 +18,12 @@ protocol LoginCodeViewControllerDelegate: class {
 
 class LoginCodeViewController: LoginTextInputViewController {
 
-    let phoneNumber: PhoneNumber
+    var phoneNumber: PhoneNumber?
 
     unowned let delegate: LoginCodeViewControllerDelegate
 
-    init(with delegate: LoginCodeViewControllerDelegate, phoneNumber: PhoneNumber) {
+    init(with delegate: LoginCodeViewControllerDelegate) {
         self.delegate = delegate
-        self.phoneNumber = phoneNumber
         super.init(textField: TextField(),
                    textFieldTitle: LocalizedString(id: "", default: "CODE"),
                    textFieldPlaceholder: LocalizedString(id: "", default: "0000"))
@@ -42,13 +41,13 @@ class LoginCodeViewController: LoginTextInputViewController {
     // True if we're in the process of verifying the code
     var verifying: Bool = false
     private func verify(code: String) {
-        guard !self.verifying else { return }
+        guard !self.verifying, let phoneNumber = self.phoneNumber else { return }
 
         self.verifying = true
 
         let tf = self.textField as? TextField
         tf?.activityIndicator.startAnimating()
-        VerifyCode(code: code, phoneNumber: self.phoneNumber).callFunction { (object, error) in
+        VerifyCode(code: code, phoneNumber: phoneNumber).callFunction { (object, error) in
             if let token = object as? String {
                 User.become(inBackground: token) { (user, error) in
                     if let strongUser = user {

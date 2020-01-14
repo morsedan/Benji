@@ -29,7 +29,9 @@ class LoginCoordinator: PresentableCoordinator<Void> {
 
 extension LoginCoordinator: LoginPhoneViewControllerDelegate {
     func loginPhoneView(_ controller: LoginPhoneViewController, didCompleteWith phone: PhoneNumber) {
-        let controller = LoginCodeViewController(with: self, phoneNumber: phone)
+
+        let controller = LoginCodeViewController(with: self)
+        controller.phoneNumber = phone
         self.router.push(controller)
     }
 }
