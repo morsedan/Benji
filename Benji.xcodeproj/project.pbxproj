@@ -1044,7 +1044,7 @@
 			path = "View Controllers";
 			sourceTree = "<group>";
 		};
-		D67896A122FF40AB0059BA75 /* Login */ = {
+		D67896A122FF40AB0059BA75 /* Onboarding */ = {
 			isa = PBXGroup;
 			children = (
 				D67896B322FF75640059BA75 /* LoginCoordinator.swift */,
@@ -1054,7 +1054,7 @@
 				D67896BC23025FEC0059BA75 /* LoginNameViewController.swift */,
 				D67896BE2302683C0059BA75 /* LoginProfilePhotoViewController.swift */,
 			);
-			path = Login;
+			path = Onboarding;
 			sourceTree = "<group>";
 		};
 		D67896B022FF63EF0059BA75 /* TextFields */ = {
@@ -1189,7 +1189,7 @@
 				D6DADF6A2207DC90007D9EB1 /* Channels */,
 				D62C634F22BE9C4600F4D097 /* Feed */,
 				D6D145F521D549A300CD8CE4 /* Home */,
-				D67896A122FF40AB0059BA75 /* Login */,
+				D67896A122FF40AB0059BA75 /* Onboarding */,
 				D63753182316112E00214F63 /* New Channel */,
 				D6B2603B22E6B8CD00143CF0 /* Profile */,
 				D6EDD1932355DB6000FDA5D6 /* Routine */,
