@@ -28,6 +28,6 @@ class AlertConfirmationView: TextInputAccessoryView {
         if arguments.isEmpty {
             arguments.append("others ")
         }
-        self.text = LocalizedString(id: "", arguments: [arguments], default: "Swipe up to alert @(handle)of this message and be notified when it is read.")
+        self.text = LocalizedString(id: "", arguments: [arguments], default: "Swipe up to alert @(handle) of this message and be notified when it is read.")
     }
 }
