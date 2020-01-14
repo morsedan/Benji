@@ -66,6 +66,8 @@ class NavigationBarViewController: ViewController {
         self.lineView.size = CGSize(width: self.view.width - (Theme.contentOffset * 2), height: 2)
         self.lineView.top = self.descriptionLabel.bottom + 20
         self.lineView.centerOnX()
+
+        self.scrollView.contentInset = UIEdgeInsets(top: self.lineView.bottom + 10, left: 0, bottom: 0, right: 0)
     }
 
     // MARK: PUBLIC
