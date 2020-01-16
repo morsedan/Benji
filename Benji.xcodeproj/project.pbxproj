@@ -115,6 +115,7 @@
 		D64DD8AC23CE2C180039DC5A /* OnboardingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D64DD8AB23CE2C180039DC5A /* OnboardingViewController.swift */; };
 		D64DD8AE23CE31160039DC5A /* ReservationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D64DD8AD23CE31160039DC5A /* ReservationViewController.swift */; };
 		D64DD8B023CE3E7F0039DC5A /* OnboardingContent.swift in Sources */ = {isa = PBXBuildFile; fileRef = D64DD8AF23CE3E7F0039DC5A /* OnboardingContent.swift */; };
+		D64DD8B223CE403D0039DC5A /* SwitchableContentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D64DD8B123CE403D0039DC5A /* SwitchableContentViewController.swift */; };
 		D64F5F1F23B670C300216D99 /* PurposeInputAccessoryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D64F5F1E23B670C300216D99 /* PurposeInputAccessoryView.swift */; };
 		D64F5F2123B6713800216D99 /* TextInputAccessoryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D64F5F2023B6713800216D99 /* TextInputAccessoryView.swift */; };
 		D653F6B023588F8E00A03EEE /* RoutineViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D653F6AF23588F8E00A03EEE /* RoutineViewController.swift */; };
@@ -398,6 +399,7 @@
 		D64DD8AB23CE2C180039DC5A /* OnboardingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingViewController.swift; sourceTree = "<group>"; };
 		D64DD8AD23CE31160039DC5A /* ReservationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReservationViewController.swift; sourceTree = "<group>"; };
 		D64DD8AF23CE3E7F0039DC5A /* OnboardingContent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingContent.swift; sourceTree = "<group>"; };
+		D64DD8B123CE403D0039DC5A /* SwitchableContentViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwitchableContentViewController.swift; sourceTree = "<group>"; };
 		D64F5F1E23B670C300216D99 /* PurposeInputAccessoryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PurposeInputAccessoryView.swift; sourceTree = "<group>"; };
 		D64F5F2023B6713800216D99 /* TextInputAccessoryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextInputAccessoryView.swift; sourceTree = "<group>"; };
 		D653F6AF23588F8E00A03EEE /* RoutineViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoutineViewController.swift; sourceTree = "<group>"; };
@@ -1046,6 +1048,7 @@
 				D6D1461221D583E500CD8CE4 /* NavigationController.swift */,
 				D61EC0C121D3071400204BEE /* ViewController.swift */,
 				D6D8A48B235D154500F0CC4B /* NavigationBarViewController.swift */,
+				D64DD8B123CE403D0039DC5A /* SwitchableContentViewController.swift */,
 			);
 			path = "View Controllers";
 			sourceTree = "<group>";
@@ -1607,6 +1610,7 @@
 				D6D145FF21D5510400CD8CE4 /* StringStyle.swift in Sources */,
 				D64C6A9C232D6C9200DB7257 /* BubbleCircleView.swift in Sources */,
 				D691794222F6418700340AA3 /* Router.swift in Sources */,
+				D64DD8B223CE403D0039DC5A /* SwitchableContentViewController.swift in Sources */,
 				D6D1501821D5F40F00CD8CE4 /* UICollectionView+Extensions.swift in Sources */,
 				D642737822C99DB50088256B /* ContactsCollectionView.swift in Sources */,
 				D64C6A97232D5C0400DB7257 /* TCHMember+Extensions.swift in Sources */,

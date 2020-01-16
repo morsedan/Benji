@@ -15,7 +15,7 @@ protocol OnboardingViewControllerDelegate: class {
     func onboardingView(_ controller: OnboardingViewController, didVerify user: PFUser)
 }
 
-class OnboardingViewController: NavigationBarViewController {
+class OnboardingViewController: NavigationBarViewController, KeyboardObservable {
 
     lazy var reservationVC = ReservationViewController()
     lazy var phoneVC = LoginPhoneViewController(with: self)
@@ -39,6 +39,8 @@ class OnboardingViewController: NavigationBarViewController {
 
     override func initializeViews() {
         super.initializeViews()
+
+        self.registerKeyboardEvents()
 
         self.currentContent.producer
             .skipRepeats()
@@ -85,6 +87,10 @@ class OnboardingViewController: NavigationBarViewController {
                 self.backButton.alpha = showBackButton ? 1 : 0
             }
         }
+    }
+
+    func handleKeyboard(frame: CGRect, with animationDuration: TimeInterval, timingCurve: UIView.AnimationCurve) {
+        
     }
 }
 
