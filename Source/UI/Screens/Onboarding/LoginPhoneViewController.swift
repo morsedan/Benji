@@ -70,6 +70,7 @@ class LoginPhoneViewController: TextInputViewController {
             if error == nil {
                 self.delegate.loginPhoneView(self, didCompleteWith: phone)
             }
+            self.completeWithResult()
         }
     }
 

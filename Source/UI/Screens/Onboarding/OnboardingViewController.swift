@@ -37,6 +37,52 @@ class OnboardingViewController: SwitchableContentViewController<OnboardingConten
     override func initializeViews() {
         super.initializeViews()
 
+        self.reservationVC.onDidComplete = { [unowned self] result in
+            switch result {
+            case .success:
+                self.currentContent.value = .phone(self.phoneVC)
+            case .failure(let error):
+                print(error)
+            }
+        }
+
+        self.phoneVC.onDidComplete = { [unowned self] result in
+            switch result {
+            case .success:
+                self.currentContent.value = .code(self.codeVC)
+            case .failure(let error):
+                print(error)
+            }
+        }
+
+        self.codeVC.onDidComplete = { [unowned self] result in
+            switch result {
+            case .success:
+                self.currentContent.value = .name(self.nameVC)
+            case .failure(let error):
+                print(error)
+            }
+        }
+
+        self.nameVC.onDidComplete = { [unowned self] result in
+            switch result {
+            case .success:
+                self.currentContent.value = .photo(self.photoVC)
+            case .failure(let error):
+                print(error)
+            }
+        }
+
+        self.phoneVC.onDidComplete = { [unowned self] result in
+            switch result {
+            case .success:
+                if let user = User.current() {
+                    self.delegate.onboardingView(self, didVerify: user)
+                }
+            case .failure(let error):
+                print(error)
+            }
+        }
     }
 
     override func getInitialContent() -> OnboardingContent {
@@ -44,7 +90,19 @@ class OnboardingViewController: SwitchableContentViewController<OnboardingConten
     }
 
     override func didSelectBackButton() {
-        
+
+        switch self.currentContent.value {
+        case .reservation(_):
+            break
+        case .phone(_):
+            self.currentContent.value = .reservation(self.reservationVC)
+        case .code(_):
+            self.currentContent.value = .phone(self.phoneVC)
+        case .name(_):
+            break
+        case .photo(_):
+            self.currentContent.value = .name(self.nameVC)
+        }
     }
 }
 
