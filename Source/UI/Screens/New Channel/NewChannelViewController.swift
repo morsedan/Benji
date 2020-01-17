@@ -65,10 +65,6 @@ class NewChannelViewController: NavigationBarViewController, KeyboardObservable 
                 self.switchContent()
         }.start()
 
-        self.backButton.didSelect = { [unowned self] in
-            self.currentContent.value = .purpose(self.purposeVC)
-        }
-
         self.registerKeyboardEvents()
 
         self.purposeVC.textFieldDidBegin = { [unowned self] in
@@ -164,6 +160,10 @@ class NewChannelViewController: NavigationBarViewController, KeyboardObservable 
                 return "No description given."
             }
         }
+    }
+
+    override func didSelectBackButton() {
+        self.currentContent.value = .purpose(self.purposeVC)
     }
 
     func buttonTapped() {

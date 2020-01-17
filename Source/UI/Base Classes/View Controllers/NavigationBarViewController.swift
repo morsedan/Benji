@@ -28,6 +28,9 @@ class NavigationBarViewController: ViewController {
         self.view.addSubview(self.backButton)
         self.backButton.setImage(UIImage(systemName: "arrow.left"), for: .normal)
         self.backButton.tintColor = Color.lightPurple.color
+        self.backButton.didSelect = { [unowned self] in
+            self.didSelectBackButton()
+        }
 
         self.view.addSubview(self.titleLabel)
         self.view.addSubview(self.descriptionLabel)
@@ -79,4 +82,6 @@ class NavigationBarViewController: ViewController {
     func getDescription() -> Localized {
         return LocalizedString.empty
     }
+
+    func didSelectBackButton() { }
 }

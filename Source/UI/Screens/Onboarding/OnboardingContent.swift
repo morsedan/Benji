@@ -9,6 +9,7 @@
 import Foundation
 
 enum OnboardingContent: Equatable {
+    
     case reservation(ReservationViewController)
     case phone(LoginPhoneViewController)
     case code(LoginCodeViewController)
