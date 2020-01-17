@@ -124,23 +124,15 @@ class NewChannelViewController: SwitchableContentViewController<NewChannelConten
         self.button.right = self.view.width - 16
         self.button.bottom = self.view.height - self.view.safeAreaInsets.bottom - 10
 
-//        let height = self.centerVCHeight ?? self.view.height - self.lineView.bottom
-//        self.centerContainer.size = CGSize(width: self.view.width,
-//                                           height: height)
-//        self.centerContainer.top = self.lineView.bottom
-//        self.centerContainer.centerOnX()
-//
-//        self.currentCenterVC?.view.frame = self.centerContainer.bounds
-//
-//        let offset: CGFloat = self.keyboardHandler?.currentKeyboardHeight ?? 20
-//        self.scrollView.contentSize = CGSize(width: self.view.width, height: self.centerContainer.bottom + offset)
-//
-//        guard let handler = self.keyboardHandler else { return }
-//        let diff = self.view.height - handler.currentKeyboardHeight
-//        if diff < self.centerContainer.bottom {
-//            let offset = self.centerContainer.bottom - diff
-//            self.scrollView.setContentOffset(CGPoint(x: 0, y: offset), animated: false)
-//        }
+        guard let handler = self.keyboardHandler, handler.currentKeyboardHeight > 0 else { return }
+
+        let diff = self.view.height - handler.currentKeyboardHeight
+        if diff < self.scrollView.contentSize.height {
+            let offset = (self.view.height - self.scrollView.contentSize.height) * -1
+            if offset > 0 {
+                self.scrollView.setContentOffset(CGPoint(x: 0, y: offset), animated: false)
+            }
+        }
     }
 
     override func getInitialContent() -> NewChannelContent {
@@ -199,56 +191,6 @@ class NewChannelViewController: SwitchableContentViewController<NewChannelConten
             }
         }
     }
-
-//    private func switchContent() {
-//
-//        UIView.animate(withDuration: Theme.animationDuration, animations: {
-//            self.titleLabel.alpha = 0
-//            self.titleLabel.transform = CGAffineTransform(scaleX: 0.95, y: 0.95)
-//
-//            self.descriptionLabel.alpha = 0
-//            self.descriptionLabel.transform = CGAffineTransform(scaleX: 0.95, y: 0.95)
-//
-//            self.centerContainer.alpha = 0
-//            self.backButton.alpha = 0
-//        }) { (completed) in
-//
-//            self.currentCenterVC?.removeFromParentSuperview()
-//            var newContentVC: UIViewController?
-//            var showBackButton = false
-//            switch self.currentContent.value {
-//            case .purpose(let vc):
-//                newContentVC = vc
-//                self.centerVCHeight = vc.totalHeight
-//            case .favorites(let vc):
-//                newContentVC = vc
-//                showBackButton = true
-//                self.centerVCHeight = nil
-//            }
-//
-//            self.updateLabels()
-//            self.button.update(for: self.currentContent.value)
-//
-//            self.currentCenterVC = newContentVC
-//
-//            if let contentVC = self.currentCenterVC {
-//                self.addChild(viewController: contentVC, toView: self.centerContainer)
-//            }
-//
-//            self.view.setNeedsLayout()
-//
-//            UIView.animate(withDuration: Theme.animationDuration) {
-//                self.titleLabel.alpha = 1
-//                self.titleLabel.transform = .identity
-//
-//                self.descriptionLabel.alpha = 1
-//                self.descriptionLabel.transform = .identity
-//
-//                self.centerContainer.alpha = 1
-//                self.backButton.alpha = showBackButton ? 1 : 0
-//            }
-//        }
-//    }
 
     private func createChannel(with user: User,
                                title: String,

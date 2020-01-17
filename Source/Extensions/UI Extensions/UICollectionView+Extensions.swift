@@ -56,29 +56,30 @@ extension UICollectionView {
         guard diffResult.hasChanges else { return }
 
         let sanitizedResults: ListIndexPathResult = diffResult.forBatchUpdates()
-
-        if self.frame == .zero {
-            modifyItems?()
-            self.reloadData()
-            completion?(true)
-            return
-        }
-
-        self.performBatchUpdates({
-
-            modifyItems?()
-
-            self.deleteItems(at: sanitizedResults.deletes)
-            self.insertItems(at: sanitizedResults.inserts)
-            self.reloadItems(at: sanitizedResults.updates)
-            for moveIndexPath in sanitizedResults.moves {
-                self.moveItem(at: moveIndexPath.from, to: moveIndexPath.to)
+        runMain {
+            if self.frame == .zero {
+                modifyItems?()
+                self.reloadData()
+                completion?(true)
+                return
             }
-        }, completion: { (completed) in
-            // Force collection view to update otherwise the cells will reflect the old layout
-            self.collectionViewLayout.invalidateLayout()
-            completion?(completed)
-        })
+
+            self.performBatchUpdates({
+
+                modifyItems?()
+
+                self.deleteItems(at: sanitizedResults.deletes)
+                self.insertItems(at: sanitizedResults.inserts)
+                self.reloadItems(at: sanitizedResults.updates)
+                for moveIndexPath in sanitizedResults.moves {
+                    self.moveItem(at: moveIndexPath.from, to: moveIndexPath.to)
+                }
+            }, completion: { (completed) in
+                // Force collection view to update otherwise the cells will reflect the old layout
+                self.collectionViewLayout.invalidateLayout()
+                completion?(completed)
+            })
+        }
     }
 
     func reloadWithModify<T: Diffable>(previousItems: [T],

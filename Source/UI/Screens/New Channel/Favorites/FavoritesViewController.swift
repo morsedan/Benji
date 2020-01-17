@@ -11,19 +11,11 @@ import Parse
 
 class FavoritesViewController: OrbCollectionViewController, Sizeable {
 
-    func getHeight(for width: CGFloat) -> CGFloat {
-        return .zero
-    }
-
-    func getWidth(for height: CGFloat) -> CGFloat {
-        return .zero 
-    }
-
     override func initializeViews() {
         super.initializeViews()
 
         guard let objectId = User.current()?.objectId else { return }
-        User.current()
+
         User.localThenNetworkArrayQuery(where: [objectId], isEqual: false, container: .favorites)
             .observe { (result) in
                 switch result {
@@ -43,5 +35,13 @@ class FavoritesViewController: OrbCollectionViewController, Sizeable {
         }
 
         self.collectionViewManager.set(newItems: orbItems)
+    }
+
+    func getHeight(for width: CGFloat) -> CGFloat {
+        return .zero
+    }
+
+    func getWidth(for height: CGFloat) -> CGFloat {
+        return .zero
     }
 }

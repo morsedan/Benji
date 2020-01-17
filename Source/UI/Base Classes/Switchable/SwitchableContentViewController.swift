@@ -31,8 +31,12 @@ class SwitchableContentViewController<ContentType: Switchable>: NavigationBarVie
         super.viewDidLayoutSubviews()
 
         let yOffset = self.lineView.bottom
-        let vcHeight = self.currentContent.value.viewController.getHeight(for: self.scrollView.width)
-        let contentHeight = yOffset + vcHeight
+        var vcHeight = self.currentContent.value.viewController.getHeight(for: self.scrollView.width)
+        if vcHeight == .zero {
+            vcHeight = self.scrollView.height - self.lineView.bottom
+        }
+        let keyboardHeight: CGFloat = self.keyboardHandler?.currentKeyboardHeight ?? 0
+        let contentHeight = yOffset + vcHeight + keyboardHeight
         self.scrollView.contentSize = CGSize(width: self.scrollView.width, height: contentHeight)
 
         self.currentContent.value.viewController.view.frame = CGRect(x: 0,
