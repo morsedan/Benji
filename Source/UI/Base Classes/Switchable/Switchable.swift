@@ -9,11 +9,7 @@
 import Foundation
 import TMROLocalization
 
-protocol SwitchableContent: Equatable {
-    var viewController: SizeableViewController { get }
+protocol Switchable: Equatable {
+    var viewController: UIViewController & Sizeable { get }
     var shouldShowBackButton: Bool { get }
-    var title: Localized { get }
-    var description: Localized { get }
 }
-
-

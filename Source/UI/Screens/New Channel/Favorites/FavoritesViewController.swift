@@ -9,8 +9,16 @@
 import Foundation
 import Parse 
 
-class FavoritesViewController: OrbCollectionViewController {
-    
+class FavoritesViewController: OrbCollectionViewController, Sizeable {
+
+    func getHeight(for width: CGFloat) -> CGFloat {
+        return .zero
+    }
+
+    func getWidth(for height: CGFloat) -> CGFloat {
+        return .zero 
+    }
+
     override func initializeViews() {
         super.initializeViews()
 

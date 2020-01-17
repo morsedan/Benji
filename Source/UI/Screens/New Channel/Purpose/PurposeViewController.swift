@@ -9,7 +9,7 @@
 import Foundation
 import TMROLocalization
 
-class PurposeViewController: ViewController {
+class PurposeViewController: ViewController, Sizeable {
 
     let offset: CGFloat = 20
 
@@ -56,26 +56,30 @@ class PurposeViewController: ViewController {
         self.textField.delegate = self
     }
 
-    override func viewDidLayoutSubviews() {
-        super.viewDidLayoutSubviews()
+    func getHeight(for width: CGFloat) -> CGFloat {
 
-        let width = self.view.width - (self.offset * 2)
-
-        self.textFieldTitleLabel.setSize(withWidth: width)
+        let newWidth = width - (self.offset * 2)
+        self.textFieldTitleLabel.setSize(withWidth: newWidth)
         self.textFieldTitleLabel.top = 30
         self.textFieldTitleLabel.left = self.offset
 
-        self.textField.size = CGSize(width: width, height: 40)
+        self.textField.size = CGSize(width: newWidth, height: 40)
         self.textField.left = self.offset
         self.textField.top = self.textFieldTitleLabel.bottom + 10
 
-        self.textViewTitleLabel.setSize(withWidth: width)
+        self.textViewTitleLabel.setSize(withWidth: newWidth)
         self.textViewTitleLabel.top = self.textField.bottom + 30
         self.textViewTitleLabel.left = self.offset
 
-        self.textView.size = CGSize(width: width, height: 120)
+        self.textView.size = CGSize(width: newWidth, height: 120)
         self.textView.top = self.textViewTitleLabel.bottom + 10
         self.textView.left = self.offset
+
+        return self.textView.bottom
+    }
+
+    func getWidth(for height: CGFloat) -> CGFloat {
+        return .zero 
     }
 }
 

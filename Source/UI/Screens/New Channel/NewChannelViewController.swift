@@ -17,19 +17,33 @@ protocol NewChannelViewControllerDelegate: class {
                         didCreate channel: ChannelType)
 }
 
-enum NewChannelContent: Equatable {
+enum NewChannelContent: Switchable {
     case purpose(PurposeViewController)
     case favorites(FavoritesViewController)
+
+    var viewController: UIViewController & Sizeable {
+        switch self {
+        case .purpose(let vc):
+            return vc
+        case .favorites(let vc):
+            return vc
+        }
+    }
+
+    var shouldShowBackButton: Bool {
+        switch self {
+        case .purpose(_):
+            return false
+        case .favorites(_):
+            return true
+        }
+    }
 }
 
-class NewChannelViewController: NavigationBarViewController, KeyboardObservable {
+class NewChannelViewController: SwitchableContentViewController<NewChannelContent> {
 
     lazy var purposeVC = PurposeViewController()
     lazy var favoritesVC = FavoritesViewController()
-    lazy var currentContent = MutableProperty<NewChannelContent>(.purpose(self.purposeVC))
-    private var currentCenterVC: UIViewController?
-    private let centerContainer = View()
-    private var centerVCHeight: CGFloat?
 
     let button = NewChannelButton()
 
@@ -51,21 +65,12 @@ class NewChannelViewController: NavigationBarViewController, KeyboardObservable 
     override func initializeViews() {
         super.initializeViews()
 
-        self.view.addSubview(self.centerContainer)
         self.view.set(backgroundColor: .background2)
 
         self.view.addSubview(self.button)
         self.button.didSelect = { [unowned self] in
             self.buttonTapped()
         }
-
-        self.currentContent.producer
-            .skipRepeats()
-            .on { [unowned self] (contentType) in
-                self.switchContent()
-        }.start()
-
-        self.registerKeyboardEvents()
 
         self.purposeVC.textFieldDidBegin = { [unowned self] in
             UIView.animate(withDuration: Theme.animationDuration) {
@@ -119,26 +124,31 @@ class NewChannelViewController: NavigationBarViewController, KeyboardObservable 
         self.button.right = self.view.width - 16
         self.button.bottom = self.view.height - self.view.safeAreaInsets.bottom - 10
 
-        let height = self.centerVCHeight ?? self.view.height - self.lineView.bottom
-        self.centerContainer.size = CGSize(width: self.view.width,
-                                           height: height)
-        self.centerContainer.top = self.lineView.bottom
-        self.centerContainer.centerOnX()
+//        let height = self.centerVCHeight ?? self.view.height - self.lineView.bottom
+//        self.centerContainer.size = CGSize(width: self.view.width,
+//                                           height: height)
+//        self.centerContainer.top = self.lineView.bottom
+//        self.centerContainer.centerOnX()
+//
+//        self.currentCenterVC?.view.frame = self.centerContainer.bounds
+//
+//        let offset: CGFloat = self.keyboardHandler?.currentKeyboardHeight ?? 20
+//        self.scrollView.contentSize = CGSize(width: self.view.width, height: self.centerContainer.bottom + offset)
+//
+//        guard let handler = self.keyboardHandler else { return }
+//        let diff = self.view.height - handler.currentKeyboardHeight
+//        if diff < self.centerContainer.bottom {
+//            let offset = self.centerContainer.bottom - diff
+//            self.scrollView.setContentOffset(CGPoint(x: 0, y: offset), animated: false)
+//        }
+    }
 
-        self.currentCenterVC?.view.frame = self.centerContainer.bounds
-
-        let offset: CGFloat = self.keyboardHandler?.currentKeyboardHeight ?? 20
-        self.scrollView.contentSize = CGSize(width: self.view.width, height: self.centerContainer.bottom + offset)
-
-        guard let handler = self.keyboardHandler else { return }
-        let diff = self.view.height - handler.currentKeyboardHeight
-        if diff < self.centerContainer.bottom {
-            let offset = self.centerContainer.bottom - diff
-            self.scrollView.setContentOffset(CGPoint(x: 0, y: offset), animated: false)
-        }
+    override func getInitialContent() -> NewChannelContent {
+        return .purpose(self.purposeVC)
     }
 
     override func getTitle() -> Localized {
+
         switch self.currentContent.value {
         case .purpose(_):
             return "NEW CONVERSATION"
@@ -150,6 +160,7 @@ class NewChannelViewController: NavigationBarViewController, KeyboardObservable 
     }
 
     override func getDescription() -> Localized {
+
         switch self.currentContent.value {
         case .purpose(_):
             return "Add a name and description to help frame the conversation."
@@ -167,6 +178,7 @@ class NewChannelViewController: NavigationBarViewController, KeyboardObservable 
     }
 
     func buttonTapped() {
+
         switch self.currentContent.value {
         case .purpose(_):
             self.currentContent.value = .favorites(self.favoritesVC)
@@ -186,55 +198,55 @@ class NewChannelViewController: NavigationBarViewController, KeyboardObservable 
         }
     }
 
-    private func switchContent() {
-
-        UIView.animate(withDuration: Theme.animationDuration, animations: {
-            self.titleLabel.alpha = 0
-            self.titleLabel.transform = CGAffineTransform(scaleX: 0.95, y: 0.95)
-
-            self.descriptionLabel.alpha = 0
-            self.descriptionLabel.transform = CGAffineTransform(scaleX: 0.95, y: 0.95)
-
-            self.centerContainer.alpha = 0
-            self.backButton.alpha = 0 
-        }) { (completed) in
-
-            self.currentCenterVC?.removeFromParentSuperview()
-            var newContentVC: UIViewController?
-            var showBackButton = false
-            switch self.currentContent.value {
-            case .purpose(let vc):
-                newContentVC = vc
-                self.centerVCHeight = vc.totalHeight
-            case .favorites(let vc):
-                newContentVC = vc
-                showBackButton = true
-                self.centerVCHeight = nil
-            }
-
-            self.updateLabels()
-            self.button.update(for: self.currentContent.value)
-
-            self.currentCenterVC = newContentVC
-
-            if let contentVC = self.currentCenterVC {
-                self.addChild(viewController: contentVC, toView: self.centerContainer)
-            }
-
-            self.view.setNeedsLayout()
-
-            UIView.animate(withDuration: Theme.animationDuration) {
-                self.titleLabel.alpha = 1
-                self.titleLabel.transform = .identity
-
-                self.descriptionLabel.alpha = 1
-                self.descriptionLabel.transform = .identity
-
-                self.centerContainer.alpha = 1
-                self.backButton.alpha = showBackButton ? 1 : 0
-            }
-        }
-    }
+//    private func switchContent() {
+//
+//        UIView.animate(withDuration: Theme.animationDuration, animations: {
+//            self.titleLabel.alpha = 0
+//            self.titleLabel.transform = CGAffineTransform(scaleX: 0.95, y: 0.95)
+//
+//            self.descriptionLabel.alpha = 0
+//            self.descriptionLabel.transform = CGAffineTransform(scaleX: 0.95, y: 0.95)
+//
+//            self.centerContainer.alpha = 0
+//            self.backButton.alpha = 0
+//        }) { (completed) in
+//
+//            self.currentCenterVC?.removeFromParentSuperview()
+//            var newContentVC: UIViewController?
+//            var showBackButton = false
+//            switch self.currentContent.value {
+//            case .purpose(let vc):
+//                newContentVC = vc
+//                self.centerVCHeight = vc.totalHeight
+//            case .favorites(let vc):
+//                newContentVC = vc
+//                showBackButton = true
+//                self.centerVCHeight = nil
+//            }
+//
+//            self.updateLabels()
+//            self.button.update(for: self.currentContent.value)
+//
+//            self.currentCenterVC = newContentVC
+//
+//            if let contentVC = self.currentCenterVC {
+//                self.addChild(viewController: contentVC, toView: self.centerContainer)
+//            }
+//
+//            self.view.setNeedsLayout()
+//
+//            UIView.animate(withDuration: Theme.animationDuration) {
+//                self.titleLabel.alpha = 1
+//                self.titleLabel.transform = .identity
+//
+//                self.descriptionLabel.alpha = 1
+//                self.descriptionLabel.transform = .identity
+//
+//                self.centerContainer.alpha = 1
+//                self.backButton.alpha = showBackButton ? 1 : 0
+//            }
+//        }
+//    }
 
     private func createChannel(with user: User,
                                title: String,
@@ -268,15 +280,6 @@ class NewChannelViewController: NavigationBarViewController, KeyboardObservable 
                     }
                 }
         }
-    }
-
-    func handleKeyboard(frame: CGRect,
-                        with animationDuration: TimeInterval,
-                        timingCurve: UIView.AnimationCurve) {
-
-        UIView.animate(withDuration: animationDuration, animations: {
-            self.view.layoutNow()
-        })
     }
 }
 

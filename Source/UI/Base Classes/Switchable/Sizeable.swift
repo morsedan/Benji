@@ -8,9 +8,7 @@
 
 import Foundation
 
-typealias SizeableViewController = ViewController & Sizeable
-
-protocol Sizeable {
+protocol Sizeable: class {
     func getHeight(for width: CGFloat) -> CGFloat
     func getWidth(for height: CGFloat) -> CGFloat
 }

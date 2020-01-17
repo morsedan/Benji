@@ -10,10 +10,10 @@ import Foundation
 import ReactiveSwift
 import TMROLocalization
 
-class SwitchableContentViewController<ContentType: SwitchableContent>: NavigationBarViewController, KeyboardObservable {
+class SwitchableContentViewController<ContentType: Switchable>: NavigationBarViewController, KeyboardObservable {
 
-    lazy var currentContent = MutableProperty<ContentType?>(nil)
-    private var currentCenterVC: ViewController?
+    lazy var currentContent = MutableProperty<ContentType>(self.getInitialContent())
+    private var currentCenterVC: (UIViewController & Sizeable)?
 
     override func initializeViews() {
         super.initializeViews()
@@ -30,21 +30,22 @@ class SwitchableContentViewController<ContentType: SwitchableContent>: Navigatio
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
 
-        if let current = self.currentContent.value {
-            let yOffset = self.lineView.bottom
-            let vcHeight = current.viewController.getHeight(for: self.scrollView.width)
-            let contentHeight = yOffset + vcHeight
-            self.scrollView.contentSize = CGSize(width: self.scrollView.width, height: contentHeight)
+        let yOffset = self.lineView.bottom
+        let vcHeight = self.currentContent.value.viewController.getHeight(for: self.scrollView.width)
+        let contentHeight = yOffset + vcHeight
+        self.scrollView.contentSize = CGSize(width: self.scrollView.width, height: contentHeight)
 
-            current.viewController.view.frame = CGRect(x: 0,
-                                                       y: yOffset,
-                                                       width: self.scrollView.width,
-                                                       height: vcHeight)
-        }
+        self.currentContent.value.viewController.view.frame = CGRect(x: 0,
+                                                                     y: yOffset,
+                                                                     width: self.scrollView.width,
+                                                                     height: vcHeight)
+    }
+
+    func getInitialContent() -> ContentType {
+        fatalError("No initial content type set")
     }
 
     func switchContent() {
-        guard let current = self.currentContent.value else { return }
 
         UIView.animate(withDuration: Theme.animationDuration, animations: {
             self.titleLabel.alpha = 0
@@ -62,8 +63,8 @@ class SwitchableContentViewController<ContentType: SwitchableContent>: Navigatio
 
             self.updateLabels()
 
-            self.currentCenterVC = current.viewController
-            let showBackButton = current.shouldShowBackButton
+            self.currentCenterVC = self.currentContent.value.viewController
+            let showBackButton = self.currentContent.value.shouldShowBackButton
 
             if let contentVC = self.currentCenterVC {
                 self.addChild(viewController: contentVC, toView: self.scrollView)
@@ -91,13 +92,5 @@ class SwitchableContentViewController<ContentType: SwitchableContent>: Navigatio
         UIView.animate(withDuration: animationDuration, animations: {
             self.view.layoutNow()
         })
-    }
-
-    override func getTitle() -> Localized {
-        return self.currentContent.value?.title ?? LocalizedString.empty
-    }
-
-    override func getDescription() -> Localized {
-        return self.currentContent.value?.description ?? LocalizedString.empty
     }
 }
