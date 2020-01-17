@@ -30,7 +30,17 @@ class SwitchableContentViewController<ContentType: SwitchableContent>: Navigatio
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
 
-        
+        if let current = self.currentContent.value {
+            let yOffset = self.lineView.bottom + 20
+            let vcHeight = current.viewController.getHeight(for: self.scrollView.width)
+            let contentHeight = yOffset + vcHeight
+            self.scrollView.contentSize = CGSize(width: self.scrollView.width, height: contentHeight)
+
+            current.viewController.view.frame = CGRect(x: 0,
+                                                       y: yOffset,
+                                                       width: self.scrollView.width,
+                                                       height: vcHeight)
+        }
     }
 
     func switchContent() {

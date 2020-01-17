@@ -263,6 +263,7 @@
 		D6E4C8012394391A002B1330 /* RoutineTimeOfDayLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6E4C8002394391A002B1330 /* RoutineTimeOfDayLabel.swift */; };
 		D6E65F19237791650061AA67 /* ManageableCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6E65F18237791650061AA67 /* ManageableCell.swift */; };
 		D6E80C8B23B2D1180012D438 /* FeedNotificationPermissionsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6E80C8A23B2D1180012D438 /* FeedNotificationPermissionsView.swift */; };
+		D6EAC95523D145350028DAA2 /* Sizeable.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6EAC95423D145350028DAA2 /* Sizeable.swift */; };
 		D6EB4DF023540E48005BF3B4 /* CameraViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6EB4DEF23540E48005BF3B4 /* CameraViewController.swift */; };
 		D6EDD1952355DB9B00FDA5D6 /* ProfileCollectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6EDD1942355DB9B00FDA5D6 /* ProfileCollectionView.swift */; };
 		D6EDD1972355DBC500FDA5D6 /* ProfileAvatarCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6EDD1962355DBC500FDA5D6 /* ProfileAvatarCell.swift */; };
@@ -566,6 +567,7 @@
 		D6E4C8002394391A002B1330 /* RoutineTimeOfDayLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoutineTimeOfDayLabel.swift; sourceTree = "<group>"; };
 		D6E65F18237791650061AA67 /* ManageableCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ManageableCell.swift; sourceTree = "<group>"; };
 		D6E80C8A23B2D1180012D438 /* FeedNotificationPermissionsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedNotificationPermissionsView.swift; sourceTree = "<group>"; };
+		D6EAC95423D145350028DAA2 /* Sizeable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Sizeable.swift; sourceTree = "<group>"; };
 		D6EB4DEF23540E48005BF3B4 /* CameraViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CameraViewController.swift; sourceTree = "<group>"; };
 		D6EDD1942355DB9B00FDA5D6 /* ProfileCollectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileCollectionView.swift; sourceTree = "<group>"; };
 		D6EDD1962355DBC500FDA5D6 /* ProfileAvatarCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileAvatarCell.swift; sourceTree = "<group>"; };
@@ -1000,6 +1002,7 @@
 		D66656BB23D13C83009E4BDF /* Switchable */ = {
 			isa = PBXGroup;
 			children = (
+				D6EAC95423D145350028DAA2 /* Sizeable.swift */,
 				D66656BC23D13C9A009E4BDF /* Switchable.swift */,
 				D64DD8B123CE403D0039DC5A /* SwitchableContentViewController.swift */,
 			);
@@ -1632,6 +1635,7 @@
 				D6D1460B21D5547000CD8CE4 /* FontType.swift in Sources */,
 				D6D1461321D583E500CD8CE4 /* NavigationController.swift in Sources */,
 				D6EE715B23B84C5C000ED221 /* AnyHashableDisplayable.swift in Sources */,
+				D6EAC95523D145350028DAA2 /* Sizeable.swift in Sources */,
 				D64C055B23C2A34E00F6DCC1 /* ChannelCellContentView.swift in Sources */,
 				D67896B8230096620059BA75 /* KeyboardObservable.swift in Sources */,
 				D642735E22C90C820088256B /* CGPoint+Extensions.swift in Sources */,

@@ -10,8 +10,10 @@ import Foundation
 import TMROLocalization
 
 protocol SwitchableContent: Equatable {
-    var viewController: ViewController { get }
+    var viewController: SizeableViewController { get }
     var shouldShowBackButton: Bool { get }
     var title: Localized { get }
     var description: Localized { get }
 }
+
+
