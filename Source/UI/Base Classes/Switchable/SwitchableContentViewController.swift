@@ -70,6 +70,8 @@ class SwitchableContentViewController<ContentType: Switchable>: NavigationBarVie
                 self.addChild(viewController: contentVC, toView: self.scrollView)
             }
 
+            self.willUpdateContent()
+
             self.view.setNeedsLayout()
 
             UIView.animate(withDuration: Theme.animationDuration) {
@@ -93,4 +95,6 @@ class SwitchableContentViewController<ContentType: Switchable>: NavigationBarVie
             self.view.layoutNow()
         })
     }
+
+    func willUpdateContent() {}
 }

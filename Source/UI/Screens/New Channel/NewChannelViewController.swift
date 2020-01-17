@@ -148,7 +148,6 @@ class NewChannelViewController: SwitchableContentViewController<NewChannelConten
     }
 
     override func getTitle() -> Localized {
-
         switch self.currentContent.value {
         case .purpose(_):
             return "NEW CONVERSATION"
@@ -160,7 +159,6 @@ class NewChannelViewController: SwitchableContentViewController<NewChannelConten
     }
 
     override func getDescription() -> Localized {
-
         switch self.currentContent.value {
         case .purpose(_):
             return "Add a name and description to help frame the conversation."
@@ -175,6 +173,10 @@ class NewChannelViewController: SwitchableContentViewController<NewChannelConten
 
     override func didSelectBackButton() {
         self.currentContent.value = .purpose(self.purposeVC)
+    }
+
+    override func willUpdateContent() {
+        self.button.update(for: self.currentContent.value)
     }
 
     func buttonTapped() {
