@@ -12,3 +12,14 @@ protocol Sizeable: class {
     func getHeight(for width: CGFloat) -> CGFloat
     func getWidth(for height: CGFloat) -> CGFloat
 }
+
+extension Sizeable {
+
+    func getHeight(for width: CGFloat) -> CGFloat {
+        return .zero
+    }
+
+    func getWidth(for height: CGFloat) -> CGFloat {
+        return .zero 
+    }
+}

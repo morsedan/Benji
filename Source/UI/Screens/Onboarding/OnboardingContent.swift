@@ -8,15 +8,15 @@
 
 import Foundation
 
-enum OnboardingContent: Equatable {
-    
+enum OnboardingContent: Switchable {
+
     case reservation(ReservationViewController)
     case phone(LoginPhoneViewController)
     case code(LoginCodeViewController)
     case name(LoginNameViewController)
     case photo(LoginProfilePhotoViewController)
 
-    var vc: UIViewController {
+    var viewController: UIViewController & Sizeable {
         switch self {
         case .reservation(let vc):
             return vc
@@ -31,7 +31,7 @@ enum OnboardingContent: Equatable {
         }
     }
 
-    var showBackButton: Bool {
+    var shouldShowBackButton: Bool {
         switch self {
         case .reservation(_):
             return false

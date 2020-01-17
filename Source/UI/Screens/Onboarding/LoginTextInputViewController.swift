@@ -10,7 +10,7 @@ import Foundation
 import ReactiveSwift
 import TMROLocalization
 
-class LoginTextInputViewController: ViewController {
+class LoginTextInputViewController: ViewController, Sizeable {
 
     let textField: UITextField
     let textFieldLabel = Label()

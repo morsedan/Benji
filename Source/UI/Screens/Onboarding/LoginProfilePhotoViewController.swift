@@ -14,7 +14,7 @@ protocol LoginProfilePhotoViewControllerDelegate: class {
     func loginProfilePhotoViewControllerDidUpdatePhoto(_ controller: LoginProfilePhotoViewController)
 }
 
-class LoginProfilePhotoViewController: ViewController {
+class LoginProfilePhotoViewController: ViewController, Sizeable {
 
     private let cameraVC = CameraViewController()
     private let avatarView = AvatarView()
