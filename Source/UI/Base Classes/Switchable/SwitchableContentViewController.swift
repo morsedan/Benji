@@ -31,7 +31,7 @@ class SwitchableContentViewController<ContentType: SwitchableContent>: Navigatio
         super.viewDidLayoutSubviews()
 
         if let current = self.currentContent.value {
-            let yOffset = self.lineView.bottom + 20
+            let yOffset = self.lineView.bottom
             let vcHeight = current.viewController.getHeight(for: self.scrollView.width)
             let contentHeight = yOffset + vcHeight
             self.scrollView.contentSize = CGSize(width: self.scrollView.width, height: contentHeight)
