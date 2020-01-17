@@ -15,7 +15,7 @@ protocol LoginPhoneViewControllerDelegate: class {
     func loginPhoneView(_ controller: LoginPhoneViewController, didCompleteWith phone: PhoneNumber)
 }
 
-class LoginPhoneViewController: LoginTextInputViewController {
+class LoginPhoneViewController: TextInputViewController {
 
     unowned let delegate: LoginPhoneViewControllerDelegate
 

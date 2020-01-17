@@ -16,7 +16,7 @@ protocol LoginCodeViewControllerDelegate: class {
     func loginCodeView(_ controller: LoginCodeViewController, didVerify user: PFUser)
 }
 
-class LoginCodeViewController: LoginTextInputViewController {
+class LoginCodeViewController: TextInputViewController {
 
     var phoneNumber: PhoneNumber?
 

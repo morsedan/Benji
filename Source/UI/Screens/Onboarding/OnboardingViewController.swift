@@ -38,6 +38,14 @@ class OnboardingViewController: SwitchableContentViewController<OnboardingConten
         super.initializeViews()
 
     }
+
+    override func getInitialContent() -> OnboardingContent {
+        return .phone(self.phoneVC)
+    }
+
+    override func didSelectBackButton() {
+        
+    }
 }
 
 extension OnboardingViewController: LoginPhoneViewControllerDelegate {

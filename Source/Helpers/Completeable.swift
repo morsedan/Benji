@@ -14,11 +14,18 @@ import Foundation
 /// last, is entered. If the getCompletionResult handler is not assigned, the object should assume the result is valid.
 protocol Completable: class {
 
+    /// Denotes whether this completable can be skipped.
+    var isSkippable: Bool { get }
+
     var onDidComplete: ((Result<Void, ClientError>) -> Void)? { get set }
     var getCompletionResult: (() -> Result<Void, ClientError>)? { get set }
 }
 
 extension Completable {
+
+    var isSkippable: Bool {
+        return false
+    }
 
     func completeWithResult() {
         let result = self.getCompletionResult?() ?? .success(())

@@ -10,7 +10,10 @@ import Foundation
 import ReactiveSwift
 import TMROLocalization
 
-class LoginTextInputViewController: ViewController, Sizeable {
+class TextInputViewController: ViewController, Sizeable, Completable {
+
+    var onDidComplete: ((Result<Void, ClientError>) -> Void)?
+    var getCompletionResult: (() -> Result<Void, ClientError>)?
 
     let textField: UITextField
     let textFieldLabel = Label()
@@ -112,7 +115,7 @@ class LoginTextInputViewController: ViewController, Sizeable {
     }
 }
 
-extension LoginTextInputViewController: UITextFieldDelegate {
+extension TextInputViewController: UITextFieldDelegate {
 
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         textField.resignFirstResponder()

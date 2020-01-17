@@ -152,7 +152,7 @@
 		D67896A722FF4D9B0059BA75 /* NavigationBarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D67896A622FF4D9B0059BA75 /* NavigationBarView.swift */; };
 		D67896A922FF51170059BA75 /* LoginPhoneViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D67896A822FF51170059BA75 /* LoginPhoneViewController.swift */; };
 		D67896AB22FF5C470059BA75 /* DoneToolBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = D67896AA22FF5C470059BA75 /* DoneToolBar.swift */; };
-		D67896AD22FF60190059BA75 /* LoginTextInputViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D67896AC22FF60190059BA75 /* LoginTextInputViewController.swift */; };
+		D67896AD22FF60190059BA75 /* TextInputViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D67896AC22FF60190059BA75 /* TextInputViewController.swift */; };
 		D67896AF22FF62630059BA75 /* PhoneKit.swift in Sources */ = {isa = PBXBuildFile; fileRef = D67896AE22FF62630059BA75 /* PhoneKit.swift */; };
 		D67896B222FF67650059BA75 /* LoginCodeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D67896B122FF67650059BA75 /* LoginCodeViewController.swift */; };
 		D67896B422FF75640059BA75 /* LoginCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = D67896B322FF75640059BA75 /* LoginCoordinator.swift */; };
@@ -438,7 +438,7 @@
 		D67896A622FF4D9B0059BA75 /* NavigationBarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavigationBarView.swift; sourceTree = "<group>"; };
 		D67896A822FF51170059BA75 /* LoginPhoneViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginPhoneViewController.swift; sourceTree = "<group>"; };
 		D67896AA22FF5C470059BA75 /* DoneToolBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DoneToolBar.swift; sourceTree = "<group>"; };
-		D67896AC22FF60190059BA75 /* LoginTextInputViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginTextInputViewController.swift; sourceTree = "<group>"; };
+		D67896AC22FF60190059BA75 /* TextInputViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextInputViewController.swift; sourceTree = "<group>"; };
 		D67896AE22FF62630059BA75 /* PhoneKit.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhoneKit.swift; sourceTree = "<group>"; };
 		D67896B122FF67650059BA75 /* LoginCodeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginCodeViewController.swift; sourceTree = "<group>"; };
 		D67896B322FF75640059BA75 /* LoginCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginCoordinator.swift; sourceTree = "<group>"; };
@@ -1075,7 +1075,7 @@
 				D67896BC23025FEC0059BA75 /* LoginNameViewController.swift */,
 				D67896A822FF51170059BA75 /* LoginPhoneViewController.swift */,
 				D67896BE2302683C0059BA75 /* LoginProfilePhotoViewController.swift */,
-				D67896AC22FF60190059BA75 /* LoginTextInputViewController.swift */,
+				D67896AC22FF60190059BA75 /* TextInputViewController.swift */,
 				D64DD8AF23CE3E7F0039DC5A /* OnboardingContent.swift */,
 				D64DD8AB23CE2C180039DC5A /* OnboardingViewController.swift */,
 				D64DD8AD23CE31160039DC5A /* ReservationViewController.swift */,
@@ -1618,7 +1618,7 @@
 				D66F0FD622BF28A100BA277D /* AppDelegate+Initialization.swift in Sources */,
 				D64DD8AE23CE31160039DC5A /* ReservationViewController.swift in Sources */,
 				D66F102822C7D1D200BA277D /* ChannelContentView.swift in Sources */,
-				D67896AD22FF60190059BA75 /* LoginTextInputViewController.swift in Sources */,
+				D67896AD22FF60190059BA75 /* TextInputViewController.swift in Sources */,
 				D6EE715723B84B3C000ED221 /* OrbCellItem.swift in Sources */,
 				D6D1502921D6085200CD8CE4 /* ResourceObject.swift in Sources */,
 				D6D145FF21D5510400CD8CE4 /* StringStyle.swift in Sources */,
