@@ -11,10 +11,10 @@ import Foundation
 enum OnboardingContent: Switchable {
 
     case reservation(ReservationViewController)
-    case phone(LoginPhoneViewController)
+    case phone(PhoneViewController)
     case code(CodeViewController)
-    case name(LoginNameViewController)
-    case photo(LoginProfilePhotoViewController)
+    case name(NameViewController)
+    case photo(PhotoViewController)
 
     var viewController: UIViewController & Sizeable {
         switch self {

@@ -12,7 +12,7 @@ import Parse
 import TMROLocalization
 import TMROFutures
 
-class LoginPhoneViewController: TextInputViewController<PhoneNumber> {
+class PhoneViewController: TextInputViewController<PhoneNumber> {
 
     init() {
         let phoneField = PhoneNumberTextField.init()

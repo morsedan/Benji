@@ -19,10 +19,10 @@ protocol OnboardingViewControllerDelegate: class {
 class OnboardingViewController: SwitchableContentViewController<OnboardingContent> {
 
     lazy var reservationVC = ReservationViewController()
-    lazy var phoneVC = LoginPhoneViewController()
+    lazy var phoneVC = PhoneViewController()
     lazy var codeVC = CodeViewController()
-    lazy var nameVC = LoginNameViewController()
-    lazy var photoVC = LoginProfilePhotoViewController()
+    lazy var nameVC = NameViewController()
+    lazy var photoVC = PhotoViewController()
     
     unowned let delegate: OnboardingViewControllerDelegate
 

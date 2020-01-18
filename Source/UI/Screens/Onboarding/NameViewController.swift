@@ -10,7 +10,7 @@ import Foundation
 import Parse
 import TMROLocalization
 
-class LoginNameViewController: TextInputViewController<Void> {
+class NameViewController: TextInputViewController<Void> {
 
     init() {
         super.init(textField: TextField(),

@@ -10,7 +10,7 @@ import Foundation
 import Parse
 import TMROFutures
 
-class LoginProfilePhotoViewController: ViewController, Sizeable, Completable {
+class PhotoViewController: ViewController, Sizeable, Completable {
     typealias ResultType = Void
 
     var onDidComplete: ((Result<Void, Error>) -> Void)?

@@ -149,7 +149,7 @@
 		D66F102822C7D1D200BA277D /* ChannelContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D66F102722C7D1D200BA277D /* ChannelContentView.swift */; };
 		D6740D4823AEA5BD009D5702 /* ChannelsCoordiantor.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6740D4723AEA5BD009D5702 /* ChannelsCoordiantor.swift */; };
 		D67896A722FF4D9B0059BA75 /* NavigationBarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D67896A622FF4D9B0059BA75 /* NavigationBarView.swift */; };
-		D67896A922FF51170059BA75 /* LoginPhoneViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D67896A822FF51170059BA75 /* LoginPhoneViewController.swift */; };
+		D67896A922FF51170059BA75 /* PhoneViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D67896A822FF51170059BA75 /* PhoneViewController.swift */; };
 		D67896AB22FF5C470059BA75 /* DoneToolBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = D67896AA22FF5C470059BA75 /* DoneToolBar.swift */; };
 		D67896AD22FF60190059BA75 /* TextInputViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D67896AC22FF60190059BA75 /* TextInputViewController.swift */; };
 		D67896AF22FF62630059BA75 /* PhoneKit.swift in Sources */ = {isa = PBXBuildFile; fileRef = D67896AE22FF62630059BA75 /* PhoneKit.swift */; };
@@ -157,8 +157,8 @@
 		D67896B422FF75640059BA75 /* OnboardingCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = D67896B322FF75640059BA75 /* OnboardingCoordinator.swift */; };
 		D67896B622FF86AB0059BA75 /* FeedViewController+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = D67896B522FF86AB0059BA75 /* FeedViewController+Extensions.swift */; };
 		D67896B8230096620059BA75 /* KeyboardObservable.swift in Sources */ = {isa = PBXBuildFile; fileRef = D67896B7230096620059BA75 /* KeyboardObservable.swift */; };
-		D67896BD23025FEC0059BA75 /* LoginNameViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D67896BC23025FEC0059BA75 /* LoginNameViewController.swift */; };
-		D67896BF2302683C0059BA75 /* LoginProfilePhotoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D67896BE2302683C0059BA75 /* LoginProfilePhotoViewController.swift */; };
+		D67896BD23025FEC0059BA75 /* NameViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D67896BC23025FEC0059BA75 /* NameViewController.swift */; };
+		D67896BF2302683C0059BA75 /* PhotoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D67896BE2302683C0059BA75 /* PhotoViewController.swift */; };
 		D67896CA23039E680059BA75 /* ScrolledModalControllerPresentable.swift in Sources */ = {isa = PBXBuildFile; fileRef = D67896C923039E680059BA75 /* ScrolledModalControllerPresentable.swift */; };
 		D67896CC2304524C0059BA75 /* ChannelCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = D67896CB2304524C0059BA75 /* ChannelCoordinator.swift */; };
 		D67A82DB230CCE3D0076152B /* SplashViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D67A82DA230CCE3D0076152B /* SplashViewController.swift */; };
@@ -434,7 +434,7 @@
 		D66F102722C7D1D200BA277D /* ChannelContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChannelContentView.swift; sourceTree = "<group>"; };
 		D6740D4723AEA5BD009D5702 /* ChannelsCoordiantor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChannelsCoordiantor.swift; sourceTree = "<group>"; };
 		D67896A622FF4D9B0059BA75 /* NavigationBarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavigationBarView.swift; sourceTree = "<group>"; };
-		D67896A822FF51170059BA75 /* LoginPhoneViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginPhoneViewController.swift; sourceTree = "<group>"; };
+		D67896A822FF51170059BA75 /* PhoneViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhoneViewController.swift; sourceTree = "<group>"; };
 		D67896AA22FF5C470059BA75 /* DoneToolBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DoneToolBar.swift; sourceTree = "<group>"; };
 		D67896AC22FF60190059BA75 /* TextInputViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextInputViewController.swift; sourceTree = "<group>"; };
 		D67896AE22FF62630059BA75 /* PhoneKit.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhoneKit.swift; sourceTree = "<group>"; };
@@ -442,8 +442,8 @@
 		D67896B322FF75640059BA75 /* OnboardingCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingCoordinator.swift; sourceTree = "<group>"; };
 		D67896B522FF86AB0059BA75 /* FeedViewController+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "FeedViewController+Extensions.swift"; sourceTree = "<group>"; };
 		D67896B7230096620059BA75 /* KeyboardObservable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeyboardObservable.swift; sourceTree = "<group>"; };
-		D67896BC23025FEC0059BA75 /* LoginNameViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginNameViewController.swift; sourceTree = "<group>"; };
-		D67896BE2302683C0059BA75 /* LoginProfilePhotoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginProfilePhotoViewController.swift; sourceTree = "<group>"; };
+		D67896BC23025FEC0059BA75 /* NameViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NameViewController.swift; sourceTree = "<group>"; };
+		D67896BE2302683C0059BA75 /* PhotoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoViewController.swift; sourceTree = "<group>"; };
 		D67896C923039E680059BA75 /* ScrolledModalControllerPresentable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScrolledModalControllerPresentable.swift; sourceTree = "<group>"; };
 		D67896CB2304524C0059BA75 /* ChannelCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChannelCoordinator.swift; sourceTree = "<group>"; };
 		D67A82DA230CCE3D0076152B /* SplashViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplashViewController.swift; sourceTree = "<group>"; };
@@ -1070,9 +1070,9 @@
 			children = (
 				D67896B122FF67650059BA75 /* CodeViewController.swift */,
 				D67896B322FF75640059BA75 /* OnboardingCoordinator.swift */,
-				D67896BC23025FEC0059BA75 /* LoginNameViewController.swift */,
-				D67896A822FF51170059BA75 /* LoginPhoneViewController.swift */,
-				D67896BE2302683C0059BA75 /* LoginProfilePhotoViewController.swift */,
+				D67896BC23025FEC0059BA75 /* NameViewController.swift */,
+				D67896A822FF51170059BA75 /* PhoneViewController.swift */,
+				D67896BE2302683C0059BA75 /* PhotoViewController.swift */,
 				D67896AC22FF60190059BA75 /* TextInputViewController.swift */,
 				D64DD8AF23CE3E7F0039DC5A /* OnboardingContent.swift */,
 				D64DD8AB23CE2C180039DC5A /* OnboardingViewController.swift */,
@@ -1556,7 +1556,7 @@
 				D6D14D9121D5893600CD8CE4 /* IGListIndexSetResult.m in Sources */,
 				D642735522C87CCA0088256B /* ImageViewButton.swift in Sources */,
 				D66F0FE622C0640E00BA277D /* Avatar.swift in Sources */,
-				D67896BD23025FEC0059BA75 /* LoginNameViewController.swift in Sources */,
+				D67896BD23025FEC0059BA75 /* NameViewController.swift in Sources */,
 				D6D14FFB21D5893700CD8CE4 /* DiffableBox.swift in Sources */,
 				D6E0ED4F239CA8950073B33E /* FeedChannelInviteView.swift in Sources */,
 				D607400E23401B3E009633EB /* SystemChannel.swift in Sources */,
@@ -1758,7 +1758,7 @@
 				D642738C22C9B24E0088256B /* LoadingButton.swift in Sources */,
 				D68DC7FC22EE5D9000BEAF80 /* FeedOverlayView.swift in Sources */,
 				80D4A21A23039FA5007CB5F1 /* RoutineManager.swift in Sources */,
-				D67896BF2302683C0059BA75 /* LoginProfilePhotoViewController.swift in Sources */,
+				D67896BF2302683C0059BA75 /* PhotoViewController.swift in Sources */,
 				D6D6D57623A70DF100D2B5BF /* SearchButton.swift in Sources */,
 				D6D1500C21D5E7C200CD8CE4 /* CollectionViewManager.swift in Sources */,
 				D64C6A7C23288FB300DB7257 /* SmallLabel.swift in Sources */,
@@ -1770,7 +1770,7 @@
 				D611909F237740ED0052764F /* ReservationCount.swift in Sources */,
 				D6D14FFA21D5893700CD8CE4 /* IGListDiff.mm in Sources */,
 				D61EC0F321D3146600204BEE /* UINib+Extensions.swift in Sources */,
-				D67896A922FF51170059BA75 /* LoginPhoneViewController.swift in Sources */,
+				D67896A922FF51170059BA75 /* PhoneViewController.swift in Sources */,
 				D642738822C9AF690088256B /* ModalViewController.swift in Sources */,
 				D642737422C99D6A0088256B /* ContactsViewController.swift in Sources */,
 				D6D145F421D5493000CD8CE4 /* HomeViewController.swift in Sources */,
