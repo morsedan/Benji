@@ -120,6 +120,7 @@ class TextInputViewController<ResultType>: ViewController, Sizeable, Completable
 
     func textFieldDidEndEditing(_ textField: UITextField) {}
     func textFieldDidBeginEditing(_ textField: UITextField) {
+        guard let text = self.getAccessoryText(), !localized(text).isEmpty else { return }
         self.showAccessory()
     }
 }

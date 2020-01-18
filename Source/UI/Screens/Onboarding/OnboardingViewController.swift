@@ -78,6 +78,7 @@ class OnboardingViewController: SwitchableContentViewController<OnboardingConten
         self.photoVC.onDidComplete = { [unowned self] result in
             switch result {
             case .success:
+                //Add checks for name, phone, photo
                 if let user = User.current() {
                     self.delegate.onboardingView(self, didVerify: user)
                 }
@@ -92,7 +93,41 @@ class OnboardingViewController: SwitchableContentViewController<OnboardingConten
     }
 
     override func getTitle() -> Localized {
-        return "Welcome!"
+        switch self.currentContent.value {
+        case .reservation(_):
+            return "Welcome!"
+        case .phone(_):
+            return "Welcome!"
+        case .code(_):
+            return "Welcome!"
+        case .name(_):
+            return "Welcome!"
+        case .photo(_):
+            return "Welcome!"
+        }
+    }
+
+    override func getDescription() -> Localized {
+        switch self.currentContent.value {
+        case .reservation(_):
+            return "Please enter your reservation code."
+        case .phone(_):
+            return LocalizedString(id: "",
+                                   arguments: [],
+                                   default: "Please verify your account using the mobile number for this device.")
+        case .code(_):
+            return LocalizedString(id: "",
+                                   arguments: [],
+                                   default: "Enter the 4 digit code from the text message.")
+        case .name(_):
+            return LocalizedString(id: "",
+                                   arguments: [],
+                                   default: "Please use your legal first and last name.")
+        case .photo(_):
+            return LocalizedString(id: "",
+                                   arguments: [],
+                                   default: "To ensure others know who you are, please take a front facing photo.")
+        }
     }
 
     override func didSelectBackButton() {

@@ -57,8 +57,4 @@ class CodeViewController: TextInputViewController<Void> {
                 self.textField.resignFirstResponder()
         }
     }
-
-    override func getAccessoryText() -> Localized? {
-        return LocalizedString(id: "", arguments: [], default: "Enter the 4 digit code from the text message.")
-    }
 }
