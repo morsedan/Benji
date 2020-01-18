@@ -14,10 +14,16 @@ class TextEntryField: View, Sizeable {
     private(set) var textField: UITextField
     private let titleLabel = SmallBoldLabel()
     private let title: Localized
+    private let placeholder: Localized?
 
-    init(with textField: UITextField, title: Localized) {
+    init(with textField: UITextField,
+         title: Localized,
+         placeholder: Localized?) {
+
         self.textField = textField
         self.title = title
+        self.placeholder = placeholder
+
         super.init()
     }
 
@@ -31,8 +37,18 @@ class TextEntryField: View, Sizeable {
         self.addSubview(self.titleLabel)
         self.titleLabel.set(text: self.title, stringCasing: .unchanged)
         self.addSubview(self.textField)
-        self.textField.set(backgroundColor: .background3)
+        self.textField.set(backgroundColor: .background2)
         self.textField.roundCorners()
+
+        self.textField.returnKeyType = .done
+        self.textField.adjustsFontSizeToFitWidth = true
+        self.textField.keyboardAppearance = .dark
+
+        if let placeholder = self.placeholder {
+            let attributed = AttributedString(placeholder, fontType: .medium, color: .background1)
+            self.textField.setPlaceholder(attributed: attributed)
+            self.textField.setDefaultAttributes(style: StringStyle(font: .medium, color: .white))
+        }
     }
 
     func getHeight(for width: CGFloat) -> CGFloat {

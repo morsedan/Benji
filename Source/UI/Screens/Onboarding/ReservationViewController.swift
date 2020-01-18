@@ -15,14 +15,13 @@ class ReservationViewController: TextInputViewController<Void> {
         let textField = TextField()
         let title = LocalizedString(id: "", arguments: [], default: "Enter your reservation code.")
         let placeholder = LocalizedString(id: "", arguments: [], default: "Code")
-        super.init(textField: textField, textFieldTitle: title, textFieldPlaceholder: placeholder)
+
+        super.init(textField: textField,
+                   title: title,
+                   placeholder: placeholder)
     }
 
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
-    }
-
-    override func getAccessoryText() -> Localized? {
-        return ""
     }
 }

@@ -14,8 +14,8 @@ class NameViewController: TextInputViewController<Void> {
 
     init() {
         super.init(textField: TextField(),
-                   textFieldTitle: LocalizedString(id: "", default: "FULL NAME"),
-                   textFieldPlaceholder: LocalizedString(id: "", default: "First Last"))
+                   title: LocalizedString(id: "", default: "FULL NAME"),
+                   placeholder: LocalizedString(id: "", default: "First Last"))
     }
 
     required public init?(coder aDecoder: NSCoder) {

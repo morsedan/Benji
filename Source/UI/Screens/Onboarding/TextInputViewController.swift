@@ -15,18 +15,18 @@ class TextInputViewController<ResultType>: ViewController, Sizeable, Completable
     var onDidComplete: ((Result<ResultType, Error>) -> Void)?
 
     let textField: UITextField
-    let textFieldPlaceholder: Localized?
     lazy var textInputAccessory = TextInputAccessoryView()
     private let textEntry: TextEntryField
 
     init(textField: UITextField,
-         textFieldTitle: Localized,
-         textFieldPlaceholder: Localized?) {
+         title: Localized,
+         placeholder: Localized?) {
 
         self.textField = textField
-        self.textFieldPlaceholder = textFieldPlaceholder
 
-        self.textEntry = TextEntryField(with: textField, title: textFieldTitle)
+        self.textEntry = TextEntryField(with: textField,
+                                        title: title,
+                                        placeholder: placeholder)
         super.init()
     }
 
@@ -38,23 +38,9 @@ class TextInputViewController<ResultType>: ViewController, Sizeable, Completable
         super.initializeViews()
 
         self.view.set(backgroundColor: .background1)
-
         self.view.addSubview(self.textEntry)
 
-        self.initializeTextField()
-    }
-
-    func initializeTextField() {
-
         self.textField.keyboardType = .numberPad
-        self.textField.returnKeyType = .done
-        self.textField.adjustsFontSizeToFitWidth = true
-        self.textField.keyboardAppearance = .dark
-        if let placeholder = self.textFieldPlaceholder {
-            let attributed = AttributedString(placeholder, fontType: .medium, color: .background2)
-            self.textField.setPlaceholder(attributed: attributed)
-            self.textField.setDefaultAttributes(style: StringStyle(font: .medium, color: .white))
-        }
 
         self.textField.addTarget(self,
                                  action: #selector(textFieldDidChange),

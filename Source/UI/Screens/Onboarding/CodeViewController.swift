@@ -19,8 +19,8 @@ class CodeViewController: TextInputViewController<Void> {
 
     init() {
         super.init(textField: TextField(),
-                   textFieldTitle: LocalizedString(id: "", default: "CODE"),
-                   textFieldPlaceholder: LocalizedString(id: "", default: "0000"))
+                   title: LocalizedString(id: "", default: "CODE"),
+                   placeholder: LocalizedString(id: "", default: "0000"))
     }
 
     required public init?(coder aDecoder: NSCoder) {

@@ -17,8 +17,8 @@ class PhoneViewController: TextInputViewController<PhoneNumber> {
     init() {
         let phoneField = PhoneTextField()
         super.init(textField: phoneField,
-                   textFieldTitle: LocalizedString(id: "", default: "MOBILE NUMBER"),
-                   textFieldPlaceholder: LocalizedString(id: "", default: "000-000-0000"))
+                   title: LocalizedString(id: "", default: "MOBILE NUMBER"),
+                   placeholder: LocalizedString(id: "", default: "000-000-0000"))
     }
 
     required init?(coder aDecoder: NSCoder) {
