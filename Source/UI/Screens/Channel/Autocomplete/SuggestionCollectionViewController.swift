@@ -10,7 +10,7 @@ import Foundation
 
 class SuggestionCollectionViewController: CollectionViewController<SuggestionCell, SuggestionCollectionViewManager>, Completable {
 
-    var onDidComplete: ((Result<Void, ClientError>) -> Void)?
+    var onDidComplete: ((Result<Void, Error>) -> Void)?
     var getCompletionResult: (() -> Result<Void, ClientError>)?
 
     private var blurView = UIVisualEffectView(effect: nil)

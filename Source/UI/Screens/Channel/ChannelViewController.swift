@@ -10,6 +10,7 @@ import Foundation
 import ReactiveSwift
 import Parse
 import TwilioChatClient
+import TMROFutures
 
 class ChannelViewController: FullScreenViewController {
 

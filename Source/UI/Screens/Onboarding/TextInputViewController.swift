@@ -12,7 +12,7 @@ import TMROLocalization
 
 class TextInputViewController: ViewController, Sizeable, Completable {
 
-    var onDidComplete: ((Result<Void, ClientError>) -> Void)?
+    var onDidComplete: ((Result<Void, Error>) -> Void)?
     var getCompletionResult: (() -> Result<Void, ClientError>)?
 
     let textField: UITextField

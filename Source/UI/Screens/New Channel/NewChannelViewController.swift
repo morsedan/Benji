@@ -203,8 +203,6 @@ class NewChannelViewController: SwitchableContentViewController<NewChannelConten
                                       type: .private)
             .joinIfNeeded()
             .invite(user: user)
-            .withProgressBanner("Creating conversation")
-            .withErrorBanner()
             .ignoreUserInteractionEventsUntilDone(for: self.view)
             .observe { (result) in
                 self.button.isLoading = false

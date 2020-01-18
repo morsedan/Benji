@@ -10,6 +10,7 @@ import Foundation
 import TwilioChatClient
 import ReactiveSwift
 import Parse
+import TMROFutures
 
 class ChannelManager: NSObject {
 

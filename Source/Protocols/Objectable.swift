@@ -8,6 +8,7 @@
 
 import Foundation
 import Parse
+import TMROFutures
 
 enum ContainerName {
     case channel(identifier: String)

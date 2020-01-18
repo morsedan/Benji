@@ -9,30 +9,53 @@
 import Foundation
 import Parse
 import PhoneNumberKit
+import TMROFutures
 
 protocol CloudFunction {
-    func callFunction(completion: PFIdResultBlock?)
+    associatedtype ReturnType
+
+    func makeRequest() -> Future<ReturnType>
 }
 
 struct SendCode: CloudFunction {
     let phoneNumber: PhoneNumber
 
-    func callFunction(completion: PFIdResultBlock?) {
+    func makeRequest() -> Future<Void> {
+        let promise = Promise<Void>()
+
         PFCloud.callFunction(inBackground: "sendCode",
-                             withParameters: ["phoneNumber": PhoneKit.shared.format(self.phoneNumber, toType: .e164)],
-                             block: completion)
+                             withParameters: ["phoneNumber": PhoneKit.shared.format(self.phoneNumber, toType: .e164)]) { (object, error) in
+                                if let error = error {
+                                    promise.reject(with: error)
+                                } else {
+                                    promise.resolve(with: ())
+                                }
+        }
+        
+        return promise
     }
 }
 
 struct VerifyCode: CloudFunction {
+
     let code: String
     let phoneNumber: PhoneNumber
 
-    func callFunction(completion: PFIdResultBlock?) {
+    func makeRequest() -> Future<String> {
+        let promise = Promise<String>()
+
         let params: [String: Any] = ["authCode": self.code,
                                      "phoneNumber": PhoneKit.shared.format(self.phoneNumber, toType: .e164)]
-        PFCloud.callFunction(inBackground: "validateCode",
-                             withParameters: params,
-                             block: completion)
+
+        PFCloud.callFunction(inBackground: "authCode",
+                             withParameters: params) { (object, error) in
+                                if let error = error {
+                                    promise.reject(with: error)
+                                } else if let token = object as? String {
+                                    promise.resolve(with: token)
+                                }
+        }
+
+        return promise
     }
 }

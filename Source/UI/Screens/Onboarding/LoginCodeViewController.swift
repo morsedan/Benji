@@ -11,6 +11,7 @@ import PhoneNumberKit
 import ReactiveSwift
 import Parse
 import TMROLocalization
+import TMROFutures
 
 protocol LoginCodeViewControllerDelegate: class {
     func loginCodeView(_ controller: LoginCodeViewController, didVerify user: PFUser)
@@ -47,16 +48,20 @@ class LoginCodeViewController: TextInputViewController {
 
         let tf = self.textField as? TextField
         tf?.activityIndicator.startAnimating()
-        VerifyCode(code: code, phoneNumber: phoneNumber).callFunction { (object, error) in
-            if let token = object as? String {
+        VerifyCode(code: code, phoneNumber: phoneNumber).makeRequest()
+            .observeValue { (token) in
                 User.become(inBackground: token) { (user, error) in
-                    if let strongUser = user {
-                        self.delegate.loginCodeView(self, didVerify: strongUser)
+                    if let _ = user {
+                        self.complete(with: .success(()))
+                    } else if let error = error {
+                        self.complete(with: .failure(error))
+                    } else {
+                        self.complete(with: .failure(ClientError.generic))
                     }
+
                     tf?.activityIndicator.stopAnimating()
                 }
-            }
-            self.textField.resignFirstResponder()
+                self.textField.resignFirstResponder()
         }
     }
 

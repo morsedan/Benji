@@ -10,6 +10,7 @@ import Foundation
 import TwilioChatClient
 import Parse
 import TMROLocalization
+import TMROFutures
 
 extension TCHMessage: Avatar {
 

@@ -17,8 +17,7 @@ protocol Completable: class {
     /// Denotes whether this completable can be skipped.
     var isSkippable: Bool { get }
 
-    var onDidComplete: ((Result<Void, ClientError>) -> Void)? { get set }
-    var getCompletionResult: (() -> Result<Void, ClientError>)? { get set }
+    var onDidComplete: ((Result<Void, Error>) -> Void)? { get set }
 }
 
 extension Completable {
@@ -27,8 +26,7 @@ extension Completable {
         return false
     }
 
-    func completeWithResult() {
-        let result = self.getCompletionResult?() ?? .success(())
+    func complete(with result: Result<Void, Error>) {
         self.onDidComplete?(result)
     }
 }

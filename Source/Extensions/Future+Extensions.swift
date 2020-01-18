@@ -43,6 +43,21 @@ extension Future {
         return promise
     }
 
+    // After a future is fulfilled, the transformation closure is applied to the resulting value.
+    // The newly transformed value can then be use as input for another future operation.
+    func transform<NextValue>(with closure: @escaping (Value) -> NextValue) -> Future<NextValue> {
+        return self.then(with: { (value) in
+            return Promise(value: closure(value))
+        })
+    }
+
+    // Converts this future into a void future. Can be used to combine futures of differing types.
+    func asVoid() -> Future<Void> {
+        return self.then(with: { _ in
+            return Promise(value: ())
+        })
+    }
+
     func ignoreUserInteractionEventsUntilDone(for view: UIView) -> Future<Value> {
         view.isUserInteractionEnabled = false
         self.observe { (result) in
@@ -52,11 +67,13 @@ extension Future {
         return self
     }
 
-    func withResultToast(with successMessage: Localized) -> Future<Value> {
+    func withResultToast(with successMessage: Localized? = nil) -> Future<Value> {
         self.observe { (result) in
             switch result {
             case .success(_):
-                ToastScheduler.shared.schedule(toastType: .success(successMessage))
+                if let message = successMessage {
+                    ToastScheduler.shared.schedule(toastType: .success(message))
+                }
             case .failure(let error):
                 ToastScheduler.shared.schedule(toastType: .error(error))
             }
@@ -64,54 +81,37 @@ extension Future {
 
         return self
     }
+}
 
-    func withProgressBanner(_ text: String) -> Future<Value> {
-        print(text)
-        //Add banner
-        //let banner = TomorrowBanner.showProgress(text)
-        let start = Date()
+private let waitSyncQueue = DispatchQueue(label: "When.SyncQueue", attributes: [])
 
-        self.observe { (result) in
-            switch result {
-            case .success:
-                // Minimum display time of 1 second
-                let elapsed: Double = Date().timeIntervalSince(start)
+func waitForAll<Value>(futures: [Future<Value>]) -> Future<[Value]> {
+    let masterPromise = Promise<[Value]>()
 
-                if elapsed < 1 {
-                    delay(1 - elapsed) {
-                       // banner.dismiss()
+    let totalFutures = futures.count
+    var resolvedFutures = 0
+    var values: [Value] = []
+
+    if futures.isEmpty {
+        masterPromise.resolve(with: values)
+    } else {
+        futures.forEach { promise in
+            promise.observe(with: { (result) in
+                waitSyncQueue.sync {
+                    switch result {
+                    case .success(let value):
+                        resolvedFutures += 1
+                        values.append(value)
+                        if resolvedFutures == totalFutures {
+                            masterPromise.resolve(with: values)
+                        }
+                    case .failure(let error):
+                        masterPromise.reject(with: error)
                     }
-                } else {
-                    //banner.dismiss()
                 }
-            case .failure:
-                break 
-                //banner.dismiss()
-            }
+            })
         }
-
-        return self
     }
 
-    func withErrorBanner() -> Future<Value> {
-
-        self.observe { (result) in
-            switch result {
-            case .success:
-                break
-            case .failure(let error):
-                let message: String
-                if let error = error as? ClientError {
-                    message = error.localizedDescription
-                } else {
-                    message = error.localizedDescription
-                }
-
-                print(message)
-                //Add banner
-            }
-        }
-
-        return self
-    }
+    return masterPromise
 }
