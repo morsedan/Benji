@@ -15,7 +15,7 @@ import TMROFutures
 class PhoneViewController: TextInputViewController<PhoneNumber> {
 
     init() {
-        let phoneField = PhoneNumberTextField.init()
+        let phoneField = PhoneTextField()
         super.init(textField: phoneField,
                    textFieldTitle: LocalizedString(id: "", default: "MOBILE NUMBER"),
                    textFieldPlaceholder: LocalizedString(id: "", default: "000-000-0000"))

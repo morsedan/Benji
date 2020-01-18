@@ -10,8 +10,6 @@ import Foundation
 
 class PurposeTitleTextField: TextField {
 
-    let padding = UIEdgeInsets(top: 0, left: 10, bottom: 0, right: 10)
-
     override func initialize() {
         super.initialize()
 
@@ -30,17 +28,5 @@ class PurposeTitleTextField: TextField {
         formatter.dateFormat = "EEEEMMdd"
 
         self.text = formatter.string(from: Date()).lowercased()
-    }
-
-    override func textRect(forBounds bounds: CGRect) -> CGRect {
-        return bounds.inset(by: self.padding)
-    }
-
-    override func placeholderRect(forBounds bounds: CGRect) -> CGRect {
-        return bounds.inset(by: self.padding)
-    }
-
-    override func editingRect(forBounds bounds: CGRect) -> CGRect {
-        return bounds.inset(by: self.padding)
     }
 }

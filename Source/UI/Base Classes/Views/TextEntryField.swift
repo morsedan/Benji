@@ -11,8 +11,8 @@ import TMROLocalization
 
 class TextEntryField: View, Sizeable {
 
-    private let titleLabel = RegularBoldLabel()
-    private let textField: UITextField
+    private(set) var textField: UITextField
+    private let titleLabel = SmallBoldLabel()
     private let title: Localized
 
     init(with textField: UITextField, title: Localized) {

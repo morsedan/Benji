@@ -15,19 +15,18 @@ class TextInputViewController<ResultType>: ViewController, Sizeable, Completable
     var onDidComplete: ((Result<ResultType, Error>) -> Void)?
 
     let textField: UITextField
-    let textFieldLabel = Label()
-    let textFieldTitle: Localized
     let textFieldPlaceholder: Localized?
     lazy var textInputAccessory = TextInputAccessoryView()
+    private let textEntry: TextEntryField
 
     init(textField: UITextField,
          textFieldTitle: Localized,
          textFieldPlaceholder: Localized?) {
 
         self.textField = textField
-        self.textFieldTitle = textFieldTitle
         self.textFieldPlaceholder = textFieldPlaceholder
 
+        self.textEntry = TextEntryField(with: textField, title: textFieldTitle)
         super.init()
     }
 
@@ -39,24 +38,20 @@ class TextInputViewController<ResultType>: ViewController, Sizeable, Completable
         super.initializeViews()
 
         self.view.set(backgroundColor: .background1)
-        let attributed = AttributedString(self.textFieldTitle,
-                                          fontType: .smallBold,
-                                          color: .white)
-        self.textFieldLabel.set(attributed: attributed,
-                                lineCount: 1,
-                                stringCasing: .uppercase)
-        self.view.addSubview(self.textFieldLabel)
+
+        self.view.addSubview(self.textEntry)
 
         self.initializeTextField()
     }
 
     func initializeTextField() {
+
         self.textField.keyboardType = .numberPad
         self.textField.returnKeyType = .done
         self.textField.adjustsFontSizeToFitWidth = true
         self.textField.keyboardAppearance = .dark
         if let placeholder = self.textFieldPlaceholder {
-            let attributed = AttributedString(placeholder, fontType: .medium, color: .background3)
+            let attributed = AttributedString(placeholder, fontType: .medium, color: .background2)
             self.textField.setPlaceholder(attributed: attributed)
             self.textField.setDefaultAttributes(style: StringStyle(font: .medium, color: .white))
         }
@@ -65,8 +60,6 @@ class TextInputViewController<ResultType>: ViewController, Sizeable, Completable
                                  action: #selector(textFieldDidChange),
                                  for: UIControl.Event.editingChanged)
         self.textField.delegate = self
-
-        self.view.addSubview(self.textField)
     }
 
     @objc func textFieldDidChange() {}
@@ -74,21 +67,33 @@ class TextInputViewController<ResultType>: ViewController, Sizeable, Completable
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
 
-        self.textField.height = 50
-        self.textField.width = self.view.width * 0.8
-        self.textField.centerOnX()
-        self.textField.centerY = self.view.halfHeight * 0.8
-        self.textField.setBottomBorder(color: .background3)
-
-        self.textFieldLabel.setSize(withWidth: self.textField.width)
-        self.textFieldLabel.left = self.textField.left
-        self.textFieldLabel.bottom = self.textField.top - 5
+        let width = self.view.width - (Theme.contentOffset * 2)
+        let height = self.textEntry.getHeight(for: width)
+        self.textEntry.size = CGSize(width: width, height: height)
+        self.textEntry.centerOnX()
+        self.textEntry.centerY = self.view.halfHeight * 0.8
     }
 
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
 
         self.textField.becomeFirstResponder()
+    }
+
+    func getAccessoryText() -> Localized? {
+        return nil
+    }
+
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        textField.resignFirstResponder()
+        return true
+    }
+
+    func textFieldDidEndEditing(_ textField: UITextField) {}
+
+    func textFieldDidBeginEditing(_ textField: UITextField) {
+        guard let text = self.getAccessoryText(), !localized(text).isEmpty else { return }
+        self.showAccessory()
     }
 
     func showAccessory() {
@@ -107,21 +112,6 @@ class TextInputViewController<ResultType>: ViewController, Sizeable, Completable
         self.textInputAccessory.didCancel = { [unowned self] in
             self.textField.resignFirstResponder()
         }
-    }
-
-    func getAccessoryText() -> Localized? {
-        return nil
-    }
-
-    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
-        textField.resignFirstResponder()
-        return true
-    }
-
-    func textFieldDidEndEditing(_ textField: UITextField) {}
-    func textFieldDidBeginEditing(_ textField: UITextField) {
-        guard let text = self.getAccessoryText(), !localized(text).isEmpty else { return }
-        self.showAccessory()
     }
 }
 
