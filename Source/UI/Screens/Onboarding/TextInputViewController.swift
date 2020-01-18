@@ -10,7 +10,7 @@ import Foundation
 import ReactiveSwift
 import TMROLocalization
 
-class TextInputViewController<ResultType>: ViewController, Sizeable, Completable, UITextFieldDelegate {
+class TextInputViewController<ResultType>: ViewController, Sizeable, Completable, UITextFieldDelegate, KeyboardObservable {
 
     var onDidComplete: ((Result<ResultType, Error>) -> Void)?
 
@@ -46,6 +46,7 @@ class TextInputViewController<ResultType>: ViewController, Sizeable, Completable
                                  action: #selector(textFieldDidChange),
                                  for: UIControl.Event.editingChanged)
         self.textField.delegate = self
+        self.registerKeyboardEvents()
     }
 
     @objc func textFieldDidChange() {}
@@ -53,11 +54,13 @@ class TextInputViewController<ResultType>: ViewController, Sizeable, Completable
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
 
+        guard let handler = self.keyboardHandler else { return }
+
         let width = self.view.width - (Theme.contentOffset * 2)
         let height = self.textEntry.getHeight(for: width)
         self.textEntry.size = CGSize(width: width, height: height)
         self.textEntry.centerOnX()
-        self.textEntry.centerY = self.view.halfHeight * 0.8
+        self.textEntry.bottom = self.view.height - handler.currentKeyboardHeight - 30
     }
 
     override func viewDidAppear(_ animated: Bool) {
@@ -97,6 +100,12 @@ class TextInputViewController<ResultType>: ViewController, Sizeable, Completable
 
         self.textInputAccessory.didCancel = { [unowned self] in
             self.textField.resignFirstResponder()
+        }
+    }
+
+    func handleKeyboard(frame: CGRect, with animationDuration: TimeInterval, timingCurve: UIView.AnimationCurve) {
+        UIView.animate(withDuration: animationDuration) {
+            self.view.layoutNow()
         }
     }
 }
