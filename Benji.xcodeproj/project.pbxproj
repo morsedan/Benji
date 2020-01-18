@@ -278,6 +278,7 @@
 		D6EE715F23B84DC6000ED221 /* OrbCollectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6EE715E23B84DC6000ED221 /* OrbCollectionView.swift */; };
 		D6EE716523B84F8B000ED221 /* OrbCollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6EE716423B84F8B000ED221 /* OrbCollectionViewController.swift */; };
 		D6EEE7B12383A70F00F9D446 /* Benji.entitlements in Resources */ = {isa = PBXBuildFile; fileRef = D64C6AA523307DB300DB7257 /* Benji.entitlements */; };
+		D6F733DA23D37C6300FBC7BC /* TextEntryField.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6F733D923D37C6300FBC7BC /* TextEntryField.swift */; };
 		D6FC8096237A64650089AACC /* MessageSupplier.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6FC8095237A64650089AACC /* MessageSupplier.swift */; };
 		D6FC8098237A66220089AACC /* ChannelSupplier.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6FC8097237A66220089AACC /* ChannelSupplier.swift */; };
 		D6FC809A237A68F50089AACC /* ChannelViewController+Updates.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6FC8099237A68F50089AACC /* ChannelViewController+Updates.swift */; };
@@ -580,6 +581,7 @@
 		D6EE715C23B84DAC000ED221 /* OrbCollectionViewLayout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrbCollectionViewLayout.swift; sourceTree = "<group>"; };
 		D6EE715E23B84DC6000ED221 /* OrbCollectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrbCollectionView.swift; sourceTree = "<group>"; };
 		D6EE716423B84F8B000ED221 /* OrbCollectionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrbCollectionViewController.swift; sourceTree = "<group>"; };
+		D6F733D923D37C6300FBC7BC /* TextEntryField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextEntryField.swift; sourceTree = "<group>"; };
 		D6FC8095237A64650089AACC /* MessageSupplier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageSupplier.swift; sourceTree = "<group>"; };
 		D6FC8097237A66220089AACC /* ChannelSupplier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChannelSupplier.swift; sourceTree = "<group>"; };
 		D6FC8099237A68F50089AACC /* ChannelViewController+Updates.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ChannelViewController+Updates.swift"; sourceTree = "<group>"; };
@@ -1048,6 +1050,7 @@
 				D67896B022FF63EF0059BA75 /* TextFields */,
 				D64F5F2023B6713800216D99 /* TextInputAccessoryView.swift */,
 				D61EC0E321D30E9100204BEE /* TextView.swift */,
+				D6F733D923D37C6300FBC7BC /* TextEntryField.swift */,
 				80C7C6052316112400643A14 /* TimeHumpView.swift */,
 				D61EC0E521D30EB300204BEE /* View.swift */,
 			);
@@ -1789,6 +1792,7 @@
 				D6D1502D21D6A08300CD8CE4 /* ChannelCollectionView.swift in Sources */,
 				D6B2603A22E6ABCA00143CF0 /* DisplayLabel.swift in Sources */,
 				D646DB3C22CFCCD80055CC7C /* ClientError.swift in Sources */,
+				D6F733DA23D37C6300FBC7BC /* TextEntryField.swift in Sources */,
 				D6B2604522E6C09700143CF0 /* RegularLabel.swift in Sources */,
 				D67896A722FF4D9B0059BA75 /* NavigationBarView.swift in Sources */,
 				D609AE36236F3F81004FA89A /* User+Objectable.swift in Sources */,
