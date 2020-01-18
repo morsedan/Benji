@@ -12,7 +12,7 @@ enum OnboardingContent: Switchable {
 
     case reservation(ReservationViewController)
     case phone(LoginPhoneViewController)
-    case code(LoginCodeViewController)
+    case code(CodeViewController)
     case name(LoginNameViewController)
     case photo(LoginProfilePhotoViewController)
 

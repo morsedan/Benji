@@ -20,7 +20,7 @@ class OnboardingViewController: SwitchableContentViewController<OnboardingConten
 
     lazy var reservationVC = ReservationViewController()
     lazy var phoneVC = LoginPhoneViewController()
-    lazy var codeVC = LoginCodeViewController()
+    lazy var codeVC = CodeViewController()
     lazy var nameVC = LoginNameViewController()
     lazy var photoVC = LoginProfilePhotoViewController()
     

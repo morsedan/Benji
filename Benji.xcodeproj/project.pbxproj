@@ -153,7 +153,7 @@
 		D67896AB22FF5C470059BA75 /* DoneToolBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = D67896AA22FF5C470059BA75 /* DoneToolBar.swift */; };
 		D67896AD22FF60190059BA75 /* TextInputViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D67896AC22FF60190059BA75 /* TextInputViewController.swift */; };
 		D67896AF22FF62630059BA75 /* PhoneKit.swift in Sources */ = {isa = PBXBuildFile; fileRef = D67896AE22FF62630059BA75 /* PhoneKit.swift */; };
-		D67896B222FF67650059BA75 /* LoginCodeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D67896B122FF67650059BA75 /* LoginCodeViewController.swift */; };
+		D67896B222FF67650059BA75 /* CodeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D67896B122FF67650059BA75 /* CodeViewController.swift */; };
 		D67896B422FF75640059BA75 /* OnboardingCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = D67896B322FF75640059BA75 /* OnboardingCoordinator.swift */; };
 		D67896B622FF86AB0059BA75 /* FeedViewController+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = D67896B522FF86AB0059BA75 /* FeedViewController+Extensions.swift */; };
 		D67896B8230096620059BA75 /* KeyboardObservable.swift in Sources */ = {isa = PBXBuildFile; fileRef = D67896B7230096620059BA75 /* KeyboardObservable.swift */; };
@@ -438,7 +438,7 @@
 		D67896AA22FF5C470059BA75 /* DoneToolBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DoneToolBar.swift; sourceTree = "<group>"; };
 		D67896AC22FF60190059BA75 /* TextInputViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextInputViewController.swift; sourceTree = "<group>"; };
 		D67896AE22FF62630059BA75 /* PhoneKit.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhoneKit.swift; sourceTree = "<group>"; };
-		D67896B122FF67650059BA75 /* LoginCodeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginCodeViewController.swift; sourceTree = "<group>"; };
+		D67896B122FF67650059BA75 /* CodeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CodeViewController.swift; sourceTree = "<group>"; };
 		D67896B322FF75640059BA75 /* OnboardingCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingCoordinator.swift; sourceTree = "<group>"; };
 		D67896B522FF86AB0059BA75 /* FeedViewController+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "FeedViewController+Extensions.swift"; sourceTree = "<group>"; };
 		D67896B7230096620059BA75 /* KeyboardObservable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeyboardObservable.swift; sourceTree = "<group>"; };
@@ -1068,7 +1068,7 @@
 		D67896A122FF40AB0059BA75 /* Onboarding */ = {
 			isa = PBXGroup;
 			children = (
-				D67896B122FF67650059BA75 /* LoginCodeViewController.swift */,
+				D67896B122FF67650059BA75 /* CodeViewController.swift */,
 				D67896B322FF75640059BA75 /* OnboardingCoordinator.swift */,
 				D67896BC23025FEC0059BA75 /* LoginNameViewController.swift */,
 				D67896A822FF51170059BA75 /* LoginPhoneViewController.swift */,
@@ -1710,7 +1710,7 @@
 				D6D1501221D5EA0400CD8CE4 /* ImageDisplayable.swift in Sources */,
 				D6B2604122E6B9C600143CF0 /* DisplayThinLabel.swift in Sources */,
 				D6B2604322E6BAE400143CF0 /* RegularBoldLabel.swift in Sources */,
-				D67896B222FF67650059BA75 /* LoginCodeViewController.swift in Sources */,
+				D67896B222FF67650059BA75 /* CodeViewController.swift in Sources */,
 				D60C814222092D5300A127A3 /* PagingCollectionViewFlowLayout.swift in Sources */,
 				D642737122C991A60088256B /* ClosedRange+Extensions.swift in Sources */,
 				D657955C239CA01100A01338 /* FeedRoutineView.swift in Sources */,

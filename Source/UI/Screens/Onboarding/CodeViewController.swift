@@ -13,7 +13,7 @@ import Parse
 import TMROLocalization
 import TMROFutures
 
-class LoginCodeViewController: TextInputViewController<Void> {
+class CodeViewController: TextInputViewController<Void> {
 
     var phoneNumber: PhoneNumber?
 

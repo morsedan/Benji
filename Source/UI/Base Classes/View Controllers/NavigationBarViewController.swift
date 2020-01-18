@@ -60,7 +60,7 @@ class NavigationBarViewController: ViewController {
         self.backButton.top = Theme.contentOffset
 
         self.titleLabel.setSize(withWidth: self.view.width * 0.8)
-        self.titleLabel.top = Theme.contentOffset
+        self.titleLabel.centerY = self.backButton.centerY
         self.titleLabel.centerOnX()
 
         self.descriptionLabel.setSize(withWidth: self.view.width * 0.8)
