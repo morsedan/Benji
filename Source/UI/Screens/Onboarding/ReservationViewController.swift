@@ -9,7 +9,7 @@
 import Foundation
 import TMROLocalization
 
-class ReservationViewController: TextInputViewController {
+class ReservationViewController: TextInputViewController<Void> {
 
     init() {
         let textField = TextField()

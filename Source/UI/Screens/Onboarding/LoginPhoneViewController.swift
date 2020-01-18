@@ -16,7 +16,7 @@ protocol LoginPhoneViewControllerDelegate: class {
     func loginPhoneView(_ controller: LoginPhoneViewController, didCompleteWith phone: PhoneNumber)
 }
 
-class LoginPhoneViewController: TextInputViewController {
+class LoginPhoneViewController: TextInputViewController<PhoneNumber> {
 
     unowned let delegate: LoginPhoneViewControllerDelegate
 
@@ -66,19 +66,16 @@ class LoginPhoneViewController: TextInputViewController {
     }
 
     private func sendCode(to phone: PhoneNumber) {
-        // TODO: Add loading
         SendCode(phoneNumber: phone).makeRequest()
             .withResultToast()
-            .observeValue { (value) in
-                self.complete(with: .success(()))
-        }
-//        SendCode(phoneNumber: phone).callFunction { (object, error) in
-//            if error == nil {
-//                self.complete(with: .success(()))
-//                self.delegate.loginPhoneView(self, didCompleteWith: phone)
-//            }
-//            self.completeWithResult()
-//        }
+            .observe(with: { (result) in
+                switch result {
+                case .success:
+                    self.complete(with: .success(phone))
+                case .failure(let error):
+                    self.complete(with: .failure(error))
+                }
+            })
     }
 
     override func getAccessoryText() -> Localized? {

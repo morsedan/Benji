@@ -14,7 +14,7 @@ protocol LoginNameViewControllerDelegate: class {
     func loginNameViewControllerDidComplete(_ controller: LoginNameViewController)
 }
 
-class LoginNameViewController: TextInputViewController {
+class LoginNameViewController: TextInputViewController<Void> {
 
     unowned let delegate: LoginNameViewControllerDelegate
 

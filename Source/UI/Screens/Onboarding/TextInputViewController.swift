@@ -10,10 +10,9 @@ import Foundation
 import ReactiveSwift
 import TMROLocalization
 
-class TextInputViewController: ViewController, Sizeable, Completable {
+class TextInputViewController<ResultType>: ViewController, Sizeable, Completable, UITextFieldDelegate {
 
-    var onDidComplete: ((Result<Void, Error>) -> Void)?
-    var getCompletionResult: (() -> Result<Void, ClientError>)?
+    var onDidComplete: ((Result<ResultType, Error>) -> Void)?
 
     let textField: UITextField
     let textFieldLabel = Label()
@@ -113,9 +112,6 @@ class TextInputViewController: ViewController, Sizeable, Completable {
     func getAccessoryText() -> Localized? {
         return nil
     }
-}
-
-extension TextInputViewController: UITextFieldDelegate {
 
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         textField.resignFirstResponder()

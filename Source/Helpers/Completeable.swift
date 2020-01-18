@@ -13,11 +13,11 @@ import Foundation
 /// assigned that returns valid if the object had valid data. For example, a name text field might return true only if a full name, first and
 /// last, is entered. If the getCompletionResult handler is not assigned, the object should assume the result is valid.
 protocol Completable: class {
-
+    associatedtype ResultType
     /// Denotes whether this completable can be skipped.
     var isSkippable: Bool { get }
 
-    var onDidComplete: ((Result<Void, Error>) -> Void)? { get set }
+    var onDidComplete: ((Result<ResultType, Error>) -> Void)? { get set }
 }
 
 extension Completable {
@@ -26,7 +26,7 @@ extension Completable {
         return false
     }
 
-    func complete(with result: Result<Void, Error>) {
+    func complete(with result: Result<Self.ResultType, Error>) {
         self.onDidComplete?(result)
     }
 }
