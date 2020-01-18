@@ -10,17 +10,9 @@ import Foundation
 import Parse
 import TMROLocalization
 
-protocol LoginNameViewControllerDelegate: class {
-    func loginNameViewControllerDidComplete(_ controller: LoginNameViewController)
-}
-
 class LoginNameViewController: TextInputViewController<Void> {
 
-    unowned let delegate: LoginNameViewControllerDelegate
-
-    init(with delegate: LoginNameViewControllerDelegate) {
-
-        self.delegate = delegate
+    init() {
         super.init(textField: TextField(),
                    textFieldTitle: LocalizedString(id: "", default: "FULL NAME"),
                    textFieldPlaceholder: LocalizedString(id: "", default: "First Last"))
@@ -54,7 +46,7 @@ class LoginNameViewController: TextInputViewController<Void> {
         User.current()?.saveEventually()
             .observe { (result) in
                 tf?.activityIndicator.stopAnimating()
-                self.delegate.loginNameViewControllerDidComplete(self)
+                self.complete(with: .success(()))
         }
     }
 

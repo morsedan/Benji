@@ -12,18 +12,10 @@ import Parse
 import TMROLocalization
 import TMROFutures
 
-protocol LoginPhoneViewControllerDelegate: class {
-    func loginPhoneView(_ controller: LoginPhoneViewController, didCompleteWith phone: PhoneNumber)
-}
-
 class LoginPhoneViewController: TextInputViewController<PhoneNumber> {
 
-    unowned let delegate: LoginPhoneViewControllerDelegate
-
-    init(with delegate: LoginPhoneViewControllerDelegate) {
-        self.delegate = delegate
+    init() {
         let phoneField = PhoneNumberTextField.init()
-
         super.init(textField: phoneField,
                    textFieldTitle: LocalizedString(id: "", default: "MOBILE NUMBER"),
                    textFieldPlaceholder: LocalizedString(id: "", default: "000-000-0000"))

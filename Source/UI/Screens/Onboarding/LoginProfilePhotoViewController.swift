@@ -10,27 +10,15 @@ import Foundation
 import Parse
 import TMROFutures
 
-protocol LoginProfilePhotoViewControllerDelegate: class {
-    func loginProfilePhotoViewControllerDidUpdatePhoto(_ controller: LoginProfilePhotoViewController)
-}
+class LoginProfilePhotoViewController: ViewController, Sizeable, Completable {
+    typealias ResultType = Void
 
-class LoginProfilePhotoViewController: ViewController, Sizeable {
+    var onDidComplete: ((Result<Void, Error>) -> Void)?
 
-    private let cameraVC = CameraViewController()
+    private lazy var cameraVC = CameraViewController()
     private let avatarView = AvatarView()
     private let cameraButton = CameraButton()
     private let label = RegularBoldLabel()
-
-    unowned let delegate: LoginProfilePhotoViewControllerDelegate
-
-    init(with delegate: LoginProfilePhotoViewControllerDelegate) {
-        self.delegate = delegate
-        super.init()
-    }
-
-    required init?(coder aDecoder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
-    }
 
     override func initializeViews() {
         super.initializeViews()
@@ -111,10 +99,14 @@ class LoginProfilePhotoViewController: ViewController, Sizeable {
         let largeImageFile = PFFileObject(name:"image.png", data: imageData)
         current.largeImage = largeImageFile
 
-        current.saveInBackground { (success, error) in
-            if success {
-                self.delegate.loginProfilePhotoViewControllerDidUpdatePhoto(self)
-            }
+        current.saveEventually()
+            .observe { (result) in
+                switch result {
+                case .success(_):
+                    self.complete(with: .success(()))
+                case .failure(let error):
+                    self.complete(with: .failure(error))
+                }
         }
     }
 

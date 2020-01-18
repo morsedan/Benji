@@ -51,7 +51,7 @@ class MainCoordinator: Coordinator<Void> {
             break
         case .needsOnboarding:
             runMain {
-                self.runLoginFlow()
+                self.runOnboardingFlow()
             }
         case .success(let object, let token):
             self.deepLink = object
@@ -93,8 +93,8 @@ class MainCoordinator: Coordinator<Void> {
         }
     }
 
-    private func runLoginFlow() {
-        let coordinator = LoginCoordinator(router: self.router, deepLink: self.deepLink)
+    private func runOnboardingFlow() {
+        let coordinator = OnboardingCoordinator(router: self.router, deepLink: self.deepLink)
         self.router.setRootModule(coordinator, animated: true)
         self.addChildAndStart(coordinator, finishedHandler: { (_) in
             self.router.dismiss(source: coordinator.toPresentable(), animated: true) {

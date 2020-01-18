@@ -10,6 +10,7 @@ import Foundation
 import PhoneNumberKit
 import Parse
 import ReactiveSwift
+import TMROLocalization
 
 protocol OnboardingViewControllerDelegate: class {
     func onboardingView(_ controller: OnboardingViewController, didVerify user: PFUser)
@@ -18,10 +19,10 @@ protocol OnboardingViewControllerDelegate: class {
 class OnboardingViewController: SwitchableContentViewController<OnboardingContent> {
 
     lazy var reservationVC = ReservationViewController()
-    lazy var phoneVC = LoginPhoneViewController(with: self)
-    lazy var codeVC = LoginCodeViewController(with: self)
-    lazy var nameVC = LoginNameViewController(with: self)
-    lazy var photoVC = LoginProfilePhotoViewController(with: self)
+    lazy var phoneVC = LoginPhoneViewController()
+    lazy var codeVC = LoginCodeViewController()
+    lazy var nameVC = LoginNameViewController()
+    lazy var photoVC = LoginProfilePhotoViewController()
     
     unowned let delegate: OnboardingViewControllerDelegate
 
@@ -49,6 +50,7 @@ class OnboardingViewController: SwitchableContentViewController<OnboardingConten
         self.phoneVC.onDidComplete = { [unowned self] result in
             switch result {
             case .success(let phone):
+                self.codeVC.phoneNumber = phone
                 self.currentContent.value = .code(self.codeVC)
             case .failure(let error):
                 print(error)
@@ -73,7 +75,7 @@ class OnboardingViewController: SwitchableContentViewController<OnboardingConten
             }
         }
 
-        self.phoneVC.onDidComplete = { [unowned self] result in
+        self.photoVC.onDidComplete = { [unowned self] result in
             switch result {
             case .success:
                 if let user = User.current() {
@@ -87,6 +89,10 @@ class OnboardingViewController: SwitchableContentViewController<OnboardingConten
 
     override func getInitialContent() -> OnboardingContent {
         return .phone(self.phoneVC)
+    }
+
+    override func getTitle() -> Localized {
+        return "Welcome!"
     }
 
     override func didSelectBackButton() {
@@ -103,32 +109,5 @@ class OnboardingViewController: SwitchableContentViewController<OnboardingConten
         case .photo(_):
             self.currentContent.value = .name(self.nameVC)
         }
-    }
-}
-
-extension OnboardingViewController: LoginPhoneViewControllerDelegate {
-
-    func loginPhoneView(_ controller: LoginPhoneViewController, didCompleteWith phone: PhoneNumber) {
-        self.codeVC.phoneNumber = phone
-    }
-}
-
-extension OnboardingViewController: LoginCodeViewControllerDelegate {
-
-    func loginCodeView(_ controller: LoginCodeViewController, didVerify user: PFUser) {
-        //self.delegate.onboardingView(self, didVerify: user)
-    }
-}
-
-extension OnboardingViewController: LoginNameViewControllerDelegate {
-
-    func loginNameViewControllerDidComplete(_ controller: LoginNameViewController) {
-
-    }
-}
-
-extension OnboardingViewController: LoginProfilePhotoViewControllerDelegate {
-    func loginProfilePhotoViewControllerDidUpdatePhoto(_ controller: LoginProfilePhotoViewController) {
-        
     }
 }
