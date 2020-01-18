@@ -15,10 +15,15 @@ class SwitchableContentViewController<ContentType: Switchable>: NavigationBarVie
     lazy var currentContent = MutableProperty<ContentType>(self.getInitialContent())
     private var currentCenterVC: (UIViewController & Sizeable)?
 
+    private var prepareAnimator: UIViewPropertyAnimator?
+    private var presentAnimator: UIViewPropertyAnimator?
+
     override func initializeViews() {
         super.initializeViews()
 
         self.registerKeyboardEvents()
+        // Need to call prepare before switchContent so content doesnt flicker on first load
+        self.prepareForPresentation()
 
         self.currentContent.producer
             .skipRepeats()
@@ -51,44 +56,73 @@ class SwitchableContentViewController<ContentType: Switchable>: NavigationBarVie
 
     func switchContent() {
 
-        UIView.animate(withDuration: Theme.animationDuration, animations: {
-            self.titleLabel.alpha = 0
-            self.titleLabel.transform = CGAffineTransform(scaleX: 0.95, y: 0.95)
-
-            self.descriptionLabel.alpha = 0
-            self.descriptionLabel.transform = CGAffineTransform(scaleX: 0.95, y: 0.95)
-
-            self.currentCenterVC?.view.alpha = 0
-            self.backButton.alpha = 0
-
-        }) { (completed) in
-
-            self.currentCenterVC?.removeFromParentSuperview()
-
-            self.updateLabels()
-
-            self.currentCenterVC = self.currentContent.value.viewController
-            let showBackButton = self.currentContent.value.shouldShowBackButton
-
-            if let contentVC = self.currentCenterVC {
-                self.addChild(viewController: contentVC, toView: self.scrollView)
-            }
-
-            self.willUpdateContent()
-
-            self.view.setNeedsLayout()
-
-            UIView.animate(withDuration: Theme.animationDuration) {
-                self.titleLabel.alpha = 1
-                self.titleLabel.transform = .identity
-
-                self.descriptionLabel.alpha = 1
-                self.descriptionLabel.transform = .identity
-
-                self.currentCenterVC?.view.alpha = 1
-                self.backButton.alpha = showBackButton ? 1 : 0
-            }
+        if let animator = self.prepareAnimator, animator.isRunning {
+            return
         }
+
+        if let animator = self.presentAnimator, animator.isRunning {
+            return
+        }
+
+        self.prepareAnimator = UIViewPropertyAnimator.init(duration: Theme.animationDuration,
+                                                           curve: .easeOut,
+                                                           animations: {
+                                                            self.prepareForPresentation()
+        })
+
+        self.prepareAnimator?.addCompletion({ (position) in
+            if position == .end {
+
+                self.currentCenterVC?.removeFromParentSuperview()
+
+                self.updateLabels()
+
+                self.currentCenterVC = self.currentContent.value.viewController
+                let showBackButton = self.currentContent.value.shouldShowBackButton
+
+                if let contentVC = self.currentCenterVC {
+                    self.addChild(viewController: contentVC, toView: self.scrollView)
+                }
+
+                self.willUpdateContent()
+
+                self.view.setNeedsLayout()
+
+                self.animatePresentation(showBackButton: showBackButton)
+            }
+        })
+
+        self.prepareAnimator?.startAnimation()
+    }
+
+    private func prepareForPresentation() {
+        self.titleLabel.alpha = 0
+        self.titleLabel.transform = CGAffineTransform(scaleX: 0.95, y: 0.95)
+
+        self.descriptionLabel.alpha = 0
+        self.descriptionLabel.transform = CGAffineTransform(scaleX: 0.95, y: 0.95)
+
+        self.currentCenterVC?.view.alpha = 0
+        self.backButton.alpha = 0
+    }
+
+    private func animatePresentation(showBackButton: Bool) {
+
+        self.presentAnimator = UIViewPropertyAnimator.init(duration: Theme.animationDuration,
+                                                           curve: .easeOut,
+                                                           animations: {
+
+                                                            self.titleLabel.alpha = 1
+                                                            self.titleLabel.transform = .identity
+
+                                                            self.descriptionLabel.alpha = 1
+                                                            self.descriptionLabel.transform = .identity
+
+                                                            self.currentCenterVC?.view.alpha = 1
+                                                            self.backButton.alpha = showBackButton ? 1 : 0
+        })
+
+        self.presentAnimator?.startAnimation()
     }
 
     func handleKeyboard(frame: CGRect,

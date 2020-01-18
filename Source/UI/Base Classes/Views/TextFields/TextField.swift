@@ -70,7 +70,7 @@ class TextField: UITextField {
     override func layoutSubviews() {
         super.layoutSubviews()
 
-        self.activityIndicator.right = self.width
+        self.activityIndicator.right = self.width - self.padding.right 
         self.activityIndicator.centerOnY()
     }
 

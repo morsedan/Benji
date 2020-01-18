@@ -60,7 +60,12 @@ class OnboardingViewController: SwitchableContentViewController<OnboardingConten
         self.codeVC.onDidComplete = { [unowned self] result in
             switch result {
             case .success:
-                self.currentContent.value = .name(self.nameVC)
+                //Skip name, and photo if they have an existing account
+                if let current = User.current(), current.isAuthenticated {
+                    self.delegate.onboardingView(self, didVerify: current)
+                } else {
+                    self.currentContent.value = .name(self.nameVC)
+                }
             case .failure(let error):
                 print(error)
             }
@@ -79,7 +84,7 @@ class OnboardingViewController: SwitchableContentViewController<OnboardingConten
             switch result {
             case .success:
                 //Add checks for name, phone, photo
-                if let user = User.current() {
+                if let user = User.current(), user.isAuthenticated {
                     self.delegate.onboardingView(self, didVerify: user)
                 }
             case .failure(let error):

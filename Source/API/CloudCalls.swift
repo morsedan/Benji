@@ -47,7 +47,7 @@ struct VerifyCode: CloudFunction {
         let params: [String: Any] = ["authCode": self.code,
                                      "phoneNumber": PhoneKit.shared.format(self.phoneNumber, toType: .e164)]
 
-        PFCloud.callFunction(inBackground: "authCode",
+        PFCloud.callFunction(inBackground: "validateCode",
                              withParameters: params) { (object, error) in
                                 if let error = error {
                                     promise.reject(with: error)
