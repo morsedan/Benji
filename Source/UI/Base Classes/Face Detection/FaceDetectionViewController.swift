@@ -8,54 +8,77 @@
 
 import Foundation
 import AVFoundation
+import Vision
 
 class FaceDetectionViewController: ViewController {
 
-    var captureSession: AVCaptureSession?
-    var previewLayer: AVCaptureVideoPreviewLayer?
+    var sequenceHandler = VNSequenceRequestHandler()
+
+    let faceView = FaceView()
+    let laserView = LaserView()
+    let faceLaserLabel = RegularBoldLabel()
+
+    let session = AVCaptureSession()
+    var previewLayer: AVCaptureVideoPreviewLayer!
+
+    let dataOutputQueue = DispatchQueue(
+        label: "video data queue",
+        qos: .userInitiated,
+        attributes: [],
+        autoreleaseFrequency: .workItem)
+
+    var faceViewHidden = false
+
+    var maxX: CGFloat = 0.0
+    var midY: CGFloat = 0.0
+    var maxY: CGFloat = 0.0
+
+    override func initializeViews() {
+        super.initializeViews()
+
+        self.view.addSubview(self.faceView)
+        self.view.addSubview(self.laserView)
+        self.view.addSubview(self.faceLaserLabel)
+
+        self.view.onTap { [unowned self] (tap) in
+            self.handleTap()
+        }
+    }
 
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        guard let captureDevice = AVCaptureDevice.default(.builtInWideAngleCamera,
-                                                          for: .video,
-                                                          position: .front) else { return }
-        do {
-            let input = try AVCaptureDeviceInput(device: captureDevice)
-            self.captureSession = AVCaptureSession()
-            self.captureSession?.addInput(input)
-            self.previewLayer = AVCaptureVideoPreviewLayer(session: captureSession!)
-            self.previewLayer?.videoGravity = AVLayerVideoGravity.resizeAspectFill
-            self.view.layer.addSublayer(self.previewLayer!)
-        } catch {
-            print(error)
-        }
-    }
+        self.configureCaptureSession()
 
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
+        self.laserView.isHidden = true
 
-        self.captureSession?.startRunning()
-    }
+        self.maxX = self.view.bounds.maxX
+        self.midY = self.view.bounds.midY
+        self.maxY = self.view.bounds.maxY
 
-    override func viewWillDisappear(_ animated: Bool) {
-        super.viewWillDisappear(animated)
-
-        self.captureSession?.stopRunning()
+        self.session.startRunning()
     }
 
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
 
-        self.previewLayer?.frame = self.view.layer.bounds
+        self.faceView.expandToSuperviewSize()
+        self.laserView.expandToSuperviewSize()
+
+        self.faceLaserLabel.setSize(withWidth: 200)
+        self.faceLaserLabel.centerOnX()
+        self.faceLaserLabel.bottom = self.view.height - 30
     }
 
-    func capturePhoto(completion: @escaping (UIImage) -> Void) {
-//        self.captureSession?.capture({ (image, settings) in
-//            guard let rotatedImage = image.fixedOrientation() else { return }
-//            completion(rotatedImage)
-//        }) { (error) in
-//            print(error)
-//        }
+    private func handleTap() {
+        self.faceView.isHidden.toggle()
+        self.laserView.isHidden.toggle()
+        self.faceViewHidden = self.faceView.isHidden
+
+        if self.faceViewHidden {
+            self.faceLaserLabel.text = "Lasers"
+        } else {
+            self.faceLaserLabel.text = "Face"
+        }
     }
 }

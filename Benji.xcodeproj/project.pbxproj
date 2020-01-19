@@ -64,6 +64,7 @@
 		D63C67D923D3927500EA373A /* PhoneTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = D63C67D823D3927500EA373A /* PhoneTextField.swift */; };
 		D63C67DC23D414A200EA373A /* LaserView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D63C67DB23D414A200EA373A /* LaserView.swift */; };
 		D63C67DE23D415A700EA373A /* FaceView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D63C67DD23D415A700EA373A /* FaceView.swift */; };
+		D63C67E023D416B800EA373A /* FaceDetectionViewController+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = D63C67DF23D416B800EA373A /* FaceDetectionViewController+Extensions.swift */; };
 		D6405B5E236BCB4D00FAA06B /* AlertConfirmationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6405B5D236BCB4D00FAA06B /* AlertConfirmationView.swift */; };
 		D6405B67236E002E00FAA06B /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6405B66236E002E00FAA06B /* User.swift */; };
 		D6405B6B236E0E7900FAA06B /* Conneciton.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6405B6A236E0E7900FAA06B /* Conneciton.swift */; };
@@ -195,6 +196,7 @@
 		D6A82B732325C2FD003E0A8B /* NewChannelViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6A82B722325C2FD003E0A8B /* NewChannelViewController.swift */; };
 		D6A82B752325C39A003E0A8B /* PurposeTitleTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6A82B742325C39A003E0A8B /* PurposeTitleTextField.swift */; };
 		D6A82B772325C48F003E0A8B /* PurposeDescriptionTextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6A82B762325C48F003E0A8B /* PurposeDescriptionTextView.swift */; };
+		D6ACA0B623D41A3D00844923 /* CGSize+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6ACA0B523D41A3D00844923 /* CGSize+Extensions.swift */; };
 		D6AF02FD220153F5002D5C75 /* LaunchManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6AF02FC220153F5002D5C75 /* LaunchManager.swift */; };
 		D6AF0301220154E3002D5C75 /* ChannelManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6AF0300220154E3002D5C75 /* ChannelManager.swift */; };
 		D6B2601622E41BE700143CF0 /* ChannelSectionHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6B2601522E41BE700143CF0 /* ChannelSectionHeader.swift */; };
@@ -352,6 +354,7 @@
 		D63C67D823D3927500EA373A /* PhoneTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhoneTextField.swift; sourceTree = "<group>"; };
 		D63C67DB23D414A200EA373A /* LaserView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LaserView.swift; sourceTree = "<group>"; };
 		D63C67DD23D415A700EA373A /* FaceView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FaceView.swift; sourceTree = "<group>"; };
+		D63C67DF23D416B800EA373A /* FaceDetectionViewController+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "FaceDetectionViewController+Extensions.swift"; sourceTree = "<group>"; };
 		D6405B5D236BCB4D00FAA06B /* AlertConfirmationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertConfirmationView.swift; sourceTree = "<group>"; };
 		D6405B66236E002E00FAA06B /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		D6405B6A236E0E7900FAA06B /* Conneciton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Conneciton.swift; sourceTree = "<group>"; };
@@ -484,6 +487,7 @@
 		D6A82B722325C2FD003E0A8B /* NewChannelViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewChannelViewController.swift; sourceTree = "<group>"; };
 		D6A82B742325C39A003E0A8B /* PurposeTitleTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PurposeTitleTextField.swift; sourceTree = "<group>"; };
 		D6A82B762325C48F003E0A8B /* PurposeDescriptionTextView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PurposeDescriptionTextView.swift; sourceTree = "<group>"; };
+		D6ACA0B523D41A3D00844923 /* CGSize+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CGSize+Extensions.swift"; sourceTree = "<group>"; };
 		D6AF02FC220153F5002D5C75 /* LaunchManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LaunchManager.swift; sourceTree = "<group>"; };
 		D6AF0300220154E3002D5C75 /* ChannelManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChannelManager.swift; sourceTree = "<group>"; };
 		D6B2601522E41BE700143CF0 /* ChannelSectionHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChannelSectionHeader.swift; sourceTree = "<group>"; };
@@ -752,6 +756,7 @@
 			children = (
 				8002F37E230CD07F00F8C4E3 /* Authorization+Extensions.swift */,
 				D61BD1742382404A0028AD1E /* BranchUniversalObject+Extension.swift */,
+				D6ACA0B523D41A3D00844923 /* CGSize+Extensions.swift */,
 				D6D1460621D552B100CD8CE4 /* Character+Extensions.swift */,
 				D66F0FE922C0695E00BA277D /* CNContact+Extensions.swift */,
 				D642736F22C991850088256B /* Collection Extensions */,
@@ -866,8 +871,9 @@
 			isa = PBXGroup;
 			children = (
 				D6EB4DEF23540E48005BF3B4 /* FaceDetectionViewController.swift */,
-				D63C67DB23D414A200EA373A /* LaserView.swift */,
+				D63C67DF23D416B800EA373A /* FaceDetectionViewController+Extensions.swift */,
 				D63C67DD23D415A700EA373A /* FaceView.swift */,
+				D63C67DB23D414A200EA373A /* LaserView.swift */,
 			);
 			path = "Face Detection";
 			sourceTree = "<group>";
@@ -1674,6 +1680,7 @@
 				D6EE715D23B84DAC000ED221 /* OrbCollectionViewLayout.swift in Sources */,
 				D6A82B732325C2FD003E0A8B /* NewChannelViewController.swift in Sources */,
 				D61EC0F921D317AB00204BEE /* Theme.swift in Sources */,
+				D63C67E023D416B800EA373A /* FaceDetectionViewController+Extensions.swift in Sources */,
 				D635551B21E5B3D400530602 /* UIScrollView+Extensions.swift in Sources */,
 				D6432BF322D828480016001A /* ChannelDataSource.swift in Sources */,
 				D61EC0C221D3071400204BEE /* ViewController.swift in Sources */,
@@ -1702,6 +1709,7 @@
 				D6B2607222E80FE000143CF0 /* SmallBoldLabel.swift in Sources */,
 				D63844122337C3CD0072227B /* LoadMoreSectionHeader.swift in Sources */,
 				D6579536239A141900A01338 /* CountDownView.swift in Sources */,
+				D6ACA0B623D41A3D00844923 /* CGSize+Extensions.swift in Sources */,
 				D6A301AA23808252006655E0 /* ChannelCollectionViewManager+Menu.swift in Sources */,
 				D68540CF235FDE35006F666C /* SuggestionCollectionViewController.swift in Sources */,
 				D66656BD23D13C9A009E4BDF /* Switchable.swift in Sources */,

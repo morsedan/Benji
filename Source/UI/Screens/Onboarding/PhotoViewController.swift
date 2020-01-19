@@ -43,11 +43,11 @@ class PhotoViewController: ViewController, Sizeable, Completable {
         self.cameraVC.view.layer.borderColor = Color.purple.color.cgColor
         self.cameraVC.view.layer.borderWidth = 4
 
-        self.cameraButton.onTap { [unowned self] (tap) in
-            self.cameraVC.capturePhoto { [unowned self] (image) in
-                self.update(image: image)
-            }
-        }
+//        self.cameraButton.onTap { [unowned self] (tap) in
+//            self.cameraVC.capturePhoto { [unowned self] (image) in
+//                self.update(image: image)
+//            }
+//        }
     }
 
     override func viewDidLayoutSubviews() {
