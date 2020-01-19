@@ -14,10 +14,10 @@ class FaceDetectionViewController: UIViewController {
     var sequenceHandler = VNSequenceRequestHandler()
 
     @IBOutlet var faceView: FaceView!
-    @IBOutlet var faceLaserLabel: UILabel!
 
     let session = AVCaptureSession()
     var previewLayer: AVCaptureVideoPreviewLayer!
+    var capturePhotoOutput: AVCapturePhotoOutput!
 
     let dataOutputQueue = DispatchQueue(label: "video data queue",
                                         qos: .userInitiated,
@@ -28,23 +28,22 @@ class FaceDetectionViewController: UIViewController {
     var midY: CGFloat = 0.0
     var maxY: CGFloat = 0.0
 
+    var didCapturePhoto: ((UIImage) -> Void)?
+
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        self.configureCaptureSession()
 
         self.maxX = view.bounds.maxX
         self.midY = view.bounds.midY
         self.maxY = view.bounds.maxY
+    }
 
+    func begin() {
+        self.configureCaptureSession()
         self.session.startRunning()
     }
 
-    @IBAction func handleTap(_ sender: UITapGestureRecognizer) {
-        print("did tap ")
-    }
-
-    func configureCaptureSession() {
+    private func configureCaptureSession() {
         // Define the capture device we want to use
         guard let camera = AVCaptureDevice.default(.builtInWideAngleCamera,
                                                    for: .video,
@@ -71,9 +70,28 @@ class FaceDetectionViewController: UIViewController {
         let videoConnection = videoOutput.connection(with: .video)
         videoConnection?.videoOrientation = .portrait
 
+        // Get an instance of ACCapturePhotoOutput class
+        self.capturePhotoOutput = AVCapturePhotoOutput()
+        self.capturePhotoOutput?.isHighResolutionCaptureEnabled = true
+        // Set the output on the capture session
+        self.session.addOutput(self.capturePhotoOutput)
+
         // Configure the preview layer
         self.previewLayer = AVCaptureVideoPreviewLayer(session: self.session)
         self.previewLayer.videoGravity = .resizeAspectFill
         self.previewLayer.frame = self.view.bounds
+    }
+
+    func capturePhoto() {
+        // Make sure capturePhotoOutput is valid
+        guard let capturePhotoOutput = self.capturePhotoOutput else { return }
+        // Get an instance of AVCapturePhotoSettings class
+        let photoSettings = AVCapturePhotoSettings()
+        // Set photo settings for our need
+        photoSettings.isHighResolutionPhotoEnabled = true
+        photoSettings.flashMode = .auto
+        // Call capturePhoto method by passing our photo settings and a
+        // delegate implementing AVCapturePhotoCaptureDelegate
+        capturePhotoOutput.capturePhoto(with: photoSettings, delegate: self)
     }
 }
