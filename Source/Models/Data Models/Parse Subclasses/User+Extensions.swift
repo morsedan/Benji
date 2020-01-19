@@ -19,6 +19,16 @@ extension User: Avatar {
     var image: UIImage? {
         return nil
     }
+
+    var isOnboarded: Bool {
+        if self.handle == nil {
+            return false
+        } else if self.smallImage == nil {
+            return false
+        }
+
+        return true 
+    }
 }
 
 extension User {

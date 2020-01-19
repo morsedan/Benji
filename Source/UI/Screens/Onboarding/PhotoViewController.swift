@@ -15,29 +15,33 @@ class PhotoViewController: ViewController, Sizeable, Completable {
 
     var onDidComplete: ((Result<Void, Error>) -> Void)?
 
-    private lazy var cameraVC = CameraViewController()
+    private lazy var cameraVC = FaceDetectionViewController()
     private let avatarView = AvatarView()
     private let cameraButton = CameraButton()
-    private let label = RegularBoldLabel()
 
     override func initializeViews() {
         super.initializeViews()
 
         self.view.set(backgroundColor: .background1)
-        self.addChild(viewController: self.cameraVC)
-        self.cameraVC.view.layer.borderColor = Color.purple.color.cgColor
-        self.cameraVC.view.layer.borderWidth = 4
 
         self.view.addSubview(self.avatarView)
         self.avatarView.isHidden = true
-
-        self.view.addSubview(self.label)
-        self.label.set(text: "Take a picture. 😀",
-                       color: .white,
-                       alignment: .center,
-                       stringCasing: .unchanged)
-
         self.view.addSubview(self.cameraButton)
+    }
+
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+
+        onceEver(token: "addCamera") {
+            self.addCameraVC()
+        }
+    }
+
+    private func addCameraVC() {
+        self.addChild(viewController: self.cameraVC)
+
+        self.cameraVC.view.layer.borderColor = Color.purple.color.cgColor
+        self.cameraVC.view.layer.borderWidth = 4
 
         self.cameraButton.onTap { [unowned self] (tap) in
             self.cameraVC.capturePhoto { [unowned self] (image) in
@@ -49,10 +53,10 @@ class PhotoViewController: ViewController, Sizeable, Completable {
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
 
-        let width = self.view.width * 0.8
-        self.cameraVC.view.size = CGSize(width: width, height: width)
-        self.cameraVC.view.centerY = self.view.centerY * 0.8
-        self.cameraVC.view.centerOnX()
+        let height = self.view.height * 0.8
+        let width = height * 0.6
+        self.cameraVC.view.size = CGSize(width: width, height: height)
+        self.cameraVC.view.centerOnXAndY()
         self.cameraVC.view.roundCorners()
 
         self.avatarView.frame = self.cameraVC.view.frame
@@ -61,10 +65,6 @@ class PhotoViewController: ViewController, Sizeable, Completable {
         self.cameraButton.size = CGSize(width: 60, height: 60)
         self.cameraButton.bottom = self.view.height - self.view.safeAreaInsets.bottom - 40
         self.cameraButton.centerOnX()
-
-        self.label.setSize(withWidth: self.view.width * 0.8)
-        self.label.top = self.cameraVC.view.bottom + 20
-        self.label.centerOnX()
     }
 
     func update(image: UIImage) {

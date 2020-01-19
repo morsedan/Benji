@@ -61,7 +61,7 @@ class OnboardingViewController: SwitchableContentViewController<OnboardingConten
             switch result {
             case .success:
                 //Skip name, and photo if they have an existing account
-                if let current = User.current(), current.isAuthenticated {
+                if let current = User.current(), current.isOnboarded {
                     self.delegate.onboardingView(self, didVerify: current)
                 } else {
                     self.currentContent.value = .name(self.nameVC)
@@ -94,7 +94,7 @@ class OnboardingViewController: SwitchableContentViewController<OnboardingConten
     }
 
     override func getInitialContent() -> OnboardingContent {
-        return .phone(self.phoneVC)
+        return .photo(self.photoVC)//.phone(self.phoneVC)
     }
 
     override func getTitle() -> Localized {
