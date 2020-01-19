@@ -15,9 +15,13 @@ class PhotoViewController: ViewController, Sizeable, Completable {
 
     var onDidComplete: ((Result<Void, Error>) -> Void)?
 
-    private lazy var cameraVC = FaceDetectionViewController()
+    private lazy var cameraVC: FaceDetectionViewController = {
+        let vc: FaceDetectionViewController = UIStoryboard(name: "FaceDetection", bundle: nil).instantiateViewController(withIdentifier: "FaceDetection") as! FaceDetectionViewController
+
+        return vc
+    }()
+
     private let avatarView = AvatarView()
-    private let cameraButton = CameraButton()
 
     override func initializeViews() {
         super.initializeViews()
@@ -26,45 +30,16 @@ class PhotoViewController: ViewController, Sizeable, Completable {
 
         self.view.addSubview(self.avatarView)
         self.avatarView.isHidden = true
-        self.view.addSubview(self.cameraButton)
-    }
-
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-
-        onceEver(token: "addCamera") {
-            self.addCameraVC()
-        }
-    }
-
-    private func addCameraVC() {
         self.addChild(viewController: self.cameraVC)
-
-        self.cameraVC.view.layer.borderColor = Color.purple.color.cgColor
-        self.cameraVC.view.layer.borderWidth = 4
-
-//        self.cameraButton.onTap { [unowned self] (tap) in
-//            self.cameraVC.capturePhoto { [unowned self] (image) in
-//                self.update(image: image)
-//            }
-//        }
     }
 
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
 
-        let height = self.view.height * 0.8
-        let width = height * 0.6
-        self.cameraVC.view.size = CGSize(width: width, height: height)
-        self.cameraVC.view.centerOnXAndY()
-        self.cameraVC.view.roundCorners()
+        self.cameraVC.view.expandToSuperviewSize()
 
         self.avatarView.frame = self.cameraVC.view.frame
         self.avatarView.roundCorners()
-
-        self.cameraButton.size = CGSize(width: 60, height: 60)
-        self.cameraButton.bottom = self.view.height - self.view.safeAreaInsets.bottom - 40
-        self.cameraButton.centerOnX()
     }
 
     func update(image: UIImage) {

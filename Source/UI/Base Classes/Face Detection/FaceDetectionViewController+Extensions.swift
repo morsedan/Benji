@@ -60,10 +60,9 @@ extension FaceDetectionViewController: AVCaptureVideoDataOutputSampleBufferDeleg
         let detectFaceRequest = VNDetectFaceLandmarksRequest(completionHandler: self.detectedFace)
 
         do {
-            try self.sequenceHandler.perform(
-                [detectFaceRequest],
-                on: imageBuffer,
-                orientation: .leftMirrored)
+            try self.sequenceHandler.perform([detectFaceRequest],
+                                             on: imageBuffer,
+                                             orientation: .leftMirrored)
         } catch {
             print(error.localizedDescription)
         }
@@ -71,7 +70,7 @@ extension FaceDetectionViewController: AVCaptureVideoDataOutputSampleBufferDeleg
 }
 
 extension FaceDetectionViewController {
-    
+
     func convert(rect: CGRect) -> CGRect {
         let origin = self.previewLayer.layerPointConverted(fromCaptureDevicePoint: rect.origin)
         let size = self.previewLayer.layerPointConverted(fromCaptureDevicePoint: rect.size.cgPoint)
@@ -80,7 +79,7 @@ extension FaceDetectionViewController {
 
     func landmark(point: CGPoint, to rect: CGRect) -> CGPoint {
         let absolute = point.absolutePoint(in: rect)
-        let converted = previewLayer.layerPointConverted(fromCaptureDevicePoint: absolute)
+        let converted = self.previewLayer.layerPointConverted(fromCaptureDevicePoint: absolute)
         return converted
     }
 
@@ -104,91 +103,44 @@ extension FaceDetectionViewController {
 
         guard let landmarks = result.landmarks else { return }
 
-        if let leftEye = self.landmark(
-            points: landmarks.leftEye?.normalizedPoints,
-            to: result.boundingBox) {
+        if let leftEye = self.landmark(points: landmarks.leftEye?.normalizedPoints,
+                                       to: result.boundingBox) {
             self.faceView.leftEye = leftEye
         }
 
-        if let rightEye = self.landmark(
-            points: landmarks.rightEye?.normalizedPoints,
-            to: result.boundingBox) {
+        if let rightEye = self.landmark( points: landmarks.rightEye?.normalizedPoints,
+                                         to: result.boundingBox) {
             self.faceView.rightEye = rightEye
         }
 
-        if let leftEyebrow = self.landmark(
-            points: landmarks.leftEyebrow?.normalizedPoints,
-            to: result.boundingBox) {
+        if let leftEyebrow = self.landmark(points: landmarks.leftEyebrow?.normalizedPoints,
+                                           to: result.boundingBox) {
             self.faceView.leftEyebrow = leftEyebrow
         }
 
-        if let rightEyebrow = self.landmark(
-            points: landmarks.rightEyebrow?.normalizedPoints,
-            to: result.boundingBox) {
+        if let rightEyebrow = self.landmark(points: landmarks.rightEyebrow?.normalizedPoints,
+                                            to: result.boundingBox) {
             self.faceView.rightEyebrow = rightEyebrow
         }
 
-        if let nose = self.landmark(
-            points: landmarks.nose?.normalizedPoints,
-            to: result.boundingBox) {
+        if let nose = self.landmark(points: landmarks.nose?.normalizedPoints,
+                                    to: result.boundingBox) {
             self.faceView.nose = nose
         }
 
-        if let outerLips = self.landmark(
-            points: landmarks.outerLips?.normalizedPoints,
-            to: result.boundingBox) {
+        if let outerLips = self.landmark(points: landmarks.outerLips?.normalizedPoints,
+                                         to: result.boundingBox) {
             self.faceView.outerLips = outerLips
         }
 
-        if let innerLips = self.landmark(
-            points: landmarks.innerLips?.normalizedPoints,
-            to: result.boundingBox) {
+        if let innerLips = self.landmark(points: landmarks.innerLips?.normalizedPoints,
+                                         to: result.boundingBox) {
             self.faceView.innerLips = innerLips
         }
 
-        if let faceContour = self.landmark(
-            points: landmarks.faceContour?.normalizedPoints,
-            to: result.boundingBox) {
+        if let faceContour = self.landmark(points: landmarks.faceContour?.normalizedPoints,
+                                           to: result.boundingBox) {
             self.faceView.faceContour = faceContour
-        }
-    }
-
-    func updateLaserView(for result: VNFaceObservation) {
-
-        self.laserView.clear()
-        let yaw = result.yaw ?? 0.0
-
-        if yaw == 0.0 {
-            return
-        }
-
-        var origins: [CGPoint] = []
-
-        if let point = result.landmarks?.leftPupil?.normalizedPoints.first {
-            let origin = self.landmark(point: point, to: result.boundingBox)
-            origins.append(origin)
-        }
-
-        if let point = result.landmarks?.rightPupil?.normalizedPoints.first {
-            let origin = self.landmark(point: point, to: result.boundingBox)
-            origins.append(origin)
-        }
-
-        let avgY = origins.map { $0.y }.reduce(0.0, +) / CGFloat(origins.count)
-
-        let focusY = (avgY < self.midY) ? 0.75 * self.maxY : 0.25 * self.maxY
-
-        let focusX = (yaw.doubleValue < 0.0) ? -100.0 : self.maxX + 100.0
-
-        let focus = CGPoint(x: focusX, y: focusY)
-
-        for origin in origins {
-            let laser = Laser(origin: origin, focus: focus)
-            self.laserView.add(laser: laser)
-        }
-
-        runMain {
-            self.laserView.setNeedsDisplay()
         }
     }
 
@@ -198,10 +150,6 @@ extension FaceDetectionViewController {
             return
         }
 
-        if self.faceViewHidden {
-            self.updateLaserView(for: result)
-        } else {
-            self.updateFaceView(for: result)
-        }
+        self.updateFaceView(for: result)
     }
 }
