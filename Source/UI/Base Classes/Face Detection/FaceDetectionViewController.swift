@@ -54,7 +54,9 @@ class FaceDetectionViewController: UIViewController {
         // Connect the camera to the capture session input
         do {
             let cameraInput = try AVCaptureDeviceInput(device: camera)
-            self.session.addInput(cameraInput)
+            if self.session.inputs.isEmpty {
+                self.session.addInput(cameraInput)
+            }
         } catch {
             fatalError(error.localizedDescription)
         }

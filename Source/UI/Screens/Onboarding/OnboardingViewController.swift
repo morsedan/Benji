@@ -94,7 +94,7 @@ class OnboardingViewController: SwitchableContentViewController<OnboardingConten
     }
 
     override func getInitialContent() -> OnboardingContent {
-        return .photo(self.photoVC)//.phone(self.phoneVC)
+        return .phone(self.phoneVC)
     }
 
     override func getTitle() -> Localized {

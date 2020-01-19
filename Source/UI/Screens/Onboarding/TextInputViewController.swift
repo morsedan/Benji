@@ -60,7 +60,9 @@ class TextInputViewController<ResultType>: ViewController, Sizeable, Completable
         let height = self.textEntry.getHeight(for: width)
         self.textEntry.size = CGSize(width: width, height: height)
         self.textEntry.centerOnX()
-        self.textEntry.bottom = self.view.height - handler.currentKeyboardHeight - 30
+
+        let defaultOffset = self.view.height - 30
+        self.textEntry.bottom = defaultOffset - handler.currentKeyboardHeight
     }
 
     override func viewDidAppear(_ animated: Bool) {
@@ -104,6 +106,8 @@ class TextInputViewController<ResultType>: ViewController, Sizeable, Completable
     }
 
     func handleKeyboard(frame: CGRect, with animationDuration: TimeInterval, timingCurve: UIView.AnimationCurve) {
+        guard let handler = self.keyboardHandler, handler.currentKeyboardHeight > 0 else { return }
+
         UIView.animate(withDuration: animationDuration) {
             self.view.layoutNow()
         }

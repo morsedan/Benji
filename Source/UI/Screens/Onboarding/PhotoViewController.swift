@@ -9,6 +9,7 @@
 import Foundation
 import Parse
 import TMROFutures
+import TMROLocalization
 
 class PhotoViewController: ViewController, Sizeable, Completable {
     typealias ResultType = Void
@@ -23,6 +24,8 @@ class PhotoViewController: ViewController, Sizeable, Completable {
 
     private let avatarView = AvatarView()
     private let button = LoadingButton()
+    private var isCapturing = false
+    private var isComplete = false
 
     override func initializeViews() {
         super.initializeViews()
@@ -34,19 +37,25 @@ class PhotoViewController: ViewController, Sizeable, Completable {
 
         self.avatarView.layer.borderColor = Color.purple.color.cgColor
         self.avatarView.layer.borderWidth = 4
-
-        self.avatarView.isHidden = true
+        self.avatarView.transform = CGAffineTransform(scaleX: 0.95, y: 0.95)
+        self.avatarView.alpha = 0
         self.view.addSubview(self.button)
 
+        self.cameraVC.view.alpha = 1
         self.cameraVC.didCapturePhoto = { [unowned self] image in
              self.update(image: image)
         }
 
         self.button.set(style: .normal(color: .blue, text: "Begin"))
         self.button.didSelect = { [unowned self] in
-            if self.avatarView.isHidden {
+            if self.isComplete {
+                self.complete(with: .success(()))
+            }else if !self.isCapturing {
+                self.isCapturing = true
+                self.button.set(style: .normal(color: .purple, text: "Capture"))
                 self.cameraVC.begin()
             } else {
+                self.isCapturing = false 
                 self.button.isLoading = true
                 self.cameraVC.capturePhoto()
             }
@@ -66,17 +75,22 @@ class PhotoViewController: ViewController, Sizeable, Completable {
         self.avatarView.roundCorners()
 
         self.button.size = CGSize(width: 200, height: 40)
-        self.button.bottom = self.view.height - 30
+        self.button.bottom = self.view.height - 50
         self.button.centerOnX()
     }
 
     func update(image: UIImage) {
         guard let fixed = image.fixedOrientation(), let pixImage = self.pixelate(image: fixed) else { return }
-        self.avatarView.isHidden.toggle()
-        self.cameraVC.view.isHidden.toggle()
 
         self.avatarView.set(avatar: pixImage)
         self.saveProfilePicture(image: pixImage)
+
+        UIView.animate(withDuration: Theme.animationDuration) {
+            self.avatarView.transform = .identity
+            self.avatarView.alpha = 1
+            self.cameraVC.view.alpha = 0
+            self.view.setNeedsLayout()
+        }
     }
 
     func saveProfilePicture(image: UIImage) {
@@ -103,11 +117,12 @@ class PhotoViewController: ViewController, Sizeable, Completable {
         let largeImageFile = PFFileObject(name:"image.png", data: imageData)
         current.largeImage = largeImageFile
 
-        current.saveEventually()
+        current.save()
             .observe { (result) in
                 switch result {
                 case .success(_):
-                    self.complete(with: .success(()))
+                    self.isComplete = true
+                    self.button.set(style: .normal(color: .purple, text: "Continue"))
                 case .failure(let error):
                     self.complete(with: .failure(error))
                 }
