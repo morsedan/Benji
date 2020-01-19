@@ -43,233 +43,37 @@ class FaceDetectionViewController: UIViewController {
     @IBAction func handleTap(_ sender: UITapGestureRecognizer) {
         print("did tap ")
     }
-}
 
-//// MARK: - Video Processing methods
-//
-//extension FaceDetectionViewController {
-//
-//    func configureCaptureSession() {
-//        // Define the capture device we want to use
-//        guard let camera = AVCaptureDevice.default(.builtInWideAngleCamera,
-//                                                   for: .video,
-//                                                   position: .front) else {
-//                                                    fatalError("No front video camera available")
-//        }
-//
-//        // Connect the camera to the capture session input
-//        do {
-//            let cameraInput = try AVCaptureDeviceInput(device: camera)
-//            self.session.addInput(cameraInput)
-//        } catch {
-//            fatalError(error.localizedDescription)
-//        }
-//
-//        // Create the video data output
-//        let videoOutput = AVCaptureVideoDataOutput()
-//        videoOutput.setSampleBufferDelegate(self, queue: dataOutputQueue)
-//        videoOutput.videoSettings = [kCVPixelBufferPixelFormatTypeKey as String: kCVPixelFormatType_32BGRA]
-//
-//        // Add the video output to the capture session
-//        session.addOutput(videoOutput)
-//
-//        let videoConnection = videoOutput.connection(with: .video)
-//        videoConnection?.videoOrientation = .portrait
-//
-//        // Configure the preview layer
-//        previewLayer = AVCaptureVideoPreviewLayer(session: session)
-//        previewLayer.videoGravity = .resizeAspectFill
-//        previewLayer.frame = view.bounds
-//        view.layer.insertSublayer(previewLayer, at: 0)
-//    }
-//}
-//
-//// MARK: - AVCaptureVideoDataOutputSampleBufferDelegate methods
-//
-//extension FaceDetectionViewController: AVCaptureVideoDataOutputSampleBufferDelegate {
-//    func captureOutput(_ output: AVCaptureOutput, didOutput sampleBuffer: CMSampleBuffer, from connection: AVCaptureConnection) {
-//        // 1
-//        guard let imageBuffer = CMSampleBufferGetImageBuffer(sampleBuffer) else {
-//            return
-//        }
-//
-//        // 2
-//        let detectFaceRequest = VNDetectFaceLandmarksRequest(completionHandler: detectedFace)
-//
-//        // 3
-//        do {
-//            try sequenceHandler.perform(
-//                [detectFaceRequest],
-//                on: imageBuffer,
-//                orientation: .leftMirrored)
-//        } catch {
-//            print(error.localizedDescription)
-//        }
-//    }
-//}
-//
-//extension FaceDetectionViewController {
-//    func convert(rect: CGRect) -> CGRect {
-//        // 1
-//        let origin = previewLayer.layerPointConverted(fromCaptureDevicePoint: rect.origin)
-//
-//        // 2
-//        let size = previewLayer.layerPointConverted(fromCaptureDevicePoint: rect.size.cgPoint)
-//
-//        // 3
-//        return CGRect(origin: origin, size: size.cgSize)
-//    }
-//
-//    // 1
-//    func landmark(point: CGPoint, to rect: CGRect) -> CGPoint {
-//        // 2
-//        let absolute = point.absolutePoint(in: rect)
-//
-//        // 3
-//        let converted = previewLayer.layerPointConverted(fromCaptureDevicePoint: absolute)
-//
-//        // 4
-//        return converted
-//    }
-//
-//    func landmark(points: [CGPoint]?, to rect: CGRect) -> [CGPoint]? {
-//        guard let points = points else {
-//            return nil
-//        }
-//
-//        return points.compactMap { landmark(point: $0, to: rect) }
-//    }
-//
-//    func updateFaceView(for result: VNFaceObservation) {
-//        defer {
-//            DispatchQueue.main.async {
-//                self.faceView.setNeedsDisplay()
-//            }
-//        }
-//
-//        let box = result.boundingBox
-//        faceView.boundingBox = convert(rect: box)
-//
-//        guard let landmarks = result.landmarks else {
-//            return
-//        }
-//
-//        if let leftEye = landmark(
-//            points: landmarks.leftEye?.normalizedPoints,
-//            to: result.boundingBox) {
-//            faceView.leftEye = leftEye
-//        }
-//
-//        if let rightEye = landmark(
-//            points: landmarks.rightEye?.normalizedPoints,
-//            to: result.boundingBox) {
-//            faceView.rightEye = rightEye
-//        }
-//
-//        if let leftEyebrow = landmark(
-//            points: landmarks.leftEyebrow?.normalizedPoints,
-//            to: result.boundingBox) {
-//            faceView.leftEyebrow = leftEyebrow
-//        }
-//
-//        if let rightEyebrow = landmark(
-//            points: landmarks.rightEyebrow?.normalizedPoints,
-//            to: result.boundingBox) {
-//            faceView.rightEyebrow = rightEyebrow
-//        }
-//
-//        if let nose = landmark(
-//            points: landmarks.nose?.normalizedPoints,
-//            to: result.boundingBox) {
-//            faceView.nose = nose
-//        }
-//
-//        if let outerLips = landmark(
-//            points: landmarks.outerLips?.normalizedPoints,
-//            to: result.boundingBox) {
-//            faceView.outerLips = outerLips
-//        }
-//
-//        if let innerLips = landmark(
-//            points: landmarks.innerLips?.normalizedPoints,
-//            to: result.boundingBox) {
-//            faceView.innerLips = innerLips
-//        }
-//
-//        if let faceContour = landmark(
-//            points: landmarks.faceContour?.normalizedPoints,
-//            to: result.boundingBox) {
-//            faceView.faceContour = faceContour
-//        }
-//    }
-//
-//    // 1
-//    func updateLaserView(for result: VNFaceObservation) {
-//        // 2
-//        laserView.clear()
-//
-//        // 3
-//        let yaw = result.yaw ?? 0.0
-//
-//        // 4
-//        if yaw == 0.0 {
-//            return
-//        }
-//
-//        // 5
-//        var origins: [CGPoint] = []
-//
-//        // 6
-//        if let point = result.landmarks?.leftPupil?.normalizedPoints.first {
-//            let origin = landmark(point: point, to: result.boundingBox)
-//            origins.append(origin)
-//        }
-//
-//        // 7
-//        if let point = result.landmarks?.rightPupil?.normalizedPoints.first {
-//            let origin = landmark(point: point, to: result.boundingBox)
-//            origins.append(origin)
-//        }
-//
-//        // 1
-//        let avgY = origins.map { $0.y }.reduce(0.0, +) / CGFloat(origins.count)
-//
-//        // 2
-//        let focusY = (avgY < midY) ? 0.75 * maxY : 0.25 * maxY
-//
-//        // 3
-//        let focusX = (yaw.doubleValue < 0.0) ? -100.0 : maxX + 100.0
-//
-//        // 4
-//        let focus = CGPoint(x: focusX, y: focusY)
-//
-//        // 5
-//        for origin in origins {
-//            let laser = Laser(origin: origin, focus: focus)
-//            laserView.add(laser: laser)
-//        }
-//
-//        // 6
-//        DispatchQueue.main.async {
-//            self.laserView.setNeedsDisplay()
-//        }
-//    }
-//
-//    func detectedFace(request: VNRequest, error: Error?) {
-//        // 1
-//        guard
-//            let results = request.results as? [VNFaceObservation],
-//            let result = results.first
-//            else {
-//                // 2
-//                faceView.clear()
-//                return
-//        }
-//
-//        if faceViewHidden {
-//            updateLaserView(for: result)
-//        } else {
-//            updateFaceView(for: result)
-//        }
-//    }
-//}
+    func configureCaptureSession() {
+        // Define the capture device we want to use
+        guard let camera = AVCaptureDevice.default(.builtInWideAngleCamera,
+                                                   for: .video,
+                                                   position: .front) else {
+                                                    fatalError("No front video camera available")
+        }
+
+        // Connect the camera to the capture session input
+        do {
+            let cameraInput = try AVCaptureDeviceInput(device: camera)
+            self.session.addInput(cameraInput)
+        } catch {
+            fatalError(error.localizedDescription)
+        }
+
+        // Create the video data output
+        let videoOutput = AVCaptureVideoDataOutput()
+        videoOutput.setSampleBufferDelegate(self, queue: self.dataOutputQueue)
+        videoOutput.videoSettings = [kCVPixelBufferPixelFormatTypeKey as String: kCVPixelFormatType_32BGRA]
+
+        // Add the video output to the capture session
+        self.session.addOutput(videoOutput)
+
+        let videoConnection = videoOutput.connection(with: .video)
+        videoConnection?.videoOrientation = .portrait
+
+        // Configure the preview layer
+        self.previewLayer = AVCaptureVideoPreviewLayer(session: self.session)
+        self.previewLayer.videoGravity = .resizeAspectFill
+        self.previewLayer.frame = self.view.bounds
+    }
+}

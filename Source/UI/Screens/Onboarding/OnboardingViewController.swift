@@ -131,7 +131,7 @@ class OnboardingViewController: SwitchableContentViewController<OnboardingConten
         case .photo(_):
             return LocalizedString(id: "",
                                    arguments: [],
-                                   default: "To ensure others know who you are, please take a front facing photo.")
+                                   default: "To ensure your identity to others, please take a face scan.")
         }
     }
 

@@ -48,10 +48,6 @@ class FaceView: UIView {
             context.restoreGState()
         }
 
-        context.addRect(self.boundingBox)
-
-        Color.red.color.setStroke()
-
         context.strokePath()
 
         Color.white.color.setStroke()

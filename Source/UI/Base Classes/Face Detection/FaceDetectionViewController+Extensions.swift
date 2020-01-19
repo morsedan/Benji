@@ -10,45 +10,6 @@ import Foundation
 import AVFoundation
 import Vision
 
-// MARK: - Video Processing methods
-
-extension FaceDetectionViewController {
-
-    func configureCaptureSession() {
-        // Define the capture device we want to use
-        guard let camera = AVCaptureDevice.default(.builtInWideAngleCamera,
-                                                   for: .video,
-                                                   position: .front) else {
-                                                    fatalError("No front video camera available")
-        }
-
-        // Connect the camera to the capture session input
-        do {
-            let cameraInput = try AVCaptureDeviceInput(device: camera)
-            self.session.addInput(cameraInput)
-        } catch {
-            fatalError(error.localizedDescription)
-        }
-
-        // Create the video data output
-        let videoOutput = AVCaptureVideoDataOutput()
-        videoOutput.setSampleBufferDelegate(self, queue: self.dataOutputQueue)
-        videoOutput.videoSettings = [kCVPixelBufferPixelFormatTypeKey as String: kCVPixelFormatType_32BGRA]
-
-        // Add the video output to the capture session
-        self.session.addOutput(videoOutput)
-
-        let videoConnection = videoOutput.connection(with: .video)
-        videoConnection?.videoOrientation = .portrait
-
-        // Configure the preview layer
-        self.previewLayer = AVCaptureVideoPreviewLayer(session: self.session)
-        self.previewLayer.videoGravity = .resizeAspectFill
-        self.previewLayer.frame = self.view.bounds
-        self.view.layer.insertSublayer(self.previewLayer, at: 0)
-    }
-}
-
 extension FaceDetectionViewController: AVCaptureVideoDataOutputSampleBufferDelegate {
 
     func captureOutput(_ output: AVCaptureOutput,
