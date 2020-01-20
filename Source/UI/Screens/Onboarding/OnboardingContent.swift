@@ -36,7 +36,7 @@ enum OnboardingContent: Switchable {
         case .reservation(_):
             return false
         case .phone(_):
-            return true
+            return false
         case .code(_):
             return true
         case .name(_):
