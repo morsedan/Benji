@@ -168,7 +168,9 @@ class NewChannelViewController: SwitchableContentViewController<NewChannelConten
     }
 
     override func willUpdateContent() {
+
         self.button.update(for: self.currentContent.value)
+        self.view.bringSubviewToFront(self.button)
     }
 
     func buttonTapped() {

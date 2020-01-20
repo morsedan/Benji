@@ -83,8 +83,7 @@ class OnboardingViewController: SwitchableContentViewController<OnboardingConten
         self.photoVC.onDidComplete = { [unowned self] result in
             switch result {
             case .success:
-                //Add checks for name, phone, photo
-                if let user = User.current(), user.isAuthenticated {
+                if let user = User.current() {
                     self.delegate.onboardingView(self, didVerify: user)
                 }
             case .failure(let error):
