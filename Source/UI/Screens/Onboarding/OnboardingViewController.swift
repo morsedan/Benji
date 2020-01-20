@@ -40,7 +40,7 @@ class OnboardingViewController: SwitchableContentViewController<OnboardingConten
 
         self.reservationVC.onDidComplete = { [unowned self] result in
             switch result {
-            case .success:
+            case .success(let reservation):
                 self.currentContent.value = .phone(self.phoneVC)
             case .failure(let error):
                 print(error)
@@ -94,7 +94,7 @@ class OnboardingViewController: SwitchableContentViewController<OnboardingConten
     }
 
     override func getInitialContent() -> OnboardingContent {
-        return .phone(self.phoneVC)
+        return .reservation(self.reservationVC)
     }
 
     override func getTitle() -> Localized {
