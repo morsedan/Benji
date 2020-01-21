@@ -14,6 +14,8 @@ enum ReservationKeys: String {
     case position
     case code
     case isClaimed
+    case user
+    case link
 }
 
 final class Reservation: PFObject, PFSubclassing {
@@ -46,6 +48,24 @@ final class Reservation: PFObject, PFSubclassing {
         }
         set {
             self.setObject(for: .isClaimed, with: newValue)
+        }
+    }
+
+    private(set) var link: String {
+        get {
+            return self.getObject(for: .link) ?? String()
+        }
+        set {
+            self.setObject(for: .link, with: newValue)
+        }
+    }
+
+    var user: User? {
+        get {
+            return self.getObject(for: .user)
+        }
+        set {
+            self.setObject(for: .user, with: newValue)
         }
     }
 
