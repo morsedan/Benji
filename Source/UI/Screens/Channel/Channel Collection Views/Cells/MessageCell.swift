@@ -38,7 +38,7 @@ class MessageCell: UICollectionViewCell {
         self.overlayView.set(backgroundColor: .clear)
 
         let view = UIView(frame: self.bounds)
-        view.set(backgroundColor: .background2)
+        view.set(backgroundColor: .clear)
         self.backgroundView = view
         self.selectedBackgroundView = view
 

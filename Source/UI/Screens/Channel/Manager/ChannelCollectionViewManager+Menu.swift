@@ -15,17 +15,17 @@ extension ChannelCollectionViewManager {
     func collectionView(_ collectionView: UICollectionView,
                         contextMenuConfigurationForItemAt indexPath: IndexPath,
                         point: CGPoint) -> UIContextMenuConfiguration? {
-
-        guard let messageType = self.item(at: indexPath),
-            let cell = collectionView.cellForItem(at: indexPath) as? MessageCell else { return nil }
-
-        return UIContextMenuConfiguration(identifier: nil, previewProvider: {
-            return MessagePreviewViewController(with: messageType,
-                                                cellWidth: cell.contentView.width)
-        }, actionProvider: { suggestedActions in
-
-            return self.makeContextMenu(for: messageType, at: indexPath)
-        })
+        return nil 
+//        guard let messageType = self.item(at: indexPath),
+//            let cell = collectionView.cellForItem(at: indexPath) as? MessageCell else { return nil }
+//
+//        return UIContextMenuConfiguration(identifier: nil, previewProvider: {
+//            return MessagePreviewViewController(with: messageType,
+//                                                cellWidth: cell.contentView.width)
+//        }, actionProvider: { suggestedActions in
+//
+//            return self.makeContextMenu(for: messageType, at: indexPath)
+//        })
     }
 
     private func makeContextMenu(for message: Messageable, at indexPath: IndexPath) -> UIMenu {
