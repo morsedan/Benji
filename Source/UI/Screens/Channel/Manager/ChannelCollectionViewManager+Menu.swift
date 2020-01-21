@@ -12,10 +12,14 @@ import TwilioChatClient
 
 extension ChannelCollectionViewManager {
 
+    func collectionView(_ collectionView: UICollectionView, shouldHighlightItemAt indexPath: IndexPath) -> Bool {
+        return false
+    }
+
     func collectionView(_ collectionView: UICollectionView,
                         contextMenuConfigurationForItemAt indexPath: IndexPath,
                         point: CGPoint) -> UIContextMenuConfiguration? {
-        return nil 
+        return nil
 //        guard let messageType = self.item(at: indexPath),
 //            let cell = collectionView.cellForItem(at: indexPath) as? MessageCell else { return nil }
 //
