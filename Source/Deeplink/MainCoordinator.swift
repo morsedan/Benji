@@ -55,19 +55,23 @@ class MainCoordinator: Coordinator<Void> {
             }
         case .success(let object, let token):
             self.deepLink = object
-            ChannelManager.initialize(token: token)
-                .observe { (result) in
-                    switch result {
-                    case .success:
-                        runMain {
-                            self.runHomeFlow()
-                        }
-                    case .failure(let error):
-                        print(error)
-                    }
-            }
+            self.initializeChat(with: token)
         case .failed(_):
             break
+        }
+    }
+
+    private func initializeChat(with token: String) {
+        ChannelManager.initialize(token: token)
+            .observe { (result) in
+                switch result {
+                case .success:
+                    runMain {
+                        self.runHomeFlow()
+                    }
+                case .failure(let error):
+                    print(error)
+                }
         }
     }
 
@@ -98,7 +102,7 @@ class MainCoordinator: Coordinator<Void> {
         self.router.setRootModule(coordinator, animated: true)
         self.addChildAndStart(coordinator, finishedHandler: { (_) in
             self.router.dismiss(source: coordinator.toPresentable(), animated: true) {
-                self.runHomeFlow()
+                self.runLaunchFlow()
             }
         })
     }

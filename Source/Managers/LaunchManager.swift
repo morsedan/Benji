@@ -45,13 +45,18 @@ class LaunchManager {
 
     func launchApp(with options: [UIApplication.LaunchOptionsKey: Any]?) {
 
-        Parse.enableLocalDatastore()
-        Parse.initialize(with: ParseClientConfiguration(block: { (configuration: ParseMutableClientConfiguration) -> Void in
-            configuration.isLocalDatastoreEnabled = true 
-            configuration.server = self.url
-            configuration.clientKey = self.clientKey
-            configuration.applicationId = self.appID
-        }))
+        if !Parse.isLocalDatastoreEnabled {
+            Parse.enableLocalDatastore()
+        }
+
+        if Parse.currentConfiguration == nil  {
+            Parse.initialize(with: ParseClientConfiguration(block: { (configuration: ParseMutableClientConfiguration) -> Void in
+                configuration.isLocalDatastoreEnabled = true
+                configuration.server = self.url
+                configuration.clientKey = self.clientKey
+                configuration.applicationId = self.appID
+            }))
+        }
 
         if let user = User.current(), let identity = user.objectId {
             self.authenticateChatClient(with: identity, options: options)

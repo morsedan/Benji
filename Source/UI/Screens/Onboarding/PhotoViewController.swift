@@ -80,10 +80,10 @@ class PhotoViewController: ViewController, Sizeable, Completable {
     }
 
     func update(image: UIImage) {
-        guard let fixed = image.fixedOrientation(), let pixImage = self.pixelate(image: fixed) else { return }
+        guard let fixed = image.fixedOrientation() else { return }
 
-        self.avatarView.set(avatar: pixImage)
-        self.saveProfilePicture(image: pixImage)
+        self.avatarView.set(avatar: fixed)
+        self.saveProfilePicture(image: fixed)
 
         UIView.animate(withDuration: Theme.animationDuration) {
             self.avatarView.transform = .identity
@@ -128,24 +128,5 @@ class PhotoViewController: ViewController, Sizeable, Completable {
                 }
                 self.button.isLoading = false
         }
-    }
-
-    func pixelate(image: UIImage) -> UIImage? {
-        guard let currentCGImage = image.cgImage else { return nil}
-        let currentCIImage = CIImage(cgImage: currentCGImage)
-
-        let filter = CIFilter(name: "CIPixellate")
-        filter?.setValue(currentCIImage, forKey: kCIInputImageKey)
-        filter?.setValue(50, forKey: kCIInputScaleKey)
-        guard let outputImage = filter?.outputImage else { return nil }
-
-        let context = CIContext()
-
-        if let cgimg = context.createCGImage(outputImage, from: outputImage.extent) {
-            let processedImage = UIImage(cgImage: cgimg)
-            return processedImage
-        }
-
-        return nil
     }
 }
