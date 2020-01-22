@@ -65,7 +65,7 @@ class ChannelManager: NSObject {
                                         }
         })
         
-        return promise
+        return promise.withResultToast(with: "Messaging Enabled.")
     }
 
     func update(token: String, completion: @escaping CompletionHandler) {
@@ -108,6 +108,6 @@ class ChannelManager: NSObject {
             }
         }
 
-        return promise
+        return promise.withResultToast()
     }
 }

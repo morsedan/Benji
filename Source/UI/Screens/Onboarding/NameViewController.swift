@@ -41,7 +41,6 @@ class NameViewController: TextInputViewController<Void> {
 
         let tf = self.textField as? TextField
         tf?.activityIndicator.startAnimating()
-
         User.current()?.formatName(from: text)
         User.current()?.saveEventually()
             .observe { (result) in

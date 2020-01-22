@@ -60,7 +60,7 @@ extension Objectable where Self: PFObject {
                 promise.resolve(with: self)
             }
         }
-        return promise
+        return promise.withResultToast()
     }
 
     // Does not save locally but just pushes to server in the background
@@ -73,7 +73,7 @@ extension Objectable where Self: PFObject {
                 promise.resolve(with: self)
             }
         }
-        return promise
+        return promise.withResultToast()
     }
 
     static func localThenNetworkQuery(for objectId: String) -> Future<Self> {
@@ -110,7 +110,7 @@ extension Objectable where Self: PFObject {
             }
         }
 
-        return promise
+        return promise.withResultToast()
     }
 
     static func localThenNetworkArrayQuery(where identifiers: [String],
@@ -151,6 +151,6 @@ extension Objectable where Self: PFObject {
             }
         }
 
-        return promise 
+        return promise.withResultToast()
     }
 }

@@ -108,29 +108,29 @@ class MainCoordinator: Coordinator<Void> {
     }
 
     private func createHandle() -> Future<Void> {
-           let promise = Promise<Void>()
+        let promise = Promise<Void>()
 
-           Reservation.create()
-               .observe { (result) in
-                   switch result {
-                   case .success(let reservation):
-                       User.current()?.reservation = reservation
-                       User.current()?.createHandle()
-                       User.current()?.save()
-                           .observe { (userResult) in
-                               switch userResult {
-                               case .success(_):
-                                   promise.resolve(with: ())
-                               case .failure(let error):
-                                   promise.reject(with: error)
-                               }
-                       }
-                   case .failure(let error):
-                       promise.reject(with: error)
-                   }
-           }
+        Reservation.create()
+            .observe { (result) in
+                switch result {
+                case .success(let reservation):
+                    User.current()?.reservation = reservation
+                    User.current()?.createHandle()
+                    User.current()?.save()
+                        .observe { (userResult) in
+                            switch userResult {
+                            case .success(_):
+                                promise.resolve(with: ())
+                            case .failure(let error):
+                                promise.reject(with: error)
+                            }
+                    }
+                case .failure(let error):
+                    promise.reject(with: error)
+                }
+        }
 
-           return promise
-       }
+        return promise
+    }
 }
 

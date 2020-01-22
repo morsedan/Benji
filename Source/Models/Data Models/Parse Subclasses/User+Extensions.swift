@@ -54,7 +54,7 @@ extension User {
             promise.reject(with: ClientError.generic)
         }
 
-        return promise
+        return promise.withResultToast()
     }
 
     func createHandle() {

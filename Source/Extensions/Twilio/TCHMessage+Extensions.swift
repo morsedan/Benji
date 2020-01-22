@@ -118,7 +118,7 @@ extension TCHMessage: Messageable {
             }
         }
 
-        return promise
+        return promise.withResultToast()
     }
 }
 

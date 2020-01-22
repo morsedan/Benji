@@ -56,7 +56,7 @@ extension TCHChannel: Diffable, ManageableCellItem {
             }
         }
 
-        return promise
+        return promise.withResultToast()
     }
 
     func getAuthorAsUser() -> Future<User> {
@@ -132,7 +132,7 @@ extension Future where Value == TCHChannel {
                 }
             })
 
-            return promise
+            return promise.withResultToast()
         })
     }
 
@@ -190,7 +190,7 @@ extension Future where Value == TCHChannel {
                 }
             }
 
-            return promise
+            return promise.withResultToast()
         })
     }
 

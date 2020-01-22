@@ -32,7 +32,7 @@ struct SendCode: CloudFunction {
                                 }
         }
         
-        return promise
+        return promise.withResultToast()
     }
 }
 
@@ -56,7 +56,7 @@ struct VerifyCode: CloudFunction {
                                 }
         }
 
-        return promise
+        return promise.withResultToast()
     }
 }
 
@@ -80,6 +80,6 @@ struct VerifyReservation: CloudFunction {
                                 }
         }
 
-        return promise
+        return promise.withResultToast()
     }
 }

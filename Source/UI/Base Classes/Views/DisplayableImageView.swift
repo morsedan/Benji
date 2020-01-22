@@ -71,13 +71,8 @@ class DisplayableImageView: View {
 
     private func findUser(with objectID: String) {
         User.localThenNetworkQuery(for: objectID)
-            .observe { (result) in
-                switch result {
-                case .success(let user):
-                    self.downloadAndSetImage(for: user)
-                case .failure(let error):
-                    print(error)
-                }
-        }
+            .observeValue(with: { (user) in
+                self.downloadAndSetImage(for: user)
+            })
     }
 }

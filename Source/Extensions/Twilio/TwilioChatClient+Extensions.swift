@@ -40,7 +40,7 @@ extension TwilioChatClient {
             }
         })
 
-        return promise
+        return promise.withResultToast()
     }
 
     func findChannel(with channelId: String) -> Future<TCHChannel> {
@@ -61,7 +61,7 @@ extension TwilioChatClient {
             }
         }
 
-        return promise
+        return promise.withResultToast()
     }
 }
 

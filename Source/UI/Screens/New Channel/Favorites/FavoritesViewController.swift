@@ -17,13 +17,8 @@ class FavoritesViewController: OrbCollectionViewController, Sizeable {
         guard let objectId = User.current()?.objectId else { return }
 
         User.localThenNetworkArrayQuery(where: [objectId], isEqual: false, container: .favorites)
-            .observe { (result) in
-                switch result {
-                case .success(let users):
-                    self.setItems(from: users)
-                case .failure(_):
-                    break
-                }
+            .observeValue { (users) in
+                self.setItems(from: users)
         }
     }
 

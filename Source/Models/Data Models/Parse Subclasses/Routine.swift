@@ -115,6 +115,6 @@ extension Routine: Objectable {
                 }
             })
 
-        return promise
+        return promise.withResultToast(with: "Your routine successfully updated.")
     }
 }
