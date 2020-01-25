@@ -33,10 +33,38 @@ class ChannelSupplier {
                                     attributes: attributes)
     }
 
-    func delete(channel: TCHChannel, completion: @escaping CompletionHandler) {
+    @discardableResult
+    static func delete(channel: TCHChannel) -> Future<Void> {
+        let promise = Promise<Void>()
+
         channel.destroy { result in
-            completion(result.isSuccessful() , result.error)
+            if result.isSuccessful() {
+                promise.resolve(with: ())
+            } else if let error = result.error {
+                promise.reject(with: error)
+            } else {
+                promise.reject(with: ClientError.generic)
+            }
         }
+
+        return promise
+    }
+
+    @discardableResult
+    static func leave(channel: TCHChannel) -> Future<Void> {
+        let promise = Promise<Void>()
+
+        channel.leave { result in
+            if result.isSuccessful() {
+                promise.resolve(with: ())
+            } else if let error = result.error {
+                promise.reject(with: error)
+            } else {
+                promise.reject(with: ClientError.generic)
+            }
+        }
+
+        return promise
     }
 
     // MARK: GETTERS
@@ -52,14 +80,14 @@ class ChannelSupplier {
 
         let promise = Promise<TCHChannel>()
         ChannelManager.shared.client?.findChannel(with: channelId)
-        .observe(with: { (result) in
-            switch result {
-            case .success(let channel):
-                promise.resolve(with: channel)
-            case .failure(let error):
-                promise.reject(with: error)
-            }
-        })
+            .observe(with: { (result) in
+                switch result {
+                case .success(let channel):
+                    promise.resolve(with: channel)
+                case .failure(let error):
+                    promise.reject(with: error)
+                }
+            })
 
         return promise
     }

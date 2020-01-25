@@ -59,4 +59,13 @@ enum ChannelType: ManageableCellItem {
             return channel.id
         }
     }
+
+    var isFromCurrentUser: Bool {
+        switch self {
+        case .system(_):
+            return true
+        case .channel(let channel):
+            return channel.createdBy == User.current()?.objectId
+        }
+    }
 }

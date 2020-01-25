@@ -25,50 +25,6 @@ class ChannelsCollectionViewManager: CollectionViewManager<ChannelCell> {
         }
     }
 
-    override func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        return CGSize(width: collectionView.width, height: 80)
-    }
-
-    override func collectionView(_ collectionView: UICollectionView,
-                                 contextMenuConfigurationForItemAt indexPath: IndexPath,
-                                 point: CGPoint) -> UIContextMenuConfiguration? {
-
-        guard let channel = self.items.value[safe: indexPath.row],
-            let cell = collectionView.cellForItem(at: indexPath) as? ChannelCell else { return nil }
-
-        return UIContextMenuConfiguration(identifier: nil, previewProvider: {
-            return ChannelPreviewViewController(with: channel, size: cell.size)
-        }, actionProvider: { suggestedActions in
-            return self.makeContextMenu(for: channel, at: indexPath)
-        })
-    }
-
-    private func makeContextMenu(for channel: DisplayableChannel, at indexPath: IndexPath) -> UIMenu {
-
-        let neverMind = UIAction(title: "Never Mind", image: UIImage(systemName: "nosign")) { action in
-
-        }
-
-        let confirm = UIAction(title: "Confirm", image: UIImage(systemName: "trash"), attributes: .destructive) { action in
-            self.delete(item: channel)
-        }
-
-        let deleteMenu = UIMenu(title: "Delete", image: UIImage(systemName: "trash"), options: .destructive, children: [confirm, neverMind])
-
-        // Create and return a UIMenu with the share action
-        return UIMenu(title: "Options", children: [deleteMenu])
-    }
-
-    override func managerDidConfigure(cell: ChannelCell, for indexPath: IndexPath) {
-        if let filter = self.channelFilter {
-            cell.content.highlight(text: filter.text)
-        }
-    }
-
-    func loadAllChannels() {
-        self.set(newItems: self.channelCache)
-    }
-
     func loadFilteredChannels() {
         guard let filter = self.channelFilter else { return }
 
@@ -94,5 +50,81 @@ class ChannelsCollectionViewManager: CollectionViewManager<ChannelCell> {
         self.set(newItems: sortedChannels) { (_) in
             self.collectionView.reloadData()
         }
+    }
+
+    override func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+        return CGSize(width: collectionView.width, height: 80)
+    }
+
+    override func managerDidConfigure(cell: ChannelCell, for indexPath: IndexPath) {
+        if let filter = self.channelFilter {
+            cell.content.highlight(text: filter.text)
+        }
+    }
+
+    func loadAllChannels() {
+        self.set(newItems: self.channelCache)
+    }
+
+    // MARK: Menu overrides
+
+    override func collectionView(_ collectionView: UICollectionView,
+                                 contextMenuConfigurationForItemAt indexPath: IndexPath,
+                                 point: CGPoint) -> UIContextMenuConfiguration? {
+
+        guard let channel = self.items.value[safe: indexPath.row],
+            let cell = collectionView.cellForItem(at: indexPath) as? ChannelCell else { return nil }
+
+        return UIContextMenuConfiguration(identifier: nil, previewProvider: {
+            return ChannelPreviewViewController(with: channel, size: cell.size)
+        }, actionProvider: { suggestedActions in
+            if channel.isFromCurrentUser {
+                return self.makeCurrentUsertMenu(for: channel, at: indexPath)
+            } else {
+                return self.makeNonCurrentUserMenu(for: channel, at: indexPath)
+            }
+        })
+    }
+
+    private func makeCurrentUsertMenu(for channel: DisplayableChannel, at indexPath: IndexPath) -> UIMenu {
+
+        let neverMind = UIAction(title: "Never Mind", image: UIImage(systemName: "nosign")) { _ in }
+
+        let confirm = UIAction(title: "Confirm", image: UIImage(systemName: "trash"), attributes: .destructive) { action in
+
+            switch channel.channelType {
+            case .system(_):
+                self.delete(item: channel)
+            case .channel(let tchChannel):
+                ChannelSupplier.delete(channel: tchChannel)
+                    .ignoreUserInteractionEventsUntilDone(for: self.collectionView)
+            }
+        }
+
+        let deleteMenu = UIMenu(title: "Delete", image: UIImage(systemName: "trash"), options: .destructive, children: [confirm, neverMind])
+
+        // Create and return a UIMenu with the share action
+        return UIMenu(title: "Options", children: [deleteMenu])
+    }
+
+    private func makeNonCurrentUserMenu(for channel: DisplayableChannel, at indexPath: IndexPath) -> UIMenu {
+
+        let neverMind = UIAction(title: "Never Mind", image: UIImage(systemName: "nosign")) { _ in }
+
+        let confirm = UIAction(title: "Confirm", image: UIImage(systemName: "clear"), attributes: .destructive) { action in
+
+            switch channel.channelType {
+            case .system(_):
+                self.delete(item: channel)
+            case .channel(let tchChannel):
+                ChannelSupplier.leave(channel: tchChannel)
+                    .ignoreUserInteractionEventsUntilDone(for: self.collectionView)
+            }
+        }
+
+        let deleteMenu = UIMenu(title: "Leave", image: UIImage(systemName: "clear"), options: .destructive, children: [confirm, neverMind])
+
+        // Create and return a UIMenu with the share action
+        return UIMenu(title: "Options", children: [deleteMenu])
     }
 }

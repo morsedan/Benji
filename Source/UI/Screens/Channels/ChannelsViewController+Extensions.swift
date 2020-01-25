@@ -51,6 +51,28 @@ extension ChannelsViewController {
                 break
             }
             }.start()
+
+        ChannelManager.shared.memberUpdate.producer.on { [weak self] (update) in
+            guard let `self` = self else { return }
+
+            guard let memberUpdate = update else { return }
+
+            switch memberUpdate.status {
+            case .joined:
+                self.collectionViewManager.update(item: DisplayableChannel(channelType: .channel(memberUpdate.channel)))
+            case .left:
+                if memberUpdate.member.identity == User.current()?.objectId {
+                    self.collectionViewManager.delete(item: DisplayableChannel(channelType: .channel(memberUpdate.channel)))
+                } else {
+                    self.collectionViewManager.update(item: DisplayableChannel(channelType: .channel(memberUpdate.channel)))
+                }
+            case .changed:
+                self.collectionViewManager.update(item: DisplayableChannel(channelType: .channel(memberUpdate.channel)))
+            default:
+                break
+            }
+        }
+        .start()
     }
 
     private func getChannelsSortedByUpdateDate() -> [DisplayableChannel] {
