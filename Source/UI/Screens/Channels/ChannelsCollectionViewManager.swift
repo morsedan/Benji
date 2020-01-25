@@ -29,6 +29,36 @@ class ChannelsCollectionViewManager: CollectionViewManager<ChannelCell> {
         return CGSize(width: collectionView.width, height: 80)
     }
 
+     func collectionView(_ collectionView: UICollectionView,
+                            contextMenuConfigurationForItemAt indexPath: IndexPath,
+                            point: CGPoint) -> UIContextMenuConfiguration? {
+
+        guard let channel = self.items.value[safe: indexPath.row],
+                let cell = collectionView.cellForItem(at: indexPath) as? ChannelCell else { return nil }
+
+            return UIContextMenuConfiguration(identifier: nil, previewProvider: {
+                return ChannelPreviewViewController(with: channel, size: cell.size)
+            }, actionProvider: { suggestedActions in
+                return self.makeContextMenu(for: channel, at: indexPath)
+            })
+        }
+
+        private func makeContextMenu(for channel: DisplayableChannel, at indexPath: IndexPath) -> UIMenu {
+
+            let neverMind = UIAction(title: "Never Mind", image: UIImage(systemName: "nosign")) { action in
+
+            }
+
+            let confirm = UIAction(title: "Confirm", image: UIImage(systemName: "trash"), attributes: .destructive) { action in
+                //self.delete(item: message, in: indexPath.section)
+            }
+
+            let deleteMenu = UIMenu(title: "Delete", image: UIImage(systemName: "trash"), options: .destructive, children: [confirm, neverMind])
+
+            // Create and return a UIMenu with the share action
+            return UIMenu(title: "Options", children: [deleteMenu])
+        }
+
     override func managerDidConfigure(cell: ChannelCell, for indexPath: IndexPath) {
         if let filter = self.channelFilter {
             cell.content.highlight(text: filter.text)
