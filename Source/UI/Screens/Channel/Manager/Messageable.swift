@@ -31,6 +31,7 @@ protocol Messageable: class {
     var updateId: String? { get }
     var status: MessageStatus { get }
     var context: MessageContext { get }
+    var canBeConsumed: Bool { get }
     var isConsumed: Bool { get }
     var hasBeenConsumedBy: [String] { get }
     var color: Color { get }
@@ -51,6 +52,10 @@ extension Messageable {
 
     var updateId: String? {
         return nil 
+    }
+
+    var canBeConsumed: Bool {
+        return self.context != .status
     }
 
     var isConsumed: Bool {

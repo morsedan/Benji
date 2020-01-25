@@ -20,6 +20,7 @@ class MessageInputView: View {
     private let alertProgressView = AlertProgressView()
     let blurView = UIVisualEffectView(effect: UIBlurEffect(style: .systemChromeMaterialDark))
     private lazy var alertConfirmation = AlertConfirmationView()
+    private lazy var countView = CharacterCountView()
 
     private var alertAnimator: UIViewPropertyAnimator?
     private let selectionFeedback = UIImpactFeedbackGenerator(style: .rigid)
@@ -36,6 +37,9 @@ class MessageInputView: View {
         self.alertProgressView.set(backgroundColor: .red)
         self.alertProgressView.size = .zero 
         self.addSubview(self.textView)
+        self.addSubview(self.countView)
+        self.countView.isHidden = true
+
         self.textView.minHeight = self.minHeight
         self.textView.growingDelegate = self
         self.addSubview(self.overlayButton)
@@ -75,6 +79,10 @@ class MessageInputView: View {
         self.textView.size = CGSize(width: textViewWidth, height: self.textView.currentHeight)
         self.textView.left = 0
         self.textView.top = 0
+
+        self.countView.size = CGSize(width: 70, height: 20)
+        self.countView.right = self.width - 5
+        self.countView.bottom = self.height - 5
 
         self.alertProgressView.height = self.height
 
@@ -191,6 +199,8 @@ extension MessageInputView: GrowingTextViewDelegate {
     func textViewDidBeginEditing(_ textView: UITextView) {}
 
     func textViewTextDidChange(_ textView: GrowingTextView) {
+        self.countView.udpate(with: self.textView.text.count, max: self.textView.maxLength)
+
         guard let channel = ChannelManager.shared.activeChannel.value,
             self.textView.text.count > 0 else { return }
         // Twilio throttles this call to every 5 seconds

@@ -88,7 +88,7 @@ extension TCHChannel: Diffable, ManageableCellItem {
 
                             if messageResult.isSuccessful(), let msgs = messages {
                                 msgs.forEach { (message) in
-                                    if !message.isFromCurrentUser, !message.isConsumed {
+                                    if !message.isFromCurrentUser, !message.isConsumed, message.canBeConsumed {
                                         totalUnread += 1
                                     }
                                 }

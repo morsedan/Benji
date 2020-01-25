@@ -72,7 +72,7 @@ class UserNotificationManager: NSObject {
         }
     }
 
-    func register(with options: UNAuthorizationOptions = [.alert, .sound, .badge, .provisional],
+    func register(with options: UNAuthorizationOptions = [.alert, .sound, .badge],
                   application: UIApplication,
                   completion: @escaping ((Bool, Error?) -> Void)) {
 

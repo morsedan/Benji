@@ -74,7 +74,7 @@ UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFl
         cell.configure(with: message)
         cell.textView.delegate = self
         cell.didTapMessage = { [weak self] in
-            guard let `self` = self, let current = User.current() else { return }
+            guard let `self` = self, let current = User.current(), !message.isFromCurrentUser, message.canBeConsumed else { return }
 
             if message.context == .emergency, !message.isConsumed {
                 self.notifyAuthorOfReadStatus(for: message)
