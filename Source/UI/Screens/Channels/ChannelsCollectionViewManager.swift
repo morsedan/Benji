@@ -50,7 +50,7 @@ class ChannelsCollectionViewManager: CollectionViewManager<ChannelCell> {
         }
 
         let confirm = UIAction(title: "Confirm", image: UIImage(systemName: "trash"), attributes: .destructive) { action in
-            //self.delete(item: message, in: indexPath.section)
+            self.delete(item: channel)
         }
 
         let deleteMenu = UIMenu(title: "Delete", image: UIImage(systemName: "trash"), options: .destructive, children: [confirm, neverMind])
