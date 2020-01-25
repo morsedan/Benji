@@ -212,6 +212,12 @@ UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFl
         return layout.itemSize
     }
 
+    // MARK: CollectionView Menu
+
+    func collectionView(_ collectionView: UICollectionView, contextMenuConfigurationForItemAt indexPath: IndexPath, point: CGPoint) -> UIContextMenuConfiguration? {
+        return nil 
+    }
+
     // MARK: ScrollView Delegate (These are part of the collectionview delegate)
 
     func scrollViewDidScroll(_ scrollView: UIScrollView) { }
