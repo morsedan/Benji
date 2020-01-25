@@ -152,6 +152,7 @@ class MessageInputView: View {
         self.textView.alpha = 1
         self.resetInputViews()
         self.resetAlertProgress()
+        self.countView.isHidden = true 
     }
 
     func resetAlertProgress() {
