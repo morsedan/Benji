@@ -93,6 +93,10 @@ class HomeViewController: FullScreenViewController {
         self.tabView.channelsItem.didSelect = { [unowned self] in
             self.currentContent.value = .channels(self.channelsVC)
         }
+
+        UserNotificationManager.shared.register(application: UIApplication.shared) { (success, error) in
+            
+        }
     }
 
     private func setupSearchController() {

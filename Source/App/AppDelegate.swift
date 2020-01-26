@@ -42,9 +42,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func application(_ application: UIApplication,
                      didRegisterForRemoteNotificationsWithDeviceToken deviceToken: Data) {
-        guard let currentID = User.current()?.objectId else { return }
-        let token = self.createToken(fromDeviceToken: deviceToken)
-        UserNotificationManager.shared.registerDevice(currentID, deviceToken: token)
+        UserNotificationManager.shared.registerPush(from: deviceToken)
     }
 
     private func createToken(fromDeviceToken deviceToken: Data) -> String {

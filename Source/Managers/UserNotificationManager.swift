@@ -10,6 +10,7 @@ import Foundation
 import UserNotifications
 import TMROLocalization
 import TwilioChatClient
+import Parse
 
 class UserNotificationManager: NSObject {
 
@@ -86,6 +87,14 @@ class UserNotificationManager: NSObject {
                 print("NOTIFICATION \(e)")
             }
         })
+    }
+
+    func registerPush(from deviceToken: Data) {
+        guard let installation = PFInstallation.current() else { return }
+
+        installation.setDeviceTokenFrom(deviceToken)
+        installation.saveToken()
+            .observeValue { (_) in }
     }
 
     func registerDevice(_ identity: String, deviceToken: String) {

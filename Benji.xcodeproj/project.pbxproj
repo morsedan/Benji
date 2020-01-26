@@ -166,6 +166,7 @@
 		D67934D523D956BB00536B44 /* ChannelPreviewViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D67934D423D956BB00536B44 /* ChannelPreviewViewController.swift */; };
 		D67934D723D9580F00536B44 /* MessagePreviewViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D67934D623D9580F00536B44 /* MessagePreviewViewController.swift */; };
 		D67934DB23DC011D00536B44 /* CharacterCountView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D67934DA23DC011D00536B44 /* CharacterCountView.swift */; };
+		D67934DF23DDFC4200536B44 /* PFInstallation+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = D67934DE23DDFC4200536B44 /* PFInstallation+Extensions.swift */; };
 		D67A82DB230CCE3D0076152B /* SplashViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D67A82DA230CCE3D0076152B /* SplashViewController.swift */; };
 		D6815DB122ECAEC700E71251 /* MediumLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6815DB022ECAEC700E71251 /* MediumLabel.swift */; };
 		D6815DB922EE1CAC00E71251 /* FeedView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6815DB822EE1CAC00E71251 /* FeedView.swift */; };
@@ -459,6 +460,7 @@
 		D67934D423D956BB00536B44 /* ChannelPreviewViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChannelPreviewViewController.swift; sourceTree = "<group>"; };
 		D67934D623D9580F00536B44 /* MessagePreviewViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessagePreviewViewController.swift; sourceTree = "<group>"; };
 		D67934DA23DC011D00536B44 /* CharacterCountView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CharacterCountView.swift; sourceTree = "<group>"; };
+		D67934DE23DDFC4200536B44 /* PFInstallation+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "PFInstallation+Extensions.swift"; sourceTree = "<group>"; };
 		D67A82DA230CCE3D0076152B /* SplashViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplashViewController.swift; sourceTree = "<group>"; };
 		D6815DB022ECAEC700E71251 /* MediumLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MediumLabel.swift; sourceTree = "<group>"; };
 		D6815DB822EE1CAC00E71251 /* FeedView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedView.swift; sourceTree = "<group>"; };
@@ -771,6 +773,7 @@
 				D61EC0F421D3151400204BEE /* NSAttributedString+Extensions.swift */,
 				D6D1460C21D5693100CD8CE4 /* NSMutableAttributedString+Extensions.swift */,
 				D6D1502A21D69C3300CD8CE4 /* NSObject+Extensions.swift */,
+				D67934DE23DDFC4200536B44 /* PFInstallation+Extensions.swift */,
 				D67896AE22FF62630059BA75 /* PhoneKit.swift */,
 				D61EC0E921D3111600204BEE /* String+Extensions.swift */,
 				D64C6A7F23294ED700DB7257 /* Twilio */,
@@ -1639,6 +1642,7 @@
 				D6EDD1972355DBC500FDA5D6 /* ProfileAvatarCell.swift in Sources */,
 				D61EC0F721D316F100204BEE /* Color.swift in Sources */,
 				D6EE716523B84F8B000ED221 /* OrbCollectionViewController.swift in Sources */,
+				D67934DF23DDFC4200536B44 /* PFInstallation+Extensions.swift in Sources */,
 				D64C6A7A232883FE00DB7257 /* CloudCalls.swift in Sources */,
 				D64F5F2123B6713800216D99 /* TextInputAccessoryView.swift in Sources */,
 				D6E4C7FF23943798002B1330 /* RoutineTimeLabel.swift in Sources */,
