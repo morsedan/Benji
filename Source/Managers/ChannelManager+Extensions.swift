@@ -121,10 +121,12 @@ extension ChannelManager: TwilioChatClientDelegate {
 
     func chatClient(_ client: TwilioChatClient, channel: TCHChannel, memberLeft member: TCHMember) {
         self.memberUpdate.value = ChannelMemberUpdate(channel: channel, member: member, status: .left)
+        self.handle(member: member, in: channel, status: .left)
     }
 
     func chatClient(_ client: TwilioChatClient, channel: TCHChannel, memberJoined member: TCHMember) {
         self.memberUpdate.value = ChannelMemberUpdate(channel: channel, member: member, status: .joined)
+        self.handle(member: member, in: channel, status: .left)
     }
 
     func chatClient(_ client: TwilioChatClient!, channel: TCHChannel!, memberChanged member: TCHMember!) {
@@ -137,6 +139,26 @@ extension ChannelManager: TwilioChatClientDelegate {
 
     func chatClient(_ client: TwilioChatClient, typingStartedOn channel: TCHChannel, member: TCHMember) {
         self.memberUpdate.value = ChannelMemberUpdate(channel: channel, member: member, status: .typingStarted)
+        self.handle(member: member, in: channel, status: .typingStarted)
+    }
+
+    private func handle(member: TCHMember, in channel: TCHChannel, status: ChannelMemberUpdate.Status) {
+
+        member.getMemberAsUser()
+            .observeValue { (user) in
+                switch status {
+                case .joined:
+                    ToastScheduler.shared.schedule(toastType: .userStatusUpdateInChannel(user, status, channel))
+                case .left:
+                    ToastScheduler.shared.schedule(toastType: .userStatusUpdateInChannel(user, status, channel))
+                case .typingStarted:
+                    if channel != ChannelManager.shared.activeChannel.value {
+                        ToastScheduler.shared.schedule(toastType: .userStatusUpdateInChannel(user, status, channel))
+                    }
+                default:
+                    break
+                }
+        }
     }
 
     //MARK: MESSAGE UPDATES

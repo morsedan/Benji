@@ -96,7 +96,9 @@ extension HomeCoordinator: ToastSchedulerDelegate {
         case .error(_):
             break
         case .success(_):
-            break 
+            break
+        case .userStatusUpdateInChannel(_, _, let channel):
+            self.startChannelFlow(for: .channel(channel))
         }
     }
 }

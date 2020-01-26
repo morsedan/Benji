@@ -29,6 +29,10 @@ extension User: Avatar {
 
         return true 
     }
+
+    var isCurrentUser: Bool {
+        return self.objectId == User.current()?.objectId
+    }
 }
 
 extension User {

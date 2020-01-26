@@ -13,6 +13,7 @@ import TMROLocalization
 enum ToastType {
     case systemMessage(SystemMessage)
     case message(TCHMessage, TCHChannel)
+    case userStatusUpdateInChannel(User, ChannelMemberUpdate.Status, TCHChannel)
     case channel(TCHChannel)
     case error(Error)
     case success(Localized)
@@ -34,6 +35,8 @@ class ToastScheduler {
             toast = self.createSystemMessageToast(for: message)
         case .message(let message, let channel):
             toast = self.createMessageToast(for: message, channel: channel)
+        case .userStatusUpdateInChannel(let user, let status, let channel):
+            toast = self.createUserInChannelToast(for: user, status: status, channel: channel)
         case .channel(let channel):
             toast = self.createChannelToast(for: channel)
         case .error(let error):
@@ -74,6 +77,43 @@ class ToastScheduler {
                      displayable: message,
                      didTap: { [unowned self] in
                         self.delegate?.didInteractWith(type: .message(message, channel))
+        })
+    }
+
+    private func createUserInChannelToast(for user: User,
+                                          status: ChannelMemberUpdate.Status,
+                                          channel: TCHChannel) -> Toast? {
+        guard let id = user.objectId,
+            let handle = user.handle,
+            let channelName = channel.friendlyName else { return nil }
+
+        var message: Localized = ""
+        switch status {
+        case .joined:
+            let first = user.isCurrentUser ? "You" : handle
+            message = LocalizedString(id: "",
+                                      arguments: [first, channelName],
+                                      default: "@() joined @()")
+        case .left:
+            let first = user.isCurrentUser ? "You" : handle
+            message = LocalizedString(id: "",
+                                      arguments: [first, channelName],
+                                      default: "@() left @()")
+        case .changed, .typingEnded:
+            break
+        case .typingStarted:
+            message = LocalizedString(id: "",
+                                      arguments: [handle, channelName],
+                                      default: "@() started typing in @()")
+        }
+
+        return Toast(id: id + "userInChannel",
+                     analyticsID: "ToastMessage",
+                     priority: 1,
+                     title: message,
+                     displayable: user,
+                     didTap: { [unowned self] in
+                        self.delegate?.didInteractWith(type: .userStatusUpdateInChannel(user, status, channel))
         })
     }
 
