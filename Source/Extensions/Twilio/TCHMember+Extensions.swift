@@ -40,14 +40,9 @@ extension TCHMember {
         let promise = Promise<User>()
         if let authorID = self.identity {
             User.localThenNetworkQuery(for: authorID)
-                .observe { (result) in
-                    switch result {
-                    case .success(let user):
-                        promise.resolve(with: user)
-                    case .failure(let error):
-                        promise.reject(with: error)
-                    }
-            }
+                .observeValue(with: { (user) in
+                    promise.resolve(with: user)
+                })
         } else {
             promise.reject(with: ClientError.generic)
         }

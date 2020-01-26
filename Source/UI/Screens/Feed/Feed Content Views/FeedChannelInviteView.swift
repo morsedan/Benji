@@ -35,18 +35,12 @@ class FeedChannelInviteView: View {
     func configure(with channel: TCHChannel) {
         self.channel = channel 
         channel.getAuthorAsUser()
-            .observe { (result) in
-                switch result {
-                case .success(let user):
-                    self.avatarView.set(avatar: user)
-                    let text = "You have been invited to join \(String(optional: channel.friendlyName)), by \(user.fullName)"
-                    self.textView.set(localizedText: text)
-                case .failure(_):
-                    break
-                }
-
+            .observeValue(with: { (user) in
+                self.avatarView.set(avatar: user)
+                let text = "You have been invited to join \(String(optional: channel.friendlyName)), by \(user.fullName)"
+                self.textView.set(localizedText: text)
                 self.layoutNow()
-        }
+            })
     }
 
     private func join(channel: TCHChannel) {
@@ -56,14 +50,9 @@ class FeedChannelInviteView: View {
                                    default: "You have joined @1")
         channel.joinIfNeeded()
             .withResultToast(with: text)
-            .observe { (result) in
-                switch result {
-                case .success(_):
-                    self.didComplete?()
-                case .failure(let error):
-                    print(error)
-                }
-        }
+            .observeValue(with: { (_) in
+                self.didComplete?()
+            })
     }
 
     override func layoutSubviews() {

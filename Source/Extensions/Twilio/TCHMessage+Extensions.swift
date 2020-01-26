@@ -96,14 +96,7 @@ extension TCHMessage: Messageable {
         var consumers = self.hasBeenConsumedBy
         consumers.append(identity)
         self.appendAttributes(with: ["consumers": consumers])
-            .observe { (result) in
-                switch result {
-                case .success:
-                    break
-                case .failure(_):
-                    break 
-                }
-        }
+            .observeValue(with: { (_) in })
     }
 
     func appendAttributes(with attributes: [String: Any]) -> Future<Void> {
@@ -128,14 +121,9 @@ extension TCHMessage {
         let promise = Promise<User>()
         if let authorID = self.author {
             User.localThenNetworkQuery(for: authorID)
-                .observe { (result) in
-                    switch result {
-                    case .success(let user):
-                        promise.resolve(with: user)
-                    case .failure(let error):
-                        promise.reject(with: error)
-                    }
-            }
+                .observeValue(with: { (user) in
+                    promise.resolve(with: user)
+                })
         } else {
             promise.reject(with: ClientError.generic)
         }

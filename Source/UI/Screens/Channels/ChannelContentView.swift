@@ -29,19 +29,14 @@ class ChannelContentView: View {
         case .system(let channel):
             self.stackedAvatarView.set(items: channel.avatars)
         case .channel(let channel):
-            channel.getMembersAsUsers().observe { (result) in
-                switch result {
-                case .success(let users):
+            channel.getMembersAsUsers()
+                .observeValue(with: { (users) in
                     let notMeUsers = users.filter { (user) -> Bool in
                         return user.objectId != User.current()?.objectId
                     }
 
                     self.stackedAvatarView.set(items: notMeUsers)
-
-                case .failure(let error):
-                    print(error)
-                }
-            }
+                })
         }
 
         self.titleLabel.set(text: type.displayName)

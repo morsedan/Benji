@@ -206,15 +206,10 @@ UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFl
         guard let channel = ChannelManager.shared.activeChannel.value else { return }
 
         MessageSupplier.shared.getMessages(before: UInt(messageIndex), for: channel)
-            .observe { (result) in
-                switch result {
-                case .success(let sections):
-                    self.set(newSections: sections,
-                             keepOffset: true,
-                             completion: nil)
-                case .failure(_):
-                    break
-                }
-        }
+            .observeValue(with: { (sections) in
+                self.set(newSections: sections,
+                         keepOffset: true,
+                         completion: nil)
+            })
     }
 }

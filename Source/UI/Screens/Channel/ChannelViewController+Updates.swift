@@ -25,17 +25,12 @@ extension ChannelViewController {
         guard let channel = ChannelManager.shared.activeChannel.value else { return }
 
         MessageSupplier.shared.getLastMessages(for: channel)
-            .observe { (result) in
-                switch result {
-                case .success(let sections):
-                    self.collectionView.activityIndicator.stopAnimating()
-                    self.collectionViewManager.set(newSections: sections) { [unowned self] in
-                        self.collectionView.scrollToBottom()
-                    }
-                case .failure(_):
-                    break
+            .observeValue(with: { (sections) in
+                self.collectionView.activityIndicator.stopAnimating()
+                self.collectionViewManager.set(newSections: sections) { [unowned self] in
+                    self.collectionView.scrollToBottom()
                 }
-        }
+            })
     }
 
     private func loadSystem(channel: SystemChannel) {

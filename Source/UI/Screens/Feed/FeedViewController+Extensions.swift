@@ -25,20 +25,16 @@ extension FeedViewController {
             @unknown default:
                 break
             }
-            }
-            .start()
+        }
+        .start()
     }
 
     func addItems() {
         FeedSupplier.shared.getItems()
-            .observe { (result) in
-                switch result {
-                case .success(let items):
-                    self.items = items
-                    self.showFeed()
-                case .failure(let error):
-                    print(error)
-                }
-        }
+            .withResultToast()
+            .observeValue(with: { (items) in
+                self.items = items
+                self.showFeed()
+            })
     }
 }

@@ -206,24 +206,14 @@ class NewChannelViewController: SwitchableContentViewController<NewChannelConten
             .joinIfNeeded()
             .invite(user: user)
             .ignoreUserInteractionEventsUntilDone(for: self.view)
-            .observe { (result) in
-                self.button.isLoading = false
-                switch result {
-                case .success(let channel):
-                    guard let handle = User.current()?.handle else { return }
-                    let message = "[\(handle)](\(String(optional: User.current()?.objectId))) set the conversation purpose to: \(channel.channelDescription)"
-                    ChannelManager.shared.sendMessage(to: channel, with: message, context: .status)
-                        .observe { (result) in
-                            self.delegate.newChannelView(self, didCreate: .channel(channel))
-                    }
-                case .failure(let error):
-                    if let tomorrowError = error as? ClientError {
-                        print(tomorrowError.localizedDescription)
-                    } else {
-                        print(error.localizedDescription)
-                    }
+            .observeValue(with: { (channel) in
+                guard let handle = User.current()?.handle else { return }
+                let message = "[\(handle)](\(String(optional: User.current()?.objectId))) set the conversation purpose to: \(channel.channelDescription)"
+                ChannelManager.shared.sendMessage(to: channel, with: message, context: .status)
+                    .observe { (result) in
+                        self.delegate.newChannelView(self, didCreate: .channel(channel))
                 }
-        }
+            })
     }
 }
 

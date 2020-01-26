@@ -31,21 +31,14 @@ class FeedUnreadView: View {
     }
 
     func configure(with channel: TCHChannel, count: Int) {
-
         channel.getAuthorAsUser()
-            .observe { (result) in
+            .observeValue(with: { (user) in
                 runMain {
-                    switch result {
-                    case .success(let user):
-                        self.avatarView.set(avatar: user)
-
-                        self.textView.set(localizedText: "You have \(String(count)) unread messages in \(String(optional: channel.friendlyName))")
-                        self.layoutNow()
-                    case .failure(_):
-                        break
-                    }
+                    self.avatarView.set(avatar: user)
+                    self.textView.set(localizedText: "You have \(String(count)) unread messages in \(String(optional: channel.friendlyName))")
+                    self.layoutNow()
                 }
-        }
+            })
     }
 
     override func layoutSubviews() {

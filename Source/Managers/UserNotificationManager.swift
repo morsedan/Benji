@@ -129,18 +129,13 @@ class UserNotificationManager: NSObject {
 
     func notify(channel: TCHChannel, message: Messageable) {
         channel.getNonMeMembers()
-            .observe { (result) in
-                switch result {
-                case .success(let members):
-                    let identities = members.map { (member) -> String in
-                        return String(optional: member.identity)
-                    }
-
-                    self.notify(identities: identities, message: message)
-                case .failure(_):
-                    break
+            .observeValue(with: { (members) in
+                let identities = members.map { (member) -> String in
+                    return String(optional: member.identity)
                 }
-        }
+
+                self.notify(identities: identities, message: message)
+            })
     }
 
     func notify(channel: TCHChannel, messageWasRead message: Messageable) {

@@ -93,17 +93,17 @@ class ChannelViewController: FullScreenViewController {
         }
 
         self.disposables += ChannelManager.shared.activeChannel.producer
-        .on { [unowned self] (channel) in
-            
-            guard let strongChannel = channel else {
-                self.collectionView.activityIndicator.startAnimating()
-                self.collectionViewManager.reset()
-                return
-            }
+            .on { [unowned self] (channel) in
 
-            strongChannel.delegate = self
-            self.loadMessages()
-            self.view.setNeedsLayout()
+                guard let strongChannel = channel else {
+                    self.collectionView.activityIndicator.startAnimating()
+                    self.collectionViewManager.reset()
+                    return
+                }
+
+                strongChannel.delegate = self
+                self.loadMessages()
+                self.view.setNeedsLayout()
         }.start()
 
         self.subscribeToClient()
@@ -172,17 +172,12 @@ class ChannelViewController: FullScreenViewController {
                                           with: message,
                                           context: context,
                                           attributes: mutableAttributes)
-            .observe { (result) in
-                switch result {
-                case .success(let sentMessage):
-                    promise.resolve(with: ())
-                    if context == .emergency {
-                        UserNotificationManager.shared.notify(channel: channel, message: sentMessage)
-                    }
-                case .failure(let error):
-                    promise.reject(with: error)
+            .observeValue(with: { (sentMessage) in
+                if context == .emergency {
+                    UserNotificationManager.shared.notify(channel: channel, message: sentMessage)
                 }
-        }
+                promise.resolve(with: ())
+            })
 
         self.messageInputView.reset()
 

@@ -88,14 +88,9 @@ final class Reservation: PFObject, PFSubclassing {
                         reservation.isClaimed = true 
                         reservation.position = position.rounded(by: cap.intValue)
                         reservation.saveEventually()
-                            .observe { (result) in
-                                switch result {
-                                case .success(let updatedReservation):
-                                    promise.resolve(with: updatedReservation)
-                                case .failure(let error):
-                                    promise.reject(with: error)
-                                }
-                        }
+                            .observeValue(with: { (updatedReservation) in
+                                promise.resolve(with: updatedReservation)
+                            })
                     } else if let error = error {
                         promise.reject(with: error)
                     } else {
