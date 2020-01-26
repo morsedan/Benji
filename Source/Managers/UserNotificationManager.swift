@@ -56,22 +56,6 @@ class UserNotificationManager: NSObject {
         }
     }
 
-    func silentRegister(withApplication application: UIApplication) {
-
-        self.center.getNotificationSettings() { (settings) in
-            switch settings.authorizationStatus {
-            case .authorized, .provisional, .notDetermined:
-                self.register(application: application, completion: { (success, error) in
-
-                })
-            case .denied:
-                break
-            @unknown default:
-                break
-            }
-        }
-    }
-
     func register(with options: UNAuthorizationOptions = [.alert, .sound, .badge],
                   application: UIApplication,
                   completion: @escaping ((Bool, Error?) -> Void)) {

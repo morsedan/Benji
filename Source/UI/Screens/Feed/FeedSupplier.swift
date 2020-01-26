@@ -17,39 +17,9 @@ class FeedSupplier {
     private(set) var items: [FeedType] = []
 
     func getItems() -> Future<[FeedType]> {
-        return self.getIntroCard()
-    }
 
-    private func getIntroCard() -> Future<[FeedType]> {
-        let promise = Promise<[FeedType]>()
-
-        self.items.append(FeedType.intro)
-        self.getInvitationRecommendations(with: promise)
-
-        return promise
-    }
-
-    func showRoutineAsk(with promise: Promise<[FeedType]>) {
-        self.items.append(.rountine)
-        self.getInvitationRecommendations(with: promise)
-        promise.resolve(with: self.items)
-    }
-
-    func getInvitationRecommendations(with promise: Promise<[FeedType]>) {
+        self.items.append(.intro)
         self.items.append(.inviteAsk)
-        self.getNotificationPermissions(with: promise)
-    }
-
-    func getNotificationPermissions(with promise: Promise<[FeedType]>) {
-        UserNotificationManager.shared.center.getNotificationSettings { (settings) in
-            if settings.authorizationStatus != .authorized {
-                self.items.append(.notificationPermissions)
-            }
-            self.getInvitedChannels(with: promise)
-        }
-    }
-
-    func getInvitedChannels(with promise: Promise<[FeedType]>) {
 
         ChannelManager.shared.subscribedChannels.forEach { (channel) in
             switch channel.channelType {
@@ -61,12 +31,31 @@ class FeedSupplier {
                 break
             }
         }
-        
-        self.getUnreadMessages(with: promise)
+
+        var promises: [Future<Void>] = []
+        promises.append(self.getNotificationPermissions())
+        promises.append(self.getUnreadMessages())
+
+        return waitForAll(futures: promises)
+            .transform { (_) in
+                return self.items.sorted()
+        }
     }
 
-    func getUnreadMessages(with promise: Promise<[FeedType]>) {
+    private func getNotificationPermissions() -> Future<Void>  {
+        let promise = Promise<Void>()
+        UserNotificationManager.shared.center.getNotificationSettings { (settings) in
+            if settings.authorizationStatus != .authorized {
+                self.items.append(.notificationPermissions)
+            }
+            promise.resolve(with: ())
+        }
 
+        return promise
+    }
+
+    private func getUnreadMessages() -> Future<Void> {
+        let promise = Promise<Void>()
         var allProducers: SignalProducer<[FeedType], Error>
 
         var channelProducers: [SignalProducer<FeedType, Error>] = []
@@ -100,7 +89,9 @@ class FeedSupplier {
                 disposable?.dispose()
             }, completed: {
                 disposable?.dispose()
-                promise.resolve(with: self.items)
+                promise.resolve(with: ())
             }).start()
+
+        return promise
     }
 }

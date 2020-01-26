@@ -76,7 +76,6 @@ class LaunchManager {
         TokenUtils.retrieveToken(url: urlString) { (token, identity, error) in
             if let tkn = token {
                 // Set up Twilio Chat client
-                UserNotificationManager.shared.silentRegister(withApplication: UIApplication.shared)
                 self.finishedInitialFetch = true
                 
                 //Initialize Branch
