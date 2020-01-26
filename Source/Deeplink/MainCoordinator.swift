@@ -63,29 +63,22 @@ class MainCoordinator: Coordinator<Void> {
 
     private func initializeChat(with token: String) {
         ChannelManager.initialize(token: token)
-            .observe { (result) in
-                switch result {
-                case .success:
-                    runMain {
-                        self.runHomeFlow()
-                    }
-                case .failure(let error):
-                    print(error)
+            .withResultToast()
+            .observeValue(with: { (_) in
+                runMain {
+                    self.runHomeFlow()
                 }
-        }
+            })
     }
 
     private func runHomeFlow() {
         if User.current()?.handle == nil {
             self.createHandle()
-                .observe { (result) in
-                    switch result {
-                    case .success:
+                .observeValue(with: { (_) in
+                    runMain {
                         self.runHomeFlow()
-                    case .failure(_):
-                        break 
                     }
-            }
+                })
         } else {
             runMain {
                 let homeCoordinator = HomeCoordinator(router: self.router, deepLink: self.deepLink)
@@ -111,24 +104,19 @@ class MainCoordinator: Coordinator<Void> {
         let promise = Promise<Void>()
 
         Reservation.create()
-            .observe { (result) in
-                switch result {
-                case .success(let reservation):
-                    User.current()?.reservation = reservation
-                    User.current()?.createHandle()
-                    User.current()?.save()
-                        .observe { (userResult) in
-                            switch userResult {
-                            case .success(_):
-                                promise.resolve(with: ())
-                            case .failure(let error):
-                                promise.reject(with: error)
-                            }
-                    }
-                case .failure(let error):
-                    promise.reject(with: error)
+            .observeValue(with: { (reservation) in
+                User.current()?.reservation = reservation
+                User.current()?.createHandle()
+                User.current()?.save()
+                    .observe { (userResult) in
+                        switch userResult {
+                        case .success(_):
+                            promise.resolve(with: ())
+                        case .failure(let error):
+                            promise.reject(with: error)
+                        }
                 }
-        }
+            })
 
         return promise
     }

@@ -127,7 +127,7 @@ extension Future where Value == TCHChannel {
                 } else {
                     self.sendJoinedMessage()
                         .observe { (messageResult) in
-                           promise.resolve(with: channel)
+                            promise.resolve(with: channel)
                     }
                 }
             })
@@ -143,14 +143,9 @@ extension Future where Value == TCHChannel {
             let message = "joined: \(String(optional: channel.friendlyName))"
 
             ChannelManager.shared.sendMessage(to: channel, with: message, context: .status)
-                .observe { (result) in
-                    switch result {
-                    case .success(_):
-                        return promise.resolve(with: channel)
-                    case .failure(_):
-                        return promise.reject(with: ClientError.generic)
-                    }
-            }
+                .observeValue(with: { (_) in
+                    promise.resolve(with: channel)
+                })
 
             return promise
         }
@@ -176,14 +171,9 @@ extension Future where Value == TCHChannel {
                         let message = "Invite sent at \(formatter.string(from: Date())) on \(monthDayFormatter.string(from: Date())) to: [\(handle)](\(identity))"
 
                         ChannelManager.shared.sendMessage(to: channel, with: message, context: .status)
-                            .observe { (result) in
-                                switch result {
-                                case .success(_):
-                                    return promise.resolve(with: channel)
-                                case .failure(_):
-                                    return promise.reject(with: ClientError.generic)
-                                }
-                        }
+                            .observeValue(with: { (_) in
+                                promise.resolve(with: channel)
+                            })
                     } else {
                         promise.resolve(with: channel)
                     }
@@ -199,14 +189,9 @@ extension Future where Value == TCHChannel {
             let promise = Promise<User>()
             if let authorID = channel.createdBy {
                 User.localThenNetworkQuery(for: authorID)
-                    .observe { (result) in
-                        switch result {
-                        case .success(let user):
-                            promise.resolve(with: user)
-                        case .failure(let error):
-                            promise.reject(with: error)
-                        }
-                }
+                    .observeValue(with: { (user) in
+                        promise.resolve(with: user)
+                    })
             } else {
                 promise.reject(with: ClientError.generic)
             }
@@ -231,14 +216,9 @@ extension Future where Value == TCHChannel {
                         User.localThenNetworkArrayQuery(where: identifiers,
                                                         isEqual: true, 
                                                         container: .channel(identifier: channel.sid!))
-                            .observe { (result) in
-                                switch result {
-                                case .success(let users):
-                                    promise.resolve(with: users)
-                                case .failure(let error):
-                                    promise.reject(with: error)
-                                }
-                        }
+                            .observeValue(with: { (users) in
+                                promise.resolve(with: users)
+                            })
                     } else {
                         promise.reject(with: ClientError.generic)
                     }
