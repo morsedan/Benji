@@ -9,9 +9,9 @@
 import Foundation
 import UserNotifications
 
-enum PushType {
-    case contentAvailable
-    case foreground
+enum PushType: String {
+    case alert
+    case background
 }
 
 enum PushPriority: Int {
@@ -28,7 +28,7 @@ enum PushBadgeOption: String {
 }
 
 struct PushPayload {
-    
+
     var alert: String
     var title: String
 
@@ -46,7 +46,7 @@ struct PushAPSPayload {
     var title: String
     var badge: PushBadgeOption = .none
     var sound: String = String()
-    var pushType: PushType = .foreground
+    var pushType: PushType = .alert
     var priority: PushPriority = .high
     var category: UNNotificationCategory? = nil
 

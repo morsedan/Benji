@@ -44,14 +44,5 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                      didRegisterForRemoteNotificationsWithDeviceToken deviceToken: Data) {
         UserNotificationManager.shared.registerPush(from: deviceToken)
     }
-
-    private func createToken(fromDeviceToken deviceToken: Data) -> String {
-        let tokenParts = deviceToken.map { data -> String in
-            return String(format: "%02.2hhx", data)
-        }
-
-        let token = tokenParts.joined()
-        return token
-    }
 }
 

@@ -86,22 +86,22 @@ struct VerifyReservation: CloudFunction {
 
 struct SendPush: CloudFunction {
 
-    let code: String
+    var user: User
 
-    func makeRequest() -> Future<Reservation> {
-        let promise = Promise<Reservation>()
+    func makeRequest() -> Future<Void> {
+        let promise = Promise<Void>()
 
-        let params: [String: Any] = ["code": self.code]
-
-        PFCloud.callFunction(inBackground: "verifyReservation",
-                             withParameters: params) { (object, error) in
-                                if let error = error {
-                                    promise.reject(with: error)
-                                } else if let reservation = object as? Reservation {
-                                    promise.resolve(with: reservation)
-                                } else {
-                                    promise.reject(with: ClientError.generic)
-                                }
+        if let objectId = user.objectId {
+            PFCloud.callFunction(inBackground: "sendPush",
+                                 withParameters: ["userId": objectId]) { (object, error) in
+                                    if let error = error {
+                                        promise.reject(with: error)
+                                    } else {
+                                        promise.resolve(with: ())
+                                    }
+            }
+        } else {
+            promise.reject(with: ClientError.generic)
         }
 
         return promise.withResultToast()

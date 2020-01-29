@@ -1051,11 +1051,11 @@
 		D66F0FD022BF064700BA277D /* Deeplink */ = {
 			isa = PBXGroup;
 			children = (
-				D66F0FD122BF065F00BA277D /* DeeplinkTarget.swift */,
-				D66F0FD322BF074C00BA277D /* DeeplinkObject.swift */,
 				D66F0FD722BF295A00BA277D /* Coordinator.swift */,
-				D66F0FD922BF297F00BA277D /* MainCoordinator.swift */,
+				D66F0FD322BF074C00BA277D /* DeeplinkObject.swift */,
+				D66F0FD122BF065F00BA277D /* DeeplinkTarget.swift */,
 				D6C65E9D230CD07400259F7A /* LaunchCoordinator.swift */,
+				D66F0FD922BF297F00BA277D /* MainCoordinator.swift */,
 				D691794122F6418700340AA3 /* Router.swift */,
 			);
 			path = Deeplink;

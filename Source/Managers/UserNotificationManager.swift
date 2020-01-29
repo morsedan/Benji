@@ -95,6 +95,21 @@ class UserNotificationManager: NSObject {
         installation.setDeviceTokenFrom(deviceToken)
         installation.saveToken()
             .observeValue { (_) in }
+
+        // TODO: Remove
+        if let identity = User.current()?.objectId {
+            self.registerDevice(identity, deviceToken: self.createToken(fromDeviceToken: deviceToken))
+        }
+    }
+
+    // TODO: Remove
+    private func createToken(fromDeviceToken deviceToken: Data) -> String {
+        let tokenParts = deviceToken.map { data -> String in
+            return String(format: "%02.2hhx", data)
+        }
+
+        let token = tokenParts.joined()
+        return token
     }
 
     func registerDevice(_ identity: String, deviceToken: String) {
