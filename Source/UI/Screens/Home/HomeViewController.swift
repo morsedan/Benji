@@ -39,7 +39,7 @@ class HomeViewController: FullScreenViewController {
     let tabContainerView = View()
 
     lazy var currentContent = MutableProperty<HomeContent>(.feed(self.feedVC))
-    private var currentCenterVC: UIViewController?
+    private(set) var currentCenterVC: UIViewController?
 
     init(with delegate: HomeDelegate) {
         self.delegate = delegate

@@ -79,23 +79,25 @@ class ProfileViewController: ViewController {
                                      text: String(optional: self.user.handle))
         items.append(handleItem)
 
-        if let date = self.user.routine?.date {
-            let formatter = DateFormatter()
-            formatter.dateFormat = "h:mm a"
-            let string = formatter.string(from: date)
-            let routineItem = ProfileItem(avatar: nil,
-                                          title: "Routine",
-                                          text: string.uppercased(),
-                                          buttonText: "Update")
-            items.append(routineItem)
-        } else {
-            let routineItem = ProfileItem(avatar: nil,
-                                          title: "Routine",
-                                          text: "NO ROUTINE SET",
-                                          buttonText: "Set")
-            items.append(routineItem)
-        }
-        self.manager.items = items
-        self.collectionView.reloadData()
+        self.user.routine?.fetchIfNeededInBackground(block: { (object, error) in
+            if let routine = object as? Routine, let date = routine.date {
+                let formatter = DateFormatter()
+                formatter.dateFormat = "h:mm a"
+                let string = formatter.string(from: date)
+                let routineItem = ProfileItem(avatar: nil,
+                                              title: "Routine",
+                                              text: string.uppercased(),
+                                              buttonText: "Update")
+                items.append(routineItem)
+            } else {
+                let routineItem = ProfileItem(avatar: nil,
+                                              title: "Routine",
+                                              text: "NO ROUTINE SET",
+                                              buttonText: "Set")
+                items.append(routineItem)
+            }
+            self.manager.items = items
+            self.collectionView.reloadData()
+        })
     }
 }

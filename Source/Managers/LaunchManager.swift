@@ -107,7 +107,7 @@ class LaunchManager {
                                 return
                             }
 
-                            // Use for testing 
+                            // Use for testing
                             //let buo = self.createTestBUO()
 
                             let buo: BranchUniversalObject? = branchObject
@@ -119,7 +119,7 @@ class LaunchManager {
 
     private func createTestBUO() -> BranchUniversalObject {
         var buo = BranchUniversalObject()
-        buo.deepLinkTarget = .channel
+        buo.deepLinkTarget = .feed
         buo.channelId = "CH489170e8675049048bf3179e48d2a47a"
         return buo
     }

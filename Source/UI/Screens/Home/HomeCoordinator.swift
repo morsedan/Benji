@@ -92,10 +92,20 @@ class HomeCoordinator: PresentableCoordinator<Void> {
                 }
             }
         case .routine:
-            break
+            self.startRoutineFlow()
         case .profile:
-            break
+             self.homeVC.currentContent.value = .profile(self.homeVC.profileVC)
+        case .feed:
+            self.homeVC.currentContent.value = .feed(self.homeVC.feedVC)
+        case .channels:
+            self.homeVC.currentContent.value = .channels(self.homeVC.channelsVC)
         }
+    }
+
+    private func startRoutineFlow() {
+        let vc = RoutineViewController()
+        let source = self.homeVC.currentCenterVC ?? self.homeVC
+        self.router.present(vc, source: source)
     }
 }
 
