@@ -104,10 +104,10 @@ class FeedViewController: ViewController {
 
         let now = Date()
 
-        print("trigger \(triggerDate)")
-        print("NOW \(now)")
-        print("anHourAfter \(anHourAfter)")
-        print("anHourUntil \(anHourUntil)")
+//        print("trigger \(triggerDate)")
+//        print("NOW \(now)")
+//        print("anHourAfter \(anHourAfter)")
+//        print("anHourUntil \(anHourUntil)")
         
         //If date is 1 hour or less away, show countDown
         if now.isBetween(anHourUntil, and: triggerDate) {

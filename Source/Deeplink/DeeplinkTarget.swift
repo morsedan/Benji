@@ -19,9 +19,4 @@ enum DeepLinkTarget : String, CaseIterable, Diffable {
     func diffIdentifier() -> NSObjectProtocol {
         return self.rawValue as NSObjectProtocol
     }
-
-    func getViewController(with object: DeepLinkable) -> ViewController? {
-        //TODO: Fill this out 
-        return nil
-    }
 }

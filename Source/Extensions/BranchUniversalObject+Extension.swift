@@ -32,9 +32,4 @@ extension BranchUniversalObject: DeepLinkable {
             self.customMetadata.setValue(targetString, forKey: "deeplink")
         }
     }
-
-    var viewController: ViewController? {
-        guard let target = self.deepLinkTarget else { return nil }
-        return target.getViewController(with: self)
-    }
 }

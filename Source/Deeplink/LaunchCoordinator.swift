@@ -24,8 +24,13 @@ class LaunchCoordinator: PresentableCoordinator<LaunchStatus> {
 
         self.launchOptions = launchOptions
         super.init(router: router, deepLink: deepLink)
-        LaunchManager.shared.delegate = self
 
+
+        LaunchManager.shared.status.producer.on { [weak self] (options) in
+            guard let `self` = self else { return }
+            self.finishFlow(with: options)
+        }
+        .start()
     }
 
     override func toPresentable() -> DismissableVC {
@@ -36,13 +41,6 @@ class LaunchCoordinator: PresentableCoordinator<LaunchStatus> {
         super.start()
 
         LaunchManager.shared.launchApp(with: self.launchOptions)
-    }
-}
-
-extension LaunchCoordinator: LaunchManagerDelegate {
-
-    func launchManager(_ launchManager: LaunchManager, didFinishWith options: LaunchStatus) {
-        self.finishFlow(with: options)
     }
 }
 

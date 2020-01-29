@@ -9,6 +9,7 @@
 import Foundation
 import Parse
 import Branch
+import ReactiveSwift
 
 enum LaunchStatus {
     case isLaunching
@@ -17,15 +18,10 @@ enum LaunchStatus {
     case failed(error: ClientError?)
 }
 
-protocol LaunchManagerDelegate: class {
-    func launchManager(_ launchManager: LaunchManager, didFinishWith options: LaunchStatus)
-}
-
 class LaunchManager {
 
     static let shared = LaunchManager()
 
-    weak var delegate: LaunchManagerDelegate?
     private(set) var finishedInitialFetch = false
     var onLoggedOut: (() -> Void)?
 
@@ -37,11 +33,8 @@ class LaunchManager {
     private let url = "https://benji-backend.herokuapp.com/parse"
     private let appID = "BenjiApp"
     private let clientKey = "theStupidMasterKeyThatShouldBeSecret"
-    private(set) var status: LaunchStatus = .isLaunching {
-        didSet {
-            self.delegate?.launchManager(self, didFinishWith: self.status)
-        }
-    }
+
+    var status = MutableProperty<LaunchStatus>(.isLaunching)
 
     func launchApp(with options: [UIApplication.LaunchOptionsKey: Any]?) {
 
@@ -61,7 +54,7 @@ class LaunchManager {
         if let user = User.current(), let identity = user.objectId {
             self.authenticateChatClient(with: identity, options: options)
         } else {
-            self.status = .needsOnboarding
+            self.status.value = .needsOnboarding
         }
     }
 
@@ -81,7 +74,7 @@ class LaunchManager {
                 //Initialize Branch
                 self.initializeBranch(with: options, token: tkn)
             } else {
-                self.status = .failed(error: ClientError.apiError(detail: error.debugDescription))
+                self.status.value = .failed(error: ClientError.apiError(detail: error.debugDescription))
             }
         }
     }
@@ -110,15 +103,29 @@ class LaunchManager {
                             guard error == nil else {
                                 // IMPORTANT: Allow the launch sequence to continue even if branch fails.
                                 // We don't want issues with the branch api to block our app from launching.
-                                self.status = .success(object: nil, token: token)
+                                self.status.value = .success(object: nil, token: token)
                                 return
                             }
+
+                            // Use for testing 
+                            //let buo = self.createTestBUO()
 
                             let buo: BranchUniversalObject? = branchObject
                                 ?? Branch.getInstance().getLatestReferringBranchUniversalObject()
 
-                            self.status = .success(object: buo, token: token)
+                            self.status.value = .success(object: buo, token: token)
         })
+    }
+
+    private func createTestBUO() -> BranchUniversalObject {
+        var buo = BranchUniversalObject()
+        buo.deepLinkTarget = .channel
+        buo.channelId = "CH489170e8675049048bf3179e48d2a47a"
+        return buo
+    }
+
+    func continueUser(activity: NSUserActivity) -> Bool {
+        return Branch.getInstance().continue(activity)
     }
 }
 

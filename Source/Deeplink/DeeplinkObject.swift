@@ -12,9 +12,6 @@ struct DeepLinkObject: DeepLinkable {
 
     var customMetadata = NSMutableDictionary()
     var deepLinkTarget: DeepLinkTarget?
-    var viewController: ViewController? {
-        return self.deepLinkTarget?.getViewController(with: self)
-    }
 
     init(target: DeepLinkTarget?) {
         self.deepLinkTarget = target

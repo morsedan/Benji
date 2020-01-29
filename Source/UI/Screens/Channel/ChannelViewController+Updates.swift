@@ -62,7 +62,6 @@ extension ChannelViewController {
         .start()
     }
 
-
     private func subscribeToUpdates() {
 
         if ChannelManager.shared.isSynced {

@@ -55,6 +55,47 @@ class HomeCoordinator: PresentableCoordinator<Void> {
                 self.addChildAndStart(coordinator) { (_) in }
             }
         }.start()
+
+        LaunchManager.shared.status.producer.on { [weak self] (options) in
+            guard let `self` = self else { return }
+            switch options {
+            case .success(let object, _):
+                if let deeplink = object {
+                    self.handle(deeplink: deeplink)
+                }
+            default:
+                break
+            }
+        }
+        .start()
+
+        if let deeplink = self.deepLink {
+            self.handle(deeplink: deeplink)
+        }
+    }
+
+    private func handle(deeplink: DeepLinkable) {
+        self.deepLink = deeplink
+
+        guard let target = deeplink.deepLinkTarget else { return }
+
+        switch target {
+        case .home:
+            break
+        case .login:
+            break
+        case .channel:
+            if let channelId = deeplink.channelId, let channel = ChannelSupplier.getChannel(withSID: channelId) {
+                delay(0.2) {
+                    self.removeChild()
+                    self.startChannelFlow(for: channel.channelType)
+                }
+            }
+        case .routine:
+            break
+        case .profile:
+            break
+        }
     }
 }
 
@@ -74,7 +115,6 @@ extension HomeCoordinator: HomeViewControllerDelegate {
     }
 
     func startChannelFlow(for type: ChannelType) {
-
         let coordinator = ChannelCoordinator(router: self.router, channelType: type)
         self.addChildAndStart(coordinator, finishedHandler: { (_) in
             self.router.dismiss(source: coordinator.toPresentable(), animated: true) {

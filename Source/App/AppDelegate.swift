@@ -28,7 +28,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
         guard !ChannelManager.shared.isConnected else { return }
 
-        switch LaunchManager.shared.status {
+        switch LaunchManager.shared.status.value {
         case .success(_):
             if let identity = User.current()?.objectId {
                 LaunchManager.shared.authenticateChatClient(with: identity, options: nil)
@@ -43,6 +43,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func application(_ application: UIApplication,
                      didRegisterForRemoteNotificationsWithDeviceToken deviceToken: Data) {
         UserNotificationManager.shared.registerPush(from: deviceToken)
+    }
+
+    func application(_ application: UIApplication,
+                     continue userActivity: NSUserActivity,
+                     restorationHandler: @escaping ([UIUserActivityRestoring]?) -> Void) -> Bool {
+        return LaunchManager.shared.continueUser(activity: userActivity)
     }
 }
 
