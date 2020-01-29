@@ -91,17 +91,13 @@ struct SendPush: CloudFunction {
     func makeRequest() -> Future<Void> {
         let promise = Promise<Void>()
 
-        if let objectId = user.objectId {
-            PFCloud.callFunction(inBackground: "sendPush",
-                                 withParameters: ["userId": objectId]) { (object, error) in
-                                    if let error = error {
-                                        promise.reject(with: error)
-                                    } else {
-                                        promise.resolve(with: ())
-                                    }
-            }
-        } else {
-            promise.reject(with: ClientError.generic)
+        PFCloud.callFunction(inBackground: "sendPush",
+                             withParameters: ["user": user]) { (object, error) in
+                                if let error = error {
+                                    promise.reject(with: error)
+                                } else {
+                                    promise.resolve(with: ())
+                                }
         }
 
         return promise.withResultToast()
