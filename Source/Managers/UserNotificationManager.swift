@@ -11,9 +11,9 @@ import UserNotifications
 import TMROLocalization
 import TwilioChatClient
 import Parse
+import TMROFutures
 
 class UserNotificationManager: NSObject {
-
 
     //Temp Twilio Funciton to register for push notifications
     private var serverURL = "https://topaz-booby-6355.twil.io"
@@ -81,12 +81,17 @@ class UserNotificationManager: NSObject {
         UIApplication.shared.applicationIconBadgeNumber = count
     }
 
-    func schedule(note: UNNotificationRequest) {
+    func schedule(note: UNNotificationRequest) -> Future<Void> {
+        let promise = Promise<Void>()
         self.center.add(note, withCompletionHandler: { (error) in
             if let e = error {
-                print("NOTIFICATION \(e)")
+                promise.reject(with: e)
+            } else {
+                promise.resolve(with: ())
             }
         })
+
+        return promise 
     }
 
     func registerPush(from deviceToken: Data) {

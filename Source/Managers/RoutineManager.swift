@@ -13,6 +13,7 @@ import TMROFutures
 class RoutineManager {
 
     let messageReminderID = "MessageReminderID"
+    let lastChanceReminderID = "LastChanceReminderID"
 
     static let shared = RoutineManager()
 
@@ -34,17 +35,16 @@ class RoutineManager {
 
         let identifier = self.messageReminderID + routine.timeDescription
 
-        let notificationCenter = UNUserNotificationCenter.current()
-
         // Replace any previous notifications
-        notificationCenter.removeAllPendingNotificationRequests()
+        UserNotificationManager.shared.center.removeAllPendingNotificationRequests()
 
         let content = UNMutableNotificationContent()
         content.title = "Feed Unlocked"
         content.body = "Your daily feed is unlocked for the next hour."
         content.sound = UNNotificationSound.default
+        content.threadIdentifier = "routine"
 
-//        let trigger = UNTimeIntervalNotificationTrigger(timeInterval: 5, repeats: false)
+        //        let trigger = UNTimeIntervalNotificationTrigger(timeInterval: 5, repeats: false)
         let trigger = UNCalendarNotificationTrigger(dateMatching: routine.timeComponents,
                                                     repeats: true)
 
@@ -52,12 +52,39 @@ class RoutineManager {
                                             content: content,
                                             trigger: trigger)
 
-        notificationCenter.add(request) { (error) in
-            if let error = error {
-                print("Error \(error.localizedDescription)")
-            } else {
-                print("Scheduled notification for \(routine.timeDescription)")
-            }
+        UserNotificationManager.shared.schedule(note: request)
+            .observeValue { (_) in
+                self.scheduleLastChanceNotification(for: routine)
+        }
+    }
+
+    func scheduleLastChanceNotification(for routine: Routine) {
+
+        let identifier = self.lastChanceReminderID
+
+        let content = UNMutableNotificationContent()
+        content.title = "Feed Unlocked for the next "
+        content.body = "Your daily feed is unlocked for the next hour."
+        content.sound = UNNotificationSound.default
+        content.threadIdentifier = "routine"
+
+        var lastChanceTime: DateComponents = routine.timeComponents
+        if let minutes = routine.timeComponents.minute {
+            lastChanceTime.minute = minutes + 50
+        } else {
+            lastChanceTime.minute = 50
+        }
+
+        let trigger = UNCalendarNotificationTrigger(dateMatching: lastChanceTime,
+                                                    repeats: true)
+
+        let request = UNNotificationRequest(identifier: identifier,
+                                            content: content,
+                                            trigger: trigger)
+
+        UserNotificationManager.shared.schedule(note: request)
+            .observeValue { (_) in
+                print("successfully set last chance reminder")
         }
     }
 }
