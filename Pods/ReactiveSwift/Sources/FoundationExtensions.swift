@@ -7,6 +7,9 @@
 //
 
 import Foundation
+#if canImport(FoundationNetworking)
+    import FoundationNetworking
+#endif
 import Dispatch
 
 #if os(Linux)
@@ -96,9 +99,9 @@ extension DispatchTimeInterval {
 			return TimeInterval(ns) / TimeInterval(NSEC_PER_SEC)
 		case .never:
 			return .infinity
-        @unknown default:
-            fatalError()
-        }
+		@unknown default:
+			return .infinity
+		}
 	}
 
 	// This was added purely so that our test scheduler to "go backwards" in
@@ -115,9 +118,9 @@ extension DispatchTimeInterval {
 			return .nanoseconds(-ns)
 		case .never:
 			return .never
-        @unknown default:
-            fatalError()
-        }
+		@unknown default:
+			return .never
+		}
 	}
 
 	/// Scales a time interval by the given scalar specified in `rhs`.
