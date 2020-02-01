@@ -51,8 +51,10 @@ class ProfileViewController: ViewController {
         self.collectionView.delegate = self.manager
         self.collectionView.dataSource = self.manager
 
-        self.manager.didTapAvatarAt = { [unowned self] indexPath in
-            self.delegate?.profileViewControllerDidSelectPhoto(self)
+        if self.user.isCurrentUser {
+            self.manager.didTapAvatarAt = { [unowned self] indexPath in
+                self.delegate?.profileViewControllerDidSelectPhoto(self)
+            }
         }
 
         self.manager.didTapButtonAt = { [unowned self] indexPath in

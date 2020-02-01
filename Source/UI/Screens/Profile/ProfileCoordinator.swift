@@ -51,6 +51,8 @@ extension ProfileCoordinator: ProfileViewControllerDelegate {
 
 extension ProfileCoordinator: ProfilePhotoViewControllerDelegate {
     func profilePhotoViewControllerDidFinish(_ controller: ProfilePhotoViewController) {
-
+        controller.dismiss(animated: true) {
+            self.profileVC.collectionView.reloadData()
+        }
     }
 }

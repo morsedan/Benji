@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import TMROLocalization
 
 enum PhotoContentType: Switchable {
 
@@ -46,6 +47,9 @@ class ProfilePhotoViewController: SwitchableContentViewController<PhotoContentTy
     override func initializeViews() {
         super.initializeViews()
 
+        self.view.set(backgroundColor: .background2)
+        self.photoVC.view.set(backgroundColor: .background2)
+
         self.photoVC.onDidComplete = { [unowned self] result in
             switch result {
             case .success:
@@ -58,5 +62,17 @@ class ProfilePhotoViewController: SwitchableContentViewController<PhotoContentTy
 
     override func getInitialContent() -> PhotoContentType {
         return .photo(self.photoVC)
+    }
+
+    override func getTitle() -> Localized {
+        return LocalizedString(id: "",
+                               arguments: [],
+                               default: "Update Face Scan")
+    }
+
+    override func getDescription() -> Localized {
+        return LocalizedString(id: "",
+                               arguments: [],
+                               default: "Tap begin to update your profile with another face scan. Don't forget to 😁")
     }
 }
