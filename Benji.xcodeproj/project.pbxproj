@@ -271,7 +271,7 @@
 		D6E4C8012394391A002B1330 /* RoutineTimeOfDayLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6E4C8002394391A002B1330 /* RoutineTimeOfDayLabel.swift */; };
 		D6E65F19237791650061AA67 /* ManageableCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6E65F18237791650061AA67 /* ManageableCell.swift */; };
 		D6E80C8B23B2D1180012D438 /* FeedNotificationPermissionsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6E80C8A23B2D1180012D438 /* FeedNotificationPermissionsView.swift */; };
-		D6EAB68723E615B500B90D5A /* UserPhotoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6EAB68623E615B500B90D5A /* UserPhotoViewController.swift */; };
+		D6EAB68823E6211200B90D5A /* ProfilePhotoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6EAB68623E615B500B90D5A /* ProfilePhotoViewController.swift */; };
 		D6EAC95523D145350028DAA2 /* Sizeable.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6EAC95423D145350028DAA2 /* Sizeable.swift */; };
 		D6EB4DF023540E48005BF3B4 /* FaceDetectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6EB4DEF23540E48005BF3B4 /* FaceDetectionViewController.swift */; };
 		D6EDD1952355DB9B00FDA5D6 /* ProfileCollectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6EDD1942355DB9B00FDA5D6 /* ProfileCollectionView.swift */; };
@@ -585,7 +585,7 @@
 		D6E4C8002394391A002B1330 /* RoutineTimeOfDayLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoutineTimeOfDayLabel.swift; sourceTree = "<group>"; };
 		D6E65F18237791650061AA67 /* ManageableCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ManageableCell.swift; sourceTree = "<group>"; };
 		D6E80C8A23B2D1180012D438 /* FeedNotificationPermissionsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedNotificationPermissionsView.swift; sourceTree = "<group>"; };
-		D6EAB68623E615B500B90D5A /* UserPhotoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserPhotoViewController.swift; sourceTree = "<group>"; };
+		D6EAB68623E615B500B90D5A /* ProfilePhotoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfilePhotoViewController.swift; sourceTree = "<group>"; };
 		D6EAC95423D145350028DAA2 /* Sizeable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Sizeable.swift; sourceTree = "<group>"; };
 		D6EB4DEF23540E48005BF3B4 /* FaceDetectionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FaceDetectionViewController.swift; sourceTree = "<group>"; };
 		D6EDD1942355DB9B00FDA5D6 /* ProfileCollectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileCollectionView.swift; sourceTree = "<group>"; };
@@ -1228,7 +1228,7 @@
 				D6EDD19A2355DC2900FDA5D6 /* ProfileCollectionViewManager.swift */,
 				D65B0CE4234928620041A176 /* ProfileCoordinator.swift */,
 				D6EDD1982355DBFA00FDA5D6 /* ProfileDetailCell.swift */,
-				D6EAB68623E615B500B90D5A /* UserPhotoViewController.swift */,
+				D6EAB68623E615B500B90D5A /* ProfilePhotoViewController.swift */,
 				D6B2603C22E6B8EA00143CF0 /* ProfileViewController.swift */,
 			);
 			path = Profile;
@@ -1579,6 +1579,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D6EAB68823E6211200B90D5A /* ProfilePhotoViewController.swift in Sources */,
 				D62C635622BE9E5C00F4D097 /* CollectionViewController.swift in Sources */,
 				D6E4C7FD23930675002B1330 /* UserNotificationManager+Extensions.swift in Sources */,
 				D67896AF22FF62630059BA75 /* PhoneKit.swift in Sources */,
@@ -1729,7 +1730,6 @@
 				D63844122337C3CD0072227B /* LoadMoreSectionHeader.swift in Sources */,
 				D6579536239A141900A01338 /* CountDownView.swift in Sources */,
 				D6ACA0B623D41A3D00844923 /* CGSize+Extensions.swift in Sources */,
-				D6EAB68723E615B500B90D5A /* UserPhotoViewController.swift in Sources */,
 				D6A301AA23808252006655E0 /* ChannelCollectionViewManager+Menu.swift in Sources */,
 				D68540CF235FDE35006F666C /* SuggestionCollectionViewController.swift in Sources */,
 				D66656BD23D13C9A009E4BDF /* Switchable.swift in Sources */,
