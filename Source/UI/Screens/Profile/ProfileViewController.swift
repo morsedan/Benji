@@ -79,6 +79,11 @@ class ProfileViewController: ViewController {
                                      text: String(optional: self.user.handle))
         items.append(handleItem)
 
+        let localTime = ProfileItem(avatar: nil,
+                                    title: "Local Time",
+                                    text: Date.nowInLocalFormat)
+        items.append(localTime)
+
         self.user.routine?.fetchIfNeededInBackground(block: { (object, error) in
             if let routine = object as? Routine, let date = routine.date {
                 let formatter = DateFormatter()

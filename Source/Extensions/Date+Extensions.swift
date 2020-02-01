@@ -18,6 +18,13 @@ extension Date {
 
     static let today = Date().beginningOfDay
 
+    static var nowInLocalFormat: String {
+        let now = Date()
+        let formatter = DateFormatter()
+        formatter.dateFormat = "EEEE, h:mm a"
+        return formatter.string(from: now)
+    }
+
     static var standard: DateFormatter {
         let formatter = DateFormatter()
         formatter.dateFormat = "MM/dd/yyyy"
