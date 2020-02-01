@@ -13,6 +13,14 @@ import TwilioChatClient
 class ChannelCollectionViewManager: NSObject, UITextViewDelegate, ChannelDataSource,
 UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
 
+    var numberOfMembers: Int = 0 {
+        didSet {
+            if self.numberOfMembers != oldValue {
+                self.collectionView.reloadDataAndKeepOffset()
+            }
+        }
+    }
+
     var sections: [ChannelSectionable] = [] {
         didSet {
             self.updateLayoutDataSource()
@@ -24,10 +32,19 @@ UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFl
     var willDisplayCell: ((Messageable, IndexPath) -> Void)?
     private let selectionFeedback = UIImpactFeedbackGenerator(style: .heavy)
 
-    init(with collectionView: ChannelCollectionView) {
+    init(with collectionView: ChannelCollectionView, for channelType: ChannelType) {
         self.collectionView = collectionView
         super.init()
         self.updateLayoutDataSource()
+
+        switch channelType {
+        case .channel(let channel):
+            channel.getMembersCount { (result, count) in
+                self.numberOfMembers = Int(count)
+            }
+        default:
+            break
+        }
     }
 
     private func updateLayoutDataSource() {

@@ -30,10 +30,7 @@ class ChannelViewController: FullScreenViewController {
     let disposables = CompositeDisposable()
 
     lazy var collectionView = ChannelCollectionView()
-    lazy var collectionViewManager: ChannelCollectionViewManager = {
-        let manager = ChannelCollectionViewManager(with: self.collectionView)
-        return manager
-    }()
+    lazy var collectionViewManager = ChannelCollectionViewManager(with: self.collectionView, for: self.channelType)
 
     private(set) var messageInputView = MessageInputView()
 

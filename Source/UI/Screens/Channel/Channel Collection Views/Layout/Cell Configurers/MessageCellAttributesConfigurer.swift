@@ -11,7 +11,6 @@ import Foundation
 class MessageCellAttributesConfigurer: ChannelCellAttributesConfigurer {
 
     var avatarSize = CGSize(width: 30, height: 36)
-    var avatarPadding: CGFloat = 8
     var textViewVerticalPadding: CGFloat = 10
     var textViewHorizontalPadding: CGFloat = 20
     var bubbleViewHorizontalPadding: CGFloat = 14
@@ -24,7 +23,7 @@ class MessageCellAttributesConfigurer: ChannelCellAttributesConfigurer {
                             attributes: ChannelCollectionViewLayoutAttributes) {
 
 
-        let avatarFrame = self.getAvatarFrame(with: message)
+        let avatarFrame = self.getAvatarFrame(with: message, layout: layout)
         attributes.attributes.avatarFrame = avatarFrame
 
         let textViewFrame = self.getTextViewFrame(with: message, for: layout)
@@ -72,9 +71,15 @@ class MessageCellAttributesConfigurer: ChannelCellAttributesConfigurer {
             + (self.textViewVerticalPadding * 2)
     }
 
-    private func getAvatarFrame(with message: Messageable) -> CGRect {
-        let size = message.isFromCurrentUser ? .zero : self.avatarSize
-        return CGRect(x: self.avatarPadding,
+    private func getAvatarFrame(with message: Messageable, layout: ChannelCollectionViewFlowLayout) -> CGRect {
+        guard let dataSource = layout.dataSource else { return .zero }
+
+        var size: CGSize = .zero
+        if !message.isFromCurrentUser, dataSource.numberOfMembers > 2 {
+            size = self.avatarSize
+        }
+        let xOffset: CGFloat = self.getAvatarPadding(for: layout)
+        return CGRect(x: xOffset,
                       y: 0,
                       width: size.width,
                       height: size.height)
@@ -87,7 +92,7 @@ class MessageCellAttributesConfigurer: ChannelCellAttributesConfigurer {
         if message.isFromCurrentUser {
             xOffset = layout.itemWidth - size.width - self.textViewHorizontalPadding
         } else {
-            xOffset = self.avatarSize.width + (self.avatarPadding * 2) + Theme.contentOffset
+            xOffset = self.getAvatarFrame(with: message, layout: layout).width + (self.getAvatarPadding(for: layout) * 2) + Theme.contentOffset
         }
         return CGRect(x: xOffset,
                       y: self.textViewVerticalPadding,
@@ -103,8 +108,13 @@ class MessageCellAttributesConfigurer: ChannelCellAttributesConfigurer {
                                           color: .white)
 
         let attributedString = attributed.string
-        let maxWidth = (layout.itemWidth * self.widthRatio) - self.avatarPadding - self.avatarSize.width
+        let maxWidth = (layout.itemWidth * self.widthRatio) - self.getAvatarPadding(for: layout) - self.avatarSize.width
         let size = attributedString.getSize(withWidth: maxWidth)
         return size
+    }
+
+    private func getAvatarPadding(for layout: ChannelCollectionViewFlowLayout) -> CGFloat {
+        guard let dataSource = layout.dataSource else { return .zero }
+        return dataSource.numberOfMembers > 2 ? .zero : 8
     }
 }

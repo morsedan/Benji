@@ -13,6 +13,7 @@ typealias CompletionOptional = (() -> Void)?
 
 protocol ChannelDataSource: AnyObject {
 
+    var numberOfMembers: Int { get set }
     var sections: [ChannelSectionable] { get set }
     var collectionView: ChannelCollectionView { get set }
 

@@ -104,10 +104,10 @@ extension ChannelViewController {
                 memberUpdate.channel == ChannelManager.shared.activeChannel.value else { return }
 
             switch memberUpdate.status {
-            case .joined:
-                break
-            case .left:
-                break
+            case .joined, .left:
+                memberUpdate.channel.getMembersCount { [unowned self] (result, count) in
+                    self.collectionViewManager.numberOfMembers = Int(count)
+                }
             case .changed:
                 self.loadMessages()
             case .typingEnded:

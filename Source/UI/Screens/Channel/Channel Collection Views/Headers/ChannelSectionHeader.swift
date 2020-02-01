@@ -28,6 +28,7 @@ class ChannelSectionHeader: UICollectionReusableView {
 
     func configure(with date: Date) {
         self.label.set(date: date)
+        self.layoutNow()
     }
 
     override func layoutSubviews() {
