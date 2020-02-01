@@ -44,7 +44,13 @@ extension ProfileCoordinator: ProfileViewControllerDelegate {
     }
 
     func profileViewControllerDidSelectPhoto(_ controller: ProfileViewController) {
-        let vc = PhotoViewController()
-        self.router.present(vc, source: self.profileVC)
+        let vc = ProfilePhotoViewController(with: self)
+        self.router.present(vc, source: controller)
+    }
+}
+
+extension ProfileCoordinator: ProfilePhotoViewControllerDelegate {
+    func profilePhotoViewControllerDidFinish(_ controller: ProfilePhotoViewController) {
+
     }
 }

@@ -12,6 +12,8 @@ class AvatarView: DisplayableImageView {
 
     // MARK: - Properties
 
+    var didSelect: CompletionOptional = nil
+
     var borderColor: Color = .lightPurple {
         didSet {
             self.setBorder(color: self.borderColor)
@@ -170,6 +172,10 @@ class AvatarView: DisplayableImageView {
         self.setCorner(radius: 5)
         self.layer.borderColor = Color.purple.color.cgColor
         self.layer.borderWidth = 2
+
+        self.onTap { [unowned self] (tap) in
+            self.didSelect?()
+        }
     }
 
     // MARK: - Open setters

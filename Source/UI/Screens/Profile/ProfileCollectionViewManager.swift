@@ -33,6 +33,7 @@ class ProfileCollectionViewManager: NSObject, UICollectionViewDelegate, UICollec
     var items: [ProfileDisplayable] = []
 
     var didTapButtonAt: (IndexPath) -> Void = {_ in }
+    var didTapAvatarAt: (IndexPath) -> Void = {_ in }
 
     init(with collectionView: CollectionView) {
         self.collectionView = collectionView
@@ -62,6 +63,11 @@ class ProfileCollectionViewManager: NSObject, UICollectionViewDelegate, UICollec
         if let item = self.items[safe: indexPath.row] {
             cell.configure(with: item)
         }
+        
+        cell.avatarView.didSelect = { [unowned self] in
+            self.didTapAvatarAt(indexPath)
+        }
+
         return cell
     }
 

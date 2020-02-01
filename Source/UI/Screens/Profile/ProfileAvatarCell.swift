@@ -10,7 +10,7 @@ import Foundation
 
 class ProfileAvatarCell: UICollectionViewCell {
 
-    private let avatarView = AvatarView()
+    private(set) var avatarView = AvatarView()
 
     override init(frame: CGRect) {
         super.init(frame: frame)

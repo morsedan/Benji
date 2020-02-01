@@ -55,4 +55,8 @@ class ProfilePhotoViewController: SwitchableContentViewController<PhotoContentTy
             }
         }
     }
+
+    override func getInitialContent() -> PhotoContentType {
+        return .photo(self.photoVC)
+    }
 }
