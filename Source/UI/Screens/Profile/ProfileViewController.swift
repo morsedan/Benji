@@ -20,6 +20,7 @@ struct ProfileItem: ProfileDisplayable {
 
 protocol ProfileViewControllerDelegate: class {
     func profileViewControllerDidSelectRoutine(_ controller: ProfileViewController)
+    func profileViewControllerDidSelectPhoto(_ controller: ProfileViewController)
 }
 
 class ProfileViewController: ViewController {
