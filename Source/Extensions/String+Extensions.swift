@@ -79,6 +79,18 @@ extension String {
         }
     }
 
+    var isValidPersonName: Bool {
+        let components: [String] = self.extraWhitespaceRemoved()
+            .components(separatedBy: CharacterSet.whitespaces)
+
+        if components.count > 1 && components.all { (element: String) -> Bool in return !element.isEmpty } {
+            return components.first?.count ?? 0 > 1
+                && components.last?.count ?? 0 > 1
+        }
+
+        return false
+    }
+
     func formatPhoneNumber() -> String? {
         guard self.isValidPhoneNumber() else { return nil }
         let number = self.filter("0123456789".contains)

@@ -36,8 +36,12 @@ class NameViewController: TextInputViewController<Void> {
     }
 
     private func updateUserName() {
-        guard let text = self.textField.text,
-            !text.isEmpty else { return }
+        guard let text = self.textField.text, !text.isEmpty else { return }
+
+        guard text.isValidPersonName else {
+            self.showAccessory()
+            return
+        }
 
         let tf = self.textField as? TextField
         tf?.activityIndicator.startAnimating()
@@ -47,5 +51,11 @@ class NameViewController: TextInputViewController<Void> {
                 tf?.activityIndicator.stopAnimating()
                 self.complete(with: .success(()))
         }
+    }
+
+    override func getAccessoryText() -> Localized? {
+        guard let text = self.textField.text, !text.isEmpty, text.isValidPersonName else { return nil }
+
+        return LocalizedString(id: "", arguments: [], default: "Please enter a valid first and last name.")
     }
 }
