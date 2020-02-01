@@ -97,18 +97,6 @@ class HomeViewController: FullScreenViewController {
 
     private func setupSearchController() {
         
-        self.searchController.searchResultsUpdater = self.channelsVC
-        self.searchController.delegate = self.channelsVC
-        self.searchController.searchBar.tintColor = Color.lightPurple.color
-        self.searchController.searchBar.keyboardAppearance = .dark
-        self.searchController.searchBar.keyboardType = .twitter
-        self.searchController.searchBar.placeholder = "Search"
-        self.searchController.searchBar.setImage(UIImage(systemName: "xmark.circle.fill"), for: .clear, state: .normal)
-        self.searchController.obscuresBackgroundDuringPresentation = false
-        self.searchController.definesPresentationContext = true 
-        let styleAttributes = StringStyle(font: .regularBold, color: .lightPurple).attributes
-        self.navigationItem.searchController?.searchBar.searchTextField.typingAttributes = styleAttributes
-
         self.navigationItem.searchController = searchController
         self.navigationItem.hidesSearchBarWhenScrolling = true
         self.navigationItem.searchController?.searchBar.isHidden = true
