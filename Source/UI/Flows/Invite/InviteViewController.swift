@@ -87,14 +87,13 @@ class InviteViewController: SwitchableContentViewController<InviteContenType> {
     }
 
     private func updateButton() {
-        let count = self.contactsVC.collectionViewManager.selectedItems.count
         let buttonText: LocalizedString
-        if count > 1 {
+        if self.selectedContacts.count > 1 {
             buttonText = LocalizedString(id: "",
-                                         arguments: [String(count)],
-                                         default: "Send @() invites")
+                                         arguments: [String(self.selectedContacts.count)],
+                                         default: "SEND @(count) INVITES")
         } else {
-            buttonText = LocalizedString(id: "", default: "Send invite")
+            buttonText = LocalizedString(id: "", default: "SEND INVITE")
         }
 
         self.button.set(style: .normal(color: .purple, text: buttonText))

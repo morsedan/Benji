@@ -33,9 +33,9 @@ class ContactCell: UICollectionViewCell, ManageableCell {
 
     func update(isSelected: Bool) {
         if isSelected {
-            self.button.set(style: .normal(color: .teal, text: "Added"))
+            self.button.set(style: .normal(color: .lightPurple, text: "Added"))
         } else {
-            self.button.set(style: .normal(color: .blue, text: "Add"))
+            self.button.set(style: .normal(color: .blue, text: "Invite"))
         }
     }
 

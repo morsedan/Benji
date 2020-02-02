@@ -29,7 +29,8 @@ class ContactsViewController: CollectionViewController<ContactCell, ContactsColl
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+
+        self.collectionViewManager.allowMultipleSelection = true 
         self.registerKeyboardEvents()
 
         self.view.set(backgroundColor: .background2)
