@@ -28,5 +28,6 @@ class SearchBar: UISearchBar {
         let styleAttributes = StringStyle(font: .regularBold, color: .lightPurple).attributes
         self.searchTextField.typingAttributes = styleAttributes
         self.set(backgroundColor: .clear)
+        self.backgroundImage = UIImage()
     }
 }
