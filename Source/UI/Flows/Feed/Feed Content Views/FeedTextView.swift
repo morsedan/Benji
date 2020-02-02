@@ -11,6 +11,12 @@ import TMROLocalization
 
 class FeedTextView: TextView {
 
+    override func initialize() {
+        super.initialize()
+
+        self.isScrollEnabled = false 
+    }
+
     func set(localizedText: Localized) {
 
         let attributed = AttributedString(localizedText,

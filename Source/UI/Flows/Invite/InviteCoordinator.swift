@@ -20,6 +20,10 @@ class InviteCoordinator: PresentableCoordinator<Void> {
 
 extension InviteCoordinator: ContactsViewControllerDelegate {
 
+    func contactsView(_ controller: ContactsViewController, didSelect contacts: [CNContact]) {
+        /// trigger the sending of invites
+    }
+
     func contactsView(_ controller: ContactsViewController, didGetAuthorization status: CNAuthorizationStatus) {
         switch status {
         case .notDetermined, .restricted, .denied:

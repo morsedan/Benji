@@ -11,6 +11,7 @@ import Contacts
 
 protocol ContactsViewControllerDelegate: class {
     func contactsView(_ controller: ContactsViewController, didGetAuthorization status: CNAuthorizationStatus)
+    func contactsView(_ controller: ContactsViewController, didSelect contacts: [CNContact])
 }
 
 class ContactsViewController: CollectionViewController<ContactCell, ContactsCollectionViewManager>, KeyboardObservable, Sizeable {
@@ -34,10 +35,7 @@ class ContactsViewController: CollectionViewController<ContactCell, ContactsColl
 
         self.view.set(backgroundColor: .background2)
 
-        ContactsManager.shared.getAuthorizationStatus { [unowned self] (authorizationStatus) in
-            guard authorizationStatus == .authorized else { return }
-            self.getContacts()
-        }
+        self.getAuthorizationStatus()
     }
 
     func getAuthorizationStatus() {

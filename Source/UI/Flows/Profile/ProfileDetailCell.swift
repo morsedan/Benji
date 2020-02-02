@@ -63,7 +63,6 @@ class ProfileDetailCell: UICollectionViewCell {
         self.button.size = CGSize(width: 80, height: 30)
         self.button.centerOnY()
         self.button.right = self.contentView.right
-        self.button.roundCorners()
     }
 
     override func prepareForReuse() {

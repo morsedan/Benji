@@ -32,6 +32,8 @@ class ChannelsViewController: CollectionViewController<ChannelCell, ChannelsColl
     override func initializeViews() {
         super.initializeViews()
 
+        self.collectionViewManager.allowMultipleSelection = true
+
         self.collectionViewManager.onSelectedItem.signal.observeValues { (selectedItem) in
             guard let item = selectedItem else { return }
             self.delegate?.channelsView(self, didSelect: item.item.channelType)

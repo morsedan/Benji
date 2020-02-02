@@ -34,6 +34,18 @@ class InviteViewController: SwitchableContentViewController<InviteContenType> {
         }
         
         self.view.set(backgroundColor: .background2)
+
+        self.contactsVC.collectionViewManager.onSelectedItem.signal.observeValues { [unowned self] (_) in
+            /// update the desctipion
+        }
+
+        ContactsManager.shared.getAuthorizationStatus { [unowned self] (authorizationStatus) in
+            if authorizationStatus == .authorized {
+                // show button 
+            } else {
+                /// show button
+            }
+        }
     }
 
     override func getTitle() -> Localized {

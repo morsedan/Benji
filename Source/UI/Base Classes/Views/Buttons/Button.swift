@@ -75,7 +75,7 @@ class Button: UIButton {
         }
 
         if shouldRound {
-            self.layer.cornerRadius = self.halfHeight
+            self.layer.cornerRadius = Theme.cornerRadius
             self.layer.masksToBounds = true
         }
     }
