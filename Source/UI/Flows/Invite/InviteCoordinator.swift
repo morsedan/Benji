@@ -20,10 +20,6 @@ class InviteCoordinator: PresentableCoordinator<Void> {
 
 extension InviteCoordinator: ContactsViewControllerDelegate {
 
-    func contactsView(_ controller: ContactsViewController, didSelect contacts: [CNContact]) {
-        /// trigger the sending of invites
-    }
-
     func contactsView(_ controller: ContactsViewController, didGetAuthorization status: CNAuthorizationStatus) {
         switch status {
         case .notDetermined, .restricted, .denied:
@@ -54,5 +50,12 @@ extension InviteCoordinator: ContactsViewControllerDelegate {
         }
 
         self.router.present(contactModal, source: source)
+    }
+}
+
+extension InviteCoordinator: InviteViewControllerDelegate {
+
+    func inviteView(_ controller: InviteViewController, didSelect contacts: [CNContact]) {
+        // send invites
     }
 }

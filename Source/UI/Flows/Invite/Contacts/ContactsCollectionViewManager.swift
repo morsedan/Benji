@@ -15,10 +15,11 @@ class ContactsCollectionViewManager: CollectionViewManager<ContactCell> {
 
         cell.button.onTap { [unowned self] (tap) in
             // handle the tap
+            self.select(indexPath: indexPath)
         }
     }
 
     override func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        return CGSize(width: collectionView.width * 0.95, height: 90)
+        return CGSize(width: collectionView.width, height: 90)
     }
 }

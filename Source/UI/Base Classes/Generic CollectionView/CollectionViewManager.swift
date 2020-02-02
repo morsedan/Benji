@@ -105,7 +105,8 @@ UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFl
         self.collectionView.deleteItems(at: [IndexPath(row: itemIndex, section: section)])
     }
 
-    func select(indexPath: IndexPath, animated: Bool = false) {
+    func select(indexPath: IndexPath) {
+
         guard let item = self.items.value[safe: indexPath.row] else { return }
 
         if self.allowMultipleSelection {
@@ -114,10 +115,7 @@ UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFl
             self.selectedIndexPaths = [indexPath]
         }
 
-        // Even though we're managing the selected index paths, we still need to animate to item
-        self.collectionView.selectItem(at: indexPath,
-                                       animated: animated,
-                                       scrollPosition: .centeredHorizontally)
+        self.willScrollToSelected(indexPath: indexPath)
 
         self._onSelectedItem.value = (item, indexPath)
     }
@@ -137,6 +135,8 @@ UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFl
             }
         }
     }
+
+    func willScrollToSelected(indexPath: IndexPath) {}
 
     func reset() {
         self.items.value = []
@@ -181,7 +181,7 @@ UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFl
     // MARK: CollectionView Delegate
 
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        self.select(indexPath: indexPath, animated: true)
+        self.select(indexPath: indexPath)
     }
 
     func collectionView(_ collectionView: UICollectionView,

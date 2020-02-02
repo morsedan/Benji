@@ -11,7 +11,6 @@ import Contacts
 
 protocol ContactsViewControllerDelegate: class {
     func contactsView(_ controller: ContactsViewController, didGetAuthorization status: CNAuthorizationStatus)
-    func contactsView(_ controller: ContactsViewController, didSelect contacts: [CNContact])
 }
 
 class ContactsViewController: CollectionViewController<ContactCell, ContactsCollectionViewManager>, KeyboardObservable, Sizeable {

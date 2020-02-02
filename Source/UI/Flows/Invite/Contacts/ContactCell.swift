@@ -56,6 +56,6 @@ class ContactCell: UICollectionViewCell, ManageableCell {
 
         self.button.size = CGSize(width: 80, height: 30)
         self.button.centerOnY()
-        self.button.right = self.contentView.right
+        self.button.right = self.contentView.right - Theme.contentOffset
     }
 }
