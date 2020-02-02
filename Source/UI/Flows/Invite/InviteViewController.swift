@@ -13,6 +13,7 @@ class InviteViewController: SwitchableContentViewController<InviteContenType> {
 
     lazy var contactsVC = ContactsViewController(with: self.delegate)
     unowned let delegate: ContactsViewControllerDelegate
+    private let button = Button()
 
     init(with delegate: ContactsViewControllerDelegate) {
         self.delegate = delegate
@@ -26,6 +27,12 @@ class InviteViewController: SwitchableContentViewController<InviteContenType> {
     override func initializeViews() {
         super.initializeViews()
 
+        self.button.set(style: .normal(color: .purple, text: "GET CONTACTS"))
+        self.view.addSubview(self.button)
+        self.button.didSelect = { [unowned self] in
+            self.contactsVC.getAuthorizationStatus()
+        }
+        
         self.view.set(backgroundColor: .background2)
     }
 
@@ -39,5 +46,17 @@ class InviteViewController: SwitchableContentViewController<InviteContenType> {
 
     override func getInitialContent() -> InviteContenType {
         return .contacts(self.contactsVC)
+    }
+
+    override func willUpdateContent() {
+        self.view.bringSubviewToFront(self.button)
+    }
+
+    override func viewDidLayoutSubviews() {
+        super.viewDidLayoutSubviews()
+
+        self.button.size(with: self.view.width)
+        self.button.centerOnX()
+        self.button.bottom = self.view.height - self.view.safeAreaInsets.bottom - 10
     }
 }

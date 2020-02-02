@@ -84,6 +84,10 @@ class Button: UIButton {
         self.setBackgroundImage(UIImage.imageWithColor(color: color), for: state)
     }
 
+    func size(with width: CGFloat) {
+        self.size = CGSize(width: width - (Theme.contentOffset * 2), height: 60)
+    }
+
     override open func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         super.touchesBegan(touches, with: event)
         if let touch = touches.first, let view = touch.view, let button = view as? UIButton {

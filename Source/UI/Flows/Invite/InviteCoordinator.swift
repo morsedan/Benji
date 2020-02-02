@@ -35,21 +35,17 @@ extension InviteCoordinator: ContactsViewControllerDelegate {
         }
     }
 
-    private func askForAuthorization(status: CNAuthorizationStatus, source: UIViewController) {
+    private func askForAuthorization(status: CNAuthorizationStatus, source: ContactsViewController) {
 
         let contactModal = ContactAuthorizationAlertController(status: status)
-        contactModal.onAuthorization = { [unowned self] (result) in
+        contactModal.onAuthorization = { (result) in
             switch result {
             case .denied:
-                break
-                //self.dismiss(animated: true) {
-                    //self.didDismiss?()
-                //}
+                contactModal.dismiss(animated: true, completion: nil)
             case .authorized:
-                break
-//                self.dismiss(animated: true) {
-//                    self.getContacts()
-//                }
+                contactModal.dismiss(animated: true) {
+                    source.getContacts()
+                }
             }
         }
 

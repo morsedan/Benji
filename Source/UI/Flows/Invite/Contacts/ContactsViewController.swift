@@ -21,10 +21,6 @@ class ContactsViewController: CollectionViewController<ContactCell, ContactsColl
         self.delegate = delegate
         let collectionView = ContactsCollectionView()
         super.init(with: collectionView)
-
-        collectionView.emptyView.button.onTap { [unowned self] (tap) in
-            self.getAuthorizationStatus()
-        }
     }
 
     required init?(coder aDecoder: NSCoder) {
