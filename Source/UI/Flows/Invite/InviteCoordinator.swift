@@ -7,12 +7,52 @@
 //
 
 import Foundation
+import Contacts
 
 class InviteCoordinator: PresentableCoordinator<Void> {
 
-    lazy var contactsVC = ContactsViewController()
+    lazy var inviteVC = InviteViewController(with: self)
 
     override func toPresentable() -> DismissableVC {
-        return self.contactsVC
+        return self.inviteVC
+    }
+}
+
+extension InviteCoordinator: ContactsViewControllerDelegate {
+
+    func contactsView(_ controller: ContactsViewController, didGetAuthorization status: CNAuthorizationStatus) {
+        switch status {
+        case .notDetermined, .restricted, .denied:
+            runMain {
+                self.askForAuthorization(status: status, source: controller)
+            }
+        case .authorized:
+            controller.getContacts()
+        @unknown default:
+            runMain {
+                self.askForAuthorization(status: status, source: controller)
+            }
+        }
+    }
+
+    private func askForAuthorization(status: CNAuthorizationStatus, source: UIViewController) {
+
+        let contactModal = ContactAuthorizationAlertController(status: status)
+        contactModal.onAuthorization = { [unowned self] (result) in
+            switch result {
+            case .denied:
+                break
+                //self.dismiss(animated: true) {
+                    //self.didDismiss?()
+                //}
+            case .authorized:
+                break
+//                self.dismiss(animated: true) {
+//                    self.getContacts()
+//                }
+            }
+        }
+
+        self.router.present(contactModal, source: source)
     }
 }

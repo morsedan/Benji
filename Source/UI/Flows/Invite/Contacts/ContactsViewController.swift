@@ -9,26 +9,16 @@
 import Foundation
 import Contacts
 
-class ContactsViewController: CollectionViewController<ContactCell, ContactsCollectionViewManager>, ScrolledModalControllerPresentable, KeyboardObservable {
-    
-    var didDismiss: (() -> Void)?
-    var didUpdateHeight: ((CGRect, TimeInterval, UIView.AnimationCurve) -> ())?
+protocol ContactsViewControllerDelegate: class {
+    func contactsView(_ controller: ContactsViewController, didGetAuthorization status: CNAuthorizationStatus)
+}
 
-    var topMargin: CGFloat {
-        guard let top = UIWindow.topWindow() else { return 120 }
+class ContactsViewController: CollectionViewController<ContactCell, ContactsCollectionViewManager>, KeyboardObservable, Sizeable {
 
-        return top.size.height * 0.4
-    }
+    unowned let delegate: ContactsViewControllerDelegate
 
-    var scrollView: UIScrollView? {
-        return self.collectionView
-    }
-
-    var scrollingEnabled: Bool {
-        return true
-    }
-
-    init() {
+    init(with delegate: ContactsViewControllerDelegate) {
+        self.delegate = delegate
         let collectionView = ContactsCollectionView()
         super.init(with: collectionView)
 
@@ -46,7 +36,7 @@ class ContactsViewController: CollectionViewController<ContactCell, ContactsColl
         
         self.registerKeyboardEvents()
 
-        self.view.set(backgroundColor: .background3)
+        self.view.set(backgroundColor: .background2)
 
         ContactsManager.shared.getAuthorizationStatus { [unowned self] (authorizationStatus) in
             guard authorizationStatus == .authorized else { return }
@@ -56,18 +46,7 @@ class ContactsViewController: CollectionViewController<ContactCell, ContactsColl
 
     func getAuthorizationStatus() {
         ContactsManager.shared.getAuthorizationStatus { [unowned self] (authorizationStatus) in
-            switch authorizationStatus {
-            case .notDetermined, .restricted, .denied:
-                runMain {
-                    self.askForAuthorization(status: authorizationStatus)
-                }
-            case .authorized:
-                self.getContacts()
-            @unknown default:
-                runMain {
-                    self.askForAuthorization(status: authorizationStatus)
-                }
-            }
+            self.delegate.contactsView(self, didGetAuthorization: authorizationStatus)
         }
     }
 
@@ -88,26 +67,9 @@ class ContactsViewController: CollectionViewController<ContactCell, ContactsColl
         self.collectionViewManager.set(newItems: contacts)
     }
 
-    private func askForAuthorization(status: CNAuthorizationStatus) {
+    func handleKeyboard(frame: CGRect,
+                        with animationDuration: TimeInterval,
+                        timingCurve: UIView.AnimationCurve) {
 
-        let contactModal = ContactAuthorizationAlertController(status: status)
-        contactModal.onAuthorization = { [unowned self] (result) in
-            switch result {
-            case .denied:
-                self.dismiss(animated: true) {
-                    self.didDismiss?()
-                }
-            case .authorized:
-                self.dismiss(animated: true) {
-                    self.getContacts()
-                }
-            }
-        }
-
-        self.present(contactModal, animated: true)
-    }
-
-    func handleKeyboard(frame: CGRect, with animationDuration: TimeInterval, timingCurve: UIView.AnimationCurve) {
-        self.didUpdateHeight?(frame, animationDuration, timingCurve)
     }
 }
