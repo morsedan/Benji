@@ -697,11 +697,11 @@
 		D61EC0D121D30B5700204BEE /* UI */ = {
 			isa = PBXGroup;
 			children = (
-				D64E43692352B59400BA0619 /* Shared */,
 				D61EC0D221D30B8800204BEE /* Base Classes */,
-				D6D145F221D5490500CD8CE4 /* Modals */,
-				D6D145F121D548F600CD8CE4 /* Screens */,
+				D6D145F121D548F600CD8CE4 /* Flows */,
 				D61EC0C821D3071500204BEE /* LaunchScreen.storyboard */,
+				D6D145F221D5490500CD8CE4 /* Modals */,
+				D64E43692352B59400BA0619 /* Shared */,
 			);
 			path = UI;
 			sourceTree = "<group>";
@@ -1248,20 +1248,21 @@
 			path = Toast;
 			sourceTree = "<group>";
 		};
-		D6D145F121D548F600CD8CE4 /* Screens */ = {
+		D6D145F121D548F600CD8CE4 /* Flows */ = {
 			isa = PBXGroup;
 			children = (
 				D6432BF122D8282E0016001A /* Channel */,
 				D6DADF6A2207DC90007D9EB1 /* Channels */,
 				D62C634F22BE9C4600F4D097 /* Feed */,
 				D6D145F521D549A300CD8CE4 /* Home */,
+				D6D87E8723E69E6A00D6A7ED /* Invite */,
 				D63753182316112E00214F63 /* New Channel */,
 				D67896A122FF40AB0059BA75 /* Onboarding */,
 				D6B2603B22E6B8CD00143CF0 /* Profile */,
 				D6EDD1932355DB6000FDA5D6 /* Routine */,
 				D67A82D9230CCE290076152B /* Splash */,
 			);
-			path = Screens;
+			path = Flows;
 			sourceTree = "<group>";
 		};
 		D6D145F221D5490500CD8CE4 /* Modals */ = {
@@ -1403,6 +1404,13 @@
 				D642739822CA79B60088256B /* UIWindow+Extensions.swift */,
 			);
 			path = "UI Extensions";
+			sourceTree = "<group>";
+		};
+		D6D87E8723E69E6A00D6A7ED /* Invite */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Invite;
 			sourceTree = "<group>";
 		};
 		D6DADF6A2207DC90007D9EB1 /* Channels */ = {
