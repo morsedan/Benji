@@ -46,14 +46,20 @@ extension FeedCoordinator: FeedViewControllerDelegate {
         case .channelInvite(let channel):
             self.startChannelFlow(for: .channel(channel))
         case .inviteAsk:
-            break
-            //let contactsVC = ContactsViewController()
-            //self.router.present(contactsVC, source: self.sourceViewController)
+            self.startInviteFlow()
         case .notificationPermissions:
             break
         case .connecitonRequest(let connection):
             break 
         }
+    }
+
+    private func startInviteFlow() {
+        let coordinator = InviteCoordinator(router: self.router, deepLink: self.deepLink)
+        self.addChildAndStart(coordinator) { (_) in
+            self.router.dismiss(source: coordinator.toPresentable())
+        }
+        self.router.present(coordinator, source: self.feedVC)
     }
 
     private func startRoutineFlow() {

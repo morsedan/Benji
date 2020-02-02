@@ -23,11 +23,21 @@ class InviteViewController: SwitchableContentViewController<InviteContenType> {
         fatalError("init(coder:) has not been implemented")
     }
 
+    override func initializeViews() {
+        super.initializeViews()
+
+        self.view.set(backgroundColor: .background2)
+    }
+
     override func getTitle() -> Localized {
         return "Contacts"
     }
 
     override func getDescription() -> Localized {
         return "Some description"
+    }
+
+    override func getInitialContent() -> InviteContenType {
+        return .contacts(self.contactsVC)
     }
 }

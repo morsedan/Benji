@@ -36,5 +36,3 @@ class FeedInviteView: View {
         self.button.roundCorners()
     }
 }
-
-
