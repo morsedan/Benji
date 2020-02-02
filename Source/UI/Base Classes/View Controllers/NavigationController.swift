@@ -15,7 +15,6 @@ class NavigationController: UINavigationController, Dismissable {
         super.viewDidLoad()
 
         self.view.set(backgroundColor: .background1)
-        self.setNavigationBarHidden(true, animated: false)
     }
 
     override func viewDidDisappear(_ animated: Bool) {

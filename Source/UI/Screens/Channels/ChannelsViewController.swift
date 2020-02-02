@@ -17,9 +17,6 @@ class ChannelsViewController: CollectionViewController<ChannelCell, ChannelsColl
 
     weak var delegate: ChannelsViewControllerDelegate?
 
-    var didPresentSearch: CompletionOptional = nil
-    var didDismissSearch: CompletionOptional = nil
-
     init() {
         let collectionView = ChannelsCollectionView()
 
@@ -42,25 +39,25 @@ class ChannelsViewController: CollectionViewController<ChannelCell, ChannelsColl
     }
 }
 
-extension ChannelsViewController: UISearchResultsUpdating {
+extension ChannelsViewController: UISearchBarDelegate {
 
-    func updateSearchResults(for searchController: UISearchController) {
-        if let text = searchController.searchBar.text {
-            let lowercaseString = text.lowercased()
-            self.collectionViewManager.channelFilter = SearchFilter(text: lowercaseString)
-        }
-    }
-}
-
-extension ChannelsViewController: UISearchControllerDelegate {
-
-    func didPresentSearchController(_ searchController: UISearchController) {
-        self.didPresentSearch?()
+    func searchBarTextDidBeginEditing(_ searchBar: UISearchBar) {
+        searchBar.setShowsCancelButton(true, animated: true)
     }
 
-    func didDismissSearchController(_ searchController: UISearchController) {
-        self.collectionViewManager.channelFilter = SearchFilter(text: String())
+    func searchBarTextDidEndEditing(_ searchBar: UISearchBar) {
+        searchBar.setShowsCancelButton(false, animated: true)
         self.collectionViewManager.loadAllChannels()
-        self.didDismissSearch?()
+    }
+
+    func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
+        self.collectionViewManager.channelFilter = SearchFilter(text: searchText.lowercased())
+    }
+
+    func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
+        searchBar.setShowsCancelButton(false, animated: true)
+        searchBar.text = String()
+        self.collectionViewManager.loadAllChannels()
+        searchBar.resignFirstResponder()
     }
 }

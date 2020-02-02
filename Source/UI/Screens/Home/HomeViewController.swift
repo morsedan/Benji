@@ -30,7 +30,7 @@ class HomeViewController: FullScreenViewController {
     lazy var feedVC = FeedViewController()
     lazy var channelsVC = ChannelsViewController()
     lazy var profileVC = ProfileViewController(with: User.current()!)
-    let searchController = UISearchController(searchResultsController: nil)
+    lazy var searchBar = SearchBar()
 
     private let addButton = HomeNewChannellButton()
     let centerContainer = View()
@@ -57,7 +57,9 @@ class HomeViewController: FullScreenViewController {
     override func initializeViews() {
         super.initializeViews()
 
-        self.setupSearchController()
+        self.searchBar.isHidden = true
+        self.searchBar.delegate = self.channelsVC
+        self.contentContainer.addSubview(self.searchBar)
 
         self.view.set(backgroundColor: .background1)
         self.addButton.imageView.image = UIImage(systemName: "square.and.pencil")
@@ -95,23 +97,12 @@ class HomeViewController: FullScreenViewController {
         }
     }
 
-    private func setupSearchController() {
-        
-        self.navigationItem.searchController = searchController
-        self.navigationItem.hidesSearchBarWhenScrolling = true
-        self.navigationItem.searchController?.searchBar.isHidden = true
-
-        self.channelsVC.didDismissSearch = { [unowned self] in
-            self.view.layoutNow()
-        }
-
-        self.channelsVC.didPresentSearch = { [unowned self] in
-            self.view.layoutNow()
-        }
-    }
-
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
+
+        self.searchBar.size = CGSize(width: self.contentContainer.width - (Theme.contentOffset * 2), height: 36)
+        self.searchBar.centerOnX()
+        self.searchBar.top = 50
 
         let height = 70 + self.view.safeAreaInsets.bottom
         self.tabContainerView.size = CGSize(width: self.contentContainer.width, height: height)
@@ -127,7 +118,7 @@ class HomeViewController: FullScreenViewController {
         self.addButton.top = 0
 
         self.centerContainer.size = CGSize(width: self.contentContainer.width,
-                                           height: self.contentContainer.height - 70)
+                                           height: self.contentContainer.height - 156)
         self.centerContainer.bottom = self.tabContainerView.top
         self.centerContainer.centerOnX()
 
@@ -141,7 +132,6 @@ class HomeViewController: FullScreenViewController {
     private func switchContent() {
 
         UIView.animate(withDuration: Theme.animationDuration, animations: {
-            self.navigationController?.navigationBar.alpha = 0
             self.centerContainer.alpha = 0
             self.centerContainer.transform = CGAffineTransform(scaleX: 0.95, y: 0.95)
         }) { (completed) in
@@ -152,16 +142,13 @@ class HomeViewController: FullScreenViewController {
             switch self.currentContent.value {
             case .feed(let vc):
                 newContentVC = vc
-                self.title = "Feed"
-                self.navigationItem.searchController?.searchBar.isHidden = true
+                self.searchBar.isHidden = true
             case .channels(let vc):
                 newContentVC = vc
-                self.title = "Conversations"
-                self.navigationItem.searchController?.searchBar.isHidden = false
+                self.searchBar.isHidden = false
             case .profile(let vc):
                 newContentVC = vc
-                self.title = "Profile"
-                self.navigationItem.searchController?.searchBar.isHidden = true
+                self.searchBar.isHidden = true
             }
 
             self.currentCenterVC = newContentVC
@@ -173,7 +160,6 @@ class HomeViewController: FullScreenViewController {
             self.view.setNeedsLayout()
 
             UIView.animate(withDuration: Theme.animationDuration) {
-                self.navigationController?.navigationBar.alpha = 1 
                 self.centerContainer.alpha = 1
                 self.centerContainer.transform = .identity
             }

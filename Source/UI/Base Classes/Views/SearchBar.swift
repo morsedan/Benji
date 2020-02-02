@@ -8,24 +8,7 @@
 
 import Foundation
 
-class SearchBarView: View {
-
-    private let searchBar = SearchBar()
-
-    override func initializeSubviews() {
-        super.initializeSubviews()
-
-        self.addSubview(self.searchBar)
-    }
-
-    override func layoutSubviews() {
-        super.layoutSubviews()
-
-        self.searchBar.expandToSuperviewSize()
-    }
-}
-
-private class SearchBar: UISearchBar {
+class SearchBar: UISearchBar {
 
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -44,5 +27,6 @@ private class SearchBar: UISearchBar {
         self.setImage(UIImage(systemName: "xmark.circle.fill"), for: .clear, state: .normal)
         let styleAttributes = StringStyle(font: .regularBold, color: .lightPurple).attributes
         self.searchTextField.typingAttributes = styleAttributes
+        self.set(backgroundColor: .clear)
     }
 }
