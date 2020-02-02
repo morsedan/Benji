@@ -103,3 +103,24 @@ struct SendPush: CloudFunction {
         return promise.withResultToast()
     }
 }
+
+struct UpdateConnection: CloudFunction {
+
+    var connection: Conneciton
+
+    func makeRequest() -> Future<Void> {
+        let promise = Promise<Void>()
+
+        PFCloud.callFunction(inBackground: "updateConnection",
+                             withParameters: ["connectionID": self.connection.objectId!,
+                                              "status": self.connection.status!.rawValue]) { (object, error) in
+                                if let error = error {
+                                    promise.reject(with: error)
+                                } else {
+                                    promise.resolve(with: ())
+                                }
+        }
+
+        return promise.withResultToast()
+    }
+}
