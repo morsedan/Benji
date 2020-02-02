@@ -8,6 +8,7 @@
 
 import Foundation
 import TwilioChatClient
+import Parse
 
 enum FeedType: Comparable {
 
@@ -16,6 +17,7 @@ enum FeedType: Comparable {
     case system(SystemMessage)
     case unreadMessages(TCHChannel, Int)
     case channelInvite(TCHChannel)
+    case connecitonRequest(Conneciton)
     case inviteAsk
     case notificationPermissions
 
@@ -35,6 +37,8 @@ enum FeedType: Comparable {
             return "inviteAsk"
         case .notificationPermissions:
             return "notificationPermissions"
+        case .connecitonRequest:
+            return "connecitonRequest"
         }
     }
 
@@ -54,6 +58,8 @@ enum FeedType: Comparable {
             return 5
         case .system(_):
             return 6
+        case .connecitonRequest(_):
+            return 7
         }
     }
 

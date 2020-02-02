@@ -9,6 +9,7 @@
 import Foundation
 import TMROFutures
 import ReactiveSwift
+import Parse
 
 class FeedSupplier {
 
@@ -92,6 +93,30 @@ class FeedSupplier {
                 promise.resolve(with: ())
             }).start()
 
+        return promise
+    }
+
+    private func getConnections() -> Future<Void> {
+        let promise = Promise<Void>()
+        if let query = Conneciton.query() {
+            query.whereKey(ConnectionKey.to.rawValue, equalTo: User.current()!)
+            query.whereKey(ConnectionKey.status.rawValue, equalTo: Conneciton.Status.pending.rawValue)
+            query.includeKey(ConnectionKey.from.rawValue)
+            query.findObjectsInBackground { ( objects, error) in
+                if let connections = objects as? [Conneciton] {
+                    connections.forEach { (connection) in
+                        self.items.append(.connecitonRequest(connection))
+                    }
+                    promise.resolve(with: ())
+                } else if let error = error {
+                    promise.reject(with: error)
+                } else {
+                    promise.resolve(with: ())
+                }
+            }
+        } else {
+            promise.reject(with: ClientError.generic)
+        }
         return promise
     }
 }

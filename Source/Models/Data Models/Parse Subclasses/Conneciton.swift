@@ -11,8 +11,9 @@ import Parse
 
 enum ConnectionKey: String {
     case status
-    case userId
     case channels
+    case to
+    case from
 }
 
 final class Conneciton: PFObject, PFSubclassing {
@@ -37,12 +38,21 @@ final class Conneciton: PFObject, PFSubclassing {
         }
     }
 
-    var userId: String? {
+    var to: User? {
         get {
-            return self.getObject(for: .userId)
+            return self.getRelationalObject(for: .to)
         }
         set {
-            self.setObject(for: .userId, with: newValue)
+            self.setObject(for: .to, with: newValue)
+        }
+    }
+
+    var from: User? {
+        get {
+            return self.getRelationalObject(for: .from)
+        }
+        set {
+            self.setObject(for: .from, with: newValue)
         }
     }
 

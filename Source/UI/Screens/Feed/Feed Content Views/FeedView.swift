@@ -66,6 +66,8 @@ class FeedView: View {
             self.notificationsView.didGivePermission = { [unowned self] in
                 self.didComplete?()
             }
+        case .connecitonRequest(let connection):
+            break 
         }
 
         self.container.layoutNow()

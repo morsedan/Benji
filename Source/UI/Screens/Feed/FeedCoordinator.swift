@@ -50,6 +50,8 @@ extension FeedCoordinator: FeedViewControllerDelegate {
             //let contactsVC = ContactsViewController()
             //self.router.present(contactsVC, source: self.sourceViewController)
         case .notificationPermissions:
+            break
+        case .connecitonRequest(let connection):
             break 
         }
     }
