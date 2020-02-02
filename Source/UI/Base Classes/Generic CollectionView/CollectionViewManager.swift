@@ -11,11 +11,14 @@ UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFl
     let items = MutableProperty<[CellType.ItemType]>([])
 
     var allowMultipleSelection: Bool = false
+
+    private(set) var oldSelectedIndexPaths: Set<IndexPath> = []
     private(set) var selectedIndexPaths: Set<IndexPath> = [] {
         didSet {
-            self.updateSelected(indexPaths: self.selectedIndexPaths, and: oldValue)
+            self.oldSelectedIndexPaths = oldValue
         }
     }
+
     var selectedItems: [CellType.ItemType] {
         var items: [CellType.ItemType] = []
         for indexPath in self.selectedIndexPaths {
@@ -109,7 +112,9 @@ UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFl
 
         guard let item = self.items.value[safe: indexPath.row] else { return }
 
-        if self.allowMultipleSelection {
+        if self.selectedIndexPaths.contains(indexPath) {
+            self.selectedIndexPaths.remove(indexPath)
+        } else if self.allowMultipleSelection {
             self.selectedIndexPaths.insert(indexPath)
         } else {
             self.selectedIndexPaths = [indexPath]
@@ -118,14 +123,19 @@ UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFl
         self.willScrollToSelected(indexPath: indexPath)
 
         self._onSelectedItem.value = (item, indexPath)
+
+        self.updateSelected(indexPaths: self.selectedIndexPaths, and: self.oldSelectedIndexPaths)
     }
 
     private func updateSelected(indexPaths: Set<IndexPath>, and oldIndexPaths: Set<IndexPath>) {
         // Reset all the old indexPaths if they are not also in the new array
         oldIndexPaths.forEach { (indexPath) in
-            if !indexPaths.contains(indexPath),
-                let cell = self.collectionView.cellForItem(at: indexPath) as? CellType {
-                cell.update(isSelected: self.allowMultipleSelection)
+            if let cell = self.collectionView.cellForItem(at: indexPath) as? CellType {
+                if !indexPaths.contains(indexPath) {
+                    cell.update(isSelected: false)
+                } else {
+                    cell.update(isSelected: true)
+                }
             }
         }
 

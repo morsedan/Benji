@@ -60,14 +60,7 @@ class InviteViewController: SwitchableContentViewController<InviteContenType> {
     }
 
     override func getDescription() -> Localized {
-        switch self.currentContent.value {
-        case .contacts(_):
-            if self.selectedContacts.count > 1 {
-                return "Tap the button below to send your invites."
-            } else {
-                return "Select the people you want to invite."
-            }
-        }
+        return "Select the people you want to invite."
     }
 
     override func getInitialContent() -> InviteContenType {
