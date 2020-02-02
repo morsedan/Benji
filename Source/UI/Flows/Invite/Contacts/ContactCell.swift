@@ -26,6 +26,8 @@ class ContactCell: UICollectionViewCell, ManageableCell {
         self.contentView.addSubview(self.button)
 
         self.nameLabel.set(text: contact.fullName)
+        self.layoutNow()
+
         self.avatarView.set(avatar: contact)
     }
 
