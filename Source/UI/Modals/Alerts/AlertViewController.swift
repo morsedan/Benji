@@ -25,7 +25,6 @@ class AlertViewController: ViewController, PagingModalPresentable {
             self.onTappedToDismiss?()
         }
 
-        //self.content.configure(withDisplayable: displayable, footerButtons: footerButtons)
         self.addChild(viewController: childViewController, toView: self.content.contentView)
     }
 

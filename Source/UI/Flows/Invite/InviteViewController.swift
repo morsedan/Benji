@@ -21,6 +21,7 @@ class InviteViewController: SwitchableContentViewController<InviteContenType> {
     lazy var contactsVC = ContactsViewController(with: self.delegate)
     unowned let delegate: InviteViewControllerDelegates
     private let button = Button()
+    var buttonOffset: CGFloat?
 
     var selectedContacts: [CNContact] {
         return self.contactsVC.collectionViewManager.selectedItems
@@ -41,7 +42,7 @@ class InviteViewController: SwitchableContentViewController<InviteContenType> {
         self.button.set(style: .normal(color: .purple, text: "Send Invites"))
         self.view.addSubview(self.button)
         self.button.didSelect = { [unowned self] in
-            self.contactsVC.getAuthorizationStatus()
+            self.delegate.inviteView(self, didSelect: self.selectedContacts)
         }
         
         self.view.set(backgroundColor: .background2)
@@ -76,7 +77,7 @@ class InviteViewController: SwitchableContentViewController<InviteContenType> {
 
         self.button.size(with: self.view.width)
         self.button.centerOnX()
-        self.button.bottom = self.view.height - self.view.safeAreaInsets.bottom - 10
+        self.button.bottom = self.buttonOffset ?? self.view.height + 100
     }
 
     private func updateButton() {
@@ -90,5 +91,25 @@ class InviteViewController: SwitchableContentViewController<InviteContenType> {
         }
 
         self.button.set(style: .normal(color: .purple, text: buttonText))
+        self.animateButton()
+    }
+
+    private func animateButton() {
+        var newOffset: CGFloat
+        if self.selectedContacts.count >= 1 {
+            newOffset = self.view.height - self.view.safeAreaInsets.bottom
+        } else {
+            newOffset = self.view.height + 100
+        }
+
+        guard self.buttonOffset != newOffset else { return }
+
+        self.buttonOffset = newOffset
+        UIView.animate(withDuration: Theme.animationDuration,
+                       delay: 0,
+                       options: .curveEaseInOut,
+                       animations: {
+                        self.view.layoutNow()
+        }) { (completed) in }
     }
 }
