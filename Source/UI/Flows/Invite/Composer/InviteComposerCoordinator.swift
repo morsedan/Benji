@@ -11,6 +11,7 @@ import Contacts
 import MessageUI
 import Branch
 import TMROLocalization
+import TMROFutures
 
 // Creating a delegate object for the message composer because MFMessageComposeViewControllerDelegate
 // must conform to NSObjectProtocol and I don't want to force coordinators to be NSObjects.
@@ -63,33 +64,52 @@ class InviteComposerCoordinator: Coordinator<Void> {
 
         let vc = MessageComposerViewController()
 
-        vc.body = self.createMessage()
-
-        vc.recipients = [phoneNumber]
-        vc.messageComposeDelegate = self.composerDelegate
-
-        self.router.present(vc, source: self.source)
+        self.createInvite(with: phoneNumber)
+            .ignoreUserInteractionEventsUntilDone(for: self.source.view)
+            .observeValue { [unowned self] (message) in
+                vc.body = message
+                vc.recipients = [phoneNumber]
+                vc.messageComposeDelegate = self.composerDelegate
+                self.router.present(vc, source: self.source)
+        }
     }
 
-    private func createMessage() -> String {
-        guard let link = self.createLink() else { return String() }
-        let message = LocalizedString(id: "",
-                                      arguments: [link],
-                                      default: "Because you mean a lot to me, I saved you a spot on this app that will help us communicate better. Claim it here: @(link)")
-        return localized(message)
+    private func createInvite(with phoneNumber: String) -> Future<String> {
+        self.createLink(with: phoneNumber).then { (link) in
+            let promise = Promise<String>()
+            let message = LocalizedString(id: "",
+                                          arguments: [link],
+                                          default: "Because you mean a lot to me, I saved you a spot on this app that will help us communicate better. Claim it here: @(link)")
+            promise.resolve(with: localized(message))
+            return promise
+        }
     }
 
-    private func createLink() -> String? {
+    private func createLink(with phoneNumber: String) -> Future<String> {
+        self.createConnection(with: phoneNumber).then { (connection) in
+            let promise = Promise<String>()
+            let canonicalIdentifier = UUID().uuidString
+            let buo = BranchUniversalObject(canonicalIdentifier: canonicalIdentifier)
+            buo.title = localized(LocalizedString(id: "", default: "Benji"))
+            buo.contentDescription = localized(LocalizedString(id: "", default: "Private message"))
+            buo.contentMetadata.customMetadata["connection_id"] = connection.objectId
+            let properties = BranchLinkProperties()
+            properties.channel = "iOS"
+            if let shortURL = buo.getShortUrl(with: properties) {
+                promise.resolve(with: shortURL)
+            } else {
+                promise.reject(with: ClientError.generic)
+            }
+            return promise
+        }
+    }
 
-        let canonicalIdentifier = UUID().uuidString
-        let buo = BranchUniversalObject(canonicalIdentifier: canonicalIdentifier)
-        buo.title = localized(LocalizedString(id: "", default: "Benji"))
-        buo.contentDescription = localized(LocalizedString(id: "", default: "Private message"))
-
-        let properties = BranchLinkProperties()
-        properties.channel = "iOS"
-        let shortURL = buo.getShortUrl(with: properties)
-        return shortURL
+    private func createConnection(with phoneNumber: String) -> Future<Conneciton> {
+        let connection = Conneciton()
+        connection.toPhoneNumber = phoneNumber
+        return connection.saveLocalThenServer().then { (newConnection) in
+            return User.current()!.add(conneciton: newConnection)
+        }
     }
 
     func handleMessageComposer(result: MessageComposeResult, controller: MFMessageComposeViewController) {

@@ -104,7 +104,7 @@ extension Routine: Objectable {
         let promise = Promise<Routine>()
 
         User.current()?.routine = self
-        User.current()?.saveEventually()
+        User.current()?.saveLocalThenServer()
             .observe(with: { (result) in
                 switch result {
                 case .success(_):

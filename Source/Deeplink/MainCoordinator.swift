@@ -107,7 +107,7 @@ class MainCoordinator: Coordinator<Void> {
             .observeValue(with: { (reservation) in
                 User.current()?.reservation = reservation
                 User.current()?.createHandle()
-                User.current()?.save()
+                User.current()?.saveToServer()
                     .observe { (userResult) in
                         switch userResult {
                         case .success(_):

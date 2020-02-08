@@ -117,7 +117,7 @@ class PhotoViewController: ViewController, Sizeable, Completable {
         let largeImageFile = PFFileObject(name:"image.png", data: imageData)
         current.largeImage = largeImageFile
 
-        current.save()
+        current.saveLocalThenServer()
             .observe { (result) in
                 switch result {
                 case .success(_):

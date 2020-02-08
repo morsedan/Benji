@@ -87,7 +87,7 @@ final class Reservation: PFObject, PFSubclassing {
                         reservation.code = "123456"
                         reservation.isClaimed = true 
                         reservation.position = position.rounded(by: cap.intValue)
-                        reservation.saveEventually()
+                        reservation.saveLocalThenServer()
                             .observeValue(with: { (updatedReservation) in
                                 promise.resolve(with: updatedReservation)
                             })

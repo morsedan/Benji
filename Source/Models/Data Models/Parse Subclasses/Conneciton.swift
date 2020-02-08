@@ -14,6 +14,7 @@ enum ConnectionKey: String {
     case channels
     case to
     case from
+    case toPhoneNumber
 }
 
 final class Conneciton: PFObject, PFSubclassing {
@@ -44,6 +45,15 @@ final class Conneciton: PFObject, PFSubclassing {
         }
         set {
             self.setObject(for: .to, with: newValue)
+        }
+    }
+
+    var toPhoneNumber: String? {
+        get {
+            return self.getObject(for: .toPhoneNumber)
+        }
+        set {
+            self.setObject(for: .toPhoneNumber, with: newValue)
         }
     }
 
