@@ -17,7 +17,7 @@ enum ConnectionKey: String {
     case toPhoneNumber
 }
 
-final class Conneciton: PFObject, PFSubclassing {
+final class Connection: PFObject, PFSubclassing {
 
     static func parseClassName() -> String {
         return String(describing: self)
@@ -77,7 +77,7 @@ final class Conneciton: PFObject, PFSubclassing {
     }
 }
 
-extension Conneciton: Objectable {
+extension Connection: Objectable {
     typealias KeyType = ConnectionKey
 
     func getObject<Type>(for key: ConnectionKey) -> Type? {

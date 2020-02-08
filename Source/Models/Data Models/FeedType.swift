@@ -17,7 +17,7 @@ enum FeedType: Comparable {
     case system(SystemMessage)
     case unreadMessages(TCHChannel, Int)
     case channelInvite(TCHChannel)
-    case connecitonRequest(Conneciton)
+    case connecitonRequest(Connection)
     case inviteAsk
     case notificationPermissions
 

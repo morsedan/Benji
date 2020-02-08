@@ -49,7 +49,7 @@ final class User: PFUser {
         set { self.setObject(for: .reservation, with: newValue) }
     }
 
-    var connections: [Conneciton] {
+    var connections: [Connection] {
         return self.getObject(for: .connections) ?? []
     }
 
@@ -78,14 +78,14 @@ final class User: PFUser {
         set { self.setObject(for: .largeImage, with: newValue) }
     }
 
-    func add(conneciton: Conneciton) -> Future<Conneciton> {
+    func add(conneciton: Connection) -> Future<Connection> {
         self.addUniqueObject(conneciton, forKey: UserKey.connections.rawValue)
         return self.saveLocalThenServer().transform { (_) in
             return conneciton
         }
     }
 
-    func remove(conneciton: Conneciton) -> Future<Void> {
+    func remove(conneciton: Connection) -> Future<Void> {
         self.remove(conneciton, forKey: UserKey.connections.rawValue)
         return self.saveLocalThenServer().asVoid()
     }

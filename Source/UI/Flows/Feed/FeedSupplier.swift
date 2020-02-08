@@ -98,12 +98,12 @@ class FeedSupplier {
 
     private func getConnections() -> Future<Void> {
         let promise = Promise<Void>()
-        if let query = Conneciton.query() {
+        if let query = Connection.query() {
             query.whereKey(ConnectionKey.to.rawValue, equalTo: User.current()!)
-            query.whereKey(ConnectionKey.status.rawValue, equalTo: Conneciton.Status.pending.rawValue)
+            query.whereKey(ConnectionKey.status.rawValue, equalTo: Connection.Status.pending.rawValue)
             query.includeKey(ConnectionKey.from.rawValue)
             query.findObjectsInBackground { ( objects, error) in
-                if let connections = objects as? [Conneciton] {
+                if let connections = objects as? [Connection] {
                     connections.forEach { (connection) in
                         self.items.append(.connecitonRequest(connection))
                     }
