@@ -8,15 +8,13 @@
 
 import Foundation
 
-enum InviteContenType: Switchable {
+enum ContactsContentType: Switchable {
+
     case contacts(ContactsViewController)
-    case composer(ComposerViewController)
 
     var viewController: UIViewController & Sizeable {
         switch self {
         case .contacts(let vc):
-            return vc
-        case .composer(let vc):
             return vc
         }
     }

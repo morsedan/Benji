@@ -8,62 +8,93 @@
 
 import Foundation
 import Contacts
+import MessageUI
 
-class InviteCoordinator: PresentableCoordinator<Void> {
+// Creating a delegate object for the message composer because MFMessageComposeViewControllerDelegate
+// must conform to NSObjectProtocol and I don't want to force coordinators to be NSObjects.
+private class MessageComposerDelegate: NSObject, MFMessageComposeViewControllerDelegate {
 
-    lazy var inviteVC = InviteViewController(with: self)
-    
-    override func toPresentable() -> DismissableVC {
-        return self.inviteVC
+    var onComposerDidFinish: (MessageComposeResult, MFMessageComposeViewController) -> Void
+
+    init(onComposerDidFinish: @escaping (MessageComposeResult, MFMessageComposeViewController) -> Void) {
+        self.onComposerDidFinish = onComposerDidFinish
+    }
+
+    func messageComposeViewController(_ controller: MFMessageComposeViewController,
+                                      didFinishWith result: MessageComposeResult) {
+        self.onComposerDidFinish(result, controller)
     }
 }
 
-extension InviteCoordinator: ContactsViewControllerDelegate {
+class InviteCoordinator: Coordinator<Void> {
 
-    func contactsView(_ controller: ContactsViewController, didGetAuthorization status: CNAuthorizationStatus) {
-        switch status {
-        case .notDetermined, .restricted, .denied:
-            runMain {
-                self.askForAuthorization(status: status, source: controller)
-            }
-        case .authorized:
-            controller.getContacts()
-        @unknown default:
-            runMain {
-                self.askForAuthorization(status: status, source: controller)
-            }
+    let source: ViewController
+    let contacts: [CNContact]
+    private var currentIndex: Int = 0
+
+    private lazy var composerDelegate = MessageComposerDelegate { [unowned self] (result, controller) in
+        self.handleMessageComposer(result: result, controller: controller)
+    }
+
+    init(router: Router,
+         deeplink: DeepLinkable?,
+         contacts: [CNContact],
+         source: ViewController) {
+
+        self.contacts = contacts
+        self.source = source
+
+        super.init(router: router, deepLink: deeplink)
+    }
+
+    override func start() {
+        super.start()
+
+        if let contact = self.contacts.first {
+            self.presentMessageComposer(with: contact)
         }
     }
 
-    private func askForAuthorization(status: CNAuthorizationStatus, source: ContactsViewController) {
+    private func presentMessageComposer(with contact: CNContact) {
+        // The message composer won't initialize properly if texts aren't enabled on the device
+        guard MessageComposerViewController.canSendText(), let phoneNumber = contact.primaryPhoneNumber else { return }
 
-        let contactModal = ContactAuthorizationAlertController(status: status)
-        contactModal.onAuthorization = { (result) in
-            switch result {
-            case .denied:
-                contactModal.dismiss(animated: true, completion: nil)
-            case .authorized:
-                contactModal.dismiss(animated: true) {
-                    source.getContacts()
-                }
+        let vc = MessageComposerViewController()
+
+        vc.body = self.createMessage()
+
+
+        vc.recipients = [phoneNumber]
+        vc.messageComposeDelegate = self.composerDelegate
+
+        self.router.present(vc, source: self.source)
+    }
+
+    private func createMessage() -> String {
+        return "Some invite message"
+    }
+
+    func handleMessageComposer(result: MessageComposeResult, controller: MFMessageComposeViewController) {
+
+         switch result {
+         case .cancelled:
+             break
+         case .failed:
+             break
+         case .sent:
+            break 
+         @unknown default:
+             break
+         }
+
+         self.router.dismiss(source: controller, animated: true) {
+
+            self.currentIndex += 1
+            if let contact = self.contacts[safe: self.currentIndex] {
+                self.presentMessageComposer(with: contact)
+            } else {
+                self.finishFlow(with: ())
             }
-        }
-
-        self.router.present(contactModal, source: source)
-    }
-}
-
-extension InviteCoordinator: InviteViewControllerDelegate {
-
-    func inviteView(_ controller: InviteViewController, didSelect contacts: [CNContact]) {
-        //self.composerVC.contacts = contacts
-        //self.router.present(self.composerVC, source: controller)
-    }
-}
-
-extension InviteCoordinator: ComposerViewControllerDelegate {
-
-    func composerViewControllerDidFinish(_ controller: ComposerViewController) {
-        // do something
-    }
+         }
+     }
 }

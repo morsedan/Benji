@@ -10,18 +10,17 @@ import Foundation
 import TMROLocalization
 import Contacts
 
-typealias InviteViewControllerDelegates = ContactsViewControllerDelegate & InviteViewControllerDelegate & ComposerViewControllerDelegate
+typealias ContactSelectionViewControllerDelegates = ContactSelectionViewControllerDelegate & ContactsViewControllerDelegate
 
-protocol InviteViewControllerDelegate: class {
-    func inviteView(_ controller: InviteViewController, didSelect contacts: [CNContact])
+protocol ContactSelectionViewControllerDelegate: class {
+    func contactSelectionView(_ controller: ContactSelectionViewController, didSelect contacts: [CNContact])
 }
 
-class InviteViewController: SwitchableContentViewController<InviteContenType> {
+class ContactSelectionViewController: SwitchableContentViewController<ContactsContentType> {
 
     lazy var contactsVC = ContactsViewController(with: self.delegate)
-    lazy var composerVC = ComposerViewController(delegate: self.delegate)
 
-    unowned let delegate: InviteViewControllerDelegates
+    unowned let delegate: ContactSelectionViewControllerDelegates
     private let button = Button()
     var buttonOffset: CGFloat?
 
@@ -29,7 +28,7 @@ class InviteViewController: SwitchableContentViewController<InviteContenType> {
         return self.contactsVC.collectionViewManager.selectedItems
     }
 
-    init(with delegate: InviteViewControllerDelegates) {
+    init(with delegate: ContactSelectionViewControllerDelegates) {
         self.delegate = delegate
         super.init()
     }
@@ -44,7 +43,7 @@ class InviteViewController: SwitchableContentViewController<InviteContenType> {
         self.button.set(style: .normal(color: .purple, text: "Send Invites"))
         self.view.addSubview(self.button)
         self.button.didSelect = { [unowned self] in
-            self.delegate.inviteView(self, didSelect: self.selectedContacts)
+            self.delegate.contactSelectionView(self, didSelect: self.selectedContacts)
         }
         
         self.view.set(backgroundColor: .background2)
@@ -66,12 +65,8 @@ class InviteViewController: SwitchableContentViewController<InviteContenType> {
         return "Select the people you want to invite."
     }
 
-    override func getInitialContent() -> InviteContenType {
+    override func getInitialContent() -> ContactsContentType {
         return .contacts(self.contactsVC)
-    }
-
-    override func didSelectBackButton() {
-        self.currentContent.value = .contacts(self.contactsVC)
     }
 
     override func willUpdateContent() {
@@ -84,11 +79,6 @@ class InviteViewController: SwitchableContentViewController<InviteContenType> {
         self.button.size(with: self.view.width)
         self.button.centerOnX()
         self.button.bottom = self.buttonOffset ?? self.view.height + 100
-    }
-
-    private func didSelect(contacts: [CNContact]) {
-        self.composerVC.contacts = contacts
-        self.currentContent.value = .composer(self.composerVC)
     }
 
     private func updateButton() {
