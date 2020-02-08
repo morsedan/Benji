@@ -55,7 +55,7 @@ extension FeedCoordinator: FeedViewControllerDelegate {
     }
 
     private func startContactSelectionFlow() {
-        let coordinator = ContactsCoordinator(router: self.router, deepLink: self.deepLink)
+        let coordinator = InvitesCoordinator(router: self.router, deepLink: self.deepLink)
         self.addChildAndStart(coordinator) { (_) in
             self.router.dismiss(source: coordinator.toPresentable())
         }

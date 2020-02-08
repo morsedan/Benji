@@ -28,7 +28,7 @@ private class MessageComposerDelegate: NSObject, MFMessageComposeViewControllerD
     }
 }
 
-class InviteCoordinator: Coordinator<Void> {
+class InviteComposerCoordinator: Coordinator<Void> {
 
     let source: ViewController
     let contacts: [CNContact]

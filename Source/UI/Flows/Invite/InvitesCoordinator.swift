@@ -9,7 +9,7 @@
 import Foundation
 import Contacts
 
-class ContactsCoordinator: PresentableCoordinator<Void> {
+class InvitesCoordinator: PresentableCoordinator<Void> {
 
     lazy var invitesVC = InvitesViewController(with: self)
 
@@ -18,7 +18,7 @@ class ContactsCoordinator: PresentableCoordinator<Void> {
     }
 }
 
-extension ContactsCoordinator: ContactsViewControllerDelegate {
+extension InvitesCoordinator: ContactsViewControllerDelegate {
 
     func contactsView(_ controller: ContactsViewController, didGetAuthorization status: CNAuthorizationStatus) {
         switch status {
@@ -53,10 +53,10 @@ extension ContactsCoordinator: ContactsViewControllerDelegate {
     }
 }
 
-extension ContactsCoordinator: InvitesViewControllerDelegate {
+extension InvitesCoordinator: InvitesViewControllerDelegate {
     func invitesView(_ controller: InvitesViewController, didSelect contacts: [CNContact]) {
         // go to invite coordinator
-        let coordinator = InviteCoordinator(router: self.router,
+        let coordinator = InviteComposerCoordinator(router: self.router,
                                             deeplink: self.deepLink,
                                             contacts: contacts,
                                             source: controller)

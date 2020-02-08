@@ -42,7 +42,7 @@ class ProfileCoordinator: Coordinator<Void> {
     }
 
     private func presentInvites() {
-        let coordinator = ContactsCoordinator(router: self.router, deepLink: self.deepLink)
+        let coordinator = InvitesCoordinator(router: self.router, deepLink: self.deepLink)
         self.addChildAndStart(coordinator) { (result) in
             self.router.dismiss(source: coordinator.toPresentable(), animated: true) {}
         }

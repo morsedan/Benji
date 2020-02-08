@@ -198,10 +198,10 @@
 		D685E9272331177100CC1BAB /* UserNotificationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = D685E9262331177100CC1BAB /* UserNotificationManager.swift */; };
 		D68DC7FC22EE5D9000BEAF80 /* FeedOverlayView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D68DC7FB22EE5D9000BEAF80 /* FeedOverlayView.swift */; };
 		D690965023E7B835008864B6 /* MessageComposerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D690964F23E7B835008864B6 /* MessageComposerViewController.swift */; };
-		D690965823EE6E77008864B6 /* ContactsCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = D690965723EE6E77008864B6 /* ContactsCoordinator.swift */; };
+		D690965823EE6E77008864B6 /* InvitesCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = D690965723EE6E77008864B6 /* InvitesCoordinator.swift */; };
 		D691794222F6418700340AA3 /* Router.swift in Sources */ = {isa = PBXBuildFile; fileRef = D691794122F6418700340AA3 /* Router.swift */; };
 		D696A8E92308D5C900DAFED4 /* MessageInputView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D696A8E82308D5C900DAFED4 /* MessageInputView.swift */; };
-		D69E7F9023E6A30A008EB8CC /* ContactsContentType.swift in Sources */ = {isa = PBXBuildFile; fileRef = D69E7F8F23E6A30A008EB8CC /* ContactsContentType.swift */; };
+		D69E7F9023E6A30A008EB8CC /* InvitesContentType.swift in Sources */ = {isa = PBXBuildFile; fileRef = D69E7F8F23E6A30A008EB8CC /* InvitesContentType.swift */; };
 		D6A301AA23808252006655E0 /* ChannelCollectionViewManager+Menu.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6A301A923808252006655E0 /* ChannelCollectionViewManager+Menu.swift */; };
 		D6A301AC2380E102006655E0 /* FeedSupplier.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6A301AB2380E102006655E0 /* FeedSupplier.swift */; };
 		D6A301AE2381B8D7006655E0 /* FeedCollectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6A301AD2381B8D7006655E0 /* FeedCollectionView.swift */; };
@@ -266,7 +266,7 @@
 		D6D6D57223A6D43100D2B5BF /* CancelButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6D6D57123A6D43100D2B5BF /* CancelButton.swift */; };
 		D6D6D57423A6E51000D2B5BF /* UIView+ScalingAnimation.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6D6D57323A6E51000D2B5BF /* UIView+ScalingAnimation.swift */; };
 		D6D6D57623A70DF100D2B5BF /* SearchButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6D6D57523A70DF100D2B5BF /* SearchButton.swift */; };
-		D6D87E8923E69EC400D6A7ED /* InviteCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6D87E8823E69EC400D6A7ED /* InviteCoordinator.swift */; };
+		D6D87E8923E69EC400D6A7ED /* InviteComposerCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6D87E8823E69EC400D6A7ED /* InviteComposerCoordinator.swift */; };
 		D6D87E8B23E69F8400D6A7ED /* InvitesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6D87E8A23E69F8400D6A7ED /* InvitesViewController.swift */; };
 		D6D8A48C235D154500F0CC4B /* NavigationBarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6D8A48B235D154500F0CC4B /* NavigationBarViewController.swift */; };
 		D6DADF692207D246007D9EB1 /* TCHMessage+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6DADF682207D246007D9EB1 /* TCHMessage+Extensions.swift */; };
@@ -507,10 +507,10 @@
 		D685E9262331177100CC1BAB /* UserNotificationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserNotificationManager.swift; sourceTree = "<group>"; };
 		D68DC7FB22EE5D9000BEAF80 /* FeedOverlayView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedOverlayView.swift; sourceTree = "<group>"; };
 		D690964F23E7B835008864B6 /* MessageComposerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageComposerViewController.swift; sourceTree = "<group>"; };
-		D690965723EE6E77008864B6 /* ContactsCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactsCoordinator.swift; sourceTree = "<group>"; };
+		D690965723EE6E77008864B6 /* InvitesCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InvitesCoordinator.swift; sourceTree = "<group>"; };
 		D691794122F6418700340AA3 /* Router.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Router.swift; sourceTree = "<group>"; };
 		D696A8E82308D5C900DAFED4 /* MessageInputView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageInputView.swift; sourceTree = "<group>"; };
-		D69E7F8F23E6A30A008EB8CC /* ContactsContentType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactsContentType.swift; sourceTree = "<group>"; };
+		D69E7F8F23E6A30A008EB8CC /* InvitesContentType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InvitesContentType.swift; sourceTree = "<group>"; };
 		D6A301A923808252006655E0 /* ChannelCollectionViewManager+Menu.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ChannelCollectionViewManager+Menu.swift"; sourceTree = "<group>"; };
 		D6A301AB2380E102006655E0 /* FeedSupplier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedSupplier.swift; sourceTree = "<group>"; };
 		D6A301AD2381B8D7006655E0 /* FeedCollectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedCollectionView.swift; sourceTree = "<group>"; };
@@ -593,7 +593,7 @@
 		D6D6D57123A6D43100D2B5BF /* CancelButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CancelButton.swift; sourceTree = "<group>"; };
 		D6D6D57323A6E51000D2B5BF /* UIView+ScalingAnimation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+ScalingAnimation.swift"; sourceTree = "<group>"; };
 		D6D6D57523A70DF100D2B5BF /* SearchButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchButton.swift; sourceTree = "<group>"; };
-		D6D87E8823E69EC400D6A7ED /* InviteCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InviteCoordinator.swift; sourceTree = "<group>"; };
+		D6D87E8823E69EC400D6A7ED /* InviteComposerCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InviteComposerCoordinator.swift; sourceTree = "<group>"; };
 		D6D87E8A23E69F8400D6A7ED /* InvitesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InvitesViewController.swift; sourceTree = "<group>"; };
 		D6D8A48B235D154500F0CC4B /* NavigationBarViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavigationBarViewController.swift; sourceTree = "<group>"; };
 		D6DADF682207D246007D9EB1 /* TCHMessage+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "TCHMessage+Extensions.swift"; sourceTree = "<group>"; };
@@ -838,6 +838,15 @@
 				D61EC0C621D3071500204BEE /* Assets.xcassets */,
 			);
 			path = Resources;
+			sourceTree = "<group>";
+		};
+		D623BC5023EF62A8007358CB /* Composer */ = {
+			isa = PBXGroup;
+			children = (
+				D6D87E8823E69EC400D6A7ED /* InviteComposerCoordinator.swift */,
+				D690964F23E7B835008864B6 /* MessageComposerViewController.swift */,
+			);
+			path = Composer;
 			sourceTree = "<group>";
 		};
 		D62C634F22BE9C4600F4D097 /* Feed */ = {
@@ -1444,15 +1453,14 @@
 		D6D87E8723E69E6A00D6A7ED /* Invite */ = {
 			isa = PBXGroup;
 			children = (
-				D645996423EF199600BE3F0B /* InviteableContentView.swift */,
-				D6486DCF23EF15A2007ED680 /* Inviteable.swift */,
-				D6486DCA23EF1490007ED680 /* Pending */,
+				D623BC5023EF62A8007358CB /* Composer */,
 				D642737222C99D540088256B /* Contacts */,
-				D6D87E8823E69EC400D6A7ED /* InviteCoordinator.swift */,
-				D690965723EE6E77008864B6 /* ContactsCoordinator.swift */,
+				D6486DCF23EF15A2007ED680 /* Inviteable.swift */,
+				D645996423EF199600BE3F0B /* InviteableContentView.swift */,
+				D69E7F8F23E6A30A008EB8CC /* InvitesContentType.swift */,
+				D690965723EE6E77008864B6 /* InvitesCoordinator.swift */,
 				D6D87E8A23E69F8400D6A7ED /* InvitesViewController.swift */,
-				D69E7F8F23E6A30A008EB8CC /* ContactsContentType.swift */,
-				D690964F23E7B835008864B6 /* MessageComposerViewController.swift */,
+				D6486DCA23EF1490007ED680 /* Pending */,
 			);
 			path = Invite;
 			sourceTree = "<group>";
@@ -1672,7 +1680,7 @@
 				D6D6D57423A6E51000D2B5BF /* UIView+ScalingAnimation.swift in Sources */,
 				D6D1460721D552B100CD8CE4 /* Character+Extensions.swift in Sources */,
 				D6B2606C22E80B6A00143CF0 /* ToastScheduler.swift in Sources */,
-				D6D87E8923E69EC400D6A7ED /* InviteCoordinator.swift in Sources */,
+				D6D87E8923E69EC400D6A7ED /* InviteComposerCoordinator.swift in Sources */,
 				D66F0FF222C1D86800BA277D /* ChannelsType.swift in Sources */,
 				D6E4C7FB238E4217002B1330 /* ChannelHeaderAttributesConfigurer.swift in Sources */,
 				D66A0B942351821200A0FFEA /* Completeable.swift in Sources */,
@@ -1738,7 +1746,7 @@
 				D6EAC95523D145350028DAA2 /* Sizeable.swift in Sources */,
 				D64C055B23C2A34E00F6DCC1 /* ChannelCellContentView.swift in Sources */,
 				D67896B8230096620059BA75 /* KeyboardObservable.swift in Sources */,
-				D69E7F9023E6A30A008EB8CC /* ContactsContentType.swift in Sources */,
+				D69E7F9023E6A30A008EB8CC /* InvitesContentType.swift in Sources */,
 				D642735E22C90C820088256B /* CGPoint+Extensions.swift in Sources */,
 				D61EC0DE21D30DAC00204BEE /* Array+Extensions.swift in Sources */,
 				D6849CBD23B5BCAA006799F6 /* NewChannelButton.swift in Sources */,
@@ -1827,7 +1835,7 @@
 				D6B2604322E6BAE400143CF0 /* RegularBoldLabel.swift in Sources */,
 				D67896B222FF67650059BA75 /* CodeViewController.swift in Sources */,
 				D60C814222092D5300A127A3 /* PagingCollectionViewFlowLayout.swift in Sources */,
-				D690965823EE6E77008864B6 /* ContactsCoordinator.swift in Sources */,
+				D690965823EE6E77008864B6 /* InvitesCoordinator.swift in Sources */,
 				D642737122C991A60088256B /* ClosedRange+Extensions.swift in Sources */,
 				D657955C239CA01100A01338 /* FeedRoutineView.swift in Sources */,
 				D6DADF722207DF83007D9EB1 /* ChannelsCollectionView.swift in Sources */,
