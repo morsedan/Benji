@@ -27,10 +27,10 @@ class ContactsViewController: CollectionViewController<ContactCell, ContactsColl
         fatalError("init(coder:) has not been implemented")
     }
 
-    override func viewDidLoad() {
-        super.viewDidLoad()
+    override func initializeViews() {
+        super.initializeViews()
 
-        self.collectionViewManager.allowMultipleSelection = true 
+        self.collectionViewManager.allowMultipleSelection = true
         self.registerKeyboardEvents()
 
         self.view.set(backgroundColor: .background2)

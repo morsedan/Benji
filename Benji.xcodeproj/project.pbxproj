@@ -98,13 +98,14 @@
 		D6432BF022D824BA0016001A /* ChannelCollectionViewLayoutAttributes.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6432BEF22D824BA0016001A /* ChannelCollectionViewLayoutAttributes.swift */; };
 		D6432BF322D828480016001A /* ChannelDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6432BF222D828480016001A /* ChannelDataSource.swift */; };
 		D6432BF522D82CDC0016001A /* ChannelCollectionViewFlowLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6432BF422D82CDC0016001A /* ChannelCollectionViewFlowLayout.swift */; };
+		D645996323EF188500BE3F0B /* PendingCollectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D645996223EF188500BE3F0B /* PendingCollectionView.swift */; };
 		D646DB3C22CFCCD80055CC7C /* ClientError.swift in Sources */ = {isa = PBXBuildFile; fileRef = D646DB3B22CFCCD80055CC7C /* ClientError.swift */; };
 		D646DB3E22CFCF330055CC7C /* TwilioChatClient+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = D646DB3D22CFCF330055CC7C /* TwilioChatClient+Extensions.swift */; };
 		D646DB4022CFCFDB0055CC7C /* Future+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = D646DB3F22CFCFDB0055CC7C /* Future+Extensions.swift */; };
 		D646DB4422CFDE0C0055CC7C /* LoadingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D646DB4322CFDE0C0055CC7C /* LoadingView.swift */; };
-		D6486DC923EF1486007ED680 /* PendingInviteViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6486DC823EF1486007ED680 /* PendingInviteViewController.swift */; };
+		D6486DC923EF1486007ED680 /* PendingCollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6486DC823EF1486007ED680 /* PendingCollectionViewController.swift */; };
 		D6486DCC23EF14C2007ED680 /* InviteCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6486DCB23EF14C2007ED680 /* InviteCell.swift */; };
-		D6486DCE23EF14E5007ED680 /* PendingInviteCollectionViewManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6486DCD23EF14E5007ED680 /* PendingInviteCollectionViewManager.swift */; };
+		D6486DCE23EF14E5007ED680 /* PendingCollectionViewManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6486DCD23EF14E5007ED680 /* PendingCollectionViewManager.swift */; };
 		D6486DD023EF15A2007ED680 /* Inviteable.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6486DCF23EF15A2007ED680 /* Inviteable.swift */; };
 		D64C055B23C2A34E00F6DCC1 /* ChannelCellContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D64C055A23C2A34E00F6DCC1 /* ChannelCellContentView.swift */; };
 		D64C6A7A232883FE00DB7257 /* CloudCalls.swift in Sources */ = {isa = PBXBuildFile; fileRef = D64C6A79232883FE00DB7257 /* CloudCalls.swift */; };
@@ -403,13 +404,14 @@
 		D6432BEF22D824BA0016001A /* ChannelCollectionViewLayoutAttributes.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChannelCollectionViewLayoutAttributes.swift; sourceTree = "<group>"; };
 		D6432BF222D828480016001A /* ChannelDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChannelDataSource.swift; sourceTree = "<group>"; };
 		D6432BF422D82CDC0016001A /* ChannelCollectionViewFlowLayout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChannelCollectionViewFlowLayout.swift; sourceTree = "<group>"; };
+		D645996223EF188500BE3F0B /* PendingCollectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PendingCollectionView.swift; sourceTree = "<group>"; };
 		D646DB3B22CFCCD80055CC7C /* ClientError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClientError.swift; sourceTree = "<group>"; };
 		D646DB3D22CFCF330055CC7C /* TwilioChatClient+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "TwilioChatClient+Extensions.swift"; sourceTree = "<group>"; };
 		D646DB3F22CFCFDB0055CC7C /* Future+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Future+Extensions.swift"; sourceTree = "<group>"; };
 		D646DB4322CFDE0C0055CC7C /* LoadingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadingView.swift; sourceTree = "<group>"; };
-		D6486DC823EF1486007ED680 /* PendingInviteViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PendingInviteViewController.swift; sourceTree = "<group>"; };
+		D6486DC823EF1486007ED680 /* PendingCollectionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PendingCollectionViewController.swift; sourceTree = "<group>"; };
 		D6486DCB23EF14C2007ED680 /* InviteCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InviteCell.swift; sourceTree = "<group>"; };
-		D6486DCD23EF14E5007ED680 /* PendingInviteCollectionViewManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PendingInviteCollectionViewManager.swift; sourceTree = "<group>"; };
+		D6486DCD23EF14E5007ED680 /* PendingCollectionViewManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PendingCollectionViewManager.swift; sourceTree = "<group>"; };
 		D6486DCF23EF15A2007ED680 /* Inviteable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Inviteable.swift; sourceTree = "<group>"; };
 		D64C055A23C2A34E00F6DCC1 /* ChannelCellContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChannelCellContentView.swift; sourceTree = "<group>"; };
 		D64C6A79232883FE00DB7257 /* CloudCalls.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CloudCalls.swift; sourceTree = "<group>"; };
@@ -1013,10 +1015,11 @@
 		D6486DCA23EF1490007ED680 /* Pending */ = {
 			isa = PBXGroup;
 			children = (
-				D6486DCB23EF14C2007ED680 /* InviteCell.swift */,
-				D6486DCD23EF14E5007ED680 /* PendingInviteCollectionViewManager.swift */,
-				D6486DC823EF1486007ED680 /* PendingInviteViewController.swift */,
 				D6486DCF23EF15A2007ED680 /* Inviteable.swift */,
+				D6486DCB23EF14C2007ED680 /* InviteCell.swift */,
+				D645996223EF188500BE3F0B /* PendingCollectionView.swift */,
+				D6486DC823EF1486007ED680 /* PendingCollectionViewController.swift */,
+				D6486DCD23EF14E5007ED680 /* PendingCollectionViewManager.swift */,
 			);
 			path = Pending;
 			sourceTree = "<group>";
@@ -1734,7 +1737,7 @@
 				D6849CBD23B5BCAA006799F6 /* NewChannelButton.swift in Sources */,
 				D61EC0F121D313F500204BEE /* ScreenSize.swift in Sources */,
 				D64C6A9E232D6DD500DB7257 /* TypingIndicatorView.swift in Sources */,
-				D6486DCE23EF14E5007ED680 /* PendingInviteCollectionViewManager.swift in Sources */,
+				D6486DCE23EF14E5007ED680 /* PendingCollectionViewManager.swift in Sources */,
 				D6EAB68A23E63DB900B90D5A /* SearchBar.swift in Sources */,
 				D6B2606E22E80E4000143CF0 /* ToastView.swift in Sources */,
 				D67896CC2304524C0059BA75 /* ChannelCoordinator.swift in Sources */,
@@ -1796,6 +1799,7 @@
 				D6486DCC23EF14C2007ED680 /* InviteCell.swift in Sources */,
 				D646DB4022CFCFDB0055CC7C /* Future+Extensions.swift in Sources */,
 				D65B0CCE2344AE390041A176 /* ChannelsViewController+Extensions.swift in Sources */,
+				D645996323EF188500BE3F0B /* PendingCollectionView.swift in Sources */,
 				D609AE3A236F44A8004FA89A /* User+Extensions.swift in Sources */,
 				D642739322C9C0110088256B /* AlertView.swift in Sources */,
 				D6D145FD21D550E400CD8CE4 /* AttributedString.swift in Sources */,
@@ -1879,7 +1883,7 @@
 				D642737422C99D6A0088256B /* ContactsViewController.swift in Sources */,
 				D6D145F421D5493000CD8CE4 /* HomeViewController.swift in Sources */,
 				D6090E562377CB2F00833DA7 /* Messageable.swift in Sources */,
-				D6486DC923EF1486007ED680 /* PendingInviteViewController.swift in Sources */,
+				D6486DC923EF1486007ED680 /* PendingCollectionViewController.swift in Sources */,
 				D6FC809C237A6ED30089AACC /* ChannelCollectionViewManager+Typing.swift in Sources */,
 				D642739722CA6E1F0088256B /* CommonWord.swift in Sources */,
 				D642736C22C98FA00088256B /* MathFunctions.swift in Sources */,
