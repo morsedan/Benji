@@ -35,6 +35,19 @@ class ProfileCoordinator: Coordinator<Void> {
         let vc = RoutineViewController()
         self.router.present(vc, source: self.profileVC)
     }
+
+    private func presentPhoto() {
+        let vc = ProfilePhotoViewController(with: self)
+        self.router.present(vc, source: self.profileVC)
+    }
+
+    private func presentInvites() {
+        let coordinator = ContactsCoordinator(router: self.router, deepLink: self.deepLink)
+        self.addChildAndStart(coordinator) { (result) in
+            self.router.dismiss(source: coordinator.toPresentable(), animated: true) {}
+        }
+        self.router.present(coordinator, source: self.profileVC)
+    }
 }
 
 extension ProfileCoordinator: ProfileViewControllerDelegate {
@@ -46,11 +59,9 @@ extension ProfileCoordinator: ProfileViewControllerDelegate {
         case .routine:
             self.presentRoutine()
         case .picture:
-            let vc = ProfilePhotoViewController(with: self)
-            self.router.present(vc, source: controller)
+            self.presentPhoto()
         case .invites:
-            // present invites
-            break
+            self.presentInvites()
         default:
             break 
         }

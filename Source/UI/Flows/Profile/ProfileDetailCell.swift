@@ -34,6 +34,9 @@ class ProfileDetailCell: UICollectionViewCell {
     }
 
     func configure(with item: ProfileItem, for user: User) {
+
+        self.button.isHidden = true
+
         switch item {
         case .picture:
             break
@@ -47,12 +50,13 @@ class ProfileDetailCell: UICollectionViewCell {
             self.titleLabel.set(text: "Local Time")
             self.label.set(text: Date.nowInLocalFormat)
         case .routine:
-            self.getRoutine()
+            self.titleLabel.set(text: "Routine")
+            self.getRoutine(for: user)
         case .invites:
-            self.getInvites()
+            self.titleLabel.set(text: "Invites")
+            self.getInvites(for: user)
         }
 
-        self.button.isHidden = true
         self.contentView.layoutNow()
     }
 
@@ -84,17 +88,27 @@ class ProfileDetailCell: UICollectionViewCell {
         self.button.isHidden = true
     }
 
-    private func getRoutine() {
-//        self.titleLabel.set(text: detail.title)
-//        self.label.set(text: detail.text)
-//        if let text = detail.buttonText {
-//            self.button.isHidden = false
-//            self.button.set(style: .normal(color: .lightPurple, text: text))
-//        }
+    private func getRoutine(for user: User) {
 
+        user.routine?.fetchIfNeededInBackground(block: { (object, error) in
+            if let routine = object as? Routine, let date = routine.date {
+                let formatter = DateFormatter()
+                formatter.dateFormat = "h:mm a"
+                let string = formatter.string(from: date)
+                self.label.set(text: string)
+                self.button.set(style: .normal(color: .lightPurple, text: "Update"))
+            } else {
+                self.label.set(text: "NO ROUTINE SET")
+                self.button.set(style: .normal(color: .lightPurple, text: "Set"))
+            }
+            self.button.isHidden = false
+            self.contentView.layoutNow()
+        })
     }
 
-    private func getInvites() {
-
+    private func getInvites(for user: User) {
+        self.label.set(text: "Show number of invites")
+        self.button.set(style: .normal(color: .lightPurple, text: "View"))
+        self.button.isHidden = false
     }
 }
