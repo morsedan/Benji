@@ -48,6 +48,7 @@
 		D61EC0F721D316F100204BEE /* Color.swift in Sources */ = {isa = PBXBuildFile; fileRef = D61EC0F621D316F100204BEE /* Color.swift */; };
 		D61EC0F921D317AB00204BEE /* Theme.swift in Sources */ = {isa = PBXBuildFile; fileRef = D61EC0F821D317AB00204BEE /* Theme.swift */; };
 		D61EC0FC21D437C100204BEE /* Pods_Benji.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D61EC0FB21D437C100204BEE /* Pods_Benji.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
+		D623BC4F23EF5157007358CB /* ProfileItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = D623BC4E23EF5157007358CB /* ProfileItem.swift */; };
 		D624296723A9EF4F00322ABE /* HomeTabView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D624296623A9EF4F00322ABE /* HomeTabView.swift */; };
 		D62C635422BE9CBB00F4D097 /* FeedViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D62C635322BE9CBB00F4D097 /* FeedViewController.swift */; };
 		D62C635622BE9E5C00F4D097 /* CollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D62C635522BE9E5C00F4D097 /* CollectionViewController.swift */; };
@@ -355,6 +356,7 @@
 		D61EC0F621D316F100204BEE /* Color.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Color.swift; sourceTree = "<group>"; };
 		D61EC0F821D317AB00204BEE /* Theme.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Theme.swift; sourceTree = "<group>"; };
 		D61EC0FB21D437C100204BEE /* Pods_Benji.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = Pods_Benji.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		D623BC4E23EF5157007358CB /* ProfileItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileItem.swift; sourceTree = "<group>"; };
 		D624296623A9EF4F00322ABE /* HomeTabView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeTabView.swift; sourceTree = "<group>"; };
 		D62C635322BE9CBB00F4D097 /* FeedViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedViewController.swift; sourceTree = "<group>"; };
 		D62C635522BE9E5C00F4D097 /* CollectionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollectionViewController.swift; sourceTree = "<group>"; };
@@ -1266,6 +1268,7 @@
 				D6EDD1982355DBFA00FDA5D6 /* ProfileDetailCell.swift */,
 				D6EAB68623E615B500B90D5A /* ProfilePhotoViewController.swift */,
 				D6B2603C22E6B8EA00143CF0 /* ProfileViewController.swift */,
+				D623BC4E23EF5157007358CB /* ProfileItem.swift */,
 			);
 			path = Profile;
 			sourceTree = "<group>";
@@ -1689,6 +1692,7 @@
 				D66F0FD222BF065F00BA277D /* DeeplinkTarget.swift in Sources */,
 				D6EB4DF023540E48005BF3B4 /* FaceDetectionViewController.swift in Sources */,
 				D696A8E92308D5C900DAFED4 /* MessageInputView.swift in Sources */,
+				D623BC4F23EF5157007358CB /* ProfileItem.swift in Sources */,
 				D6D1501A21D5F5D100CD8CE4 /* CollectionView.swift in Sources */,
 				D6579557239C8B4000A01338 /* FeedCoordinator.swift in Sources */,
 				D61EC0E421D30E9100204BEE /* TextView.swift in Sources */,

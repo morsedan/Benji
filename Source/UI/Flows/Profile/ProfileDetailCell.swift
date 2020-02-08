@@ -33,15 +33,26 @@ class ProfileDetailCell: UICollectionViewCell {
         self.lineView.set(backgroundColor: .background3)
     }
 
-    func configure(with detail: ProfileDisplayable) {
-
-        self.titleLabel.set(text: detail.title)
-        self.label.set(text: detail.text)
-        if let text = detail.buttonText {
-            self.button.isHidden = false
-            self.button.set(style: .normal(color: .lightPurple, text: text))
+    func configure(with item: ProfileItem, for user: User) {
+        switch item {
+        case .picture:
+            break
+        case .name:
+            self.titleLabel.set(text: "Name")
+            self.label.set(text: user.fullName)
+        case .handle:
+            self.titleLabel.set(text: "Handle")
+            self.label.set(text: String(optional: user.handle))
+        case .localTime:
+            self.titleLabel.set(text: "Local Time")
+            self.label.set(text: Date.nowInLocalFormat)
+        case .routine:
+            self.getRoutine()
+        case .invites:
+            self.getInvites()
         }
 
+        self.button.isHidden = true
         self.contentView.layoutNow()
     }
 
@@ -71,5 +82,19 @@ class ProfileDetailCell: UICollectionViewCell {
         self.titleLabel.text = nil
         self.label.text = nil
         self.button.isHidden = true
+    }
+
+    private func getRoutine() {
+//        self.titleLabel.set(text: detail.title)
+//        self.label.set(text: detail.text)
+//        if let text = detail.buttonText {
+//            self.button.isHidden = false
+//            self.button.set(style: .normal(color: .lightPurple, text: text))
+//        }
+
+    }
+
+    private func getInvites() {
+
     }
 }

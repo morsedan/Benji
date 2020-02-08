@@ -102,6 +102,13 @@ class InvitesViewController: SwitchableContentViewController<InvitesContentType>
 
     override func willUpdateContent() {
         self.view.bringSubviewToFront(self.button)
+
+        switch self.currentContent.value {
+        case .contacts(let vc):
+            vc.getAuthorizationStatus()
+        case .pending(let vc):
+            vc.loadConnections()
+        }
     }
 
     override func viewDidLayoutSubviews() {

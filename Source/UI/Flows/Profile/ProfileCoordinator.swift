@@ -39,13 +39,21 @@ class ProfileCoordinator: Coordinator<Void> {
 
 extension ProfileCoordinator: ProfileViewControllerDelegate {
 
-    func profileViewControllerDidSelectRoutine(_ controller: ProfileViewController) {
-        self.presentRoutine()
-    }
+    func profileView(_ controller: ProfileViewController, didSelect item: ProfileItem, for user: User) {
+        guard user.isCurrentUser else { return }
 
-    func profileViewControllerDidSelectPhoto(_ controller: ProfileViewController) {
-        let vc = ProfilePhotoViewController(with: self)
-        self.router.present(vc, source: controller)
+        switch item {
+        case .routine:
+            self.presentRoutine()
+        case .picture:
+            let vc = ProfilePhotoViewController(with: self)
+            self.router.present(vc, source: controller)
+        case .invites:
+            // present invites
+            break
+        default:
+            break 
+        }
     }
 }
 

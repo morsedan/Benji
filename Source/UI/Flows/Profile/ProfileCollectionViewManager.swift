@@ -7,36 +7,22 @@
 //
 
 import Foundation
-import TMROLocalization
 
-protocol ProfileDisplayable {
-    var avatar: Avatar? { get set }
-    var title: String { get set }
-    var text: String { get set }
-    var buttonText: Localized? { get set }
-}
-
-extension ProfileDisplayable {
-    var avatar: Avatar? {
-        return nil
-    }
-
-    var buttonText: Localized? {
-        return nil 
-    }
-}
 
 class ProfileCollectionViewManager: NSObject, UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
 
     let collectionView: CollectionView
 
-    var items: [ProfileDisplayable] = []
+    var items: [ProfileItem] = []
 
-    var didTapButtonAt: (IndexPath) -> Void = {_ in }
-    var didTapAvatarAt: (IndexPath) -> Void = {_ in }
+    var didTapButtonAt: (ProfileItem) -> Void = { _ in }
+    var didTapAvatarAt: () -> Void = {}
 
-    init(with collectionView: CollectionView) {
+    private let user: User
+
+    init(with collectionView: CollectionView, user: User) {
         self.collectionView = collectionView
+        self.user = user
         super.init()
     }
 
@@ -49,36 +35,38 @@ class ProfileCollectionViewManager: NSObject, UICollectionViewDelegate, UICollec
     }
 
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        guard let cv = collectionView as? ProfileCollectionView else { fatalError() }
+        guard let cv = collectionView as? ProfileCollectionView, let item = self.items[safe: indexPath.row] else { fatalError() }
 
-        if indexPath.row == 0 {
-            return self.avatarCell(for: cv, at: indexPath)
+        switch item {
+        case .picture:
+            return self.avatarCell(for: cv, with: self.user, at: indexPath)
+        default:
+            return self.detailCell(for: cv, with: item, at: indexPath)
         }
-
-        return self.detailCell(for: cv, at: indexPath)
     }
 
-    private func avatarCell(for collectionView: ProfileCollectionView, at indexPath: IndexPath) -> UICollectionViewCell {
+    private func avatarCell(for collectionView: ProfileCollectionView,
+                            with avatar: Avatar,
+                            at indexPath: IndexPath) -> UICollectionViewCell {
+
         let cell = collectionView.dequeueReusableCell(ProfileAvatarCell.self, for: indexPath)
-        if let item = self.items[safe: indexPath.row] {
-            cell.configure(with: item)
-        }
-        
+
+        cell.configure(with: avatar)
         cell.avatarView.didSelect = { [unowned self] in
-            self.didTapAvatarAt(indexPath)
+            self.didTapAvatarAt()
         }
 
         return cell
     }
 
-    private func detailCell(for collectionView: ProfileCollectionView, at indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCell(ProfileDetailCell.self, for: indexPath)
-        if let item = self.items[safe: indexPath.row] {
-            cell.configure(with: item)
-        }
+    private func detailCell(for collectionView: ProfileCollectionView,
+                            with item: ProfileItem,
+                            at indexPath: IndexPath) -> UICollectionViewCell {
 
+        let cell = collectionView.dequeueReusableCell(ProfileDetailCell.self, for: indexPath)
+        cell.configure(with: item, for: self.user)
         cell.button.didSelect = { [unowned self] in
-            self.didTapButtonAt(indexPath)
+            self.didTapButtonAt(item)
         }
 
         return cell

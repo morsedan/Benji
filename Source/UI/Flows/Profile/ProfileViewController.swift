@@ -11,23 +11,15 @@ import Parse
 import TwilioChatClient
 import TMROLocalization
 
-struct ProfileItem: ProfileDisplayable {
-    var avatar: Avatar? = nil
-    var title: String
-    var text: String
-    var buttonText: Localized?
-}
-
 protocol ProfileViewControllerDelegate: class {
-    func profileViewControllerDidSelectRoutine(_ controller: ProfileViewController)
-    func profileViewControllerDidSelectPhoto(_ controller: ProfileViewController)
+    func profileView(_ controller: ProfileViewController, didSelect item: ProfileItem, for user: User)
 }
 
 class ProfileViewController: ViewController {
 
     private let user: User
     lazy var collectionView = ProfileCollectionView()
-    lazy var manager = ProfileCollectionViewManager(with: self.collectionView)
+    lazy var manager = ProfileCollectionViewManager(with: self.collectionView, user: self.user)
     weak var delegate: ProfileViewControllerDelegate?
 
     init(with user: User) {
@@ -51,14 +43,8 @@ class ProfileViewController: ViewController {
         self.collectionView.delegate = self.manager
         self.collectionView.dataSource = self.manager
 
-        if self.user.isCurrentUser {
-            self.manager.didTapAvatarAt = { [unowned self] indexPath in
-                self.delegate?.profileViewControllerDidSelectPhoto(self)
-            }
-        }
-
-        self.manager.didTapButtonAt = { [unowned self] indexPath in
-            self.delegate?.profileViewControllerDidSelectRoutine(self)
+        self.manager.didTapButtonAt = { [unowned self] item in
+            self.delegate?.profileView(self, didSelect: item, for: self.user)
         }
     }
 
@@ -69,47 +55,42 @@ class ProfileViewController: ViewController {
     }
 
     private func createItems() {
-        var items: [ProfileDisplayable] = []
+        var items: [ProfileItem] = []
 
-        let avatarItem = ProfileItem(avatar: self.user,
-                                     title: String(),
-                                     text: String())
-        items.append(avatarItem)
+        items.append(.picture)
+        items.append(.name)
+        items.append(.handle)
+        items.append(.localTime)
+        items.append(.routine)
+        items.append(.invites)
+        self.manager.items = items
+        self.collectionView.reloadData()
 
-        let nameItem = ProfileItem(avatar: nil,
-                                   title: "Name",
-                                   text: String(optional: self.user.fullName))
-        items.append(nameItem)
 
-        let handleItem = ProfileItem(avatar: nil,
-                                     title: "Handle",
-                                     text: String(optional: self.user.handle))
-        items.append(handleItem)
+//        self.user.routine?.fetchIfNeededInBackground(block: { (object, error) in
+//            if let routine = object as? Routine, let date = routine.date {
+//                let formatter = DateFormatter()
+//                formatter.dateFormat = "h:mm a"
+//                let string = formatter.string(from: date)
+////                let routineItem = ProfileItem(avatar: nil,
+////                                              title: "Routine",
+////                                              text: string.uppercased(),
+////                                              buttonText: "Update")
+////                items.append(routineItem)
+//            } else {
+////                let routineItem = ProfileItem(avatar: nil,
+////                                              title: "Routine",
+////                                              text: "NO ROUTINE SET",
+////                                              buttonText: "Set")
+////                items.append(routineItem)
+//            }
+//            self.manager.items = items
+//        })
 
-        let localTime = ProfileItem(avatar: nil,
-                                    title: "Local Time",
-                                    text: Date.nowInLocalFormat)
-        items.append(localTime)
-
-        self.user.routine?.fetchIfNeededInBackground(block: { (object, error) in
-            if let routine = object as? Routine, let date = routine.date {
-                let formatter = DateFormatter()
-                formatter.dateFormat = "h:mm a"
-                let string = formatter.string(from: date)
-                let routineItem = ProfileItem(avatar: nil,
-                                              title: "Routine",
-                                              text: string.uppercased(),
-                                              buttonText: "Update")
-                items.append(routineItem)
-            } else {
-                let routineItem = ProfileItem(avatar: nil,
-                                              title: "Routine",
-                                              text: "NO ROUTINE SET",
-                                              buttonText: "Set")
-                items.append(routineItem)
-            }
-            self.manager.items = items
-            self.collectionView.reloadData()
-        })
+//        let invitesItem = ProfileItem(avatar: nil,
+//                                      title: "Pending Invites",
+//                                      text: "View your pending invites.",
+//                                      buttonText: "VIEW")
+//        items.append(invitesItem)
     }
 }

@@ -25,9 +25,7 @@ class ProfileAvatarCell: UICollectionViewCell {
         self.contentView.addSubview(self.avatarView)
     }
 
-    func configure(with detail: ProfileDisplayable) {
-        guard let avatar = detail.avatar else { return }
-
+    func configure(with avatar: Avatar) {
         self.avatarView.showLargeImage = true
         self.avatarView.set(avatar: avatar)
     }
