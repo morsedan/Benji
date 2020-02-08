@@ -8,7 +8,7 @@
 
 import Foundation
 
-class PendingCollectionViewManager: CollectionViewManager<InviteCell> {
+class PendingCollectionViewManager: CollectionViewManager<PendingInviteCell> {
 
     override func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         return CGSize(width: collectionView.width, height: 90)

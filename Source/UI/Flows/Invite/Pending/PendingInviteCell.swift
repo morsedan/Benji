@@ -8,7 +8,7 @@
 
 import Foundation
 
-class InviteCell: UICollectionViewCell, ManageableCell {
+class PendingInviteCell: UICollectionViewCell, ManageableCell {
     typealias ItemType = Inviteable
 
     var onLongPress: (() -> Void)?

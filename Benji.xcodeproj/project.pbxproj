@@ -105,7 +105,7 @@
 		D646DB4022CFCFDB0055CC7C /* Future+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = D646DB3F22CFCFDB0055CC7C /* Future+Extensions.swift */; };
 		D646DB4422CFDE0C0055CC7C /* LoadingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D646DB4322CFDE0C0055CC7C /* LoadingView.swift */; };
 		D6486DC923EF1486007ED680 /* PendingCollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6486DC823EF1486007ED680 /* PendingCollectionViewController.swift */; };
-		D6486DCC23EF14C2007ED680 /* InviteCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6486DCB23EF14C2007ED680 /* InviteCell.swift */; };
+		D6486DCC23EF14C2007ED680 /* PendingInviteCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6486DCB23EF14C2007ED680 /* PendingInviteCell.swift */; };
 		D6486DCE23EF14E5007ED680 /* PendingCollectionViewManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6486DCD23EF14E5007ED680 /* PendingCollectionViewManager.swift */; };
 		D6486DD023EF15A2007ED680 /* Inviteable.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6486DCF23EF15A2007ED680 /* Inviteable.swift */; };
 		D64C055B23C2A34E00F6DCC1 /* ChannelCellContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D64C055A23C2A34E00F6DCC1 /* ChannelCellContentView.swift */; };
@@ -412,7 +412,7 @@
 		D646DB3F22CFCFDB0055CC7C /* Future+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Future+Extensions.swift"; sourceTree = "<group>"; };
 		D646DB4322CFDE0C0055CC7C /* LoadingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadingView.swift; sourceTree = "<group>"; };
 		D6486DC823EF1486007ED680 /* PendingCollectionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PendingCollectionViewController.swift; sourceTree = "<group>"; };
-		D6486DCB23EF14C2007ED680 /* InviteCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InviteCell.swift; sourceTree = "<group>"; };
+		D6486DCB23EF14C2007ED680 /* PendingInviteCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PendingInviteCell.swift; sourceTree = "<group>"; };
 		D6486DCD23EF14E5007ED680 /* PendingCollectionViewManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PendingCollectionViewManager.swift; sourceTree = "<group>"; };
 		D6486DCF23EF15A2007ED680 /* Inviteable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Inviteable.swift; sourceTree = "<group>"; };
 		D64C055A23C2A34E00F6DCC1 /* ChannelCellContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChannelCellContentView.swift; sourceTree = "<group>"; };
@@ -953,8 +953,6 @@
 				D642737722C99DB50088256B /* ContactsCollectionView.swift */,
 				D642737922C99DD20088256B /* ContactCell.swift */,
 				D690965723EE6E77008864B6 /* ContactsCoordinator.swift */,
-				D6D87E8A23E69F8400D6A7ED /* ContactSelectionViewController.swift */,
-				D69E7F8F23E6A30A008EB8CC /* ContactsContentType.swift */,
 			);
 			path = Contacts;
 			sourceTree = "<group>";
@@ -1017,7 +1015,7 @@
 		D6486DCA23EF1490007ED680 /* Pending */ = {
 			isa = PBXGroup;
 			children = (
-				D6486DCB23EF14C2007ED680 /* InviteCell.swift */,
+				D6486DCB23EF14C2007ED680 /* PendingInviteCell.swift */,
 				D645996223EF188500BE3F0B /* PendingCollectionView.swift */,
 				D6486DC823EF1486007ED680 /* PendingCollectionViewController.swift */,
 				D6486DCD23EF14E5007ED680 /* PendingCollectionViewManager.swift */,
@@ -1449,6 +1447,8 @@
 				D6486DCA23EF1490007ED680 /* Pending */,
 				D642737222C99D540088256B /* Contacts */,
 				D6D87E8823E69EC400D6A7ED /* InviteCoordinator.swift */,
+				D6D87E8A23E69F8400D6A7ED /* ContactSelectionViewController.swift */,
+				D69E7F8F23E6A30A008EB8CC /* ContactsContentType.swift */,
 				D690964F23E7B835008864B6 /* MessageComposerViewController.swift */,
 			);
 			path = Invite;
@@ -1799,7 +1799,7 @@
 				D6AF0301220154E3002D5C75 /* ChannelManager.swift in Sources */,
 				D64C6A99232D6C0200DB7257 /* TypingBubbleView.swift in Sources */,
 				D61EC0C021D3071400204BEE /* AppDelegate.swift in Sources */,
-				D6486DCC23EF14C2007ED680 /* InviteCell.swift in Sources */,
+				D6486DCC23EF14C2007ED680 /* PendingInviteCell.swift in Sources */,
 				D646DB4022CFCFDB0055CC7C /* Future+Extensions.swift in Sources */,
 				D65B0CCE2344AE390041A176 /* ChannelsViewController+Extensions.swift in Sources */,
 				D645996323EF188500BE3F0B /* PendingCollectionView.swift in Sources */,
