@@ -11,10 +11,10 @@ import Contacts
 
 class ContactsCoordinator: PresentableCoordinator<Void> {
 
-    lazy var contactsVC = ContactSelectionViewController(with: self)
+    lazy var invitesVC = InvitesViewController(with: self)
 
     override func toPresentable() -> DismissableVC {
-        return self.contactsVC
+        return self.invitesVC
     }
 }
 
@@ -54,7 +54,7 @@ extension ContactsCoordinator: ContactsViewControllerDelegate {
 }
 
 extension ContactsCoordinator: ContactSelectionViewControllerDelegate {
-    func contactSelectionView(_ controller: ContactSelectionViewController, didSelect contacts: [CNContact]) {
+    func contactSelectionView(_ controller: InvitesViewController, didSelect contacts: [CNContact]) {
         // go to invite coordinator
         let coordinator = InviteCoordinator(router: self.router,
                                             deeplink: self.deepLink,

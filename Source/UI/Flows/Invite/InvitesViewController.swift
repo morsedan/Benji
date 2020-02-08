@@ -13,10 +13,10 @@ import Contacts
 typealias ContactSelectionViewControllerDelegates = ContactSelectionViewControllerDelegate & ContactsViewControllerDelegate
 
 protocol ContactSelectionViewControllerDelegate: class {
-    func contactSelectionView(_ controller: ContactSelectionViewController, didSelect contacts: [CNContact])
+    func contactSelectionView(_ controller: InvitesViewController, didSelect contacts: [CNContact])
 }
 
-class ContactSelectionViewController: SwitchableContentViewController<ContactsContentType> {
+class InvitesViewController: SwitchableContentViewController<ContactsContentType> {
 
     lazy var contactsVC = ContactsViewController(with: self.delegate)
 
