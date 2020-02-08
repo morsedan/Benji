@@ -41,10 +41,14 @@ class InvitesViewController: SwitchableContentViewController<InvitesContentType>
     override func initializeViews() {
         super.initializeViews()
 
-        self.button.set(style: .normal(color: .purple, text: "Send Invites"))
         self.view.addSubview(self.button)
         self.button.didSelect = { [unowned self] in
-            self.delegate.invitesView(self, didSelect: self.selectedContacts)
+            switch self.currentContent.value {
+            case .contacts(_):
+                self.delegate.invitesView(self, didSelect: self.selectedContacts)
+            case .pending(_):
+                self.currentContent.value = .contacts(self.contactsVC)
+            }
         }
         
         self.view.set(backgroundColor: .background2)
@@ -100,6 +104,10 @@ class InvitesViewController: SwitchableContentViewController<InvitesContentType>
         return .pending(self.pendingVC)
     }
 
+    override func didSelectBackButton() {
+        self.currentContent.value = .pending(self.pendingVC)
+    }
+
     override func willUpdateContent() {
         self.view.bringSubviewToFront(self.button)
 
@@ -109,6 +117,8 @@ class InvitesViewController: SwitchableContentViewController<InvitesContentType>
         case .pending(let vc):
             vc.loadConnections()
         }
+
+        self.updateButton()
     }
 
     override func viewDidLayoutSubviews() {
@@ -129,7 +139,7 @@ class InvitesViewController: SwitchableContentViewController<InvitesContentType>
     }
 
     private func updateButtonForPending() {
-        self.button.set(style: .normal(color: .purple, text: "Choose Others"))
+        self.button.set(style: .normal(color: .purple, text: "Invite Others"))
         let offset = self.view.height - self.view.safeAreaInsets.bottom
         self.animateButton(with: offset)
     }

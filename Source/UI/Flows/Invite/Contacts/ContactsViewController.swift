@@ -54,6 +54,7 @@ class ContactsViewController: CollectionViewController<ContactCell, ContactsColl
 
             self.collectionView.activityIndicator.stopAnimating()
             self.sort(contacts: contacts)
+            self.collectionView.reloadDataAndKeepOffset()
         }
     }
 
