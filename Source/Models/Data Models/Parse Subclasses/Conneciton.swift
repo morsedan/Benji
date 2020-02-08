@@ -24,6 +24,7 @@ final class Conneciton: PFObject, PFSubclassing {
     }
 
     enum Status: String {
+        case invited
         case pending
         case accepted
         case declined

@@ -107,6 +107,7 @@ class InviteComposerCoordinator: Coordinator<Void> {
     private func createConnection(with phoneNumber: String) -> Future<Conneciton> {
         let connection = Conneciton()
         connection.toPhoneNumber = phoneNumber
+        connection.status = Conneciton.Status.invited
         return connection.saveLocalThenServer().then { (newConnection) in
             return User.current()!.add(conneciton: newConnection)
         }
