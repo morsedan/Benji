@@ -13,19 +13,33 @@ class InviteCell: UICollectionViewCell, ManageableCell {
 
     var onLongPress: (() -> Void)?
 
+    let content = InviteableContentView()
+
+    override init(frame: CGRect) {
+        super.init(frame: frame)
+        self.initializeSubviews()
+    }
+
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+
+    private func initializeSubviews() {
+        self.contentView.addSubview(self.content)
+    }
+
     func configure(with item: Inviteable?) {
         guard let inviteable = item else { return }
+
+        self.content.configure(with: inviteable)
     }
 
-    func collectionViewManagerWillDisplay() {
-
-    }
-
-    func collectionViewManagerDidEndDisplaying() {
-
-    }
+    func collectionViewManagerWillDisplay() {}
+    func collectionViewManagerDidEndDisplaying() {}
 
     override func layoutSubviews() {
         super.layoutSubviews()
+
+        self.content.expandToSuperviewSize()
     }
 }
