@@ -952,7 +952,6 @@
 				D642737522C99D9F0088256B /* ContactsCollectionViewManager.swift */,
 				D642737722C99DB50088256B /* ContactsCollectionView.swift */,
 				D642737922C99DD20088256B /* ContactCell.swift */,
-				D690965723EE6E77008864B6 /* ContactsCoordinator.swift */,
 			);
 			path = Contacts;
 			sourceTree = "<group>";
@@ -1447,6 +1446,7 @@
 				D6486DCA23EF1490007ED680 /* Pending */,
 				D642737222C99D540088256B /* Contacts */,
 				D6D87E8823E69EC400D6A7ED /* InviteCoordinator.swift */,
+				D690965723EE6E77008864B6 /* ContactsCoordinator.swift */,
 				D6D87E8A23E69F8400D6A7ED /* InvitesViewController.swift */,
 				D69E7F8F23E6A30A008EB8CC /* ContactsContentType.swift */,
 				D690964F23E7B835008864B6 /* MessageComposerViewController.swift */,

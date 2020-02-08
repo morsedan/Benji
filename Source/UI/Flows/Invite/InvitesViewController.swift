@@ -10,17 +10,18 @@ import Foundation
 import TMROLocalization
 import Contacts
 
-typealias ContactSelectionViewControllerDelegates = ContactSelectionViewControllerDelegate & ContactsViewControllerDelegate
+typealias InvitesViewControllerDelegates = InvitesViewControllerDelegate & ContactsViewControllerDelegate
 
-protocol ContactSelectionViewControllerDelegate: class {
-    func contactSelectionView(_ controller: InvitesViewController, didSelect contacts: [CNContact])
+protocol InvitesViewControllerDelegate: class {
+    func invitesView(_ controller: InvitesViewController, didSelect contacts: [CNContact])
 }
 
-class InvitesViewController: SwitchableContentViewController<ContactsContentType> {
+class InvitesViewController: SwitchableContentViewController<InvitesContentType> {
 
     lazy var contactsVC = ContactsViewController(with: self.delegate)
+    lazy var pendingVC = PendingCollectionViewController()
 
-    unowned let delegate: ContactSelectionViewControllerDelegates
+    unowned let delegate: InvitesViewControllerDelegates
     private let button = Button()
     var buttonOffset: CGFloat?
 
@@ -28,7 +29,7 @@ class InvitesViewController: SwitchableContentViewController<ContactsContentType
         return self.contactsVC.collectionViewManager.selectedItems
     }
 
-    init(with delegate: ContactSelectionViewControllerDelegates) {
+    init(with delegate: InvitesViewControllerDelegates) {
         self.delegate = delegate
         super.init()
     }
@@ -43,10 +44,14 @@ class InvitesViewController: SwitchableContentViewController<ContactsContentType
         self.button.set(style: .normal(color: .purple, text: "Send Invites"))
         self.view.addSubview(self.button)
         self.button.didSelect = { [unowned self] in
-            self.delegate.contactSelectionView(self, didSelect: self.selectedContacts)
+            self.delegate.invitesView(self, didSelect: self.selectedContacts)
         }
         
         self.view.set(backgroundColor: .background2)
+
+        self.currentContent.signal.observeValues { (_) in
+            self.updateButton()
+        }
 
         self.contactsVC.collectionViewManager.onSelectedItem.signal.observeValues { [unowned self] (_) in
             /// update the desctipion
@@ -58,22 +63,41 @@ class InvitesViewController: SwitchableContentViewController<ContactsContentType
     }
 
     func reset() {
-        self.buttonOffset = nil
-        self.animateButton()
-        self.contactsVC.collectionViewManager.reset()
-        self.contactsVC.getContacts()
+        switch self.currentContent.value {
+        case .contacts(_):
+            self.buttonOffset = nil
+            self.animateButton(with: self.view.height + 100)
+            self.contactsVC.collectionViewManager.reset()
+            self.contactsVC.getContacts()
+        case .pending(_):
+            break
+        }
     }
 
     override func getTitle() -> Localized {
-        return "Invites"
+        switch self.currentContent.value {
+        case .contacts(_):
+            return "Send Invites"
+        case .pending(_):
+            return "Pending Invites"
+        }
     }
 
     override func getDescription() -> Localized {
-        return "Select the people you want to invite."
+        switch self.currentContent.value {
+        case .contacts(_):
+            return "Select the people you want to invite."
+        case .pending(let vc):
+            let count = String(vc.collectionViewManager.items.value.count)
+            let description = LocalizedString(id: "",
+                                              arguments: [count],
+                                              default: "You have @(count) pending invites.")
+            return description
+        }
     }
 
-    override func getInitialContent() -> ContactsContentType {
-        return .contacts(self.contactsVC)
+    override func getInitialContent() -> InvitesContentType {
+        return .pending(self.pendingVC)
     }
 
     override func willUpdateContent() {
@@ -89,6 +113,21 @@ class InvitesViewController: SwitchableContentViewController<ContactsContentType
     }
 
     private func updateButton() {
+        switch self.currentContent.value {
+        case .contacts(_):
+            self.updateButtonForContacts()
+        case .pending(_):
+            self.updateButtonForPending()
+        }
+    }
+
+    private func updateButtonForPending() {
+        self.button.set(style: .normal(color: .purple, text: "Choose Others"))
+        let offset = self.view.height - self.view.safeAreaInsets.bottom
+        self.animateButton(with: offset)
+    }
+
+    private func updateButtonForContacts() {
         let buttonText: LocalizedString
         if self.selectedContacts.count > 1 {
             buttonText = LocalizedString(id: "",
@@ -99,10 +138,7 @@ class InvitesViewController: SwitchableContentViewController<ContactsContentType
         }
 
         self.button.set(style: .normal(color: .purple, text: buttonText))
-        self.animateButton()
-    }
 
-    private func animateButton() {
         var newOffset: CGFloat
         if self.selectedContacts.count >= 1 {
             newOffset = self.view.height - self.view.safeAreaInsets.bottom
@@ -110,6 +146,10 @@ class InvitesViewController: SwitchableContentViewController<ContactsContentType
             newOffset = self.view.height + 100
         }
 
+        self.animateButton(with: newOffset)
+    }
+
+    private func animateButton(with newOffset: CGFloat) {
         guard self.buttonOffset != newOffset else { return }
 
         self.buttonOffset = newOffset

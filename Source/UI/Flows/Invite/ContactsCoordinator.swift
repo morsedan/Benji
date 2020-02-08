@@ -53,8 +53,8 @@ extension ContactsCoordinator: ContactsViewControllerDelegate {
     }
 }
 
-extension ContactsCoordinator: ContactSelectionViewControllerDelegate {
-    func contactSelectionView(_ controller: InvitesViewController, didSelect contacts: [CNContact]) {
+extension ContactsCoordinator: InvitesViewControllerDelegate {
+    func invitesView(_ controller: InvitesViewController, didSelect contacts: [CNContact]) {
         // go to invite coordinator
         let coordinator = InviteCoordinator(router: self.router,
                                             deeplink: self.deepLink,

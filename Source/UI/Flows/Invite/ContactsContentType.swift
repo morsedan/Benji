@@ -8,19 +8,27 @@
 
 import Foundation
 
-enum ContactsContentType: Switchable {
+enum InvitesContentType: Switchable {
 
     case contacts(ContactsViewController)
+    case pending(PendingCollectionViewController)
 
     var viewController: UIViewController & Sizeable {
         switch self {
         case .contacts(let vc):
             return vc
+        case .pending(let vc):
+            return vc
         }
     }
 
     var shouldShowBackButton: Bool {
-        return false
+        switch self {
+        case .contacts(_):
+            return true
+        case .pending(_):
+            return false
+        }
     }
 }
 
