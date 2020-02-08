@@ -14,28 +14,32 @@ class ContactCell: UICollectionViewCell, ManageableCell {
 
     var onLongPress: (() -> Void)?
 
-    let avatarView = AvatarView()
-    let nameLabel = RegularLabel()
-    let button = Button()
+    let content = InviteableContentView()
+
+    override init(frame: CGRect) {
+        super.init(frame: frame)
+        self.initializeSubviews()
+    }
+
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+
+    private func initializeSubviews() {
+        self.contentView.addSubview(self.content)
+    }
 
     func configure(with item: CNContact?) {
         guard let contact = item else { return }
 
-        self.contentView.addSubview(self.avatarView)
-        self.contentView.addSubview(self.nameLabel)
-        self.contentView.addSubview(self.button)
-
-        self.nameLabel.set(text: contact.fullName, stringCasing: .capitalized)
-        self.layoutNow()
-
-        self.avatarView.set(avatar: contact)
+        self.content.configure(with: .contact(contact))
     }
 
     func update(isSelected: Bool) {
         if isSelected {
-            self.button.set(style: .normal(color: .lightPurple, text: "Added"))
+            self.content.button.set(style: .normal(color: .lightPurple, text: "Added"))
         } else {
-            self.button.set(style: .normal(color: .blue, text: "Invite"))
+            self.content.button.set(style: .normal(color: .blue, text: "Invite"))
         }
     }
 
@@ -45,17 +49,6 @@ class ContactCell: UICollectionViewCell, ManageableCell {
     override func layoutSubviews() {
         super.layoutSubviews()
 
-        self.avatarView.size = CGSize(width: 44, height: 60)
-        self.avatarView.left = Theme.contentOffset
-        self.avatarView.centerOnY()
-
-        let nameWidth = self.contentView.width - self.avatarView.right - (Theme.contentOffset * 2)
-        self.nameLabel.size = CGSize(width: nameWidth, height: 40)
-        self.nameLabel.centerY = self.avatarView.centerY
-        self.nameLabel.left = self.avatarView.right + Theme.contentOffset
-
-        self.button.size = CGSize(width: 80, height: 30)
-        self.button.centerOnY()
-        self.button.right = self.contentView.right - Theme.contentOffset
+        self.content.expandToSuperviewSize()
     }
 }

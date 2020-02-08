@@ -99,6 +99,7 @@
 		D6432BF322D828480016001A /* ChannelDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6432BF222D828480016001A /* ChannelDataSource.swift */; };
 		D6432BF522D82CDC0016001A /* ChannelCollectionViewFlowLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6432BF422D82CDC0016001A /* ChannelCollectionViewFlowLayout.swift */; };
 		D645996323EF188500BE3F0B /* PendingCollectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D645996223EF188500BE3F0B /* PendingCollectionView.swift */; };
+		D645996523EF199600BE3F0B /* InviteableContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D645996423EF199600BE3F0B /* InviteableContentView.swift */; };
 		D646DB3C22CFCCD80055CC7C /* ClientError.swift in Sources */ = {isa = PBXBuildFile; fileRef = D646DB3B22CFCCD80055CC7C /* ClientError.swift */; };
 		D646DB3E22CFCF330055CC7C /* TwilioChatClient+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = D646DB3D22CFCF330055CC7C /* TwilioChatClient+Extensions.swift */; };
 		D646DB4022CFCFDB0055CC7C /* Future+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = D646DB3F22CFCFDB0055CC7C /* Future+Extensions.swift */; };
@@ -405,6 +406,7 @@
 		D6432BF222D828480016001A /* ChannelDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChannelDataSource.swift; sourceTree = "<group>"; };
 		D6432BF422D82CDC0016001A /* ChannelCollectionViewFlowLayout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChannelCollectionViewFlowLayout.swift; sourceTree = "<group>"; };
 		D645996223EF188500BE3F0B /* PendingCollectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PendingCollectionView.swift; sourceTree = "<group>"; };
+		D645996423EF199600BE3F0B /* InviteableContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InviteableContentView.swift; sourceTree = "<group>"; };
 		D646DB3B22CFCCD80055CC7C /* ClientError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClientError.swift; sourceTree = "<group>"; };
 		D646DB3D22CFCF330055CC7C /* TwilioChatClient+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "TwilioChatClient+Extensions.swift"; sourceTree = "<group>"; };
 		D646DB3F22CFCFDB0055CC7C /* Future+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Future+Extensions.swift"; sourceTree = "<group>"; };
@@ -1015,7 +1017,6 @@
 		D6486DCA23EF1490007ED680 /* Pending */ = {
 			isa = PBXGroup;
 			children = (
-				D6486DCF23EF15A2007ED680 /* Inviteable.swift */,
 				D6486DCB23EF14C2007ED680 /* InviteCell.swift */,
 				D645996223EF188500BE3F0B /* PendingCollectionView.swift */,
 				D6486DC823EF1486007ED680 /* PendingCollectionViewController.swift */,
@@ -1443,6 +1444,8 @@
 		D6D87E8723E69E6A00D6A7ED /* Invite */ = {
 			isa = PBXGroup;
 			children = (
+				D645996423EF199600BE3F0B /* InviteableContentView.swift */,
+				D6486DCF23EF15A2007ED680 /* Inviteable.swift */,
 				D6486DCA23EF1490007ED680 /* Pending */,
 				D642737222C99D540088256B /* Contacts */,
 				D6D87E8823E69EC400D6A7ED /* InviteCoordinator.swift */,
@@ -1803,6 +1806,7 @@
 				D609AE3A236F44A8004FA89A /* User+Extensions.swift in Sources */,
 				D642739322C9C0110088256B /* AlertView.swift in Sources */,
 				D6D145FD21D550E400CD8CE4 /* AttributedString.swift in Sources */,
+				D645996523EF199600BE3F0B /* InviteableContentView.swift in Sources */,
 				D6D14D8F21D5893600CD8CE4 /* NSNumber+IGListDiffable.m in Sources */,
 				D6740D4823AEA5BD009D5702 /* ChannelsCoordiantor.swift in Sources */,
 				D6E0ED53239CBDA40073B33E /* FeedUnreadView.swift in Sources */,

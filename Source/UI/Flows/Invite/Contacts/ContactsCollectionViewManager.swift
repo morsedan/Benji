@@ -13,7 +13,7 @@ class ContactsCollectionViewManager: CollectionViewManager<ContactCell> {
     override func managerDidConfigure(cell: ContactCell, for indexPath: IndexPath) {
         super.managerDidConfigure(cell: cell, for: indexPath)
 
-        cell.button.didSelect = { [unowned self] in
+        cell.content.button.didSelect = { [unowned self] in
             self.select(indexPath: indexPath)
         }
     }
