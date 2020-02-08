@@ -12,7 +12,7 @@ import Contacts
 class InviteCoordinator: PresentableCoordinator<Void> {
 
     lazy var inviteVC = InviteViewController(with: self)
-
+    
     override func toPresentable() -> DismissableVC {
         return self.inviteVC
     }
@@ -56,6 +56,14 @@ extension InviteCoordinator: ContactsViewControllerDelegate {
 extension InviteCoordinator: InviteViewControllerDelegate {
 
     func inviteView(_ controller: InviteViewController, didSelect contacts: [CNContact]) {
-        // send invites
+        //self.composerVC.contacts = contacts
+        //self.router.present(self.composerVC, source: controller)
+    }
+}
+
+extension InviteCoordinator: ComposerViewControllerDelegate {
+
+    func composerViewControllerDidFinish(_ controller: ComposerViewController) {
+        // do something
     }
 }

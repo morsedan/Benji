@@ -190,7 +190,8 @@
 		D68540E1235FF056006F666C /* TextSuggestionCellAttributesConfigurer.swift in Sources */ = {isa = PBXBuildFile; fileRef = D68540E0235FF056006F666C /* TextSuggestionCellAttributesConfigurer.swift */; };
 		D685E9272331177100CC1BAB /* UserNotificationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = D685E9262331177100CC1BAB /* UserNotificationManager.swift */; };
 		D68DC7FC22EE5D9000BEAF80 /* FeedOverlayView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D68DC7FB22EE5D9000BEAF80 /* FeedOverlayView.swift */; };
-		D690964E23E775E0008864B6 /* InviteModalViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D690964D23E775E0008864B6 /* InviteModalViewController.swift */; };
+		D690964E23E775E0008864B6 /* InviteComposerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D690964D23E775E0008864B6 /* InviteComposerViewController.swift */; };
+		D690965023E7B835008864B6 /* MessageComposerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D690964F23E7B835008864B6 /* MessageComposerViewController.swift */; };
 		D691794222F6418700340AA3 /* Router.swift in Sources */ = {isa = PBXBuildFile; fileRef = D691794122F6418700340AA3 /* Router.swift */; };
 		D696A8E92308D5C900DAFED4 /* MessageInputView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D696A8E82308D5C900DAFED4 /* MessageInputView.swift */; };
 		D69E7F9023E6A30A008EB8CC /* InviteContentType.swift in Sources */ = {isa = PBXBuildFile; fileRef = D69E7F8F23E6A30A008EB8CC /* InviteContentType.swift */; };
@@ -491,7 +492,8 @@
 		D68540E0235FF056006F666C /* TextSuggestionCellAttributesConfigurer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextSuggestionCellAttributesConfigurer.swift; sourceTree = "<group>"; };
 		D685E9262331177100CC1BAB /* UserNotificationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserNotificationManager.swift; sourceTree = "<group>"; };
 		D68DC7FB22EE5D9000BEAF80 /* FeedOverlayView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedOverlayView.swift; sourceTree = "<group>"; };
-		D690964D23E775E0008864B6 /* InviteModalViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InviteModalViewController.swift; sourceTree = "<group>"; };
+		D690964D23E775E0008864B6 /* InviteComposerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InviteComposerViewController.swift; sourceTree = "<group>"; };
+		D690964F23E7B835008864B6 /* MessageComposerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageComposerViewController.swift; sourceTree = "<group>"; };
 		D691794122F6418700340AA3 /* Router.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Router.swift; sourceTree = "<group>"; };
 		D696A8E82308D5C900DAFED4 /* MessageInputView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageInputView.swift; sourceTree = "<group>"; };
 		D69E7F8F23E6A30A008EB8CC /* InviteContentType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InviteContentType.swift; sourceTree = "<group>"; };
@@ -1419,8 +1421,9 @@
 				D642737222C99D540088256B /* Contacts */,
 				D69E7F8F23E6A30A008EB8CC /* InviteContentType.swift */,
 				D6D87E8823E69EC400D6A7ED /* InviteCoordinator.swift */,
+				D690964D23E775E0008864B6 /* InviteComposerViewController.swift */,
 				D6D87E8A23E69F8400D6A7ED /* InviteViewController.swift */,
-				D690964D23E775E0008864B6 /* InviteModalViewController.swift */,
+				D690964F23E7B835008864B6 /* MessageComposerViewController.swift */,
 			);
 			path = Invite;
 			sourceTree = "<group>";
@@ -1858,11 +1861,12 @@
 				80D4A21C2303A005007CB5F1 /* Routine.swift in Sources */,
 				D62C635422BE9CBB00F4D097 /* FeedViewController.swift in Sources */,
 				D6D14FF921D5893700CD8CE4 /* NSString+IGListDiffable.m in Sources */,
+				D690965023E7B835008864B6 /* MessageComposerViewController.swift in Sources */,
 				D63826D22274C8C0001D4B8B /* ChannelManager+Extensions.swift in Sources */,
 				D63752F92313833B00214F63 /* ProfileAvatarView.swift in Sources */,
 				D61EC0E221D30E6000204BEE /* Label.swift in Sources */,
 				D68540D5235FDECC006F666C /* SuggestionCollectionViewFlowLayout.swift in Sources */,
-				D690964E23E775E0008864B6 /* InviteModalViewController.swift in Sources */,
+				D690964E23E775E0008864B6 /* InviteComposerViewController.swift in Sources */,
 				D61EC0E021D30E3F00204BEE /* FullScreenViewController.swift in Sources */,
 				D6D1502D21D6A08300CD8CE4 /* ChannelCollectionView.swift in Sources */,
 				D6B2603A22E6ABCA00143CF0 /* DisplayLabel.swift in Sources */,

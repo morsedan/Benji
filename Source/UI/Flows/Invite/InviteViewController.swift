@@ -10,7 +10,7 @@ import Foundation
 import TMROLocalization
 import Contacts
 
-typealias InviteViewControllerDelegates = ContactsViewControllerDelegate & InviteViewControllerDelegate
+typealias InviteViewControllerDelegates = ContactsViewControllerDelegate & InviteViewControllerDelegate & ComposerViewControllerDelegate
 
 protocol InviteViewControllerDelegate: class {
     func inviteView(_ controller: InviteViewController, didSelect contacts: [CNContact])
@@ -19,6 +19,8 @@ protocol InviteViewControllerDelegate: class {
 class InviteViewController: SwitchableContentViewController<InviteContenType> {
 
     lazy var contactsVC = ContactsViewController(with: self.delegate)
+    lazy var composerVC = ComposerViewController(delegate: self.delegate)
+
     unowned let delegate: InviteViewControllerDelegates
     private let button = Button()
     var buttonOffset: CGFloat?
@@ -68,6 +70,10 @@ class InviteViewController: SwitchableContentViewController<InviteContenType> {
         return .contacts(self.contactsVC)
     }
 
+    override func didSelectBackButton() {
+        self.currentContent.value = .contacts(self.contactsVC)
+    }
+
     override func willUpdateContent() {
         self.view.bringSubviewToFront(self.button)
     }
@@ -78,6 +84,11 @@ class InviteViewController: SwitchableContentViewController<InviteContenType> {
         self.button.size(with: self.view.width)
         self.button.centerOnX()
         self.button.bottom = self.buttonOffset ?? self.view.height + 100
+    }
+
+    private func didSelect(contacts: [CNContact]) {
+        self.composerVC.contacts = contacts
+        self.currentContent.value = .composer(self.composerVC)
     }
 
     private func updateButton() {
