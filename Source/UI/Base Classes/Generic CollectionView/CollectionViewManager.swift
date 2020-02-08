@@ -149,6 +149,7 @@ UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFl
     func willScrollToSelected(indexPath: IndexPath) {}
 
     func reset() {
+        self.selectedIndexPaths = []
         self.items.value = []
         self.collectionView.reloadData()
     }

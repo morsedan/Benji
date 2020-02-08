@@ -57,6 +57,13 @@ class ContactSelectionViewController: SwitchableContentViewController<ContactsCo
         self.contactsVC.getAuthorizationStatus()
     }
 
+    func reset() {
+        self.buttonOffset = nil
+        self.animateButton()
+        self.contactsVC.collectionViewManager.reset()
+        self.contactsVC.getContacts()
+    }
+
     override func getTitle() -> Localized {
         return "Invites"
     }

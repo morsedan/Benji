@@ -40,7 +40,7 @@ class OnboardingViewController: SwitchableContentViewController<OnboardingConten
 
         self.reservationVC.onDidComplete = { [unowned self] result in
             switch result {
-            case .success(let reservation):
+            case .success(_):
                 self.currentContent.value = .phone(self.phoneVC)
             case .failure(let error):
                 print(error)

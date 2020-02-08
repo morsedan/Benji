@@ -63,7 +63,5 @@ class ContactsViewController: CollectionViewController<ContactCell, ContactsColl
 
     func handleKeyboard(frame: CGRect,
                         with animationDuration: TimeInterval,
-                        timingCurve: UIView.AnimationCurve) {
-
-    }
+                        timingCurve: UIView.AnimationCurve) {}
 }

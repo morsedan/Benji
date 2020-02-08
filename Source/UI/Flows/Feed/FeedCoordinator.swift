@@ -49,7 +49,7 @@ extension FeedCoordinator: FeedViewControllerDelegate {
             self.startContactSelectionFlow()
         case .notificationPermissions:
             break
-        case .connecitonRequest(let connection):
+        case .connecitonRequest(_):
             break 
         }
     }

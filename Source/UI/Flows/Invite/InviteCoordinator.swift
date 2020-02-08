@@ -9,6 +9,8 @@
 import Foundation
 import Contacts
 import MessageUI
+import Branch
+import TMROLocalization
 
 // Creating a delegate object for the message composer because MFMessageComposeViewControllerDelegate
 // must conform to NSObjectProtocol and I don't want to force coordinators to be NSObjects.
@@ -63,7 +65,6 @@ class InviteCoordinator: Coordinator<Void> {
 
         vc.body = self.createMessage()
 
-
         vc.recipients = [phoneNumber]
         vc.messageComposeDelegate = self.composerDelegate
 
@@ -71,7 +72,24 @@ class InviteCoordinator: Coordinator<Void> {
     }
 
     private func createMessage() -> String {
-        return "Some invite message"
+        guard let link = self.createLink() else { return String() }
+        let message = LocalizedString(id: "",
+                                      arguments: [link],
+                                      default: "Because you mean a lot to me, I saved you a spot on this app that will help us communicate better. Claim it here: @(link)")
+        return localized(message)
+    }
+
+    private func createLink() -> String? {
+
+        let canonicalIdentifier = UUID().uuidString
+        let buo = BranchUniversalObject(canonicalIdentifier: canonicalIdentifier)
+        buo.title = localized(LocalizedString(id: "", default: "Benji"))
+        buo.contentDescription = localized(LocalizedString(id: "", default: "Private message"))
+
+        let properties = BranchLinkProperties()
+        properties.channel = "iOS"
+        let shortURL = buo.getShortUrl(with: properties)
+        return shortURL
     }
 
     func handleMessageComposer(result: MessageComposeResult, controller: MFMessageComposeViewController) {

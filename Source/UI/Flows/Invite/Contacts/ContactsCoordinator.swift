@@ -61,7 +61,7 @@ extension ContactsCoordinator: ContactSelectionViewControllerDelegate {
                                             contacts: contacts,
                                             source: controller)
         self.addChildAndStart(coordinator, finishedHandler: { (_) in
-            /// reset??
+            controller.reset()
         })
     }
 }
