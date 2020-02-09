@@ -10,7 +10,7 @@ import Foundation
 
 extension CollectionViewManager {
 
-    func animateOut(direction: AnimationPosition,
+    func animateOut(position: AnimationPosition,
                     concatenate: Bool,
                     completion: CompletionOptional) {
 
@@ -29,7 +29,7 @@ extension CollectionViewManager {
             cell.alpha = 1.0
             let delay: TimeInterval = concatenate ? duration/Double(visibleCells.count)*Double(index) : 0
             UIView.animate(withDuration: duration, delay: delay, options: .curveEaseInOut, animations: {
-                cell.transform = direction.getTransform(for: cell)
+                cell.transform = position.getTransform(for: cell)
                 cell.alpha = 0.0
             })
             longestDelay = delay
@@ -41,17 +41,17 @@ extension CollectionViewManager {
         }
     }
 
-    func animateIn(direction: AnimationPosition,
+    func animateIn(position: AnimationPosition,
                    concatenate: Bool,
                    scrollToEnd: Bool,
                    completion: CompletionOptional) {
 
         if scrollToEnd {
             self.collectionView.scrollToEnd(animated: false, completion: { [unowned self] in
-                self.animateToFinal(direction: direction, concatenate: concatenate, completion: completion)
+                self.animateToFinal(direction: position, concatenate: concatenate, completion: completion)
             })
         } else {
-            self.animateToFinal(direction: direction, concatenate: concatenate, completion: completion)
+            self.animateToFinal(direction: position, concatenate: concatenate, completion: completion)
         }
     }
 

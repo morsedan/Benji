@@ -58,12 +58,12 @@ UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFl
              completion: ((Bool) -> Swift.Void)? = nil) {
 
         if let cycle = animationCycle {
-            self.animateOut(direction: cycle.outToPosition, concatenate: cycle.shouldConcatenate) { [unowned self] in
+            self.animateOut(position: cycle.outToPosition, concatenate: cycle.shouldConcatenate) { [unowned self] in
                 self.updateCollectionView(items: newItems, modify: { [weak self] in
                     guard let `self` = self else { return }
                     self.items.value = newItems
                 }) { (completed) in
-                    self.animateIn(direction: cycle.inFromPosition,
+                    self.animateIn(position: cycle.inFromPosition,
                                    concatenate: cycle.shouldConcatenate,
                                    scrollToEnd: cycle.scrollToEnd) {
                         completion?(completed)
