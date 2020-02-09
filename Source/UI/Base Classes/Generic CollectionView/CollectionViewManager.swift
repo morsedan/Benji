@@ -6,7 +6,7 @@ import ReactiveSwift
 class CollectionViewManager<CellType: ManageableCell & UICollectionViewCell>: NSObject,
 UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout {
 
-    unowned let collectionView: UICollectionView
+    unowned let collectionView: CollectionView
 
     let items = MutableProperty<[CellType.ItemType]>([])
 
@@ -37,7 +37,7 @@ UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFl
     var willDisplayCell: ((CellType.ItemType, IndexPath) -> Void)?
     var didFinishCenteringOnCell: ((CellType.ItemType, IndexPath) -> Void)?
 
-    required init(with collectionView: UICollectionView) {
+    required init(with collectionView: CollectionView) {
         self.collectionView = collectionView
 
         super.init()
@@ -52,6 +52,33 @@ UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFl
     }
 
     // MARK: Data Source Updating
+
+    func set(newItems: [CellType.ItemType],
+             animationCycle: AnimationCycle? = nil ,
+             completion: ((Bool) -> Swift.Void)? = nil) {
+
+        if let cycle = animationCycle {
+            self.animateOut(position: cycle.outToPosition, concatenate: cycle.shouldConcatenate) { [unowned self] in
+                self.updateCollectionView(items: newItems, modify: { [weak self] in
+                    guard let `self` = self else { return }
+                    self.items.value = newItems
+                }) { (completed) in
+                    self.animateIn(position: cycle.inFromPosition,
+                                   concatenate: cycle.shouldConcatenate,
+                                   scrollToEnd: cycle.scrollToEnd) {
+                        completion?(completed)
+                    }
+                }
+            }
+        } else {
+            self.updateCollectionView(items: newItems, modify: { [weak self] in
+                guard let `self` = self else { return }
+                self.items.value = newItems
+            }) { (completed) in
+                completion?(completed)
+            }
+        }
+    }
 
     func set(newItems: [CellType.ItemType], completion: ((Bool) -> Swift.Void)? = nil) {
         self.updateCollectionView(items: newItems, modify: { [weak self] in

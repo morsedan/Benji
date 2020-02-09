@@ -63,7 +63,14 @@ class ChannelsCollectionViewManager: CollectionViewManager<ChannelCell> {
     }
 
     func loadAllChannels() {
-        self.set(newItems: self.channelCache)
+        let cycle = AnimationCycle(inFromPosition: .down,
+                                   outToPosition: .down,
+                                   shouldConcatenate: true,
+                                   scrollToEnd: false)
+
+        self.set(newItems: self.channelCache,
+                 animationCycle: cycle,
+                 completion: nil)
     }
 
     // MARK: Menu overrides

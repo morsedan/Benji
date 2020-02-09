@@ -22,17 +22,6 @@ class CollectionView: UICollectionView {
         fatalError("init(coder:) has not been implemented")
     }
 
-    func scrollToBottom(animated: Bool = true) {
-        let collectionViewContentHeight = collectionViewLayout.collectionViewContentSize.height
-
-        self.performBatchUpdates(nil) { _ in
-            self.scrollRectToVisible(CGRect(x: 0.0,
-                                            y: collectionViewContentHeight - 1.0,
-                                            width: 1.0, height: 1.0),
-                                     animated: animated)
-        }
-    }
-
     func initialize() {
         self.addSubview(self.activityIndicator)
     }
@@ -41,6 +30,32 @@ class CollectionView: UICollectionView {
         super.layoutSubviews()
 
         self.activityIndicator.centerOnXAndY()
+    }
+
+    func scrollToEnd(animated: Bool = true, completion: CompletionOptional = nil) {
+
+        var rect: CGRect = .zero
+        if let flowLayout = self.collectionViewLayout as? UICollectionViewFlowLayout,
+            flowLayout.scrollDirection == .vertical {
+
+            let contentHeight = self.collectionViewLayout.collectionViewContentSize.height
+            rect = CGRect(x: 0.0,
+                          y: contentHeight - 1.0,
+                          width: 1.0,
+                          height: 1.0)
+        } else {
+            let contentWidth = self.collectionViewLayout.collectionViewContentSize.width
+            rect = CGRect(x: contentWidth - 1.0,
+                          y: 0,
+                          width: 1.0,
+                          height: 1.0)
+        }
+
+        self.performBatchUpdates({
+            self.scrollRectToVisible(rect, animated: animated)
+        }) { (completed) in
+            completion?()
+        }
     }
 
     func reloadDataAndKeepOffset() {
@@ -66,7 +81,7 @@ class CollectionView: UICollectionView {
 
     /// Registers a reusable view for a specific SectionKind
     func register<T: UICollectionReusableView>(_ reusableViewClass: T.Type,
-                                                      forSupplementaryViewOfKind kind: String) {
+                                               forSupplementaryViewOfKind kind: String) {
         self.register(reusableViewClass,
                       forSupplementaryViewOfKind: kind,
                       withReuseIdentifier: String(describing: T.self))

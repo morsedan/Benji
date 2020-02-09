@@ -15,7 +15,7 @@ extension ChannelCollectionViewManager {
             guard let `self` = self else { return }
             if success, self.isLastMessageVisible() == true {
                 runMain {
-                    self.collectionView.scrollToBottom()
+                    self.collectionView.scrollToEnd()
                 }
             }
         }

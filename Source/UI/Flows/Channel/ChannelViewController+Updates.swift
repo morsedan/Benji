@@ -28,7 +28,7 @@ extension ChannelViewController {
             .observeValue(with: { (sections) in
                 self.collectionView.activityIndicator.stopAnimating()
                 self.collectionViewManager.set(newSections: sections) { [unowned self] in
-                    self.collectionView.scrollToBottom()
+                    self.collectionView.scrollToEnd()
                 }
             })
     }
@@ -39,7 +39,7 @@ extension ChannelViewController {
 
         self.collectionViewManager.set(newSections: sections) { [weak self] in
             guard let `self` = self else { return }
-            self.collectionView.scrollToBottom()
+            self.collectionView.scrollToEnd()
         }
     }
 
@@ -78,7 +78,7 @@ extension ChannelViewController {
             case .added:
                 if self.collectionView.isTypingIndicatorHidden {
                     self.collectionViewManager.updateItem(with: channelUpdate.message) {
-                        self.collectionView.scrollToBottom()
+                        self.collectionView.scrollToEnd()
                     }
                 } else {
                     self.collectionViewManager.setTypingIndicatorViewHidden(true, performUpdates: { [weak self] in

@@ -163,7 +163,7 @@ class ChannelViewController: FullScreenViewController {
                                           attributes: mutableAttributes)
 
         self.collectionViewManager.append(item: systemMessage) { [unowned self] in
-            self.collectionView.scrollToBottom()
+            self.collectionView.scrollToEnd()
         }
         ChannelManager.shared.sendMessage(to: channel,
                                           with: message,
