@@ -53,6 +53,31 @@ UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFl
 
     // MARK: Data Source Updating
 
+    func set(newItems: [CellType.ItemType],
+             animationCycle: AnimationCycle? = nil ,
+             completion: ((Bool) -> Swift.Void)? = nil) {
+
+        if let cycle = animationCycle {
+            self.animateOut(direction: cycle.inDirection, concatenate: cycle.shouldConcatenate) { [unowned self] in
+                self.updateCollectionView(items: newItems, modify: { [weak self] in
+                    guard let `self` = self else { return }
+                    self.items.value = newItems
+                }) { (completed) in
+                    self.animateIn(direction: cycle.outDirection, concatenate: cycle.shouldConcatenate) {
+                        completion?(completed)
+                    }
+                }
+            }
+        } else {
+            self.updateCollectionView(items: newItems, modify: { [weak self] in
+                guard let `self` = self else { return }
+                self.items.value = newItems
+            }) { (completed) in
+                completion?(completed)
+            }
+        }
+    }
+
     func set(newItems: [CellType.ItemType], completion: ((Bool) -> Swift.Void)? = nil) {
         self.updateCollectionView(items: newItems, modify: { [weak self] in
             guard let `self` = self else { return }
