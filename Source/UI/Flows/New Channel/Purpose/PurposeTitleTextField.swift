@@ -19,14 +19,5 @@ class PurposeTitleTextField: TextField {
         let attributed = AttributedString("", fontType: .smallBold, color: .background4)
         self.setPlaceholder(attributed: attributed)
         self.setDefaultAttributes(style: StringStyle(font: .smallBold, color: .white))
-
-        self.setDefault()
-    }
-
-    private func setDefault() {
-        let formatter = DateFormatter()
-        formatter.dateFormat = "EEEEMMdd"
-
-        self.text = formatter.string(from: Date()).lowercased()
     }
 }
