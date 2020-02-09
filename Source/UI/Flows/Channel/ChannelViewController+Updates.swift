@@ -27,9 +27,7 @@ extension ChannelViewController {
         MessageSupplier.shared.getLastMessages(for: channel)
             .observeValue(with: { (sections) in
                 self.collectionView.activityIndicator.stopAnimating()
-                self.collectionViewManager.set(newSections: sections) { [unowned self] in
-                    self.collectionView.scrollToEnd()
-                }
+                self.collectionViewManager.set(newSections: sections, animate: true, completion: nil)
             })
     }
 
@@ -63,10 +61,6 @@ extension ChannelViewController {
     }
 
     private func subscribeToUpdates() {
-
-        if ChannelManager.shared.isSynced {
-            self.loadMessages()
-        }
 
         ChannelManager.shared.messageUpdate.producer.on { [weak self] (update) in
             guard let `self` = self else { return }

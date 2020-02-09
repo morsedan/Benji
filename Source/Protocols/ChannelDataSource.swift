@@ -24,6 +24,7 @@ protocol ChannelDataSource: AnyObject {
     func reset()
     func set(newSections: [ChannelSectionable],
              keepOffset: Bool,
+             animate: Bool,
              completion: CompletionOptional)
     func append(item: Messageable, completion: CompletionOptional)
     func updateItem(with updatedItem: Messageable,
@@ -57,21 +58,28 @@ extension ChannelDataSource {
 
     func set(newSections: [ChannelSectionable],
              keepOffset: Bool = false,
+             animate: Bool = false,
              completion: CompletionOptional) {
 
-        guard newSections.count > 0 else {
-            completion?()
-            return
-        }
+        if animate {
+            self.collectionView.alpha = 0
+            self.sections = newSections
+            if keepOffset {
+                self.collectionView.reloadDataAndKeepOffset()
+            } else {
+                self.collectionView.reloadData()
+            }
 
-        self.sections = newSections
-
-        if keepOffset {
-            self.collectionView.reloadDataAndKeepOffset()
-            completion?()
+            self.animateIn(completion: completion)
         } else {
-            self.collectionView.reloadData()
-            completion?()
+            self.sections = newSections
+            if keepOffset {
+                self.collectionView.reloadDataAndKeepOffset()
+                completion?()
+            } else {
+                self.collectionView.reloadData()
+                completion?()
+            }
         }
     }
 
@@ -125,7 +133,7 @@ extension ChannelDataSource {
 
         if indexPath == nil {
             if replaceTypingIndicator, let lastSection = self.sections.last {
-                 let section = self.sections.count - 1
+                let section = self.sections.count - 1
                 indexPath = IndexPath(item: lastSection.items.count - 1, section: section)
             } else {
                 self.append(item: updatedItem, completion: completion)

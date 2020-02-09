@@ -90,9 +90,10 @@ class ChannelViewController: FullScreenViewController {
         }
 
         self.disposables += ChannelManager.shared.activeChannel.producer
+            .skipRepeats()
             .on { [unowned self] (channel) in
 
-                guard let strongChannel = channel else {
+                guard let strongChannel = channel, strongChannel != ChannelManager.shared.activeChannel.value else {
                     self.collectionView.activityIndicator.startAnimating()
                     self.collectionViewManager.reset()
                     return
@@ -136,6 +137,7 @@ class ChannelViewController: FullScreenViewController {
         super.viewWasDismissed()
 
         ChannelManager.shared.activeChannel.value = nil
+        self.collectionViewManager.reset()
     }
 
     @discardableResult

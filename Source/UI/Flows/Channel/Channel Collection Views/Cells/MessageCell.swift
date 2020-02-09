@@ -16,6 +16,7 @@ class MessageCell: UICollectionViewCell {
     let textView = MessageTextView()
     let overlayView = View()
     var didTapMessage: () -> Void = {}
+    private(set) var currentMessage: Messageable?
 
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -60,6 +61,7 @@ class MessageCell: UICollectionViewCell {
     override func prepareForReuse() {
         super.prepareForReuse()
 
+        self.currentMessage = nil 
         self.bubbleView.layer.borderColor = nil
         self.bubbleView.layer.borderWidth = 0
         
@@ -67,7 +69,7 @@ class MessageCell: UICollectionViewCell {
     }
 
     func configure(with message: Messageable) {
-
+        self.currentMessage = message
         if !message.isFromCurrentUser {
             self.avatarView.set(avatar: message.avatar)
         }
