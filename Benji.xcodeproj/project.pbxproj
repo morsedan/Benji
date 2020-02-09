@@ -48,6 +48,7 @@
 		D61EC0F721D316F100204BEE /* Color.swift in Sources */ = {isa = PBXBuildFile; fileRef = D61EC0F621D316F100204BEE /* Color.swift */; };
 		D61EC0F921D317AB00204BEE /* Theme.swift in Sources */ = {isa = PBXBuildFile; fileRef = D61EC0F821D317AB00204BEE /* Theme.swift */; };
 		D61EC0FC21D437C100204BEE /* Pods_Benji.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D61EC0FB21D437C100204BEE /* Pods_Benji.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
+		D623BC4F23EF5157007358CB /* ProfileItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = D623BC4E23EF5157007358CB /* ProfileItem.swift */; };
 		D624296723A9EF4F00322ABE /* HomeTabView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D624296623A9EF4F00322ABE /* HomeTabView.swift */; };
 		D62C635422BE9CBB00F4D097 /* FeedViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D62C635322BE9CBB00F4D097 /* FeedViewController.swift */; };
 		D62C635622BE9E5C00F4D097 /* CollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D62C635522BE9E5C00F4D097 /* CollectionViewController.swift */; };
@@ -65,7 +66,7 @@
 		D63C67E023D416B800EA373A /* FaceDetectionViewController+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = D63C67DF23D416B800EA373A /* FaceDetectionViewController+Extensions.swift */; };
 		D6405B5E236BCB4D00FAA06B /* AlertConfirmationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6405B5D236BCB4D00FAA06B /* AlertConfirmationView.swift */; };
 		D6405B67236E002E00FAA06B /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6405B66236E002E00FAA06B /* User.swift */; };
-		D6405B6B236E0E7900FAA06B /* Conneciton.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6405B6A236E0E7900FAA06B /* Conneciton.swift */; };
+		D6405B6B236E0E7900FAA06B /* Connection.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6405B6A236E0E7900FAA06B /* Connection.swift */; };
 		D6405B6F236E138D00FAA06B /* Reservation.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6405B6E236E138D00FAA06B /* Reservation.swift */; };
 		D642735122C857760088256B /* MessageContext.swift in Sources */ = {isa = PBXBuildFile; fileRef = D642735022C857760088256B /* MessageContext.swift */; };
 		D642735322C85B740088256B /* SystemAvatar.swift in Sources */ = {isa = PBXBuildFile; fileRef = D642735222C85B740088256B /* SystemAvatar.swift */; };
@@ -98,10 +99,16 @@
 		D6432BF022D824BA0016001A /* ChannelCollectionViewLayoutAttributes.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6432BEF22D824BA0016001A /* ChannelCollectionViewLayoutAttributes.swift */; };
 		D6432BF322D828480016001A /* ChannelDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6432BF222D828480016001A /* ChannelDataSource.swift */; };
 		D6432BF522D82CDC0016001A /* ChannelCollectionViewFlowLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6432BF422D82CDC0016001A /* ChannelCollectionViewFlowLayout.swift */; };
+		D645996323EF188500BE3F0B /* PendingCollectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D645996223EF188500BE3F0B /* PendingCollectionView.swift */; };
+		D645996523EF199600BE3F0B /* InviteableContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D645996423EF199600BE3F0B /* InviteableContentView.swift */; };
 		D646DB3C22CFCCD80055CC7C /* ClientError.swift in Sources */ = {isa = PBXBuildFile; fileRef = D646DB3B22CFCCD80055CC7C /* ClientError.swift */; };
 		D646DB3E22CFCF330055CC7C /* TwilioChatClient+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = D646DB3D22CFCF330055CC7C /* TwilioChatClient+Extensions.swift */; };
 		D646DB4022CFCFDB0055CC7C /* Future+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = D646DB3F22CFCFDB0055CC7C /* Future+Extensions.swift */; };
 		D646DB4422CFDE0C0055CC7C /* LoadingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D646DB4322CFDE0C0055CC7C /* LoadingView.swift */; };
+		D6486DC923EF1486007ED680 /* PendingCollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6486DC823EF1486007ED680 /* PendingCollectionViewController.swift */; };
+		D6486DCC23EF14C2007ED680 /* PendingInviteCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6486DCB23EF14C2007ED680 /* PendingInviteCell.swift */; };
+		D6486DCE23EF14E5007ED680 /* PendingCollectionViewManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6486DCD23EF14E5007ED680 /* PendingCollectionViewManager.swift */; };
+		D6486DD023EF15A2007ED680 /* Inviteable.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6486DCF23EF15A2007ED680 /* Inviteable.swift */; };
 		D64C055B23C2A34E00F6DCC1 /* ChannelCellContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D64C055A23C2A34E00F6DCC1 /* ChannelCellContentView.swift */; };
 		D64C6A7A232883FE00DB7257 /* CloudCalls.swift in Sources */ = {isa = PBXBuildFile; fileRef = D64C6A79232883FE00DB7257 /* CloudCalls.swift */; };
 		D64C6A7C23288FB300DB7257 /* SmallLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D64C6A7B23288FB300DB7257 /* SmallLabel.swift */; };
@@ -190,8 +197,11 @@
 		D68540E1235FF056006F666C /* TextSuggestionCellAttributesConfigurer.swift in Sources */ = {isa = PBXBuildFile; fileRef = D68540E0235FF056006F666C /* TextSuggestionCellAttributesConfigurer.swift */; };
 		D685E9272331177100CC1BAB /* UserNotificationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = D685E9262331177100CC1BAB /* UserNotificationManager.swift */; };
 		D68DC7FC22EE5D9000BEAF80 /* FeedOverlayView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D68DC7FB22EE5D9000BEAF80 /* FeedOverlayView.swift */; };
+		D690965023E7B835008864B6 /* MessageComposerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D690964F23E7B835008864B6 /* MessageComposerViewController.swift */; };
+		D690965823EE6E77008864B6 /* InvitesCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = D690965723EE6E77008864B6 /* InvitesCoordinator.swift */; };
 		D691794222F6418700340AA3 /* Router.swift in Sources */ = {isa = PBXBuildFile; fileRef = D691794122F6418700340AA3 /* Router.swift */; };
 		D696A8E92308D5C900DAFED4 /* MessageInputView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D696A8E82308D5C900DAFED4 /* MessageInputView.swift */; };
+		D69E7F9023E6A30A008EB8CC /* InvitesContentType.swift in Sources */ = {isa = PBXBuildFile; fileRef = D69E7F8F23E6A30A008EB8CC /* InvitesContentType.swift */; };
 		D6A301AA23808252006655E0 /* ChannelCollectionViewManager+Menu.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6A301A923808252006655E0 /* ChannelCollectionViewManager+Menu.swift */; };
 		D6A301AC2380E102006655E0 /* FeedSupplier.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6A301AB2380E102006655E0 /* FeedSupplier.swift */; };
 		D6A301AE2381B8D7006655E0 /* FeedCollectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6A301AD2381B8D7006655E0 /* FeedCollectionView.swift */; };
@@ -256,6 +266,8 @@
 		D6D6D57223A6D43100D2B5BF /* CancelButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6D6D57123A6D43100D2B5BF /* CancelButton.swift */; };
 		D6D6D57423A6E51000D2B5BF /* UIView+ScalingAnimation.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6D6D57323A6E51000D2B5BF /* UIView+ScalingAnimation.swift */; };
 		D6D6D57623A70DF100D2B5BF /* SearchButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6D6D57523A70DF100D2B5BF /* SearchButton.swift */; };
+		D6D87E8923E69EC400D6A7ED /* InviteComposerCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6D87E8823E69EC400D6A7ED /* InviteComposerCoordinator.swift */; };
+		D6D87E8B23E69F8400D6A7ED /* InvitesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6D87E8A23E69F8400D6A7ED /* InvitesViewController.swift */; };
 		D6D8A48C235D154500F0CC4B /* NavigationBarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6D8A48B235D154500F0CC4B /* NavigationBarViewController.swift */; };
 		D6DADF692207D246007D9EB1 /* TCHMessage+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6DADF682207D246007D9EB1 /* TCHMessage+Extensions.swift */; };
 		D6DADF6C2207DCA8007D9EB1 /* ChannelsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6DADF6B2207DCA8007D9EB1 /* ChannelsViewController.swift */; };
@@ -344,6 +356,7 @@
 		D61EC0F621D316F100204BEE /* Color.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Color.swift; sourceTree = "<group>"; };
 		D61EC0F821D317AB00204BEE /* Theme.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Theme.swift; sourceTree = "<group>"; };
 		D61EC0FB21D437C100204BEE /* Pods_Benji.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = Pods_Benji.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		D623BC4E23EF5157007358CB /* ProfileItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileItem.swift; sourceTree = "<group>"; };
 		D624296623A9EF4F00322ABE /* HomeTabView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeTabView.swift; sourceTree = "<group>"; };
 		D62C635322BE9CBB00F4D097 /* FeedViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedViewController.swift; sourceTree = "<group>"; };
 		D62C635522BE9E5C00F4D097 /* CollectionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollectionViewController.swift; sourceTree = "<group>"; };
@@ -361,7 +374,7 @@
 		D63C67DF23D416B800EA373A /* FaceDetectionViewController+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "FaceDetectionViewController+Extensions.swift"; sourceTree = "<group>"; };
 		D6405B5D236BCB4D00FAA06B /* AlertConfirmationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertConfirmationView.swift; sourceTree = "<group>"; };
 		D6405B66236E002E00FAA06B /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
-		D6405B6A236E0E7900FAA06B /* Conneciton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Conneciton.swift; sourceTree = "<group>"; };
+		D6405B6A236E0E7900FAA06B /* Connection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Connection.swift; sourceTree = "<group>"; };
 		D6405B6E236E138D00FAA06B /* Reservation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Reservation.swift; sourceTree = "<group>"; };
 		D642735022C857760088256B /* MessageContext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageContext.swift; sourceTree = "<group>"; };
 		D642735222C85B740088256B /* SystemAvatar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SystemAvatar.swift; sourceTree = "<group>"; };
@@ -394,10 +407,16 @@
 		D6432BEF22D824BA0016001A /* ChannelCollectionViewLayoutAttributes.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChannelCollectionViewLayoutAttributes.swift; sourceTree = "<group>"; };
 		D6432BF222D828480016001A /* ChannelDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChannelDataSource.swift; sourceTree = "<group>"; };
 		D6432BF422D82CDC0016001A /* ChannelCollectionViewFlowLayout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChannelCollectionViewFlowLayout.swift; sourceTree = "<group>"; };
+		D645996223EF188500BE3F0B /* PendingCollectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PendingCollectionView.swift; sourceTree = "<group>"; };
+		D645996423EF199600BE3F0B /* InviteableContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InviteableContentView.swift; sourceTree = "<group>"; };
 		D646DB3B22CFCCD80055CC7C /* ClientError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClientError.swift; sourceTree = "<group>"; };
 		D646DB3D22CFCF330055CC7C /* TwilioChatClient+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "TwilioChatClient+Extensions.swift"; sourceTree = "<group>"; };
 		D646DB3F22CFCFDB0055CC7C /* Future+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Future+Extensions.swift"; sourceTree = "<group>"; };
 		D646DB4322CFDE0C0055CC7C /* LoadingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadingView.swift; sourceTree = "<group>"; };
+		D6486DC823EF1486007ED680 /* PendingCollectionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PendingCollectionViewController.swift; sourceTree = "<group>"; };
+		D6486DCB23EF14C2007ED680 /* PendingInviteCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PendingInviteCell.swift; sourceTree = "<group>"; };
+		D6486DCD23EF14E5007ED680 /* PendingCollectionViewManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PendingCollectionViewManager.swift; sourceTree = "<group>"; };
+		D6486DCF23EF15A2007ED680 /* Inviteable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Inviteable.swift; sourceTree = "<group>"; };
 		D64C055A23C2A34E00F6DCC1 /* ChannelCellContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChannelCellContentView.swift; sourceTree = "<group>"; };
 		D64C6A79232883FE00DB7257 /* CloudCalls.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CloudCalls.swift; sourceTree = "<group>"; };
 		D64C6A7B23288FB300DB7257 /* SmallLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SmallLabel.swift; sourceTree = "<group>"; };
@@ -487,8 +506,11 @@
 		D68540E0235FF056006F666C /* TextSuggestionCellAttributesConfigurer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextSuggestionCellAttributesConfigurer.swift; sourceTree = "<group>"; };
 		D685E9262331177100CC1BAB /* UserNotificationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserNotificationManager.swift; sourceTree = "<group>"; };
 		D68DC7FB22EE5D9000BEAF80 /* FeedOverlayView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedOverlayView.swift; sourceTree = "<group>"; };
+		D690964F23E7B835008864B6 /* MessageComposerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageComposerViewController.swift; sourceTree = "<group>"; };
+		D690965723EE6E77008864B6 /* InvitesCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InvitesCoordinator.swift; sourceTree = "<group>"; };
 		D691794122F6418700340AA3 /* Router.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Router.swift; sourceTree = "<group>"; };
 		D696A8E82308D5C900DAFED4 /* MessageInputView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageInputView.swift; sourceTree = "<group>"; };
+		D69E7F8F23E6A30A008EB8CC /* InvitesContentType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InvitesContentType.swift; sourceTree = "<group>"; };
 		D6A301A923808252006655E0 /* ChannelCollectionViewManager+Menu.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ChannelCollectionViewManager+Menu.swift"; sourceTree = "<group>"; };
 		D6A301AB2380E102006655E0 /* FeedSupplier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedSupplier.swift; sourceTree = "<group>"; };
 		D6A301AD2381B8D7006655E0 /* FeedCollectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedCollectionView.swift; sourceTree = "<group>"; };
@@ -571,6 +593,8 @@
 		D6D6D57123A6D43100D2B5BF /* CancelButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CancelButton.swift; sourceTree = "<group>"; };
 		D6D6D57323A6E51000D2B5BF /* UIView+ScalingAnimation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+ScalingAnimation.swift"; sourceTree = "<group>"; };
 		D6D6D57523A70DF100D2B5BF /* SearchButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchButton.swift; sourceTree = "<group>"; };
+		D6D87E8823E69EC400D6A7ED /* InviteComposerCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InviteComposerCoordinator.swift; sourceTree = "<group>"; };
+		D6D87E8A23E69F8400D6A7ED /* InvitesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InvitesViewController.swift; sourceTree = "<group>"; };
 		D6D8A48B235D154500F0CC4B /* NavigationBarViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavigationBarViewController.swift; sourceTree = "<group>"; };
 		D6DADF682207D246007D9EB1 /* TCHMessage+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "TCHMessage+Extensions.swift"; sourceTree = "<group>"; };
 		D6DADF6B2207DCA8007D9EB1 /* ChannelsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChannelsViewController.swift; sourceTree = "<group>"; };
@@ -697,11 +721,11 @@
 		D61EC0D121D30B5700204BEE /* UI */ = {
 			isa = PBXGroup;
 			children = (
-				D64E43692352B59400BA0619 /* Shared */,
 				D61EC0D221D30B8800204BEE /* Base Classes */,
-				D6D145F221D5490500CD8CE4 /* Modals */,
-				D6D145F121D548F600CD8CE4 /* Screens */,
+				D6D145F121D548F600CD8CE4 /* Flows */,
 				D61EC0C821D3071500204BEE /* LaunchScreen.storyboard */,
+				D6D145F221D5490500CD8CE4 /* Modals */,
+				D64E43692352B59400BA0619 /* Shared */,
 			);
 			path = UI;
 			sourceTree = "<group>";
@@ -816,6 +840,15 @@
 			path = Resources;
 			sourceTree = "<group>";
 		};
+		D623BC5023EF62A8007358CB /* Composer */ = {
+			isa = PBXGroup;
+			children = (
+				D6D87E8823E69EC400D6A7ED /* InviteComposerCoordinator.swift */,
+				D690964F23E7B835008864B6 /* MessageComposerViewController.swift */,
+			);
+			path = Composer;
+			sourceTree = "<group>";
+		};
 		D62C634F22BE9C4600F4D097 /* Feed */ = {
 			isa = PBXGroup;
 			children = (
@@ -894,7 +927,7 @@
 		D6405B65236E001A00FAA06B /* Parse Subclasses */ = {
 			isa = PBXGroup;
 			children = (
-				D6405B6A236E0E7900FAA06B /* Conneciton.swift */,
+				D6405B6A236E0E7900FAA06B /* Connection.swift */,
 				D6405B6E236E138D00FAA06B /* Reservation.swift */,
 				D611909E237740ED0052764F /* ReservationCount.swift */,
 				80D4A21B2303A005007CB5F1 /* Routine.swift */,
@@ -987,6 +1020,17 @@
 				D6D1500521D5E71E00CD8CE4 /* Channel Collection Views */,
 			);
 			path = Channel;
+			sourceTree = "<group>";
+		};
+		D6486DCA23EF1490007ED680 /* Pending */ = {
+			isa = PBXGroup;
+			children = (
+				D6486DCB23EF14C2007ED680 /* PendingInviteCell.swift */,
+				D645996223EF188500BE3F0B /* PendingCollectionView.swift */,
+				D6486DC823EF1486007ED680 /* PendingCollectionViewController.swift */,
+				D6486DCD23EF14E5007ED680 /* PendingCollectionViewManager.swift */,
+			);
+			path = Pending;
 			sourceTree = "<group>";
 		};
 		D64C6A7F23294ED700DB7257 /* Twilio */ = {
@@ -1233,6 +1277,7 @@
 				D6EDD1982355DBFA00FDA5D6 /* ProfileDetailCell.swift */,
 				D6EAB68623E615B500B90D5A /* ProfilePhotoViewController.swift */,
 				D6B2603C22E6B8EA00143CF0 /* ProfileViewController.swift */,
+				D623BC4E23EF5157007358CB /* ProfileItem.swift */,
 			);
 			path = Profile;
 			sourceTree = "<group>";
@@ -1248,20 +1293,21 @@
 			path = Toast;
 			sourceTree = "<group>";
 		};
-		D6D145F121D548F600CD8CE4 /* Screens */ = {
+		D6D145F121D548F600CD8CE4 /* Flows */ = {
 			isa = PBXGroup;
 			children = (
 				D6432BF122D8282E0016001A /* Channel */,
 				D6DADF6A2207DC90007D9EB1 /* Channels */,
 				D62C634F22BE9C4600F4D097 /* Feed */,
 				D6D145F521D549A300CD8CE4 /* Home */,
+				D6D87E8723E69E6A00D6A7ED /* Invite */,
 				D63753182316112E00214F63 /* New Channel */,
 				D67896A122FF40AB0059BA75 /* Onboarding */,
 				D6B2603B22E6B8CD00143CF0 /* Profile */,
 				D6EDD1932355DB6000FDA5D6 /* Routine */,
 				D67A82D9230CCE290076152B /* Splash */,
 			);
-			path = Screens;
+			path = Flows;
 			sourceTree = "<group>";
 		};
 		D6D145F221D5490500CD8CE4 /* Modals */ = {
@@ -1271,7 +1317,6 @@
 				D642738922C9B0170088256B /* ModalControllerAnimatedTransitioning.swift */,
 				D642738722C9AF690088256B /* ModalViewController.swift */,
 				D642738422C9AEAB0088256B /* Alerts */,
-				D642737222C99D540088256B /* Contacts */,
 			);
 			path = Modals;
 			sourceTree = "<group>";
@@ -1403,6 +1448,21 @@
 				D642739822CA79B60088256B /* UIWindow+Extensions.swift */,
 			);
 			path = "UI Extensions";
+			sourceTree = "<group>";
+		};
+		D6D87E8723E69E6A00D6A7ED /* Invite */ = {
+			isa = PBXGroup;
+			children = (
+				D623BC5023EF62A8007358CB /* Composer */,
+				D642737222C99D540088256B /* Contacts */,
+				D6486DCF23EF15A2007ED680 /* Inviteable.swift */,
+				D645996423EF199600BE3F0B /* InviteableContentView.swift */,
+				D69E7F8F23E6A30A008EB8CC /* InvitesContentType.swift */,
+				D690965723EE6E77008864B6 /* InvitesCoordinator.swift */,
+				D6D87E8A23E69F8400D6A7ED /* InvitesViewController.swift */,
+				D6486DCA23EF1490007ED680 /* Pending */,
+			);
+			path = Invite;
 			sourceTree = "<group>";
 		};
 		D6DADF6A2207DC90007D9EB1 /* Channels */ = {
@@ -1584,6 +1644,7 @@
 			files = (
 				D6EAB68823E6211200B90D5A /* ProfilePhotoViewController.swift in Sources */,
 				D62C635622BE9E5C00F4D097 /* CollectionViewController.swift in Sources */,
+				D6486DD023EF15A2007ED680 /* Inviteable.swift in Sources */,
 				D6E4C7FD23930675002B1330 /* UserNotificationManager+Extensions.swift in Sources */,
 				D67896AF22FF62630059BA75 /* PhoneKit.swift in Sources */,
 				D6E65F19237791650061AA67 /* ManageableCell.swift in Sources */,
@@ -1619,6 +1680,7 @@
 				D6D6D57423A6E51000D2B5BF /* UIView+ScalingAnimation.swift in Sources */,
 				D6D1460721D552B100CD8CE4 /* Character+Extensions.swift in Sources */,
 				D6B2606C22E80B6A00143CF0 /* ToastScheduler.swift in Sources */,
+				D6D87E8923E69EC400D6A7ED /* InviteComposerCoordinator.swift in Sources */,
 				D66F0FF222C1D86800BA277D /* ChannelsType.swift in Sources */,
 				D6E4C7FB238E4217002B1330 /* ChannelHeaderAttributesConfigurer.swift in Sources */,
 				D66A0B942351821200A0FFEA /* Completeable.swift in Sources */,
@@ -1638,6 +1700,7 @@
 				D66F0FD222BF065F00BA277D /* DeeplinkTarget.swift in Sources */,
 				D6EB4DF023540E48005BF3B4 /* FaceDetectionViewController.swift in Sources */,
 				D696A8E92308D5C900DAFED4 /* MessageInputView.swift in Sources */,
+				D623BC4F23EF5157007358CB /* ProfileItem.swift in Sources */,
 				D6D1501A21D5F5D100CD8CE4 /* CollectionView.swift in Sources */,
 				D6579557239C8B4000A01338 /* FeedCoordinator.swift in Sources */,
 				D61EC0E421D30E9100204BEE /* TextView.swift in Sources */,
@@ -1683,11 +1746,13 @@
 				D6EAC95523D145350028DAA2 /* Sizeable.swift in Sources */,
 				D64C055B23C2A34E00F6DCC1 /* ChannelCellContentView.swift in Sources */,
 				D67896B8230096620059BA75 /* KeyboardObservable.swift in Sources */,
+				D69E7F9023E6A30A008EB8CC /* InvitesContentType.swift in Sources */,
 				D642735E22C90C820088256B /* CGPoint+Extensions.swift in Sources */,
 				D61EC0DE21D30DAC00204BEE /* Array+Extensions.swift in Sources */,
 				D6849CBD23B5BCAA006799F6 /* NewChannelButton.swift in Sources */,
 				D61EC0F121D313F500204BEE /* ScreenSize.swift in Sources */,
 				D64C6A9E232D6DD500DB7257 /* TypingIndicatorView.swift in Sources */,
+				D6486DCE23EF14E5007ED680 /* PendingCollectionViewManager.swift in Sources */,
 				D6EAB68A23E63DB900B90D5A /* SearchBar.swift in Sources */,
 				D6B2606E22E80E4000143CF0 /* ToastView.swift in Sources */,
 				D67896CC2304524C0059BA75 /* ChannelCoordinator.swift in Sources */,
@@ -1746,11 +1811,14 @@
 				D6AF0301220154E3002D5C75 /* ChannelManager.swift in Sources */,
 				D64C6A99232D6C0200DB7257 /* TypingBubbleView.swift in Sources */,
 				D61EC0C021D3071400204BEE /* AppDelegate.swift in Sources */,
+				D6486DCC23EF14C2007ED680 /* PendingInviteCell.swift in Sources */,
 				D646DB4022CFCFDB0055CC7C /* Future+Extensions.swift in Sources */,
 				D65B0CCE2344AE390041A176 /* ChannelsViewController+Extensions.swift in Sources */,
+				D645996323EF188500BE3F0B /* PendingCollectionView.swift in Sources */,
 				D609AE3A236F44A8004FA89A /* User+Extensions.swift in Sources */,
 				D642739322C9C0110088256B /* AlertView.swift in Sources */,
 				D6D145FD21D550E400CD8CE4 /* AttributedString.swift in Sources */,
+				D645996523EF199600BE3F0B /* InviteableContentView.swift in Sources */,
 				D6D14D8F21D5893600CD8CE4 /* NSNumber+IGListDiffable.m in Sources */,
 				D6740D4823AEA5BD009D5702 /* ChannelsCoordiantor.swift in Sources */,
 				D6E0ED53239CBDA40073B33E /* FeedUnreadView.swift in Sources */,
@@ -1767,6 +1835,7 @@
 				D6B2604322E6BAE400143CF0 /* RegularBoldLabel.swift in Sources */,
 				D67896B222FF67650059BA75 /* CodeViewController.swift in Sources */,
 				D60C814222092D5300A127A3 /* PagingCollectionViewFlowLayout.swift in Sources */,
+				D690965823EE6E77008864B6 /* InvitesCoordinator.swift in Sources */,
 				D642737122C991A60088256B /* ClosedRange+Extensions.swift in Sources */,
 				D657955C239CA01100A01338 /* FeedRoutineView.swift in Sources */,
 				D6DADF722207DF83007D9EB1 /* ChannelsCollectionView.swift in Sources */,
@@ -1797,7 +1866,7 @@
 				D6830222234AA35C006145FE /* DisplayableChannel.swift in Sources */,
 				D6A82B772325C48F003E0A8B /* PurposeDescriptionTextView.swift in Sources */,
 				D61EC0EE21D313BA00204BEE /* UIScreen+Extensions.swift in Sources */,
-				D6405B6B236E0E7900FAA06B /* Conneciton.swift in Sources */,
+				D6405B6B236E0E7900FAA06B /* Connection.swift in Sources */,
 				D68540D1235FDE69006F666C /* SuggestionCollectionView.swift in Sources */,
 				80C7C6062316112400643A14 /* TimeHumpView.swift in Sources */,
 				D61EC0D921D30C8E00204BEE /* DispatchQue+Extensions.swift in Sources */,
@@ -1815,6 +1884,7 @@
 				D67896BF2302683C0059BA75 /* PhotoViewController.swift in Sources */,
 				D6D6D57623A70DF100D2B5BF /* SearchButton.swift in Sources */,
 				D6D1500C21D5E7C200CD8CE4 /* CollectionViewManager.swift in Sources */,
+				D6D87E8B23E69F8400D6A7ED /* InvitesViewController.swift in Sources */,
 				D64C6A7C23288FB300DB7257 /* SmallLabel.swift in Sources */,
 				D6EE715923B84BC0000ED221 /* CollectionViewManagerCell.swift in Sources */,
 				D68540DC235FED41006F666C /* SuggestionCollectionViewLayoutAttributes.swift in Sources */,
@@ -1829,12 +1899,14 @@
 				D642737422C99D6A0088256B /* ContactsViewController.swift in Sources */,
 				D6D145F421D5493000CD8CE4 /* HomeViewController.swift in Sources */,
 				D6090E562377CB2F00833DA7 /* Messageable.swift in Sources */,
+				D6486DC923EF1486007ED680 /* PendingCollectionViewController.swift in Sources */,
 				D6FC809C237A6ED30089AACC /* ChannelCollectionViewManager+Typing.swift in Sources */,
 				D642739722CA6E1F0088256B /* CommonWord.swift in Sources */,
 				D642736C22C98FA00088256B /* MathFunctions.swift in Sources */,
 				80D4A21C2303A005007CB5F1 /* Routine.swift in Sources */,
 				D62C635422BE9CBB00F4D097 /* FeedViewController.swift in Sources */,
 				D6D14FF921D5893700CD8CE4 /* NSString+IGListDiffable.m in Sources */,
+				D690965023E7B835008864B6 /* MessageComposerViewController.swift in Sources */,
 				D63826D22274C8C0001D4B8B /* ChannelManager+Extensions.swift in Sources */,
 				D63752F92313833B00214F63 /* ProfileAvatarView.swift in Sources */,
 				D61EC0E221D30E6000204BEE /* Label.swift in Sources */,

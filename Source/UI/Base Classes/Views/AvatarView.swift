@@ -82,7 +82,7 @@ class AvatarView: DisplayableImageView {
     private func getImageFrom(initials: String) -> UIImage {
         let width = self.frame.width
         let height = self.frame.height
-        if width == 0 || height == 0 {return UIImage()}
+        if width == 0 || height == 0 { return UIImage() }
         var font = self.placeholderFont
 
         _ = UIGraphicsBeginImageContextWithOptions(CGSize(width: width, height: height), false, UIScreen.main.scale)
@@ -167,7 +167,6 @@ class AvatarView: DisplayableImageView {
     }
 
     private func prepareView() {
-        self.set(backgroundColor: .lightPurple)
         self.imageView.contentMode = .scaleAspectFill
         self.layer.masksToBounds = true
         self.clipsToBounds = true

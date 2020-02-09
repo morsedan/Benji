@@ -30,8 +30,8 @@ protocol Objectable: class {
     func getObject<Type>(for key: KeyType) -> Type?
     func getRelationalObject<PFRelation>(for key: KeyType) -> PFRelation?
     func setObject<Type>(for key: KeyType, with newValue: Type)
-    func saveEventually() -> Future<Self>
-    func save() -> Future<Self>
+    func saveLocalThenServer() -> Future<Self>
+    func saveToServer() -> Future<Self>
 
     static func localThenNetworkQuery(for objectId: String) -> Future<Self>
     static func localThenNetworkArrayQuery(where identifiers: [String], isEqual: Bool, container: ContainerName) -> Future<[Self]>
@@ -51,7 +51,7 @@ extension Objectable {
 extension Objectable where Self: PFObject {
 
     // Will save the object locally and push up to the server when ready
-    func saveEventually() -> Future<Self> {
+    func saveLocalThenServer() -> Future<Self> {
         let promise = Promise<Self>()
         self.saveEventually { (success, error) in
             if let error = error {
@@ -64,7 +64,7 @@ extension Objectable where Self: PFObject {
     }
 
     // Does not save locally but just pushes to server in the background
-    func save() -> Future<Self> {
+    func saveToServer() -> Future<Self> {
         let promise = Promise<Self>()
         self.saveInBackground { (success, error) in
             if let error = error {

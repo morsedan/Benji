@@ -75,13 +75,17 @@ class Button: UIButton {
         }
 
         if shouldRound {
-            self.layer.cornerRadius = self.halfHeight
+            self.layer.cornerRadius = Theme.cornerRadius
             self.layer.masksToBounds = true
         }
     }
 
     func setBackground(color: UIColor, forUIControlState state: UIControl.State) {
         self.setBackgroundImage(UIImage.imageWithColor(color: color), for: state)
+    }
+
+    func size(with width: CGFloat) {
+        self.size = CGSize(width: width - (Theme.contentOffset * 2), height: 60)
     }
 
     override open func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
