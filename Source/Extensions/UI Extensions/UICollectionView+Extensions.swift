@@ -53,7 +53,10 @@ extension UICollectionView {
                              completion: ((Bool) -> Swift.Void)? = nil) {
 
         // Don't reload the collection view if no changes have been made to the items array
-        guard diffResult.hasChanges else { return }
+        guard diffResult.hasChanges else {
+            completion?(true)
+            return
+        }
 
         let sanitizedResults: ListIndexPathResult = diffResult.forBatchUpdates()
         runMain {

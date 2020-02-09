@@ -9,7 +9,7 @@
 import Foundation
 
 /// Helper for easily setting/animating the transform coordinates of a UIView
-enum AnimationDirection {
+enum AnimationPosition {
 
     case left
     case right

@@ -9,7 +9,8 @@
 import Foundation
 
 struct AnimationCycle {
-    var inDirection: AnimationDirection
-    var outDirection: AnimationDirection
+    var inFromPosition: AnimationPosition
+    var outToPosition: AnimationPosition
     var shouldConcatenate: Bool
+    var scrollToEnd: Bool
 }

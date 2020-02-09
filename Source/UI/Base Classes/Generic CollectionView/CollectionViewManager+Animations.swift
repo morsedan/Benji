@@ -10,8 +10,8 @@ import Foundation
 
 extension CollectionViewManager {
 
-    func animateOut(direction: AnimationDirection = .down,
-                    concatenate: Bool = false,
+    func animateOut(direction: AnimationPosition,
+                    concatenate: Bool,
                     completion: CompletionOptional) {
 
         let visibleCells = self.collectionView.visibleCells
@@ -23,6 +23,8 @@ extension CollectionViewManager {
         }
 
         let duration: TimeInterval = Theme.animationDuration
+        var longestDelay: TimeInterval = 0
+
         for (index, cell) in visibleCells.enumerated() {
             cell.alpha = 1.0
             let delay: TimeInterval = concatenate ? duration/Double(visibleCells.count)*Double(index) : 0
@@ -30,17 +32,32 @@ extension CollectionViewManager {
                 cell.transform = direction.getTransform(for: cell)
                 cell.alpha = 0.0
             })
+            longestDelay = delay
         }
 
-        delay(duration) {
+        delay(duration + longestDelay) {
             self.collectionView.alpha = 0
             completion?()
         }
     }
 
-    func animateIn(direction: AnimationDirection = .down,
-                   concatenate: Bool = false,
+    func animateIn(direction: AnimationPosition,
+                   concatenate: Bool,
+                   scrollToEnd: Bool,
                    completion: CompletionOptional) {
+
+        if scrollToEnd {
+            self.collectionView.scrollToEnd(animated: false, completion: { [unowned self] in
+                self.animateToFinal(direction: direction, concatenate: concatenate, completion: completion)
+            })
+        } else {
+            self.animateToFinal(direction: direction, concatenate: concatenate, completion: completion)
+        }
+    }
+
+    private func animateToFinal(direction: AnimationPosition,
+                                concatenate: Bool,
+                                completion: CompletionOptional) {
 
         let visibleCells = self.collectionView.visibleCells
 
@@ -51,6 +68,7 @@ extension CollectionViewManager {
         }
 
         let duration: TimeInterval = Theme.animationDuration
+        var longestDelay: TimeInterval = 0
 
         for (index, cell) in visibleCells.enumerated() {
             cell.alpha = 0.0
@@ -61,9 +79,10 @@ extension CollectionViewManager {
                 cell.transform = .identity
                 cell.alpha = 1.0
             })
+            longestDelay = delay
         }
 
-        delay(duration) {
+        delay(duration + longestDelay) {
             completion?()
         }
     }
