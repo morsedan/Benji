@@ -25,48 +25,28 @@ final class Reservation: PFObject, PFSubclassing {
     }
 
     private(set) var position: Double? {
-        get {
-            return self.getObject(for: .position)
-        }
-        set {
-            self.setObject(for: .position, with: newValue)
-        }
+        get { return self.getObject(for: .position) }
+        set { self.setObject(for: .position, with: newValue) }
     }
 
     private(set) var code: String {
-        get {
-            return self.getObject(for: .code) ?? String()
-        }
-        set {
-            self.setObject(for: .code, with: newValue)
-        }
+        get { return self.getObject(for: .code) ?? String() }
+        set { self.setObject(for: .code, with: newValue) }
     }
 
     private(set) var isClaimed: Bool {
-        get {
-            return self.getObject(for: .isClaimed) ?? false
-        }
-        set {
-            self.setObject(for: .isClaimed, with: newValue)
-        }
+        get { return self.getObject(for: .isClaimed) ?? false }
+        set { self.setObject(for: .isClaimed, with: newValue) }
     }
 
     private(set) var link: String {
-        get {
-            return self.getObject(for: .link) ?? String()
-        }
-        set {
-            self.setObject(for: .link, with: newValue)
-        }
+        get { return self.getObject(for: .link) ?? String() }
+        set { self.setObject(for: .link, with: newValue) }
     }
 
     var user: User? {
-        get {
-            return self.getObject(for: .user)
-        }
-        set {
-            self.setObject(for: .user, with: newValue)
-        }
+        get { return self.getObject(for: .user) }
+        set { self.setObject(for: .user, with: newValue) }
     }
 
     static func create() -> Future<Reservation> {

@@ -48,7 +48,6 @@ final class Routine: PFObject, PFSubclassing  {
     func create(with date: Date) {
         let components = Calendar.current.dateComponents([.hour, .minute],
                                                          from: date)
-
         self.set(components: components)
     }
 
@@ -67,21 +66,13 @@ final class Routine: PFObject, PFSubclassing  {
     }
 
     private(set) var hour: Int {
-        get {
-            return self.getObject(for: .hour) ?? 0
-        }
-        set {
-            self.setObject(for: .hour, with: newValue)
-        }
+        get { return self.getObject(for: .hour) ?? 0 }
+        set { self.setObject(for: .hour, with: newValue) }
     }
 
     private(set) var minute: Int {
-        get {
-            return self.getObject(for: .minute) ?? 0
-        }
-        set {
-            self.setObject(for: .minute, with: newValue)
-        }
+        get { return self.getObject(for: .minute) ?? 0 }
+        set { self.setObject(for: .minute, with: newValue) }
     }
 }
 

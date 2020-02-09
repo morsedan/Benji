@@ -22,21 +22,13 @@ final class ReservationCount: PFObject, PFSubclassing {
 
 
     private(set) var current: Int? {
-        get {
-            return self.getObject(for: .currentCount)
-        }
-        set {
-            self.setObject(for: .currentCount, with: newValue)
-        }
+        get { return self.getObject(for: .currentCount) }
+        set { self.setObject(for: .currentCount, with: newValue) }
     }
 
     private(set) var cap: Int? {
-        get {
-            return self.getObject(for: .cap)
-        }
-        set {
-            self.setObject(for: .cap, with: newValue)
-        }
+        get { return self.getObject(for: .cap) }
+        set { self.setObject(for: .cap, with: newValue) }
     }
 }
 
