@@ -186,11 +186,18 @@ class ChannelViewController: FullScreenViewController {
 
 extension ChannelViewController: TCHChannelDelegate {
 
-    func chatClient(_ client: TwilioChatClient, channel: TCHChannel, member: TCHMember, updated: TCHMemberUpdate) {
-        
+    func chatClient(_ client: TwilioChatClient,
+                    channel: TCHChannel,
+                    member: TCHMember,
+                    updated: TCHMemberUpdate) {
+        print("Channel Member updated")
     }
 
-    func chatClient(_ client: TwilioChatClient, channel: TCHChannel, message: TCHMessage, updated: TCHMessageUpdate) {
+    func chatClient(_ client: TwilioChatClient,
+                    channel: TCHChannel,
+                    message: TCHMessage,
+                    updated: TCHMessageUpdate) {
+        
         self.collectionViewManager.updateItem(with: message)
     }
 }
