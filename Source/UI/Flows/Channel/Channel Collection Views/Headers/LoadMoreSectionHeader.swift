@@ -33,7 +33,7 @@ class LoadMoreSectionHeader: UICollectionReusableView {
     override func layoutSubviews() {
         super.layoutSubviews()
 
-        self.button.size = CGSize(width: self.width * 0.6, height: 30)
+        self.button.size = CGSize(width: 140, height: 34)
         self.button.centerOnXAndY()
     }
 }

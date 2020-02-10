@@ -187,7 +187,7 @@ class ChannelCollectionViewFlowLayout: UICollectionViewFlowLayout {
             return configurer.sizeForHeader(at: section, for: self)
         }
 
-        return CGSize(width: collectionView.width, height: 50)
+        return CGSize(width: collectionView.width, height: 60)
     }
 
     // MARK: - Typing Indicator API
