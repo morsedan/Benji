@@ -23,19 +23,19 @@ target 'Benji' do
 
 end
 
-post_install do |installer|
-
-    # Twilio chat client includes a prebuilt framework that is too big to source control
-    # To get around this, strip the bitcode from the framework to reduce its file size
-    bitcode_strip_path = `xcrun -sdk iphoneos --find bitcode_strip`.chop!
-
-    # Find path to TwilioChatClient dependency
-    path = Dir.pwd
-    framework_path = "#{path}/Pods/TwilioChatClient/TwilioChatClient.framework/TwilioChatClient"
-
-    # Strip Bitcode sections from the framework
-    strip_command = "#{bitcode_strip_path} #{framework_path} -m -o #{framework_path}"
-    puts "About to strip: #{strip_command}"
-    system(strip_command)
-
-end
+#post_install do |installer|
+#
+#    # Twilio chat client includes a prebuilt framework that is too big to source control
+#    # To get around this, strip the bitcode from the framework to reduce its file size
+#    bitcode_strip_path = `xcrun -sdk iphoneos --find bitcode_strip`.chop!
+#
+#    # Find path to TwilioChatClient dependency
+#    path = Dir.pwd
+#    framework_path = "#{path}/Pods/TwilioChatClient/TwilioChatClient.framework/TwilioChatClient"
+#
+#    # Strip Bitcode sections from the framework
+#    strip_command = "#{bitcode_strip_path} #{framework_path} -m -o #{framework_path}"
+#    puts "About to strip: #{strip_command}"
+#    system(strip_command)
+#
+#end
