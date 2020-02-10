@@ -34,31 +34,32 @@ class StackedAvatarView: View {
         }
     }
 
-    func setSize() {
-        guard self.imageViews.count > 1 else {
-            return self.size = self.itemSize
-        }
-
-        var totalWidth: CGFloat = 0
-        for (index, _ ) in self.imageViews.enumerated() {
-            let offset = CGFloat(index) * self.itemSize.width * self.offsetMultiplier
-            totalWidth += offset
-        }
-
-        totalWidth += self.itemSize.width
-        self.size = CGSize(width: totalWidth, height: self.itemSize.height)
-    }
-
     override func layoutSubviews() {
         super.layoutSubviews()
 
+        self.setSize()
         for (index, imageView) in self.imageViews.enumerated() {
-
             let offset = CGFloat(index) * self.itemSize.width * self.offsetMultiplier
             imageView.size = self.itemSize
             imageView.right = self.width - offset
             imageView.centerOnY()
         }
+    }
+
+    private func setSize() {
+        var totalWidth: CGFloat = 0
+        for (index, _) in self.imageViews.enumerated() {
+            let offset = CGFloat(index) * self.itemSize.width * self.offsetMultiplier
+            totalWidth += offset
+        }
+
+        if totalWidth == 0 {
+            totalWidth += self.itemSize.width
+        } else {
+            totalWidth += (self.itemSize.width * self.offsetMultiplier)
+        }
+
+        self.size = CGSize(width: totalWidth, height: self.itemSize.height)
     }
 }
 

@@ -151,6 +151,19 @@ extension Future where Value == TCHChannel {
         }
     }
 
+    func invite(users: [User]) -> Future<TCHChannel> {
+        var promises: [Future<TCHChannel>] = []
+
+        users.forEach { (user) in
+            promises.append(self.invite(user: user))
+        }
+
+        return waitForAll(futures: promises)
+            .transform { (channels) -> TCHChannel in
+                return channels.first!
+        }
+    }
+
     func invite(user: User) -> Future<TCHChannel> {
 
         return self.then(with: { (channel) in

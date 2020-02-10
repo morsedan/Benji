@@ -16,11 +16,21 @@ class ChannelCell: UICollectionViewCell, ManageableCell {
     let content = ChannelCellContentView()
     private let selectionFeedback = UIImpactFeedbackGenerator(style: .light)
 
+    override init(frame: CGRect) {
+        super.init(frame: frame)
+        self.initializeViews()
+    }
+
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+
+    private func initializeViews() {
+        self.contentView.addSubview(self.content)
+    }
+
     func configure(with item: DisplayableChannel?) {
         guard let displayable = item else { return }
-
-        self.contentView.removeAllSubviews()
-        self.contentView.addSubview(self.content)
 
         self.content.configure(with: displayable.channelType)
     }

@@ -23,6 +23,8 @@ class OrbCell: CollectionViewManagerCell, ManageableCell {
         self.contentView.layer.cornerRadius = Theme.cornerRadius
         self.contentView.addSubview(self.imageView)
         self.contentView.addSubview(self.label)
+
+        self.imageView.isUserInteractionEnabled = false
     }
 
     override func layoutSubviews() {

@@ -182,19 +182,17 @@ class NewChannelViewController: SwitchableContentViewController<NewChannelConten
             guard let title = self.purposeVC.textField.text,
                 let description = self.purposeVC.textView.text else { return }
 
-            let avatar = self.favoritesVC.collectionViewManager.onSelectedItem.value.map { (orbItem) -> Avatar in
-                return orbItem.item.avatar.value
+            let users = self.favoritesVC.collectionViewManager.selectedItems.compactMap { (orbItem) -> User? in
+                return orbItem.avatar.value as? User
             }
 
-            if let user = avatar as? User {
-                self.createChannel(with: user,
-                                   title: title,
-                                   description: description)
-            }
+            self.createChannel(with: users,
+                               title: title,
+                               description: description)
         }
     }
 
-    private func createChannel(with user: User,
+    private func createChannel(with users: [User],
                                title: String,
                                description: String) {
 
@@ -204,7 +202,7 @@ class NewChannelViewController: SwitchableContentViewController<NewChannelConten
                                       channelDescription: description,
                                       type: .private)
             .joinIfNeeded()
-            .invite(user: user)
+            .invite(users: users)
             .ignoreUserInteractionEventsUntilDone(for: self.view)
             .observeValue(with: { (channel) in
                 guard let handle = User.current()?.handle else { return }

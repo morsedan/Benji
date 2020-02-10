@@ -31,11 +31,14 @@ class ChannelContentView: View {
         case .channel(let channel):
             channel.getMembersAsUsers()
                 .observeValue(with: { (users) in
-                    let notMeUsers = users.filter { (user) -> Bool in
-                        return user.objectId != User.current()?.objectId
-                    }
+                    runMain {
+                        let notMeUsers = users.filter { (user) -> Bool in
+                            return user.objectId != User.current()?.objectId
+                        }
 
-                    self.stackedAvatarView.set(items: notMeUsers)
+                        self.stackedAvatarView.set(items: notMeUsers)
+                        self.layoutNow()
+                    }
                 })
         }
 
@@ -47,7 +50,6 @@ class ChannelContentView: View {
     override func layoutSubviews() {
         super.layoutSubviews()
 
-        self.stackedAvatarView.setSize()
         self.stackedAvatarView.left = Theme.contentOffset
         self.stackedAvatarView.centerOnY()
 
