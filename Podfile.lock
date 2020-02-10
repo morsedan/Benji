@@ -24,7 +24,7 @@ PODS:
   - TMROFutures (0.0.6)
   - TMROLocalization (0.0.2)
   - TwilioAccessManager (1.1.2)
-  - TwilioChatClient (2.6.5)
+  - TwilioChatClient (2.6.6)
 
 DEPENDENCIES:
   - Branch
@@ -74,8 +74,8 @@ SPEC CHECKSUMS:
   TMROFutures: 644772c28f997ce292e9b67985eca927efaa5d7a
   TMROLocalization: f48046617e8453fabf353088634b91130d726d64
   TwilioAccessManager: f3b0d9edd2eb5a044e50ff78057ab13611a0baa1
-  TwilioChatClient: c7d2cc9c7769f9f082bbac719c09192e62bf26cc
+  TwilioChatClient: 23168c2df8e306da1cedcad1d60ba69862235358
 
-PODFILE CHECKSUM: 220fecbb85a25ac1e0f52b207f32112234c5114f
+PODFILE CHECKSUM: 5c2cb3abd77da4f87370a4448387029e14e4a493
 
 COCOAPODS: 1.8.4
