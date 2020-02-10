@@ -124,7 +124,7 @@ class InvitesViewController: SwitchableContentViewController<InvitesContentType>
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
 
-        self.button.size(with: self.view.width)
+        self.button.setSize(with: self.view.width)
         self.button.centerOnX()
         self.button.bottom = self.buttonOffset ?? self.view.height + 100
     }

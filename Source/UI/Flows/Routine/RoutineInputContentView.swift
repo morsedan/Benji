@@ -47,10 +47,9 @@ class RoutineInputContentView: View {
     override func layoutSubviews() {
         super.layoutSubviews()
 
-        self.setRoutineButton.size = CGSize(width: 200, height: 40)
+        self.setRoutineButton.setSize(with: self.width)
         self.setRoutineButton.bottom = self.height - 20
         self.setRoutineButton.centerOnX()
-        self.setRoutineButton.makeRound()
 
         self.timeHump.size = CGSize(width: self.width * 0.9, height: 140)
         self.timeHump.bottom = self.setRoutineButton.top - 100

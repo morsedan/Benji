@@ -84,7 +84,7 @@ class Button: UIButton {
         self.setBackgroundImage(UIImage.imageWithColor(color: color), for: state)
     }
 
-    func size(with width: CGFloat) {
+    func setSize(with width: CGFloat) {
         self.size = CGSize(width: width - (Theme.contentOffset * 2), height: 60)
     }
 

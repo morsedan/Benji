@@ -60,18 +60,11 @@ class LoadingButton: Button {
                                                name: UIResponder.keyboardWillHideNotification,
                                                object: nil)
 
-        self.addShadow(withOffset: 5)
-
         self.addSubview(self.loadingIndicator)
     }
 
     override func layoutSubviews() {
         super.layoutSubviews()
-
-        if self.shouldRound {
-            self.layer.cornerRadius = self.halfHeight
-            self.layer.masksToBounds = true
-        }
 
         self.loadingIndicator.centerOnXAndY()
     }
