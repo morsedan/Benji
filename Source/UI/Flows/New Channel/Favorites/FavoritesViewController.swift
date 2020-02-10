@@ -20,6 +20,8 @@ class FavoritesViewController: OrbCollectionViewController, Sizeable {
             .observeValue { (users) in
                 self.setItems(from: users)
         }
+
+        self.collectionViewManager.allowMultipleSelection = true 
     }
 
     private func setItems(from users: [User]) {

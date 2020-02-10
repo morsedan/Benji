@@ -36,10 +36,12 @@ class FeedChannelInviteView: View {
         self.channel = channel 
         channel.getAuthorAsUser()
             .observeValue(with: { (user) in
-                self.avatarView.set(avatar: user)
-                let text = "You have been invited to join \(String(optional: channel.friendlyName)), by \(user.fullName)"
-                self.textView.set(localizedText: text)
-                self.layoutNow()
+                runMain {
+                    self.avatarView.set(avatar: user)
+                    let text = "You have been invited to join \(String(optional: channel.friendlyName)), by \(user.fullName)"
+                    self.textView.set(localizedText: text)
+                    self.layoutNow()
+                }
             })
     }
 
