@@ -37,9 +37,7 @@ class RoutineInputContentView: View {
         self.minusButton.tintColor = Color.lightPurple.color.withAlphaComponent(0.2)
         
         self.addSubview(self.setRoutineButton)
-        self.setRoutineButton.set(style: .rounded(color: .purple, text: "SET"),
-                                  shouldRound: true,
-                                  casingType: StringCasing.uppercase)
+        self.setRoutineButton.set(style: .rounded(color: .purple, text: "SET"))
 
         self.addSubview(self.timeHump)
     }

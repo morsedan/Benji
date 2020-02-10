@@ -72,7 +72,7 @@ class RoutineInputViewController: ViewController {
                 .observe { (result) in
                     switch result {
                     case .success(_):
-                        self.animateButton(with: .blue, text: "Routine Updated!")
+                        self.animateButton(with: .blue, text: "Routine Updated")
                     case .failure(let error):
                         print(error)
                         self.animateButton(with: .red, text: "Error")

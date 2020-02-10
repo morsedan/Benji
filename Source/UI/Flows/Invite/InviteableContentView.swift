@@ -42,7 +42,7 @@ class InviteableContentView: View {
         self.nameLabel.centerY = self.avatarView.centerY
         self.nameLabel.left = self.avatarView.right + Theme.contentOffset
 
-        self.button.size = CGSize(width: 80, height: 30)
+        self.button.size = CGSize(width: 80, height: 40)
         self.button.centerOnY()
         self.button.right = self.right - Theme.contentOffset
     }

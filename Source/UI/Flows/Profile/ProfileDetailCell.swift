@@ -75,7 +75,7 @@ class ProfileDetailCell: UICollectionViewCell {
         self.lineView.left = self.titleLabel.left
         self.lineView.top = self.label.bottom + 5
 
-        self.button.size = CGSize(width: 80, height: 30)
+        self.button.size = CGSize(width: 100, height: 40)
         self.button.centerOnY()
         self.button.right = self.contentView.right
     }

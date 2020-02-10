@@ -60,11 +60,4 @@ enum Color: String, CaseIterable {
             return UIColor(named: "Keyboard")!
         }
     }
-
-    var highlightColor: Color {
-        switch self {
-        default:
-            return .clear
-        }
-    }
 }

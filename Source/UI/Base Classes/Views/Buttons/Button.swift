@@ -37,9 +37,7 @@ class Button: UIButton {
     }
 
     //Sets text font, color and background color
-    func set(style: ButtonStyle,
-             shouldRound: Bool = true,
-             casingType: StringCasing = StringCasing.unchanged) {
+    func set(style: ButtonStyle, casingType: StringCasing = .uppercase) {
 
         switch style {
 
@@ -56,10 +54,10 @@ class Button: UIButton {
             highlightedString.addAttribute(.font, value: FontType.smallBold.font)
             highlightedString.addAttribute(.kern, value: CGFloat(2))
 
-            normalString.addAttribute(.foregroundColor, value: Color.white.color)
-            highlightedString.addAttribute(.foregroundColor, value: Color.white.color)
-            self.setBackground(color: color.color, forUIControlState: .normal)
-            self.setBackground(color: color.highlightColor.color, forUIControlState: .highlighted)
+            normalString.addAttribute(.foregroundColor, value: color.color)
+            highlightedString.addAttribute(.foregroundColor, value: color.color)
+            self.setBackground(color: color.color.withAlphaComponent(0.4), forUIControlState: .normal)
+            self.setBackground(color: Color.clear.color, forUIControlState: .highlighted)
 
             // Emojis wont show correctly with attributes
             if localizedString.getEmojiRanges().count > 0 {
@@ -70,14 +68,15 @@ class Button: UIButton {
                 self.setAttributedTitle(highlightedString, for: .highlighted)
             }
 
+            self.layer.borderColor = color.color.cgColor
+            self.layer.borderWidth = 2
+
         case .icon(let image):
             self.setBackgroundImage(image, for: state)
         }
 
-        if shouldRound {
-            self.layer.cornerRadius = Theme.cornerRadius
-            self.layer.masksToBounds = true
-        }
+        self.layer.cornerRadius = Theme.cornerRadius
+        self.layer.masksToBounds = true
     }
 
     func setBackground(color: UIColor, forUIControlState state: UIControl.State) {
