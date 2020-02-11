@@ -12,7 +12,7 @@ target 'Benji' do
   pod 'ReactiveSwift'
   pod 'Koloda'
   pod 'PhoneNumberKit'
-  pod 'CameraKit-iOS'
+  pod 'lottie-ios'
 
   pod 'TMROFutures'
   pod 'TMROExtensionObject'

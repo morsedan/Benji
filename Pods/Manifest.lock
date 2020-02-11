@@ -3,10 +3,10 @@ PODS:
   - Branch (0.31.3):
     - Branch/Core (= 0.31.3)
   - Branch/Core (0.31.3)
-  - CameraKit-iOS (1.2.1)
   - GestureRecognizerClosures (5.0.0)
   - Koloda (5.0):
     - pop (~> 1.0)
+  - lottie-ios (3.1.6)
   - Parse (1.17.3):
     - Parse/Core (= 1.17.3)
   - Parse/Core (1.17.3):
@@ -28,9 +28,9 @@ PODS:
 
 DEPENDENCIES:
   - Branch
-  - CameraKit-iOS
   - GestureRecognizerClosures
   - Koloda
+  - lottie-ios
   - Parse
   - PhoneNumberKit
   - ReactiveSwift
@@ -45,9 +45,9 @@ SPEC REPOS:
   trunk:
     - Bolts
     - Branch
-    - CameraKit-iOS
     - GestureRecognizerClosures
     - Koloda
+    - lottie-ios
     - Parse
     - PhoneNumberKit
     - pop
@@ -62,9 +62,9 @@ SPEC REPOS:
 SPEC CHECKSUMS:
   Bolts: ac6567323eac61e203f6a9763667d0f711be34c8
   Branch: 9b299693ee54b308ff8c18146afe1f711c2069ec
-  CameraKit-iOS: 7a8aeb4b6ac93c59088ada934efb6010ed2394c1
   GestureRecognizerClosures: 0dcafb45e669e7a775c840383e54b3d16983037b
   Koloda: 75302d21882cc3e274c1561b1155805ea5919dab
+  lottie-ios: 85ce835dd8c53e02509f20729fc7d6a4e6645a0a
   Parse: c1ad2a04d2cab2b54b6fb7da05f741abf2cf57d1
   PhoneNumberKit: df411d46177d1492da84e10b6c093846dd861452
   pop: d582054913807fd11fd50bfe6a539d91c7e1a55a
@@ -76,6 +76,6 @@ SPEC CHECKSUMS:
   TwilioAccessManager: f3b0d9edd2eb5a044e50ff78057ab13611a0baa1
   TwilioChatClient: 23168c2df8e306da1cedcad1d60ba69862235358
 
-PODFILE CHECKSUM: 564516ee45519f06826c4df43c12710dad57f454
+PODFILE CHECKSUM: 098698bf79ea995754771d8f943f0bae44c3db01
 
 COCOAPODS: 1.8.4
