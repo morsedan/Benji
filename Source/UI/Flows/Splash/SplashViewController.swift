@@ -7,43 +7,37 @@
 //
 
 import Foundation
+import Lottie
 
 class SplashViewController: FullScreenViewController {
 
-    let loadingIndicator = UIActivityIndicatorView(style: .large)
-    let label = RegularBoldLabel()
+    let animationView = AnimationView(name: "loading")
     
     override func initializeViews() {
         super.initializeViews()
 
         self.view.set(backgroundColor: .background1)
 
-        self.contentContainer.addSubview(self.loadingIndicator)
-        self.contentContainer.addSubview(self.label)
-
-        self.subscribeToUpdates()
+        self.contentContainer.addSubview(self.animationView)
+        self.animationView.contentMode = .scaleAspectFit
+        self.animationView.loopMode = .loop
     }
 
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
 
-        self.loadingIndicator.centerOnXAndY()
-        self.label.setSize(withWidth: self.view.proportionalWidth)
-        self.label.top = self.loadingIndicator.bottom + 10
-        self.label.centerOnX()
+        self.animationView.expandToSuperviewSize()
+    }
+
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+
+        self.animationView.play()
     }
 
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
 
-        self.loadingIndicator.stopAnimating()
-    }
-
-    private func subscribeToUpdates() {
-
-        self.loadingIndicator.startAnimating()
-        self.label.set(text: "Loading...",
-                       alignment: .center,
-                       stringCasing: .uppercase)
+        self.animationView.stop()
     }
 }
