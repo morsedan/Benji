@@ -86,31 +86,17 @@ class InviteComposerCoordinator: Coordinator<Void> {
     }
 
     private func createLink(with phoneNumber: String) -> Future<String> {
-        self.createConnection(with: phoneNumber).then { (connection) in
-            let promise = Promise<String>()
-            let canonicalIdentifier = UUID().uuidString
-            let buo = BranchUniversalObject(canonicalIdentifier: canonicalIdentifier)
-            buo.title = localized(LocalizedString(id: "", default: "Benji"))
-            buo.contentDescription = localized(LocalizedString(id: "", default: "Private message"))
-            buo.contentMetadata.customMetadata["connection_id"] = connection.objectId
-            let properties = BranchLinkProperties()
-            properties.channel = "iOS"
-            if let shortURL = buo.getShortUrl(with: properties) {
-                promise.resolve(with: shortURL)
-            } else {
-                promise.reject(with: ClientError.generic)
-            }
-            return promise
-        }
-    }
-
-    private func createConnection(with phoneNumber: String) -> Future<Connection> {
-        let connection = Connection()
-        connection.toPhoneNumber = phoneNumber
-        connection.status = Connection.Status.invited
-        return connection.saveLocalThenServer().then { (newConnection) in
-            return User.current()!.add(conneciton: newConnection)
-        }
+        CreateConnection(phoneNumber: phoneNumber).makeRequest()
+            .transform { (connection) -> String in
+                let canonicalIdentifier = UUID().uuidString
+                let buo = BranchUniversalObject(canonicalIdentifier: canonicalIdentifier)
+                buo.title = localized(LocalizedString(id: "", default: "Benji"))
+                buo.contentDescription = localized(LocalizedString(id: "", default: "Private message"))
+                buo.contentMetadata.customMetadata["connection_id"] = connection.objectId
+                let properties = BranchLinkProperties()
+                properties.channel = "iOS"
+                return buo.getShortUrl(with: properties)!
+        } 
     }
 
     func handleMessageComposer(result: MessageComposeResult, controller: MFMessageComposeViewController) {

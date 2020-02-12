@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import Contacts
 
 class PendingCollectionViewController: CollectionViewController<PendingInviteCell, PendingCollectionViewManager>, Sizeable  {
 
@@ -19,7 +20,24 @@ class PendingCollectionViewController: CollectionViewController<PendingInviteCel
         fatalError("init(coder:) has not been implemented")
     }
 
+    override func initializeViews() {
+        super.initializeViews()
+
+        self.loadConnections()
+    }
+
     func loadConnections() {
         /// Grab pending connections
+        guard let query = Connection.query() else { return }
+
+        query.whereKey(ConnectionKey.from.rawValue, equalTo: User.current()!)
+        query.whereKey(ConnectionKey.status.rawValue, equalTo: Connection.Status.invited.rawValue)
+        query.findObjectsInBackground { (objects, error) in
+            if let connections = objects as? [Connection] {
+                print(connections.count)
+            } else if let error = error {
+                print(error)
+            }
+        }
     }
 }
