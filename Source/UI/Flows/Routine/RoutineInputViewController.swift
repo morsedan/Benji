@@ -10,6 +10,13 @@ import Foundation
 import UserNotifications
 import TMROLocalization
 
+private let minutesInADay: CGFloat = 1440
+
+private func round(num: CGFloat, toMultipleOf multiple: Int) -> Int {
+    let rounded = (num/CGFloat(multiple)).rounded(.toNearestOrAwayFromZero) * CGFloat(multiple)
+    return Int(rounded)
+}
+
 class RoutineInputViewController: ViewController {
 
     static let height: CGFloat = 500
@@ -27,7 +34,10 @@ class RoutineInputViewController: ViewController {
         self.content.timeHump.percentage.signal.observeValues { [unowned self] (percentage) in
             let calendar = Calendar.current
             var components = DateComponents()
-            components.second = Int(percentage * 86400)
+
+            // Move minutes in intervals of 5
+            let minutes = round(num: (percentage * minutesInADay), toMultipleOf: 5)
+            components.minute = minutes
 
             if let date = calendar.date(from: components) {
                 self.selectedDate = date
@@ -46,8 +56,8 @@ class RoutineInputViewController: ViewController {
         })
 
         self.content.minusButton.didSelect = { [unowned self] in
-
-            if let newDate = self.selectedDate.subtract(component: .minute, amount: 15) {
+            if var newDate = self.selectedDate.subtract(component: .minute, amount: 15) {
+                newDate.minute = round(num: newDate.minute, toMultipleOf: 15)
                 let dateComponents = Calendar.current.dateComponents([.year, .month, .day,
                                                                       .hour, .minute, .second],
                                                                      from: newDate)
@@ -56,7 +66,8 @@ class RoutineInputViewController: ViewController {
         }
 
         self.content.plusButton.didSelect = { [unowned self] in
-            if let newDate = self.selectedDate.add(component: .minute, amount: 15) {
+            if var newDate = self.selectedDate.add(component: .minute, amount: 15) {
+                newDate.minute = round(num: newDate.minute, toMultipleOf: 15)
                 let dateComponents = Calendar.current.dateComponents([.year, .month, .day,
                                                                       .hour, .minute, .second],
                                                                      from: newDate)
