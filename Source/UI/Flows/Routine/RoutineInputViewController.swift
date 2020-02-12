@@ -56,21 +56,23 @@ class RoutineInputViewController: ViewController {
         })
 
         self.content.minusButton.didSelect = { [unowned self] in
-            if var newDate = self.selectedDate.subtract(component: .minute, amount: 15) {
-                newDate.minute = round(num: newDate.minute, toMultipleOf: 15)
-                let dateComponents = Calendar.current.dateComponents([.year, .month, .day,
+            if let newDate = self.selectedDate.subtract(component: .minute, amount: 15) {
+                let minute = round(num: CGFloat(newDate.minute), toMultipleOf: 15)
+                var dateComponents = Calendar.current.dateComponents([.year, .month, .day,
                                                                       .hour, .minute, .second],
                                                                      from: newDate)
+                dateComponents.minute = minute
                 self.updateHump(with: dateComponents)
             }
         }
 
         self.content.plusButton.didSelect = { [unowned self] in
-            if var newDate = self.selectedDate.add(component: .minute, amount: 15) {
-                newDate.minute = round(num: newDate.minute, toMultipleOf: 15)
-                let dateComponents = Calendar.current.dateComponents([.year, .month, .day,
+            if let newDate = self.selectedDate.add(component: .minute, amount: 15) {
+                let minute = round(num: CGFloat(newDate.minute), toMultipleOf: 15)
+                var dateComponents = Calendar.current.dateComponents([.year, .month, .day,
                                                                       .hour, .minute, .second],
                                                                      from: newDate)
+                dateComponents.minute = minute
                 self.updateHump(with: dateComponents)
             }
         }
