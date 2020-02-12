@@ -8,9 +8,11 @@
 
 import Foundation
 import TMROLocalization
+import Lottie
 
 class NavigationBarViewController: ViewController {
 
+    private(set) var animationView = AnimationView(name: "arrow")
     private(set) var backButton = Button()
     private(set) var titleLabel = RegularBoldLabel()
     private(set) var descriptionLabel = SmallLabel()
@@ -24,11 +26,10 @@ class NavigationBarViewController: ViewController {
 
     override func initializeViews() {
         super.initializeViews()
-        
 
+        self.animationView.transform = CGAffineTransform(rotationAngle: halfPi * -1)
         self.view.addSubview(self.backButton)
-        self.backButton.setImage(UIImage(systemName: "arrow.left"), for: .normal)
-        self.backButton.tintColor = Color.lightPurple.color
+        self.backButton.set(style: .animation(view: self.animationView))
         self.backButton.didSelect = { [unowned self] in
             self.didSelectBackButton()
         }
@@ -38,10 +39,10 @@ class NavigationBarViewController: ViewController {
         self.view.addSubview(self.lineView)
         self.lineView.set(backgroundColor: .background3)
 
-        self.updateLabels()
+        self.updateNavigationBar()
     }
 
-    func updateLabels() {
+    func updateNavigationBar() {
         self.titleLabel.set(text: self.getTitle(),
                             alignment: .center,
                             stringCasing: .uppercase)
@@ -49,6 +50,10 @@ class NavigationBarViewController: ViewController {
                                   color: .white,
                                   alignment: .center,
                                   stringCasing: .unchanged)
+
+        delay(1.0) {
+            self.animationView.play(fromFrame: 0, toFrame: 160, loopMode: nil, completion: nil)
+        }
         self.view.layoutNow()
     }
 

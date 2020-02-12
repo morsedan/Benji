@@ -75,7 +75,7 @@ class SwitchableContentViewController<ContentType: Switchable>: NavigationBarVie
 
                 self.currentCenterVC?.removeFromParentSuperview()
 
-                self.updateLabels()
+                self.updateNavigationBar()
 
                 self.currentCenterVC = self.currentContent.value.viewController
                 let showBackButton = self.currentContent.value.shouldShowBackButton
