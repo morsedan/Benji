@@ -10,12 +10,12 @@ import Foundation
 
 class ContactsCollectionViewManager: CollectionViewManager<ContactCell> {
 
-    override func managerDidConfigure(cell: ContactCell, for indexPath: IndexPath) {
-        super.managerDidConfigure(cell: cell, for: indexPath)
+    private let selectionImpact = UIImpactFeedbackGenerator(style: .light)
 
-        cell.content.button.didSelect = { [unowned self] in
-            self.select(indexPath: indexPath)
-        }
+    override func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        super.collectionView(collectionView, didSelectItemAt: indexPath)
+
+        self.selectionImpact.impactOccurred()
     }
 
     override func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {

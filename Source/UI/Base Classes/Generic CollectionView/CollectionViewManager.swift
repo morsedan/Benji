@@ -136,7 +136,6 @@ UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFl
     }
 
     func select(indexPath: IndexPath) {
-
         guard let item = self.items.value[safe: indexPath.row] else { return }
 
         if self.selectedIndexPaths.contains(indexPath) {

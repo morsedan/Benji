@@ -35,13 +35,13 @@ class AvatarView: DisplayableImageView {
         }
     }
 
-    var placeholderFont: UIFont = FontType.regular.font {
+    var placeholderFont: UIFont = FontType.regularBold.font {
         didSet {
             self.setImageFrom(initials: self.initials)
         }
     }
 
-    var placeholderTextColor: UIColor = .white {
+    var placeholderTextColor: UIColor = Color.purple.color {
         didSet {
             self.setImageFrom(initials: self.initials)
         }
@@ -98,7 +98,8 @@ class AvatarView: DisplayableImageView {
 
         //// Text Drawing
         let textRect = self.calculateTextRect(outerViewWidth: width, outerViewHeight: height)
-        let initialsText = NSAttributedString(string: initials, attributes: [.font: font])
+        let initialsText = NSAttributedString(string: initials, attributes: [.font: font,
+                                                                             .foregroundColor: Color.purple.color])
         if self.adjustsFontSizeToFitWidth,
             initialsText.width(considering: textRect.height) > textRect.width {
             let newFontSize = self.calculateFontSize(text: initials,
@@ -179,7 +180,8 @@ class AvatarView: DisplayableImageView {
         self.clipsToBounds = true
         self.setCorner(radius: 5)
         self.layer.borderColor = Color.purple.color.cgColor
-        self.layer.borderWidth = 2
+        self.layer.borderWidth = 3
+        self.backgroundColor = Color.purple.color.withAlphaComponent(0.4)
     }
 
     // MARK: - Open setters

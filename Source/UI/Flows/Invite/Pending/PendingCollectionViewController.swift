@@ -20,8 +20,8 @@ class PendingCollectionViewController: CollectionViewController<PendingInviteCel
         fatalError("init(coder:) has not been implemented")
     }
 
-    override func initializeViews() {
-        super.initializeViews()
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
 
         self.loadConnections()
     }

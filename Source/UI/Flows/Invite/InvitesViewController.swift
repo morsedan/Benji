@@ -23,6 +23,7 @@ class InvitesViewController: SwitchableContentViewController<InvitesContentType>
 
     unowned let delegate: InvitesViewControllerDelegates
     private let button = Button()
+    private let gradientView = GradientView(with: .background2)
     var buttonOffset: CGFloat?
 
     var selectedContacts: [CNContact] {
@@ -41,6 +42,7 @@ class InvitesViewController: SwitchableContentViewController<InvitesContentType>
     override func initializeViews() {
         super.initializeViews()
 
+        self.view.addSubview(self.gradientView)
         self.view.addSubview(self.button)
         self.button.didSelect = { [unowned self] in
             switch self.currentContent.value {
@@ -109,8 +111,8 @@ class InvitesViewController: SwitchableContentViewController<InvitesContentType>
     }
 
     override func willUpdateContent() {
+        self.view.bringSubviewToFront(self.gradientView)
         self.view.bringSubviewToFront(self.button)
-
         switch self.currentContent.value {
         case .contacts(let vc):
             vc.getAuthorizationStatus()
@@ -127,6 +129,11 @@ class InvitesViewController: SwitchableContentViewController<InvitesContentType>
         self.button.setSize(with: self.view.width)
         self.button.centerOnX()
         self.button.bottom = self.buttonOffset ?? self.view.height + 100
+
+        let height = self.view.height - self.button.top + 10
+        self.gradientView.size = CGSize(width: self.view.width, height: height)
+        self.gradientView.centerOnX()
+        self.gradientView.top = self.button.top
     }
 
     private func updateButton() {

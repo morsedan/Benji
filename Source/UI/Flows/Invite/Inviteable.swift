@@ -60,4 +60,13 @@ extension Inviteable: Avatar {
             return user.image
         }
     }
+
+    var phoneNumber: String? {
+        switch self {
+        case .contact(let contact):
+            return contact.primaryPhoneNumber
+        case .user(let user):
+            return user.phoneNumber
+        }
+    }
 }

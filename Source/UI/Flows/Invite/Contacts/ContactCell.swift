@@ -16,6 +16,18 @@ class ContactCell: UICollectionViewCell, ManageableCell {
 
     let content = InviteableContentView()
 
+    var showSelected: Bool? {
+        didSet {
+            guard let showSelected = self.showSelected, showSelected != oldValue else { return }
+
+            if showSelected {
+                self.content.animateToChecked()
+            } else {
+                self.content.animateToUnchecked()
+            }
+        }
+    }
+
     override init(frame: CGRect) {
         super.init(frame: frame)
         self.initializeSubviews()
@@ -36,11 +48,7 @@ class ContactCell: UICollectionViewCell, ManageableCell {
     }
 
     func update(isSelected: Bool) {
-        if isSelected {
-            self.content.button.set(style: .normal(color: .lightPurple, text: "Added"))
-        } else {
-            self.content.button.set(style: .normal(color: .blue, text: "Invite"))
-        }
+        self.showSelected = isSelected
     }
 
     func collectionViewManagerWillDisplay() {}
