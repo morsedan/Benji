@@ -13,7 +13,7 @@ import PhoneNumberKit
 class InviteableContentView: View {
 
     private let avatarView = AvatarView()
-    private let nameLabel = RegularLabel()
+    private let nameLabel = RegularBoldLabel()
     private let phoneNumberLabel = SmallLabel()
     private(set) var animationView = AnimationView(name: "checkbox")
 
