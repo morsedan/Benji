@@ -106,11 +106,18 @@ extension ChannelViewController {
                 self.loadMessages()
             case .typingEnded:
                 if let memberID = memberUpdate.member.identity, memberID != User.current()?.objectId {
+                    self.collectionViewManager.userTyping = nil
                     self.collectionViewManager.setTypingIndicatorViewHidden(true)
                 }
             case .typingStarted:
                 if let memberID = memberUpdate.member.identity, memberID != User.current()?.objectId {
-                    self.collectionViewManager.setTypingIndicatorViewHidden(false, performUpdates: nil)
+                    memberUpdate.member.getMemberAsUser()
+                        .observeValue { [unowned self] (user) in
+                            runMain {
+                                self.collectionViewManager.userTyping = user
+                                self.collectionViewManager.setTypingIndicatorViewHidden(false, performUpdates: nil)
+                            }
+                    }
                 }
             }
         }.start()

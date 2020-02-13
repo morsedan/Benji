@@ -13,8 +13,8 @@ class TypingIndicatorCell: UICollectionViewCell {
 
     // MARK: - Subviews
 
-    var insets = UIEdgeInsets(top: 15, left: 16, bottom: 0, right: 0)
-    let typingBubble = TypingBubbleView()
+    private let typingBubble = TypingBubbleView()
+    private let avatarView = AvatarView()
 
     // MARK: - Initialization
 
@@ -29,7 +29,16 @@ class TypingIndicatorCell: UICollectionViewCell {
     }
 
     func initializeViews() {
+        self.addSubview(self.avatarView)
         self.addSubview(self.typingBubble)
+    }
+
+    func configure(with avatar: Avatar) {
+        self.avatarView.set(avatar: avatar)
+    }
+
+    func startAnimating() {
+        self.typingBubble.startAnimating()
     }
 
     override func prepareForReuse() {
@@ -44,6 +53,13 @@ class TypingIndicatorCell: UICollectionViewCell {
 
     override func layoutSubviews() {
         super.layoutSubviews()
-        self.typingBubble.frame = self.bounds.inset(by: self.insets)
+
+        self.avatarView.size = CGSize(width: 30, height: 36)
+        self.avatarView.left = Theme.contentOffset
+
+        let insets = UIEdgeInsets(top: 4, left: self.avatarView.right + 4, bottom: 2, right: 0)
+        self.typingBubble.frame = self.bounds.inset(by: insets)
+
+        self.avatarView.bottom = self.typingBubble.bottom
     }
 }

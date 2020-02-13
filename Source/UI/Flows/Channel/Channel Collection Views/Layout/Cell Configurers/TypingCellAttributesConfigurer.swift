@@ -10,7 +10,7 @@ import Foundation
 
 class TypingCellAttributesConfigurer: ChannelCellAttributesConfigurer {
 
-    var height: CGFloat = 62
+    var height: CGFloat = 44
 
     override func size(with message: Messageable?, for layout: ChannelCollectionViewFlowLayout) -> CGSize {
         let collectionViewWidth = layout.collectionView?.bounds.width ?? 0

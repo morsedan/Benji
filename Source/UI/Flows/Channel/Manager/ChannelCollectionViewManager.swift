@@ -31,6 +31,7 @@ UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFl
     var didSelectURL: ((URL) -> Void)?
     var willDisplayCell: ((Messageable, IndexPath) -> Void)?
     private let selectionFeedback = UIImpactFeedbackGenerator(style: .heavy)
+    var userTyping: User? 
 
     init(with collectionView: ChannelCollectionView, for channelType: ChannelType) {
         self.collectionView = collectionView
@@ -81,7 +82,11 @@ UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFl
         guard let channelCollectionView = collectionView as? ChannelCollectionView else { fatalError() }
 
         if self.isSectionReservedForTypingIndicator(indexPath.section) {
-            return channelCollectionView.dequeueReusableCell(TypingIndicatorCell.self, for: indexPath)
+            let cell = channelCollectionView.dequeueReusableCell(TypingIndicatorCell.self, for: indexPath)
+            if let user = self.userTyping {
+                cell.configure(with: user)
+            }
+            return cell
         }
 
         guard let message = self.item(at: indexPath) else { fatalError("No message found for cell") }
@@ -179,7 +184,9 @@ UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFl
                         willDisplay cell: UICollectionViewCell,
                         forItemAt indexPath: IndexPath) {
         if let cell = cell as? TypingIndicatorCell {
-            cell.typingBubble.startAnimating()
+            if let user = self.userTyping {
+                cell.startAnimating()
+            }
         } else if let message = self.item(at: indexPath){
             self.willDisplayCell?(message, indexPath)
         }
