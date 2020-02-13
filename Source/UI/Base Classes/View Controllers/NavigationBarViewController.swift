@@ -42,7 +42,7 @@ class NavigationBarViewController: ViewController {
         self.updateNavigationBar()
     }
 
-    func updateNavigationBar() {
+    func updateNavigationBar(animateBackButton: Bool = true) {
         self.titleLabel.set(text: self.getTitle(),
                             alignment: .center,
                             stringCasing: .uppercase)
@@ -51,9 +51,12 @@ class NavigationBarViewController: ViewController {
                                   alignment: .center,
                                   stringCasing: .unchanged)
 
-        delay(1.5) {
-            self.animationView.play(fromFrame: 0, toFrame: 160, loopMode: nil, completion: nil)
+        if animateBackButton {
+            delay(1.5) {
+                self.animationView.play(fromFrame: 0, toFrame: 160, loopMode: nil, completion: nil)
+            }
         }
+
         self.view.layoutNow()
     }
 

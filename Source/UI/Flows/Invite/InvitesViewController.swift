@@ -61,7 +61,7 @@ class InvitesViewController: SwitchableContentViewController<InvitesContentType>
 
         self.contactsVC.collectionViewManager.onSelectedItem.signal.observeValues { [unowned self] (_) in
             /// update the desctipion
-            self.updateNavigationBar()
+            self.updateNavigationBar(animateBackButton: false)
             self.updateButton()
         }
 
