@@ -38,9 +38,9 @@ class SearchBar: View {
     private(set) var isSearching: Bool = false {
         didSet {
             if self.isSearching {
-                self.animateToSearch()
+                self.showSearch()
             } else {
-                self.animateToX()
+                self.hideSearch()
             }
         }
     }
@@ -90,7 +90,7 @@ class SearchBar: View {
         self.lineView.top = self.textField.bottom
     }
 
-    private func animateToX() {
+    private func showSearch() {
 
         self.textField.becomeFirstResponder()
 
@@ -105,11 +105,11 @@ class SearchBar: View {
         }, completion: nil)
     }
 
-    private func animateToSearch() {
+    private func hideSearch() {
 
         UIView.animate(withDuration: Theme.animationDuration) {
             self.lineWidth = 0
-            self.textField.alpha = 0 
+            self.textField.alpha = 0
             self.layoutNow()
         }
 
