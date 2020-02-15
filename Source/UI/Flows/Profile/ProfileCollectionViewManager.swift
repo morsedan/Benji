@@ -16,7 +16,6 @@ class ProfileCollectionViewManager: NSObject, UICollectionViewDelegate, UICollec
     var items: [ProfileItem] = []
 
     var didTapButtonAt: (ProfileItem) -> Void = { _ in }
-    var didTapAvatarAt: () -> Void = {}
 
     private let user: User
 
@@ -53,7 +52,7 @@ class ProfileCollectionViewManager: NSObject, UICollectionViewDelegate, UICollec
 
         cell.configure(with: avatar)
         cell.avatarView.didSelect = { [unowned self] in
-            self.didTapAvatarAt()
+            self.didTapButtonAt(.picture)
         }
 
         return cell
