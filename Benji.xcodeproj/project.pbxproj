@@ -229,6 +229,7 @@
 		D6B2606E22E80E4000143CF0 /* ToastView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6B2606D22E80E4000143CF0 /* ToastView.swift */; };
 		D6B2607022E80E6500143CF0 /* ToastView.xib in Resources */ = {isa = PBXBuildFile; fileRef = D6B2606F22E80E6500143CF0 /* ToastView.xib */; };
 		D6B2607222E80FE000143CF0 /* SmallBoldLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6B2607122E80FE000143CF0 /* SmallBoldLabel.swift */; };
+		D6BD933F23F8824D00C5660D /* face_scan.json in Resources */ = {isa = PBXBuildFile; fileRef = D6BD933E23F8824D00C5660D /* face_scan.json */; };
 		D6BF68D7239CBF74008E79A1 /* FeedInviteView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6BF68D6239CBF74008E79A1 /* FeedInviteView.swift */; };
 		D6C65E9E230CD07400259F7A /* LaunchCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6C65E9D230CD07400259F7A /* LaunchCoordinator.swift */; };
 		D6CD4F3723F3A56D004818B6 /* Onboarding+Cloud.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6CD4F3623F3A56D004818B6 /* Onboarding+Cloud.swift */; };
@@ -550,6 +551,7 @@
 		D6B2606D22E80E4000143CF0 /* ToastView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToastView.swift; sourceTree = "<group>"; };
 		D6B2606F22E80E6500143CF0 /* ToastView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ToastView.xib; sourceTree = "<group>"; };
 		D6B2607122E80FE000143CF0 /* SmallBoldLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SmallBoldLabel.swift; sourceTree = "<group>"; };
+		D6BD933E23F8824D00C5660D /* face_scan.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = face_scan.json; sourceTree = "<group>"; };
 		D6BF68D6239CBF74008E79A1 /* FeedInviteView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedInviteView.swift; sourceTree = "<group>"; };
 		D6C65E9D230CD07400259F7A /* LaunchCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LaunchCoordinator.swift; sourceTree = "<group>"; };
 		D6CD4F3623F3A56D004818B6 /* Onboarding+Cloud.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Onboarding+Cloud.swift"; sourceTree = "<group>"; };
@@ -1123,6 +1125,7 @@
 		D668893023F2741500FD2764 /* Animations */ = {
 			isa = PBXGroup;
 			children = (
+				D6BD933E23F8824D00C5660D /* face_scan.json */,
 				D629410123F8351D0088777E /* search-to-x.json */,
 				D6CD4F4023F46689004818B6 /* arrow.json */,
 				D6CD4F3E23F3BA89004818B6 /* checkbox.json */,
@@ -1638,6 +1641,7 @@
 				D6CD4F4123F46689004818B6 /* arrow.json in Resources */,
 				D637532B2316172700214F63 /* Roboto-Bold.ttf in Resources */,
 				D637532C2316172700214F63 /* Roboto-Medium.ttf in Resources */,
+				D6BD933F23F8824D00C5660D /* face_scan.json in Resources */,
 				D637532A2316172700214F63 /* Roboto-Regular.ttf in Resources */,
 				D6CD4F3F23F3BA89004818B6 /* checkbox.json in Resources */,
 				D61EC0CA21D3071500204BEE /* LaunchScreen.storyboard in Resources */,

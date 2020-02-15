@@ -10,6 +10,15 @@ import Foundation
 import Parse
 import TMROFutures
 import TMROLocalization
+import Lottie
+import ReactiveSwift
+
+enum PhotoState {
+    case initial
+    case scan
+    case confirm
+    case finish
+}
 
 class PhotoViewController: ViewController, Sizeable, Completable {
     typealias ResultType = Void
@@ -22,8 +31,14 @@ class PhotoViewController: ViewController, Sizeable, Completable {
         return vc
     }()
 
+    private let animationView = AnimationView(name: "face_scan")
     private let avatarView = AvatarView()
-    private let button = LoadingButton()
+
+    private let beginButton = Button()
+    private let confirmButton = LoadingButton()
+    private let retakeButton = Button()
+
+    private var currentState = MutableProperty<PhotoState>(.initial)
     private var isCapturing = false
     private var isComplete = false
 
@@ -32,6 +47,7 @@ class PhotoViewController: ViewController, Sizeable, Completable {
 
         self.view.set(backgroundColor: .background1)
 
+        self.view.addSubview(self.animationView)
         self.view.addSubview(self.avatarView)
         self.addChild(viewController: self.cameraVC)
 
@@ -39,24 +55,30 @@ class PhotoViewController: ViewController, Sizeable, Completable {
         self.avatarView.layer.borderWidth = 4
         self.avatarView.transform = CGAffineTransform(scaleX: 0.95, y: 0.95)
         self.avatarView.alpha = 0
-        self.view.addSubview(self.button)
+        self.view.addSubview(self.beginButton)
 
         self.cameraVC.view.alpha = 1
         self.cameraVC.didCapturePhoto = { [unowned self] image in
              self.update(image: image)
         }
 
-        self.button.set(style: .normal(color: .blue, text: "Begin"))
-        self.button.didSelect = { [unowned self] in
+        self.currentState.producer
+            .skipRepeats()
+            .on { [unowned self] (state) in
+                self.handle(state: state)
+        }.start()
+
+        self.beginButton.set(style: .normal(color: .blue, text: "Begin"))
+        self.beginButton.didSelect = { [unowned self] in
             if self.isComplete {
                 self.complete(with: .success(()))
             }else if !self.isCapturing {
                 self.isCapturing = true
-                self.button.set(style: .normal(color: .purple, text: "Capture"))
+                self.beginButton.set(style: .normal(color: .purple, text: "Capture"))
                 self.cameraVC.begin()
             } else {
                 self.isCapturing = false 
-                self.button.isLoading = true
+                //self.beginButton.isLoading = true
                 self.cameraVC.capturePhoto()
             }
         }
@@ -64,6 +86,9 @@ class PhotoViewController: ViewController, Sizeable, Completable {
 
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
+
+        self.animationView.size = CGSize(width: 140, height: 140)
+        self.animationView.centerOnXAndY()
 
         self.cameraVC.view.expandToSuperviewSize()
 
@@ -74,12 +99,44 @@ class PhotoViewController: ViewController, Sizeable, Completable {
         self.avatarView.centerOnX()
         self.avatarView.roundCorners()
 
-        self.button.size = CGSize(width: 200, height: 40)
-        self.button.bottom = self.view.height - 50
-        self.button.centerOnX()
+        self.beginButton.size = CGSize(width: 200, height: 40)
+        self.beginButton.bottom = self.view.height - 50
+        self.beginButton.centerOnX()
     }
 
-    func update(image: UIImage) {
+    private func handle(state: PhotoState) {
+        switch state {
+        case .initial:
+            self.handleInitialState()
+        case .scan:
+            self.handleScanState()
+        case .confirm:
+            self.handleConfirmState()
+        case .finish:
+            self.handleFinishState()
+        }
+    }
+
+    private func handleInitialState() {
+        //show begin
+        //show animation
+    }
+
+    private func handleScanState() {
+        //show scan
+        //show capture
+    }
+
+    private func handleConfirmState() {
+        //Show continue
+        //Show retake
+    }
+
+    private func handleFinishState() {
+        //Upload and dismiss
+    }
+
+    private func update(image: UIImage) {
         guard let fixed = image.fixedOrientation() else { return }
 
         self.avatarView.set(avatar: fixed)
@@ -122,11 +179,11 @@ class PhotoViewController: ViewController, Sizeable, Completable {
                 switch result {
                 case .success(_):
                     self.isComplete = true
-                    self.button.set(style: .normal(color: .purple, text: "Continue"))
+                    self.beginButton.set(style: .normal(color: .purple, text: "Continue"))
                 case .failure(let error):
                     self.complete(with: .failure(error))
                 }
-                self.button.isLoading = false
+               // self.beginButton.isLoading = false
         }
     }
 }
