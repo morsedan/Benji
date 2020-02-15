@@ -30,7 +30,7 @@ class SearchBar: View {
 
     private var placeholderText: String = String() {
         didSet {
-            let attributed = AttributedString(self.placeholderText, color: .white)
+            let attributed = AttributedString(self.placeholderText, color: .background3)
             self.textField.setPlaceholder(attributed: attributed)
         }
     }
@@ -54,11 +54,13 @@ class SearchBar: View {
         self.addSubview(self.button)
 
         self.textField.alpha = 0
+        self.textField.delegate = self
+
         self.lineView.set(backgroundColor: .white)
 
         self.textField.tintColor = Color.white.color
         self.textField.keyboardAppearance = .dark
-        self.textField.keyboardType = .twitter
+        self.textField.keyboardType = .default
         self.set(backgroundColor: .clear)
 
         self.button.didSelect = { [unowned self] in
