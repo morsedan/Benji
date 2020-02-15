@@ -17,6 +17,7 @@ enum PhotoState {
     case initial
     case scan
     case confirm
+    case error
     case finish
 }
 
@@ -38,9 +39,10 @@ class PhotoViewController: ViewController, Sizeable, Completable {
     private let confirmButton = LoadingButton()
     private let retakeButton = Button()
 
+    private let buttonContainer = View()
+    private var buttonContainerRect: CGRect?
+
     private var currentState = MutableProperty<PhotoState>(.initial)
-    private var isCapturing = false
-    private var isComplete = false
 
     override func initializeViews() {
         super.initializeViews()
@@ -55,7 +57,7 @@ class PhotoViewController: ViewController, Sizeable, Completable {
         self.avatarView.layer.borderWidth = 4
         self.avatarView.transform = CGAffineTransform(scaleX: 0.95, y: 0.95)
         self.avatarView.alpha = 0
-        self.view.addSubview(self.beginButton)
+        self.view.addSubview(self.buttonContainer)
 
         self.cameraVC.view.alpha = 1
         self.cameraVC.didCapturePhoto = { [unowned self] image in
@@ -70,17 +72,17 @@ class PhotoViewController: ViewController, Sizeable, Completable {
 
         self.beginButton.set(style: .normal(color: .blue, text: "Begin"))
         self.beginButton.didSelect = { [unowned self] in
-            if self.isComplete {
-                self.complete(with: .success(()))
-            }else if !self.isCapturing {
-                self.isCapturing = true
-                self.beginButton.set(style: .normal(color: .purple, text: "Capture"))
-                self.cameraVC.begin()
-            } else {
-                self.isCapturing = false 
-                //self.beginButton.isLoading = true
-                self.cameraVC.capturePhoto()
-            }
+            self.currentState.value = .scan
+        }
+
+        self.retakeButton.set(style: .normal(color: .red, text: "Retake"))
+        self.retakeButton.didSelect = { [unowned self] in
+            self.currentState.value = .scan
+        }
+
+        self.confirmButton.set(style: .normal(color: .blue, text: "Continue"))
+        self.confirmButton.didSelect = { [unowned self] in
+            self.currentState.value = .finish
         }
     }
 
@@ -99,9 +101,12 @@ class PhotoViewController: ViewController, Sizeable, Completable {
         self.avatarView.centerOnX()
         self.avatarView.roundCorners()
 
-        self.beginButton.size = CGSize(width: 200, height: 40)
-        self.beginButton.bottom = self.view.height - 50
-        self.beginButton.centerOnX()
+        let rect = self.buttonContainerRect ?? CGRect(x: Theme.contentOffset,
+                                                      y: self.view.bottom,
+                                                      width: self.view.width - (Theme.contentOffset * 2),
+                                                      height: Theme.buttonHeight)
+
+        self.buttonContainer.frame = rect
     }
 
     private func handle(state: PhotoState) {
@@ -112,12 +117,15 @@ class PhotoViewController: ViewController, Sizeable, Completable {
             self.handleScanState()
         case .confirm:
             self.handleConfirmState()
+        case .error:
+            self.handleErrorState()
         case .finish:
             self.handleFinishState()
         }
     }
 
     private func handleInitialState() {
+
         //show begin
         //show animation
     }
@@ -125,14 +133,26 @@ class PhotoViewController: ViewController, Sizeable, Completable {
     private func handleScanState() {
         //show scan
         //show capture
+        self.cameraVC.begin()
     }
 
     private func handleConfirmState() {
+        //Capture photo
+        self.cameraVC.capturePhoto()
+        // show Result
         //Show continue
         //Show retake
     }
 
+    private func handleErrorState() {
+        self.complete(with: .failure(ClientError.generic))
+    }
+
     private func handleFinishState() {
+        self.complete(with: .success(()))
+
+        //Show loading on button
+        self.confirmButton.isLoading = true
         //Upload and dismiss
     }
 
@@ -178,12 +198,11 @@ class PhotoViewController: ViewController, Sizeable, Completable {
             .observe { (result) in
                 switch result {
                 case .success(_):
-                    self.isComplete = true
-                    self.beginButton.set(style: .normal(color: .purple, text: "Continue"))
-                case .failure(let error):
-                    self.complete(with: .failure(error))
+                    self.currentState.value = .confirm
+                case .failure(_):
+                    self.currentState.value = .error
                 }
-               // self.beginButton.isLoading = false
+                self.confirmButton.isLoading = false
         }
     }
 }

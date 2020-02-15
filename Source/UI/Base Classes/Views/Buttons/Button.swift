@@ -107,7 +107,7 @@ class Button: UIButton {
     }
 
     func setSize(with width: CGFloat) {
-        self.size = CGSize(width: width - (Theme.contentOffset * 2), height: 60)
+        self.size = CGSize(width: width - (Theme.contentOffset * 2), height: Theme.buttonHeight)
     }
 
     override open func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
