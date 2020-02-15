@@ -7,27 +7,127 @@
 //
 
 import Foundation
+import Lottie
 
-class SearchBar: UISearchBar {
+protocol SearchBarDelegate: class {
+    func searchBarDidBeginEditing(_ searchBar: SearchBar)
+    func searchBarDidFinishEditing(_ searchBar: SearchBar)
+    func searchBar(_ searchBar: SearchBar, didUpdate text: String?)
+}
 
-    override init(frame: CGRect) {
-        super.init(frame: frame)
-        self.initializeSubviews()
+class SearchBar: View {
+
+    private let animationView = AnimationView(name: "search-to-x")
+    private let button = Button()
+    private let textField = TextField()
+    private let lineView = View()
+    private var lineWidth: CGFloat = 0
+    weak var delegate: SearchBarDelegate?
+
+    var text: String? {
+        return self.textField.text
     }
 
-    required init?(coder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
+    private var placeholderText: String = String() {
+        didSet {
+            let attributed = AttributedString(self.placeholderText, color: .white)
+            self.textField.setPlaceholder(attributed: attributed)
+        }
     }
 
-    func initializeSubviews() {
-        self.tintColor = Color.lightPurple.color
-        self.keyboardAppearance = .dark
-        self.keyboardType = .twitter
-        self.placeholder = "Search"
-        self.setImage(UIImage(systemName: "xmark.circle.fill"), for: .clear, state: .normal)
-        let styleAttributes = StringStyle(font: .regularBold, color: .lightPurple).attributes
-        self.searchTextField.typingAttributes = styleAttributes
+    private(set) var isSearching: Bool = false {
+        didSet {
+            if self.isSearching {
+                self.animateToSearch()
+            } else {
+                self.animateToX()
+            }
+        }
+    }
+
+    override func initializeSubviews() {
+        super.initializeSubviews()
+
+        self.addSubview(self.lineView)
+        self.addSubview(self.textField)
+        self.addSubview(self.animationView)
+        self.addSubview(self.button)
+
+        self.textField.alpha = 0
+        self.lineView.set(backgroundColor: .white)
+
+        self.textField.tintColor = Color.white.color
+        self.textField.keyboardAppearance = .dark
+        self.textField.keyboardType = .twitter
         self.set(backgroundColor: .clear)
-        self.backgroundImage = UIImage()
+
+        self.button.didSelect = { [unowned self] in
+            self.isSearching.toggle()
+        }
+
+        self.textField.onTextChanged = { [unowned self] in
+            self.delegate?.searchBar(self, didUpdate: self.text)
+        }
+    }
+
+    override func layoutSubviews() {
+        super.layoutSubviews()
+
+        self.button.size = CGSize(width: self.height, height: self.height)
+        self.button.right = self.width
+        self.button.top = 0
+
+        self.animationView.size = CGSize(width: 20, height: 20)
+        self.animationView.centerOnY()
+        self.animationView.right = self.width
+
+        self.textField.size = CGSize(width: self.width - self.button.width, height: self.height - 2)
+        self.textField.top = 0
+        self.textField.left = 0
+
+        self.lineView.size = CGSize(width: self.lineWidth, height: 2)
+        self.lineView.right = self.animationView.right
+        self.lineView.top = self.textField.bottom
+    }
+
+    private func animateToX() {
+
+        self.textField.becomeFirstResponder()
+
+        self.animationView.play(fromFrame: 0, toFrame: 30, loopMode: nil) { (completed) in
+            self.placeholderText = "Search"
+        }
+
+        UIView.animate(withDuration: Theme.animationDuration, delay: 0, options: .curveEaseIn, animations: {
+            self.textField.alpha = 1
+            self.lineWidth = self.width - 10
+            self.layoutNow()
+        }, completion: nil)
+    }
+
+    private func animateToSearch() {
+
+        UIView.animate(withDuration: Theme.animationDuration) {
+            self.lineWidth = 0
+            self.textField.alpha = 0 
+            self.layoutNow()
+        }
+
+        self.animationView.play(fromFrame: 30, toFrame: 0, loopMode: nil) { (completed) in
+            self.placeholderText = String()
+            self.textField.text = String()
+            self.textField.resignFirstResponder()
+        }
+    }
+}
+
+extension SearchBar: UITextFieldDelegate {
+
+    func textFieldDidBeginEditing(_ textField: UITextField) {
+        self.delegate?.searchBarDidBeginEditing(self)
+    }
+
+    func textFieldDidEndEditing(_ textField: UITextField) {
+        self.delegate?.searchBarDidFinishEditing(self)
     }
 }

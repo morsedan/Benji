@@ -50,6 +50,7 @@
 		D61EC0FC21D437C100204BEE /* Pods_Benji.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D61EC0FB21D437C100204BEE /* Pods_Benji.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
 		D623BC4F23EF5157007358CB /* ProfileItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = D623BC4E23EF5157007358CB /* ProfileItem.swift */; };
 		D624296723A9EF4F00322ABE /* HomeTabView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D624296623A9EF4F00322ABE /* HomeTabView.swift */; };
+		D629410223F8351D0088777E /* search-to-x.json in Resources */ = {isa = PBXBuildFile; fileRef = D629410123F8351D0088777E /* search-to-x.json */; };
 		D62C635422BE9CBB00F4D097 /* FeedViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D62C635322BE9CBB00F4D097 /* FeedViewController.swift */; };
 		D62C635622BE9E5C00F4D097 /* CollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D62C635522BE9E5C00F4D097 /* CollectionViewController.swift */; };
 		D635551B21E5B3D400530602 /* UIScrollView+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = D635551A21E5B3D400530602 /* UIScrollView+Extensions.swift */; };
@@ -369,6 +370,7 @@
 		D61EC0FB21D437C100204BEE /* Pods_Benji.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = Pods_Benji.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		D623BC4E23EF5157007358CB /* ProfileItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileItem.swift; sourceTree = "<group>"; };
 		D624296623A9EF4F00322ABE /* HomeTabView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeTabView.swift; sourceTree = "<group>"; };
+		D629410123F8351D0088777E /* search-to-x.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = "search-to-x.json"; sourceTree = "<group>"; };
 		D62C635322BE9CBB00F4D097 /* FeedViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedViewController.swift; sourceTree = "<group>"; };
 		D62C635522BE9E5C00F4D097 /* CollectionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollectionViewController.swift; sourceTree = "<group>"; };
 		D635551A21E5B3D400530602 /* UIScrollView+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIScrollView+Extensions.swift"; sourceTree = "<group>"; };
@@ -1121,6 +1123,7 @@
 		D668893023F2741500FD2764 /* Animations */ = {
 			isa = PBXGroup;
 			children = (
+				D629410123F8351D0088777E /* search-to-x.json */,
 				D6CD4F4023F46689004818B6 /* arrow.json */,
 				D6CD4F3E23F3BA89004818B6 /* checkbox.json */,
 				D668893323F2789A00FD2764 /* loading.json */,
@@ -1631,6 +1634,7 @@
 				D6B2607022E80E6500143CF0 /* ToastView.xib in Resources */,
 				D6ACA0B823D4248100844923 /* FaceDetection.storyboard in Resources */,
 				D642739522C9C0850088256B /* AlertView.xib in Resources */,
+				D629410223F8351D0088777E /* search-to-x.json in Resources */,
 				D6CD4F4123F46689004818B6 /* arrow.json in Resources */,
 				D637532B2316172700214F63 /* Roboto-Bold.ttf in Resources */,
 				D637532C2316172700214F63 /* Roboto-Medium.ttf in Resources */,

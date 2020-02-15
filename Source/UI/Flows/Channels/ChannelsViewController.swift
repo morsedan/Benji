@@ -41,25 +41,16 @@ class ChannelsViewController: CollectionViewController<ChannelCell, ChannelsColl
     }
 }
 
-extension ChannelsViewController: UISearchBarDelegate {
+extension ChannelsViewController: SearchBarDelegate {
 
-    func searchBarTextDidBeginEditing(_ searchBar: UISearchBar) {
-        searchBar.setShowsCancelButton(true, animated: true)
-    }
+    func searchBarDidBeginEditing(_ searchBar: SearchBar) {}
 
-    func searchBarTextDidEndEditing(_ searchBar: UISearchBar) {
-        searchBar.setShowsCancelButton(false, animated: true)
+    func searchBarDidFinishEditing(_ searchBar: SearchBar) {
         self.collectionViewManager.loadAllChannels()
     }
 
-    func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
-        self.collectionViewManager.channelFilter = SearchFilter(text: searchText.lowercased())
-    }
-
-    func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
-        searchBar.setShowsCancelButton(false, animated: true)
-        searchBar.text = String()
-        self.collectionViewManager.loadAllChannels()
-        searchBar.resignFirstResponder()
+    func searchBar(_ searchBar: SearchBar, didUpdate text: String?) {
+        let searchText = String(optional: text).lowercased()
+        self.collectionViewManager.channelFilter = SearchFilter(text: searchText)
     }
 }
