@@ -47,9 +47,7 @@ class ChannelsCollectionViewManager: CollectionViewManager<ChannelCell> {
 
         let sortedChannels = highlightedChannels.sorted()
 
-        self.set(newItems: sortedChannels) { (_) in
-            self.collectionView.reloadData()
-        }
+        self.set(newItems: sortedChannels) { (_) in }
     }
 
     override func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {

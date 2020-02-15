@@ -118,8 +118,9 @@ class SearchBar: View {
         self.animationView.play(fromFrame: 30, toFrame: 0, loopMode: nil) { (completed) in
             self.placeholderText = String()
             self.textField.text = String()
-            self.textField.resignFirstResponder()
         }
+
+        self.textField.resignFirstResponder()
     }
 }
 

@@ -35,11 +35,12 @@ class DisplayableChannel: ManageableCellItem, Hashable, Comparable {
     }
 
     func diffIdentifier() -> NSObjectProtocol {
-        self.channelType.diffIdentifier()
+        return self.channelType.diffIdentifier()
     }
 
     static func == (lhs: DisplayableChannel, rhs: DisplayableChannel) -> Bool {
-        return lhs.channelType.uniqueName == rhs.channelType.uniqueName
+        return lhs.channelType.uniqueName == rhs.channelType.uniqueName &&
+            lhs.highlightText == rhs.highlightText
     }
 
     func hash(into hasher: inout Hasher) {
