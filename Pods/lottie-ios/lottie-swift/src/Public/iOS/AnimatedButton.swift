@@ -28,12 +28,13 @@ final public class AnimatedButton: AnimatedControl {
   
   public override init(animation: Animation) {
     super.init(animation: animation)
-    self.accessibilityTraits = UIAccessibilityTraits.beginButton
+
+    self.accessibilityTraits = UIAccessibilityTraits.button
   }
   
   public override init() {
     super.init()
-    self.accessibilityTraits = UIAccessibilityTraits.beginButton
+    self.accessibilityTraits = UIAccessibilityTraits.button
   }
 
   fileprivate var rangesForEvents: [UInt : (from: CGFloat, to: CGFloat)] = [UIControl.Event.touchUpInside.rawValue : (from: 0, to: 1)]

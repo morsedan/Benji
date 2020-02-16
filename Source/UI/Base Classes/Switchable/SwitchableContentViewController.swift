@@ -86,7 +86,7 @@ class SwitchableContentViewController<ContentType: Switchable>: NavigationBarVie
 
                 self.willUpdateContent()
 
-                self.view.setNeedsLayout()
+                self.view.layoutNow()
 
                 self.animatePresentation(showBackButton: showBackButton)
             }

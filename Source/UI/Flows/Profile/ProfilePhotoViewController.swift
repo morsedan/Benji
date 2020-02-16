@@ -35,6 +35,10 @@ class ProfilePhotoViewController: SwitchableContentViewController<PhotoContentTy
 
     unowned let delegate: ProfilePhotoViewControllerDelegate
 
+    private var currentState: PhotoState? {
+        return self.photoVC.currentState.value
+    }
+
     init(with delegate: ProfilePhotoViewControllerDelegate) {
         self.delegate = delegate
         super.init()
@@ -58,6 +62,12 @@ class ProfilePhotoViewController: SwitchableContentViewController<PhotoContentTy
                 print(error)
             }
         }
+
+        self.photoVC.currentState.producer
+            .skipRepeats()
+            .on { [unowned self] (state) in
+                self.updateNavigationBar(animateBackButton: false)
+        }.start()
     }
 
     override func getInitialContent() -> PhotoContentType {
@@ -65,14 +75,35 @@ class ProfilePhotoViewController: SwitchableContentViewController<PhotoContentTy
     }
 
     override func getTitle() -> Localized {
-        return LocalizedString(id: "",
-                               arguments: [],
-                               default: "Update Face Scan")
+        guard let state = self.currentState else { return LocalizedString.empty }
+
+        switch state {
+        case .initial:
+            return LocalizedString(id: "",
+                                   arguments: [],
+                                   default: "Take Photo")
+        case .scan:
+            return LocalizedString(id: "",
+                                   arguments: [],
+                                   default: "Scanning...")
+        case .capture:
+            return LocalizedString(id: "",
+                                   arguments: [],
+                                   default: "Done")
+        case .error:
+            return LocalizedString(id: "",
+                                   arguments: [],
+                                   default: "Error!")
+        case .finish:
+            return LocalizedString(id: "",
+                                   arguments: [],
+                                   default: "Done")
+        }
     }
 
     override func getDescription() -> Localized {
         return LocalizedString(id: "",
                                arguments: [],
-                               default: "Tap begin to update your profile with another face scan. Don't forget to 😁")
+                               default: "For the safety of yourself and others, we require a front facing photo. This helps ensure everyone is who they say they are. No 🤖's!")
     }
 }

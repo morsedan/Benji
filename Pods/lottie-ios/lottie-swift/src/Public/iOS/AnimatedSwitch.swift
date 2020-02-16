@@ -73,7 +73,7 @@ final public class AnimatedSwitch: AnimatedControl {
     #endif
     super.init(animation: animation)
     updateOnState(isOn: _isOn, animated: false, shouldFireHaptics: false)
-    self.accessibilityTraits = UIAccessibilityTraits.beginButton
+    self.accessibilityTraits = UIAccessibilityTraits.button
   }
   
   public override init() {
@@ -89,7 +89,7 @@ final public class AnimatedSwitch: AnimatedControl {
     #endif
     super.init()
     updateOnState(isOn: _isOn, animated: false, shouldFireHaptics: false)
-    self.accessibilityTraits = UIAccessibilityTraits.beginButton
+    self.accessibilityTraits = UIAccessibilityTraits.button
   }
   
   required public init?(coder aDecoder: NSCoder) {
@@ -104,7 +104,7 @@ final public class AnimatedSwitch: AnimatedControl {
     self.hapticGenerator = NullHapticGenerator()
     #endif
     super.init(coder: aDecoder)
-    self.accessibilityTraits = UIAccessibilityTraits.beginButton
+    self.accessibilityTraits = UIAccessibilityTraits.button
   }
   
   fileprivate var onStartProgress: CGFloat = 0

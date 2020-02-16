@@ -23,6 +23,7 @@ class FaceDetectionViewController: UIViewController {
                                         qos: .userInitiated,
                                         attributes: [],
                                         autoreleaseFrequency: .workItem)
+    private var videoOutput: AVCaptureVideoDataOutput?
 
     var maxX: CGFloat = 0.0
     var midY: CGFloat = 0.0
@@ -41,6 +42,16 @@ class FaceDetectionViewController: UIViewController {
     func begin() {
         self.configureCaptureSession()
         self.session.startRunning()
+    }
+
+    func stop() {
+        self.session.stopRunning()
+        if let output = self.videoOutput {
+            self.session.removeOutput(output)
+        }
+        if let output = self.capturePhotoOutput {
+            self.session.removeOutput(output)
+        }
     }
 
     private func configureCaptureSession() {
@@ -62,14 +73,14 @@ class FaceDetectionViewController: UIViewController {
         }
 
         // Create the video data output
-        let videoOutput = AVCaptureVideoDataOutput()
-        videoOutput.setSampleBufferDelegate(self, queue: self.dataOutputQueue)
-        videoOutput.videoSettings = [kCVPixelBufferPixelFormatTypeKey as String: kCVPixelFormatType_32BGRA]
+        self.videoOutput = AVCaptureVideoDataOutput()
+        self.videoOutput!.setSampleBufferDelegate(self, queue: self.dataOutputQueue)
+        self.videoOutput!.videoSettings = [kCVPixelBufferPixelFormatTypeKey as String: kCVPixelFormatType_32BGRA]
 
         // Add the video output to the capture session
-        self.session.addOutput(videoOutput)
+        self.session.addOutput(self.videoOutput!)
 
-        let videoConnection = videoOutput.connection(with: .video)
+        let videoConnection = self.videoOutput?.connection(with: .video)
         videoConnection?.videoOrientation = .portrait
 
         // Get an instance of ACCapturePhotoOutput class
