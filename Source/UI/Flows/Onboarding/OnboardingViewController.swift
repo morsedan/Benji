@@ -106,8 +106,28 @@ class OnboardingViewController: SwitchableContentViewController<OnboardingConten
             return "Welcome!"
         case .name(_):
             return "Welcome!"
-        case .photo(_):
-            return "Welcome!"
+        case .photo(let vc):
+            guard let state = vc.currentState.value else { return String() }
+            switch state {
+            case .initial:
+                return LocalizedString(id: "",
+                                       arguments: [],
+                                       default: "Verify Indentity")
+            case .scan:
+                return LocalizedString(id: "",
+                                       arguments: [],
+                                       default: "Scanning...")
+            case .capture:
+                return LocalizedString(id: "",
+                                       arguments: [],
+                                       default: "Identity Verified")
+            case .error:
+                return LocalizedString(id: "",
+                                       arguments: [],
+                                       default: "Error!")
+            case .finish:
+                return LocalizedString.empty
+            }
         }
     }
 
@@ -130,7 +150,7 @@ class OnboardingViewController: SwitchableContentViewController<OnboardingConten
         case .photo(_):
             return LocalizedString(id: "",
                                    arguments: [],
-                                   default: "To ensure your identity to others, please take a face scan.")
+                                   default: "For the safety of yourself and others, we require a front facing photo. This helps ensure everyone is who they say they are. No 🤖's!")
         }
     }
 
