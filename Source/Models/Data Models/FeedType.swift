@@ -17,7 +17,7 @@ enum FeedType: Comparable {
     case system(SystemMessage)
     case unreadMessages(TCHChannel, Int)
     case channelInvite(TCHChannel)
-    case connecitonRequest(Connection)
+    case connectionRequest(Connection)
     case inviteAsk
     case notificationPermissions
 
@@ -37,7 +37,7 @@ enum FeedType: Comparable {
             return "inviteAsk"
         case .notificationPermissions:
             return "notificationPermissions"
-        case .connecitonRequest:
+        case .connectionRequest:
             return "connecitonRequest"
         }
     }
@@ -58,7 +58,7 @@ enum FeedType: Comparable {
             return 5
         case .system(_):
             return 6
-        case .connecitonRequest(_):
+        case .connectionRequest(_):
             return 7
         }
     }

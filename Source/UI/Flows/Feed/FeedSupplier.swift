@@ -105,7 +105,7 @@ class FeedSupplier {
             query.findObjectsInBackground { ( objects, error) in
                 if let connections = objects as? [Connection] {
                     connections.forEach { (connection) in
-                        self.items.append(.connecitonRequest(connection))
+                        self.items.append(.connectionRequest(connection))
                     }
                     promise.resolve(with: ())
                 } else if let error = error {

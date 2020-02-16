@@ -184,7 +184,7 @@ UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFl
                         willDisplay cell: UICollectionViewCell,
                         forItemAt indexPath: IndexPath) {
         if let cell = cell as? TypingIndicatorCell {
-            if let user = self.userTyping {
+            if let _ = self.userTyping {
                 cell.startAnimating()
             }
         } else if let message = self.item(at: indexPath){

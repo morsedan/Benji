@@ -277,7 +277,7 @@ class PhotoViewController: ViewController, Sizeable, Completable {
     }
 
     func saveProfilePicture(image: UIImage) {
-        guard let imageData = image.pngData(), let current = User.current() else { return }
+        guard let current = User.current() else { return }
 
         self.confirmButton.isLoading = true
         // NOTE: Remember, we're in points not pixels. Max image size will
@@ -297,9 +297,6 @@ class PhotoViewController: ViewController, Sizeable, Completable {
             let scaledImageFile = PFFileObject(name:"small_image.png", data: scaledData)
             current.smallImage = scaledImageFile
         }
-
-        let largeImageFile = PFFileObject(name:"image.png", data: imageData)
-        current.largeImage = largeImageFile
 
         current.saveToServer()
             .ignoreUserInteractionEventsUntilDone(for: self.view)

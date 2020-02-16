@@ -25,7 +25,6 @@ enum UserKey: String {
     case givenName
     case familyName
     case smallImage
-    case largeImage
     case routine
 }
 
@@ -71,11 +70,6 @@ final class User: PFUser {
     var smallImage: PFFileObject? {
         get { return self.getObject(for: .smallImage) }
         set { self.setObject(for: .smallImage, with: newValue) }
-    }
-
-    var largeImage: PFFileObject? {
-        get { return self.getObject(for: .largeImage) }
-        set { self.setObject(for: .largeImage, with: newValue) }
     }
 
     func add(conneciton: Connection) -> Future<Connection> {

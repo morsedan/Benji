@@ -13,13 +13,6 @@ class DisplayableImageView: View {
 
     private(set) var imageView = UIImageView()
 
-    var showLargeImage: Bool = false {
-        didSet {
-            self.updateImageView()
-            self.setNeedsLayout()
-        }
-    }
-
     var displayable: ImageDisplayable {
         didSet {
             self.updateImageView()
@@ -61,8 +54,7 @@ class DisplayableImageView: View {
     }
 
     private func downloadAndSetImage(for user: User) {
-        let imageFile = self.showLargeImage ? user.largeImage : user.smallImage
-        imageFile?.getDataInBackground { (imageData: Data?, error: Error?) in
+        user.smallImage?.getDataInBackground { (imageData: Data?, error: Error?) in
             guard let data = imageData else { return }
             let image = UIImage(data: data)
             self.imageView.image = image

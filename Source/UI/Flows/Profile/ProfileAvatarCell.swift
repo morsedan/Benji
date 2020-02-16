@@ -26,7 +26,6 @@ class ProfileAvatarCell: UICollectionViewCell {
     }
 
     func configure(with avatar: Avatar) {
-        self.avatarView.showLargeImage = true
         self.avatarView.set(avatar: avatar)
     }
 
