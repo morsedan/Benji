@@ -301,7 +301,7 @@ class PhotoViewController: ViewController, Sizeable, Completable {
         let largeImageFile = PFFileObject(name:"image.png", data: imageData)
         current.largeImage = largeImageFile
 
-        current.saveLocalThenServer()
+        current.saveToServer()
             .ignoreUserInteractionEventsUntilDone(for: self.view)
             .observe { (result) in
                 switch result {
@@ -310,7 +310,7 @@ class PhotoViewController: ViewController, Sizeable, Completable {
                 case .failure(_):
                     self.currentState.value = .error
                 }
-                self.confirmButton.isLoading = false 
+                self.confirmButton.isLoading = false
         }
     }
 }
