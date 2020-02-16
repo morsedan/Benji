@@ -122,9 +122,11 @@ extension FaceDetectionViewController {
     func detectedFace(request: VNRequest, error: Error?) {
         guard let results = request.results as? [VNFaceObservation], let result = results.first else {
             self.faceView.clear()
+            self.hasDetectedFace.value = false
             return
         }
 
         self.updateFaceView(for: result)
+        self.hasDetectedFace.value = true 
     }
 }

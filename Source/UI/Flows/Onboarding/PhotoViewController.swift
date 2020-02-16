@@ -75,6 +75,14 @@ class PhotoViewController: ViewController, Sizeable, Completable {
                 self.handle(state: currentState)
         }.start()
 
+        self.cameraVC.hasDetectedFace.producer
+            .skipRepeats()
+            .on { [unowned self] (hasFace) in
+                runMain {
+                    self.beginButton.isEnabled = hasFace
+                }
+        }.start()
+
         self.beginButton.didSelect = { [unowned self] in
             guard let state = self.currentState.value else { return }
 
@@ -147,7 +155,7 @@ class PhotoViewController: ViewController, Sizeable, Completable {
     }
 
     private func handleInitialState() {
-
+        self.beginButton.isEnabled = true
         self.beginButton.set(style: .normal(color: .green, text: "Begin"))
 
         if self.animationView.alpha == 0 {
@@ -170,6 +178,7 @@ class PhotoViewController: ViewController, Sizeable, Completable {
 
     private func handleScanState() {
         self.hideAvatar()
+        self.beginButton.isEnabled = true
 
         self.hideButtons { [unowned self] in
             //Hide animation view
@@ -282,7 +291,7 @@ class PhotoViewController: ViewController, Sizeable, Completable {
         self.confirmButton.isLoading = true
         // NOTE: Remember, we're in points not pixels. Max image size will
         // depend on image pixel density. It's okay for now.
-        let maxAllowedDimension: CGFloat = 50.0
+        let maxAllowedDimension: CGFloat = 100.0
         let longSide = max(image.size.width, image.size.height)
 
         var scaledImage: UIImage

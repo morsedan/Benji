@@ -9,6 +9,7 @@
 import Foundation
 import AVFoundation
 import Vision
+import ReactiveSwift
 
 class FaceDetectionViewController: UIViewController {
     var sequenceHandler = VNSequenceRequestHandler()
@@ -24,6 +25,8 @@ class FaceDetectionViewController: UIViewController {
                                         attributes: [],
                                         autoreleaseFrequency: .workItem)
     private var videoOutput: AVCaptureVideoDataOutput?
+
+    var hasDetectedFace = MutableProperty<Bool>(false)
 
     var maxX: CGFloat = 0.0
     var midY: CGFloat = 0.0

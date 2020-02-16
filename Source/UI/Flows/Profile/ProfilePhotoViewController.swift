@@ -100,15 +100,8 @@ class ProfilePhotoViewController: SwitchableContentViewController<PhotoContentTy
     }
 
     override func getDescription() -> Localized {
-        guard let state = self.currentState else { return LocalizedString.empty }
-
-        switch state {
-        case .initial:
-            return LocalizedString(id: "",
-                                   arguments: [],
-                                   default: "For the safety of yourself and others, we require a front facing photo. This helps ensure everyone is who they say they are. No 🤖's!")
-        default:
-            return LocalizedString.empty
-        }
+        return LocalizedString(id: "",
+                               arguments: [],
+                               default: "For the safety of yourself and others, we require a front facing photo. This helps ensure everyone is who they say they are. No 🤖's!")
     }
 }
