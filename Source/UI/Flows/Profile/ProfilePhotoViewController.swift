@@ -81,7 +81,7 @@ class ProfilePhotoViewController: SwitchableContentViewController<PhotoContentTy
         case .initial:
             return LocalizedString(id: "",
                                    arguments: [],
-                                   default: "Take Photo")
+                                   default: "Verify Indentity")
         case .scan:
             return LocalizedString(id: "",
                                    arguments: [],
@@ -89,21 +89,26 @@ class ProfilePhotoViewController: SwitchableContentViewController<PhotoContentTy
         case .capture:
             return LocalizedString(id: "",
                                    arguments: [],
-                                   default: "Done")
+                                   default: "Identity Verified")
         case .error:
             return LocalizedString(id: "",
                                    arguments: [],
                                    default: "Error!")
         case .finish:
-            return LocalizedString(id: "",
-                                   arguments: [],
-                                   default: "Done")
+            return LocalizedString.empty
         }
     }
 
     override func getDescription() -> Localized {
-        return LocalizedString(id: "",
-                               arguments: [],
-                               default: "For the safety of yourself and others, we require a front facing photo. This helps ensure everyone is who they say they are. No 🤖's!")
+        guard let state = self.currentState else { return LocalizedString.empty }
+
+        switch state {
+        case .initial:
+            return LocalizedString(id: "",
+                                   arguments: [],
+                                   default: "For the safety of yourself and others, we require a front facing photo. This helps ensure everyone is who they say they are. No 🤖's!")
+        default:
+            return LocalizedString.empty
+        }
     }
 }
