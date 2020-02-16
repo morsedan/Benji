@@ -80,6 +80,13 @@ class PhotoViewController: ViewController, Sizeable, Completable {
             .on { [unowned self] (hasFace) in
                 runMain {
                     self.beginButton.isEnabled = hasFace
+
+                    guard let state = self.currentState.value, state == .scan else { return }
+                    if hasFace {
+                        self.beginButton.set(style: .normal(color: .blue, text: "Capture"))
+                    } else {
+                        self.beginButton.set(style: .normal(color: .red, text: "NO face detected"))
+                    }
                 }
         }.start()
 
