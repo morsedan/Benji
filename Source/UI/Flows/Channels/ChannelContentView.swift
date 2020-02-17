@@ -10,13 +10,15 @@ import Foundation
 
 class ChannelContentView: View {
 
+    private let blurView = UIVisualEffectView(effect: UIBlurEffect(style: .dark))
     private(set) var titleLabel = RegularBoldLabel()
     private let purposeLabel = SmallLabel()
     private let stackedAvatarView = StackedAvatarView()
 
     override func initializeSubviews() {
         super.initializeSubviews()
-        
+
+        self.addSubview(self.blurView)
         self.addSubview(self.stackedAvatarView)
         self.addSubview(self.titleLabel)
         self.addSubview(self.purposeLabel)
@@ -49,6 +51,8 @@ class ChannelContentView: View {
 
     override func layoutSubviews() {
         super.layoutSubviews()
+
+        self.blurView.expandToSuperviewSize()
 
         self.stackedAvatarView.left = Theme.contentOffset
         self.stackedAvatarView.centerOnY()

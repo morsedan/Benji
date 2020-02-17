@@ -14,6 +14,7 @@ import TMROFutures
 
 class ChannelViewController: FullScreenViewController {
 
+    let blurView = UIVisualEffectView(effect: UIBlurEffect(style: .dark))
     lazy var detailBar = ChannelDetailBar(with: self.channelType, delegate: self.delegate)
 
     // A Boolean value that determines whether the `MessagesCollectionView`
@@ -70,6 +71,7 @@ class ChannelViewController: FullScreenViewController {
 
         self.registerKeyboardEvents()
 
+        self.view.addSubview(self.blurView)
         self.view.addSubview(self.collectionView)
         self.view.addSubview(self.detailBar)
 
@@ -108,6 +110,8 @@ class ChannelViewController: FullScreenViewController {
     
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
+
+        self.blurView.expandToSuperviewSize()
 
         guard let handler = self.keyboardHandler else { return }
 

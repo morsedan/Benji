@@ -12,8 +12,7 @@ class ChannelCellContentView: ChannelContentView {
 
     override func initializeSubviews() {
         super.initializeSubviews()
-
-        self.set(backgroundColor: .background2)
+        
         self.roundCorners()
     }
 

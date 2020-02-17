@@ -12,12 +12,13 @@ import Lottie
 
 class NavigationBarViewController: ViewController {
 
+    private let blurView = UIVisualEffectView(effect: UIBlurEffect(style: .dark))
     private(set) var animationView = AnimationView(name: "arrow")
     private(set) var backButton = Button()
     private(set) var titleLabel = RegularBoldLabel()
     private(set) var descriptionLabel = SmallLabel()
     /// Place all views under the lineView 
-    private(set) var lineView = View()
+    private(set) var lineView = UIVisualEffectView(effect: UIBlurEffect(style: .light))
     let scrollView = UIScrollView()
 
     override func loadView() {
@@ -26,6 +27,8 @@ class NavigationBarViewController: ViewController {
 
     override func initializeViews() {
         super.initializeViews()
+
+        self.view.addSubview(self.blurView)
 
         self.animationView.transform = CGAffineTransform(rotationAngle: halfPi * -1)
         self.view.addSubview(self.backButton)
@@ -78,6 +81,8 @@ class NavigationBarViewController: ViewController {
         self.lineView.size = CGSize(width: self.view.width - (Theme.contentOffset * 2), height: 2)
         self.lineView.top = self.descriptionLabel.bottom + 20
         self.lineView.centerOnX()
+
+        self.blurView.expandToSuperviewSize()
     }
 
     // MARK: PUBLIC

@@ -51,8 +51,7 @@ class ProfilePhotoViewController: SwitchableContentViewController<PhotoContentTy
     override func initializeViews() {
         super.initializeViews()
 
-        self.view.set(backgroundColor: .background2)
-        self.photoVC.view.set(backgroundColor: .background2)
+        self.photoVC.view.set(backgroundColor: .clear)
 
         self.photoVC.onDidComplete = { [unowned self] result in
             switch result {

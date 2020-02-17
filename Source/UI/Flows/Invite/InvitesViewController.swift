@@ -53,8 +53,6 @@ class InvitesViewController: SwitchableContentViewController<InvitesContentType>
             }
         }
         
-        self.view.set(backgroundColor: .background2)
-
         self.currentContent.signal.observeValues { (_) in
             self.updateButton()
         }

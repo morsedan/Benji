@@ -17,7 +17,6 @@ class FullScreenViewController: ViewController {
     override func initializeViews() {
         super.initializeViews()
 
-        self.view.set(backgroundColor: .background2)
         self.view.addSubview(self.contentContainer)
     }
 
