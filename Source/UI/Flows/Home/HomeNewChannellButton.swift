@@ -10,6 +10,16 @@ import Foundation
 
 class HomeNewChannellButton: ImageViewButton {
 
+    override func initializeSubviews() {
+        super.initializeSubviews()
+
+        self.imageView.image = UIImage(systemName: "square.and.pencil")
+        self.backgroundColor = Color.teal.color.withAlphaComponent(0.4)
+
+        self.layer.borderColor = Color.teal.color.cgColor
+        self.layer.borderWidth = 2
+    }
+
     override func layoutSubviews() {
         super.layoutSubviews()
 
