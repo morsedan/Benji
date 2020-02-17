@@ -13,6 +13,7 @@ class HomeNewChannellButton: ImageViewButton {
     override func initializeSubviews() {
         super.initializeSubviews()
 
+        self.imageView.tintColor = Color.teal.color
         self.imageView.image = UIImage(systemName: "square.and.pencil")
         self.backgroundColor = Color.teal.color.withAlphaComponent(0.4)
 

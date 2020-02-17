@@ -26,7 +26,7 @@ class NewChannelButton: LoadingButton {
         super.initializeSubviews()
 
         self.addSubview(self.iconImageView)
-        self.iconImageView.tintColor = Color.white.color
+        self.iconImageView.tintColor = Color.purple.color
         self.iconImageView.contentMode = .scaleAspectFit
         self.set(style: .normal(color: .purple, text: ""))
     }
