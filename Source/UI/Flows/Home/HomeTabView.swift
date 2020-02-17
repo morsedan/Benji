@@ -16,7 +16,7 @@ class HomeTabView: View {
     private(set) var settingsItem = ImageViewButton()
     private(set) var newChannelButton = HomeNewChannellButton()
 
-    private let flashLightView = FlashLightView(with: .teal)
+    private let flashLightView = View()
 
     private let selectionFeedback = UIImpactFeedbackGenerator(style: .light)
 
@@ -28,6 +28,7 @@ class HomeTabView: View {
         self.set(backgroundColor: .clear)
 
         self.addSubview(self.flashLightView)
+        self.flashLightView.set(backgroundColor: .teal)
         self.addSubview(self.profileItem)
         self.addSubview(self.feedItem)
         self.addSubview(self.channelsItem)
@@ -61,7 +62,7 @@ class HomeTabView: View {
         self.settingsItem.left = self.channelsItem.right
 
         self.flashLightView.size = CGSize(width: itemWidth * 0.55, height: 2)
-        self.flashLightView.top = itemSize.height
+        self.flashLightView.bottom = itemSize.height
 
         guard let current = self.currentContent else { return }
         let centerX: CGFloat
@@ -81,7 +82,6 @@ class HomeTabView: View {
     func updateTabItems(for contentType: HomeContent) {
         self.selectionFeedback.impactOccurred()
 
-        print(contentType)
         self.currentContent = contentType
 
         switch contentType {
@@ -102,9 +102,15 @@ class HomeTabView: View {
             self.settingsItem.imageView.image = UIImage(systemName: "info.circle")
         }
 
-        self.flashLightView.animateOut { [unowned self] in
-            self.layoutNow()
-            self.flashLightView.animateIn()
+        UIView.animate(withDuration: Theme.animationDuration, animations: {
+            self.flashLightView.alpha = 0.5
+        }) { (completed) in
+            if completed {
+                UIView.animate(withDuration: Theme.animationDuration) {
+                    self.setNeedsLayout()
+                    self.flashLightView.alpha = 1
+                }
+            }
         }
     }
 }
