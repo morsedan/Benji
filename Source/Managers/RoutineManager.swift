@@ -70,7 +70,14 @@ class RoutineManager {
 
         var lastChanceTime: DateComponents = routine.timeComponents
         if let minutes = routine.timeComponents.minute {
-            lastChanceTime.minute = minutes + 50
+            var min = minutes + 50
+            var hour = routine.timeComponents.hour ?? 0
+            if min > 60 {
+                min -= 60
+                hour += 1
+            }
+            lastChanceTime.minute = min
+            lastChanceTime.hour = hour
         } else {
             lastChanceTime.minute = 50
         }

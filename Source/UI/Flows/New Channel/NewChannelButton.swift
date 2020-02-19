@@ -17,7 +17,7 @@ class NewChannelButton: LoadingButton {
 
     override var isEnabled: Bool {
         didSet {
-            self.iconImageView.tintColor = self.isEnabled ? Color.white.color : Color.clear.color
+            self.iconImageView.tintColor = self.isEnabled ? Color.purple.color : Color.purple.color.withAlphaComponent(0.5)
             self.isUserInteractionEnabled = self.isEnabled
         }
     }

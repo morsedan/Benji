@@ -65,6 +65,7 @@ class NewChannelViewController: SwitchableContentViewController<NewChannelConten
     override func initializeViews() {
         super.initializeViews()
 
+        self.button.isEnabled = false 
         self.view.addSubview(self.button)
         self.button.didSelect = { [unowned self] in
             self.buttonTapped()
