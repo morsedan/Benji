@@ -50,10 +50,12 @@ class NewChannelButton: LoadingButton {
             switch contentType {
             case .purpose(_):
                 self.iconImageView.image = UIImage(systemName: "person.badge.plus")
+                self.iconImageView.tintColor = Color.purple.color
                 self.xOffset = -1
                 self.yOffset = 0
             case .favorites(_):
                 self.iconImageView.image = UIImage(systemName: "square.and.pencil")
+                self.iconImageView.tintColor = Color.purple.color
                 self.xOffset = 2
                 self.yOffset = -2
             }
