@@ -110,6 +110,7 @@ extension HomeCoordinator: HomeViewControllerDelegate {
         
         let coordinator = NewChannelCoordinator(router: self.router, deepLink: self.deepLink)
         self.addChildAndStart(coordinator) { (result) in
+            self.finishFlow(with: ())
             self.router.dismiss(source: coordinator.toPresentable(), animated: true) {
                 guard let channel = result else { return }
                 self.startChannelFlow(for: channel)
