@@ -58,8 +58,8 @@ class AlertView: View {
         var yOffset: CGFloat = 0
         for (index, subview) in buttonsContainer.subviews.enumerated() {
             guard let button = subview as? UIButton else { return }
-            button.frame = CGRect(x: 0, y: yOffset, width: self.buttonsContainer.width, height: 40)
-            button.layer.cornerRadius = button.halfHeight
+            button.frame = CGRect(x: 0, y: yOffset, width: self.buttonsContainer.width, height: 60)
+            button.layer.cornerRadius = Theme.contentOffset
             yOffset = (button.height + 10) * CGFloat(index + 1)
         }
 

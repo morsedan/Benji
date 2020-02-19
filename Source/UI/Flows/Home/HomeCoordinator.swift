@@ -81,7 +81,6 @@ class HomeCoordinator: PresentableCoordinator<Void> {
         case .channel:
             if let channelId = deeplink.channelId, let channel = ChannelSupplier.getChannel(withSID: channelId) {
                 delay(0.2) {
-                    self.removeChild()
                     self.startChannelFlow(for: channel.channelType)
                 }
             }
@@ -110,7 +109,6 @@ extension HomeCoordinator: HomeViewControllerDelegate {
         
         let coordinator = NewChannelCoordinator(router: self.router, deepLink: self.deepLink)
         self.addChildAndStart(coordinator) { (result) in
-            self.finishFlow(with: ())
             self.router.dismiss(source: coordinator.toPresentable(), animated: true) {
                 guard let channel = result else { return }
                 self.startChannelFlow(for: channel)
@@ -120,6 +118,7 @@ extension HomeCoordinator: HomeViewControllerDelegate {
     }
 
     func startChannelFlow(for type: ChannelType) {
+        self.removeChild()
         let coordinator = ChannelCoordinator(router: self.router, channelType: type)
         self.addChildAndStart(coordinator, finishedHandler: { (_) in
             self.router.dismiss(source: coordinator.toPresentable(), animated: true) {
