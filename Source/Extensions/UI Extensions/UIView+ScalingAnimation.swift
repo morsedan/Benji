@@ -10,11 +10,11 @@ import Foundation
 
 extension UIView {
 
-    func scaleDown() {
+    func scaleDown(xScale: CGFloat = 0.95, yScale: CGFloat = 0.9) {
 
         let propertyAnimator = UIViewPropertyAnimator(duration: 0.6,
                                                       dampingRatio: 0.6) {
-                                                        self.transform = CGAffineTransform(scaleX: 0.95, y: 0.9)
+                                                        self.transform = CGAffineTransform(scaleX: xScale, y: yScale)
         }
         propertyAnimator.startAnimation()
     }
