@@ -56,10 +56,6 @@ class FeedViewController: ViewController {
 
         self.collectionView.dataSource = self.manager
         self.collectionView.delegate = self.manager
-    }
-
-    override func viewDidAppear(_ animated: Bool) {
-        super.viewDidAppear(animated)
 
         if self.shouldShowFeed {
             self.subscribeToUpdates()

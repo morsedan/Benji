@@ -18,8 +18,8 @@ class FeedInviteView: View {
 
         self.addSubview(self.textView)
         self.addSubview(self.button)
-        self.textView.set(localizedText: "INVITES COMING SOON")
-        self.button.set(style: .rounded(color: .blue, text: "SEND"))
+        self.textView.set(localizedText: "Benji spends $0 on marketing. He'd rather spend his resources on building something worth sharing. Who would you like to introduce him too?")
+        self.button.set(style: .rounded(color: .blue, text: "SHARE"))
         self.button.isEnabled = true
     }
 
@@ -30,9 +30,8 @@ class FeedInviteView: View {
         self.textView.bottom = self.centerY - 10
         self.textView.centerOnX()
 
-        self.button.size = CGSize(width: 100, height: 40)
+        self.button.setSize(with: self.width)
         self.button.centerOnX()
         self.button.bottom = self.height - Theme.contentOffset
-        self.button.roundCorners()
     }
 }
