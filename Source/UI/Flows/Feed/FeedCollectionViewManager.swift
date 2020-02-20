@@ -17,6 +17,7 @@ class FeedCollectionViewManager: NSObject {
 
     var didComplete: (FeedType) -> Void = { _ in }
     var didFinish: CompletionOptional = nil
+    var didShowCardAtIndex: ((Int) -> Void)?
 
     init(with collectionView: FeedCollectionView) {
         self.collectionView = collectionView
@@ -86,7 +87,9 @@ extension FeedCollectionViewManager: KolodaViewDelegate {
         self.didFinish?()
     }
 
-    func koloda(_ koloda: KolodaView, didShowCardAt index: Int) {}
+    func koloda(_ koloda: KolodaView, didShowCardAt index: Int) {
+        self.didShowCardAtIndex?(index)
+    }
 
     func koloda(_ koloda: KolodaView, viewForCardOverlayAt index: Int) -> OverlayView? {
         return nil

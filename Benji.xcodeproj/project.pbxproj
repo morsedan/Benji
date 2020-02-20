@@ -110,6 +110,7 @@
 		D6486DCC23EF14C2007ED680 /* PendingInviteCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6486DCB23EF14C2007ED680 /* PendingInviteCell.swift */; };
 		D6486DCE23EF14E5007ED680 /* PendingCollectionViewManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6486DCD23EF14E5007ED680 /* PendingCollectionViewManager.swift */; };
 		D6486DD023EF15A2007ED680 /* Inviteable.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6486DCF23EF15A2007ED680 /* Inviteable.swift */; };
+		D64932D723FE460200986335 /* FeedIndicatorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D64932D623FE460200986335 /* FeedIndicatorView.swift */; };
 		D64C055B23C2A34E00F6DCC1 /* ChannelCellContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D64C055A23C2A34E00F6DCC1 /* ChannelCellContentView.swift */; };
 		D64C6A7A232883FE00DB7257 /* CloudFunction.swift in Sources */ = {isa = PBXBuildFile; fileRef = D64C6A79232883FE00DB7257 /* CloudFunction.swift */; };
 		D64C6A7C23288FB300DB7257 /* SmallLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D64C6A7B23288FB300DB7257 /* SmallLabel.swift */; };
@@ -431,6 +432,7 @@
 		D6486DCB23EF14C2007ED680 /* PendingInviteCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PendingInviteCell.swift; sourceTree = "<group>"; };
 		D6486DCD23EF14E5007ED680 /* PendingCollectionViewManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PendingCollectionViewManager.swift; sourceTree = "<group>"; };
 		D6486DCF23EF15A2007ED680 /* Inviteable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Inviteable.swift; sourceTree = "<group>"; };
+		D64932D623FE460200986335 /* FeedIndicatorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedIndicatorView.swift; sourceTree = "<group>"; };
 		D64C055A23C2A34E00F6DCC1 /* ChannelCellContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChannelCellContentView.swift; sourceTree = "<group>"; };
 		D64C6A79232883FE00DB7257 /* CloudFunction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CloudFunction.swift; sourceTree = "<group>"; };
 		D64C6A7B23288FB300DB7257 /* SmallLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SmallLabel.swift; sourceTree = "<group>"; };
@@ -892,6 +894,7 @@
 				D6A301AB2380E102006655E0 /* FeedSupplier.swift */,
 				D62C635322BE9CBB00F4D097 /* FeedViewController.swift */,
 				D67896B522FF86AB0059BA75 /* FeedViewController+Extensions.swift */,
+				D64932D623FE460200986335 /* FeedIndicatorView.swift */,
 			);
 			path = Feed;
 			sourceTree = "<group>";
@@ -1940,6 +1943,7 @@
 				80D4A21A23039FA5007CB5F1 /* RoutineManager.swift in Sources */,
 				D67896BF2302683C0059BA75 /* PhotoViewController.swift in Sources */,
 				D6D6D57623A70DF100D2B5BF /* SearchButton.swift in Sources */,
+				D64932D723FE460200986335 /* FeedIndicatorView.swift in Sources */,
 				D6D1500C21D5E7C200CD8CE4 /* CollectionViewManager.swift in Sources */,
 				D6D87E8B23E69F8400D6A7ED /* InvitesViewController.swift in Sources */,
 				D64C6A7C23288FB300DB7257 /* SmallLabel.swift in Sources */,

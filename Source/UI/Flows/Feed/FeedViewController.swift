@@ -26,14 +26,22 @@ class FeedViewController: ViewController {
         manager.didFinish = { [unowned self] in
             self.showReload()
         }
+        manager.didShowCardAtIndex = { [unowned self] index in
+            self.indicatorView.update(to: index)
+        }
         return manager
     }()
 
     weak var delegate: FeedViewControllerDelegate?
-    var items: [FeedType] = []
+    var items: [FeedType] = [] {
+        didSet {
+            self.indicatorView.configure(with: self.items.count)
+        }
+    }
     private let countDownView = CountDownView()
     private let messageLabel = MediumLabel()
     private let reloadButton = Button()
+    private let indicatorView = FeedIndicatorView()
 
     var message: Localized? {
         didSet {
@@ -55,7 +63,9 @@ class FeedViewController: ViewController {
         self.messageLabel.alpha = 0
         self.reloadButton.alpha = 0
         self.view.addSubview(self.countDownView)
+        self.view.addSubview(self.indicatorView)
         self.view.addSubview(self.collectionView)
+        self.indicatorView.alpha = 0
 
         self.countDownView.didExpire = { [unowned self] in
             self.subscribeToUpdates()
@@ -107,6 +117,10 @@ class FeedViewController: ViewController {
         self.countDownView.centerOnX()
 
         self.collectionView.expandToSuperviewSize()
+
+        self.indicatorView.size = CGSize(width: self.view.width - 40, height: 2)
+        self.indicatorView.top = 5
+        self.indicatorView.centerOnX()
     }
 
     private func showReload() {
@@ -116,6 +130,7 @@ class FeedViewController: ViewController {
         UIView.animate(withDuration: Theme.animationDuration, delay: Theme.animationDuration, options: .curveEaseInOut, animations: {
             self.reloadButton.alpha = 1
             self.messageLabel.alpha = 1
+            self.indicatorView.alpha = 0
         }, completion: nil)
     }
 
@@ -124,8 +139,10 @@ class FeedViewController: ViewController {
         UIView.animate(withDuration: Theme.animationDuration, delay: 0, options: .curveEaseInOut, animations: {
             self.reloadButton.alpha = 0
             self.messageLabel.alpha = 0
+            self.indicatorView.alpha = 1 
         }, completion: { completed in
             self.manager.reload()
+            self.indicatorView.configure(with: self.items.count)
         })
     }
 
@@ -194,6 +211,7 @@ class FeedViewController: ViewController {
             UIView.animate(withDuration: Theme.animationDuration, delay: 0, options: [], animations: {
                 self.countDownView.alpha = 0
                 self.countDownView.transform = CGAffineTransform(scaleX: 0.9, y: 0.9)
+                self.indicatorView.alpha = 1
             }, completion: nil)
 
             self.manager.set(items: self.items)
