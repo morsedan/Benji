@@ -23,6 +23,9 @@ class FeedViewController: ViewController {
         manager.didComplete = { [unowned self] feedType in
             self.delegate?.feedView(self, didSelect: feedType)
         }
+        manager.didFinish = { [unowned self] in
+            self.showReload()
+        }
         return manager
     }()
 
@@ -30,6 +33,8 @@ class FeedViewController: ViewController {
     var items: [FeedType] = []
     private let countDownView = CountDownView()
     private let messageLabel = MediumLabel()
+    private let reloadButton = Button()
+
     var message: Localized? {
         didSet {
             guard let text = self.message else { return }
@@ -46,12 +51,19 @@ class FeedViewController: ViewController {
         super.initializeViews()
 
         self.view.addSubview(self.messageLabel)
+        self.view.addSubview(self.reloadButton)
         self.messageLabel.alpha = 0
+        self.reloadButton.alpha = 0
         self.view.addSubview(self.countDownView)
         self.view.addSubview(self.collectionView)
 
         self.countDownView.didExpire = { [unowned self] in
             self.subscribeToUpdates()
+        }
+
+        self.reloadButton.set(style: .normal(color: .purple, text: "Reload"))
+        self.reloadButton.didSelect = { [unowned self] in
+            self.reloadFeed()
         }
 
         self.collectionView.dataSource = self.manager
@@ -82,15 +94,39 @@ class FeedViewController: ViewController {
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
 
-        self.messageLabel.size = CGSize(width: 300, height: 200)
+        self.messageLabel.setSize(withWidth: self.view.width * 0.8)
         self.messageLabel.centerY = self.view.halfHeight * 0.8
         self.messageLabel.centerOnX()
+
+        self.reloadButton.size = CGSize(width: 140, height: 40)
+        self.reloadButton.top = self.messageLabel.bottom + 40
+        self.reloadButton.centerOnX()
 
         self.countDownView.size = CGSize(width: 200, height: 60)
         self.countDownView.centerY = self.view.halfHeight * 0.8
         self.countDownView.centerOnX()
 
         self.collectionView.expandToSuperviewSize()
+    }
+
+    private func showReload() {
+        self.messageLabel.set(text: "You are all caught up!\nSee you tomorrow 🤗", alignment: .center)
+        self.view.bringSubviewToFront(self.reloadButton)
+        self.view.layoutNow()
+        UIView.animate(withDuration: Theme.animationDuration, delay: Theme.animationDuration, options: .curveEaseInOut, animations: {
+            self.reloadButton.alpha = 1
+            self.messageLabel.alpha = 1
+        }, completion: nil)
+    }
+
+    private func reloadFeed() {
+        self.view.sendSubviewToBack(self.reloadButton)
+        UIView.animate(withDuration: Theme.animationDuration, delay: 0, options: .curveEaseInOut, animations: {
+            self.reloadButton.alpha = 0
+            self.messageLabel.alpha = 0
+        }, completion: { completed in
+            self.manager.reload()
+        })
     }
 
     private func determineMessage(with routine: Routine) {
@@ -155,7 +191,7 @@ class FeedViewController: ViewController {
 
     func showFeed() {
         runMain {
-            UIView.animate(withDuration: Theme.animationDuration, delay: Theme.animationDuration, options: [], animations: {
+            UIView.animate(withDuration: Theme.animationDuration, delay: 0, options: [], animations: {
                 self.countDownView.alpha = 0
                 self.countDownView.transform = CGAffineTransform(scaleX: 0.9, y: 0.9)
             }, completion: nil)

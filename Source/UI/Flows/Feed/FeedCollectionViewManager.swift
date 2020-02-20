@@ -16,6 +16,7 @@ class FeedCollectionViewManager: NSObject {
     private var items: [FeedType] = []
 
     var didComplete: (FeedType) -> Void = { _ in }
+    var didFinish: CompletionOptional = nil
 
     init(with collectionView: FeedCollectionView) {
         self.collectionView = collectionView
@@ -34,6 +35,11 @@ class FeedCollectionViewManager: NSObject {
         self.items = items
         self.collectionView.reloadData()
         self.collectionView.layoutNow()
+    }
+
+    func reload() {
+        self.collectionView.resetCurrentCardIndex()
+        self.collectionView.reloadData()
     }
 }
 
@@ -54,6 +60,7 @@ extension FeedCollectionViewManager: KolodaViewDataSource {
         feedView.configure(with: item)
 
         feedView.didComplete = {
+
             koloda.swipe(.right)
             self.didComplete(item)
         }
@@ -76,7 +83,7 @@ extension FeedCollectionViewManager: KolodaViewDelegate {
     }
 
     func kolodaDidRunOutOfCards(_ koloda: KolodaView) {
-
+        self.didFinish?()
     }
 
     func koloda(_ koloda: KolodaView, didShowCardAt index: Int) {}
