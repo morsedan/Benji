@@ -25,6 +25,7 @@ class NewChannelButton: LoadingButton {
     override func initializeSubviews() {
         super.initializeSubviews()
 
+        self.shouldScale = false 
         self.addSubview(self.iconImageView)
         self.iconImageView.tintColor = Color.purple.color
         self.iconImageView.contentMode = .scaleAspectFit

@@ -40,6 +40,8 @@ class FeedViewController: ViewController {
         return UserDefaults.standard.value(forKey: Routine.currentRoutineKey) as? Date
     }
 
+    private let shouldShowFeed: Bool = true
+
     override func initializeViews() {
         super.initializeViews()
 
@@ -59,7 +61,11 @@ class FeedViewController: ViewController {
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
 
-        self.loadFeed()
+        if self.shouldShowFeed {
+            self.subscribeToUpdates()
+        } else {
+            self.loadFeed()
+        }
     }
 
     private func loadFeed() {
@@ -103,11 +109,6 @@ class FeedViewController: ViewController {
         UserDefaults.standard.set(triggerDate, forKey: Routine.currentRoutineKey)
 
         let now = Date()
-
-//        print("trigger \(triggerDate)")
-//        print("NOW \(now)")
-//        print("anHourAfter \(anHourAfter)")
-//        print("anHourUntil \(anHourUntil)")
         
         //If date is 1 hour or less away, show countDown
         if now.isBetween(anHourUntil, and: triggerDate) {

@@ -22,6 +22,7 @@ class Button: UIButton {
     var didSelect: CompletionOptional = nil
     private let selectionImpact = UIImpactFeedbackGenerator()
     var style: ButtonStyle?
+    var shouldScale: Bool = true
 
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -112,6 +113,8 @@ class Button: UIButton {
 
     override open func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         super.touchesBegan(touches, with: event)
+        guard self.shouldScale else { return }
+
         if let touch = touches.first, let view = touch.view, let button = view as? UIButton {
             button.scaleDown()
         }
@@ -119,6 +122,8 @@ class Button: UIButton {
 
     override open func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {
         super.touchesEnded(touches, with: event)
+        guard self.shouldScale else { return }
+
         if let touch = touches.first, let view = touch.view, let button = view as? UIButton {
             button.scaleUp()
         }
@@ -126,6 +131,8 @@ class Button: UIButton {
 
     override open func touchesCancelled(_ touches: Set<UITouch>, with event: UIEvent?) {
         super.touchesCancelled(touches, with: event)
+        guard self.shouldScale else { return }
+        
         if let touch = touches.first, let view = touch.view, let button = view as? UIButton {
             button.scaleUp()
         }

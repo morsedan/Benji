@@ -13,6 +13,7 @@ class ImageViewButton: View {
     let imageView = UIImageView()
     private let selectionFeedback = UIImpactFeedbackGenerator(style: .light)
     var didSelect: CompletionOptional = nil
+    var shouldScale: Bool = false
 
     override func initializeSubviews() {
         super.initializeSubviews()
@@ -38,6 +39,8 @@ class ImageViewButton: View {
 
     override open func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         super.touchesBegan(touches, with: event)
+        guard self.shouldScale else { return }
+
         if let touch = touches.first, let view = touch.view {
             view.scaleDown()
         }
@@ -45,6 +48,8 @@ class ImageViewButton: View {
 
     override open func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {
         super.touchesEnded(touches, with: event)
+        guard self.shouldScale else { return }
+
         if let touch = touches.first, let view = touch.view {
             view.scaleUp()
         }
@@ -52,6 +57,8 @@ class ImageViewButton: View {
 
     override open func touchesCancelled(_ touches: Set<UITouch>, with event: UIEvent?) {
         super.touchesCancelled(touches, with: event)
+        guard self.shouldScale else { return }
+        
         if let touch = touches.first, let view = touch.view {
             view.scaleUp()
         }
