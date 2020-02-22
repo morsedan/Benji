@@ -44,7 +44,7 @@ extension TCHMember {
                     promise.resolve(with: user)
                 })
         } else {
-            promise.reject(with: ClientError.generic)
+            promise.reject(with: ClientError.message(detail: "Failed to find author ID"))
         }
 
         return promise
