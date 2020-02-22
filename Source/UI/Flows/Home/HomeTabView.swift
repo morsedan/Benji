@@ -28,7 +28,7 @@ class HomeTabView: View {
         self.set(backgroundColor: .clear)
 
         self.addSubview(self.flashLightView)
-        self.flashLightView.set(backgroundColor: .teal)
+        self.flashLightView.set(backgroundColor: .purple)
         self.addSubview(self.profileItem)
         self.addSubview(self.feedItem)
         self.addSubview(self.channelsItem)
