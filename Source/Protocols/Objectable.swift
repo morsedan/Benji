@@ -99,11 +99,11 @@ extension Objectable where Self: PFObject {
                         } else if let error = error {
                             promise.reject(with: error)
                         } else {
-                            promise.reject(with: ClientError.generic)
+                            promise.reject(with: ClientError.message(detail: "Failed to retrieve this object"))
                         }
                     }
                 } else {
-                    promise.reject(with: ClientError.generic)
+                    promise.reject(with: ClientError.message(detail: "Failed to retrieve this object"))
                 }
 
                 return nil
@@ -139,12 +139,12 @@ extension Objectable where Self: PFObject {
                             } else if let objectsForType = objects as? [Self] {
                                 promise.resolve(with: objectsForType)
                             } else {
-                                promise.reject(with: ClientError.generic)
+                                promise.reject(with: ClientError.message(detail: "Failed to retrieve these objects"))
                             }
                         }
                     }
                 } else {
-                    promise.reject(with: ClientError.generic)
+                    promise.reject(with: ClientError.message(detail: "Failed to retrieve these objects"))
                 }
 
                 return nil
