@@ -34,12 +34,12 @@ class MessageSupplier {
                     self.sections = sections
                     promise.resolve(with: sections)
                 } else {
-                    promise.reject(with: ClientError.generic)
+                    promise.reject(with: ClientError.message(detail: "Failed to retrieve last messages"))
                 }
                 self.didGetLastSections?(self.sections)
             }
         } else {
-            promise.reject(with: ClientError.generic)
+            promise.reject(with: ClientError.message(detail: "Failed to retrieve last messages"))
         }
 
         return promise
@@ -59,11 +59,11 @@ class MessageSupplier {
                     self.sections = sections
                     promise.resolve(with: sections)
                 } else {
-                    promise.reject(with: ClientError.generic)
+                    promise.reject(with: ClientError.message(detail: "Failed to retrieve messages"))
                 }
             }
         } else {
-            promise.reject(with: ClientError.generic)
+            promise.reject(with: ClientError.message(detail: "Failed to retrieve messages"))
         }
 
         return promise
@@ -100,7 +100,7 @@ class MessageSupplier {
             if let channelMembers = pag?.items() {
                 promise.resolve(with: channelMembers)
             } else {
-                promise.reject(with: ClientError.generic)
+                promise.reject(with: ClientError.message(detail: "Failed to retrieve members of this channel"))
             }
         }
 
