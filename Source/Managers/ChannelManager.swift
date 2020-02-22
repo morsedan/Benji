@@ -61,7 +61,7 @@ class ChannelManager: NSObject {
                                             shared.client = strongClient
                                             promise.resolve(with: ())
                                         } else {
-                                            promise.reject(with: ClientError.generic)
+                                            promise.reject(with: ClientError.message(detail: "Failed to initialize chat client"))
                                         }
         })
         
