@@ -63,8 +63,8 @@ class RoutineManager {
         let identifier = self.lastChanceReminderID
 
         let content = UNMutableNotificationContent()
-        content.title = "Feed Unlocked for the next "
-        content.body = "Your daily feed is unlocked for the next hour."
+        content.title = "Last Chance"
+        content.body = "You have 10 mins left to check your feed for the day."
         content.sound = UNNotificationSound.default
         content.threadIdentifier = "routine"
 

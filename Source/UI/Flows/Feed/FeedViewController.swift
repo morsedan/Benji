@@ -131,7 +131,7 @@ class FeedViewController: ViewController {
             self.reloadButton.alpha = 1
             self.messageLabel.alpha = 1
             self.indicatorView.alpha = 0
-        }, completion: nil)
+        }, completion: { _ in })
     }
 
     private func reloadFeed() {
@@ -142,7 +142,7 @@ class FeedViewController: ViewController {
             self.indicatorView.alpha = 1 
         }, completion: { completed in
             self.manager.reload()
-            self.indicatorView.configure(with: self.items.count)
+            self.indicatorView.update(to: 0)
         })
     }
 
