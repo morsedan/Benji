@@ -74,11 +74,11 @@ final class Reservation: PFObject, PFSubclassing {
                     } else if let error = error {
                         promise.reject(with: error)
                     } else {
-                        promise.reject(with: ClientError.generic)
+                        promise.reject(with: ClientError.message(detail: "Failed to save Reservation"))
                     }
                 }
             } else {
-                promise.reject(with: ClientError.generic)
+                promise.reject(with: ClientError.message(detail: "There was a problem verifying the code you entered"))
             }
         }
 
