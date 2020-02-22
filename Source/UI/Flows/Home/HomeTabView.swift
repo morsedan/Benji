@@ -13,12 +13,12 @@ class HomeTabView: View {
     private(set) var profileItem = ImageViewButton()
     private(set) var feedItem = ImageViewButton()
     private(set) var channelsItem = ImageViewButton()
-    private(set) var settingsItem = ImageViewButton()
     private(set) var newChannelButton = HomeNewChannellButton()
 
     private let flashLightView = View()
 
     private let selectionFeedback = UIImpactFeedbackGenerator(style: .light)
+    private var indicatorCenterX: CGFloat?
 
     var currentContent: HomeContent?
     
@@ -33,15 +33,10 @@ class HomeTabView: View {
         self.addSubview(self.feedItem)
         self.addSubview(self.channelsItem)
         self.addSubview(self.newChannelButton)
-        self.addSubview(self.settingsItem)
     }
 
     override func layoutSubviews() {
         super.layoutSubviews()
-
-        self.newChannelButton.size = CGSize(width: 60, height: 60)
-        self.newChannelButton.top = 0
-        self.newChannelButton.centerOnX()
 
         let itemWidth = (self.width - (self.newChannelButton.width + 40)) * 0.25
         let itemSize = CGSize(width: itemWidth, height: self.newChannelButton.height)
@@ -55,28 +50,18 @@ class HomeTabView: View {
 
         self.channelsItem.size = itemSize
         self.channelsItem.top = 0
-        self.channelsItem.left = self.newChannelButton.right + 20
+        self.channelsItem.left = self.feedItem.right
 
-        self.settingsItem.size = itemSize
-        self.settingsItem.top = 0
-        self.settingsItem.left = self.channelsItem.right
+        self.newChannelButton.size = CGSize(width: 60, height: 60)
+        self.newChannelButton.top = 0
+        self.newChannelButton.right = self.width - Theme.contentOffset
 
         self.flashLightView.size = CGSize(width: itemWidth * 0.55, height: 2)
         self.flashLightView.bottom = itemSize.height
 
-        guard let current = self.currentContent else { return }
-        let centerX: CGFloat
+        guard self.indicatorCenterX == nil else { return }
 
-        switch current {
-        case .feed(_):
-            centerX = self.feedItem.centerX
-        case .channels(_):
-            centerX = self.channelsItem.centerX
-        case .profile(_):
-            centerX = self.profileItem.centerX
-        }
-
-        self.flashLightView.centerX = centerX
+        self.flashLightView.centerX = self.feedItem.centerX
     }
 
     func updateTabItems(for contentType: HomeContent) {
@@ -89,28 +74,44 @@ class HomeTabView: View {
             self.feedItem.imageView.image = UIImage(systemName: "square.stack.fill")
             self.profileItem.imageView.image = UIImage(systemName: "person.crop.circle")
             self.channelsItem.imageView.image = UIImage(systemName: "bubble.left.and.bubble.right")
-            self.settingsItem.imageView.image = UIImage(systemName: "info.circle")
         case .channels:
             self.feedItem.imageView.image = UIImage(systemName: "square.stack")
             self.profileItem.imageView.image = UIImage(systemName: "person.crop.circle")
             self.channelsItem.imageView.image = UIImage(systemName: "bubble.left.and.bubble.right.fill")
-            self.settingsItem.imageView.image = UIImage(systemName: "info.circle")
         case .profile:
             self.feedItem.imageView.image = UIImage(systemName: "square.stack")
             self.profileItem.imageView.image = UIImage(systemName: "person.crop.circle.fill")
             self.channelsItem.imageView.image = UIImage(systemName: "bubble.left.and.bubble.right")
-            self.settingsItem.imageView.image = UIImage(systemName: "info.circle")
         }
 
-        UIView.animate(withDuration: Theme.animationDuration, animations: {
-            self.flashLightView.alpha = 0.5
-        }) { (completed) in
-            if completed {
-                UIView.animate(withDuration: Theme.animationDuration) {
-                    self.setNeedsLayout()
-                    self.flashLightView.alpha = 1
-                }
+        self.animateIndicator(for: contentType)
+    }
+
+    private func animateIndicator(for contentType: HomeContent) {
+        let newCenterX: CGFloat
+
+        switch contentType {
+        case .feed(_):
+            newCenterX = self.feedItem.centerX
+        case .channels(_):
+            newCenterX = self.channelsItem.centerX
+        case .profile(_):
+            newCenterX = self.profileItem.centerX
+        }
+
+        UIView.animateKeyframes(withDuration: 0.5, delay: 0.0, options: [.calculationModeLinear], animations: {
+            UIView.addKeyframe(withRelativeStartTime: 0, relativeDuration: 0.33) {
+                self.flashLightView.transform = CGAffineTransform(scaleX: 0.2, y: 1.0)
             }
+            UIView.addKeyframe(withRelativeStartTime: 0.33, relativeDuration: 0.33) {
+                self.flashLightView.centerX = newCenterX
+                self.setNeedsLayout()
+            }
+            UIView.addKeyframe(withRelativeStartTime: 0.66, relativeDuration: 0.33) {
+                self.flashLightView.transform = .identity
+            }
+        }) { _ in
+            self.indicatorCenterX = newCenterX
         }
     }
 }
