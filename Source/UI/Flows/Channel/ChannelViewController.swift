@@ -107,6 +107,18 @@ class ChannelViewController: FullScreenViewController {
 
         self.subscribeToClient()
     }
+
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+
+        if MessageSupplier.shared.sections.count > 0 {
+            self.collectionViewManager.set(newSections: MessageSupplier.shared.sections, animate: true, completion: nil)
+        } else {
+            MessageSupplier.shared.didGetLastSections = { [unowned self] sections in
+                self.collectionViewManager.set(newSections: sections, animate: true, completion: nil)
+            }
+        }
+    }
     
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()

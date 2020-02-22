@@ -16,9 +16,13 @@ class MessageSupplier {
 
     /// To paginate and keep messages sorted we need to maintain a list
     private(set) var allMessages: [Messageable] = []
+    private(set) var sections: [ChannelSectionable] = []
+
+    var didGetLastSections: (([ChannelSectionable]) -> Void)?
 
     //MARK: GET MESSAGES
 
+    @discardableResult
     func getLastMessages(for channel: TCHChannel, batchAmount: UInt = 20) -> Future<[ChannelSectionable]> {
         let promise = Promise<[ChannelSectionable]>()
 
@@ -27,10 +31,12 @@ class MessageSupplier {
                 if let msgs = messages {
                     self.allMessages = msgs
                     let sections = self.mapMessagesToSections(for: msgs, in: .channel(channel))
+                    self.sections = sections
                     promise.resolve(with: sections)
                 } else {
                     promise.reject(with: ClientError.generic)
                 }
+                self.didGetLastSections?(self.sections)
             }
         } else {
             promise.reject(with: ClientError.generic)
@@ -50,6 +56,7 @@ class MessageSupplier {
                 if let msgs = messages {
                     self.allMessages.insert(contentsOf: msgs, at: 0)
                     let sections = self.mapMessagesToSections(for: self.allMessages, in: .channel(channel))
+                    self.sections = sections
                     promise.resolve(with: sections)
                 } else {
                     promise.reject(with: ClientError.generic)
