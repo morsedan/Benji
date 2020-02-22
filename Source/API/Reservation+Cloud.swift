@@ -26,7 +26,7 @@ struct VerifyReservation: CloudFunction {
                                 } else if let reservation = object as? Reservation {
                                     promise.resolve(with: reservation)
                                 } else {
-                                    promise.reject(with: ClientError.generic)
+                                    promise.reject(with: ClientError.message(detail: "The object returned from PFCloud.callFunction was not of type Reservation"))
                                 }
         }
 
