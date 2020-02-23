@@ -103,6 +103,18 @@ class ChannelViewController: FullScreenViewController {
 
                 strongChannel.delegate = self
                 self.loadMessages()
+
+                strongChannel.getMembersAsUsers()
+                    .observeValue { (users) in
+                        runMain {
+                            let notMeUsers = users.filter { (user) -> Bool in
+                                return user.objectId != User.current()?.objectId
+                            }
+
+                            self.messageInputView.textView.setPlaceholder(for: notMeUsers)
+                        }
+                }
+
                 self.view.setNeedsLayout()
         }.start()
 

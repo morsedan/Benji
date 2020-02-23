@@ -13,13 +13,27 @@ class InputTextView: GrowingTextView {
     override func initialize() {
         super.initialize()
 
-        self.set(placeholder: "Message")
-
         self.textContainerInset.left = 10
         self.textContainerInset.right = 10
         self.textContainerInset.top = 14
         self.textContainerInset.bottom = 12
 
         self.set(backgroundColor: .clear)
+    }
+
+    func setPlaceholder(for avatars: [Avatar]) {
+        var placeholderText = "Message "
+
+        for (index, avatar) in avatars.enumerated() {
+            if index < avatars.count - 1 {
+                placeholderText.append(String("\(avatar.givenName), "))
+            } else if index == avatars.count - 1 && avatars.count > 1 {
+                placeholderText.append(String("and \(avatar.givenName)"))
+            } else {
+                placeholderText.append(avatar.givenName)
+            }
+        }
+
+        self.set(placeholder: placeholderText, color: .lightPurple)
     }
 }
