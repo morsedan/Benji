@@ -21,7 +21,7 @@ extension TwilioChatClient {
         let promise = Promise<TCHChannel>()
 
         guard let channels = self.channelsList() else {
-            promise.reject(with: ClientError.generic)
+            promise.reject(with: ClientError.message(detail: "There are no channels to create."))
             return promise
         }
 
@@ -36,7 +36,7 @@ extension TwilioChatClient {
             } else if let error = result.error {
                 promise.reject(with: error)
             } else {
-                promise.reject(with: ClientError.message(detail: "Channel creation failed"))
+                promise.reject(with: ClientError.message(detail: "Channel creation failed."))
             }
         })
 
@@ -47,7 +47,7 @@ extension TwilioChatClient {
         let promise = Promise<TCHChannel>()
 
         guard let channels = self.channelsList() else {
-            promise.reject(with: ClientError.generic)
+            promise.reject(with: ClientError.message(detail: "No channels were found."))
             return promise
         }
 
@@ -57,7 +57,7 @@ extension TwilioChatClient {
             } else if let error = result.error {
                 promise.reject(with: error)
             } else {
-                promise.reject(with: ClientError.generic)
+                promise.reject(with: ClientError.message(detail: "No channel with that ID was found."))
             }
         }
 

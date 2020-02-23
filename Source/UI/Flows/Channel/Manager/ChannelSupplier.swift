@@ -43,7 +43,7 @@ class ChannelSupplier {
             } else if let error = result.error {
                 promise.reject(with: error)
             } else {
-                promise.reject(with: ClientError.generic)
+                promise.reject(with: ClientError.message(detail: "Failed to delete channel."))
             }
         }
 
@@ -60,7 +60,7 @@ class ChannelSupplier {
             } else if let error = result.error {
                 promise.reject(with: error)
             } else {
-                promise.reject(with: ClientError.generic)
+                promise.reject(with: ClientError.message(detail: "Failed to leave channel."))
             }
         }
 

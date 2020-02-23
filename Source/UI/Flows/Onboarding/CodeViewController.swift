@@ -49,7 +49,7 @@ class CodeViewController: TextInputViewController<Void> {
                     } else if let error = error {
                         self.complete(with: .failure(error))
                     } else {
-                        self.complete(with: .failure(ClientError.generic))
+                        self.complete(with: .failure(ClientError.message(detail: "Verification failed.")))
                     }
 
                     tf?.activityIndicator.stopAnimating()

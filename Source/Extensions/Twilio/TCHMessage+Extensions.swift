@@ -125,7 +125,7 @@ extension TCHMessage {
                     promise.resolve(with: user)
                 })
         } else {
-            promise.reject(with: ClientError.generic)
+            promise.reject(with: ClientError.message(detail: "Unable to retrieve author ID."))
         }
 
         return promise

@@ -227,7 +227,7 @@ class PhotoViewController: ViewController, Sizeable, Completable {
     }
 
     private func handleErrorState() {
-        self.complete(with: .failure(ClientError.generic))
+        self.complete(with: .failure(ClientError.message(detail: "There was a problem. Please try again.")))
     }
 
     private func handleFinishState() {

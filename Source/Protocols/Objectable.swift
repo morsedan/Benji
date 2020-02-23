@@ -99,11 +99,11 @@ extension Objectable where Self: PFObject {
                         } else if let error = error {
                             promise.reject(with: error)
                         } else {
-                            promise.reject(with: ClientError.generic)
+                            promise.reject(with: ClientError.message(detail: ClientError.genericErrorString))
                         }
                     }
                 } else {
-                    promise.reject(with: ClientError.generic)
+                    promise.reject(with: ClientError.message(detail: ClientError.genericErrorString))
                 }
 
                 return nil
@@ -139,12 +139,12 @@ extension Objectable where Self: PFObject {
                             } else if let objectsForType = objects as? [Self] {
                                 promise.resolve(with: objectsForType)
                             } else {
-                                promise.reject(with: ClientError.generic)
+                                promise.reject(with: ClientError.message(detail: ClientError.genericErrorString))
                             }
                         }
                     }
                 } else {
-                    promise.reject(with: ClientError.generic)
+                    promise.reject(with: ClientError.message(detail: ClientError.genericErrorString))
                 }
 
                 return nil
