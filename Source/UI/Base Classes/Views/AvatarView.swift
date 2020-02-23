@@ -17,6 +17,11 @@ class AvatarView: DisplayableImageView {
     var didSelect: CompletionOptional = nil {
         didSet {
             guard let didSelect = self.didSelect else { return }
+            
+            self.gestureRecognizers?.forEach({ (recognizer) in
+                self.removeGestureRecognizer(recognizer)
+            })
+
             self.onTap { (tap) in
                 didSelect()
             }
