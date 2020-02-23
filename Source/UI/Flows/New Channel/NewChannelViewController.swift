@@ -119,8 +119,8 @@ class NewChannelViewController: SwitchableContentViewController<NewChannelConten
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
 
-        self.button.size = CGSize(width: 60, height: 60)
-        self.button.right = self.view.width - 16
+        self.button.setSize(with: self.view.width)
+        self.button.centerOnX()
         self.button.bottom = self.view.height - self.view.safeAreaInsets.bottom - 10
 
         guard let handler = self.keyboardHandler, handler.currentKeyboardHeight > 0 else { return }
@@ -167,7 +167,6 @@ class NewChannelViewController: SwitchableContentViewController<NewChannelConten
     }
 
     override func willUpdateContent() {
-
         self.button.update(for: self.currentContent.value)
         self.view.bringSubviewToFront(self.button)
     }

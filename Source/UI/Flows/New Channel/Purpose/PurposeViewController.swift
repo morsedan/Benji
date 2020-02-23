@@ -29,7 +29,7 @@ class PurposeViewController: ViewController, Sizeable {
     var textViewDidBegin: CompletionOptional = nil
     var textViewDidEnd: CompletionOptional = nil
 
-    var textFieldTextDidChange: (String) -> Void = { _ in }
+    var textFieldTextDidChange: ((String) -> Void)?
 
     override func initializeViews() {
         super.initializeViews()
@@ -49,7 +49,7 @@ class PurposeViewController: ViewController, Sizeable {
 
         self.textField.onTextChanged = { [unowned self] in
             guard let text = self.textField.text else { return }
-            self.textFieldTextDidChange(text)
+            self.textFieldTextDidChange?(text)
             self.purposeAccessoryView.textColor = text.isEmpty ? .red : .white
         }
 
