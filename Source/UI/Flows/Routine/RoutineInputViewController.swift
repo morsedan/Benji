@@ -9,6 +9,7 @@
 import Foundation
 import UserNotifications
 import TMROLocalization
+import ReactiveSwift
 
 private let minutesInADay: CGFloat = 1440
 
@@ -17,12 +18,18 @@ private func round(num: CGFloat, toMultipleOf multiple: Int) -> Int {
     return Int(rounded)
 }
 
+enum RoutineInputState {
+    case edit
+    case update
+}
+
 class RoutineInputViewController: ViewController {
 
     static let height: CGFloat = 500
     let content = RoutineInputContentView()
 
     var selectedDate = Date()
+    lazy var currentState = MutableProperty<RoutineInputState>(.edit)
 
     override func loadView() {
         self.view = self.content
@@ -30,6 +37,12 @@ class RoutineInputViewController: ViewController {
 
     override func initializeViews() {
         super.initializeViews()
+
+        self.currentState.producer
+            .skipRepeats()
+            .on { [unowned self] (_) in
+                self.updateForStateChange()
+        }.start()
 
         self.content.timeHump.percentage.signal.observeValues { [unowned self] (percentage) in
             let calendar = Calendar.current
@@ -78,19 +91,44 @@ class RoutineInputViewController: ViewController {
         }
 
         self.content.setRoutineButton.didSelect = { [unowned self] in
-            let routine = Routine()
-            routine.create(with: self.selectedDate)
-            routine.saveEventually()
-            .withResultToast(with: "Routine saved")
-                .observe { (result) in
-                    switch result {
-                    case .success(_):
-                        self.animateButton(with: .blue, text: "Routine Updated")
-                    case .failure(let error):
-                        print(error)
-                        self.animateButton(with: .red, text: "Error")
-                    }
+            switch self.currentState.value {
+            case .edit:
+                self.currentState.value = .update
+            case .update:
+                self.saveRoutine()
             }
+        }
+    }
+
+    private func saveRoutine() {
+        let routine = Routine()
+        routine.create(with: self.selectedDate)
+        routine.saveEventually()
+        .ignoreUserInteractionEventsUntilDone(for: self.view)
+        .withResultToast(with: "Routine saved")
+            .observe { (result) in
+                switch result {
+                case .success(_):
+                    self.animateButton(with: .lightPurple, text: "Success")
+                case .failure(let error):
+                    print(error)
+                    self.animateButton(with: .red, text: "Error")
+                }
+
+                delay(2) {
+                    self.currentState.value = .edit
+                }
+        }
+    }
+
+    private func updateForStateChange() {
+        switch self.currentState.value {
+        case .edit:
+            self.animateButton(with: .green, text: "Edit")
+            self.content.animateTimeHump(shouldShow: false)
+        case .update:
+            self.animateButton(with: .purple, text: "Update")
+            self.content.animateTimeHump(shouldShow: true)
         }
     }
 

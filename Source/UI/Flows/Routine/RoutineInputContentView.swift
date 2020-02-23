@@ -18,6 +18,8 @@ class RoutineInputContentView: View {
     let timeHump = TimeHumpView()
     let setRoutineButton = LoadingButton()
 
+    var timeLabelYOffset: CGFloat = 200
+
     override func initializeSubviews() {
         super.initializeSubviews()
         
@@ -30,15 +32,15 @@ class RoutineInputContentView: View {
 
         self.addSubview(self.plusButton)
         self.plusButton.setImage(UIImage(systemName: "plus"), for: .normal)
-        self.plusButton.tintColor = Color.lightPurple.color.withAlphaComponent(0.2)
+        self.plusButton.tintColor = Color.lightPurple.color
+        self.plusButton.alpha = 0
 
         self.addSubview(self.minusButton)
         self.minusButton.setImage(UIImage(systemName: "minus"), for: .normal)
-        self.minusButton.tintColor = Color.lightPurple.color.withAlphaComponent(0.2)
+        self.minusButton.tintColor = Color.lightPurple.color
+        self.minusButton.alpha = 0
         
         self.addSubview(self.setRoutineButton)
-        self.setRoutineButton.set(style: .rounded(color: .purple, text: "SET"))
-
         self.addSubview(self.timeHump)
     }
 
@@ -46,7 +48,7 @@ class RoutineInputContentView: View {
         super.layoutSubviews()
 
         self.setRoutineButton.setSize(with: self.width)
-        self.setRoutineButton.bottom = self.height - 20
+        self.setRoutineButton.bottom = self.height
         self.setRoutineButton.centerOnX()
 
         self.timeHump.size = CGSize(width: self.width * 0.9, height: 140)
@@ -55,7 +57,7 @@ class RoutineInputContentView: View {
 
         self.timeLabel.setSize(withWidth: 220)
         self.timeLabel.centerOnX()
-        self.timeLabel.bottom = self.timeHump.top - 140
+        self.timeLabel.bottom = self.timeHump.top - self.timeLabelYOffset
 
         self.minusButton.size = CGSize(width: 50, height: 50)
         self.minusButton.centerY = self.timeLabel.centerY
@@ -73,5 +75,15 @@ class RoutineInputContentView: View {
     func set(date: Date) {
         self.timeLabel.set(date: date)
         self.setNeedsLayout()
+    }
+
+    func animateTimeHump(shouldShow: Bool) {
+        UIView.animate(withDuration: Theme.animationDuration) {
+            self.minusButton.alpha = shouldShow ? 1 : 0
+            self.plusButton.alpha = shouldShow ? 1 : 0
+            self.timeLabelYOffset = shouldShow ? 140 : 0
+            self.timeHump.alpha = shouldShow ? 1 : 0 
+            self.layoutNow()
+        }
     }
 }

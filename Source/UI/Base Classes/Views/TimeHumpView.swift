@@ -11,6 +11,12 @@ import ReactiveSwift
 
 class TimeHumpView: View {
 
+    override var alpha: CGFloat {
+        didSet {
+            self.sliderView.alpha = self.alpha
+        }
+    }
+
     let sliderView = View()
     var amplitude: CGFloat {
         return (self.height - 8) * 0.5
