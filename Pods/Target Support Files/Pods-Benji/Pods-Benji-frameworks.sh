@@ -172,6 +172,8 @@ if [[ "$CONFIGURATION" == "Debug" ]]; then
   install_framework "${BUILT_PRODUCTS_DIR}/TMROFutures/TMROFutures.framework"
   install_framework "${BUILT_PRODUCTS_DIR}/TMROLocalization/TMROLocalization.framework"
   install_framework "${PODS_ROOT}/TwilioAccessManager/TwilioAccessManager.framework"
+  install_framework "${PODS_ROOT}/TwilioChatClient/TwilioChatClient.framework"
+  install_dsym "${PODS_ROOT}/TwilioChatClient/TwilioChatClient.framework.dSYM"
   install_framework "${BUILT_PRODUCTS_DIR}/lottie-ios/Lottie.framework"
   install_framework "${BUILT_PRODUCTS_DIR}/pop/pop.framework"
 fi
@@ -187,6 +189,8 @@ if [[ "$CONFIGURATION" == "Release" ]]; then
   install_framework "${BUILT_PRODUCTS_DIR}/TMROFutures/TMROFutures.framework"
   install_framework "${BUILT_PRODUCTS_DIR}/TMROLocalization/TMROLocalization.framework"
   install_framework "${PODS_ROOT}/TwilioAccessManager/TwilioAccessManager.framework"
+  install_framework "${PODS_ROOT}/TwilioChatClient/TwilioChatClient.framework"
+  install_dsym "${PODS_ROOT}/TwilioChatClient/TwilioChatClient.framework.dSYM"
   install_framework "${BUILT_PRODUCTS_DIR}/lottie-ios/Lottie.framework"
   install_framework "${BUILT_PRODUCTS_DIR}/pop/pop.framework"
 fi

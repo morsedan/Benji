@@ -1,8 +1,8 @@
 PODS:
   - Bolts/Tasks (1.9.0)
-  - Branch (0.31.3):
-    - Branch/Core (= 0.31.3)
-  - Branch/Core (0.31.3)
+  - Branch (0.31.4):
+    - Branch/Core (= 0.31.4)
+  - Branch/Core (0.31.4)
   - GestureRecognizerClosures (5.0.0)
   - Koloda (5.0):
     - pop (~> 1.0)
@@ -61,7 +61,7 @@ SPEC REPOS:
 
 SPEC CHECKSUMS:
   Bolts: ac6567323eac61e203f6a9763667d0f711be34c8
-  Branch: 9b299693ee54b308ff8c18146afe1f711c2069ec
+  Branch: 5180bca89b8942dd0fe8175d7ecb8a8a451cf5b0
   GestureRecognizerClosures: 0dcafb45e669e7a775c840383e54b3d16983037b
   Koloda: 75302d21882cc3e274c1561b1155805ea5919dab
   lottie-ios: 85ce835dd8c53e02509f20729fc7d6a4e6645a0a
