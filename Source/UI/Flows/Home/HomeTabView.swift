@@ -69,21 +69,6 @@ class HomeTabView: View {
 
         self.currentContent = contentType
 
-        switch contentType {
-        case .feed:
-            self.feedItem.imageView.image = UIImage(systemName: "square.stack.fill")
-            self.profileItem.imageView.image = UIImage(systemName: "person.crop.circle")
-            self.channelsItem.imageView.image = UIImage(systemName: "bubble.left.and.bubble.right")
-        case .channels:
-            self.feedItem.imageView.image = UIImage(systemName: "square.stack")
-            self.profileItem.imageView.image = UIImage(systemName: "person.crop.circle")
-            self.channelsItem.imageView.image = UIImage(systemName: "bubble.left.and.bubble.right.fill")
-        case .profile:
-            self.feedItem.imageView.image = UIImage(systemName: "square.stack")
-            self.profileItem.imageView.image = UIImage(systemName: "person.crop.circle.fill")
-            self.channelsItem.imageView.image = UIImage(systemName: "bubble.left.and.bubble.right")
-        }
-
         self.animateIndicator(for: contentType)
     }
 
@@ -112,6 +97,24 @@ class HomeTabView: View {
             }
         }) { _ in
             self.indicatorCenterX = newCenterX
+            self.updateButtons(for: contentType)
+        }
+    }
+
+    private func updateButtons(for contentType: HomeContent) {
+        switch contentType {
+        case .feed:
+            self.feedItem.imageView.image = UIImage(systemName: "square.stack.fill")
+            self.profileItem.imageView.image = UIImage(systemName: "person.crop.circle")
+            self.channelsItem.imageView.image = UIImage(systemName: "bubble.left.and.bubble.right")
+        case .channels:
+            self.feedItem.imageView.image = UIImage(systemName: "square.stack")
+            self.profileItem.imageView.image = UIImage(systemName: "person.crop.circle")
+            self.channelsItem.imageView.image = UIImage(systemName: "bubble.left.and.bubble.right.fill")
+        case .profile:
+            self.feedItem.imageView.image = UIImage(systemName: "square.stack")
+            self.profileItem.imageView.image = UIImage(systemName: "person.crop.circle.fill")
+            self.channelsItem.imageView.image = UIImage(systemName: "bubble.left.and.bubble.right")
         }
     }
 }
