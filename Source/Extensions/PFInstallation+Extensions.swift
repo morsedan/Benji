@@ -22,11 +22,11 @@ extension PFInstallation {
                 } else if let error = error {
                     promise.reject(with: error)
                 } else {
-                    promise.reject(with: ClientError.message(detail: "There was a problem saving your authorization credentials"))
+                    promise.reject(with: ClientError.message(detail: "There was a problem saving your authorization credentials."))
                 }
             }
         } else {
-            promise.reject(with: ClientError.message(detail: "You don't appear to be logged in"))
+            promise.reject(with: ClientError.message(detail: "You don't appear to be logged in."))
         }
 
         return promise.withResultToast()

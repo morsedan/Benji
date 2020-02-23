@@ -51,7 +51,7 @@ extension TCHChannel: Diffable, ManageableCellItem {
                     }
                     promise.resolve(with: nonMeMembers)
                 } else {
-                    promise.reject(with: ClientError.message(detail: "There was a problem fetching other members"))
+                    promise.reject(with: ClientError.message(detail: "There was a problem fetching other members."))
                 }
             }
         }
@@ -95,15 +95,15 @@ extension TCHChannel: Diffable, ManageableCellItem {
                                 observer.send(value: .unreadMessages(self, totalUnread))
                                 observer.sendCompleted()
                             } else {
-                                observer.send(error: ClientError.message(detail: "Unable to get messages"))
+                                observer.send(error: ClientError.message(detail: "Unable to get messages."))
                             }
                         }
                     } else {
-                        observer.send(error: ClientError.message(detail: "Failed to get message count"))
+                        observer.send(error: ClientError.message(detail: "Failed to get message count."))
                     }
                 }
             } else {
-                observer.send(error: ClientError.message(detail: "There were no messages"))
+                observer.send(error: ClientError.message(detail: "There were no messages."))
             }
         }
     }
@@ -206,7 +206,7 @@ extension Future where Value == TCHChannel {
                         promise.resolve(with: user)
                     })
             } else {
-                promise.reject(with: ClientError.message(detail: "This channel has no author ID"))
+                promise.reject(with: ClientError.message(detail: "This channel has no author ID."))
             }
 
             return promise
@@ -233,7 +233,7 @@ extension Future where Value == TCHChannel {
                                 promise.resolve(with: users)
                             })
                     } else {
-                        promise.reject(with: ClientError.message(detail: "Failed to retrieve channel members"))
+                        promise.reject(with: ClientError.message(detail: "Failed to retrieve channel members."))
                     }
                 }
             }

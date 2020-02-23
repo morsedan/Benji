@@ -27,7 +27,7 @@ struct CreateConnection: CloudFunction {
                                 } else if let connection = object as? Connection {
                                     promise.resolve(with: connection)
                                 } else {
-                                    promise.reject(with: ClientError.message(detail: "There was a problem connecting with that phone number"))
+                                    promise.reject(with: ClientError.message(detail: "There was a problem connecting with that phone number."))
                                 }
         }
 
