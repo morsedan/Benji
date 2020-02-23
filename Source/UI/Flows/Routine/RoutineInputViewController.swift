@@ -19,6 +19,7 @@ private func round(num: CGFloat, toMultipleOf multiple: Int) -> Int {
 }
 
 enum RoutineInputState {
+    case needsAuthorization
     case edit
     case update
 }
@@ -30,6 +31,8 @@ class RoutineInputViewController: ViewController {
 
     var selectedDate = Date()
     lazy var currentState = MutableProperty<RoutineInputState>(.edit)
+
+    var didTapNeedsAthorization: CompletionOptional = nil
 
     override func loadView() {
         self.view = self.content
@@ -43,6 +46,10 @@ class RoutineInputViewController: ViewController {
             .on { [unowned self] (_) in
                 self.updateForStateChange()
         }.start()
+
+        if UserNotificationManager.shared.getNotificationSettingsSynchronously().authorizationStatus != .authorized {
+            self.currentState.value = .needsAuthorization
+        }
 
         self.content.timeHump.percentage.signal.observeValues { [unowned self] (percentage) in
             let calendar = Calendar.current
@@ -92,6 +99,8 @@ class RoutineInputViewController: ViewController {
 
         self.content.setRoutineButton.didSelect = { [unowned self] in
             switch self.currentState.value {
+            case .needsAuthorization:
+                self.didTapNeedsAthorization?()
             case .edit:
                 self.currentState.value = .update
             case .update:
@@ -123,6 +132,8 @@ class RoutineInputViewController: ViewController {
 
     private func updateForStateChange() {
         switch self.currentState.value {
+        case .needsAuthorization:
+            self.animateButton(with: .green, text: "Authorize")
         case .edit:
             self.animateButton(with: .green, text: "Edit")
             self.content.animateTimeHump(shouldShow: false)

@@ -32,8 +32,9 @@ class ProfileCoordinator: Coordinator<Void> {
     }
 
     private func presentRoutine() {
-        let vc = RoutineViewController()
-        self.router.present(vc, source: self.profileVC)
+        let coordinator = RoutineCoordinator(router: self.router, deepLink: self.deepLink)
+        self.addChildAndStart(coordinator) { (resutl) in }
+        self.router.present(coordinator, source: self.profileVC)
     }
 
     private func presentPhoto() {

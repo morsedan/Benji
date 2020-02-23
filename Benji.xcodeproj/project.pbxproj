@@ -111,6 +111,7 @@
 		D6486DCE23EF14E5007ED680 /* PendingCollectionViewManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6486DCD23EF14E5007ED680 /* PendingCollectionViewManager.swift */; };
 		D6486DD023EF15A2007ED680 /* Inviteable.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6486DCF23EF15A2007ED680 /* Inviteable.swift */; };
 		D64932D723FE460200986335 /* FeedIndicatorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D64932D623FE460200986335 /* FeedIndicatorView.swift */; };
+		D64932FD2402EBA600986335 /* RoutineCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = D64932FC2402EBA600986335 /* RoutineCoordinator.swift */; };
 		D64C055B23C2A34E00F6DCC1 /* ChannelCellContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D64C055A23C2A34E00F6DCC1 /* ChannelCellContentView.swift */; };
 		D64C6A7A232883FE00DB7257 /* CloudFunction.swift in Sources */ = {isa = PBXBuildFile; fileRef = D64C6A79232883FE00DB7257 /* CloudFunction.swift */; };
 		D64C6A7C23288FB300DB7257 /* SmallLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D64C6A7B23288FB300DB7257 /* SmallLabel.swift */; };
@@ -433,6 +434,7 @@
 		D6486DCD23EF14E5007ED680 /* PendingCollectionViewManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PendingCollectionViewManager.swift; sourceTree = "<group>"; };
 		D6486DCF23EF15A2007ED680 /* Inviteable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Inviteable.swift; sourceTree = "<group>"; };
 		D64932D623FE460200986335 /* FeedIndicatorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedIndicatorView.swift; sourceTree = "<group>"; };
+		D64932FC2402EBA600986335 /* RoutineCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoutineCoordinator.swift; sourceTree = "<group>"; };
 		D64C055A23C2A34E00F6DCC1 /* ChannelCellContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChannelCellContentView.swift; sourceTree = "<group>"; };
 		D64C6A79232883FE00DB7257 /* CloudFunction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CloudFunction.swift; sourceTree = "<group>"; };
 		D64C6A7B23288FB300DB7257 /* SmallLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SmallLabel.swift; sourceTree = "<group>"; };
@@ -1548,11 +1550,12 @@
 		D6EDD1932355DB6000FDA5D6 /* Routine */ = {
 			isa = PBXGroup;
 			children = (
+				D64932FC2402EBA600986335 /* RoutineCoordinator.swift */,
 				80D4A21723039B82007CB5F1 /* RoutineInputContentView.swift */,
 				80D4A21523039B22007CB5F1 /* RoutineInputViewController.swift */,
-				D653F6AF23588F8E00A03EEE /* RoutineViewController.swift */,
 				D6E4C7FE23943798002B1330 /* RoutineTimeLabel.swift */,
 				D6E4C8002394391A002B1330 /* RoutineTimeOfDayLabel.swift */,
+				D653F6AF23588F8E00A03EEE /* RoutineViewController.swift */,
 			);
 			path = Routine;
 			sourceTree = "<group>";
@@ -1869,6 +1872,7 @@
 				D68483FF22CD0A1A00362AC3 /* TableView.swift in Sources */,
 				D67896B622FF86AB0059BA75 /* FeedViewController+Extensions.swift in Sources */,
 				D6AF0301220154E3002D5C75 /* ChannelManager.swift in Sources */,
+				D64932FD2402EBA600986335 /* RoutineCoordinator.swift in Sources */,
 				D64C6A99232D6C0200DB7257 /* TypingBubbleView.swift in Sources */,
 				D61EC0C021D3071400204BEE /* AppDelegate.swift in Sources */,
 				D6486DCC23EF14C2007ED680 /* PendingInviteCell.swift in Sources */,

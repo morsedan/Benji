@@ -96,9 +96,10 @@ class HomeCoordinator: PresentableCoordinator<Void> {
     }
 
     private func startRoutineFlow() {
-        let vc = RoutineViewController()
+        let coordinator = RoutineCoordinator(router: self.router, deepLink: self.deepLink)
+        self.addChildAndStart(coordinator) { (result) in }
         let source = self.homeVC.currentCenterVC ?? self.homeVC
-        self.router.present(vc, source: source)
+        self.router.present(coordinator, source: source)
     }
 }
 

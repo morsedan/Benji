@@ -9,24 +9,59 @@
 import Foundation
 import TMROLocalization
 
+protocol RoutineViewControllerDelegate: class {
+    func routineInputViewControllerNeedsAuthorization(_ controller: RoutineViewController)
+}
+
 class RoutineViewController: NavigationBarViewController {
 
     let routineInputVC = RoutineInputViewController()
+
+    unowned let delegate: RoutineViewControllerDelegate
+
+    init(with delegate: RoutineViewControllerDelegate) {
+        self.delegate = delegate
+        super.init()
+    }
+
+    required init?(coder aDecoder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
 
     override func initializeViews() {
         super.initializeViews()
 
         self.view.set(backgroundColor: .background2)
         self.addChild(viewController: self.routineInputVC)
-        self.backButton.isHidden = true 
+        self.backButton.isHidden = true
+
+        self.routineInputVC.didTapNeedsAthorization = {
+            self.delegate.routineInputViewControllerNeedsAuthorization(self)
+        }
+
+        self.routineInputVC.currentState.producer
+            .skipRepeats()
+            .on { [unowned self] (_) in
+                self.updateNavigationBar()
+        }.start()
     }
 
     override func getTitle() -> Localized {
-        return "DAILY ROUTINE"
+        switch self.routineInputVC.currentState.value {
+        case .needsAuthorization:
+            return "Need Permission"
+        default:
+            return "DAILY ROUTINE"
+        }
     }
 
     override func getDescription() -> Localized {
-        return "Get a daily reminder to follow up and connect with others."
+        switch self.routineInputVC.currentState.value {
+        case .needsAuthorization:
+            return "You will need to add notification permission to use this feature."
+        default:
+            return "Get a daily reminder to follow up and connect with others."
+        }
     }
 
     override func viewDidLayoutSubviews() {
