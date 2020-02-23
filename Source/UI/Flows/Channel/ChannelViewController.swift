@@ -110,7 +110,6 @@ class ChannelViewController: FullScreenViewController {
                             let notMeUsers = users.filter { (user) -> Bool in
                                 return user.objectId != User.current()?.objectId
                             }
-
                             self.messageInputView.textView.setPlaceholder(for: notMeUsers)
                         }
                 }
