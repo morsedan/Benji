@@ -55,7 +55,7 @@ extension User {
                 })
             }
         } else {
-            promise.reject(with: ClientError.message(detail: "Failed to retrieve your routine"))
+            promise.reject(with: ClientError.message(detail: "Failed to retrieve your routine."))
         }
 
         return promise.withResultToast()

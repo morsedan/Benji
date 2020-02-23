@@ -115,7 +115,7 @@ class FeedSupplier {
                 }
             }
         } else {
-            promise.reject(with: ClientError.message(detail: "Failed to retrieve connections"))
+            promise.reject(with: ClientError.message(detail: "Failed to retrieve connections."))
         }
         return promise
     }

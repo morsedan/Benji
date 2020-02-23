@@ -61,7 +61,7 @@ class ChannelManager: NSObject {
                                             shared.client = strongClient
                                             promise.resolve(with: ())
                                         } else {
-                                            promise.reject(with: ClientError.message(detail: "Failed to initialize chat client"))
+                                            promise.reject(with: ClientError.message(detail: "Failed to initialize chat client."))
                                         }
         })
         
@@ -92,7 +92,7 @@ class ChannelManager: NSObject {
                 !message.isEmpty,
                 channel.status == .joined,
                 let messages = channel.messages else {
-                promise.reject(with: ClientError.message(detail: "Failed to send message"))
+                promise.reject(with: ClientError.message(detail: "Failed to send message."))
                 return promise
         }
 
@@ -104,7 +104,7 @@ class ChannelManager: NSObject {
             } else if let error = result.error {
                 promise.reject(with: error)
             } else {
-                promise.reject(with: ClientError.message(detail: "Failed to send message"))
+                promise.reject(with: ClientError.message(detail: "Failed to send message."))
             }
         }
 
