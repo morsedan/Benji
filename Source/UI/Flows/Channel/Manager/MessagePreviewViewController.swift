@@ -12,14 +12,14 @@ class MessagePreviewViewController: ViewController {
 
     let message: Messageable
     let messageTextView = MessageTextView()
-    let cellWidth: CGFloat
+    let channelAttributes: ChannelCollectionViewLayoutAttributes
     let bubbleView = View()
 
     init(with message: Messageable,
-         cellWidth: CGFloat) {
+         attributes: ChannelCollectionViewLayoutAttributes) {
 
         self.message = message
-        self.cellWidth = cellWidth
+        self.channelAttributes = attributes
 
         super.init()
     }
@@ -35,15 +35,29 @@ class MessagePreviewViewController: ViewController {
     override func initializeViews() {
         super.initializeViews()
 
-        self.messageTextView.set(text: self.message.text, messageContext: self.message.context)
-
-        let backgroundColor: Color = self.message.isFromCurrentUser ? .lightPurple : .purple
-        self.bubbleView.set(backgroundColor: backgroundColor)
         self.view.addSubview(self.messageTextView)
-        self.messageTextView.setSize(withWidth: self.cellWidth - 20)
+        self.messageTextView.set(text: self.message.text, messageContext: self.message.context)
+        self.handleIsConsumed(for: self.message)
 
-        self.preferredContentSize.height = self.messageTextView.height + 20
-        self.preferredContentSize.width = self.cellWidth
+        self.messageTextView.size = self.channelAttributes.attributes.textViewFrame.size
+
+        self.preferredContentSize = self.channelAttributes.attributes.bubbleViewFrame.size
+    }
+
+    private func handleIsConsumed(for message: Messageable) {
+
+        self.bubbleView.set(backgroundColor: message.color)
+
+        if !message.isFromCurrentUser, !message.isConsumed, message.context != .status {
+
+            if !message.isFromCurrentUser, message.context == .casual {
+                self.bubbleView.layer.borderColor = Color.purple.color.cgColor
+            } else {
+                self.bubbleView.layer.borderColor = message.context.color.color.cgColor
+            }
+
+            self.bubbleView.layer.borderWidth = 2
+        }
     }
 
     override func viewDidLayoutSubviews() {

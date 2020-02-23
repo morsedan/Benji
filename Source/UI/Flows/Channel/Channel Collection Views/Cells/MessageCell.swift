@@ -17,6 +17,7 @@ class MessageCell: UICollectionViewCell {
     let overlayView = View()
     var didTapMessage: () -> Void = {}
     private(set) var currentMessage: Messageable?
+    private(set) var attributes: ChannelCollectionViewLayoutAttributes? 
 
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -54,7 +55,7 @@ class MessageCell: UICollectionViewCell {
         super.apply(layoutAttributes)
 
         guard let attributes = layoutAttributes as? ChannelCollectionViewLayoutAttributes else { return }
-
+        self.attributes = attributes
         self.layoutContent(with: attributes)
     }
 
@@ -64,7 +65,7 @@ class MessageCell: UICollectionViewCell {
         self.currentMessage = nil 
         self.bubbleView.layer.borderColor = nil
         self.bubbleView.layer.borderWidth = 0
-        
+        self.attributes = nil 
         self.textView.text = nil
     }
 
