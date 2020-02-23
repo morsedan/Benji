@@ -12,6 +12,12 @@ import Parse
 import TwilioChatClient
 import TMROFutures
 
+typealias ChannelViewControllerDelegates = ChannelDetailBarDelegate & ChannelViewControllerDelegate
+
+protocol ChannelViewControllerDelegate: class {
+    func channelView(_ controller: ChannelViewController, didTapShare message: Messageable)
+}
+
 class ChannelViewController: FullScreenViewController {
 
     let blurView = UIVisualEffectView(effect: UIBlurEffect(style: .dark))
@@ -21,7 +27,6 @@ class ChannelViewController: FullScreenViewController {
     private(set) var messageInputView = MessageInputView()
 
     let disposables = CompositeDisposable()
-
 
     // A Boolean value that determines whether the `MessagesCollectionView`
     /// maintains it's current position when the height of the `MessageInputBar` changes.
@@ -42,9 +47,9 @@ class ChannelViewController: FullScreenViewController {
     var interactiveStartingPoint: CGPoint?
 
     let channelType: ChannelType
-    unowned let delegate: ChannelDetailBarDelegate
+    unowned let delegate: ChannelViewControllerDelegates
 
-    init(channelType: ChannelType, delegate: ChannelDetailBarDelegate) {
+    init(channelType: ChannelType, delegate: ChannelViewControllerDelegates) {
         self.delegate = delegate
         self.channelType = channelType
         super.init()
@@ -100,6 +105,10 @@ class ChannelViewController: FullScreenViewController {
                 self.loadMessages()
                 self.view.setNeedsLayout()
         }.start()
+
+        self.collectionViewManager.didTapShare = { [unowned self] message in
+            self.delegate.channelView(self, didTapShare: message)
+        }
 
         self.subscribeToClient()
     }

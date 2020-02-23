@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import TMROLocalization
 
 class ChannelCoordinator: PresentableCoordinator<Void> {
 
@@ -30,5 +31,14 @@ extension ChannelCoordinator: ChannelDetailBarDelegate {
 
     func channelDetailBarDidTapMenu(_ view: ChannelDetailBar) {
         //Present channel menu
+    }
+}
+
+extension ChannelCoordinator: ChannelViewControllerDelegate {
+
+    func channelView(_ controller: ChannelViewController, didTapShare message: Messageable) {
+        let items = [localized(message.text)]
+        let ac = UIActivityViewController(activityItems: items, applicationActivities: nil)
+        controller.present(ac, animated: true, completion: nil)
     }
 }

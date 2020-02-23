@@ -36,9 +36,7 @@ extension ChannelCollectionViewManager {
 
         // Create a UIAction for sharing
         let share = UIAction(title: "Share", image: UIImage(systemName: "square.and.arrow.up")) { action in
-            //let items = [localized(message.text)]
-            //let ac = UIActivityViewController(activityItems: items, applicationActivities: nil)
-            //self.present(ac, animated: true)
+            self.didTapShare?(message)
         }
 
         let editMessage = UIAction(title: "Edit", image: UIImage(systemName: "square.and.pencil")) { action in
