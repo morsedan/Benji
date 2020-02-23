@@ -108,8 +108,12 @@ class ChannelsCollectionViewManager: CollectionViewManager<ChannelCell> {
 
         let deleteMenu = UIMenu(title: "Delete", image: UIImage(systemName: "trash"), options: .destructive, children: [confirm, neverMind])
 
+        let open = UIAction(title: "Open", image: UIImage(systemName: "arrowshape.turn.up.right")) { _ in
+            self.select(indexPath: indexPath)
+        }
+
         // Create and return a UIMenu with the share action
-        return UIMenu(title: "Options", children: [deleteMenu])
+        return UIMenu(title: "Options", children: [open, deleteMenu])
     }
 
     private func makeNonCurrentUserMenu(for channel: DisplayableChannel, at indexPath: IndexPath) -> UIMenu {
@@ -129,7 +133,11 @@ class ChannelsCollectionViewManager: CollectionViewManager<ChannelCell> {
 
         let deleteMenu = UIMenu(title: "Leave", image: UIImage(systemName: "clear"), options: .destructive, children: [confirm, neverMind])
 
+        let open = UIAction(title: "Open", image: UIImage(systemName: "arrowshape.turn.up.right")) { _ in
+            self.select(indexPath: indexPath)
+        }
+
         // Create and return a UIMenu with the share action
-        return UIMenu(title: "Options", children: [deleteMenu])
+        return UIMenu(title: "Options", children: [open, deleteMenu])
     }
 }
