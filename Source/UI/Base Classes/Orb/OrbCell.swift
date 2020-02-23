@@ -44,7 +44,7 @@ class OrbCell: CollectionViewManagerCell, ManageableCell {
 
         self.imageView.set(avatar: orbItem.avatar.value)
 
-        let displayName: Localized = orbItem.avatar.value.handle ?? orbItem.avatar.value.fullName
+        let displayName: Localized = orbItem.avatar.value.firstAndLastInitial ?? orbItem.avatar.value.fullName
         self.label.set(text: displayName,
                        color: .white,
                        alignment: .center,

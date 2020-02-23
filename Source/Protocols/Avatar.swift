@@ -14,6 +14,7 @@ protocol Avatar: ImageDisplayable {
     var familyName: String { get }
     var fullName: String { get }
     var handle: String? { get }
+    var firstAndLastInitial: String? { get }
 }
 
 extension Avatar {
@@ -30,5 +31,10 @@ extension Avatar {
 
     var handle: String? {
         return nil
+    }
+
+    var firstAndLastInitial: String? {
+        let lastInitial = String(optional: self.familyName.first?.lowercased())
+        return self.givenName.lowercased() + " " + lastInitial
     }
 }
