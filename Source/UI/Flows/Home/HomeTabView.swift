@@ -94,10 +94,10 @@ class HomeTabView: View {
             }
             UIView.addKeyframe(withRelativeStartTime: 0.66, relativeDuration: 0.33) {
                 self.flashLightView.transform = .identity
+                self.updateButtons(for: contentType)
             }
         }) { _ in
             self.indicatorCenterX = newCenterX
-            self.updateButtons(for: contentType)
         }
     }
 
@@ -105,16 +105,25 @@ class HomeTabView: View {
         switch contentType {
         case .feed:
             self.feedItem.imageView.image = UIImage(systemName: "square.stack.fill")
+            self.feedItem.imageView.tintColor = Color.purple.color
             self.profileItem.imageView.image = UIImage(systemName: "person.crop.circle")
+            self.profileItem.imageView.tintColor = Color.white.color
             self.channelsItem.imageView.image = UIImage(systemName: "bubble.left.and.bubble.right")
+            self.channelsItem.imageView.tintColor = Color.white.color
         case .channels:
             self.feedItem.imageView.image = UIImage(systemName: "square.stack")
+            self.feedItem.imageView.tintColor = Color.white.color
             self.profileItem.imageView.image = UIImage(systemName: "person.crop.circle")
+            self.profileItem.imageView.tintColor = Color.white.color
             self.channelsItem.imageView.image = UIImage(systemName: "bubble.left.and.bubble.right.fill")
+            self.channelsItem.imageView.tintColor = Color.purple.color
         case .profile:
             self.feedItem.imageView.image = UIImage(systemName: "square.stack")
+            self.feedItem.imageView.tintColor = Color.white.color
             self.profileItem.imageView.image = UIImage(systemName: "person.crop.circle.fill")
+            self.profileItem.imageView.tintColor = Color.purple.color
             self.channelsItem.imageView.image = UIImage(systemName: "bubble.left.and.bubble.right")
+            self.channelsItem.imageView.tintColor = Color.white.color
         }
     }
 }
