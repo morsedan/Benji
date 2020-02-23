@@ -16,25 +16,19 @@ class ChannelViewController: FullScreenViewController {
 
     let blurView = UIVisualEffectView(effect: UIBlurEffect(style: .dark))
     lazy var detailBar = ChannelDetailBar(with: self.channelType, delegate: self.delegate)
+    lazy var collectionView = ChannelCollectionView()
+    lazy var collectionViewManager = ChannelCollectionViewManager(with: self.collectionView, for: self.channelType)
+    private(set) var messageInputView = MessageInputView()
+
+    let disposables = CompositeDisposable()
+
 
     // A Boolean value that determines whether the `MessagesCollectionView`
     /// maintains it's current position when the height of the `MessageInputBar` changes.
     ///
     /// The default value of this property is `false`.
     var maintainPositionOnKeyboardFrameChanged: Bool = false
-
-    var scrollingEnabled: Bool = true
-    var didUpdateHeight: ((CGRect, TimeInterval, UIView.AnimationCurve) -> ())?
-
-    let channelType: ChannelType
-
-    let disposables = CompositeDisposable()
-
-    lazy var collectionView = ChannelCollectionView()
-    lazy var collectionViewManager = ChannelCollectionViewManager(with: self.collectionView, for: self.channelType)
-
-    private(set) var messageInputView = MessageInputView()
-
+    private var animateMessages: Bool = true
     private var bottomOffset: CGFloat {
         var offset: CGFloat = 6
         if let handler = self.keyboardHandler, handler.currentKeyboardHeight == 0 {
@@ -46,6 +40,8 @@ class ChannelViewController: FullScreenViewController {
     var previewAnimator: UIViewPropertyAnimator?
     var previewView: PreviewMessageView?
     var interactiveStartingPoint: CGPoint?
+
+    let channelType: ChannelType
     unowned let delegate: ChannelDetailBarDelegate
 
     init(channelType: ChannelType, delegate: ChannelDetailBarDelegate) {
@@ -112,10 +108,16 @@ class ChannelViewController: FullScreenViewController {
         super.viewDidAppear(animated)
 
         if MessageSupplier.shared.sections.count > 0 {
-            self.collectionViewManager.set(newSections: MessageSupplier.shared.sections, animate: true, completion: nil)
+            self.collectionViewManager.set(newSections: MessageSupplier.shared.sections,
+                                           animate: self.animateMessages) {
+                                            self.animateMessages = false
+            }
         } else {
             MessageSupplier.shared.didGetLastSections = { [unowned self] sections in
-                self.collectionViewManager.set(newSections: sections, animate: true, completion: nil)
+                self.collectionViewManager.set(newSections: sections,
+                                               animate: self.animateMessages) {
+                                                self.animateMessages = false
+                }
             }
         }
     }
