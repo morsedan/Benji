@@ -33,9 +33,8 @@ class FeedRoutineView: View {
         self.textView.bottom = self.centerY - 10
         self.textView.centerOnX()
 
-        self.button.size = CGSize(width: 100, height: 40)
+        self.button.setSize(with: self.width)
         self.button.centerOnX()
         self.button.bottom = self.height - Theme.contentOffset
-        self.button.roundCorners()
     }
 }

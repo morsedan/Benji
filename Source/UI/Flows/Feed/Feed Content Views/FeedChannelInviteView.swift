@@ -68,9 +68,8 @@ class FeedChannelInviteView: View {
         self.textView.centerOnX()
         self.textView.top = self.avatarView.bottom + Theme.contentOffset
 
-        self.button.size = CGSize(width: 100, height: 40)
+        self.button.setSize(with: self.width)
         self.button.centerOnX()
         self.button.bottom = self.height - Theme.contentOffset
-        self.button.roundCorners()
     }
 }

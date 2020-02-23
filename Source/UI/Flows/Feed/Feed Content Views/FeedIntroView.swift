@@ -26,7 +26,6 @@ class FeedIntroView: View {
         self.label.setSize(withWidth: self.width * 0.9)
         self.label.centerOnXAndY()
     }
-    
 }
 
 private class FeedQuoteLabel: Label {
