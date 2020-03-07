@@ -34,7 +34,7 @@ extension TCHMessage: Avatar {
 extension TCHMessage: Messageable {
 
     var updateId: String? {
-        return self.attributes()?["updateId"] as? String
+        return self.attributes()?.dictionary?["updateId"] as? String
     }
 
     var id: String {
@@ -64,7 +64,7 @@ extension TCHMessage: Messageable {
     }
 
     var attributes: [String : Any]? {
-        return self.attributes()
+        return self.attributes()?.dictionary as? [String: Any]
     }
 
     var avatar: Avatar {
@@ -72,7 +72,7 @@ extension TCHMessage: Messageable {
     }
 
     var status: MessageStatus {
-        if let statusString = self.attributes()?["status"] as? String, let type = MessageStatus(rawValue: statusString) {
+        if let statusString = self.attributes()?.dictionary?["status"] as? String, let type = MessageStatus(rawValue: statusString) {
             return type
         }
 
@@ -80,7 +80,7 @@ extension TCHMessage: Messageable {
     }
 
     var context: MessageContext {
-        if let statusString = self.attributes()?["context"] as? String, let type = MessageContext(rawValue: statusString) {
+        if let statusString = self.attributes()?.dictionary?["context"] as? String, let type = MessageContext(rawValue: statusString) {
             return type
         }
 
@@ -88,7 +88,7 @@ extension TCHMessage: Messageable {
     }
 
     var hasBeenConsumedBy: [String] {
-        return self.attributes()?["consumers"] as? [String] ?? []
+        return self.attributes()?.dictionary?["consumers"] as? [String] ?? []
     }
 
     func udpateConsumers(with consumer: Avatar) {
@@ -101,14 +101,19 @@ extension TCHMessage: Messageable {
 
     func appendAttributes(with attributes: [String: Any]) -> Future<Void> {
         let promise = Promise<Void>()
-        let current: [String: Any] = self.attributes() ?? [:]
+        let current: [String: Any] = self.attributes()?.dictionary as? [String: Any] ?? [:]
         let updated = current.merging(attributes, uniquingKeysWith: { (first, _) in first })
-        self.setAttributes(updated) { (result) in
-            if let error = result.error {
-                promise.reject(with: error)
-            } else {
-                promise.resolve(with: ())
+
+        if let newAttributes = TCHJsonAttributes.init(dictionary: updated) {
+            self.setAttributes(newAttributes) { (result) in
+                if let error = result.error {
+                    promise.reject(with: error)
+                } else {
+                    promise.resolve(with: ())
+                }
             }
+        } else {
+            promise.reject(with: ClientError.generic)
         }
 
         return promise.withResultToast()

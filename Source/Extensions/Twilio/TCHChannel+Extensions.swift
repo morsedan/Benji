@@ -71,7 +71,7 @@ extension TCHChannel: Diffable, ManageableCellItem {
 
     var channelDescription: String {
         guard let attributes = self.attributes(),
-            let text = attributes[ChannelKey.description.rawValue] as? String else { return String() }
+            let text = attributes.dictionary?[ChannelKey.description.rawValue] as? String else { return String() }
         return text
     }
 
@@ -259,7 +259,7 @@ extension TCHChannel: ImageDisplayable {
 
     var context: MessageContext? {
         guard let attributes = self.attributes(),
-            let contextString = attributes["context"] as? String,
+            let contextString = attributes.dictionary?["context"] as? String,
             let context = MessageContext(rawValue: contextString) else { return nil }
         return context
     }

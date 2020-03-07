@@ -91,13 +91,14 @@ class ChannelManager: NSObject {
         guard self.isConnected,
                 !message.isEmpty,
                 channel.status == .joined,
-                let messages = channel.messages else {
+                let messages = channel.messages,
+                let tchAttributes = TCHJsonAttributes.init(dictionary: mutableAttributes) else {
                 promise.reject(with: ClientError.message(detail: "Failed to send message."))
                 return promise
         }
 
         let messageOptions = TCHMessageOptions().withBody(body)
-        messageOptions.withAttributes(mutableAttributes, completion: nil)
+        messageOptions.withAttributes(tchAttributes, completion: nil)
         messages.sendMessage(with: messageOptions) { (result, message) in
             if result.isSuccessful(), let msg = message {
                 promise.resolve(with: msg)
